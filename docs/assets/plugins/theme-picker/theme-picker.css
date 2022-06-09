@@ -1,0 +1,29 @@
+.theme-picker {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 30;
+}
+
+.theme-picker:not(:defined) {
+  display: none;
+}
+
+.theme-picker l-menu-label {
+  white-space: nowrap;
+}
+
+.theme-picker l-menu-label kbd {
+  margin-left: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .theme-picker {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .theme-picker l-menu-label {
+    display: none;
+  }
+}

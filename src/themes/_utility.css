@@ -1,0 +1,28 @@
+/*
+ * This file contains utility classes that can't be contained in a component and must be applied to the light DOM. None
+ * of the rules in this stylesheet should target component tags or HTML tags, and all classes *must* start with ".l-"
+ * to reduce the possibility of collisions.
+ */
+
+.l-scroll-lock {
+  overflow: hidden !important;
+}
+
+.l-toast-stack {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  top: 12px;
+  margin: 8px;
+  right: 12px;
+  z-index: var(--l-z-index-toast);
+  width: 28rem;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.l-toast-stack l-alert {
+  --box-shadow: var(--l-shadow-large);
+}

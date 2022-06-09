@@ -1,0 +1,89 @@
+.l-alert {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background-color: var(--l-panel-background-color);
+  border: solid var(--l-panel-border-width) var(--l-panel-border-color);
+  border-left-width: calc(var(--l-panel-border-width) * 4);
+  border-right-width: calc(var(--l-panel-border-width) * 4);
+  border-radius: var(--l-border-radius-medium);
+  box-shadow: var(--box-shadow);
+  font-family: var(--l-font-sans);
+  font-size: var(--l-font-size-small);
+  font-weight: var(--l-font-weight-normal);
+  line-height: 1.6;
+  color: var(--l-color-neutral-900);
+  margin: 0;
+}
+
+.l-alert:not(.l-alert--has-icon) .l-alert__icon,
+.l-alert:not(.l-alert--closable) .l-alert__close-button {
+  display: none;
+}
+
+.l-alert__icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  font-size: var(--l-font-size-large);
+  padding-inline-start: var(--l-spacing-large);
+}
+
+.l-alert--primary {
+  border-left-color: var(--l-color-primary-600);
+  border-right-color: var(--l-color-primary-600);
+}
+
+.l-alert--primary .l-alert__icon {
+  color: var(--l-color-primary-600);
+}
+
+.l-alert--success {
+  border-left-color: var(--l-color-success-600);
+  border-right-color: var(--l-color-success-600);
+}
+
+.l-alert--success .l-alert__icon {
+  color: var(--l-color-success-600);
+}
+
+.l-alert--neutral {
+  border-left-color: var(--l-color-neutral-600);
+  border-right-color: var(--l-color-neutral-600);
+}
+
+.l-alert--neutral .l-alert__icon {
+  color: var(--l-color-neutral-600);
+}
+
+.l-alert--warning {
+  border-left-color: var(--l-color-warning-600);
+  border-right-color: var(--l-color-warning-600);
+}
+
+.l-alert--warning .l-alert__icon {
+  color: var(--l-color-warning-600);
+}
+
+.l-alert--danger {
+  border-left-color: var(--l-color-danger-600);
+  border-right-color: var(--l-color-danger-600);
+}
+
+.l-alert--danger .l-alert__icon {
+  color: var(--l-color-danger-600);
+}
+
+.l-alert__message {
+  flex: 1 1 auto;
+  padding: var(--l-spacing-large);
+  overflow: hidden;
+}
+
+.l-alert__close-button {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  font-size: var(--l-font-size-large);
+  padding-inline-end: var(--l-spacing-medium);
+}
