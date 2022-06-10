@@ -601,7 +601,7 @@ body[data-page^='/tokens/'] .table-wrapper td:first-child code {
 
 /* Elevation demo */
 .elevation-demo {
-  background: transparent;
+  background: var(--l-color-neutral-50);
   border-radius: 3px;
   width: 4rem;
   height: 4rem;
