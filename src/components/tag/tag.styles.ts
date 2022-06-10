@@ -71,7 +71,7 @@ export default css`
 
   .tag--small .tag__remove {
     margin-inline-start: var(--l-spacing-2x-small);
-    margin-right: calc(-1 * var(--l-spacing-3x-small));
+    margin-right: calc(-1 * var(--l-spacing-tiny));
   }
 
   .tag--medium {

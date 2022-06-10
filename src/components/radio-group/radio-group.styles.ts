@@ -8,14 +8,14 @@ export default css`
     display: block;
   }
 
-  .radio-group {
+  .l-radio-group {
     border: solid var(--l-panel-border-width) var(--l-panel-border-color);
     border-radius: var(--l-border-radius-medium);
     padding: var(--l-spacing-large);
     padding-top: var(--l-spacing-x-small);
   }
 
-  .radio-group .radio-group__label {
+  .l-radio-group .l-radio-group__label {
     font-family: var(--l-input-font-family);
     font-size: var(--l-input-font-size-medium);
     font-weight: var(--l-input-font-weight);
@@ -28,14 +28,14 @@ export default css`
     margin-bottom: var(--l-spacing-2x-small);
   }
 
-  .radio-group:not(.radio-group--has-fieldset) {
+  .l-radio-group:not(.l-radio-group--has-fieldset) {
     border: none;
     padding: 0;
     margin: 0;
     min-width: 0;
   }
 
-  .radio-group:not(.radio-group--has-fieldset) .radio-group__label {
+  .l-radio-group:not(.l-radio-group--has-fieldset) .l-radio-group__label {
     position: absolute;
     width: 0;
     height: 0;

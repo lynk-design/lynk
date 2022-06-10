@@ -341,7 +341,7 @@
    * Spacings
    */
 
-  --l-spacing-3x-small: 0.125rem; /* 2px */
+  --l-spacing-tiny: 0.125rem; /* 2px */
   --l-spacing-2x-small: 0.25rem; /* 4px */
   --l-spacing-x-small: 0.5rem; /* 8px */
   --l-spacing-small: 0.75rem; /* 12px */
@@ -415,14 +415,23 @@
   --l-focus-ring-offset: 1px;
 
   /* Buttons */
+  --l-button-border-width: 1px;
+  --l-button-border-radius-small: var(--l-border-radius-medium);
+  --l-button-border-radius-medium: var(--l-border-radius-medium);
+  --l-button-border-radius-large: var(--l-border-radius-medium);
+
+  --l-button-font-family: var(--l-font-sans);
   --l-button-font-size-small: var(--l-font-size-x-small);
   --l-button-font-size-medium: var(--l-font-size-small);
   --l-button-font-size-large: var(--l-font-size-medium);
+  --l-button-height-small: 1.75rem; /* 28px */
+  --l-button-height-medium: 2.5rem; /* 40px */
+  --l-button-height-large: 3.5rem; /* 56px */
 
   /* Inputs */
-  --l-input-height-small: 1.875rem; /* 30px */
+  --l-input-height-small: 1.75rem; /* 30px */
   --l-input-height-medium: 2.5rem; /* 40px */
-  --l-input-height-large: 3.125rem; /* 50px */
+  --l-input-height-large: 3.5rem; /* 56px */
 
   --l-input-background-color: var(--l-color-neutral-0);
   --l-input-background-color-hover: var(--l-input-background-color);

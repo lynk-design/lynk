@@ -3,7 +3,7 @@ import { customElement } from 'lit/decorators.js';
 import styles from './spinner.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @csspart base - The component's internal wrapper.
@@ -14,14 +14,14 @@ import styles from './spinner.styles';
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
  */
 @customElement('l-spinner')
-export default class SlSpinner extends LitElement {
+export default class LynkSpinner extends LitElement {
   static styles = styles;
 
   render() {
     return html`
-      <svg part="base" class="spinner" role="status">
-        <circle class="spinner__track"></circle>
-        <circle class="spinner__indicator"></circle>
+      <svg part="base" class="l-spinner" role="status">
+        <circle class="l-spinner__track"></circle>
+        <circle class="l-spinner__indicator"></circle>
       </svg>
     `;
   }
@@ -29,6 +29,6 @@ export default class SlSpinner extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-spinner': SlSpinner;
+    'l-spinner': LynkSpinner;
   }
 }

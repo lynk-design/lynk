@@ -4,7 +4,7 @@ import { watch } from '../../internal/watch';
 import styles from './divider.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @cssproperty --color - The color of the divider.
@@ -12,7 +12,7 @@ import styles from './divider.styles';
  * @cssproperty --spacing - The spacing of the divider.
  */
 @customElement('l-divider')
-export default class SlDivider extends LitElement {
+export default class LynkDivider extends LitElement {
   static styles = styles;
 
   /** Draws the divider in a vertical orientation. */
@@ -30,6 +30,6 @@ export default class SlDivider extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-divider': SlDivider;
+    'l-divider': LynkDivider;
   }
 }

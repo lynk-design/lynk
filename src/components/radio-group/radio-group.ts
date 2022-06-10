@@ -3,12 +3,12 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import '../../components/button-group/button-group';
 import styles from './radio-group.styles';
-import type SlRadio from '../../components/radio/radio';
+import type LynkRadio from '../../components/radio/radio';
 
 const RADIO_CHILDREN = ['l-radio', 'l-radio-button'];
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @dependency l-button-group
@@ -22,7 +22,7 @@ const RADIO_CHILDREN = ['l-radio', 'l-radio-button'];
  * @csspart button-group__base - The button group's `base` part.
  */
 @customElement('l-radio-group')
-export default class SlRadioGroup extends LitElement {
+export default class LynkRadioGroup extends LitElement {
   static styles = styles;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
@@ -112,11 +112,11 @@ export default class SlRadioGroup extends LitElement {
       <fieldset
         part="base"
         class=${classMap({
-          'radio-group': true,
-          'radio-group--has-fieldset': this.fieldset
+          'l-radio-group': true,
+          'l-radio-group--has-fieldset': this.fieldset
         })}
       >
-        <legend part="label" class="radio-group__label">
+        <legend part="label" class="l-radio-group__label">
           <slot name="label">${this.label}</slot>
         </legend>
         ${this.hasButtonGroup
@@ -129,6 +129,6 @@ export default class SlRadioGroup extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-radio-group': SlRadioGroup;
+    'l-radio-group': LynkRadioGroup;
   }
 }

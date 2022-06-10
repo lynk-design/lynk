@@ -9,14 +9,14 @@ import { watch } from '../../internal/watch';
 import styles from './radio.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The radio's label.
  *
- * @event l-blur - Emitted when the control loses focus.
- * @event l-change - Emitted when the control's checked state changes.
- * @event l-focus - Emitted when the control gains focus.
+ * @event le-blur - Emitted when the control loses focus.
+ * @event le-change - Emitted when the control's checked state changes.
+ * @event le-focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The radio control.
@@ -24,10 +24,10 @@ import styles from './radio.styles';
  * @csspart label - The radio label.
  */
 @customElement('l-radio')
-export default class SlRadio extends LitElement {
+export default class LynkRadio extends LitElement {
   static styles = styles;
 
-  @query('.radio__input') input: HTMLInputElement;
+  @query('.l-radio__input') input: HTMLInputElement;
 
   protected readonly formSubmitController = new FormSubmitController(this, {
     value: (control: HTMLInputElement) => (control.checked ? control.value || 'on' : undefined)
@@ -125,14 +125,14 @@ export default class SlRadio extends LitElement {
       <label
         part="base"
         class=${classMap({
-          radio: true,
-          'radio--checked': this.checked,
-          'radio--disabled': this.disabled,
-          'radio--focused': this.hasFocus
+          'l-radio': true,
+          'l-radio--checked': this.checked,
+          'l-radio--disabled': this.disabled,
+          'l-radio--focused': this.hasFocus
         })}
       >
         <input
-          class="radio__input"
+          class="l-radio__input"
           type="radio"
           name=${ifDefined(this.name)}
           value=${ifDefined(this.value)}
@@ -142,8 +142,8 @@ export default class SlRadio extends LitElement {
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}
         />
-        <span part="control" class="radio__control">
-          <span part="checked-icon" class="radio__icon">
+        <span part="control" class="l-radio__control">
+          <span part="checked-icon" class="l-radio__icon">
             <svg viewBox="0 0 16 16">
               <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g fill="currentColor">
@@ -154,7 +154,7 @@ export default class SlRadio extends LitElement {
           </span>
         </span>
 
-        <span part="label" class="radio__label">
+        <span part="label" class="l-radio__label">
           <slot></slot>
         </span>
       </label>
@@ -164,6 +164,6 @@ export default class SlRadio extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-radio': SlRadio;
+    'l-radio': LynkRadio;
   }
 }

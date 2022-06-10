@@ -9,7 +9,7 @@ import { getAnimation, setDefaultAnimation } from '../../utilities/animation-reg
 import styles from './accordion.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @dependency l-icon
@@ -32,7 +32,7 @@ import styles from './accordion.styles';
  * @animation accordion.hide - The animation to use when hiding accordion. You can use `height: auto` with this animation.
  */
 @customElement('l-accordion')
-export default class LynkDetails extends LitElement {
+export default class LynkAccordion extends LitElement {
   static styles = styles;
 
   @query('.l-accordion') accordion: HTMLElement;
@@ -195,6 +195,6 @@ setDefaultAnimation('accordion.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-accordion': LynkDetails;
+    'l-accordion': LynkAccordion;
   }
 }

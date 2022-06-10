@@ -8,14 +8,6 @@ Checkboxes allow the user to toggle an option on or off.
 <l-checkbox>Checkbox</l-checkbox>
 ```
 
-```jsx react
-import { SlCheckbox } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlCheckbox>Checkbox</SlCheckbox>;
-```
-
-?> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
-
 ## Examples
 
 ### Checked
@@ -26,12 +18,6 @@ Use the `checked` attribute to activate the checkbox.
 <l-checkbox checked>Checked</l-checkbox>
 ```
 
-```jsx react
-import { SlCheckbox } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlCheckbox checked>Checked</SlCheckbox>;
-```
-
 ### Indeterminate
 
 Use the `indeterminate` attribute to make the checkbox indeterminate.
@@ -40,25 +26,9 @@ Use the `indeterminate` attribute to make the checkbox indeterminate.
 <l-checkbox indeterminate>Indeterminate</l-checkbox>
 ```
 
-```jsx react
-import { SlCheckbox } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlCheckbox indeterminate>Indeterminate</SlCheckbox>;
-```
-
 ### Disabled
 
 Use the `disabled` attribute to disable the checkbox.
-
-```html preview
-<l-checkbox disabled>Disabled</l-checkbox>
-```
-
-```jsx react
-import { SlCheckbox } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlCheckbox disabled>Disabled</SlCheckbox>;
-```
 
 ### Custom Validity
 
@@ -68,7 +38,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 <form class="custom-validity">
   <l-checkbox>Check me</l-checkbox>
   <br />
-  <l-button type="submit" variant="primary" style="margin-top: 1rem;">Submit</l-button>
+  <l-button type="submit" color="primary" style="margin-top: 1rem;">Submit</l-button>
 </form>
 <script>
   const form = document.querySelector('.custom-validity');
@@ -79,7 +49,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     checkbox.setCustomValidity(errorMessage);
   });
   // Update validity on change
-  checkbox.addEventListener('l-change', () => {
+  checkbox.addEventListener('le-change', () => {
     checkbox.setCustomValidity(checkbox.checked ? '' : errorMessage);
   });
   // Handle submit
@@ -88,36 +58,6 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     alert('All fields are valid!');
   });
 </script>
-```
-
-```jsx react
-import { useEffect, useRef } from 'react';
-import { SlButton, SlCheckbox } from '@shoelace-style/shoelace/dist/react';
-const App = () => {
-  const checkbox = useRef(null);
-  const errorMessage = `Don't forget to check me!`;
-  function handleChange() {
-    checkbox.current.setCustomValidity(checkbox.current.checked ? '' : errorMessage);
-  }
-  function handleSubmit(event) {
-    event.preventDefault();
-    alert('All fields are valid!');
-  }
-  useEffect(() => {
-    checkbox.current.setCustomValidity(errorMessage);
-  }, []);
-  return (
-    <form class="custom-validity" onSubmit={handleSubmit}>
-      <SlCheckbox ref={checkbox} onSlChange={handleChange}>
-        Check me
-      </SlCheckbox>
-      <br />
-      <SlButton type="submit" variant="primary" style={{ marginTop: '1rem' }}>
-        Submit
-      </SlButton>
-    </form>
-  );
-};
 ```
 
 [component-metadata:l-checkbox]

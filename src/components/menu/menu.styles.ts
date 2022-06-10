@@ -8,7 +8,7 @@ export default css`
     display: block;
   }
 
-  .menu {
+  .l-menu {
     background: var(--l-panel-background-color);
     border: solid var(--l-panel-border-width) var(--l-panel-border-color);
     border-radius: var(--l-border-radius-medium);

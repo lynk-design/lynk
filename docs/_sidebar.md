@@ -7,64 +7,67 @@
   <!-- - [Customizing](/getting-started/customizing) -->
   <!-- - [Localization](/getting-started/localization) -->
 
-- Foundations
+- Foundation Tokens
 
-  - [Typography](/tokens/typography)
-  - [Color](/tokens/color)
-  - [Spacing](/tokens/spacing)
-  - [Elevation](/tokens/elevation)
-  - [Border Radius](/tokens/border-radius)
-  - [Transition](/tokens/transition)
-  - [Z-index](/tokens/z-index)
+  - [Border Radius](/foundations/border-radius)
+  - [Color](/foundations/color)
+  - [Elevation](/foundations/elevation)
+  - [Spacing](/foundations/spacing)
+  - [Transition](/foundations/transition)
+  - [Typography](/foundations/typography)
 
-- Components
+- Content
 
-  - [Accordian](/components/details)
-  - [Alert](/components/alert)
-  - [Avatar](/components/avatar)
-  - [Badge](/components/badge)
-  <!-- - [Breadcrumb](/components/breadcrumb)
-  - [Breadcrumb Item](/components/breadcrumb-item) -->
-  - [Button](/components/button)
-  - [Button Group](/components/button-group)
-  <!-- - [Card](/components/card) -->
-  - [Checkbox](/components/checkbox)
-  <!-- - [Color Picker](/components/color-picker) -->
-  - [Dialog](/components/dialog)
+  - [Icons](/components/icon)
+
+- Layout & Organization
+
+  - [Accordian](/components/accordion)
   - [Divider](/components/divider)
-  - [Drawer](/components/drawer)
+
+- Action & Input
+  <!-- - [Avatar](/components/avatar) -->
+  <!-- - [Breadcrumb](/components/breadcrumb) -->
+  <!-- - [Breadcrumb Item](/components/breadcrumb-item) -->
+  - [Buttons](/components/button)
+  - [Button Group](/components/button-group)
+  - [Checkbox](/components/checkbox)
   - [Dropdown](/components/dropdown)
-  - [Icon](/components/icon)
+  - [Dialog](/components/dialog)
+  <!-- - [Card](/components/card) -->
+  <!-- - [Color Picker](/components/color-picker) -->
+  <!-- - [Drawer](/components/drawer) -->
   - [Icon Button](/components/icon-button)
   <!-- - [Image Comparer](/components/image-comparer) -->
   <!-- - [Input](/components/input) -->
   - [Menu](/components/menu)
   - [Menu Item](/components/menu-item)
   - [Menu Label](/components/menu-label)
-  - [Progress Bar](/components/progress-bar)
-  - [Progress Ring](/components/progress-ring)
+  <!-- - [Progress Bar](/components/progress-bar) -->
+  <!-- - [Progress Ring](/components/progress-ring) -->
   <!-- - [QR Code](/components/qr-code) -->
-  - [Radio](/components/radio)
-  - [Radio Button](/components/radio-button)
-  - [Radio Group](/components/radio-group)
-  - [Range](/components/range)
+  <!-- - [Radio Button](/components/radio-button) -->
+  <!-- - [Range](/components/range) -->
   <!-- - [Rating](/components/rating) -->
-  - [Select](/components/select)
+  <!-- - [Select](/components/select) -->
   <!-- - [Skeleton](/components/skeleton) -->
-  - [Spinner](/components/spinner)
   <!-- - [Split Panel](/components/split-panel) -->
-  - [Switch](/components/switch)
-  - [Tab Group](/components/tab-group)
-  - [Tab](/components/tab)
-  - [Tab Panel](/components/tab-panel)
-  - [Tag](/components/tag)
+  <!-- - [Tab Group](/components/tab-group) -->
+  <!-- - [Tab](/components/tab) -->
+  <!-- - [Tab Panel](/components/tab-panel) -->
+  <!-- - [Tag](/components/tag) -->
   <!-- - [Textarea](/components/textarea) -->
+  - [Radio](/components/radio)
+  - [Radio Group](/components/radio-group)
+  - [Switch](/components/switch)
+
+- Feedback & Status
+
+  - [Alert](/components/alert)
+  - [Badge](/components/badge)
   - [Tooltip](/components/tooltip)
+  - [Spinner](/components/spinner)
   <!--plop:component-->
-
-<!-- - Layouts & Templates
-
-  - Box () -->
 
 - Utilities
 

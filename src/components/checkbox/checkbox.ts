@@ -9,14 +9,14 @@ import { watch } from '../../internal/watch';
 import styles from './checkbox.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The checkbox's label.
  *
- * @event l-blur - Emitted when the control loses focus.
- * @event l-change - Emitted when the control's checked state changes.
- * @event l-focus - Emitted when the control gains focus.
+ * @event le-blur - Emitted when the control loses focus.
+ * @event le-change - Emitted when the control's checked state changes.
+ * @event le-focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The checkbox control.
@@ -25,14 +25,14 @@ import styles from './checkbox.styles';
  * @csspart label - The checkbox label.
  */
 @customElement('l-checkbox')
-export default class SlCheckbox extends LitElement {
+export default class LynkCheckbox extends LitElement {
   static styles = styles;
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
 
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this, {
-    value: (control: SlCheckbox) => (control.checked ? control.value || 'on' : undefined)
+    value: (control: LynkCheckbox) => (control.checked ? control.value || 'on' : undefined)
   });
 
   @state() private hasFocus = false;
@@ -91,12 +91,12 @@ export default class SlCheckbox extends LitElement {
   handleClick() {
     this.checked = !this.checked;
     this.indeterminate = false;
-    emit(this, 'l-change');
+    emit(this, 'le-change');
   }
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'l-blur');
+    emit(this, 'le-blur');
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -108,7 +108,7 @@ export default class SlCheckbox extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'l-focus');
+    emit(this, 'le-focus');
   }
 
   @watch('checked', { waitUntilFirstUpdate: true })
@@ -122,15 +122,15 @@ export default class SlCheckbox extends LitElement {
       <label
         part="base"
         class=${classMap({
-          checkbox: true,
-          'checkbox--checked': this.checked,
-          'checkbox--disabled': this.disabled,
-          'checkbox--focused': this.hasFocus,
-          'checkbox--indeterminate': this.indeterminate
+          'l-checkbox': true,
+          'l-checkbox--checked': this.checked,
+          'l-checkbox--disabled': this.disabled,
+          'l-checkbox--focused': this.hasFocus,
+          'l-checkbox--indeterminate': this.indeterminate
         })}
       >
         <input
-          class="checkbox__input"
+          class="l-checkbox__input"
           type="checkbox"
           name=${ifDefined(this.name)}
           value=${ifDefined(this.value)}
@@ -144,10 +144,10 @@ export default class SlCheckbox extends LitElement {
           @focus=${this.handleFocus}
         />
 
-        <span part="control" class="checkbox__control">
+        <span part="control" class="l-checkbox__control">
           ${this.checked
             ? html`
-                <span part="checked-icon" class="checkbox__icon">
+                <span part="checked-icon" class="l-checkbox__icon">
                   <svg viewBox="0 0 16 16">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
                       <g stroke="currentColor" stroke-width="2">
@@ -163,7 +163,7 @@ export default class SlCheckbox extends LitElement {
             : ''}
           ${!this.checked && this.indeterminate
             ? html`
-                <span part="indeterminate-icon" class="checkbox__icon">
+                <span part="indeterminate-icon" class="l-checkbox__icon">
                   <svg viewBox="0 0 16 16">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
                       <g stroke="currentColor" stroke-width="2">
@@ -178,7 +178,7 @@ export default class SlCheckbox extends LitElement {
             : ''}
         </span>
 
-        <span part="label" class="checkbox__label">
+        <span part="label" class="l-checkbox__label">
           <slot></slot>
         </span>
       </label>
@@ -188,6 +188,6 @@ export default class SlCheckbox extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-checkbox': SlCheckbox;
+    'l-checkbox': LynkCheckbox;
   }
 }

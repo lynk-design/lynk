@@ -9,14 +9,14 @@ import { watch } from '../../internal/watch';
 import styles from './switch.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The switch's label.
  *
- * @event l-blur - Emitted when the control loses focus.
- * @event l-change - Emitted when the control's checked state changes.
- * @event l-focus - Emitted when the control gains focus.
+ * @event le-blur - Emitted when the control loses focus.
+ * @event le-change - Emitted when the control's checked state changes.
+ * @event le-focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The switch control.
@@ -28,14 +28,14 @@ import styles from './switch.styles';
  * @cssproperty --thumb-size - The size of the thumb.
  */
 @customElement('l-switch')
-export default class SlSwitch extends LitElement {
+export default class LynkSwitch extends LitElement {
   static styles = styles;
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
 
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this, {
-    value: (control: SlSwitch) => (control.checked ? control.value : undefined)
+    value: (control: LynkSwitch) => (control.checked ? control.value : undefined)
   });
 
   @state() private hasFocus = false;
@@ -90,7 +90,7 @@ export default class SlSwitch extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'l-blur');
+    emit(this, 'le-blur');
   }
 
   @watch('checked', { waitUntilFirstUpdate: true })
@@ -101,7 +101,7 @@ export default class SlSwitch extends LitElement {
 
   handleClick() {
     this.checked = !this.checked;
-    emit(this, 'l-change');
+    emit(this, 'le-change');
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -113,20 +113,20 @@ export default class SlSwitch extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'l-focus');
+    emit(this, 'le-focus');
   }
 
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       this.checked = false;
-      emit(this, 'l-change');
+      emit(this, 'le-change');
     }
 
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       this.checked = true;
-      emit(this, 'l-change');
+      emit(this, 'le-change');
     }
   }
 
@@ -135,14 +135,14 @@ export default class SlSwitch extends LitElement {
       <label
         part="base"
         class=${classMap({
-          switch: true,
-          'switch--checked': this.checked,
-          'switch--disabled': this.disabled,
-          'switch--focused': this.hasFocus
+          'l-switch': true,
+          'l-switch--checked': this.checked,
+          'l-switch--disabled': this.disabled,
+          'l-switch--focused': this.hasFocus
         })}
       >
         <input
-          class="switch__input"
+          class="l-switch__input"
           type="checkbox"
           name=${ifDefined(this.name)}
           value=${ifDefined(this.value)}
@@ -157,11 +157,11 @@ export default class SlSwitch extends LitElement {
           @keydown=${this.handleKeyDown}
         />
 
-        <span part="control" class="switch__control">
-          <span part="thumb" class="switch__thumb"></span>
+        <span part="control" class="l-switch__control">
+          <span part="thumb" class="l-switch__thumb"></span>
         </span>
 
-        <span part="label" class="switch__label">
+        <span part="label" class="l-switch__label">
           <slot></slot>
         </span>
       </label>
@@ -171,6 +171,6 @@ export default class SlSwitch extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-switch': SlSwitch;
+    'l-switch': LynkSwitch;
   }
 }

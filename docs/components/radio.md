@@ -14,25 +14,7 @@ Radios are designed to be used with [radio groups](/components/radio-group).
 </l-radio-group>
 ```
 
-```jsx react
-import { SlRadio, SlRadioGroup } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlRadioGroup label="Select an option">
-    <SlRadio name="option" value="1" checked>
-      Option 1
-    </SlRadio>
-    <SlRadio name="option" value="2">
-      Option 2
-    </SlRadio>
-    <SlRadio name="option" value="3">
-      Option 3
-    </SlRadio>
-  </SlRadioGroup>
-);
-```
-
-?> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
+<l-alert open>This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.</l-alert>
 
 ## Examples
 
@@ -48,24 +30,6 @@ To set the initial checked state, use the `checked` attribute.
 </l-radio-group>
 ```
 
-```jsx react
-import { SlRadio, SlRadioGroup } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlRadioGroup label="Select an option">
-    <SlRadio name="option" value="1" checked>
-      Option 1
-    </SlRadio>
-    <SlRadio name="option" value="2">
-      Option 2
-    </SlRadio>
-    <SlRadio name="option" value="3">
-      Option 3
-    </SlRadio>
-  </SlRadioGroup>
-);
-```
-
 ### Disabled
 
 Use the `disabled` attribute to disable a radio.
@@ -76,24 +40,6 @@ Use the `disabled` attribute to disable a radio.
   <l-radio name="option" value="2">Option 2</l-radio>
   <l-radio name="option" value="3" disabled>Option 3</l-radio>
 </l-radio-group>
-```
-
-```jsx react
-import { SlRadio, SlRadioGroup } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlRadioGroup label="Select an option">
-    <SlRadio name="option" value="1" checked>
-      Option 1
-    </SlRadio>
-    <SlRadio name="option" value="2">
-      Option 2
-    </SlRadio>
-    <SlRadio name="option" value="3" disabled>
-      Option 3
-    </SlRadio>
-  </SlRadioGroup>
-);
 ```
 
 ### Custom Validity
@@ -129,44 +75,6 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     alert('All fields are valid!');
   });
 </script>
-```
-
-```jsx react
-import { useEffect, useRef } from 'react';
-import { SlButton, SlIcon, SlRadio, SlRadioGroup } from '@shoelace-style/shoelace/dist/react';
-const App = () => {
-  const radio = useRef(null);
-  const errorMessage = 'You must choose this option';
-  function handleChange(event) {
-    radio.current.setCustomValidity(radio.current.checked ? '' : errorMessage);
-  }
-  function handleSubmit(event) {
-    event.preventDefault();
-    alert('All fields are valid!');
-  }
-  useEffect(() => {
-    radio.current.setCustomValidity(errorMessage);
-  }, []);
-  return (
-    <form class="custom-validity" onSubmit={handleSubmit}>
-      <SlRadioGroup label="Select an option">
-        <SlRadio name="a" value="1" checked onSlChange={handleChange}>
-          Not me
-        </SlRadio>
-        <SlRadio name="a" value="2" onSlChange={handleChange}>
-          Me neither
-        </SlRadio>
-        <SlRadio ref={radio} name="a" value="3" onSlChange={handleChange}>
-          Choose me
-        </SlRadio>
-      </SlRadioGroup>
-      <br />
-      <SlButton type="submit" variant="primary">
-        Submit
-      </SlButton>
-    </form>
-  );
-};
 ```
 
 [component-metadata:l-radio]

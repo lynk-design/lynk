@@ -9,7 +9,7 @@ export default css`
     display: inline-block;
   }
 
-  .checkbox {
+  .l-checkbox {
     display: inline-flex;
     align-items: center;
     font-family: var(--l-input-font-family);
@@ -20,7 +20,7 @@ export default css`
     cursor: pointer;
   }
 
-  .checkbox__control {
+  .l-checkbox__control {
     flex: 0 0 auto;
     position: relative;
     display: inline-flex;
@@ -36,7 +36,7 @@ export default css`
       var(--l-transition-fast) color, var(--l-transition-fast) box-shadow;
   }
 
-  .checkbox__input {
+  .l-checkbox__input {
     position: absolute;
     opacity: 0;
     padding: 0;
@@ -44,61 +44,61 @@ export default css`
     pointer-events: none;
   }
 
-  .checkbox__control .checkbox__icon {
+  .l-checkbox__control .l-checkbox__icon {
     display: inline-flex;
     width: var(--l-toggle-size);
     height: var(--l-toggle-size);
   }
 
-  .checkbox__control .checkbox__icon svg {
+  .l-checkbox__control .l-checkbox__icon svg {
     width: 100%;
     height: 100%;
   }
 
   /* Hover */
-  .checkbox:not(.checkbox--checked):not(.checkbox--disabled) .checkbox__control:hover {
+  .l-checkbox:not(.l-checkbox--checked):not(.l-checkbox--disabled) .l-checkbox__control:hover {
     border-color: var(--l-input-border-color-hover);
     background-color: var(--l-input-background-color-hover);
   }
 
   /* Focus */
-  .checkbox:not(.checkbox--checked):not(.checkbox--disabled)
-    .checkbox__input${focusVisibleSelector}
-    ~ .checkbox__control {
+  .l-checkbox:not(.l-checkbox--checked):not(.l-checkbox--disabled)
+    .l-checkbox__input${focusVisibleSelector}
+    ~ .l-checkbox__control {
     outline: var(--l-focus-ring);
     outline-offset: var(--l-focus-ring-offset);
   }
 
   /* Checked/indeterminate */
-  .checkbox--checked .checkbox__control,
-  .checkbox--indeterminate .checkbox__control {
+  .l-checkbox--checked .l-checkbox__control,
+  .l-checkbox--indeterminate .l-checkbox__control {
     border-color: var(--l-color-primary-600);
     background-color: var(--l-color-primary-600);
   }
 
   /* Checked/indeterminate + hover */
-  .checkbox.checkbox--checked:not(.checkbox--disabled) .checkbox__control:hover,
-  .checkbox.checkbox--indeterminate:not(.checkbox--disabled) .checkbox__control:hover {
+  .l-checkbox.l-checkbox--checked:not(.l-checkbox--disabled) .l-checkbox__control:hover,
+  .l-checkbox.l-checkbox--indeterminate:not(.l-checkbox--disabled) .l-checkbox__control:hover {
     border-color: var(--l-color-primary-500);
     background-color: var(--l-color-primary-500);
   }
 
   /* Checked/indeterminate + focus */
-  .checkbox.checkbox--checked:not(.checkbox--disabled) .checkbox__input${focusVisibleSelector} ~ .checkbox__control,
-  .checkbox.checkbox--indeterminate:not(.checkbox--disabled)
-    .checkbox__input${focusVisibleSelector}
-    ~ .checkbox__control {
+  .l-checkbox.l-checkbox--checked:not(.l-checkbox--disabled) .l-checkbox__input${focusVisibleSelector} ~ .l-checkbox__control,
+  .l-checkbox.l-checkbox--indeterminate:not(.l-checkbox--disabled)
+    .l-checkbox__input${focusVisibleSelector}
+    ~ .l-checkbox__control {
     outline: var(--l-focus-ring);
     outline-offset: var(--l-focus-ring-offset);
   }
 
   /* Disabled */
-  .checkbox--disabled {
+  .l-checkbox--disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  .checkbox__label {
+  .l-checkbox__label {
     line-height: var(--l-toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;

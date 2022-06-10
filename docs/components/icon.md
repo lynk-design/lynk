@@ -4,9 +4,9 @@
 
 Icons are symbols that can be used to represent various options within an application.
 
-Shoelace comes bundled with over 1,500 icons courtesy of the [Bootstrap Icons](https://icons.getbootstrap.com/) project. These icons are part of the `default` icon library. If you prefer, you can register [custom icon libraries](#icon-libraries) as well.
+Lynk comes bundled with over 1,500 icons courtesy of the [Bootstrap Icons](https://icons.getbootstrap.com/) project. These icons are part of the `default` icon library. If you prefer, you can register [custom icon libraries](#icon-libraries) as well.
 
-?> Depending on how you're loading Shoelace, you may need to copy icon assets and/or [set the base path](getting-started/installation#setting-the-base-path) so Shoelace knows where to load them from. Otherwise, icons may not appear and you'll see 404 Not Found errors in the dev console.
+<l-alert open>Depending on how you're loading Lynk, you may need to copy icon assets and/or [set the base path](getting-started/installation#setting-the-base-path) so Lynk knows where to load them from. Otherwise, icons may not appear and you'll see 404 Not Found errors in the dev console.</l-alert>
 
 ## Default Icons
 
@@ -179,7 +179,7 @@ const App = () => <SlIcon src="https://shoelace.style/assets/images/shoe.svg" st
 
 You can register additional icons to use with the `<l-icon>` component through icon libraries. Icon files can exist locally or on a CORS-enabled endpoint (e.g. a CDN). There is no limit to how many icon libraries you can register and there is no cost associated with registering them, as individual icons are only requested when they're used.
 
-Shoelace ships with two built-in icon libraries, `default` and `system`. The [default icon library](#customizing-the-default-library) contains all of the icons in the Bootstrap Icons project. The [system icon library](#customizing-the-system-library) contains only a small subset of icons that are used internally by Shoelace components.
+Lynk ships with two built-in icon libraries, `default` and `system`. The [default icon library](#customizing-the-default-library) contains all of the icons in the Bootstrap Icons project. The [system icon library](#customizing-the-system-library) contains only a small subset of icons that are used internally by Lynk components.
 
 To register an additional icon library, use the `registerIconLibrary()` function that's exported from `utilities/icon-library.js`. At a minimum, you must provide a name and a resolver function. The resolver function translates an icon name to a URL where the corresponding SVG file exists. Refer to the examples below to better understand how it works.
 
@@ -621,9 +621,9 @@ This example will load the same set of icons from the jsDelivr CDN instead of yo
 
 ### Customizing the System Library
 
-The system library contains only the icons used internally by Shoelace components. Unlike the default icon library, the system library does not rely on physical assets. Instead, its icons are hard-coded as data URIs into the resolver to ensure their availability.
+The system library contains only the icons used internally by Lynk components. Unlike the default icon library, the system library does not rely on physical assets. Instead, its icons are hard-coded as data URIs into the resolver to ensure their availability.
 
-If you want to change the icons Shoelace uses internally, you can register an icon library using the `system` name and a custom resolver. If you choose to do this, it's your responsibility to provide all of the icons that are required by components. You can reference `src/components/library.system.ts` for a complete list of system icons used by Shoelace.
+If you want to change the icons Lynk uses internally, you can register an icon library using the `system` name and a custom resolver. If you choose to do this, it's your responsibility to provide all of the icons that are required by components. You can reference `src/components/library.system.ts` for a complete list of system icons used by Lynk.
 
 ```html
 <script type="module">
@@ -663,7 +663,7 @@ If you want to change the icons Shoelace uses internally, you can register an ic
 
         const tooltip = document.createElement('l-tooltip');
         tooltip.content = i.name;
-        
+
         tooltip.appendChild(item);
         list.appendChild(tooltip);
 

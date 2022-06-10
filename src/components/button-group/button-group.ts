@@ -5,7 +5,7 @@ import styles from './button-group.styles';
 const BUTTON_CHILDREN = ['l-button', 'l-radio-button'];
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - One or more `<l-button>` elements to display in the button group.
@@ -13,7 +13,7 @@ const BUTTON_CHILDREN = ['l-button', 'l-radio-button'];
  * @csspart base - The component's internal wrapper.
  */
 @customElement('l-button-group')
-export default class SlButtonGroup extends LitElement {
+export default class LynkButtonGroup extends LitElement {
   static styles = styles;
 
   @query('slot') defaultSlot: HTMLSlotElement;
@@ -62,7 +62,7 @@ export default class SlButtonGroup extends LitElement {
     return html`
       <div
         part="base"
-        class="button-group"
+        class="l-button-group"
         role="group"
         aria-label=${this.label}
         @focusout=${this.handleBlur}
@@ -82,6 +82,6 @@ function findButton(el: HTMLElement) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-button-group': SlButtonGroup;
+    'l-button-group': LynkButtonGroup;
   }
 }

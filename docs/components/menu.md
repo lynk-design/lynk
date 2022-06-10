@@ -18,22 +18,6 @@ You can use [menu items](/components/menu-item), [menu labels](/components/menu-
 </l-menu>
 ```
 
-```jsx react
-import { SlDivider, SlMenu, SlMenuItem } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlMenu style={{ maxWidth: '200px' }}>
-    <SlMenuItem value="undo">Undo</SlMenuItem>
-    <SlMenuItem value="redo">Redo</SlMenuItem>
-    <SlDivider />
-    <SlMenuItem value="cut">Cut</SlMenuItem>
-    <SlMenuItem value="copy">Copy</SlMenuItem>
-    <SlMenuItem value="paste">Paste</SlMenuItem>
-    <SlMenuItem value="delete">Delete</SlMenuItem>
-  </SlMenu>
-);
-```
-
-?> Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you're building navigation, use `<nav>` and `<a>` elements instead.
+<l-alert open>Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you're building navigation, use `<nav>` and `<a>` elements instead.</l-alert>
 
 [component-metadata:l-menu]

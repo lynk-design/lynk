@@ -8,7 +8,7 @@ export default css`
     display: inline-block;
   }
 
-  .button-group {
+  .l-button-group {
     display: flex;
     flex-wrap: nowrap;
   }

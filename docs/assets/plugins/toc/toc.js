@@ -45,9 +45,8 @@ var tocClick = function(e) {
 
 var setSidebarParent = function() {
   var sidebar_nodes = document.querySelectorAll(`[href='${location.pathname}']`);
-  var parent = sidebar_nodes[0].parentNode;
 
-  if (sidebar_nodes) {
+  if (sidebar_nodes.length) {
     sidebar_nodes[0].parentNode.classList.add('sub-active');
   };
 };

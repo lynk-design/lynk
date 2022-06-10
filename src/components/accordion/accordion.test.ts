@@ -5,7 +5,7 @@ import type LynkAccordion from './accordion';
 
 describe('<l-accordion>', () => {
   it('should be visible with the open attribute', async () => {
-    const el = await fixture<SlDetails>(html`
+    const el = await fixture<LynkAccordion>(html`
       <l-accordion open>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -18,7 +18,7 @@ describe('<l-accordion>', () => {
   });
 
   it('should not be visible without the open attribute', async () => {
-    const el = await fixture<SlDetails>(html`
+    const el = await fixture<LynkAccordion>(html`
       <l-accordion>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -30,8 +30,8 @@ describe('<l-accordion>', () => {
     expect(body.hidden).to.be.true;
   });
 
-  it('should emit l-show and l-after-show when calling show()', async () => {
-    const el = await fixture<SlDetails>(html`
+  it('should emit le-show and le-after-show when calling show()', async () => {
+    const el = await fixture<LynkAccordion>(html`
       <l-accordion>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -54,8 +54,8 @@ describe('<l-accordion>', () => {
     expect(body.hidden).to.be.false;
   });
 
-  it('should emit l-hide and l-after-hide when calling hide()', async () => {
-    const el = await fixture<SlDetails>(html`
+  it('should emit le-hide and le-after-hide when calling hide()', async () => {
+    const el = await fixture<LynkAccordion>(html`
       <l-accordion open>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -66,8 +66,8 @@ describe('<l-accordion>', () => {
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('l-hide', hideHandler);
-    el.addEventListener('l-after-hide', afterHideHandler);
+    el.addEventListener('le-hide', hideHandler);
+    el.addEventListener('le-after-hide', afterHideHandler);
     el.hide();
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -78,8 +78,8 @@ describe('<l-accordion>', () => {
     expect(body.hidden).to.be.true;
   });
 
-  it('should emit l-show and l-after-show when setting open = true', async () => {
-    const el = await fixture<SlDetails>(html`
+  it('should emit le-show and le-after-show when setting open = true', async () => {
+    const el = await fixture<LynkAccordion>(html`
       <l-accordion>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -90,8 +90,8 @@ describe('<l-accordion>', () => {
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('l-show', showHandler);
-    el.addEventListener('l-after-show', afterShowHandler);
+    el.addEventListener('le-show', showHandler);
+    el.addEventListener('le-after-show', afterShowHandler);
     el.open = true;
 
     await waitUntil(() => showHandler.calledOnce);
@@ -102,8 +102,8 @@ describe('<l-accordion>', () => {
     expect(body.hidden).to.be.false;
   });
 
-  it('should emit l-hide and l-after-hide when setting open = false', async () => {
-    const el = await fixture<SlDetails>(html`
+  it('should emit le-hide and le-after-hide when setting open = false', async () => {
+    const el = await fixture<LynkAccordion>(html`
       <l-accordion open>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -127,7 +127,7 @@ describe('<l-accordion>', () => {
   });
 
   it('should be the correct size after opening more than one instance', async () => {
-    const el = await fixture<SlDetails>(html`
+    const el = await fixture<LynkAccordion>(html`
       <div>
         <l-accordion>
           <div style="height: 200px;"></div>

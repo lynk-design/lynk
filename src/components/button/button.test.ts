@@ -1,14 +1,14 @@
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
-import type SlButton from './button';
+import type LynkButton from './button';
 
-const variants = ['default', 'primary', 'success', 'neutral', 'warning', 'danger'];
+const colors = ['default', 'primary', 'success', 'neutral', 'warning', 'danger'];
 
 describe('<l-button>', () => {
   describe('accessibility tests', () => {
-    variants.forEach(variant => {
-      it(`should be accessible when variant is "${variant}"`, async () => {
-        const el = await fixture<SlButton>(html` <l-button variant="${variant}"> Button Label </l-button> `);
+    colors.forEach(color => {
+      it(`should be accessible when color is "${color}"`, async () => {
+        const el = await fixture<LynkButton>(html` <l-button color="${color}"> Button Label </l-button> `);
         await expect(el).to.be.accessible();
       });
     });
@@ -16,14 +16,14 @@ describe('<l-button>', () => {
 
   describe('when provided no parameters', () => {
     it('passes accessibility test', async () => {
-      const el = await fixture<SlButton>(html` <l-button>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button>Button Label</l-button> `);
       await expect(el).to.be.accessible();
     });
 
     it('default values are set correctly', async () => {
-      const el = await fixture<SlButton>(html` <l-button>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button>Button Label</l-button> `);
 
-      expect(el.variant).to.equal('default');
+      expect(el.color).to.equal('default');
       expect(el.size).to.equal('medium');
       expect(el.disabled).to.equal(false);
       expect(el.caret).to.equal(false);
@@ -34,40 +34,40 @@ describe('<l-button>', () => {
     });
 
     it('should render as a <button>', async () => {
-      const el = await fixture<SlButton>(html` <l-button>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button>Button Label</l-button> `);
       expect(el.shadowRoot!.querySelector('button')).to.exist;
       expect(el.shadowRoot!.querySelector('a')).not.to.exist;
     });
 
     it('should not have a spinner present', async () => {
-      const el = await fixture<SlButton>(html` <l-button>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button>Button Label</l-button> `);
       expect(el.shadowRoot!.querySelector('l-spinner')).not.to.exist;
     });
 
     it('should not have a caret present', async () => {
-      const el = await fixture<SlButton>(html` <l-button>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button>Button Label</l-button> `);
       expect(el.shadowRoot?.querySelector('[part="caret"]')).not.to.exist;
     });
   });
 
   describe('when disabled', () => {
     it('passes accessibility test', async () => {
-      const el = await fixture<SlButton>(html` <l-button disabled>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button disabled>Button Label</l-button> `);
       await expect(el).to.be.accessible();
     });
 
     it('should disable the native <button> when rendering a <button>', async () => {
-      const el = await fixture<SlButton>(html` <l-button disabled>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button disabled>Button Label</l-button> `);
       expect(el.shadowRoot!.querySelector('button[disabled]')).to.exist;
     });
 
     it('should not disable the native <a> when rendering an <a>', async () => {
-      const el = await fixture<SlButton>(html` <l-button href="some/path" disabled>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button href="some/path" disabled>Button Label</l-button> `);
       expect(el.shadowRoot!.querySelector('a[disabled]')).not.to.exist;
     });
 
     it('should not bubble up clicks', async () => {
-      const button = await fixture<SlButton>(html` <l-button disabled>Button Label</l-button> `);
+      const button = await fixture<LynkButton>(html` <l-button disabled>Button Label</l-button> `);
       const handleClick = sinon.spy();
       button.addEventListener('click', handleClick);
       button.click();
@@ -77,7 +77,7 @@ describe('<l-button>', () => {
       button.shadowRoot!.querySelector('button')!.click();
       expect(handleClick).not.to.have.been.called;
 
-      const buttonLink = await fixture<SlButton>(html` <l-button href="some/path" disabled>Button Label</l-button> `);
+      const buttonLink = await fixture<LynkButton>(html` <l-button href="some/path" disabled>Button Label</l-button> `);
       buttonLink.addEventListener('click', handleClick);
       buttonLink.click();
 
@@ -90,21 +90,21 @@ describe('<l-button>', () => {
 
   describe('when loading', () => {
     it('should have a spinner present', async () => {
-      const el = await fixture<SlButton>(html` <l-button loading>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button loading>Button Label</l-button> `);
       expect(el.shadowRoot!.querySelector('l-spinner')).to.exist;
     });
   });
 
   describe('when caret', () => {
     it('should have a caret present', async () => {
-      const el = await fixture<SlButton>(html` <l-button caret>Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button caret>Button Label</l-button> `);
       expect(el.shadowRoot!.querySelector('[part="caret"]')).to.exist;
     });
   });
 
   describe('when href is present', () => {
     it('should render as an <a>', async () => {
-      const el = await fixture<SlButton>(html` <l-button href="some/path">Button Label</l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button href="some/path">Button Label</l-button> `);
       expect(el.shadowRoot!.querySelector('a')).to.exist;
       expect(el.shadowRoot!.querySelector('button')).not.to.exist;
     });
@@ -117,7 +117,7 @@ describe('<l-button>', () => {
           <l-button type="submit">Submit</l-button>
         </form>
       `);
-      const button = form.querySelector<SlButton>('l-button')!;
+      const button = form.querySelector<LynkButton>('l-button')!;
       const handleSubmit = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
       form.addEventListener('submit', handleSubmit);
@@ -134,7 +134,7 @@ describe('<l-button>', () => {
         </div>
       `);
       const form = el.querySelector<HTMLFormElement>('form')!;
-      const button = el.querySelector<SlButton>('l-button')!;
+      const button = el.querySelector<LynkButton>('l-button')!;
       const handleSubmit = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
       form.addEventListener('submit', handleSubmit);
@@ -151,7 +151,7 @@ describe('<l-button>', () => {
           </l-button>
         </form>
       `);
-      const button = form.querySelector<SlButton>('l-button')!;
+      const button = form.querySelector<LynkButton>('l-button')!;
       const handleSubmit = sinon.spy((event: SubmitEvent) => {
         submitter = event.submitter as HTMLButtonElement;
         event.preventDefault();
@@ -178,7 +178,7 @@ describe('<l-button>', () => {
         </div>
       `);
       const form = el.querySelector<HTMLFormElement>('form')!;
-      const button = el.querySelector<SlButton>('l-button')!;
+      const button = el.querySelector<LynkButton>('l-button')!;
       const handleSubmit = sinon.spy((event: SubmitEvent) => {
         submitter = event.submitter as HTMLButtonElement;
         event.preventDefault();
@@ -197,13 +197,13 @@ describe('<l-button>', () => {
   });
 
   describe('when using methods', () => {
-    it('should emit l-focus and l-blur when the button is focused and blurred', async () => {
-      const el = await fixture<SlButton>(html` <l-button>Button</l-button> `);
+    it('should emit le-focus and le-blur when the button is focused and blurred', async () => {
+      const el = await fixture<LynkButton>(html` <l-button>Button</l-button> `);
       const focusHandler = sinon.spy();
       const blurHandler = sinon.spy();
 
-      el.addEventListener('l-focus', focusHandler);
-      el.addEventListener('l-blur', blurHandler);
+      el.addEventListener('le-focus', focusHandler);
+      el.addEventListener('le-blur', blurHandler);
 
       el.focus();
       await waitUntil(() => focusHandler.calledOnce);
@@ -216,7 +216,7 @@ describe('<l-button>', () => {
     });
 
     it('should emit a click event when calling click()', async () => {
-      const el = await fixture<SlButton>(html` <l-button></l-button> `);
+      const el = await fixture<LynkButton>(html` <l-button></l-button> `);
       const clickHandler = sinon.spy();
 
       el.addEventListener('click', clickHandler);

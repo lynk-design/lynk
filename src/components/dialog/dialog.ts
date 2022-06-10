@@ -14,7 +14,7 @@ import { LocalizeController } from '../../utilities/localize';
 import styles from './dialog.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @dependency l-icon-button
@@ -23,11 +23,11 @@ import styles from './dialog.styles';
  * @slot label - The dialog's label. Alternatively, you can use the label prop.
  * @slot footer - The dialog's footer, usually one or more buttons representing various options.
  *
- * @event l-show - Emitted when the dialog opens.
- * @event l-after-show - Emitted after the dialog opens and all animations are complete.
- * @event l-hide - Emitted when the dialog closes.
- * @event l-after-hide - Emitted after the dialog closes and all animations are complete.
- * @event l-initial-focus - Emitted when the dialog opens and is ready to receive focus. Calling
+ * @event le-show - Emitted when the dialog opens.
+ * @event le-after-show - Emitted after the dialog opens and all animations are complete.
+ * @event le-hide - Emitted when the dialog closes.
+ * @event le-after-hide - Emitted after the dialog closes and all animations are complete.
+ * @event le-initial-focus - Emitted when the dialog opens and is ready to receive focus. Calling
  *   `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
  * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} l-request-close - Emitted when the user attempts to
  *   close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling
@@ -56,12 +56,12 @@ import styles from './dialog.styles';
  * @animation dialog.overlay.hide - The animation to use when hiding the dialog's overlay.
  */
 @customElement('l-dialog')
-export default class SlDialog extends LitElement {
+export default class LynkDialog extends LitElement {
   static styles = styles;
 
-  @query('.dialog') dialog: HTMLElement;
-  @query('.dialog__panel') panel: HTMLElement;
-  @query('.dialog__overlay') overlay: HTMLElement;
+  @query('.l-dialog') dialog: HTMLElement;
+  @query('.l-dialog__panel') panel: HTMLElement;
+  @query('.l-dialog__overlay') overlay: HTMLElement;
 
   private readonly hasSlotController = new HasSlotController(this, 'footer');
   private readonly localize = new LocalizeController(this);
@@ -109,7 +109,7 @@ export default class SlDialog extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'l-after-show');
+    return waitForEvent(this, 'le-after-show');
   }
 
   /** Hides the dialog */
@@ -119,16 +119,16 @@ export default class SlDialog extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'l-after-hide');
+    return waitForEvent(this, 'le-after-hide');
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
-    const slRequestClose = emit(this, 'l-request-close', {
+    const requestClose = emit(this, 'le-request-close', {
       cancelable: true,
       detail: { source }
     });
 
-    if (slRequestClose.defaultPrevented) {
+    if (requestClose.defaultPrevented) {
       const animation = getAnimation(this, 'dialog.denyClose');
       animateTo(this.panel, animation.keyframes, animation.options);
       return;
@@ -148,7 +148,7 @@ export default class SlDialog extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'l-show');
+      emit(this, 'le-show');
       this.originalTrigger = document.activeElement as HTMLElement;
       this.modal.activate();
 
@@ -170,9 +170,9 @@ export default class SlDialog extends LitElement {
 
       // Set initial focus
       requestAnimationFrame(() => {
-        const slInitialFocus = emit(this, 'l-initial-focus', { cancelable: true });
+        const initialFocus = emit(this, 'le-initial-focus', { cancelable: true });
 
-        if (!slInitialFocus.defaultPrevented) {
+        if (!initialFocus.defaultPrevented) {
           // Set focus to the autofocus target and restore the attribute
           if (autoFocusTarget) {
             (autoFocusTarget as HTMLInputElement).focus({ preventScroll: true });
@@ -194,10 +194,10 @@ export default class SlDialog extends LitElement {
         animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
       ]);
 
-      emit(this, 'l-after-show');
+      emit(this, 'le-after-show');
     } else {
       // Hide
-      emit(this, 'l-hide');
+      emit(this, 'le-hide');
       this.modal.deactivate();
 
       await Promise.all([stopAnimations(this.dialog), stopAnimations(this.overlay)]);
@@ -217,7 +217,7 @@ export default class SlDialog extends LitElement {
         setTimeout(() => trigger.focus());
       }
 
-      emit(this, 'l-after-hide');
+      emit(this, 'le-after-hide');
     }
   }
 
@@ -227,17 +227,17 @@ export default class SlDialog extends LitElement {
       <div
         part="base"
         class=${classMap({
-          dialog: true,
-          'dialog--open': this.open,
-          'dialog--has-footer': this.hasSlotController.test('footer')
+          'l-dialog': true,
+          'l-dialog--open': this.open,
+          'l-dialog--has-footer': this.hasSlotController.test('footer')
         })}
         @keydown=${this.handleKeyDown}
       >
-        <div part="overlay" class="dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
+        <div part="overlay" class="l-dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
 
         <div
           part="panel"
-          class="dialog__panel"
+          class="l-dialog__panel"
           role="dialog"
           aria-modal="true"
           aria-hidden=${this.open ? 'false' : 'true'}
@@ -247,14 +247,14 @@ export default class SlDialog extends LitElement {
         >
           ${!this.noHeader
             ? html`
-                <header part="header" class="dialog__header">
-                  <h2 part="title" class="dialog__title" id="title">
+                <header part="header" class="l-dialog__header">
+                  <h2 part="title" class="l-dialog__title" id="title">
                     <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
                   </h2>
                   <l-icon-button
                     part="close-button"
                     exportparts="base:close-button__base"
-                    class="dialog__close"
+                    class="l-dialog__close"
                     name="x"
                     label=${this.localize.term('close')}
                     library="system"
@@ -264,11 +264,11 @@ export default class SlDialog extends LitElement {
               `
             : ''}
 
-          <div part="body" class="dialog__body">
+          <div part="body" class="l-dialog__body">
             <slot></slot>
           </div>
 
-          <footer part="footer" class="dialog__footer">
+          <footer part="footer" class="l-dialog__footer">
             <slot name="footer"></slot>
           </footer>
         </div>
@@ -311,6 +311,6 @@ setDefaultAnimation('dialog.overlay.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-dialog': SlDialog;
+    'l-dialog': LynkDialog;
   }
 }

@@ -4,26 +4,26 @@ import { emit } from '../../internal/event';
 import { hasFocusVisible } from '../../internal/focus-visible';
 import { getTextContent } from '../../internal/slot';
 import styles from './menu.styles';
-import type SlMenuItem from '../../components/menu-item/menu-item';
+import type LynkMenuItem from '../../components/menu-item/menu-item';
 export interface MenuSelectEventDetail {
-  item: SlMenuItem;
+  item: LynkMenuItem;
 }
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The menu's content, including menu items, menu labels, and dividers.
  *
- * @event {{ item: SlMenuItem }} l-select - Emitted when a menu item is selected.
+ * @event {{ item: LynkMenuItem }} le-select - Emitted when a menu item is selected.
  *
  * @csspart base - The component's internal wrapper.
  */
 @customElement('l-menu')
-export default class SlMenu extends LitElement {
+export default class LynkMenu extends LitElement {
   static styles = styles;
 
-  @query('.menu') menu: HTMLElement;
+  @query('.l-menu') menu: HTMLElement;
   @query('slot') defaultSlot: HTMLSlotElement;
 
   private typeToSelectString = '';
@@ -39,12 +39,12 @@ export default class SlMenu extends LitElement {
         return false;
       }
 
-      if (!options.includeDisabled && (el as SlMenuItem).disabled) {
+      if (!options.includeDisabled && (el as LynkMenuItem).disabled) {
         return false;
       }
 
       return true;
-    }) as SlMenuItem[];
+    }) as LynkMenuItem[];
   }
 
   /**
@@ -59,7 +59,7 @@ export default class SlMenu extends LitElement {
    * @internal Sets the current menu item to the specified element. This sets `tabindex="0"` on the target element and
    * `tabindex="-1"` to all other items. This method must be called prior to setting focus on a menu item.
    */
-  setCurrentItem(item: SlMenuItem) {
+  setCurrentItem(item: LynkMenuItem) {
     const items = this.getAllItems({ includeDisabled: false });
     const activeItem = item.disabled ? items[0] : item;
 
@@ -113,7 +113,7 @@ export default class SlMenu extends LitElement {
     const item = target.closest('l-menu-item');
 
     if (item?.disabled === false) {
-      emit(this, 'l-select', { detail: { item } });
+      emit(this, 'le-select', { detail: { item } });
     }
   }
 
@@ -182,7 +182,7 @@ export default class SlMenu extends LitElement {
     const target = event.target as HTMLElement;
 
     if (target.getAttribute('role') === 'menuitem') {
-      this.setCurrentItem(target as SlMenuItem);
+      this.setCurrentItem(target as LynkMenuItem);
 
       // Hide focus in browsers that don't support :focus-visible when using the mouse
       if (!hasFocusVisible) {
@@ -204,7 +204,7 @@ export default class SlMenu extends LitElement {
     return html`
       <div
         part="base"
-        class="menu"
+        class="l-menu"
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
         @keyup=${this.handleKeyUp}
@@ -218,6 +218,6 @@ export default class SlMenu extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-menu': SlMenu;
+    'l-menu': LynkMenu;
   }
 }

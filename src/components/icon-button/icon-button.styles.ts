@@ -9,7 +9,7 @@ export default css`
     display: inline-block;
   }
 
-  .icon-button {
+  .l-icon-button {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -24,30 +24,30 @@ export default css`
     -webkit-appearance: none;
   }
 
-  .icon-button:hover:not(.icon-button--disabled),
-  .icon-button:focus:not(.icon-button--disabled) {
+  .l-icon-button:hover:not(.l-icon-button--disabled),
+  .l-icon-button:focus:not(.l-icon-button--disabled) {
     color: var(--l-color-primary-600);
   }
 
-  .icon-button:active:not(.icon-button--disabled) {
+  .l-icon-button:active:not(.l-icon-button--disabled) {
     color: var(--l-color-primary-700);
   }
 
-  .icon-button:focus {
+  .l-icon-button:focus {
     outline: none;
   }
 
-  .icon-button--disabled {
+  .l-icon-button--disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  .icon-button${focusVisibleSelector} {
+  .l-icon-button${focusVisibleSelector} {
     outline: var(--l-focus-ring);
     outline-offset: var(--l-focus-ring-offset);
   }
 
-  .icon-button__icon {
+  .l-icon-button__icon {
     pointer-events: none;
   }
 `;

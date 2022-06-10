@@ -3,7 +3,7 @@ import { customElement } from 'lit/decorators.js';
 import styles from './menu-label.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The menu label's content.
@@ -11,12 +11,12 @@ import styles from './menu-label.styles';
  * @csspart base - The component's internal wrapper.
  */
 @customElement('l-menu-label')
-export default class SlMenuLabel extends LitElement {
+export default class LynkMenuLabel extends LitElement {
   static styles = styles;
 
   render() {
     return html`
-      <div part="base" class="menu-label">
+      <div part="base" class="l-menu-label">
         <slot></slot>
       </div>
     `;
@@ -25,6 +25,6 @@ export default class SlMenuLabel extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-menu-label': SlMenuLabel;
+    'l-menu-label': LynkMenuLabel;
   }
 }

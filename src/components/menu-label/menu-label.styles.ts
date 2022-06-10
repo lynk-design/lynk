@@ -8,7 +8,7 @@ export default css`
     display: block;
   }
 
-  .menu-label {
+  .l-menu-label {
     font-family: var(--l-font-sans);
     font-size: var(--l-font-size-small);
     font-weight: var(--l-font-weight-semibold);

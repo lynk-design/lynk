@@ -9,7 +9,7 @@ export default css`
     display: block;
   }
 
-  .menu-item {
+  .l-menu-item {
     position: relative;
     display: flex;
     align-items: stretch;
@@ -26,33 +26,33 @@ export default css`
     cursor: pointer;
   }
 
-  .menu-item.menu-item--disabled {
+  .l-menu-item.l-menu-item--disabled {
     outline: none;
     color: var(--l-color-neutral-400);
     cursor: not-allowed;
   }
 
-  .menu-item .menu-item__label {
+  .l-menu-item .l-menu-item__label {
     flex: 1 1 auto;
   }
 
-  .menu-item .menu-item__prefix {
+  .l-menu-item .l-menu-item__prefix {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
   }
 
-  .menu-item .menu-item__prefix ::slotted(*) {
+  .l-menu-item .l-menu-item__prefix ::slotted(*) {
     margin-inline-end: var(--l-spacing-x-small);
   }
 
-  .menu-item .menu-item__suffix {
+  .l-menu-item .l-menu-item__suffix {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
   }
 
-  .menu-item .menu-item__suffix ::slotted(*) {
+  .l-menu-item .l-menu-item__suffix ::slotted(*) {
     margin-inline-start: var(--l-spacing-x-small);
   }
 
@@ -60,15 +60,15 @@ export default css`
     outline: none;
   }
 
-  :host(:hover:not([aria-disabled='true'])) .menu-item,
-  :host(${focusVisibleSelector}:not(.l-focus-invisible):not([aria-disabled='true'])) .menu-item {
+  :host(:hover:not([aria-disabled='true'])) .l-menu-item,
+  :host(${focusVisibleSelector}:not(.l-focus-invisible):not([aria-disabled='true'])) .l-menu-item {
     outline: none;
     background-color: var(--l-color-primary-600);
     color: var(--l-color-neutral-0);
   }
 
-  .menu-item .menu-item__check,
-  .menu-item .menu-item__chevron {
+  .l-menu-item .l-menu-item__check,
+  .l-menu-item .l-menu-item__chevron {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,8 +76,8 @@ export default css`
     visibility: hidden;
   }
 
-  .menu-item--checked .menu-item__check,
-  .menu-item--has-submenu .menu-item__chevron {
+  .l-menu-item--checked .l-menu-item__check,
+  .l-menu-item--has-submenu .l-menu-item__chevron {
     visibility: visible;
   }
 `;

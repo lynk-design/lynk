@@ -4,7 +4,7 @@
 
 [component-header:l-dialog]
 
-Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
+Dialogs or "modals" are elevated workflows above the page and require the user's immediate attention.
 
 ```html preview
 <l-dialog label="Dialog" class="dialog-overview">
@@ -22,28 +22,6 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
   openButton.addEventListener('click', () => dialog.show());
   closeButton.addEventListener('click', () => dialog.hide());
 </script>
-```
-
-```jsx react
-import { useState } from 'react';
-import { SlButton, SlDialog } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <SlDialog label="Dialog" open={open} onSlAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
-          Close
-        </SlButton>
-      </SlDialog>
-
-      <SlButton onClick={() => setOpen(true)}>Open Dialog</SlButton>
-    </>
-  );
-};
 ```
 
 ## UX Tips
@@ -76,28 +54,6 @@ Use the `--width` custom property to set the dialog's width.
 </script>
 ```
 
-```jsx react
-import { useState } from 'react';
-import { SlButton, SlDialog } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <SlDialog label="Dialog" open={open} style={{ '--width': '50vw' }} onSlAfterHide={() => setOpen(false)}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
-          Close
-        </SlButton>
-      </SlDialog>
-
-      <SlButton onClick={() => setOpen(true)}>Open Dialog</SlButton>
-    </>
-  );
-};
-```
-
 ### Scrolling
 
 By design, a dialog's height will never exceed that of the viewport. As such, dialogs will not scroll with the page ensuring the header and footer are always accessible to the user.
@@ -120,37 +76,6 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
   openButton.addEventListener('click', () => dialog.show());
   closeButton.addEventListener('click', () => dialog.hide());
 </script>
-```
-
-```jsx react
-import { useState } from 'react';
-import { SlButton, SlDialog } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <SlDialog label="Dialog" open={open} onSlAfterHide={() => setOpen(false)}>
-        <div
-          style={{
-            height: '150vh',
-            border: 'dashed 2px var(--l-color-neutral-200)',
-            padding: '0 1rem'
-          }}
-        >
-          <p>Scroll down and give it a try! 👇</p>
-        </div>
-
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
-          Close
-        </SlButton>
-      </SlDialog>
-
-      <SlButton onClick={() => setOpen(true)}>Open Dialog</SlButton>
-    </>
-  );
-};
 ```
 
 ### Preventing the Dialog from Closing
@@ -186,35 +111,6 @@ You can use `event.detail.source` to determine what triggered the request to clo
 </script>
 ```
 
-```jsx react
-import { useState } from 'react';
-import { SlButton, SlDialog } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  // Prevent the dialog from closing when the user clicks on the overlay
-  function handleRequestClose(event) {
-    if (event.detail.source === 'overlay') {
-      event.preventDefault();
-    }
-  }
-
-  return (
-    <>
-      <SlDialog label="Dialog" open={open} onSlRequestClose={handleRequestClose} onSlAfterHide={() => setOpen(false)}>
-        This dialog will not close when you click on the overlay.
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
-          Close
-        </SlButton>
-      </SlDialog>
-
-      <SlButton onClick={() => setOpen(true)}>Open Dialog</SlButton>
-    </>
-  );
-};
-```
-
 ### Customizing Initial Focus
 
 By default, the dialog's panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the dialog. If you want a different element to have focus, add the `autofocus` attribute to it as shown below.
@@ -238,28 +134,6 @@ By default, the dialog's panel will gain focus when opened. This allows a subseq
 </script>
 ```
 
-```jsx react
-import { useState } from 'react';
-import { SlButton, SlDialog, SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <SlDialog label="Dialog" open={open} onSlAfterHide={() => setOpen(false)}>
-        <SlInput autofocus placeholder="I will have focus when the dialog is opened" />
-        <SlButton slot="footer" variant="primary" onClick={() => setOpen(false)}>
-          Close
-        </SlButton>
-      </SlDialog>
-
-      <SlButton onClick={() => setOpen(true)}>Open Dialog</SlButton>
-    </>
-  );
-};
-```
-
-?> You can further customize initial focus behavior by canceling the `l-initial-focus` event and setting focus yourself inside the event handler.
+<l-alert open>You can further customize initial focus behavior by canceling the `l-initial-focus` event and setting focus yourself inside the event handler.</l-alert>
 
 [component-metadata:l-dialog]

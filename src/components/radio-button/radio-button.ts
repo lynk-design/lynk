@@ -10,7 +10,7 @@ import { watch } from '../../internal/watch';
 import styles from './radio-button.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The radio's label.
@@ -30,14 +30,14 @@ import styles from './radio-button.styles';
  * @csspart suffix - The suffix slot's container.
  */
 @customElement('l-radio-button')
-export default class SlRadioButton extends LitElement {
+export default class LynkRadioButton extends LitElement {
   static styles = styles;
 
-  @query('.button') input: HTMLInputElement;
+  @query('.l-button') input: HTMLInputElement;
   @query('.hidden-input') hiddenInput: HTMLInputElement;
 
   protected readonly formSubmitController = new FormSubmitController(this, {
-    value: (control: SlRadioButton) => (control.checked ? control.value : undefined)
+    value: (control: LynkRadioButton) => (control.checked ? control.value : undefined)
   });
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
 
@@ -93,7 +93,7 @@ export default class SlRadioButton extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'l-blur');
+    emit(this, 'le-blur');
   }
 
   handleClick() {
@@ -104,7 +104,7 @@ export default class SlRadioButton extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'l-focus');
+    emit(this, 'le-focus');
   }
 
   @watch('checked')
@@ -112,7 +112,7 @@ export default class SlRadioButton extends LitElement {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
 
     if (this.hasUpdated) {
-      emit(this, 'l-change');
+      emit(this, 'le-change');
     }
   }
 
@@ -140,19 +140,19 @@ export default class SlRadioButton extends LitElement {
         <button
           part="button"
           class=${classMap({
-            button: true,
-            'button--default': true,
-            'button--small': this.size === 'small',
-            'button--medium': this.size === 'medium',
-            'button--large': this.size === 'large',
-            'button--checked': this.checked,
-            'button--disabled': this.disabled,
-            'button--focused': this.hasFocus,
-            'button--outline': true,
-            'button--pill': this.pill,
-            'button--has-label': this.hasSlotController.test('[default]'),
-            'button--has-prefix': this.hasSlotController.test('prefix'),
-            'button--has-suffix': this.hasSlotController.test('suffix')
+            'l-button': true,
+            'l-button--default': true,
+            'l-button--small': this.size === 'small',
+            'l-button--medium': this.size === 'medium',
+            'l-button--large': this.size === 'large',
+            'l-button--checked': this.checked,
+            'l-button--disabled': this.disabled,
+            'l-button--focused': this.hasFocus,
+            'l-button--outline': true,
+            'l-button--pill': this.pill,
+            'l-button--has-label': this.hasSlotController.test('[default]'),
+            'l-button--has-prefix': this.hasSlotController.test('prefix'),
+            'l-button--has-suffix': this.hasSlotController.test('suffix')
           })}
           ?disabled=${this.disabled}
           type="button"
@@ -162,13 +162,13 @@ export default class SlRadioButton extends LitElement {
           @focus=${this.handleFocus}
           @click=${this.handleClick}
         >
-          <span part="prefix" class="button__prefix">
+          <span part="prefix" class="l-button__prefix">
             <slot name="prefix"></slot>
           </span>
-          <span part="label" class="button__label">
+          <span part="label" class="l-button__label">
             <slot></slot>
           </span>
-          <span part="suffix" class="button__suffix">
+          <span part="suffix" class="l-button__suffix">
             <slot name="suffix"></slot>
           </span>
         </button>
@@ -179,6 +179,6 @@ export default class SlRadioButton extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-radio-button': SlRadioButton;
+    'l-radio-button': LynkRadioButton;
   }
 }

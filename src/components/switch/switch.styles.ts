@@ -13,7 +13,7 @@ export default css`
     display: inline-block;
   }
 
-  .switch {
+  .l-switch {
     display: inline-flex;
     align-items: center;
     font-family: var(--l-input-font-family);
@@ -24,7 +24,7 @@ export default css`
     cursor: pointer;
   }
 
-  .switch__control {
+  .l-switch__control {
     flex: 0 0 auto;
     position: relative;
     display: inline-flex;
@@ -38,7 +38,7 @@ export default css`
     transition: var(--l-transition-fast) border-color, var(--l-transition-fast) background-color;
   }
 
-  .switch__control .switch__thumb {
+  .l-switch__control .l-switch__thumb {
     width: var(--thumb-size);
     height: var(--thumb-size);
     background-color: var(--l-color-neutral-0);
@@ -49,7 +49,7 @@ export default css`
       var(--l-transition-fast) border-color, var(--l-transition-fast) box-shadow;
   }
 
-  .switch__input {
+  .l-switch__input {
     position: absolute;
     opacity: 0;
     padding: 0;
@@ -58,26 +58,26 @@ export default css`
   }
 
   /* Hover */
-  .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover {
+  .l-switch:not(.l-switch--checked):not(.l-switch--disabled) .l-switch__control:hover {
     background-color: var(--l-color-neutral-400);
     border-color: var(--l-color-neutral-400);
   }
 
-  .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover .switch__thumb {
+  .l-switch:not(.l-switch--checked):not(.l-switch--disabled) .l-switch__control:hover .l-switch__thumb {
     background-color: var(--l-color-neutral-0);
     border-color: var(--l-color-neutral-400);
   }
 
   /* Focus */
-  .switch:not(.switch--checked):not(.switch--disabled) .switch__input${focusVisibleSelector} ~ .switch__control {
+  .l-switch:not(.l-switch--checked):not(.l-switch--disabled) .l-switch__input${focusVisibleSelector} ~ .l-switch__control {
     background-color: var(--l-color-neutral-400);
     border-color: var(--l-color-neutral-400);
   }
 
-  .switch:not(.switch--checked):not(.switch--disabled)
-    .switch__input${focusVisibleSelector}
-    ~ .switch__control
-    .switch__thumb {
+  .l-switch:not(.l-switch--checked):not(.l-switch--disabled)
+    .l-switch__input${focusVisibleSelector}
+    ~ .l-switch__control
+    .l-switch__thumb {
     background-color: var(--l-color-neutral-0);
     border-color: var(--l-color-primary-600);
     outline: var(--l-focus-ring);
@@ -85,38 +85,38 @@ export default css`
   }
 
   /* Checked */
-  .switch--checked .switch__control {
+  .l-switch--checked .l-switch__control {
     background-color: var(--l-color-primary-600);
     border-color: var(--l-color-primary-600);
   }
 
-  .switch--checked .switch__control .switch__thumb {
+  .l-switch--checked .l-switch__control .l-switch__thumb {
     background-color: var(--l-color-neutral-0);
     border-color: var(--l-color-primary-600);
     transform: translateX(calc((var(--width) - var(--height)) / 2));
   }
 
   /* Checked + hover */
-  .switch.switch--checked:not(.switch--disabled) .switch__control:hover {
+  .l-switch.l-switch--checked:not(.l-switch--disabled) .l-switch__control:hover {
     background-color: var(--l-color-primary-600);
     border-color: var(--l-color-primary-600);
   }
 
-  .switch.switch--checked:not(.switch--disabled) .switch__control:hover .switch__thumb {
+  .l-switch.l-switch--checked:not(.l-switch--disabled) .l-switch__control:hover .l-switch__thumb {
     background-color: var(--l-color-neutral-0);
     border-color: var(--l-color-primary-600);
   }
 
   /* Checked + focus */
-  .switch.switch--checked:not(.switch--disabled) .switch__input${focusVisibleSelector} ~ .switch__control {
+  .l-switch.l-switch--checked:not(.l-switch--disabled) .l-switch__input${focusVisibleSelector} ~ .l-switch__control {
     background-color: var(--l-color-primary-600);
     border-color: var(--l-color-primary-600);
   }
 
-  .switch.switch--checked:not(.switch--disabled)
-    .switch__input${focusVisibleSelector}
-    ~ .switch__control
-    .switch__thumb {
+  .l-switch.l-switch--checked:not(.l-switch--disabled)
+    .l-switch__input${focusVisibleSelector}
+    ~ .l-switch__control
+    .l-switch__thumb {
     background-color: var(--l-color-neutral-0);
     border-color: var(--l-color-primary-600);
     outline: var(--l-focus-ring);
@@ -124,12 +124,12 @@ export default css`
   }
 
   /* Disabled */
-  .switch--disabled {
+  .l-switch--disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  .switch__label {
+  .l-switch__label {
     line-height: var(--height);
     margin-inline-start: 0.5em;
     user-select: none;

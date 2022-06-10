@@ -57,6 +57,6 @@ export default css`
   }
 
   .tab__close-button::part(base) {
-    padding: var(--l-spacing-3x-small);
+    padding: var(--l-spacing-tiny);
   }
 `;

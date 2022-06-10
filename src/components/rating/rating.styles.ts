@@ -9,7 +9,7 @@ export default css`
     --symbol-color: var(--l-color-neutral-300);
     --symbol-color-active: var(--l-color-amber-500);
     --symbol-size: 1.2rem;
-    --symbol-spacing: var(--l-spacing-3x-small);
+    --symbol-spacing: var(--l-spacing-tiny);
 
     display: inline-flex;
   }

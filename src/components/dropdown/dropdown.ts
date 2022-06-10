@@ -9,22 +9,22 @@ import { getTabbableBoundary } from '../../internal/tabbable';
 import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import styles from './dropdown.styles';
-import type SlButton from '../../components/button/button';
-import type SlIconButton from '../../components/icon-button/icon-button';
-import type SlMenuItem from '../../components/menu-item/menu-item';
-import type SlMenu from '../../components/menu/menu';
+import type LynkButton from '../../components/button/button';
+import type LynkIconButton from '../../components/icon-button/icon-button';
+import type LynkMenuItem from '../../components/menu-item/menu-item';
+import type LynkMenu from '../../components/menu/menu';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The dropdown's content.
  * @slot trigger - The dropdown's trigger, usually a `<l-button>` element.
  *
- * @event l-show - Emitted when the dropdown opens.
- * @event l-after-show - Emitted after the dropdown opens and all animations are complete.
- * @event l-hide - Emitted when the dropdown closes.
- * @event l-after-hide - Emitted after the dropdown closes and all animations are complete.
+ * @event le-show - Emitted when the dropdown opens.
+ * @event le-after-show - Emitted after the dropdown opens and all animations are complete.
+ * @event le-hide - Emitted when the dropdown closes.
+ * @event le-after-hide - Emitted after the dropdown closes and all animations are complete.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart trigger - The container that wraps the trigger.
@@ -34,12 +34,12 @@ import type SlMenu from '../../components/menu/menu';
  * @animation dropdown.hide - The animation to use when hiding the dropdown.
  */
 @customElement('l-dropdown')
-export default class SlDropdown extends LitElement {
+export default class LynkDropdown extends LitElement {
   static styles = styles;
 
-  @query('.dropdown__trigger') trigger: HTMLElement;
-  @query('.dropdown__panel') panel: HTMLElement;
-  @query('.dropdown__positioner') positioner: HTMLElement;
+  @query('.l-dropdown__trigger') trigger: HTMLElement;
+  @query('.l-dropdown__panel') panel: HTMLElement;
+  @query('.l-dropdown__positioner') positioner: HTMLElement;
 
   private positionerCleanup: ReturnType<typeof autoUpdate> | undefined;
 
@@ -297,10 +297,10 @@ export default class SlDropdown extends LitElement {
 
     if (accessibleTrigger) {
       switch (accessibleTrigger.tagName.toLowerCase()) {
-        // Shoelace buttons have to update the internal button so it's announced correctly by screen readers
+        // Lynk buttons have to update the internal button so it's announced correctly by screen readers
         case 'l-button':
         case 'l-icon-button':
-          target = (accessibleTrigger as SlButton | SlIconButton).button;
+          target = (accessibleTrigger as LynkButton | LynkIconButton).button;
           break;
 
         default:
@@ -319,7 +319,7 @@ export default class SlDropdown extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'l-after-show');
+    return waitForEvent(this, 'le-after-show');
   }
 
   /** Hides the dropdown panel */
@@ -329,7 +329,7 @@ export default class SlDropdown extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'l-after-hide');
+    return waitForEvent(this, 'le-after-hide');
   }
 
   /**
@@ -341,15 +341,15 @@ export default class SlDropdown extends LitElement {
   }
 
   addOpenListeners() {
-    this.panel.addEventListener('l-activate', this.handleMenuItemActivate);
-    this.panel.addEventListener('l-select', this.handlePanelSelect);
+    this.panel.addEventListener('le-activate', this.handleMenuItemActivate);
+    this.panel.addEventListener('le-select', this.handlePanelSelect);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
   }
 
   removeOpenListeners() {
-    this.panel.removeEventListener('l-activate', this.handleMenuItemActivate);
-    this.panel.removeEventListener('l-select', this.handlePanelSelect);
+    this.panel.removeEventListener('le-activate', this.handleMenuItemActivate);
+    this.panel.removeEventListener('le-select', this.handlePanelSelect);
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
   }
@@ -365,7 +365,7 @@ export default class SlDropdown extends LitElement {
 
     if (this.open) {
       // Show
-      emit(this, 'l-show');
+      emit(this, 'le-show');
       this.addOpenListeners();
 
       await stopAnimations(this);
@@ -374,10 +374,10 @@ export default class SlDropdown extends LitElement {
       const { keyframes, options } = getAnimation(this, 'dropdown.show');
       await animateTo(this.panel, keyframes, options);
 
-      emit(this, 'l-after-show');
+      emit(this, 'le-after-show');
     } else {
       // Hide
-      emit(this, 'l-hide');
+      emit(this, 'le-hide');
       this.removeOpenListeners();
 
       await stopAnimations(this);
@@ -386,7 +386,7 @@ export default class SlDropdown extends LitElement {
       this.panel.hidden = true;
       this.stopPositioner();
 
-      emit(this, 'l-after-hide');
+      emit(this, 'le-after-hide');
     }
   }
 
@@ -443,13 +443,13 @@ export default class SlDropdown extends LitElement {
         part="base"
         id="dropdown"
         class=${classMap({
-          dropdown: true,
-          'dropdown--open': this.open
+          'l-dropdown': true,
+          'l-dropdown--open': this.open
         })}
       >
         <span
           part="trigger"
-          class="dropdown__trigger"
+          class="l-dropdown__trigger"
           @click=${this.handleTriggerClick}
           @keydown=${this.handleTriggerKeyDown}
           @keyup=${this.handleTriggerKeyUp}
@@ -459,10 +459,10 @@ export default class SlDropdown extends LitElement {
 
         <!-- Position the panel with a wrapper since the popover makes use of translate. This let's us add animations
         on the panel without interfering with the position. -->
-        <div class="dropdown__positioner">
+        <div class="l-dropdown__positioner">
           <div
             part="panel"
-            class="dropdown__panel"
+            class="l-dropdown__panel"
             aria-hidden=${this.open ? 'false' : 'true'}
             aria-labelledby="dropdown"
           >
@@ -492,6 +492,6 @@ setDefaultAnimation('dropdown.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-dropdown': SlDropdown;
+    'l-dropdown': LynkDropdown;
   }
 }

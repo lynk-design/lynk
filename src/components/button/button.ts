@@ -11,13 +11,13 @@ import { LocalizeController } from '../../utilities/localize';
 import styles from './button.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @dependency l-spinner
  *
- * @event l-blur - Emitted when the button loses focus.
- * @event l-focus - Emitted when the button gains focus.
+ * @event le-blur - Emitted when the button loses focus.
+ * @event le-focus - Emitted when the button gains focus.
  *
  * @slot - The button's label.
  * @slot prefix - Used to prepend an icon or similar element to the button.
@@ -30,10 +30,10 @@ import styles from './button.styles';
  * @csspart caret - The button's caret.
  */
 @customElement('l-button')
-export default class SlButton extends LitElement {
+export default class LynkButton extends LitElement {
   static styles = styles;
 
-  @query('.button') button: HTMLButtonElement | HTMLLinkElement;
+  @query('.l-button') button: HTMLButtonElement | HTMLLinkElement;
 
   private readonly formSubmitController = new FormSubmitController(this, {
     form: (input: HTMLInputElement) => {
@@ -54,12 +54,15 @@ export default class SlButton extends LitElement {
 
   @state() private hasFocus = false;
 
-  /** The button's variant. */
-  @property({ reflect: true }) variant: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' =
+  /** The button's color. */
+  @property({ reflect: true }) color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' =
     'default';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
+  /** Display the button component as a block instead of inline-block. */
+  @property({ type: Boolean, reflect: true }) block = false;
 
   /** Draws the button with a caret for use with dropdowns, popovers, etc. */
   @property({ type: Boolean, reflect: true }) caret = false;
@@ -120,27 +123,27 @@ export default class SlButton extends LitElement {
 
   /** Simulates a click on the button. */
   click() {
-    this.button.click();
+    this.l-button.click();
   }
 
   /** Sets focus on the button. */
   focus(options?: FocusOptions) {
-    this.button.focus(options);
+    this.l-button.focus(options);
   }
 
   /** Removes focus from the button. */
   blur() {
-    this.button.blur();
+    this.l-button.blur();
   }
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'l-blur');
+    emit(this, 'le-blur');
   }
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'l-focus');
+    emit(this, 'le-focus');
   }
 
   handleClick(event: MouseEvent) {
@@ -164,29 +167,29 @@ export default class SlButton extends LitElement {
       <${tag}
         part="base"
         class=${classMap({
-          button: true,
-          'button--default': this.variant === 'default',
-          'button--primary': this.variant === 'primary',
-          'button--success': this.variant === 'success',
-          'button--neutral': this.variant === 'neutral',
-          'button--warning': this.variant === 'warning',
-          'button--danger': this.variant === 'danger',
-          'button--text': this.variant === 'text',
-          'button--small': this.size === 'small',
-          'button--medium': this.size === 'medium',
-          'button--large': this.size === 'large',
-          'button--caret': this.caret,
-          'button--circle': this.circle,
-          'button--disabled': this.disabled,
-          'button--focused': this.hasFocus,
-          'button--loading': this.loading,
-          'button--standard': !this.outline,
-          'button--outline': this.outline,
-          'button--pill': this.pill,
-          'button--rtl': this.localize.dir() === 'rtl',
-          'button--has-label': this.hasSlotController.test('[default]'),
-          'button--has-prefix': this.hasSlotController.test('prefix'),
-          'button--has-suffix': this.hasSlotController.test('suffix')
+          'l-button': true,
+          'l-button--default': this.color === 'default',
+          'l-button--primary': this.color === 'primary',
+          'l-button--success': this.color === 'success',
+          'l-button--neutral': this.color === 'neutral',
+          'l-button--warning': this.color === 'warning',
+          'l-button--danger': this.color === 'danger',
+          'l-button--text': this.color === 'text',
+          'l-button--small': this.size === 'small',
+          'l-button--medium': this.size === 'medium',
+          'l-button--large': this.size === 'large',
+          'l-button--caret': this.caret,
+          'l-button--circle': this.circle,
+          'l-button--disabled': this.disabled,
+          'l-button--focused': this.hasFocus,
+          'l-button--loading': this.loading,
+          'l-button--standard': !this.outline,
+          'l-button--outline': this.outline,
+          'l-button--pill': this.pill,
+          'l-button--rtl': this.localize.dir() === 'rtl',
+          'l-button--has-label': this.hasSlotController.test('[default]'),
+          'l-button--has-prefix': this.hasSlotController.test('prefix'),
+          'l-button--has-suffix': this.hasSlotController.test('suffix')
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
@@ -203,19 +206,19 @@ export default class SlButton extends LitElement {
         @focus=${this.handleFocus}
         @click=${this.handleClick}
       >
-        <span part="prefix" class="button__prefix">
+        <span part="prefix" class="l-button__prefix">
           <slot name="prefix"></slot>
         </span>
-        <span part="label" class="button__label">
+        <span part="label" class="l-button__label">
           <slot></slot>
         </span>
-        <span part="suffix" class="button__suffix">
+        <span part="suffix" class="l-button__suffix">
           <slot name="suffix"></slot>
         </span>
         ${
           this.caret
             ? html`
-                <span part="caret" class="button__caret">
+                <span part="caret" class="l-button__caret">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -239,6 +242,6 @@ export default class SlButton extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-button': SlButton;
+    'l-button': LynkButton;
   }
 }

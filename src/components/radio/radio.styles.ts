@@ -9,7 +9,7 @@ export default css`
     display: inline-block;
   }
 
-  .radio {
+  .l-radio {
     display: inline-flex;
     align-items: center;
     font-family: var(--l-input-font-family);
@@ -20,18 +20,18 @@ export default css`
     cursor: pointer;
   }
 
-  .radio__icon {
+  .l-radio__icon {
     display: inline-flex;
     width: var(--l-toggle-size);
     height: var(--l-toggle-size);
   }
 
-  .radio__icon svg {
+  .l-radio__icon svg {
     width: 100%;
     height: 100%;
   }
 
-  .radio__control {
+  .l-radio__control {
     flex: 0 0 auto;
     position: relative;
     display: inline-flex;
@@ -47,7 +47,7 @@ export default css`
       var(--l-transition-fast) color, var(--l-transition-fast) box-shadow;
   }
 
-  .radio__input {
+  .l-radio__input {
     position: absolute;
     opacity: 0;
     padding: 0;
@@ -56,48 +56,48 @@ export default css`
   }
 
   /* Hover */
-  .radio:not(.radio--checked):not(.radio--disabled) .radio__control:hover {
+  .l-radio:not(.l-radio--checked):not(.l-radio--disabled) .l-radio__control:hover {
     border-color: var(--l-input-border-color-hover);
     background-color: var(--l-input-background-color-hover);
   }
 
   /* Focus */
-  .radio:not(.radio--checked):not(.radio--disabled) .radio__input${focusVisibleSelector} ~ .radio__control {
+  .l-radio:not(.l-radio--checked):not(.l-radio--disabled) .l-radio__input${focusVisibleSelector} ~ .l-radio__control {
     outline: var(--l-focus-ring);
     outline-offset: var(--l-focus-ring-offset);
   }
 
   /* Checked */
-  .radio--checked .radio__control {
+  .l-radio--checked .l-radio__control {
     color: var(--l-color-neutral-0);
     border-color: var(--l-color-primary-600);
     background-color: var(--l-color-primary-600);
   }
 
   /* Checked + hover */
-  .radio.radio--checked:not(.radio--disabled) .radio__control:hover {
+  .l-radio.l-radio--checked:not(.l-radio--disabled) .l-radio__control:hover {
     border-color: var(--l-color-primary-500);
     background-color: var(--l-color-primary-500);
   }
 
   /* Checked + focus */
-  .radio.radio--checked:not(.radio--disabled) .radio__input${focusVisibleSelector} ~ .radio__control {
+  .l-radio.l-radio--checked:not(.l-radio--disabled) .l-radio__input${focusVisibleSelector} ~ .l-radio__control {
     outline: var(--l-focus-ring);
     outline-offset: var(--l-focus-ring-offset);
   }
 
   /* Disabled */
-  .radio--disabled {
+  .l-radio--disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
   /* When the control isn't checked, hide the circle for Windows High Contrast mode a11y */
-  .radio:not(.radio--checked) svg circle {
+  .l-radio:not(.l-radio--checked) svg circle {
     opacity: 0;
   }
 
-  .radio__label {
+  .l-radio__label {
     line-height: var(--l-toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;

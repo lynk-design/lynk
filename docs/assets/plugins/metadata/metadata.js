@@ -344,7 +344,7 @@
 
         let badgeType = 'neutral';
         if (component.status === 'stable') {
-          badgeType = 'primary';
+          badgeType = 'success';
         }
         if (component.status === 'experimental') {
           badgeType = 'warning';
@@ -363,11 +363,11 @@
             </div>
 
             <div class="component-header__info">
-              <l-badge variant="neutral" pill>
+              <l-badge pill>
                 Since ${component.since || '?'}
               </l-badge>
 
-              <l-badge variant="${badgeType}" pill style="text-transform: capitalize;">
+              <l-badge type="${badgeType}" pill style="text-transform: capitalize;">
                 ${component.status}
               </l-badge>
             </div>

@@ -13,7 +13,7 @@ export default css`
     display: contents;
   }
 
-  .dialog {
+  .l-dialog {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +25,7 @@ export default css`
     z-index: var(--l-z-index-dialog);
   }
 
-  .dialog__panel {
+  .l-dialog__panel {
     display: flex;
     flex-direction: column;
     z-index: 2;
@@ -37,29 +37,29 @@ export default css`
     box-shadow: var(--l-shadow-x-large);
   }
 
-  .dialog__panel:focus {
+  .l-dialog__panel:focus {
     outline: none;
   }
 
   /* Ensure there's enough vertical padding for phones that don't update vh when chrome appears (e.g. iPhone) */
   @media screen and (max-width: 420px) {
-    .dialog__panel {
+    .l-dialog__panel {
       max-height: 80vh;
     }
   }
 
-  .dialog--open .dialog__panel {
+  .l-dialog--open .l-dialog__panel {
     display: flex;
     opacity: 1;
     transform: none;
   }
 
-  .dialog__header {
+  .l-dialog__header {
     flex: 0 0 auto;
     display: flex;
   }
 
-  .dialog__title {
+  .l-dialog__title {
     flex: 1 1 auto;
     font: inherit;
     font-size: var(--l-font-size-large);
@@ -68,7 +68,7 @@ export default css`
     margin: 0;
   }
 
-  .dialog__close {
+  .l-dialog__close {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -76,28 +76,28 @@ export default css`
     padding: 0 var(--header-spacing);
   }
 
-  .dialog__body {
+  .l-dialog__body {
     flex: 1 1 auto;
     padding: var(--body-spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-  .dialog__footer {
+  .l-dialog__footer {
     flex: 0 0 auto;
     text-align: right;
     padding: var(--footer-spacing);
   }
 
-  .dialog__footer ::slotted(l-button:not(:first-of-type)) {
+  .l-dialog__footer ::slotted(l-button:not(:first-of-type)) {
     margin-inline-start: var(--l-spacing-x-small);
   }
 
-  .dialog:not(.dialog--has-footer) .dialog__footer {
+  .l-dialog:not(.l-dialog--has-footer) .l-dialog__footer {
     display: none;
   }
 
-  .dialog__overlay {
+  .l-dialog__overlay {
     position: fixed;
     top: 0;
     right: 0;
