@@ -1,19 +1,19 @@
 # Select
 
-[component-header:l-select]
+[component-header:lynk-select]
 
 Selects allow you to choose one or more items from a dropdown menu.
 
 ```html preview
-<l-select>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-  <l-divider></l-divider>
-  <l-menu-item value="option-4">Option 4</l-menu-item>
-  <l-menu-item value="option-5">Option 5</l-menu-item>
-  <l-menu-item value="option-6">Option 6</l-menu-item>
-</l-select>
+<lynk-select>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-divider></lynk-divider>
+  <lynk-menu-item value="option-4">Option 4</lynk-menu-item>
+  <lynk-menu-item value="option-5">Option 5</lynk-menu-item>
+  <lynk-menu-item value="option-6">Option 6</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -41,11 +41,11 @@ const App = () => (
 Use the `label` attribute to give the select an accessible label. For labels that contain HTML, use the `label` slot instead.
 
 ```html preview
-<l-select label="Select one">
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select label="Select one">
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -65,11 +65,11 @@ const App = () => (
 Add descriptive help text to a select with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
 ```html preview
-<l-select label="Experience" help-text="Please tell us your skill level.">
-  <l-menu-item value="1">Novice</l-menu-item>
-  <l-menu-item value="2">Intermediate</l-menu-item>
-  <l-menu-item value="3">Advanced</l-menu-item>
-</l-select>
+<lynk-select label="Experience" help-text="Please tell us your skill level.">
+  <lynk-menu-item value="1">Novice</lynk-menu-item>
+  <lynk-menu-item value="2">Intermediate</lynk-menu-item>
+  <lynk-menu-item value="3">Advanced</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -89,11 +89,11 @@ const App = () => (
 Use the `placeholder` attribute to add a placeholder.
 
 ```html preview
-<l-select placeholder="Select one">
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select placeholder="Select one">
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -113,11 +113,11 @@ const App = () => (
 Use the `clearable` attribute to make the control clearable.
 
 ```html preview
-<l-select placeholder="Clearable" clearable>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select placeholder="Clearable" clearable>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -137,11 +137,11 @@ const App = () => (
 Add the `filled` attribute to draw a filled select.
 
 ```html preview
-<l-select filled>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select filled>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -161,11 +161,11 @@ const App = () => (
 Use the `pill` attribute to give selects rounded edges.
 
 ```html preview
-<l-select pill>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select pill>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -185,11 +185,11 @@ const App = () => (
 Use the `disabled` attribute to disable a select.
 
 ```html preview
-<l-select placeholder="Disabled" disabled>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select placeholder="Disabled" disabled>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -209,11 +209,11 @@ const App = () => (
 Use the `value` attribute to set the current selection. When users interact with the control, its `value` will update to reflect the newly selected menu item's value. Note that the value must be an array when using the [`multiple`](#multiple) option.
 
 ```html preview
-<l-select value="option-2">
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select value="option-2">
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -234,24 +234,24 @@ To programmatically set the selection, update the `value` property as shown belo
 
 ```html preview
 <div class="selecting-example">
-  <l-select>
-    <l-menu-item value="option-1">Option 1</l-menu-item>
-    <l-menu-item value="option-2">Option 2</l-menu-item>
-    <l-menu-item value="option-3">Option 3</l-menu-item>
-  </l-select>
+  <lynk-select>
+    <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+    <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+    <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  </lynk-select>
 
   <br />
 
-  <l-button data-option="option-1">Set 1</l-button>
-  <l-button data-option="option-2">Set 2</l-button>
-  <l-button data-option="option-3">Set 3</l-button>
+  <lynk-button data-option="option-1">Set 1</lynk-button>
+  <lynk-button data-option="option-2">Set 2</lynk-button>
+  <lynk-button data-option="option-3">Set 3</lynk-button>
 </div>
 
 <script>
   const container = document.querySelector('.selecting-example');
-  const select = container.querySelector('l-select');
+  const select = container.querySelector('lynk-select');
 
-  [...container.querySelectorAll('l-button')].map(button => {
+  [...container.querySelectorAll('lynk-button')].map(button => {
     button.addEventListener('click', () => {
       select.value = button.dataset.option;
     });
@@ -289,15 +289,15 @@ const App = () => {
 To allow multiple options to be selected, use the `multiple` attribute. With this option, `value` will be an array of strings instead of a string. It's a good practice to use `clearable` when this option is enabled.
 
 ```html preview
-<l-select placeholder="Select a few" multiple clearable>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-  <l-divider></l-divider>
-  <l-menu-item value="option-4">Option 4</l-menu-item>
-  <l-menu-item value="option-5">Option 5</l-menu-item>
-  <l-menu-item value="option-6">Option 6</l-menu-item>
-</l-select>
+<lynk-select placeholder="Select a few" multiple clearable>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-divider></lynk-divider>
+  <lynk-menu-item value="option-4">Option 4</lynk-menu-item>
+  <lynk-menu-item value="option-5">Option 5</lynk-menu-item>
+  <lynk-menu-item value="option-6">Option 6</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -323,17 +323,17 @@ const App = () => (
 Options can be grouped visually using menu labels and dividers.
 
 ```html preview
-<l-select placeholder="Select one">
-  <l-menu-label>Group 1</l-menu-label>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-  <l-divider></l-divider>
-  <l-menu-label>Group 2</l-menu-label>
-  <l-menu-item value="option-4">Option 4</l-menu-item>
-  <l-menu-item value="option-5">Option 5</l-menu-item>
-  <l-menu-item value="option-6">Option 6</l-menu-item>
-</l-select>
+<lynk-select placeholder="Select one">
+  <lynk-menu-label>Group 1</lynk-menu-label>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-divider></lynk-divider>
+  <lynk-menu-label>Group 2</lynk-menu-label>
+  <lynk-menu-item value="option-4">Option 4</lynk-menu-item>
+  <lynk-menu-item value="option-5">Option 5</lynk-menu-item>
+  <lynk-menu-item value="option-6">Option 6</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -359,27 +359,27 @@ const App = () => (
 Use the `size` attribute to change a select's size.
 
 ```html preview
-<l-select placeholder="Small" size="small" multiple>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select placeholder="Small" size="small" multiple>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 
 <br />
 
-<l-select placeholder="Medium" size="medium" multiple>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select placeholder="Medium" size="medium" multiple>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 
 <br />
 
-<l-select placeholder="Large" size="large" multiple>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select placeholder="Large" size="large" multiple>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -417,11 +417,11 @@ const App = () => (
 The preferred placement of the select's menu can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport. Valid placements are `top` and `bottom`.
 
 ```html preview
-<l-select placement="top">
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-</l-select>
+<lynk-select placement="top">
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
 ```
 
 ```jsx react
@@ -444,29 +444,29 @@ const App = () => (
 Use the `prefix` and `suffix` slots to add icons.
 
 ```html preview
-<l-select placeholder="Small" size="small">
-  <l-icon name="house" slot="prefix"></l-icon>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-  <l-icon name="chat" slot="suffix"></l-icon>
-</l-select>
+<lynk-select placeholder="Small" size="small">
+  <lynk-icon name="house" slot="prefix"></lynk-icon>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-icon name="chat" slot="suffix"></lynk-icon>
+</lynk-select>
 <br />
-<l-select placeholder="Medium" size="medium">
-  <l-icon name="house" slot="prefix"></l-icon>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-  <l-icon name="chat" slot="suffix"></l-icon>
-</l-select>
+<lynk-select placeholder="Medium" size="medium">
+  <lynk-icon name="house" slot="prefix"></lynk-icon>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-icon name="chat" slot="suffix"></lynk-icon>
+</lynk-select>
 <br />
-<l-select placeholder="Large" size="large">
-  <l-icon name="house" slot="prefix"></l-icon>
-  <l-menu-item value="option-1">Option 1</l-menu-item>
-  <l-menu-item value="option-2">Option 2</l-menu-item>
-  <l-menu-item value="option-3">Option 3</l-menu-item>
-  <l-icon name="chat" slot="suffix"></l-icon>
-</l-select>
+<lynk-select placeholder="Large" size="large">
+  <lynk-icon name="house" slot="prefix"></lynk-icon>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-icon name="chat" slot="suffix"></lynk-icon>
+</lynk-select>
 ```
 
 ```jsx react
@@ -501,4 +501,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-select]
+[component-metadata:lynk-select]

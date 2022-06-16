@@ -9,11 +9,11 @@
   display: none;
 }
 
-.theme-picker l-menu-label {
+.theme-picker lynk-menu-label {
   white-space: nowrap;
 }
 
-.theme-picker l-menu-label kbd {
+.theme-picker lynk-menu-label kbd {
   margin-left: 0.5rem;
 }
 
@@ -23,7 +23,7 @@
     right: 0.5rem;
   }
 
-  .theme-picker l-menu-label {
+  .theme-picker lynk-menu-label {
     display: none;
   }
 }

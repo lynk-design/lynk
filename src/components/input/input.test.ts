@@ -2,16 +2,16 @@ import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import { serialize } from '../../utilities/form';
-import type SlInput from './input';
+import type LynkInput from './input';
 
-describe('<l-input>', () => {
+describe('<lynk-input>', () => {
   it('should pass accessibility tests', async () => {
-    const el = await fixture<SlInput>(html` <l-input label="Name"></l-input> `);
+    const el = await fixture<LynkInput>(html` <lynk-input label="Name"></lynk-input> `);
     await expect(el).to.be.accessible();
   });
 
   it('should be disabled with the disabled attribute', async () => {
-    const el = await fixture<SlInput>(html` <l-input disabled></l-input> `);
+    const el = await fixture<LynkInput>(html` <lynk-input disabled></lynk-input> `);
     const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part="input"]')!;
 
     expect(input.disabled).to.be.true;
@@ -19,7 +19,7 @@ describe('<l-input>', () => {
 
   describe('value methods', () => {
     it('should set the value as a date when using valueAsDate', async () => {
-      const el = await fixture<SlInput>(html` <l-input type="date"></l-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input type="date"></lynk-input> `);
       const today = new Date();
 
       el.valueAsDate = today;
@@ -28,7 +28,7 @@ describe('<l-input>', () => {
     });
 
     it('should set the value as a number when using valueAsNumber', async () => {
-      const el = await fixture<SlInput>(html` <l-input type="number"></l-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input type="number"></lynk-input> `);
       const num = 12345;
 
       el.valueAsNumber = num;
@@ -38,11 +38,11 @@ describe('<l-input>', () => {
   });
 
   it('should focus the input when clicking on the label', async () => {
-    const el = await fixture<SlInput>(html` <l-input label="Name"></l-input> `);
+    const el = await fixture<LynkInput>(html` <lynk-input label="Name"></lynk-input> `);
     const label = el.shadowRoot!.querySelector('[part="form-control-label"]')!;
     const submitHandler = sinon.spy();
 
-    el.addEventListener('l-focus', submitHandler);
+    el.addEventListener('lynk-focus', submitHandler);
     (label as HTMLLabelElement).click();
     await waitUntil(() => submitHandler.calledOnce);
 
@@ -51,24 +51,24 @@ describe('<l-input>', () => {
 
   describe('when using constraint validation', () => {
     it('should be valid by default', async () => {
-      const el = await fixture<SlInput>(html` <l-input></l-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input></lynk-input> `);
       expect(el.invalid).to.be.false;
     });
 
     it('should be invalid when required and empty', async () => {
-      const el = await fixture<SlInput>(html` <l-input required></l-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input required></lynk-input> `);
       expect(el.reportValidity()).to.be.false;
       expect(el.invalid).to.be.true;
     });
 
     it('should be invalid when the pattern does not match', async () => {
-      const el = await fixture<SlInput>(html` <l-input pattern="^test" value="fail"></l-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input pattern="^test" value="fail"></lynk-input> `);
       expect(el.invalid).to.be.true;
       expect(el.reportValidity()).to.be.false;
     });
 
     it('should be invalid when required and disabled is removed', async () => {
-      const el = await fixture<SlInput>(html` <l-input disabled required></l-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input disabled required></lynk-input> `);
       el.disabled = false;
       await el.updateComplete;
       expect(el.invalid).to.be.true;
@@ -77,13 +77,13 @@ describe('<l-input>', () => {
 
   describe('when serializing', () => {
     it('should serialize its name and value with FormData', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><l-input name="a" value="1"></l-input></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><lynk-input name="a" value="1"></lynk-input></form> `);
       const formData = new FormData(form);
       expect(formData.get('a')).to.equal('1');
     });
 
     it('should serialize its name and value with JSON', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><l-input name="a" value="1"></l-input></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><lynk-input name="a" value="1"></lynk-input></form> `);
       const json = serialize(form);
       expect(json.a).to.equal('1');
     });
@@ -91,7 +91,7 @@ describe('<l-input>', () => {
 
   describe('when submitting a form', () => {
     it('should submit the form when pressing enter in a form without a submit button', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><l-input></l-input></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><lynk-input></lynk-input></form> `);
       const input = form.querySelector('l-input')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
@@ -104,7 +104,7 @@ describe('<l-input>', () => {
     });
 
     it('should prevent submission when pressing enter in an input and canceling the keydown event', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><l-input></l-input></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><lynk-input></lynk-input></form> `);
       const input = form.querySelector('l-input')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
       const keydownHandler = sinon.spy((event: KeyboardEvent) => {
@@ -128,8 +128,8 @@ describe('<l-input>', () => {
     it('should be invalid when the input is empty and form.reportValidity() is called', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <l-input required value=""></l-input>
-          <l-button type="submit">Submit</l-button>
+          <lynk-input required value=""></lynk-input>
+          <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
 
@@ -139,8 +139,8 @@ describe('<l-input>', () => {
     it('should be valid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form novalidate>
-          <l-input required value=""></l-input>
-          <l-button type="submit">Submit</l-button>
+          <lynk-input required value=""></lynk-input>
+          <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
 
@@ -151,7 +151,7 @@ describe('<l-input>', () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
           <input required value=""></input>
-          <l-button type="submit">Submit</l-button>
+          <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
 

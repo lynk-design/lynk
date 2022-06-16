@@ -3,25 +3,25 @@ import sinon from 'sinon';
 import { serialize } from '../../utilities/form';
 import type SlTextarea from './textarea';
 
-describe('<l-textarea>', () => {
+describe('<lynk-textarea>', () => {
   it('should pass accessibility tests', async () => {
-    const el = await fixture<SlTextarea>(html` <l-textarea label="Name"></l-textarea> `);
+    const el = await fixture<SlTextarea>(html` <lynk-textarea label="Name"></lynk-textarea> `);
     await expect(el).to.be.accessible();
   });
 
   it('should be disabled with the disabled attribute', async () => {
-    const el = await fixture<SlTextarea>(html` <l-textarea disabled></l-textarea> `);
+    const el = await fixture<SlTextarea>(html` <lynk-textarea disabled></lynk-textarea> `);
     const textarea = el.shadowRoot!.querySelector<HTMLTextAreaElement>('[part="textarea"]')!;
 
     expect(textarea.disabled).to.be.true;
   });
 
   it('should focus the textarea when clicking on the label', async () => {
-    const el = await fixture<SlTextarea>(html` <l-textarea label="Name"></l-textarea> `);
+    const el = await fixture<SlTextarea>(html` <lynk-textarea label="Name"></lynk-textarea> `);
     const label = el.shadowRoot!.querySelector('[part="form-control-label"]')!;
     const submitHandler = sinon.spy();
 
-    el.addEventListener('l-focus', submitHandler);
+    el.addEventListener('lynk-focus', submitHandler);
     (label as HTMLLabelElement).click();
     await waitUntil(() => submitHandler.calledOnce);
 
@@ -30,19 +30,19 @@ describe('<l-textarea>', () => {
 
   describe('when using constraint validation', () => {
     it('should be valid by default', async () => {
-      const el = await fixture<SlTextarea>(html` <l-textarea></l-textarea> `);
+      const el = await fixture<SlTextarea>(html` <lynk-textarea></lynk-textarea> `);
 
       expect(el.invalid).to.be.false;
     });
 
     it('should be invalid when required and empty', async () => {
-      const el = await fixture<SlTextarea>(html` <l-textarea required></l-textarea> `);
+      const el = await fixture<SlTextarea>(html` <lynk-textarea required></lynk-textarea> `);
 
       expect(el.invalid).to.be.true;
     });
 
     it('should be invalid when required and after removing disabled ', async () => {
-      const el = await fixture<SlTextarea>(html` <l-textarea disabled required></l-textarea> `);
+      const el = await fixture<SlTextarea>(html` <lynk-textarea disabled required></lynk-textarea> `);
 
       el.disabled = false;
       await el.updateComplete;
@@ -51,7 +51,7 @@ describe('<l-textarea>', () => {
     });
 
     it('should be invalid when required and disabled is removed', async () => {
-      const el = await fixture<SlTextarea>(html` <l-textarea disabled required></l-textarea> `);
+      const el = await fixture<SlTextarea>(html` <lynk-textarea disabled required></lynk-textarea> `);
       el.disabled = false;
       await el.updateComplete;
       expect(el.invalid).to.be.true;
@@ -60,13 +60,13 @@ describe('<l-textarea>', () => {
 
   describe('when serializing', () => {
     it('should serialize its name and value with FormData', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><l-textarea name="a" value="1"></l-textarea></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><lynk-textarea name="a" value="1"></lynk-textarea></form> `);
       const formData = new FormData(form);
       expect(formData.get('a')).to.equal('1');
     });
 
     it('should serialize its name and value with JSON', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><l-textarea name="a" value="1"></l-textarea></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><lynk-textarea name="a" value="1"></lynk-textarea></form> `);
       const json = serialize(form);
       expect(json.a).to.equal('1');
     });

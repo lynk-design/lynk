@@ -5,13 +5,13 @@ import '../../components/button-group/button-group';
 import styles from './radio-group.styles';
 import type LynkRadio from '../../components/radio/radio';
 
-const RADIO_CHILDREN = ['l-radio', 'l-radio-button'];
+const RADIO_CHILDREN = ['lynk-radio', 'lynk-radio-button'];
 
 /**
  * @since 1.0
  * @status stable
  *
- * @dependency l-button-group
+ * @dependency lynk-button-group
  *
  * @slot - The default slot where radio controls are placed.
  * @slot label - The radio group label. Required for proper accessibility. Alternatively, you can use the label prop.
@@ -21,7 +21,7 @@ const RADIO_CHILDREN = ['l-radio', 'l-radio-button'];
  * @csspart button-group - The button group that wraps radio buttons.
  * @csspart button-group__base - The button group's `base` part.
  */
-@customElement('l-radio-group')
+@customElement('lynk-radio-group')
 export default class LynkRadioGroup extends LitElement {
   static styles = styles;
 
@@ -89,7 +89,7 @@ export default class LynkRadioGroup extends LitElement {
     const radios = this.getAllRadios();
     const checkedRadio = radios.find(radio => radio.checked);
 
-    this.hasButtonGroup = !!radios.find(radio => radio.tagName.toLowerCase() === 'l-radio-button');
+    this.hasButtonGroup = !!radios.find(radio => radio.tagName.toLowerCase() === 'lynk-radio-button');
 
     radios.forEach(radio => {
       radio.setAttribute('role', 'radio');
@@ -112,15 +112,15 @@ export default class LynkRadioGroup extends LitElement {
       <fieldset
         part="base"
         class=${classMap({
-          'l-radio-group': true,
-          'l-radio-group--has-fieldset': this.fieldset
+          'lynk-radio-group': true,
+          'lynk-radio-group--has-fieldset': this.fieldset
         })}
       >
-        <legend part="label" class="l-radio-group__label">
+        <legend part="label" class="lynk-radio-group__label">
           <slot name="label">${this.label}</slot>
         </legend>
         ${this.hasButtonGroup
-          ? html`<l-button-group part="button-group">${defaultSlot}</l-button-group>`
+          ? html`<lynk-button-group part="button-group">${defaultSlot}</lynk-button-group>`
           : defaultSlot}
       </fieldset>
     `;
@@ -129,6 +129,6 @@ export default class LynkRadioGroup extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-radio-group': LynkRadioGroup;
+    'lynk-radio-group': LynkRadioGroup;
   }
 }

@@ -3,11 +3,11 @@ import { customElement, property } from 'lit/decorators.js';
 import { LocalizeController } from '../../utilities/localize';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  */
-@customElement('l-format-number')
-export default class SlFormatNumber extends LitElement {
+@customElement('lynk-format-number')
+export default class LynkFormatNumber extends LitElement {
   private readonly localize = new LocalizeController(this);
 
   /** The number to format. */
@@ -64,6 +64,6 @@ export default class SlFormatNumber extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-format-number': SlFormatNumber;
+    'lynk-format-number': LynkFormatNumber;
   }
 }

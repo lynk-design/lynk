@@ -8,34 +8,34 @@ export default css`
     display: block;
   }
 
-  .l-radio-group {
-    border: solid var(--l-panel-border-width) var(--l-panel-border-color);
-    border-radius: var(--l-border-radius-medium);
-    padding: var(--l-spacing-large);
-    padding-top: var(--l-spacing-x-small);
+  .lynk-radio-group {
+    border: solid var(--lynk-panel-border-width) var(--lynk-panel-border-color);
+    border-radius: var(--lynk-border-radius-medium);
+    padding: var(--lynk-spacing-large);
+    padding-top: var(--lynk-spacing-x-small);
   }
 
-  .l-radio-group .l-radio-group__label {
-    font-family: var(--l-input-font-family);
-    font-size: var(--l-input-font-size-medium);
-    font-weight: var(--l-input-font-weight);
-    color: var(--l-input-color);
-    padding: 0 var(--l-spacing-2x-small);
+  .lynk-radio-group .lynk-radio-group__label {
+    font-family: var(--lynk-input-font-family);
+    font-size: var(--lynk-input-font-size-medium);
+    font-weight: var(--lynk-input-font-weight);
+    color: var(--lynk-input-color);
+    padding: 0 var(--lynk-spacing-2x-small);
   }
 
-  ::slotted(l-radio:not(:last-of-type)) {
+  ::slotted(lynk-radio:not(:last-of-type)) {
     display: block;
-    margin-bottom: var(--l-spacing-2x-small);
+    margin-bottom: var(--lynk-spacing-2x-small);
   }
 
-  .l-radio-group:not(.l-radio-group--has-fieldset) {
+  .lynk-radio-group:not(.lynk-radio-group--has-fieldset) {
     border: none;
     padding: 0;
     margin: 0;
     min-width: 0;
   }
 
-  .l-radio-group:not(.l-radio-group--has-fieldset) .l-radio-group__label {
+  .lynk-radio-group:not(.lynk-radio-group--has-fieldset) .lynk-radio-group__label {
     position: absolute;
     width: 0;
     height: 0;

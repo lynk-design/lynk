@@ -1,18 +1,18 @@
 # Breadcrumb Item
 
-[component-header:l-breadcrumb-item]
+[component-header:lynk-breadcrumb-item]
 
 Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.
 
 ```html preview
-<l-breadcrumb>
-  <l-breadcrumb-item>
-    <l-icon slot="prefix" name="house"></l-icon>
+<lynk-breadcrumb>
+  <lynk-breadcrumb-item>
+    <lynk-icon slot="prefix" name="house"></lynk-icon>
     Home
-  </l-breadcrumb-item>
-  <l-breadcrumb-item>Clothing</l-breadcrumb-item>
-  <l-breadcrumb-item>Shirts</l-breadcrumb-item>
-</l-breadcrumb>
+  </lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Clothing</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Shirts</lynk-breadcrumb-item>
+</lynk-breadcrumb>
 ```
 
 ```jsx react
@@ -32,4 +32,4 @@ const App = () => (
 
 ?> Additional demonstrations can be found in the [breadcrumb examples](/components/breadcrumb).
 
-[component-metadata:l-breadcrumb-item]
+[component-metadata:lynk-breadcrumb-item]

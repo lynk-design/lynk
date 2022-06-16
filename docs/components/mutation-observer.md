@@ -1,6 +1,6 @@
 # Mutation Observer
 
-[component-header:l-mutation-observer]
+[component-header:lynk-mutation-observer]
 
 The Mutation Observer component offers a thin, declarative interface to the [`MutationObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver).
 
@@ -8,17 +8,17 @@ The mutation observer will report changes to the content it wraps through the `l
 
 ```html preview
 <div class="mutation-overview">
-  <l-mutation-observer attr="variant">
-    <l-button variant="primary">Click to mutate</l-button>
-  </l-mutation-observer>
+  <lynk-mutation-observer attr="variant">
+    <lynk-button variant="primary">Click to mutate</lynk-button>
+  </lynk-mutation-observer>
 
   <br />
   👆 Click the button and watch the console
 
   <script>
     const container = document.querySelector('.mutation-overview');
-    const mutationObserver = container.querySelector('l-mutation-observer');
-    const button = container.querySelector('l-button');
+    const mutationObserver = container.querySelector('lynk-mutation-observer');
+    const button = container.querySelector('lynk-button');
     const variants = ['primary', 'success', 'neutral', 'warning', 'danger'];
     let clicks = 0;
 
@@ -29,13 +29,13 @@ The mutation observer will report changes to the content it wraps through the `l
     });
 
     // Log mutations
-    mutationObserver.addEventListener('l-mutation', event => {
+    mutationObserver.addEventListener('lynk-mutation', event => {
       console.log(event.detail);
     });
   </script>
 
   <style>
-    .mutation-overview l-button {
+    .mutation-overview lynk-button {
       margin-bottom: 1rem;
     }
   </style>
@@ -49,7 +49,7 @@ import { SlButton, SlMutationObserver } from '@shoelace-style/shoelace/dist/reac
 const css = `
   .resize-observer-overview div {
     display: flex; 
-    border: solid 2px var(--l-input-border-color); 
+    border: solid 2px var(--lynk-input-border-color); 
     align-items: center; 
     justify-content: center;
     text-align: center;
@@ -92,31 +92,31 @@ Use the `child-list` attribute to watch for new child elements that are added or
 
 ```html preview
 <div class="mutation-child-list">
-  <l-mutation-observer child-list>
+  <lynk-mutation-observer child-list>
     <div class="buttons">
-      <l-button variant="primary">Add button</l-button>
+      <lynk-button variant="primary">Add button</lynk-button>
     </div>
-  </l-mutation-observer>
+  </lynk-mutation-observer>
 
   👆 Add and remove buttons and watch the console
 
   <script>
     const container = document.querySelector('.mutation-child-list');
-    const mutationObserver = container.querySelector('l-mutation-observer');
+    const mutationObserver = container.querySelector('lynk-mutation-observer');
     const buttons = container.querySelector('.buttons');
-    const button = container.querySelector('l-button[variant="primary"]');
+    const button = container.querySelector('lynk-button[variant="primary"]');
     let i = 0;
 
     // Add a button
     button.addEventListener('click', () => {
-      const button = document.createElement('l-button');
+      const button = document.createElement('lynk-button');
       button.textContent = ++i;
       buttons.append(button);
     });
 
     // Remove a button
     buttons.addEventListener('click', event => {
-      const target = event.target.closest('l-button:not([variant="primary"])');
+      const target = event.target.closest('lynk-button:not([variant="primary"])');
       event.stopPropagation();
 
       if (target) {
@@ -125,7 +125,7 @@ Use the `child-list` attribute to watch for new child elements that are added or
     });
 
     // Log mutations
-    mutationObserver.addEventListener('l-mutation', event => {
+    mutationObserver.addEventListener('lynk-mutation', event => {
       console.log(event.detail);
     });
   </script>
@@ -190,4 +190,4 @@ const App = () => {
 };
 ```
 
-[component-metadata:l-mutation-observer]
+[component-metadata:lynk-mutation-observer]

@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import type SlBreadcrumbItem from './breadcrumb-item';
+import type LynkBreadcrumbItem from './breadcrumb-item';
 
-describe('<l-breadcrumb-item>', () => {
-  let el: SlBreadcrumbItem;
+describe('<lynk-breadcrumb-item>', () => {
+  let el: LynkBreadcrumbItem;
 
   describe('when not provided a href attribute', () => {
     before(async () => {
-      el = await fixture<SlBreadcrumbItem>(html` <l-breadcrumb-item>Home</l-breadcrumb-item> `);
+      el = await fixture<LynkBreadcrumbItem>(html` <lynk-breadcrumb-item>Home</lynk-breadcrumb-item> `);
     });
 
     it('should pass accessibility tests', async () => {
@@ -28,8 +28,8 @@ describe('<l-breadcrumb-item>', () => {
   describe('when provided a href attribute', () => {
     describe('and no target', () => {
       before(async () => {
-        el = await fixture<SlBreadcrumbItem>(html`
-          <l-breadcrumb-item href="https://jsonplaceholder.typicode.com/">Home</l-breadcrumb-item>
+        el = await fixture<LynkBreadcrumbItem>(html`
+          <lynk-breadcrumb-item href="https://jsonplaceholder.typicode.com/">Home</lynk-breadcrumb-item>
         `);
       });
 
@@ -45,8 +45,8 @@ describe('<l-breadcrumb-item>', () => {
 
     describe('and target, without rel', () => {
       before(async () => {
-        el = await fixture<SlBreadcrumbItem>(html`
-          <l-breadcrumb-item href="https://jsonplaceholder.typicode.com/" target="_blank">Help</l-breadcrumb-item>
+        el = await fixture<LynkBreadcrumbItem>(html`
+          <lynk-breadcrumb-item href="https://jsonplaceholder.typicode.com/" target="_blank">Help</lynk-breadcrumb-item>
         `);
       });
 
@@ -73,9 +73,9 @@ describe('<l-breadcrumb-item>', () => {
 
     describe('and target, with rel', () => {
       before(async () => {
-        el = await fixture<SlBreadcrumbItem>(html`
-          <l-breadcrumb-item href="https://jsonplaceholder.typicode.com/" target="_blank" rel="alternate"
-            >Help</l-breadcrumb-item
+        el = await fixture<LynkBreadcrumbItem>(html`
+          <lynk-breadcrumb-item href="https://jsonplaceholder.typicode.com/" target="_blank" rel="alternate"
+            >Help</lynk-breadcrumb-item
           >
         `);
       });
@@ -104,11 +104,11 @@ describe('<l-breadcrumb-item>', () => {
 
   describe('when provided an element in the slot "prefix" to support prefix icons', () => {
     before(async () => {
-      el = await fixture<SlBreadcrumbItem>(html`
-        <l-breadcrumb-item>
+      el = await fixture<LynkBreadcrumbItem>(html`
+        <lynk-breadcrumb-item>
           <span class="prefix-example" slot="prefix">/</span>
           Home
-        </l-breadcrumb-item>
+        </lynk-breadcrumb-item>
       `);
     });
 
@@ -123,19 +123,19 @@ describe('<l-breadcrumb-item>', () => {
       expect(childNodes.length).to.eq(1);
     });
 
-    it('should append class "breadcrumb-item--has-prefix" to "base" part', () => {
+    it('should append class "lynk-breadcrumb-item--has-prefix" to "base" part', () => {
       const part = el.shadowRoot!.querySelector('[part="base"]')!;
-      expect(part.classList.value.trim()).to.equal('breadcrumb-item breadcrumb-item--has-prefix');
+      expect(part.classList.value.trim()).to.equal('lynk-breadcrumb-item lynk-breadcrumb-item--has-prefix');
     });
   });
 
   describe('when provided an element in the slot "suffix" to support suffix icons', () => {
     before(async () => {
-      el = await fixture<SlBreadcrumbItem>(html`
-        <l-breadcrumb-item>
+      el = await fixture<LynkBreadcrumbItem>(html`
+        <lynk-breadcrumb-item>
           <span class="prefix-example" slot="suffix">/</span>
           Security
-        </l-breadcrumb-item>
+        </lynk-breadcrumb-item>
       `);
     });
 
@@ -150,9 +150,9 @@ describe('<l-breadcrumb-item>', () => {
       expect(childNodes.length).to.eq(1);
     });
 
-    it('should append class "breadcrumb-item--has-suffix" to "base" part', () => {
+    it('should append class "lynk-breadcrumb-item--has-suffix" to "base" part', () => {
       const part = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
-      expect(part.classList.value.trim()).to.equal('breadcrumb-item breadcrumb-item--has-suffix');
+      expect(part.classList.value.trim()).to.equal('lynk-breadcrumb-item lynk-breadcrumb-item--has-suffix');
     });
   });
 });

@@ -1,6 +1,6 @@
 # Format Number
 
-[component-header:l-format-number]
+[component-header:lynk-format-number]
 
 Formats a number using the specified locale and options.
 
@@ -8,17 +8,17 @@ Localization is handled by the browser's [`Intl.NumberFormat` API](https://devel
 
 ```html preview
 <div class="format-number-overview">
-  <l-format-number value="1000"></l-format-number>
+  <lynk-format-number value="1000"></lynk-format-number>
   <br /><br />
-  <l-input type="number" value="1000" label="Number to Format" style="max-width: 180px;"></l-input>
+  <lynk-input type="number" value="1000" label="Number to Format" style="max-width: 180px;"></lynk-input>
 </div>
 
 <script>
   const container = document.querySelector('.format-number-overview');
-  const formatter = container.querySelector('l-format-number');
-  const input = container.querySelector('l-input');
+  const formatter = container.querySelector('lynk-format-number');
+  const input = container.querySelector('lynk-input');
 
-  input.addEventListener('l-input', () => (formatter.value = input.value || 0));
+  input.addEventListener('lynk-input', () => (formatter.value = input.value || 0));
 </script>
 ```
 
@@ -53,11 +53,11 @@ const App = () => {
 To get the value as a percent, set the `type` attribute to `percent`.
 
 ```html preview
-<l-format-number type="percent" value="0"></l-format-number><br />
-<l-format-number type="percent" value="0.25"></l-format-number><br />
-<l-format-number type="percent" value="0.50"></l-format-number><br />
-<l-format-number type="percent" value="0.75"></l-format-number><br />
-<l-format-number type="percent" value="1"></l-format-number>
+<lynk-format-number type="percent" value="0"></lynk-format-number><br />
+<lynk-format-number type="percent" value="0.25"></lynk-format-number><br />
+<lynk-format-number type="percent" value="0.50"></lynk-format-number><br />
+<lynk-format-number type="percent" value="0.75"></lynk-format-number><br />
+<lynk-format-number type="percent" value="1"></lynk-format-number>
 ```
 
 ```jsx react
@@ -83,9 +83,9 @@ const App = () => (
 Use the `lang` attribute to set the number formatting locale.
 
 ```html preview
-English: <l-format-number value="2000" lang="en" minimum-fraction-digits="2"></l-format-number><br />
-German: <l-format-number value="2000" lang="de" minimum-fraction-digits="2"></l-format-number><br />
-Russian: <l-format-number value="2000" lang="ru" minimum-fraction-digits="2"></l-format-number>
+English: <lynk-format-number value="2000" lang="en" minimum-fraction-digits="2"></lynk-format-number><br />
+German: <lynk-format-number value="2000" lang="de" minimum-fraction-digits="2"></lynk-format-number><br />
+Russian: <lynk-format-number value="2000" lang="ru" minimum-fraction-digits="2"></lynk-format-number>
 ```
 
 ```jsx react
@@ -107,11 +107,11 @@ const App = () => (
 To format a number as a monetary value, set the `type` attribute to `currency` and set the `currency` attribute to the desired ISO 4217 currency code. You should also specify `lang` to ensure the the number is formatted correctly for the target locale.
 
 ```html preview
-<l-format-number type="currency" currency="USD" value="2000" lang="en-US"></l-format-number><br />
-<l-format-number type="currency" currency="GBP" value="2000" lang="en-GB"></l-format-number><br />
-<l-format-number type="currency" currency="EUR" value="2000" lang="de"></l-format-number><br />
-<l-format-number type="currency" currency="RUB" value="2000" lang="ru"></l-format-number><br />
-<l-format-number type="currency" currency="CNY" value="2000" lang="zh-cn"></l-format-number>
+<lynk-format-number type="currency" currency="USD" value="2000" lang="en-US"></lynk-format-number><br />
+<lynk-format-number type="currency" currency="GBP" value="2000" lang="en-GB"></lynk-format-number><br />
+<lynk-format-number type="currency" currency="EUR" value="2000" lang="de"></lynk-format-number><br />
+<lynk-format-number type="currency" currency="RUB" value="2000" lang="ru"></lynk-format-number><br />
+<lynk-format-number type="currency" currency="CNY" value="2000" lang="zh-cn"></lynk-format-number>
 ```
 
 ```jsx react
@@ -132,4 +132,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-format-number]
+[component-metadata:lynk-format-number]

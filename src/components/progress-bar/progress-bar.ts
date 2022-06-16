@@ -7,7 +7,7 @@ import { LocalizeController } from '../../utilities/localize';
 import styles from './progress-bar.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - A label to show inside the indicator.
@@ -21,8 +21,8 @@ import styles from './progress-bar.styles';
  * @cssproperty --indicator-color - The indicator color.
  * @cssproperty --label-color - The label color.
  */
-@customElement('l-progress-bar')
-export default class SlProgressBar extends LitElement {
+@customElement('lynk-progress-bar')
+export default class LynkProgressBar extends LitElement {
   static styles = styles;
   private readonly localize = new LocalizeController(this);
 
@@ -43,8 +43,8 @@ export default class SlProgressBar extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'progress-bar': true,
-          'progress-bar--indeterminate': this.indeterminate
+          'lynk-progress-bar': true,
+          'lynk-progress-bar--indeterminate': this.indeterminate
         })}
         role="progressbar"
         title=${ifDefined(this.title)}
@@ -53,10 +53,10 @@ export default class SlProgressBar extends LitElement {
         aria-valuemax="100"
         aria-valuenow=${this.indeterminate ? 0 : this.value}
       >
-        <div part="indicator" class="progress-bar__indicator" style=${styleMap({ width: `${this.value}%` })}>
+        <div part="indicator" class="lynk-progress-bar__indicator" style=${styleMap({ width: `${this.value}%` })}>
           ${!this.indeterminate
             ? html`
-                <span part="label" class="progress-bar__label">
+                <span part="label" class="lynk-progress-bar__label">
                   <slot></slot>
                 </span>
               `
@@ -69,6 +69,6 @@ export default class SlProgressBar extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-progress-bar': SlProgressBar;
+    'lynk-progress-bar': LynkProgressBar;
   }
 }

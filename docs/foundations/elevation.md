@@ -4,18 +4,18 @@ Elevation tokens are used to give elements the appearance of being raised off th
 
 | Token                 | Example                                                                          |
 | --------------------- | -------------------------------------------------------------------------------- |
-| `--l-shadow-x-small` | <div class="elevation-demo" style="box-shadow: var(--l-shadow-x-small);"></div> |
-| `--l-shadow-small`   | <div class="elevation-demo" style="box-shadow: var(--l-shadow-small);"></div>   |
-| `--l-shadow-medium`  | <div class="elevation-demo" style="box-shadow: var(--l-shadow-medium);"></div>  |
-| `--l-shadow-large`   | <div class="elevation-demo" style="box-shadow: var(--l-shadow-large);"></div>   |
-| `--l-shadow-x-large` | <div class="elevation-demo" style="box-shadow: var(--l-shadow-x-large);"></div> |
+| `--lynk-shadow-x-small` | <div class="elevation-demo" style="box-shadow: var(--lynk-shadow-x-small);"></div> |
+| `--lynk-shadow-small`   | <div class="elevation-demo" style="box-shadow: var(--lynk-shadow-small);"></div>   |
+| `--lynk-shadow-medium`  | <div class="elevation-demo" style="box-shadow: var(--lynk-shadow-medium);"></div>  |
+| `--lynk-shadow-large`   | <div class="elevation-demo" style="box-shadow: var(--lynk-shadow-large);"></div>   |
+| `--lynk-shadow-x-large` | <div class="elevation-demo" style="box-shadow: var(--lynk-shadow-x-large);"></div> |
 
 Z-index tokens are used to stack components in a logical manner. In most instances higher z-index components should also use a higher elevation token.
 
 | Token                      | Value |
 | -------------------------- | ----- |
-| `--l-z-index-drawer`      | 700   |
-| `--l-z-index-dialog`      | 800   |
-| `--l-z-index-dropdown`    | 900   |
-| `--l-z-index-alert-group` | 950   |
-| `--l-z-index-tooltip`     | 1000  |
+| `--lynk-z-index-drawer`      | 700   |
+| `--lynk-z-index-dialog`      | 800   |
+| `--lynk-z-index-dropdown`    | 900   |
+| `--lynk-z-index-alert-group` | 950   |
+| `--lynk-z-index-tooltip`     | 1000  |

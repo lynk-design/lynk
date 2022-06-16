@@ -1,6 +1,6 @@
 # QR Code
 
-[component-header:l-qr-code]
+[component-header:lynk-qr-code]
 
 Generates a [QR code](https://www.qrcode.com/) and renders it using the [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API).
 
@@ -8,19 +8,19 @@ QR codes are useful for providing small pieces of information to users who can q
 
 ```html preview
 <div class="qr-overview">
-  <l-qr-code value="https://shoelace.style/" label="Scan this code to visit Shoelace on the web!"></l-qr-code>
+  <lynk-qr-code value="https://shoelace.style/" label="Scan this code to visit Shoelace on the web!"></lynk-qr-code>
   <br />
 
-  <l-input maxlength="255" clearable label="Value"></l-input>
+  <lynk-input maxlength="255" clearable label="Value"></lynk-input>
 </div>
 
 <script>
   const container = document.querySelector('.qr-overview');
-  const qrCode = container.querySelector('l-qr-code');
-  const input = container.querySelector('l-input');
+  const qrCode = container.querySelector('lynk-qr-code');
+  const input = container.querySelector('lynk-input');
 
   input.value = qrCode.value;
-  input.addEventListener('l-input', () => (qrCode.value = input.value));
+  input.addEventListener('lynk-input', () => (qrCode.value = input.value));
 </script>
 
 <style>
@@ -73,7 +73,7 @@ const App = () => {
 Use the `fill` and `background` attributes to modify the QR code's colors. You should always ensure good contrast for optimal compatibility with QR code scanners.
 
 ```html preview
-<l-qr-code value="https://shoelace.style/" fill="deeppink" background="white"></l-qr-code>
+<lynk-qr-code value="https://shoelace.style/" fill="deeppink" background="white"></lynk-qr-code>
 ```
 
 ```jsx react
@@ -87,7 +87,7 @@ const App = () => <SlQrCode value="https://shoelace.style/" fill="deeppink" back
 Use the `size` attribute to change the size of the QR code.
 
 ```html preview
-<l-qr-code value="https://shoelace.style/" size="64"></l-qr-code>
+<lynk-qr-code value="https://shoelace.style/" size="64"></lynk-qr-code>
 ```
 
 ```jsx react
@@ -101,7 +101,7 @@ const App = () => <SlQrCode value="https://shoelace.style/" size="64" />;
 Create a rounded effect with the `radius` attribute.
 
 ```html preview
-<l-qr-code value="https://shoelace.style/" radius="0.5"></l-qr-code>
+<lynk-qr-code value="https://shoelace.style/" radius="0.5"></lynk-qr-code>
 ```
 
 ```jsx react
@@ -116,10 +116,10 @@ QR codes can be rendered with various levels of [error correction](https://www.q
 
 ```html preview
 <div class="qr-error-correction">
-  <l-qr-code value="https://shoelace.style/" error-correction="L"></l-qr-code>
-  <l-qr-code value="https://shoelace.style/" error-correction="M"></l-qr-code>
-  <l-qr-code value="https://shoelace.style/" error-correction="Q"></l-qr-code>
-  <l-qr-code value="https://shoelace.style/" error-correction="H"></l-qr-code>
+  <lynk-qr-code value="https://shoelace.style/" error-correction="L"></lynk-qr-code>
+  <lynk-qr-code value="https://shoelace.style/" error-correction="M"></lynk-qr-code>
+  <lynk-qr-code value="https://shoelace.style/" error-correction="Q"></lynk-qr-code>
+  <lynk-qr-code value="https://shoelace.style/" error-correction="H"></lynk-qr-code>
 </div>
 
 <style>
@@ -158,4 +158,4 @@ const App = () => {
 };
 ```
 
-[component-metadata:l-qr-code]
+[component-metadata:lynk-qr-code]

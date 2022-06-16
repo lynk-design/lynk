@@ -1,15 +1,15 @@
 # Tag
 
-[component-header:l-tag]
+[component-header:lynk-tag]
 
 Tags are used as labels to organize things or to indicate a selection.
 
 ```html preview
-<l-tag variant="primary">Primary</l-tag>
-<l-tag variant="success">Success</l-tag>
-<l-tag variant="neutral">Neutral</l-tag>
-<l-tag variant="warning">Warning</l-tag>
-<l-tag variant="danger">Danger</l-tag>
+<lynk-tag variant="primary">Primary</lynk-tag>
+<lynk-tag variant="success">Success</lynk-tag>
+<lynk-tag variant="neutral">Neutral</lynk-tag>
+<lynk-tag variant="warning">Warning</lynk-tag>
+<lynk-tag variant="danger">Danger</lynk-tag>
 ```
 
 ```jsx react
@@ -33,9 +33,9 @@ const App = () => (
 Use the `size` attribute to change a tab's size.
 
 ```html preview
-<l-tag size="small">Small</l-tag>
-<l-tag size="medium">Medium</l-tag>
-<l-tag size="large">Large</l-tag>
+<lynk-tag size="small">Small</lynk-tag>
+<lynk-tag size="medium">Medium</lynk-tag>
+<lynk-tag size="large">Large</lynk-tag>
 ```
 
 ```jsx react
@@ -55,9 +55,9 @@ const App = () => (
 Use the `pill` attribute to give tabs rounded edges.
 
 ```html preview
-<l-tag size="small" pill>Small</l-tag>
-<l-tag size="medium" pill>Medium</l-tag>
-<l-tag size="large" pill>Large</l-tag>
+<lynk-tag size="small" pill>Small</lynk-tag>
+<lynk-tag size="medium" pill>Medium</lynk-tag>
+<lynk-tag size="large" pill>Large</lynk-tag>
 ```
 
 ```jsx react
@@ -84,15 +84,15 @@ Use the `removable` attribute to add a remove button to the tag.
 
 ```html preview
 <div class="tags-removable">
-  <l-tag size="small" removable>Small</l-tag>
-  <l-tag size="medium" removable>Medium</l-tag>
-  <l-tag size="large" removable>Large</l-tag>
+  <lynk-tag size="small" removable>Small</lynk-tag>
+  <lynk-tag size="medium" removable>Medium</lynk-tag>
+  <lynk-tag size="large" removable>Large</lynk-tag>
 </div>
 
 <script>
   const div = document.querySelector('.tags-removable');
 
-  div.addEventListener('l-remove', event => {
+  div.addEventListener('lynk-remove', event => {
     const tag = event.target;
     tag.style.opacity = '0';
     setTimeout(() => (tag.style.opacity = '1'), 2000);
@@ -101,7 +101,7 @@ Use the `removable` attribute to add a remove button to the tag.
 
 <style>
   .tags-removable l-tag {
-    transition: var(--l-transition-medium) opacity;
+    transition: var(--lynk-transition-medium) opacity;
   }
 </style>
 ```
@@ -111,7 +111,7 @@ import { SlTag } from '@shoelace-style/shoelace/dist/react';
 
 const css = `
   .tags-removable l-tag {
-    transition: var(--l-transition-medium) opacity;
+    transition: var(--lynk-transition-medium) opacity;
   }
 `;
 
@@ -144,4 +144,4 @@ const App = () => {
 };
 ```
 
-[component-metadata:l-tag]
+[component-metadata:lynk-tag]

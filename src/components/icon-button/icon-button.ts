@@ -11,20 +11,20 @@ import styles from './icon-button.styles';
  * @since 1.0
  * @status stable
  *
- * @dependency l-icon
+ * @dependency lynk-icon
  *
- * @event le-blur - Emitted when the icon button loses focus.
- * @event le-focus - Emitted when the icon button gains focus.
+ * @event lynk-blur - Emitted when the icon button loses focus.
+ * @event lynk-focus - Emitted when the icon button gains focus.
  *
  * @csspart base - The component's internal wrapper.
  */
-@customElement('l-icon-button')
+@customElement('lynk-icon-button')
 export default class LynkIconButton extends LitElement {
   static styles = styles;
 
   @state() private hasFocus = false;
 
-  @query('.l-icon-button') button: HTMLButtonElement | HTMLLinkElement;
+  @query('.lynk-icon-button') button: HTMLButtonElement | HTMLLinkElement;
 
   /** The name of the icon to draw. */
   @property() name?: string;
@@ -55,27 +55,27 @@ export default class LynkIconButton extends LitElement {
 
   /** Simulates a click on the icon button. */
   click() {
-    this.l-button.click();
+    this.lynk-button.click();
   }
 
   /** Sets focus on the icon button. */
   focus(options?: FocusOptions) {
-    this.l-button.focus(options);
+    this.lynk-button.focus(options);
   }
 
   /** Removes focus from the icon button. */
   blur() {
-    this.l-button.blur();
+    this.lynk-button.blur();
   }
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'le-blur');
+    emit(this, 'lynk-blur');
   }
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'le-focus');
+    emit(this, 'lynk-focus');
   }
 
   handleClick(event: MouseEvent) {
@@ -94,9 +94,9 @@ export default class LynkIconButton extends LitElement {
       <${tag}
         part="base"
         class=${classMap({
-          'l-icon-button': true,
-          'l-icon-button--disabled': !isLink && this.disabled,
-          'l-icon-button--focused': this.hasFocus
+          'lynk-icon-button': true,
+          'lynk-icon-button--disabled': !isLink && this.disabled,
+          'lynk-icon-button--focused': this.hasFocus
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : 'button')}
@@ -112,13 +112,13 @@ export default class LynkIconButton extends LitElement {
         @focus=${this.handleFocus}
         @click=${this.handleClick}
       >
-        <l-icon
-          class="l-icon-button__icon"
+        <lynk-icon
+          class="lynk-icon-button__icon"
           name=${ifDefined(this.name)}
           library=${ifDefined(this.library)}
           src=${ifDefined(this.src)}
           aria-hidden="true"
-        ></l-icon>
+        ></lynk-icon>
       </${tag}>
     `;
   }
@@ -126,6 +126,6 @@ export default class LynkIconButton extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-icon-button': LynkIconButton;
+    'lynk-icon-button': LynkIconButton;
   }
 }

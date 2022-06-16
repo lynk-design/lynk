@@ -5,35 +5,35 @@ export default css`
   ${componentStyles}
 
   :host {
-    --border-radius: var(--l-border-radius-pill);
-    --color: var(--l-color-neutral-200);
-    --sheen-color: var(--l-color-neutral-300);
+    --border-radius: var(--lynk-border-radius-pill);
+    --color: var(--lynk-color-neutral-200);
+    --sheen-color: var(--lynk-color-neutral-300);
 
     display: block;
     position: relative;
   }
 
-  .skeleton {
+  .lynk-skeleton {
     display: flex;
     width: 100%;
     height: 100%;
     min-height: 1rem;
   }
 
-  .skeleton__indicator {
+  .lynk-skeleton__indicator {
     flex: 1 1 auto;
     background: var(--color);
     border-radius: var(--border-radius);
   }
 
-  .skeleton--sheen .skeleton__indicator {
+  .lynk-skeleton--sheen .lynk-skeleton__indicator {
     background: linear-gradient(270deg, var(--sheen-color), var(--color), var(--color), var(--sheen-color));
     background-size: 400% 100%;
     background-size: 400% 100%;
     animation: sheen 8s ease-in-out infinite;
   }
 
-  .skeleton--pulse .skeleton__indicator {
+  .lynk-skeleton--pulse .lynk-skeleton__indicator {
     animation: pulse 2s ease-in-out 0.5s infinite;
   }
 

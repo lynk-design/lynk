@@ -1,5 +1,5 @@
 import './formdata-event-polyfill';
-import type SlButton from '../components/button/button';
+import type LynkButton from '../components/button/button';
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 
 const reportValidityOverloads: WeakMap<HTMLFormElement, () => boolean> = new WeakMap();
@@ -129,7 +129,7 @@ export class FormSubmitController implements ReactiveController {
   }
 
   /** Submits the form, triggering validation and form data injection. */
-  submit(submitter?: HTMLInputElement | SlButton) {
+  submit(submitter?: HTMLInputElement | LynkButton) {
     // Calling form.submit() bypasses the submit event and constraint validation. To prevent this, we can inject a
     // native submit button into the form, "click" it, then remove it to simulate a standard form submission.
     if (this.form) {

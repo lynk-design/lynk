@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import type LynkBadge from './badge';
 
-describe('<l-badge>', () => {
+describe('<lynk-badge>', () => {
   let el: LynkBadge;
 
   describe('when provided no parameters', () => {
     before(async () => {
-      el = await fixture<LynkBadge>(html` <l-badge>Badge</l-badge> `);
+      el = await fixture<LynkBadge>(html` <lynk-badge>Badge</lynk-badge> `);
     });
 
     it('should pass accessibility tests with a role of status on the base part.', async () => {
@@ -22,13 +22,13 @@ describe('<l-badge>', () => {
 
     it('should default to square styling, with the primary color', () => {
       const part = el.shadowRoot!.querySelector('[part="base"]')!;
-      expect(part.classList.value.trim()).to.eq('l-badge l-badge--primary');
+      expect(part.classList.value.trim()).to.eq('lynk-badge lynk-badge--primary');
     });
   });
 
   describe('when provided a pill parameter', () => {
     before(async () => {
-      el = await fixture<LynkBadge>(html` <l-badge pill>Badge</l-badge> `);
+      el = await fixture<LynkBadge>(html` <lynk-badge pill>Badge</lynk-badge> `);
     });
 
     it('should pass accessibility tests', async () => {
@@ -37,13 +37,13 @@ describe('<l-badge>', () => {
 
     it('should append the pill class to the classlist to render a pill', () => {
       const part = el.shadowRoot!.querySelector('[part="base"]')!;
-      expect(part.classList.value.trim()).to.eq('l-badge l-badge--primary l-badge--pill');
+      expect(part.classList.value.trim()).to.eq('lynk-badge lynk-badge--primary lynk-badge--pill');
     });
   });
 
   describe('when provided a pulse parameter', () => {
     before(async () => {
-      el = await fixture<LynkBadge>(html` <l-badge pulse>Badge</l-badge> `);
+      el = await fixture<LynkBadge>(html` <lynk-badge pulse>Badge</lynk-badge> `);
     });
 
     it('should pass accessibility tests', async () => {
@@ -52,14 +52,14 @@ describe('<l-badge>', () => {
 
     it('should append the pulse class to the classlist to render a pulse', () => {
       const part = el.shadowRoot!.querySelector('[part="base"]')!;
-      expect(part.classList.value.trim()).to.eq('l-badge l-badge--primary l-badge--pulse');
+      expect(part.classList.value.trim()).to.eq('lynk-badge lynk-badge--primary lynk-badge--pulse');
     });
   });
 
   ['primary', 'success', 'neutral', 'warning', 'danger'].forEach(type => {
     describe(`when passed a type attribute ${type}`, () => {
       before(async () => {
-        el = await fixture<LynkBadge>(html`<l-badge type="${type}">Badge</l-badge>`);
+        el = await fixture<LynkBadge>(html`<lynk-badge type="${type}">Badge</lynk-badge>`);
       });
 
       it('should pass accessibility tests', async () => {
@@ -68,7 +68,7 @@ describe('<l-badge>', () => {
 
       it('should default to square styling, with the primary color', () => {
         const part = el.shadowRoot!.querySelector('[part="base"]')!;
-        expect(part.classList.value.trim()).to.eq(`l-badge l-badge--${type}`);
+        expect(part.classList.value.trim()).to.eq(`lynk-badge lynk-badge--${type}`);
       });
     });
   });

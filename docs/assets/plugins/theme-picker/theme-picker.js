@@ -25,7 +25,7 @@
         localStorage.setItem('theme', theme);
 
         // Update the UI
-        [...menu.querySelectorAll('l-menu-item')].map(item => (item.checked = item.getAttribute('value') === theme));
+        [...menu.querySelectorAll('lynk-menu-item')].map(item => (item.checked = item.getAttribute('value') === theme));
         menuIcon.name = isDark() ? 'moon' : 'sun';
 
         // Toggle the dark mode class without transitions
@@ -42,23 +42,23 @@
       const dropdown = document.createElement('l-dropdown');
       dropdown.classList.add('theme-picker');
       dropdown.innerHTML = `
-        <l-button size="small" pill slot="trigger" caret>
-          <l-icon name="sun" label="Select Theme"></l-icon>
-        </l-button>
-        <l-menu>
-          <l-menu-label>Toggle <kbd>\\</kbd></l-menu-label>
-          <l-menu-item value="light">Light</l-menu-item>
-          <l-menu-item value="dark">Dark</l-menu-item>
-          <l-divider></l-divider>
-          <l-menu-item value="auto">Auto</l-menu-item>
-        </l-menu>
+        <lynk-button size="small" pill slot="trigger" caret>
+          <lynk-icon name="sun" label="Select Theme"></lynk-icon>
+        </lynk-button>
+        <lynk-menu>
+          <lynk-menu-label>Toggle <kbd>\\</kbd></lynk-menu-label>
+          <lynk-menu-item value="light">Light</lynk-menu-item>
+          <lynk-menu-item value="dark">Dark</lynk-menu-item>
+          <lynk-divider></lynk-divider>
+          <lynk-menu-item value="auto">Auto</lynk-menu-item>
+        </lynk-menu>
       `;
       document.querySelector('.sidebar-toggle').insertAdjacentElement('afterend', dropdown);
 
       // Listen for selections
-      const menu = dropdown.querySelector('l-menu');
-      const menuIcon = dropdown.querySelector('l-icon');
-      menu.addEventListener('l-select', event => setTheme(event.detail.item.value));
+      const menu = dropdown.querySelector('lynk-menu');
+      const menuIcon = dropdown.querySelector('lynk-icon');
+      menu.addEventListener('lynk-select', event => setTheme(event.detail.item.value));
 
       // Update the theme when the preference changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTheme(theme));

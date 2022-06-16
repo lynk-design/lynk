@@ -2,21 +2,21 @@ import { html, LitElement } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import '../../components/icon/icon';
 import styles from './breadcrumb.styles';
-import type SlBreadcrumbItem from '../../components/breadcrumb-item/breadcrumb-item';
+import type LynkBreadcrumbItem from '../../components/breadcrumb-item/breadcrumb-item';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - One or more breadcrumb items to display.
  * @slot separator - The separator to use between breadcrumb items.
  *
- * @dependency l-icon
+ * @dependency lynk-icon
  *
  * @csspart base - The component's internal wrapper.
  */
-@customElement('l-breadcrumb')
-export default class SlBreadcrumb extends LitElement {
+@customElement('lynk-breadcrumb')
+export default class LynkBreadcrumb extends LitElement {
   static styles = styles;
 
   @query('slot') defaultSlot: HTMLSlotElement;
@@ -42,8 +42,8 @@ export default class SlBreadcrumb extends LitElement {
 
   handleSlotChange() {
     const items = [...this.defaultSlot.assignedElements({ flatten: true })].filter(
-      item => item.tagName.toLowerCase() === 'l-breadcrumb-item'
-    ) as SlBreadcrumbItem[];
+      item => item.tagName.toLowerCase() === 'lynk-breadcrumb-item'
+    ) as LynkBreadcrumbItem[];
 
     items.forEach((item, index) => {
       // Append separators to each item if they don't already have one
@@ -63,12 +63,12 @@ export default class SlBreadcrumb extends LitElement {
 
   render() {
     return html`
-      <nav part="base" class="breadcrumb" aria-label=${this.label}>
+      <nav part="base" class="lynk-breadcrumb" aria-label=${this.label}>
         <slot @slotchange=${this.handleSlotChange}></slot>
       </nav>
 
       <slot name="separator" hidden aria-hidden="true">
-        <l-icon name="chevron-right" library="system"></l-icon>
+        <lynk-icon name="chevron-right" library="system"></lynk-icon>
       </slot>
     `;
   }
@@ -76,6 +76,6 @@ export default class SlBreadcrumb extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-breadcrumb': SlBreadcrumb;
+    'lynk-breadcrumb': LynkBreadcrumb;
   }
 }

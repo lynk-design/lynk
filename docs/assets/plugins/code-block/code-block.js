@@ -107,7 +107,7 @@
               <div class="code-block__preview">
                 ${code.textContent}
                 <div class="code-block__resizer">
-                  <l-icon name="grip-vertical"></l-icon>
+                  <lynk-icon name="grip-vertical"></lynk-icon>
                 </div>
               </div>
 

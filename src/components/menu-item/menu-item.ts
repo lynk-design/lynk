@@ -11,9 +11,9 @@ import styles from './menu-item.styles';
  * @since 1.0
  * @status stable
  *
- * @dependency l-icon
+ * @dependency lynk-icon
  *
- * @event le-label-change - Emitted when the menu item's text label changes. For performance reasons, this event is only
+ * @event lynk-label-change - Emitted when the menu item's text label changes. For performance reasons, this event is only
  *   emitted if the default slot's `slotchange` event is triggered. It will not fire when the label is first set.
  *
  * @slot - The menu item's label.
@@ -25,14 +25,14 @@ import styles from './menu-item.styles';
  * @csspart label - The menu item label.
  * @csspart suffix - The suffix container.
  */
-@customElement('l-menu-item')
+@customElement('lynk-menu-item')
 export default class LynkMenuItem extends LitElement {
   static styles = styles;
 
   private cachedTextLabel: string;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
-  @query('.l-menu-item') menuItem: HTMLElement;
+  @query('.lynk-menu-item') menuItem: HTMLElement;
 
   /** Draws the item in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;
@@ -73,7 +73,7 @@ export default class LynkMenuItem extends LitElement {
 
     if (textLabel !== this.cachedTextLabel) {
       this.cachedTextLabel = textLabel;
-      emit(this, 'le-label-change');
+      emit(this, 'lynk-label-change');
     }
   }
 
@@ -82,30 +82,30 @@ export default class LynkMenuItem extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'l-menu-item': true,
-          'l-menu-item--checked': this.checked,
-          'l-menu-item--disabled': this.disabled,
-          'l-menu-item--has-submenu': false // reserved for future use
+          'lynk-menu-item': true,
+          'lynk-menu-item--checked': this.checked,
+          'lynk-menu-item--disabled': this.disabled,
+          'lynk-menu-item--has-submenu': false // reserved for future use
         })}
       >
-        <span class="l-menu-item__check">
-          <l-icon name="check-lg" library="system" aria-hidden="true"></l-icon>
+        <span class="lynk-menu-item__check">
+          <lynk-icon name="check-lg" library="system" aria-hidden="true"></lynk-icon>
         </span>
 
-        <span part="prefix" class="l-menu-item__prefix">
+        <span part="prefix" class="lynk-menu-item__prefix">
           <slot name="prefix"></slot>
         </span>
 
-        <span part="label" class="l-menu-item__label">
+        <span part="label" class="lynk-menu-item__label">
           <slot @slotchange=${this.handleDefaultSlotChange}></slot>
         </span>
 
-        <span part="suffix" class="l-menu-item__suffix">
+        <span part="suffix" class="lynk-menu-item__suffix">
           <slot name="suffix"></slot>
         </span>
 
-        <span class="l-menu-item__chevron">
-          <l-icon name="chevron-right" library="system" aria-hidden="true"></l-icon>
+        <span class="lynk-menu-item__chevron">
+          <lynk-icon name="chevron-right" library="system" aria-hidden="true"></lynk-icon>
         </span>
       </div>
     `;
@@ -114,6 +114,6 @@ export default class LynkMenuItem extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-menu-item': LynkMenuItem;
+    'lynk-menu-item': LynkMenuItem;
   }
 }

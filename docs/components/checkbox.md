@@ -1,11 +1,11 @@
 # Checkbox
 
-[component-header:l-checkbox]
+[component-header:lynk-checkbox]
 
 Checkboxes allow the user to toggle an option on or off.
 
 ```html preview
-<l-checkbox>Checkbox</l-checkbox>
+<lynk-checkbox>Checkbox</lynk-checkbox>
 ```
 
 ## Examples
@@ -15,7 +15,7 @@ Checkboxes allow the user to toggle an option on or off.
 Use the `checked` attribute to activate the checkbox.
 
 ```html preview
-<l-checkbox checked>Checked</l-checkbox>
+<lynk-checkbox checked>Checked</lynk-checkbox>
 ```
 
 ### Indeterminate
@@ -23,7 +23,7 @@ Use the `checked` attribute to activate the checkbox.
 Use the `indeterminate` attribute to make the checkbox indeterminate.
 
 ```html preview
-<l-checkbox indeterminate>Indeterminate</l-checkbox>
+<lynk-checkbox indeterminate>Indeterminate</lynk-checkbox>
 ```
 
 ### Disabled
@@ -36,20 +36,20 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 
 ```html preview
 <form class="custom-validity">
-  <l-checkbox>Check me</l-checkbox>
+  <lynk-checkbox>Check me</lynk-checkbox>
   <br />
-  <l-button type="submit" color="primary" style="margin-top: 1rem;">Submit</l-button>
+  <lynk-button type="submit" color="primary" style="margin-top: 1rem;">Submit</lynk-button>
 </form>
 <script>
   const form = document.querySelector('.custom-validity');
-  const checkbox = form.querySelector('l-checkbox');
+  const checkbox = form.querySelector('lynk-checkbox');
   const errorMessage = `Don't forget to check me!`;
   // Set initial validity as soon as the element is defined
-  customElements.whenDefined('l-checkbox').then(() => {
+  customElements.whenDefined('lynk-checkbox').then(() => {
     checkbox.setCustomValidity(errorMessage);
   });
   // Update validity on change
-  checkbox.addEventListener('le-change', () => {
+  checkbox.addEventListener('lynk-change', () => {
     checkbox.setCustomValidity(checkbox.checked ? '' : errorMessage);
   });
   // Handle submit
@@ -60,4 +60,4 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 </script>
 ```
 
-[component-metadata:l-checkbox]
+[component-metadata:lynk-checkbox]

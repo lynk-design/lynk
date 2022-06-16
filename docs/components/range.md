@@ -1,11 +1,11 @@
 # Range
 
-[component-header:l-range]
+[component-header:lynk-range]
 
 Ranges allow the user to select a single value within a given range using a slider.
 
 ```html preview
-<l-range></l-range>
+<lynk-range></lynk-range>
 ```
 
 ```jsx react
@@ -23,7 +23,7 @@ const App = () => <SlRange />;
 Use the `label` attribute to give the range an accessible label. For labels that contain HTML, use the `label` slot instead.
 
 ```html preview
-<l-range label="Volume" min="0" max="100"></l-input>
+<lynk-range label="Volume" min="0" max="100"></lynk-input>
 ```
 
 ```jsx react
@@ -37,12 +37,12 @@ const App = () => <SlRange label="Volume" min={0} max={100} />;
 Add descriptive help text to a range with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
 ```html preview
-<l-range
+<lynk-range
   label="Volume"
   help-text="Controls the volume of the current song."
   min="0"
   max="100"
-></l-input>
+></lynk-input>
 ```
 
 ```jsx react
@@ -56,7 +56,7 @@ const App = () => <SlRange label="Volume" help-text="Controls the volume of the 
 Use the `min` and `max` attributes to set the range's minimum and maximum values, respectively. The `step` attribute determines the value's interval when increasing and decreasing.
 
 ```html preview
-<l-range min="0" max="10" step="1"></l-range>
+<lynk-range min="0" max="10" step="1"></lynk-range>
 ```
 
 ```jsx react
@@ -70,7 +70,7 @@ const App = () => <SlRange min={0} max={10} step={1} />;
 Use the `disabled` attribute to disable a slider.
 
 ```html preview
-<l-range disabled></l-range>
+<lynk-range disabled></lynk-range>
 ```
 
 ```jsx react
@@ -84,7 +84,7 @@ const App = () => <SlRange disabled />;
 By default, the tooltip is shown on top. Set `tooltip` to `bottom` to show it below the slider.
 
 ```html preview
-<l-range tooltip="bottom"></l-range>
+<lynk-range tooltip="bottom"></lynk-range>
 ```
 
 ```jsx react
@@ -98,7 +98,7 @@ const App = () => <SlRange tooltip="bottom" />;
 To disable the tooltip, set `tooltip` to `none`.
 
 ```html preview
-<l-range tooltip="none"></l-range>
+<lynk-range tooltip="none"></lynk-range>
 ```
 
 ```jsx react
@@ -112,12 +112,12 @@ const App = () => <SlRange tooltip="none" />;
 You can customize the active and inactive portions of the track using the `--track-color-active` and `--track-color-inactive` custom properties.
 
 ```html preview
-<l-range
+<lynk-range
   style="
-  --track-color-active: var(--l-color-primary-600);
-  --track-color-inactive: var(--l-color-primary-100);
+  --track-color-active: var(--lynk-color-primary-600);
+  --track-color-inactive: var(--lynk-color-primary-100);
 "
-></l-range>
+></lynk-range>
 ```
 
 ```jsx react
@@ -126,8 +126,8 @@ import { SlRange } from '@shoelace-style/shoelace/dist/react';
 const App = () => (
   <SlRange
     style={{
-      '--track-color-active': 'var(--l-color-primary-600)',
-      '--track-color-inactive': 'var(--l-color-primary-200)'
+      '--track-color-active': 'var(--lynk-color-primary-600)',
+      '--track-color-inactive': 'var(--lynk-color-primary-200)'
     }}
   />
 );
@@ -138,7 +138,7 @@ const App = () => (
 You can change the tooltip's content by setting the `tooltipFormatter` property to a function that accepts the range's value as an argument.
 
 ```html preview
-<l-range min="0" max="100" step="1" class="range-with-custom-formatter"></l-range>
+<lynk-range min="0" max="100" step="1" class="range-with-custom-formatter"></lynk-range>
 
 <script>
   const range = document.querySelector('.range-with-custom-formatter');
@@ -152,4 +152,4 @@ import { SlRange } from '@shoelace-style/shoelace/dist/react';
 const App = () => <SlRange min={0} max={100} step={1} tooltipFormatter={value => `Total - ${value}%`} />;
 ```
 
-[component-metadata:l-range]
+[component-metadata:lynk-range]

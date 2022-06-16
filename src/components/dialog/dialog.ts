@@ -17,19 +17,19 @@ import styles from './dialog.styles';
  * @since 1.0
  * @status stable
  *
- * @dependency l-icon-button
+ * @dependency lynk-icon-button
  *
  * @slot - The dialog's content.
  * @slot label - The dialog's label. Alternatively, you can use the label prop.
  * @slot footer - The dialog's footer, usually one or more buttons representing various options.
  *
- * @event le-show - Emitted when the dialog opens.
- * @event le-after-show - Emitted after the dialog opens and all animations are complete.
- * @event le-hide - Emitted when the dialog closes.
- * @event le-after-hide - Emitted after the dialog closes and all animations are complete.
- * @event le-initial-focus - Emitted when the dialog opens and is ready to receive focus. Calling
+ * @event lynk-show - Emitted when the dialog opens.
+ * @event lynk-after-show - Emitted after the dialog opens and all animations are complete.
+ * @event lynk-hide - Emitted when the dialog closes.
+ * @event lynk-after-hide - Emitted after the dialog closes and all animations are complete.
+ * @event lynk-initial-focus - Emitted when the dialog opens and is ready to receive focus. Calling
  *   `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
- * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} le-request-close - Emitted when the user attempts to
+ * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} lynk-request-close - Emitted when the user attempts to
  *   close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling
  *   `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in
  *   destructive behavior such as data loss.
@@ -55,13 +55,13 @@ import styles from './dialog.styles';
  * @animation dialog.overlay.show - The animation to use when showing the dialog's overlay.
  * @animation dialog.overlay.hide - The animation to use when hiding the dialog's overlay.
  */
-@customElement('l-dialog')
+@customElement('lynk-dialog')
 export default class LynkDialog extends LitElement {
   static styles = styles;
 
-  @query('.l-dialog') dialog: HTMLElement;
-  @query('.l-dialog__panel') panel: HTMLElement;
-  @query('.l-dialog__overlay') overlay: HTMLElement;
+  @query('.lynk-dialog') dialog: HTMLElement;
+  @query('.lynk-dialog__panel') panel: HTMLElement;
+  @query('.lynk-dialog__overlay') overlay: HTMLElement;
 
   private readonly hasSlotController = new HasSlotController(this, 'footer');
   private readonly localize = new LocalizeController(this);
@@ -109,7 +109,7 @@ export default class LynkDialog extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'le-after-show');
+    return waitForEvent(this, 'lynk-after-show');
   }
 
   /** Hides the dialog */
@@ -119,11 +119,11 @@ export default class LynkDialog extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'le-after-hide');
+    return waitForEvent(this, 'lynk-after-hide');
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
-    const requestClose = emit(this, 'le-request-close', {
+    const requestClose = emit(this, 'lynk-request-close', {
       cancelable: true,
       detail: { source }
     });
@@ -148,7 +148,7 @@ export default class LynkDialog extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'le-show');
+      emit(this, 'lynk-show');
       this.originalTrigger = document.activeElement as HTMLElement;
       this.modal.activate();
 
@@ -170,7 +170,7 @@ export default class LynkDialog extends LitElement {
 
       // Set initial focus
       requestAnimationFrame(() => {
-        const initialFocus = emit(this, 'le-initial-focus', { cancelable: true });
+        const initialFocus = emit(this, 'lynk-initial-focus', { cancelable: true });
 
         if (!initialFocus.defaultPrevented) {
           // Set focus to the autofocus target and restore the attribute
@@ -194,10 +194,10 @@ export default class LynkDialog extends LitElement {
         animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
       ]);
 
-      emit(this, 'le-after-show');
+      emit(this, 'lynk-after-show');
     } else {
       // Hide
-      emit(this, 'le-hide');
+      emit(this, 'lynk-hide');
       this.modal.deactivate();
 
       await Promise.all([stopAnimations(this.dialog), stopAnimations(this.overlay)]);
@@ -217,7 +217,7 @@ export default class LynkDialog extends LitElement {
         setTimeout(() => trigger.focus());
       }
 
-      emit(this, 'le-after-hide');
+      emit(this, 'lynk-after-hide');
     }
   }
 
@@ -227,17 +227,17 @@ export default class LynkDialog extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'l-dialog': true,
-          'l-dialog--open': this.open,
-          'l-dialog--has-footer': this.hasSlotController.test('footer')
+          'lynk-dialog': true,
+          'lynk-dialog--open': this.open,
+          'lynk-dialog--has-footer': this.hasSlotController.test('footer')
         })}
         @keydown=${this.handleKeyDown}
       >
-        <div part="overlay" class="l-dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
+        <div part="overlay" class="lynk-dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
 
         <div
           part="panel"
-          class="l-dialog__panel"
+          class="lynk-dialog__panel"
           role="dialog"
           aria-modal="true"
           aria-hidden=${this.open ? 'false' : 'true'}
@@ -247,28 +247,28 @@ export default class LynkDialog extends LitElement {
         >
           ${!this.noHeader
             ? html`
-                <header part="header" class="l-dialog__header">
-                  <h2 part="title" class="l-dialog__title" id="title">
+                <header part="header" class="lynk-dialog__header">
+                  <h2 part="title" class="lynk-dialog__title" id="title">
                     <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
                   </h2>
-                  <l-icon-button
+                  <lynk-icon-button
                     part="close-button"
                     exportparts="base:close-button__base"
-                    class="l-dialog__close"
+                    class="lynk-dialog__close"
                     name="x"
                     label=${this.localize.term('close')}
                     library="system"
                     @click="${() => this.requestClose('close-button')}"
-                  ></l-icon-button>
+                  ></lynk-icon-button>
                 </header>
               `
             : ''}
 
-          <div part="body" class="l-dialog__body">
+          <div part="body" class="lynk-dialog__body">
             <slot></slot>
           </div>
 
-          <footer part="footer" class="l-dialog__footer">
+          <footer part="footer" class="lynk-dialog__footer">
             <slot name="footer"></slot>
           </footer>
         </div>
@@ -311,6 +311,6 @@ setDefaultAnimation('dialog.overlay.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-dialog': LynkDialog;
+    'lynk-dialog': LynkDialog;
   }
 }

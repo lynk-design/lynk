@@ -9,27 +9,27 @@ If you're new to custom elements, often referred to as "web components," this se
 Most components have properties that can be set using attributes. For example, buttons accept a `size` attribute that maps to the `size` property which dictates the button's size.
 
 ```html
-<l-button size="small">Click me</l-button>
+<lynk-button size="small">Click me</lynk-button>
 ```
 
 Some properties are boolean, so they only have true/false values. To activate a boolean property, add the corresponding attribute without a value.
 
 ```html
-<l-button disabled>Click me</l-button>
+<lynk-button disabled>Click me</lynk-button>
 ```
 
 Refer to a component's documentation for a complete list of its properties.
 
 ## Events
 
-You can listen for standard events such as `click`, `mouseover`, etc. as you normally would. In addition, some components emit custom events. These work the same way as standard events, but are prefixed with `le-` to prevent collisions with standard events and other libraries.
+You can listen for standard events such as `click`, `mouseover`, etc. as you normally would. In addition, some components emit custom events. These work the same way as standard events, but are prefixed with `lynk-` to prevent collisions with standard events and other libraries.
 
 ```html
-<l-checkbox>Check me</l-checkbox>
+<lynk-checkbox>Check me</lynk-checkbox>
 
 <script>
-  const checkbox = document.querySelector('l-checkbox');
-  checkbox.addEventListener('le-change', event => {
+  const checkbox = document.querySelector('lynk-checkbox');
+  checkbox.addEventListener('lynk-change', event => {
     console.log(event.target.checked ? 'checked' : 'not checked');
   });
 </script>
@@ -42,10 +42,10 @@ Refer to a component's documentation for a complete list of its custom events.
 Some components have methods you can call to trigger various behaviors. For example, you can set focus on a Lynk input using the `focus()` method.
 
 ```html
-<l-input></l-input>
+<lynk-input></lynk-input>
 
 <script>
-  const input = document.querySelector('l-input');
+  const input = document.querySelector('lynk-input');
   input.focus();
 </script>
 ```
@@ -59,16 +59,16 @@ Many components use slots to accept content inside of them. The most common slot
 For example, a button's default slot is used to populate its label.
 
 ```html
-<l-button>Click me</l-button>
+<lynk-button>Click me</lynk-button>
 ```
 
 Some components also have _named_ slots. A named slot can be populated by adding a child element with the appropriate `slot` attribute. Notice how the icon below has the `slot="prefix"` attribute? This tells the component to place the icon into its `prefix` slot.
 
 ```html
-<l-button>
-  <l-icon slot="prefix" name="gear"></l-icon>
+<lynk-button>
+  <lynk-icon slot="prefix" name="gear"></lynk-icon>
   Settings
-</l-button>
+</lynk-button>
 ```
 
 The location of a named slot doesn't matter. You can put it anywhere inside the component and the browser will move it to the right place automatically!
@@ -81,17 +81,17 @@ Custom elements cannot have self-closing tags. Similar to `<script>` and `<texta
 
 ```html
 <!-- Don't do this -->
-<l-input />
+<lynk-input />
 
 <!-- Always do this -->
-<l-input></l-input>
+<lynk-input></lynk-input>
 ```
 
 ## Differences from Native Elements
 
 You might expect similarly named elements to share the same API as native HTML elements. This is not always the case. Lynk components **are not** designed to be one-to-one replacements for their HTML counterparts.
 
-For example, `<button>` and `<l-button>` both have a `type` attribute, but it does different things. The former controls whether the button submits a form and the latter controls the button's appearance.
+For example, `<button>` and `<lynk-button>` both have a `type` attribute, but it does different things. The former controls whether the button submits a form and the latter controls the button's appearance.
 
 ?> **Don't make assumptions about a component's API!** To prevent unexpected behaviors, please take the time to review the documentation and make sure you understand what each attribute, property, method, and event is intended to do.
 
@@ -127,9 +127,9 @@ A clever way to use this method is to hide the `<body>` with `opacity: 0` and ad
 
 <script type="module">
   await Promise.allSettled([
-    customElements.whenDefined('l-button'),
-    customElements.whenDefined('l-card'),
-    customElements.whenDefined('l-rating')
+    customElements.whenDefined('lynk-button'),
+    customElements.whenDefined('lynk-card'),
+    customElements.whenDefined('lynk-rating')
   ]);
 
   // Button, card, and rating are registered now! Add

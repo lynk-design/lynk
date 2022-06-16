@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import type SlProgressBar from './progress-bar';
+import type LynkProgressBar from './progress-bar';
 
-describe('<l-progress-bar>', () => {
-  let el: SlProgressBar;
+describe('<lynk-progress-bar>', () => {
+  let el: LynkProgressBar;
 
   describe('when provided just a value parameter', () => {
     before(async () => {
-      el = await fixture<SlProgressBar>(html`<l-progress-bar value="25"></l-progress-bar>`);
+      el = await fixture<LynkProgressBar>(html`<lynk-progress-bar value="25"></lynk-progress-bar>`);
     });
 
     it('should pass accessibility tests', async () => {
@@ -19,8 +19,8 @@ describe('<l-progress-bar>', () => {
     let indicator: HTMLDivElement;
 
     before(async () => {
-      el = await fixture<SlProgressBar>(
-        html`<l-progress-bar title="Titled Progress Ring" value="25"></l-progress-bar>`
+      el = await fixture<LynkProgressBar>(
+        html`<lynk-progress-bar title="Titled Progress Ring" value="25"></lynk-progress-bar>`
       );
       base = el.shadowRoot!.querySelector('[part="base"]')!;
       indicator = el.shadowRoot!.querySelector('[part="indicator"]')!;
@@ -43,8 +43,8 @@ describe('<l-progress-bar>', () => {
     let base: HTMLDivElement;
 
     before(async () => {
-      el = await fixture<SlProgressBar>(
-        html`<l-progress-bar title="Titled Progress Ring" indeterminate></l-progress-bar>`
+      el = await fixture<LynkProgressBar>(
+        html`<lynk-progress-bar title="Titled Progress Ring" indeterminate></lynk-progress-bar>`
       );
       base = el.shadowRoot!.querySelector('[part="base"]')!;
     });
@@ -54,14 +54,14 @@ describe('<l-progress-bar>', () => {
     });
 
     it('should append a progress-bar--indeterminate class to the "base" part.', () => {
-      expect(base.classList.value.trim()).to.eq('progress-bar progress-bar--indeterminate');
+      expect(base.classList.value.trim()).to.eq('lynk-progress-bar lynk-progress-bar--indeterminate');
     });
   });
 
   describe('when provided a ariaLabel, and value parameter', () => {
     before(async () => {
-      el = await fixture<SlProgressBar>(
-        html`<l-progress-bar ariaLabel="Labelled Progress Ring" value="25"></l-progress-bar>`
+      el = await fixture<LynkProgressBar>(
+        html`<lynk-progress-bar ariaLabel="Labelled Progress Ring" value="25"></lynk-progress-bar>`
       );
     });
 
@@ -72,10 +72,10 @@ describe('<l-progress-bar>', () => {
 
   describe('when provided a ariaLabelledBy, and value parameter', () => {
     before(async () => {
-      el = await fixture<SlProgressBar>(
+      el = await fixture<LynkProgressBar>(
         html`
           <label id="labelledby">Progress Ring Label</label>
-          <l-progress-bar ariaLabelledBy="labelledby" value="25"></l-progress-bar>
+          <lynk-progress-bar ariaLabelledBy="labelledby" value="25"></lynk-progress-bar>
         `
       );
     });

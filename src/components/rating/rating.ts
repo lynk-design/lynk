@@ -11,12 +11,12 @@ import { LocalizeController } from '../../utilities/localize';
 import styles from './rating.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
- * @dependency l-icon
+ * @dependency lynk-icon
  *
- * @event l-change - Emitted when the rating's value changes.
+ * @event lynk-change - Emitted when the rating's value changes.
  *
  * @csspart base - The component's internal wrapper.
  *
@@ -25,11 +25,11 @@ import styles from './rating.styles';
  * @cssproperty --symbol-size - The size of symbols.
  * @cssproperty --symbol-spacing - The spacing to use around symbols.
  */
-@customElement('l-rating')
-export default class SlRating extends LitElement {
+@customElement('lynk-rating')
+export default class LynkRating extends LitElement {
   static styles = styles;
 
-  @query('.rating') rating: HTMLElement;
+  @query('.lynk-rating') rating: HTMLElement;
 
   private readonly localize = new LocalizeController(this);
 
@@ -52,7 +52,7 @@ export default class SlRating extends LitElement {
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** The name of the icon to display as the symbol. */
-  @property() getSymbol: (value: number) => string = () => '<l-icon name="star-fill" library="system"></l-icon>';
+  @property() getSymbol: (value: number) => string = () => '<lynk-icon name="star-fill" library="system"></lynk-icon>';
 
   /** Sets focus on the rating. */
   focus(options?: FocusOptions) {
@@ -160,7 +160,7 @@ export default class SlRating extends LitElement {
 
   @watch('value', { waitUntilFirstUpdate: true })
   handleValueChange() {
-    emit(this, 'l-change');
+    emit(this, 'lynk-change');
   }
 
   roundToPrecision(numberToRound: number, precision = 0.5) {
@@ -183,10 +183,10 @@ export default class SlRating extends LitElement {
       <div
         part="base"
         class=${classMap({
-          rating: true,
-          'rating--readonly': this.readonly,
-          'rating--disabled': this.disabled,
-          'rating--rtl': isRtl
+          'lynk-rating': true,
+          'lynk-rating--readonly': this.readonly,
+          'lynk-rating--disabled': this.disabled,
+          'lynk-rating--rtl': isRtl
         })}
         aria-disabled=${this.disabled ? 'true' : 'false'}
         aria-readonly=${this.readonly ? 'true' : 'false'}
@@ -203,7 +203,7 @@ export default class SlRating extends LitElement {
         @mousemove=${this.handleMouseMove}
         @touchmove=${this.handleTouchMove}
       >
-        <span class="rating__symbols rating__symbols--inactive">
+        <span class="lynk-rating__symbols lynk-rating__symbols--inactive">
           ${counter.map(index => {
             // Users can click the current value to clear the rating. When this happens, we set this.isHovering to
             // false to prevent the hover state from confusing them as they move the mouse out of the control. This
@@ -211,8 +211,8 @@ export default class SlRating extends LitElement {
             return html`
               <span
                 class=${classMap({
-                  rating__symbol: true,
-                  'rating__symbol--hover': this.isHovering && Math.ceil(displayValue) === index + 1
+                  'lynk-rating__symbol': true,
+                  'lynk-rating__symbol--hover': this.isHovering && Math.ceil(displayValue) === index + 1
                 })}
                 role="presentation"
                 @mouseenter=${this.handleMouseEnter}
@@ -223,7 +223,7 @@ export default class SlRating extends LitElement {
           })}
         </span>
 
-        <span class="rating__symbols rating__symbols--indicator">
+        <span class="lynk-rating__symbols lynk-rating__symbols--indicator">
           ${counter.map(index => {
             return html`
               <span
@@ -253,6 +253,6 @@ export default class SlRating extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-rating': SlRating;
+    'lynk-rating': LynkRating;
   }
 }

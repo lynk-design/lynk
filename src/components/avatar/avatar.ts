@@ -9,7 +9,7 @@ import styles from './avatar.styles';
  * @since 1.0
  * @status stable
  *
- * @dependency l-icon
+ * @dependency lynk-icon
  *
  * @slot icon - The default icon to use when no image or initials are present.
  *
@@ -20,7 +20,7 @@ import styles from './avatar.styles';
  *
  * @cssproperty --size - The size of the avatar.
  */
-@customElement('l-avatar')
+@customElement('lynk-avatar')
 export default class LynkAvatar extends LitElement {
   static styles = styles;
 
@@ -49,20 +49,20 @@ export default class LynkAvatar extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'l-avatar': true,
-          'l-avatar--circle': this.shape === 'circle',
-          'l-avatar--rounded': this.shape === 'rounded',
-          'l-avatar--square': this.shape === 'square'
+          'lynk-avatar': true,
+          'lynk-avatar--circle': this.shape === 'circle',
+          'lynk-avatar--rounded': this.shape === 'rounded',
+          'lynk-avatar--square': this.shape === 'square'
         })}
         role="img"
         aria-label=${this.label}
       >
         ${this.initials
-          ? html` <div part="initials" class="l-avatar__initials">${this.initials}</div> `
+          ? html` <div part="initials" class="lynk-avatar__initials">${this.initials}</div> `
           : html`
-              <div part="icon" class="l-avatar__icon" aria-hidden="true">
+              <div part="icon" class="lynk-avatar__icon" aria-hidden="true">
                 <slot name="icon">
-                  <l-icon name="person-fill" library="system"></l-icon>
+                  <lynk-icon name="person-fill" library="system"></lynk-icon>
                 </slot>
               </div>
             `}
@@ -70,7 +70,7 @@ export default class LynkAvatar extends LitElement {
           ? html`
               <img
                 part="image"
-                class="l-avatar__image"
+                class="lynk-avatar__image"
                 src="${this.image}"
                 alt=""
                 @error="${() => (this.hasError = true)}"
@@ -84,6 +84,6 @@ export default class LynkAvatar extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-avatar': LynkAvatar;
+    'lynk-avatar': LynkAvatar;
   }
 }

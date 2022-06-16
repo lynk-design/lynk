@@ -14,20 +14,20 @@ import styles from './radio.styles';
  *
  * @slot - The radio's label.
  *
- * @event le-blur - Emitted when the control loses focus.
- * @event le-change - Emitted when the control's checked state changes.
- * @event le-focus - Emitted when the control gains focus.
+ * @event lynk-blur - Emitted when the control loses focus.
+ * @event lynk-change - Emitted when the control's checked state changes.
+ * @event lynk-focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The radio control.
  * @csspart checked-icon - The container the wraps the checked icon.
  * @csspart label - The radio label.
  */
-@customElement('l-radio')
+@customElement('lynk-radio')
 export default class LynkRadio extends LitElement {
   static styles = styles;
 
-  @query('.l-radio__input') input: HTMLInputElement;
+  @query('.lynk-radio__input') input: HTMLInputElement;
 
   protected readonly formSubmitController = new FormSubmitController(this, {
     value: (control: HTMLInputElement) => (control.checked ? control.value || 'on' : undefined)
@@ -86,7 +86,7 @@ export default class LynkRadio extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'l-blur');
+    emit(this, 'lynk-blur');
   }
 
   handleClick() {
@@ -97,7 +97,7 @@ export default class LynkRadio extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'l-focus');
+    emit(this, 'lynk-focus');
   }
 
   @watch('checked')
@@ -105,7 +105,7 @@ export default class LynkRadio extends LitElement {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
 
     if (this.hasUpdated) {
-      emit(this, 'l-change');
+      emit(this, 'lynk-change');
     }
   }
 
@@ -125,14 +125,14 @@ export default class LynkRadio extends LitElement {
       <label
         part="base"
         class=${classMap({
-          'l-radio': true,
-          'l-radio--checked': this.checked,
-          'l-radio--disabled': this.disabled,
-          'l-radio--focused': this.hasFocus
+          'lynk-radio': true,
+          'lynk-radio--checked': this.checked,
+          'lynk-radio--disabled': this.disabled,
+          'lynk-radio--focused': this.hasFocus
         })}
       >
         <input
-          class="l-radio__input"
+          class="lynk-radio__input"
           type="radio"
           name=${ifDefined(this.name)}
           value=${ifDefined(this.value)}
@@ -142,8 +142,8 @@ export default class LynkRadio extends LitElement {
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}
         />
-        <span part="control" class="l-radio__control">
-          <span part="checked-icon" class="l-radio__icon">
+        <span part="control" class="lynk-radio__control">
+          <span part="checked-icon" class="lynk-radio__icon">
             <svg viewBox="0 0 16 16">
               <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g fill="currentColor">
@@ -154,7 +154,7 @@ export default class LynkRadio extends LitElement {
           </span>
         </span>
 
-        <span part="label" class="l-radio__label">
+        <span part="label" class="lynk-radio__label">
           <slot></slot>
         </span>
       </label>
@@ -164,6 +164,6 @@ export default class LynkRadio extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-radio': LynkRadio;
+    'lynk-radio': LynkRadio;
   }
 }

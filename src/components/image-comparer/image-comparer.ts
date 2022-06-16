@@ -9,16 +9,16 @@ import { watch } from '../../internal/watch';
 import styles from './image-comparer.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
- * @dependency l-icon
+ * @dependency lynk-icon
  *
  * @slot before - The before image, an `<img>` or `<svg>` element.
  * @slot after - The after image, an `<img>` or `<svg>` element.
  * @slot handle-icon - The icon used inside the handle.
  *
- * @event l-change - Emitted when the position changes.
+ * @event lynk-change - Emitted when the position changes.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart before - The container that holds the "before" image.
@@ -29,12 +29,12 @@ import styles from './image-comparer.styles';
  * @cssproperty --divider-width - The width of the dividing line.
  * @cssproperty --handle-size - The size of the compare handle.
  */
-@customElement('l-image-comparer')
-export default class SlImageComparer extends LitElement {
+@customElement('lynk-image-comparer')
+export default class LynkImageComparer extends LitElement {
   static styles = styles;
 
-  @query('.image-comparer') base: HTMLElement;
-  @query('.image-comparer__handle') handle: HTMLElement;
+  @query('.lynk-image-comparer') base: HTMLElement;
+  @query('.lynk-image-comparer__handle') handle: HTMLElement;
 
   /** The position of the divider as a percentage. */
   @property({ type: Number, reflect: true }) position = 50;
@@ -79,20 +79,20 @@ export default class SlImageComparer extends LitElement {
 
   @watch('position', { waitUntilFirstUpdate: true })
   handlePositionChange() {
-    emit(this, 'l-change');
+    emit(this, 'lynk-change');
   }
 
   render() {
     return html`
-      <div part="base" id="image-comparer" class="image-comparer" @keydown=${this.handleKeyDown}>
-        <div class="image-comparer__image">
-          <div part="before" class="image-comparer__before">
+      <div part="base" id="image-comparer" class="lynk-image-comparer" @keydown=${this.handleKeyDown}>
+        <div class="lynk-image-comparer__image">
+          <div part="before" class="lynk-image-comparer__before">
             <slot name="before"></slot>
           </div>
 
           <div
             part="after"
-            class="image-comparer__after"
+            class="lynk-image-comparer__after"
             style=${styleMap({ clipPath: `inset(0 ${100 - this.position}% 0 0)` })}
           >
             <slot name="after"></slot>
@@ -101,14 +101,14 @@ export default class SlImageComparer extends LitElement {
 
         <div
           part="divider"
-          class="image-comparer__divider"
+          class="lynk-image-comparer__divider"
           style=${styleMap({ left: `${this.position}%` })}
           @mousedown=${this.handleDrag}
           @touchstart=${this.handleDrag}
         >
           <div
             part="handle"
-            class="image-comparer__handle"
+            class="lynk-image-comparer__handle"
             role="scrollbar"
             aria-valuenow=${this.position}
             aria-valuemin="0"
@@ -134,6 +134,6 @@ export default class SlImageComparer extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-image-comparer': SlImageComparer;
+    'lynk-image-comparer': LynkImageComparer;
   }
 }

@@ -12,7 +12,7 @@ import styles from './split-panel.styles';
  * @since 2.0
  * @status experimental
  *
- * @event l-reposition - Emitted when the divider's position changes.
+ * @event lynk-reposition - Emitted when the divider's position changes.
  *
  * @csspart start - The start panel.
  * @csspart end - The end panel.
@@ -29,8 +29,8 @@ import styles from './split-panel.styles';
  * @cssproperty [--min=0] - The minimum allowed size of the primary panel.
  * @cssproperty [--max=100%] - The maximum allowed size of the primary panel.
  */
-@customElement('l-split-panel')
-export default class SlSplitPanel extends LitElement {
+@customElement('lynk-split-panel')
+export default class LynkSplitPanel extends LitElement {
   static styles = styles;
 
   private cachedPositionInPixels: number;
@@ -180,7 +180,7 @@ export default class SlSplitPanel extends LitElement {
   handlePositionChange() {
     this.cachedPositionInPixels = this.percentageToPixels(this.position);
     this.positionInPixels = this.percentageToPixels(this.position);
-    emit(this, 'l-reposition');
+    emit(this, 'lynk-reposition');
   }
 
   @watch('positionInPixels')
@@ -255,6 +255,6 @@ export default class SlSplitPanel extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-split-panel': SlSplitPanel;
+    'lynk-split-panel': LynkSplitPanel;
   }
 }

@@ -1,14 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import type SlImageComparer from './image-comparer';
+import type LynkImageComparer from './image-comparer';
 
-describe('<l-image-comparer>', () => {
+describe('<lynk-image-comparer>', () => {
   it('should render a basic before/after', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     const afterPart = el.shadowRoot!.querySelector<HTMLElement>('[part="after"]')!;
@@ -25,15 +25,15 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should emit change event when position changed manually', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
     const handler = sinon.spy();
 
-    el.addEventListener('l-change', handler, { once: true });
+    el.addEventListener('lynk-change', handler, { once: true });
 
     el.position = 40;
     await el.updateComplete;
@@ -42,11 +42,11 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should increment position on arrow right', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
@@ -62,11 +62,11 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should decrement position on arrow left', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
@@ -82,11 +82,11 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should set position to 0 on home key', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
@@ -102,11 +102,11 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should set position to 100 on end key', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
@@ -122,11 +122,11 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should clamp to 100 on arrow right', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     el.position = 0;
@@ -145,11 +145,11 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should clamp to 0 on arrow left', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     el.position = 100;
@@ -168,11 +168,11 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should increment position by 10 on arrow right + shift', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
@@ -189,11 +189,11 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should decrement position by 10 on arrow left + shift', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
@@ -210,22 +210,22 @@ describe('<l-image-comparer>', () => {
   });
 
   it('should set position by attribute', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer position="10">
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer position="10">
         <div slot="before"></div>
         <div slot="after"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
 
     expect(el.position).to.equal(10);
   });
 
   it('should move position on drag', async () => {
-    const el = await fixture<SlImageComparer>(html`
-      <l-image-comparer>
+    const el = await fixture<LynkImageComparer>(html`
+      <lynk-image-comparer>
         <div slot="before" style="width: 50px"></div>
         <div slot="after" style="width: 50px"></div>
-      </l-image-comparer>
+      </lynk-image-comparer>
     `);
     const handle = el.shadowRoot!.querySelector<HTMLElement>('[part="handle"]')!;
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;

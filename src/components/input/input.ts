@@ -12,10 +12,10 @@ import { LocalizeController } from '../../utilities/localize';
 import styles from './input.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
- * @dependency l-icon
+ * @dependency lynk-icon
  *
  * @slot label - The input's label. Alternatively, you can use the label prop.
  * @slot prefix - Used to prepend an icon or similar element to the input.
@@ -25,11 +25,11 @@ import styles from './input.styles';
  * @slot hide-password-icon - An icon to use in lieu of the default hide password icon.
  * @slot help-text - Help text that describes how to use the input. Alternatively, you can use the help-text prop.
  *
- * @event l-change - Emitted when an alteration to the control's value is committed by the user.
- * @event l-clear - Emitted when the clear button is activated.
- * @event l-input - Emitted when the control receives input and its value changes.
- * @event l-focus - Emitted when the control gains focus.
- * @event l-blur - Emitted when the control loses focus.
+ * @event lynk-change - Emitted when an alteration to the control's value is committed by the user.
+ * @event lynk-clear - Emitted when the clear button is activated.
+ * @event lynk-input - Emitted when the control receives input and its value changes.
+ * @event lynk-focus - Emitted when the control gains focus.
+ * @event lynk-blur - Emitted when the control loses focus.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -42,11 +42,11 @@ import styles from './input.styles';
  * @csspart password-toggle-button - The password toggle button.
  * @csspart suffix - The input suffix container.
  */
-@customElement('l-input')
-export default class SlInput extends LitElement {
+@customElement('lynk-input')
+export default class LynkInput extends LitElement {
   static styles = styles;
 
-  @query('.input__control') input: HTMLInputElement;
+  @query('.lynk-input__control') input: HTMLInputElement;
 
   private readonly formSubmitController = new FormSubmitController(this);
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
@@ -214,8 +214,8 @@ export default class SlInput extends LitElement {
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      emit(this, 'l-input');
-      emit(this, 'l-change');
+      emit(this, 'lynk-input');
+      emit(this, 'lynk-change');
     }
   }
 
@@ -232,19 +232,19 @@ export default class SlInput extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'l-blur');
+    emit(this, 'lynk-blur');
   }
 
   handleChange() {
     this.value = this.input.value;
-    emit(this, 'l-change');
+    emit(this, 'lynk-change');
   }
 
   handleClearClick(event: MouseEvent) {
     this.value = '';
-    emit(this, 'l-clear');
-    emit(this, 'l-input');
-    emit(this, 'l-change');
+    emit(this, 'lynk-clear');
+    emit(this, 'lynk-input');
+    emit(this, 'lynk-change');
     this.input.focus();
 
     event.stopPropagation();
@@ -259,12 +259,12 @@ export default class SlInput extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'l-focus');
+    emit(this, 'lynk-focus');
   }
 
   handleInput() {
     this.value = this.input.value;
-    emit(this, 'l-input');
+    emit(this, 'lynk-input');
   }
 
   handleInvalid() {
@@ -326,31 +326,31 @@ export default class SlInput extends LitElement {
           <div
             part="base"
             class=${classMap({
-              input: true,
+              'lynk-input': true,
 
               // Sizes
-              'input--small': this.size === 'small',
-              'input--medium': this.size === 'medium',
-              'input--large': this.size === 'large',
+              'lynk-input--small': this.size === 'small',
+              'lynk-input--medium': this.size === 'medium',
+              'lynk-input--large': this.size === 'large',
 
               // States
-              'input--pill': this.pill,
-              'input--standard': !this.filled,
-              'input--filled': this.filled,
-              'input--disabled': this.disabled,
-              'input--focused': this.hasFocus,
-              'input--empty': !this.value,
-              'input--invalid': this.invalid
+              'lynk-input--pill': this.pill,
+              'lynk-input--standard': !this.filled,
+              'lynk-input--filled': this.filled,
+              'lynk-input--disabled': this.disabled,
+              'lynk-input--focused': this.hasFocus,
+              'lynk-input--empty': !this.value,
+              'lynk-input--invalid': this.invalid
             })}
           >
-            <span part="prefix" class="input__prefix">
+            <span part="prefix" class="lynk-input__prefix">
               <slot name="prefix"></slot>
             </span>
 
             <input
               part="input"
               id="input"
-              class="input__control"
+              class="lynk-input__control"
               type=${this.type === 'password' && this.isPasswordVisible ? 'text' : this.type}
               name=${ifDefined(this.name)}
               ?disabled=${this.disabled}
@@ -385,14 +385,14 @@ export default class SlInput extends LitElement {
               ? html`
                   <button
                     part="clear-button"
-                    class="input__clear"
+                    class="lynk-input__clear"
                     type="button"
                     aria-label=${this.localize.term('clearEntry')}
                     @click=${this.handleClearClick}
                     tabindex="-1"
                   >
                     <slot name="clear-icon">
-                      <l-icon name="x-circle-fill" library="system"></l-icon>
+                      <lynk-icon name="x-circle-fill" library="system"></lynk-icon>
                     </slot>
                   </button>
                 `
@@ -401,7 +401,7 @@ export default class SlInput extends LitElement {
               ? html`
                   <button
                     part="password-toggle-button"
-                    class="input__password-toggle"
+                    class="lynk-input__password-toggle"
                     type="button"
                     aria-label=${this.localize.term(this.isPasswordVisible ? 'hidePassword' : 'showPassword')}
                     @click=${this.handlePasswordToggle}
@@ -410,19 +410,19 @@ export default class SlInput extends LitElement {
                     ${this.isPasswordVisible
                       ? html`
                           <slot name="show-password-icon">
-                            <l-icon name="eye-slash" library="system"></l-icon>
+                            <lynk-icon name="eye-slash" library="system"></lynk-icon>
                           </slot>
                         `
                       : html`
                           <slot name="hide-password-icon">
-                            <l-icon name="eye" library="system"></l-icon>
+                            <lynk-icon name="eye" library="system"></lynk-icon>
                           </slot>
                         `}
                   </button>
                 `
               : ''}
 
-            <span part="suffix" class="input__suffix">
+            <span part="suffix" class="lynk-input__suffix">
               <slot name="suffix"></slot>
             </span>
           </div>
@@ -443,6 +443,6 @@ export default class SlInput extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-input': SlInput;
+    'lynk-input': LynkInput;
   }
 }

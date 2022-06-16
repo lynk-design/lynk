@@ -1,17 +1,17 @@
 # Animation
 
-[component-header:l-animation]
+[component-header:lynk-animation]
 
 Animate elements declaratively with nearly 100 baked-in presets, or roll your own with custom keyframes. Powered by the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).
 
-To animate an element, wrap it in `<l-animation>` and set an animation `name`. The animation will not start until you add the `play` attribute. Refer to the [properties table](#properties) for a list of all animation options.
+To animate an element, wrap it in `<lynk-animation>` and set an animation `name`. The animation will not start until you add the `play` attribute. Refer to the [properties table](#properties) for a list of all animation options.
 
 ```html preview
 <div class="animation-overview">
-  <l-animation name="bounce" duration="2000" play><div class="box"></div></l-animation>
-  <l-animation name="jello" duration="2000" play><div class="box"></div></l-animation>
-  <l-animation name="heartBeat" duration="2000" play><div class="box"></div></l-animation>
-  <l-animation name="flip" duration="2000" play><div class="box"></div></l-animation>
+  <lynk-animation name="bounce" duration="2000" play><div class="box"></div></lynk-animation>
+  <lynk-animation name="jello" duration="2000" play><div class="box"></div></lynk-animation>
+  <lynk-animation name="heartBeat" duration="2000" play><div class="box"></div></lynk-animation>
+  <lynk-animation name="flip" duration="2000" play><div class="box"></div></lynk-animation>
 </div>
 
 <style>
@@ -19,7 +19,7 @@ To animate an element, wrap it in `<l-animation>` and set an animation `name`. T
     display: inline-block;
     width: 100px;
     height: 100px;
-    background-color: var(--l-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
     margin: 1.5rem;
   }
 </style>
@@ -33,7 +33,7 @@ const css = `
     display: inline-block;
     width: 100px;
     height: 100px;
-    background-color: var(--l-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
     margin: 1.5rem;
   }
 `;
@@ -60,7 +60,7 @@ const App = () => (
 );
 ```
 
-?> The animation will only be applied to the first child element found in `<l-animation>`.
+?> The animation will only be applied to the first child element found in `<lynk-animation>`.
 
 ## Examples
 
@@ -70,14 +70,14 @@ This example demonstrates all of the baked-in animations and easings. Animations
 
 ```html preview
 <div class="animation-sandbox">
-  <l-animation name="bounce" easing="ease-in-out" duration="2000" play>
+  <lynk-animation name="bounce" easing="ease-in-out" duration="2000" play>
     <div class="box"></div>
-  </l-animation>
+  </lynk-animation>
 
   <div class="controls">
-    <l-select label="Animation" value="bounce"></l-select>
-    <l-select label="Easing" value="linear"></l-select>
-    <l-input label="Playback Rate" type="number" min="0" max="2" step=".25" value="1"></l-input>
+    <lynk-select label="Animation" value="bounce"></lynk-select>
+    <lynk-select label="Easing" value="linear"></lynk-select>
+    <lynk-input label="Playback Rate" type="number" min="0" max="2" step=".25" value="1"></lynk-input>
   </div>
 </div>
 
@@ -85,15 +85,15 @@ This example demonstrates all of the baked-in animations and easings. Animations
   import { getAnimationNames, getEasingNames } from '/dist/utilities/animation.js';
 
   const container = document.querySelector('.animation-sandbox');
-  const animation = container.querySelector('l-animation');
+  const animation = container.querySelector('lynk-animation');
   const animationName = container.querySelector('.controls l-select:nth-child(1)');
   const easingName = container.querySelector('.controls l-select:nth-child(2)');
-  const playbackRate = container.querySelector('l-input[type="number"]');
+  const playbackRate = container.querySelector('lynk-input[type="number"]');
   const animations = getAnimationNames();
   const easings = getEasingNames();
 
   animations.map(name => {
-    const menuItem = Object.assign(document.createElement('l-menu-item'), {
+    const menuItem = Object.assign(document.createElement('lynk-menu-item'), {
       textContent: name,
       value: name
     });
@@ -101,23 +101,23 @@ This example demonstrates all of the baked-in animations and easings. Animations
   });
 
   easings.map(name => {
-    const menuItem = Object.assign(document.createElement('l-menu-item'), {
+    const menuItem = Object.assign(document.createElement('lynk-menu-item'), {
       textContent: name,
       value: name
     });
     easingName.appendChild(menuItem);
   });
 
-  animationName.addEventListener('l-change', () => (animation.name = animationName.value));
-  easingName.addEventListener('l-change', () => (animation.easing = easingName.value));
-  playbackRate.addEventListener('l-input', () => (animation.playbackRate = playbackRate.value));
+  animationName.addEventListener('lynk-change', () => (animation.name = animationName.value));
+  easingName.addEventListener('lynk-change', () => (animation.easing = easingName.value));
+  playbackRate.addEventListener('lynk-input', () => (animation.playbackRate = playbackRate.value));
 </script>
 
 <style>
   .animation-sandbox .box {
     width: 100px;
     height: 100px;
-    background-color: var(--l-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
   }
 
   .animation-sandbox .controls {
@@ -137,12 +137,12 @@ Use an [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/
 
 ```html preview
 <div class="animation-scroll">
-  <l-animation name="jackInTheBox" duration="2000" iterations="1"><div class="box"></div></l-animation>
+  <lynk-animation name="jackInTheBox" duration="2000" iterations="1"><div class="box"></div></lynk-animation>
 </div>
 
 <script>
   const container = document.querySelector('.animation-scroll');
-  const animation = container.querySelector('l-animation');
+  const animation = container.querySelector('lynk-animation');
   const box = animation.querySelector('.box');
 
   // Watch for the box to enter and exit the viewport. Note that we're observing the box, not the animation element!
@@ -163,7 +163,7 @@ Use an [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/
     display: inline-block;
     width: 100px;
     height: 100px;
-    background-color: var(--l-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
   }
 </style>
 ```
@@ -181,7 +181,7 @@ const css = `
     display: inline-block;
     width: 100px;
     height: 100px;
-    background-color: var(--l-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
   }
 `;
 
@@ -224,13 +224,13 @@ Supply your own [keyframe formats](https://developer.mozilla.org/en-US/docs/Web/
 
 ```html preview
 <div class="animation-keyframes">
-  <l-animation easing="ease-in-out" duration="2000" play>
+  <lynk-animation easing="ease-in-out" duration="2000" play>
     <div class="box"></div>
-  </l-animation>
+  </lynk-animation>
 </div>
 
 <script>
-  const animation = document.querySelector('.animation-keyframes l-animation');
+  const animation = document.querySelector('.animation-keyframes lynk-animation');
   animation.keyframes = [
     {
       offset: 0,
@@ -253,7 +253,7 @@ Supply your own [keyframe formats](https://developer.mozilla.org/en-US/docs/Web/
   .animation-keyframes .box {
     width: 100px;
     height: 100px;
-    background-color: var(--l-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
   }
 </style>
 ```
@@ -265,7 +265,7 @@ const css = `
   .animation-keyframes .box {
     width: 100px;
     height: 100px;
-    background-color: var(--l-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
   }
 `;
 
@@ -308,15 +308,15 @@ Animations won't play until you apply the `play` attribute. You can omit it init
 
 ```html preview
 <div class="animation-form">
-  <l-animation name="rubberBand" duration="1000" iterations="1">
-    <l-button variant="primary">Click me</l-button>
-  </l-animation>
+  <lynk-animation name="rubberBand" duration="1000" iterations="1">
+    <lynk-button variant="primary">Click me</lynk-button>
+  </lynk-animation>
 </div>
 
 <script>
   const container = document.querySelector('.animation-form');
-  const animation = container.querySelector('l-animation');
-  const button = container.querySelector('l-button');
+  const animation = container.querySelector('lynk-animation');
+  const button = container.querySelector('lynk-button');
 
   button.addEventListener('click', () => {
     animation.play = true;
@@ -343,4 +343,4 @@ const App = () => {
 };
 ```
 
-[component-metadata:l-animation]
+[component-metadata:lynk-animation]

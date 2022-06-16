@@ -1,6 +1,6 @@
 # Skeleton
 
-[component-header:l-skeleton]
+[component-header:lynk-skeleton]
 
 Skeletons are used to show where content will eventually be drawn.
 
@@ -11,13 +11,13 @@ Skeletons try not to be opinionated, as there are endless possibilities for desi
 ```html preview
 <div class="skeleton-overview">
   <header>
-    <l-skeleton></l-skeleton>
-    <l-skeleton></l-skeleton>
+    <lynk-skeleton></lynk-skeleton>
+    <lynk-skeleton></lynk-skeleton>
   </header>
 
-  <l-skeleton></l-skeleton>
-  <l-skeleton></l-skeleton>
-  <l-skeleton></l-skeleton>
+  <lynk-skeleton></lynk-skeleton>
+  <lynk-skeleton></lynk-skeleton>
+  <lynk-skeleton></lynk-skeleton>
 </div>
 
 <style>
@@ -116,19 +116,19 @@ There are two built-in effects, `sheen` and `pulse`. Effects are intentionally s
 
 ```html preview
 <div class="skeleton-effects">
-  <l-skeleton effect="none"></l-skeleton>
+  <lynk-skeleton effect="none"></lynk-skeleton>
   None
 
-  <l-skeleton effect="sheen"></l-skeleton>
+  <lynk-skeleton effect="sheen"></lynk-skeleton>
   Sheen
 
-  <l-skeleton effect="pulse"></l-skeleton>
+  <lynk-skeleton effect="pulse"></lynk-skeleton>
   Pulse
 </div>
 
 <style>
   .skeleton-effects {
-    font-size: var(--l-font-size-small);
+    font-size: var(--lynk-font-size-small);
   }
 
   .skeleton-effects l-skeleton:not(:first-child) {
@@ -142,7 +142,7 @@ import { SlSkeleton } from '@shoelace-style/shoelace/dist/react';
 
 const css = `
   .skeleton-effects {
-    font-size: var(--l-font-size-small);
+    font-size: var(--lynk-font-size-small);
   }
 
   .skeleton-effects l-skeleton:not(:first-child) {
@@ -172,11 +172,11 @@ Use multiple skeletons and some clever styles to simulate paragraphs.
 
 ```html preview
 <div class="skeleton-paragraphs">
-  <l-skeleton></l-skeleton>
-  <l-skeleton></l-skeleton>
-  <l-skeleton></l-skeleton>
-  <l-skeleton></l-skeleton>
-  <l-skeleton></l-skeleton>
+  <lynk-skeleton></lynk-skeleton>
+  <lynk-skeleton></lynk-skeleton>
+  <lynk-skeleton></lynk-skeleton>
+  <lynk-skeleton></lynk-skeleton>
+  <lynk-skeleton></lynk-skeleton>
 </div>
 
 <style>
@@ -240,9 +240,9 @@ Set a matching width and height to make a circle, square, or rounded avatar skel
 
 ```html preview
 <div class="skeleton-avatars">
-  <l-skeleton></l-skeleton>
-  <l-skeleton></l-skeleton>
-  <l-skeleton></l-skeleton>
+  <lynk-skeleton></lynk-skeleton>
+  <lynk-skeleton></lynk-skeleton>
+  <lynk-skeleton></lynk-skeleton>
 </div>
 
 <style>
@@ -258,7 +258,7 @@ Set a matching width and height to make a circle, square, or rounded avatar skel
   }
 
   .skeleton-avatars l-skeleton:nth-child(2) {
-    --border-radius: var(--l-border-radius-medium);
+    --border-radius: var(--lynk-border-radius-medium);
   }
 </style>
 ```
@@ -279,7 +279,7 @@ const css = `
   }
   
   .skeleton-avatars l-skeleton:nth-child(2) {
-    --border-radius: var(--l-border-radius-medium);
+    --border-radius: var(--lynk-border-radius-medium);
   }
 `;
 
@@ -302,11 +302,11 @@ Use the `--border-radius` custom property to make circles, squares, and rectangl
 
 ```html preview
 <div class="skeleton-shapes">
-  <l-skeleton class="square"></l-skeleton>
-  <l-skeleton class="circle"></l-skeleton>
-  <l-skeleton class="triangle"></l-skeleton>
-  <l-skeleton class="cross"></l-skeleton>
-  <l-skeleton class="comment"></l-skeleton>
+  <lynk-skeleton class="square"></lynk-skeleton>
+  <lynk-skeleton class="circle"></lynk-skeleton>
+  <lynk-skeleton class="triangle"></lynk-skeleton>
+  <lynk-skeleton class="cross"></lynk-skeleton>
+  <lynk-skeleton class="comment"></lynk-skeleton>
 </div>
 
 <style>
@@ -317,11 +317,11 @@ Use the `--border-radius` custom property to make circles, squares, and rectangl
   }
 
   .skeleton-shapes .square::part(indicator) {
-    --border-radius: var(--l-border-radius-medium);
+    --border-radius: var(--lynk-border-radius-medium);
   }
 
   .skeleton-shapes .circle::part(indicator) {
-    --border-radius: var(--l-border-radius-circle);
+    --border-radius: var(--lynk-border-radius-circle);
   }
 
   .skeleton-shapes .triangle::part(indicator) {
@@ -369,11 +369,11 @@ const css = `
   }
 
   .skeleton-shapes .square::part(indicator) {
-    --border-radius: var(--l-border-radius-medium);
+    --border-radius: var(--lynk-border-radius-medium);
   }
 
   .skeleton-shapes .circle::part(indicator) {
-    --border-radius: var(--l-border-radius-circle);
+    --border-radius: var(--lynk-border-radius-circle);
   }
 
   .skeleton-shapes .triangle::part(indicator) {
@@ -416,7 +416,7 @@ const App = () => (
 Set the `--color` and `--sheen-color` custom properties to adjust the skeleton's color.
 
 ```html preview
-<l-skeleton effect="sheen" style="--color: tomato; --sheen-color: #ffb094;"></l-skeleton>
+<lynk-skeleton effect="sheen" style="--color: tomato; --sheen-color: #ffb094;"></lynk-skeleton>
 ```
 
 ```jsx react
@@ -435,11 +435,11 @@ const css = `
   }
   
   .skeleton-avatars l-skeleton:nth-child(2) {
-    --border-radius: var(--l-border-radius-medium);
+    --border-radius: var(--lynk-border-radius-medium);
   }
 `;
 
 const App = () => <SlSkeleton effect="sheen" style={{ '--color': 'tomato', '--sheen-color': '#ffb094' }} />;
 ```
 
-[component-metadata:l-skeleton]
+[component-metadata:lynk-skeleton]

@@ -52,20 +52,20 @@ To make a field required, use the `required` prop. The form will not be submitte
 
 ```html preview
 <form class="input-validation-required">
-  <l-input name="name" label="Name" required></l-input>
+  <lynk-input name="name" label="Name" required></lynk-input>
   <br />
-  <l-select label="Favorite Animal" clearable required>
-    <l-menu-item value="birds">Birds</l-menu-item>
-    <l-menu-item value="cats">Cats</l-menu-item>
-    <l-menu-item value="dogs">Dogs</l-menu-item>
-    <l-menu-item value="other">Other</l-menu-item>
-  </l-select>
+  <lynk-select label="Favorite Animal" clearable required>
+    <lynk-menu-item value="birds">Birds</lynk-menu-item>
+    <lynk-menu-item value="cats">Cats</lynk-menu-item>
+    <lynk-menu-item value="dogs">Dogs</lynk-menu-item>
+    <lynk-menu-item value="other">Other</lynk-menu-item>
+  </lynk-select>
   <br />
-  <l-textarea name="comment" label="Comment" required></l-textarea>
+  <lynk-textarea name="comment" label="Comment" required></lynk-textarea>
   <br />
-  <l-checkbox required>Check me before submitting</l-checkbox>
+  <lynk-checkbox required>Check me before submitting</lynk-checkbox>
   <br /><br />
-  <l-button type="submit" variant="primary">Submit</l-button>
+  <lynk-button type="submit" variant="primary">Submit</lynk-button>
 </form>
 
 <script type="module">
@@ -112,13 +112,13 @@ const App = () => {
 
 ### Input Patterns
 
-To restrict a value to a specific [pattern](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern), use the `pattern` attribute. This example only allows the letters A-Z, so the form will not submit if a number or symbol is entered. This only works with `<l-input>` elements.
+To restrict a value to a specific [pattern](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern), use the `pattern` attribute. This example only allows the letters A-Z, so the form will not submit if a number or symbol is entered. This only works with `<lynk-input>` elements.
 
 ```html preview
 <form class="input-validation-pattern">
-  <l-input name="letters" required label="Letters" pattern="[A-Za-z]+"></l-input>
+  <lynk-input name="letters" required label="Letters" pattern="[A-Za-z]+"></lynk-input>
   <br />
-  <l-button type="submit" variant="primary">Submit</l-button>
+  <lynk-button type="submit" variant="primary">Submit</lynk-button>
 </form>
 
 <script type="module">
@@ -157,11 +157,11 @@ Some input types will automatically trigger constraints, such as `email` and `ur
 
 ```html preview
 <form class="input-validation-type">
-  <l-input variant="email" label="Email" placeholder="you@example.com" required></l-input>
+  <lynk-input variant="email" label="Email" placeholder="you@example.com" required></lynk-input>
   <br />
-  <l-input variant="url" label="URL" placeholder="https://example.com/" required></l-input>
+  <lynk-input variant="url" label="URL" placeholder="https://example.com/" required></lynk-input>
   <br />
-  <l-button type="submit" variant="primary">Submit</l-button>
+  <lynk-button type="submit" variant="primary">Submit</lynk-button>
 </form>
 
 <script type="module">
@@ -202,21 +202,21 @@ To create a custom validation error, pass a non-empty string to the `setCustomVa
 
 ```html preview
 <form class="input-validation-custom">
-  <l-input label="Type 'shoelace'" required></l-input>
+  <lynk-input label="Type 'shoelace'" required></lynk-input>
   <br />
-  <l-button type="submit" variant="primary">Submit</l-button>
+  <lynk-button type="submit" variant="primary">Submit</lynk-button>
 </form>
 
 <script type="module">
   const form = document.querySelector('.input-validation-custom');
-  const input = form.querySelector('l-input');
+  const input = form.querySelector('lynk-input');
 
   form.addEventListener('submit', event => {
     event.preventDefault();
     alert('All fields are valid!');
   });
 
-  input.addEventListener('l-input', () => {
+  input.addEventListener('lynk-input', () => {
     if (input.value === 'shoelace') {
       input.setCustomValidity('');
     } else {
@@ -268,22 +268,22 @@ const App = () => {
 The `invalid` attribute reflects the form control's validity, so you can style invalid fields using the `[invalid]` selector. The example below demonstrates how you can give erroneous fields a different appearance. Type something other than "shoelace" to demonstrate this.
 
 ```html preview
-<l-input class="custom-input" label="Type Something" required pattern="shoelace">
+<lynk-input class="custom-input" label="Type Something" required pattern="shoelace">
   <small slot="help-text">Please enter "shoelace" to continue</small>
-</l-input>
+</lynk-input>
 
 <style>
   .custom-input[invalid]:not([disabled])::part(label),
   .custom-input[invalid]:not([disabled])::part(help-text) {
-    color: var(--l-color-danger-600);
+    color: var(--lynk-color-danger-600);
   }
 
   .custom-input[invalid]:not([disabled])::part(base) {
-    border-color: var(--l-color-danger-500);
+    border-color: var(--lynk-color-danger-500);
   }
 
   .custom-input[invalid]:focus-within::part(base) {
-    box-shadow: 0 0 0 var(--l-focus-ring-width) var(--l-color-danger-500);
+    box-shadow: 0 0 0 var(--lynk-focus-ring-width) var(--lynk-color-danger-500);
   }
 </style>
 ```
@@ -294,15 +294,15 @@ import { SlInput } from '@shoelace-style/shoelace/dist/react';
 const css = `
   .custom-input[invalid]:not([disabled])::part(label),
   .custom-input[invalid]:not([disabled])::part(help-text) {
-    color: var(--l-color-danger-600);
+    color: var(--lynk-color-danger-600);
   }
 
   .custom-input[invalid]:not([disabled])::part(base) {      
-    border-color: var(--l-color-danger-500);
+    border-color: var(--lynk-color-danger-500);
   } 
 
   .custom-input[invalid]:focus-within::part(base) {
-    box-shadow: 0 0 0 var(--l-focus-ring-width) var(--l-color-danger-500);
+    box-shadow: 0 0 0 var(--lynk-focus-ring-width) var(--lynk-color-danger-500);
   }
 `;
 
@@ -327,7 +327,7 @@ Instead, toggle a class and target it in your stylesheet as shown below.
 
 ```html
 <form novalidate>
-  <l-input class="invalid"></l-input>
+  <lynk-input class="invalid"></lynk-input>
 </form>
 
 <style>

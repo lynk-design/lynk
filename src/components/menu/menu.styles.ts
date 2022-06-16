@@ -8,15 +8,15 @@ export default css`
     display: block;
   }
 
-  .l-menu {
-    background: var(--l-panel-background-color);
-    border: solid var(--l-panel-border-width) var(--l-panel-border-color);
-    border-radius: var(--l-border-radius-medium);
-    background: var(--l-panel-background-color);
-    padding: var(--l-spacing-x-small) 0;
+  .lynk-menu {
+    background: var(--lynk-panel-background-color);
+    border: solid var(--lynk-panel-border-width) var(--lynk-panel-border-color);
+    border-radius: var(--lynk-border-radius-medium);
+    background: var(--lynk-panel-background-color);
+    padding: var(--lynk-spacing-x-small) 0;
   }
 
   ::slotted(l-divider) {
-    --spacing: var(--l-spacing-x-small);
+    --spacing: var(--lynk-spacing-x-small);
   }
 `;

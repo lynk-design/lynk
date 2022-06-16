@@ -12,15 +12,15 @@ import styles from './accordion.styles';
  * @since 1.0
  * @status stable
  *
- * @dependency l-icon
+ * @dependency lynk-icon
  *
  * @slot - The accordions content.
  * @slot summary - The accordions summary. Alternatively, you can use the summary prop.
  *
- * @event le-show - Emitted when the accordion opens.
- * @event le-after-show - Emitted after the accordion opens and all animations are complete.
- * @event le-hide - Emitted when the accordion closes.
- * @event le-after-hide - Emitted after the accordion closes and all animations are complete.
+ * @event lynk-show - Emitted when the accordion opens.
+ * @event lynk-after-show - Emitted after the accordion opens and all animations are complete.
+ * @event lynk-hide - Emitted when the accordion closes.
+ * @event lynk-after-hide - Emitted after the accordion closes and all animations are complete.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart header - The summary header.
@@ -31,13 +31,13 @@ import styles from './accordion.styles';
  * @animation accordion.show - The animation to use when showing accordion. You can use `height: auto` with this animation.
  * @animation accordion.hide - The animation to use when hiding accordion. You can use `height: auto` with this animation.
  */
-@customElement('l-accordion')
+@customElement('lynk-accordion')
 export default class LynkAccordion extends LitElement {
   static styles = styles;
 
-  @query('.l-accordion') accordion: HTMLElement;
-  @query('.l-accordion__header') header: HTMLElement;
-  @query('.l-accordion__body') body: HTMLElement;
+  @query('.lynk-accordion') accordion: HTMLElement;
+  @query('.lynk-accordion__header') header: HTMLElement;
+  @query('.lynk-accordion__body') body: HTMLElement;
 
   /** Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods. */
   @property({ type: Boolean, reflect: true }) open = false;
@@ -60,7 +60,7 @@ export default class LynkAccordion extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'le-after-show');
+    return waitForEvent(this, 'lynk-after-show');
   }
 
   /** Hides the accordion */
@@ -70,7 +70,7 @@ export default class LynkAccordion extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'le-after-hide');
+    return waitForEvent(this, 'lynk-after-hide');
   }
 
   handleSummaryClick() {
@@ -111,7 +111,7 @@ export default class LynkAccordion extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'le-show');
+      emit(this, 'lynk-show');
 
       await stopAnimations(this.body);
       this.body.hidden = false;
@@ -120,10 +120,10 @@ export default class LynkAccordion extends LitElement {
       await animateTo(this.body, shimKeyframesHeightAuto(keyframes, this.body.scrollHeight), options);
       this.body.style.height = 'auto';
 
-      emit(this, 'le-after-show');
+      emit(this, 'lynk-after-show');
     } else {
       // Hide
-      emit(this, 'le-hide');
+      emit(this, 'lynk-hide');
 
       await stopAnimations(this.body);
 
@@ -132,7 +132,7 @@ export default class LynkAccordion extends LitElement {
       this.body.hidden = true;
       this.body.style.height = 'auto';
 
-      emit(this, 'le-after-hide');
+      emit(this, 'lynk-after-hide');
     }
   }
 
@@ -141,15 +141,15 @@ export default class LynkAccordion extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'l-accordion': true,
-          'l-accordion--open': this.open,
-          'l-accordion--disabled': this.disabled
+          'lynk-accordion': true,
+          'lynk-accordion--open': this.open,
+          'lynk-accordion--disabled': this.disabled
         })}
       >
         <header
           part="header"
           id="header"
-          class="l-accordion__header"
+          class="lynk-accordion__header"
           role="button"
           aria-expanded=${this.open ? 'true' : 'false'}
           aria-controls="content"
@@ -158,17 +158,17 @@ export default class LynkAccordion extends LitElement {
           @click=${this.handleSummaryClick}
           @keydown=${this.handleSummaryKeyDown}
         >
-          <div part="summary" class="l-accordion__summary">
+          <div part="summary" class="lynk-accordion__summary">
             <slot name="summary">${this.summary}</slot>
           </div>
 
-          <span part="summary-icon" class="l-accordion__summary-icon">
-            <l-icon name="chevron-right" library="system"></l-icon>
+          <span part="summary-icon" class="lynk-accordion__summary-icon">
+            <lynk-icon name="chevron-right" library="system"></lynk-icon>
           </span>
         </header>
 
-        <div class="l-accordion__body">
-          <div part="content" id="content" class="l-accordion__content" role="region" aria-labelledby="header">
+        <div class="lynk-accordion__body">
+          <div part="content" id="content" class="lynk-accordion__content" role="region" aria-labelledby="header">
             <slot></slot>
           </div>
         </div>
@@ -195,6 +195,6 @@ setDefaultAnimation('accordion.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-accordion': LynkAccordion;
+    'lynk-accordion': LynkAccordion;
   }
 }

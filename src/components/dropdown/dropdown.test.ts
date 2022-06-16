@@ -3,17 +3,17 @@ import { sendKeys, sendMouse } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import type SlDropdown from './dropdown';
 
-describe('<l-dropdown>', () => {
+describe('<lynk-dropdown>', () => {
   it('should be visible with the open attribute', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown open>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-          <l-menu-item>Item 2</l-menu-item>
-          <l-menu-item>Item 3</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown open>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+          <lynk-menu-item>Item 2</lynk-menu-item>
+          <lynk-menu-item>Item 3</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
     const panel = el.shadowRoot!.querySelector<HTMLElement>('[part="panel"]')!;
 
@@ -22,37 +22,37 @@ describe('<l-dropdown>', () => {
 
   it('should not be visible without the open attribute', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-          <l-menu-item>Item 2</l-menu-item>
-          <l-menu-item>Item 3</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+          <lynk-menu-item>Item 2</lynk-menu-item>
+          <lynk-menu-item>Item 3</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
     const panel = el.shadowRoot!.querySelector<HTMLElement>('[part="panel"]')!;
 
     expect(panel.hidden).to.be.true;
   });
 
-  it('should emit l-show and l-after-show when calling show()', async () => {
+  it('should emit lynk-show and lynk-after-show when calling show()', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-          <l-menu-item>Item 2</l-menu-item>
-          <l-menu-item>Item 3</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+          <lynk-menu-item>Item 2</lynk-menu-item>
+          <lynk-menu-item>Item 3</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
     const panel = el.shadowRoot!.querySelector<HTMLElement>('[part="panel"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('l-show', showHandler);
-    el.addEventListener('l-after-show', afterShowHandler);
+    el.addEventListener('lynk-show', showHandler);
+    el.addEventListener('lynk-after-show', afterShowHandler);
     el.show();
 
     await waitUntil(() => showHandler.calledOnce);
@@ -63,23 +63,23 @@ describe('<l-dropdown>', () => {
     expect(panel.hidden).to.be.false;
   });
 
-  it('should emit l-hide and l-after-hide when calling hide()', async () => {
+  it('should emit lynk-hide and lynk-after-hide when calling hide()', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown open>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-          <l-menu-item>Item 2</l-menu-item>
-          <l-menu-item>Item 3</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown open>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+          <lynk-menu-item>Item 2</lynk-menu-item>
+          <lynk-menu-item>Item 3</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
     const panel = el.shadowRoot!.querySelector<HTMLElement>('[part="panel"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('l-hide', hideHandler);
-    el.addEventListener('l-after-hide', afterHideHandler);
+    el.addEventListener('lynk-hide', hideHandler);
+    el.addEventListener('lynk-after-hide', afterHideHandler);
     el.hide();
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -90,23 +90,23 @@ describe('<l-dropdown>', () => {
     expect(panel.hidden).to.be.true;
   });
 
-  it('should emit l-show and l-after-show when setting open = true', async () => {
+  it('should emit lynk-show and lynk-after-show when setting open = true', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-          <l-menu-item>Item 2</l-menu-item>
-          <l-menu-item>Item 3</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+          <lynk-menu-item>Item 2</lynk-menu-item>
+          <lynk-menu-item>Item 3</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
     const panel = el.shadowRoot!.querySelector<HTMLElement>('[part="panel"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('l-show', showHandler);
-    el.addEventListener('l-after-show', afterShowHandler);
+    el.addEventListener('lynk-show', showHandler);
+    el.addEventListener('lynk-after-show', afterShowHandler);
     el.open = true;
 
     await waitUntil(() => showHandler.calledOnce);
@@ -117,23 +117,23 @@ describe('<l-dropdown>', () => {
     expect(panel.hidden).to.be.false;
   });
 
-  it('should emit l-hide and l-after-hide when setting open = false', async () => {
+  it('should emit lynk-hide and lynk-after-hide when setting open = false', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown open>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-          <l-menu-item>Item 2</l-menu-item>
-          <l-menu-item>Item 3</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown open>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+          <lynk-menu-item>Item 2</lynk-menu-item>
+          <lynk-menu-item>Item 3</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
     const panel = el.shadowRoot!.querySelector<HTMLElement>('[part="panel"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('l-hide', hideHandler);
-    el.addEventListener('l-after-hide', afterHideHandler);
+    el.addEventListener('lynk-hide', hideHandler);
+    el.addEventListener('lynk-after-hide', afterHideHandler);
     el.open = false;
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -146,12 +146,12 @@ describe('<l-dropdown>', () => {
 
   it('should still open on arrow navigation when no menu items', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu> </l-menu>
-      </l-dropdown>
+      <lynk-dropdown>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu> </lynk-menu>
+      </lynk-dropdown>
     `);
-    const trigger = el.querySelector('l-button')!;
+    const trigger = el.querySelector('lynk-button')!;
 
     trigger.focus();
     await sendKeys({ press: 'ArrowDown' });
@@ -162,15 +162,15 @@ describe('<l-dropdown>', () => {
 
   it('should open on arrow navigation', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-          <l-menu-item>Item 2</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+          <lynk-menu-item>Item 2</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
-    const trigger = el.querySelector('l-button')!;
+    const trigger = el.querySelector('lynk-button')!;
 
     trigger.focus();
     await sendKeys({ press: 'ArrowDown' });
@@ -181,15 +181,15 @@ describe('<l-dropdown>', () => {
 
   it('should close on escape key', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown open>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-          <l-menu-item>Item 2</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown open>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+          <lynk-menu-item>Item 2</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
-    const trigger = el.querySelector('l-button')!;
+    const trigger = el.querySelector('lynk-button')!;
 
     trigger.focus();
     await sendKeys({ press: 'Escape' });
@@ -200,12 +200,12 @@ describe('<l-dropdown>', () => {
 
   it('should not open on arrow navigation when no menu exists', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown>
-        <l-button slot="trigger" caret>Toggle</l-button>
+      <lynk-dropdown>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <div>Some custom content</div>
-      </l-dropdown>
+      </lynk-dropdown>
     `);
-    const trigger = el.querySelector('l-button')!;
+    const trigger = el.querySelector('lynk-button')!;
 
     trigger.focus();
     await sendKeys({ press: 'ArrowDown' });
@@ -216,14 +216,14 @@ describe('<l-dropdown>', () => {
 
   it('should open on enter key', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
-    const trigger = el.querySelector('l-button')!;
+    const trigger = el.querySelector('lynk-button')!;
 
     trigger.focus();
     await el.updateComplete;
@@ -235,12 +235,12 @@ describe('<l-dropdown>', () => {
 
   it('should open on enter key when no menu exists', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown>
-        <l-button slot="trigger" caret>Toggle</l-button>
+      <lynk-dropdown>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <div>Some custom content</div>
-      </l-dropdown>
+      </lynk-dropdown>
     `);
-    const trigger = el.querySelector('l-button')!;
+    const trigger = el.querySelector('lynk-button')!;
 
     trigger.focus();
     await el.updateComplete;
@@ -252,12 +252,12 @@ describe('<l-dropdown>', () => {
 
   it('should hide when clicked outside container and initially open', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown open>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown open>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
 
     await sendMouse({ type: 'click', position: [0, 0] });
@@ -268,14 +268,14 @@ describe('<l-dropdown>', () => {
 
   it('should hide when clicked outside container', async () => {
     const el = await fixture<SlDropdown>(html`
-      <l-dropdown>
-        <l-button slot="trigger" caret>Toggle</l-button>
-        <l-menu>
-          <l-menu-item>Item 1</l-menu-item>
-        </l-menu>
-      </l-dropdown>
+      <lynk-dropdown>
+        <lynk-button slot="trigger" caret>Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Item 1</lynk-menu-item>
+        </lynk-menu>
+      </lynk-dropdown>
     `);
-    const trigger = el.querySelector('l-button')!;
+    const trigger = el.querySelector('lynk-button')!;
 
     trigger.click();
     await el.updateComplete;

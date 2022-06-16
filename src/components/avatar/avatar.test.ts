@@ -2,12 +2,12 @@ import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
 import type LynkAvatar from './avatar';
 
-describe('<l-avatar>', () => {
+describe('<lynk-avatar>', () => {
   let el: LynkAvatar;
 
   describe('when provided no parameters', () => {
     before(async () => {
-      el = await fixture<LynkAvatar>(html` <l-avatar label="Avatar"></l-avatar> `);
+      el = await fixture<LynkAvatar>(html` <lynk-avatar label="Avatar"></lynk-avatar> `);
     });
 
     it('should pass accessibility tests', async () => {
@@ -17,7 +17,7 @@ describe('<l-avatar>', () => {
     it('should default to circle styling', () => {
       const part = el.shadowRoot!.querySelector('[part="base"]')!;
       expect(el.getAttribute('shape')).to.eq('circle');
-      expect(part.classList.value.trim()).to.eq('avatar avatar--circle');
+      expect(part.classList.value.trim()).to.eq('lynk-avatar lynk-avatar--circle');
     });
   });
 
@@ -25,7 +25,7 @@ describe('<l-avatar>', () => {
     const image = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
     const label = 'Small transparent square';
     before(async () => {
-      el = await fixture<LynkAvatar>(html`<l-avatar image="${image}" label="${label}"></l-avatar>`);
+      el = await fixture<LynkAvatar>(html`<lynk-avatar image="${image}" label="${label}"></lynk-avatar>`);
     });
 
     it('should pass accessibility tests', async () => {
@@ -55,7 +55,7 @@ describe('<l-avatar>', () => {
   describe('when provided initials parameter', () => {
     const initials = 'SL';
     before(async () => {
-      el = await fixture<LynkAvatar>(html`<l-avatar initials="${initials}" label="Avatar"></l-avatar>`);
+      el = await fixture<LynkAvatar>(html`<lynk-avatar initials="${initials}" label="Avatar"></lynk-avatar>`);
     });
 
     it('should pass accessibility tests', async () => {
@@ -72,7 +72,7 @@ describe('<l-avatar>', () => {
   ['square', 'rounded', 'circle'].forEach(shape => {
     describe(`when passed a shape attribute ${shape}`, () => {
       before(async () => {
-        el = await fixture<LynkAvatar>(html`<l-avatar shape="${shape}" label="Shaped avatar"></l-avatar>`);
+        el = await fixture<LynkAvatar>(html`<lynk-avatar shape="${shape}" label="Shaped avatar"></lynk-avatar>`);
       });
 
       it('should pass accessibility tests', async () => {
@@ -83,14 +83,14 @@ describe('<l-avatar>', () => {
         const part = el.shadowRoot!.querySelector('[part="base"]')!;
 
         expect(el.getAttribute('shape')).to.eq(shape);
-        expect(part.classList.value.trim()).to.eq(`avatar avatar--${shape}`);
+        expect(part.classList.value.trim()).to.eq(`lynk-avatar lynk-avatar--${shape}`);
       });
     });
   });
 
   describe('when passed a <span>, on slot "icon"', () => {
     before(async () => {
-      el = await fixture<LynkAvatar>(html`<l-avatar label="Avatar"><span slot="icon">random content</span></l-avatar>`);
+      el = await fixture<LynkAvatar>(html`<lynk-avatar label="Avatar"><span slot="icon">random content</span></lynk-avatar>`);
     });
 
     it('should pass accessibility tests', async () => {
@@ -111,7 +111,7 @@ describe('<l-avatar>', () => {
   it('should not render the image when the image fails to load', async () => {
     const errorHandler = sinon.spy();
 
-    el = await fixture<LynkAvatar>(html`<l-avatar></l-avatar>`);
+    el = await fixture<LynkAvatar>(html`<lynk-avatar></lynk-avatar>`);
     el.addEventListener('error', errorHandler);
     el.image = 'bad_image';
     waitUntil(() => errorHandler.calledOnce);
@@ -122,7 +122,7 @@ describe('<l-avatar>', () => {
   it('should show a valid image after being passed an invalid image initially', async () => {
     const errorHandler = sinon.spy();
 
-    el = await fixture<LynkAvatar>(html`<l-avatar></l-avatar>`);
+    el = await fixture<LynkAvatar>(html`<lynk-avatar></lynk-avatar>`);
     el.addEventListener('error', errorHandler);
     el.image = 'bad_image';
     waitUntil(() => errorHandler.calledOnce);

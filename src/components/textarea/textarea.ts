@@ -10,16 +10,16 @@ import { watch } from '../../internal/watch';
 import styles from './textarea.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot label - The textarea's label. Alternatively, you can use the label prop.
  * @slot help-text - Help text that describes how to use the input.
  *
- * @event l-change - Emitted when an alteration to the control's value is committed by the user.
- * @event l-input - Emitted when the control receives input and its value changes.
- * @event l-focus - Emitted when the control gains focus.
- * @event l-blur - Emitted when the control loses focus.
+ * @event lynk-change - Emitted when an alteration to the control's value is committed by the user.
+ * @event lynk-input - Emitted when the control receives input and its value changes.
+ * @event lynk-focus - Emitted when the control gains focus.
+ * @event lynk-blur - Emitted when the control loses focus.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -28,11 +28,11 @@ import styles from './textarea.styles';
  * @csspart base - The component's internal wrapper.
  * @csspart textarea - The textarea control.
  */
-@customElement('l-textarea')
-export default class SlTextarea extends LitElement {
+@customElement('lynk-textarea')
+export default class LynkTextarea extends LitElement {
   static styles = styles;
 
-  @query('.textarea__control') input: HTMLTextAreaElement;
+  @query('.lynk-textarea__control') input: HTMLTextAreaElement;
 
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this);
@@ -182,14 +182,14 @@ export default class SlTextarea extends LitElement {
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      emit(this, 'l-input');
+      emit(this, 'lynk-input');
     }
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;
       this.setTextareaHeight();
-      emit(this, 'l-input');
-      emit(this, 'l-change');
+      emit(this, 'lynk-input');
+      emit(this, 'lynk-change');
     }
   }
 
@@ -206,13 +206,13 @@ export default class SlTextarea extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'l-blur');
+    emit(this, 'lynk-blur');
   }
 
   handleChange() {
     this.value = this.input.value;
     this.setTextareaHeight();
-    emit(this, 'l-change');
+    emit(this, 'lynk-change');
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -224,13 +224,13 @@ export default class SlTextarea extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'l-focus');
+    emit(this, 'lynk-focus');
   }
 
   handleInput() {
     this.value = this.input.value;
     this.setTextareaHeight();
-    emit(this, 'l-input');
+    emit(this, 'lynk-input');
   }
 
   @watch('rows', { waitUntilFirstUpdate: true })
@@ -284,18 +284,18 @@ export default class SlTextarea extends LitElement {
             part="base"
             class=${classMap({
               textarea: true,
-              'textarea--small': this.size === 'small',
-              'textarea--medium': this.size === 'medium',
-              'textarea--large': this.size === 'large',
-              'textarea--standard': !this.filled,
-              'textarea--filled': this.filled,
-              'textarea--disabled': this.disabled,
-              'textarea--focused': this.hasFocus,
-              'textarea--empty': !this.value,
-              'textarea--invalid': this.invalid,
-              'textarea--resize-none': this.resize === 'none',
-              'textarea--resize-vertical': this.resize === 'vertical',
-              'textarea--resize-auto': this.resize === 'auto'
+              'lynk-textarea--small': this.size === 'small',
+              'lynk-textarea--medium': this.size === 'medium',
+              'lynk-textarea--large': this.size === 'large',
+              'lynk-textarea--standard': !this.filled,
+              'lynk-textarea--filled': this.filled,
+              'lynk-textarea--disabled': this.disabled,
+              'lynk-textarea--focused': this.hasFocus,
+              'lynk-textarea--empty': !this.value,
+              'lynk-textarea--invalid': this.invalid,
+              'lynk-textarea--resize-none': this.resize === 'none',
+              'lynk-textarea--resize-vertical': this.resize === 'vertical',
+              'lynk-textarea--resize-auto': this.resize === 'auto'
             })}
           >
             <textarea
@@ -341,6 +341,6 @@ export default class SlTextarea extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-textarea': SlTextarea;
+    'lynk-textarea': LynkTextarea;
   }
 }

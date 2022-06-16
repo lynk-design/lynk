@@ -6,18 +6,18 @@ import styles from './animation.styles';
 import { animations } from './animations';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
- * @event l-cancel - Emitted when the animation is canceled.
- * @event l-finish - Emitted when the animation finishes.
- * @event l-start - Emitted when the animation starts or restarts.
+ * @event lynk-cancel - Emitted when the animation is canceled.
+ * @event lynk-finish - Emitted when the animation finishes.
+ * @event lynk-start - Emitted when the animation starts or restarts.
  *
  * @slot - The element to animate. If multiple elements are to be animated, wrap them in a single container or use
  * multiple animation elements.
  */
-@customElement('l-animation')
-export default class SlAnimation extends LitElement {
+@customElement('lynk-animation')
+export default class LynkAnimation extends LitElement {
   static styles = styles;
 
   private animation?: Animation;
@@ -115,13 +115,13 @@ export default class SlAnimation extends LitElement {
   handleAnimationFinish() {
     this.play = false;
     this.hasStarted = false;
-    emit(this, 'l-finish');
+    emit(this, 'lynk-finish');
   }
 
   handleAnimationCancel() {
     this.play = false;
     this.hasStarted = false;
-    emit(this, 'l-cancel');
+    emit(this, 'lynk-cancel');
   }
 
   @watch('play')
@@ -129,7 +129,7 @@ export default class SlAnimation extends LitElement {
     if (this.animation) {
       if (this.play && !this.hasStarted) {
         this.hasStarted = true;
-        emit(this, 'l-start');
+        emit(this, 'lynk-start');
       }
 
       if (this.play) {
@@ -182,7 +182,7 @@ export default class SlAnimation extends LitElement {
 
     if (this.play) {
       this.hasStarted = true;
-      emit(this, 'l-start');
+      emit(this, 'lynk-start');
     } else {
       this.animation.pause();
     }
@@ -216,6 +216,6 @@ export default class SlAnimation extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-animation': SlAnimation;
+    'lynk-animation': LynkAnimation;
   }
 }

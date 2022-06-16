@@ -1,18 +1,18 @@
 import { aTimeout, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import type SlCheckbox from './checkbox';
+import type LynkCheckbox from './checkbox';
 
-describe('<l-checkbox>', () => {
+describe('<lynk-checkbox>', () => {
   it('should be disabled with the disabled attribute', async () => {
-    const el = await fixture<SlCheckbox>(html` <l-checkbox disabled></l-checkbox> `);
+    const el = await fixture<LynkCheckbox>(html` <lynk-checkbox disabled></lynk-checkbox> `);
     const checkbox = el.shadowRoot!.querySelector('input')!;
 
     expect(checkbox.disabled).to.be.true;
   });
 
   it('should be disabled when disabled property is set', async () => {
-    const el = await fixture<SlCheckbox>(html`<l-checkbox></l-checkbox>`);
+    const el = await fixture<LynkCheckbox>(html`<lynk-checkbox></lynk-checkbox>`);
     const checkbox = el.shadowRoot!.querySelector('input')!;
 
     el.disabled = true;
@@ -22,32 +22,32 @@ describe('<l-checkbox>', () => {
   });
 
   it('should be valid by default', async () => {
-    const el = await fixture<SlCheckbox>(html` <l-checkbox></l-checkbox> `);
+    const el = await fixture<LynkCheckbox>(html` <lynk-checkbox></lynk-checkbox> `);
 
     expect(el.invalid).to.be.false;
   });
 
-  it('should fire l-change when clicked', async () => {
-    const el = await fixture<SlCheckbox>(html` <l-checkbox></l-checkbox> `);
+  it('should fire lynk-change when clicked', async () => {
+    const el = await fixture<LynkCheckbox>(html` <lynk-checkbox></lynk-checkbox> `);
     setTimeout(() => el.shadowRoot!.querySelector('input')!.click());
-    const event = (await oneEvent(el, 'l-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should fire l-change when toggled via keyboard', async () => {
-    const el = await fixture<SlCheckbox>(html` <l-checkbox></l-checkbox> `);
+  it('should fire lynk-change when toggled via keyboard', async () => {
+    const el = await fixture<LynkCheckbox>(html` <lynk-checkbox></lynk-checkbox> `);
     const input = el.shadowRoot!.querySelector('input')!;
     input.focus();
     setTimeout(() => sendKeys({ press: ' ' }));
-    const event = (await oneEvent(el, 'l-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should not fire l-change when checked is set by javascript', async () => {
-    const el = await fixture<SlCheckbox>(html` <l-checkbox></l-checkbox> `);
-    el.addEventListener('l-change', () => expect.fail('event fired'));
+  it('should not fire lynk-change when checked is set by javascript', async () => {
+    const el = await fixture<LynkCheckbox>(html` <lynk-checkbox></lynk-checkbox> `);
+    el.addEventListener('lynk-change', () => expect.fail('event fired'));
     el.checked = true;
     await el.updateComplete;
     el.checked = false;
@@ -58,11 +58,11 @@ describe('<l-checkbox>', () => {
     it('should submit the correct value when a value is provided', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <l-checkbox name="a" value="1" checked></l-checkbox>
-          <l-button type="submit">Submit</l-button>
+          <lynk-checkbox name="a" value="1" checked></lynk-checkbox>
+          <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
-      const button = form.querySelector('l-button')!;
+      const button = form.querySelector('lynk-button')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => {
         formData = new FormData(form);
         event.preventDefault();
@@ -80,11 +80,11 @@ describe('<l-checkbox>', () => {
     it('should submit "on" when no value is provided', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <l-checkbox name="a" checked></l-checkbox>
-          <l-button type="submit">Submit</l-button>
+          <lynk-checkbox name="a" checked></lynk-checkbox>
+          <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
-      const button = form.querySelector('l-button')!;
+      const button = form.querySelector('lynk-button')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => {
         formData = new FormData(form);
         event.preventDefault();
@@ -102,12 +102,12 @@ describe('<l-checkbox>', () => {
     it('should show a constraint validation error when setCustomValidity() is called', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <l-checkbox name="a" value="1" checked></l-checkbox>
-          <l-button type="submit">Submit</l-button>
+          <lynk-checkbox name="a" value="1" checked></lynk-checkbox>
+          <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
-      const button = form.querySelector('l-button')!;
-      const checkbox = form.querySelector('l-checkbox')!;
+      const button = form.querySelector('lynk-button')!;
+      const checkbox = form.querySelector('lynk-checkbox')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
       // Submitting the form after setting custom validity should not trigger the handler
@@ -123,7 +123,7 @@ describe('<l-checkbox>', () => {
 
   describe('click', () => {
     it('should click the inner input', async () => {
-      const el = await fixture<SlCheckbox>(html`<l-checkbox></l-checkbox>`);
+      const el = await fixture<LynkCheckbox>(html`<lynk-checkbox></lynk-checkbox>`);
       const checkbox = el.shadowRoot!.querySelector('input')!;
       const clickSpy = sinon.spy();
 
@@ -139,7 +139,7 @@ describe('<l-checkbox>', () => {
 
   describe('focus', () => {
     it('should focus the inner input', async () => {
-      const el = await fixture<SlCheckbox>(html`<l-checkbox></l-checkbox>`);
+      const el = await fixture<LynkCheckbox>(html`<lynk-checkbox></lynk-checkbox>`);
       const checkbox = el.shadowRoot!.querySelector('input')!;
       const focusSpy = sinon.spy();
 
@@ -155,7 +155,7 @@ describe('<l-checkbox>', () => {
 
   describe('blur', () => {
     it('should blur the inner input', async () => {
-      const el = await fixture<SlCheckbox>(html`<l-checkbox></l-checkbox>`);
+      const el = await fixture<LynkCheckbox>(html`<lynk-checkbox></lynk-checkbox>`);
       const checkbox = el.shadowRoot!.querySelector('input')!;
       const blurSpy = sinon.spy();
 
@@ -174,7 +174,7 @@ describe('<l-checkbox>', () => {
 
   describe('indeterminate', () => {
     it('should render indeterminate icon until checked', async () => {
-      const el = await fixture<SlCheckbox>(html`<l-checkbox indeterminate></l-checkbox>`);
+      const el = await fixture<LynkCheckbox>(html`<lynk-checkbox indeterminate></lynk-checkbox>`);
       let indeterminateIcon = el.shadowRoot!.querySelector('[part="indeterminate-icon"]')!;
 
       expect(indeterminateIcon).not.to.be.null;

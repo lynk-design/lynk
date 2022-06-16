@@ -12,22 +12,22 @@ import { HasSlotController } from '../../internal/slot';
 import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
 import styles from './select.styles';
-import type SlDropdown from '../../components/dropdown/dropdown';
-import type SlIconButton from '../../components/icon-button/icon-button';
-import type SlMenuItem from '../../components/menu-item/menu-item';
+import type LynkDropdown from '../../components/dropdown/dropdown';
+import type LynkIconButton from '../../components/icon-button/icon-button';
+import type LynkMenuItem from '../../components/menu-item/menu-item';
 import type { MenuSelectEventDetail } from '../../components/menu/menu';
-import type SlMenu from '../../components/menu/menu';
+import type LynkMenu from '../../components/menu/menu';
 import type { TemplateResult } from 'lit';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
- * @dependency l-dropdown
- * @dependency l-icon
- * @dependency l-icon-button
- * @dependency l-menu
- * @dependency l-tag
+ * @dependency lynk-dropdown
+ * @dependency lynk-icon
+ * @dependency lynk-icon-button
+ * @dependency lynk-menu
+ * @dependency lynk-tag
  *
  * @slot - The select's options in the form of menu items.
  * @slot prefix - Used to prepend an icon or similar element to the select.
@@ -36,10 +36,10 @@ import type { TemplateResult } from 'lit';
  * @slot label - The select's label. Alternatively, you can use the label prop.
  * @slot help-text - Help text that describes how to use the select.
  *
- * @event l-clear - Emitted when the clear button is activated.
- * @event l-change - Emitted when the control's value changes.
- * @event l-focus - Emitted when the control gains focus.
- * @event l-blur - Emitted when the control loses focus.
+ * @event lynk-clear - Emitted when the clear button is activated.
+ * @event lynk-change - Emitted when the control's value changes.
+ * @event lynk-focus - Emitted when the control gains focus.
+ * @event lynk-blur - Emitted when the control loses focus.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -52,27 +52,27 @@ import type { TemplateResult } from 'lit';
  * @csspart icon - The select's icon.
  * @csspart prefix - The select's prefix.
  * @csspart suffix - The select's suffix.
- * @csspart menu - The select menu, an `<l-menu>` element.
- * @csspart tag - The multi select option, an `<l-tag>` element.
+ * @csspart menu - The select menu, an `<lynk-menu>` element.
+ * @csspart tag - The multi select option, an `<lynk-tag>` element.
  * @csspart tag__base - The tag's `base` part.
  * @csspart tag__content - The tag's `content` part.
  * @csspart tag__remove-button - The tag's `remove-button` part.
  * @csspart tags - The container in which multi select options are rendered.
  */
-@customElement('l-select')
-export default class SlSelect extends LitElement {
+@customElement('lynk-select')
+export default class LynkSelect extends LitElement {
   static styles = styles;
 
-  @query('.select') dropdown: SlDropdown;
-  @query('.select__control') control: SlDropdown;
-  @query('.select__hidden-select') input: HTMLInputElement;
-  @query('.select__menu') menu: SlMenu;
+  @query('.lynk-select') dropdown: LynkDropdown;
+  @query('.lynk-select__control') control: LynkDropdown;
+  @query('.lynk-select__hidden-select') input: HTMLInputElement;
+  @query('.lynk-select__menu') menu: LynkMenu;
 
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this);
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
-  private menuItems: SlMenuItem[] = [];
+  private menuItems: LynkMenuItem[] = [];
   private resizeObserver: ResizeObserver;
 
   @state() private hasFocus = false;
@@ -190,14 +190,14 @@ export default class SlSelect extends LitElement {
     // Don't blur if the control is open. We'll move focus back once it closes.
     if (!this.isOpen) {
       this.hasFocus = false;
-      emit(this, 'l-blur');
+      emit(this, 'lynk-blur');
     }
   }
 
   handleClearClick(event: MouseEvent) {
     event.stopPropagation();
     this.value = this.multiple ? [] : '';
-    emit(this, 'l-clear');
+    emit(this, 'lynk-clear');
     this.syncItemsFromValue();
   }
 
@@ -215,7 +215,7 @@ export default class SlSelect extends LitElement {
   handleFocus() {
     if (!this.hasFocus) {
       this.hasFocus = true;
-      emit(this, 'l-focus');
+      emit(this, 'lynk-focus');
     }
   }
 
@@ -322,13 +322,13 @@ export default class SlSelect extends LitElement {
 
   async handleMenuSlotChange() {
     // Wait for items to render before gathering labels otherwise the slot won't exist
-    this.menuItems = [...this.querySelectorAll<SlMenuItem>('l-menu-item')];
+    this.menuItems = [...this.querySelectorAll<SlMenuItem>('lynk-menu-item')];
 
     // Check for duplicate values in menu items
     const values: string[] = [];
     this.menuItems.forEach(item => {
       if (values.includes(item.value)) {
-        console.error(`Duplicate value found in <l-select> menu item: '${item.value}'`, item);
+        console.error(`Duplicate value found in <lynk-select> menu item: '${item.value}'`, item);
       }
 
       values.push(item.value);
@@ -359,7 +359,7 @@ export default class SlSelect extends LitElement {
     this.syncItemsFromValue();
     await this.updateComplete;
     this.invalid = !this.input.checkValidity();
-    emit(this, 'l-change');
+    emit(this, 'lynk-change');
   }
 
   resizeMenu() {
@@ -380,7 +380,7 @@ export default class SlSelect extends LitElement {
       this.displayLabel = checkedItems.length > 0 ? checkedItems[0].getTextLabel() : '';
       this.displayTags = checkedItems.map((item: SlMenuItem) => {
         return html`
-          <l-tag
+          <lynk-tag
             part="tag"
             exportparts="
               base:tag__base,
@@ -402,7 +402,7 @@ export default class SlSelect extends LitElement {
             }}
           >
             ${item.getTextLabel()}
-          </l-tag>
+          </lynk-tag>
         `;
       });
 
@@ -411,7 +411,7 @@ export default class SlSelect extends LitElement {
         this.displayLabel = '';
         this.displayTags = this.displayTags.slice(0, this.maxTagsVisible);
         this.displayTags.push(html`
-          <l-tag
+          <lynk-tag
             part="tag"
             exportparts="
               base:tag__base,
@@ -422,7 +422,7 @@ export default class SlSelect extends LitElement {
             size=${this.size}
           >
             +${total - this.maxTagsVisible}
-          </l-tag>
+          </lynk-tag>
         `);
       }
     } else {
@@ -475,7 +475,7 @@ export default class SlSelect extends LitElement {
         </label>
 
         <div part="form-control-input" class="form-control-input">
-          <l-dropdown
+          <lynk-dropdown
             part="base"
             .hoist=${this.hoist}
             .placement=${this.placement}
@@ -483,31 +483,31 @@ export default class SlSelect extends LitElement {
             .containingElement=${this as HTMLElement}
             ?disabled=${this.disabled}
             class=${classMap({
-              select: true,
-              'select--open': this.isOpen,
-              'select--empty': !this.value,
-              'select--focused': this.hasFocus,
-              'select--clearable': this.clearable,
-              'select--disabled': this.disabled,
-              'select--multiple': this.multiple,
-              'select--standard': !this.filled,
-              'select--filled': this.filled,
-              'select--has-tags': this.multiple && this.displayTags.length > 0,
-              'select--placeholder-visible': this.displayLabel === '',
-              'select--small': this.size === 'small',
-              'select--medium': this.size === 'medium',
-              'select--large': this.size === 'large',
-              'select--pill': this.pill,
-              'select--invalid': this.invalid
+              'lynk-select': true,
+              'lynk-select--open': this.isOpen,
+              'lynk-select--empty': !this.value,
+              'lynk-select--focused': this.hasFocus,
+              'lynk-select--clearable': this.clearable,
+              'lynk-select--disabled': this.disabled,
+              'lynk-select--multiple': this.multiple,
+              'lynk-select--standard': !this.filled,
+              'lynk-select--filled': this.filled,
+              'lynk-select--has-tags': this.multiple && this.displayTags.length > 0,
+              'lynk-select--placeholder-visible': this.displayLabel === '',
+              'lynk-select--small': this.size === 'small',
+              'lynk-select--medium': this.size === 'medium',
+              'lynk-select--large': this.size === 'large',
+              'lynk-select--pill': this.pill,
+              'lynk-select--invalid': this.invalid
             })}
-            @l-show=${this.handleMenuShow}
-            @l-hide=${this.handleMenuHide}
+            @lynk-show=${this.handleMenuShow}
+            @lynk-hide=${this.handleMenuHide}
           >
             <div
               part="control"
               slot="trigger"
               id="input"
-              class="select__control"
+              class="lynk-select__control"
               role="combobox"
               aria-describedby="help-text"
               aria-haspopup="true"
@@ -519,13 +519,13 @@ export default class SlSelect extends LitElement {
               @focus=${this.handleFocus}
               @keydown=${this.handleKeyDown}
             >
-              <span part="prefix" class="select__prefix">
+              <span part="prefix" class="lynk-select__prefix">
                 <slot name="prefix"></slot>
               </span>
 
-              <div part="display-label" class="select__label">
+              <div part="display-label" class="lynk-select__label">
                 ${this.displayTags.length > 0
-                  ? html` <span part="tags" class="select__tags"> ${this.displayTags} </span> `
+                  ? html` <span part="tags" class="lynk-select__tags"> ${this.displayTags} </span> `
                   : this.displayLabel.length > 0
                   ? this.displayLabel
                   : this.placeholder}
@@ -535,31 +535,31 @@ export default class SlSelect extends LitElement {
                 ? html`
                     <button
                       part="clear-button"
-                      class="select__clear"
+                      class="lynk-select__clear"
                       @click=${this.handleClearClick}
                       aria-label=${this.localize.term('clearEntry')}
                       tabindex="-1"
                     >
                       <slot name="clear-icon">
-                        <l-icon name="x-circle-fill" library="system"></l-icon>
+                        <lynk-icon name="x-circle-fill" library="system"></lynk-icon>
                       </slot>
                     </button>
                   `
                 : ''}
 
-              <span part="suffix" class="select__suffix">
+              <span part="suffix" class="lynk-select__suffix">
                 <slot name="suffix"></slot>
               </span>
 
-              <span part="icon" class="select__icon" aria-hidden="true">
-                <l-icon name="chevron-down" library="system"></l-icon>
+              <span part="icon" class="lynk-select__icon" aria-hidden="true">
+                <lynk-icon name="chevron-down" library="system"></lynk-icon>
               </span>
 
               <!-- The hidden input tricks the browser's built-in validation so it works as expected. We use an input
               instead of a select because, otherwise, iOS will show a list of options during validation. The focus
               handler is used to move focus to the primary control when it's marked invalid.  -->
               <input
-                class="select__hidden-select"
+                class="lynk-select__hidden-select"
                 aria-hidden="true"
                 ?required=${this.required}
                 .value=${hasSelection ? '1' : ''}
@@ -568,10 +568,10 @@ export default class SlSelect extends LitElement {
               />
             </div>
 
-            <l-menu part="menu" id="menu" class="select__menu" @l-select=${this.handleMenuSelect}>
-              <slot @slotchange=${this.handleMenuSlotChange} @l-label-change=${this.handleMenuItemLabelChange}></slot>
-            </l-menu>
-          </l-dropdown>
+            <lynk-menu part="menu" id="menu" class="lynk-select__menu" @l-select=${this.handleMenuSelect}>
+              <slot @slotchange=${this.handleMenuSlotChange} @lynk-label-change=${this.handleMenuItemLabelChange}></slot>
+            </lynk-menu>
+          </lynk-dropdown>
         </div>
 
         <div
@@ -589,6 +589,6 @@ export default class SlSelect extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-select': SlSelect;
+    'lynk-select': LynkSelect;
   }
 }

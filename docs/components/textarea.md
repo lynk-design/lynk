@@ -1,11 +1,11 @@
 # Textarea
 
-[component-header:l-textarea]
+[component-header:lynk-textarea]
 
 Textareas collect data from the user and allow multiple lines of text.
 
 ```html preview
-<l-textarea></l-textarea>
+<lynk-textarea></lynk-textarea>
 ```
 
 ```jsx react
@@ -23,7 +23,7 @@ const App = () => <SlTextarea />;
 Use the `label` attribute to give the textarea an accessible label. For labels that contain HTML, use the `label` slot instead.
 
 ```html preview
-<l-textarea label="Comments"></l-textarea>
+<lynk-textarea label="Comments"></lynk-textarea>
 ```
 
 ```jsx react
@@ -37,7 +37,7 @@ const App = () => <SlTextarea label="Comments" />;
 Add descriptive help text to a textarea with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
 ```html preview
-<l-textarea label="Feedback" help-text="Please tell us what you think."> </l-textarea>
+<lynk-textarea label="Feedback" help-text="Please tell us what you think."> </lynk-textarea>
 ```
 
 ```jsx react
@@ -51,7 +51,7 @@ const App = () => <SlTextarea label="Feedback" help-text="Please tell us what yo
 Use the `rows` attribute to change the number of text rows that get shown.
 
 ```html preview
-<l-textarea rows="2"></l-textarea>
+<lynk-textarea rows="2"></lynk-textarea>
 ```
 
 ```jsx react
@@ -65,7 +65,7 @@ const App = () => <SlTextarea rows={2} />;
 Use the `placeholder` attribute to add a placeholder.
 
 ```html preview
-<l-textarea placeholder="Type something"></l-textarea>
+<lynk-textarea placeholder="Type something"></lynk-textarea>
 ```
 
 ```jsx react
@@ -79,7 +79,7 @@ const App = () => <SlTextarea placeholder="Type something" />;
 Add the `filled` attribute to draw a filled textarea.
 
 ```html preview
-<l-textarea placeholder="Type something" filled></l-textarea>
+<lynk-textarea placeholder="Type something" filled></lynk-textarea>
 ```
 
 ```jsx react
@@ -93,7 +93,7 @@ const App = () => <SlTextarea placeholder="Type something" filled />;
 Use the `disabled` attribute to disable a textarea.
 
 ```html preview
-<l-textarea placeholder="Textarea" disabled></l-textarea>
+<lynk-textarea placeholder="Textarea" disabled></lynk-textarea>
 ```
 
 ```jsx react
@@ -107,11 +107,11 @@ const App = () => <SlTextarea placeholder="Textarea" disabled />;
 Use the `size` attribute to change a textarea's size.
 
 ```html preview
-<l-textarea placeholder="Small" size="small"></l-textarea>
+<lynk-textarea placeholder="Small" size="small"></lynk-textarea>
 <br />
-<l-textarea placeholder="Medium" size="medium"></l-textarea>
+<lynk-textarea placeholder="Medium" size="medium"></lynk-textarea>
 <br />
-<l-textarea placeholder="Large" size="large"></l-textarea>
+<lynk-textarea placeholder="Large" size="large"></lynk-textarea>
 ```
 
 ```jsx react
@@ -133,7 +133,7 @@ const App = () => (
 By default, textareas can be resized vertically by the user. To prevent resizing, set the `resize` attribute to `none`.
 
 ```html preview
-<l-textarea resize="none"></l-textarea>
+<lynk-textarea resize="none"></lynk-textarea>
 ```
 
 ```jsx react
@@ -147,7 +147,7 @@ const App = () => <SlTextarea resize="none" />;
 Textareas will automatically resize to expand to fit their content when `resize` is set to `auto`.
 
 ```html preview
-<l-textarea resize="auto"></l-textarea>
+<lynk-textarea resize="auto"></lynk-textarea>
 ```
 
 ```jsx react
@@ -156,4 +156,4 @@ import { SlTextarea } from '@shoelace-style/shoelace/dist/react';
 const App = () => <SlTextarea resize="auto" />;
 ```
 
-[component-metadata:l-textarea]
+[component-metadata:lynk-textarea]

@@ -4,43 +4,43 @@ import sinon from 'sinon';
 import type SlRadioGroup from '../../components/radio-group/radio-group';
 import type SlRadio from './radio';
 
-describe('<l-radio>', () => {
+describe('<lynk-radio>', () => {
   it('should be disabled with the disabled attribute', async () => {
-    const el = await fixture<SlRadio>(html` <l-radio disabled></l-radio> `);
+    const el = await fixture<SlRadio>(html` <lynk-radio disabled></lynk-radio> `);
     const radio = el.input;
 
     expect(radio.disabled).to.be.true;
   });
 
   it('should be valid by default', async () => {
-    const el = await fixture<SlRadio>(html` <l-radio></l-radio> `);
+    const el = await fixture<SlRadio>(html` <lynk-radio></lynk-radio> `);
 
     expect(el.invalid).to.be.false;
   });
 
-  it('should fire l-change when clicked', async () => {
-    const el = await fixture<SlRadio>(html` <l-radio></l-radio> `);
+  it('should fire lynk-change when clicked', async () => {
+    const el = await fixture<SlRadio>(html` <lynk-radio></lynk-radio> `);
     setTimeout(() => el.input.click());
-    const event = (await oneEvent(el, 'l-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should fire l-change when toggled via keyboard - space', async () => {
-    const el = await fixture<SlRadio>(html` <l-radio></l-radio> `);
+  it('should fire lynk-change when toggled via keyboard - space', async () => {
+    const el = await fixture<SlRadio>(html` <lynk-radio></lynk-radio> `);
     el.input.focus();
     setTimeout(() => sendKeys({ press: ' ' }));
-    const event = (await oneEvent(el, 'l-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should fire l-change when toggled via keyboard - arrow key', async () => {
+  it('should fire lynk-change when toggled via keyboard - arrow key', async () => {
     const radioGroup = await fixture<SlRadioGroup>(html`
-      <l-radio-group>
-        <l-radio id="radio-1"></l-radio>
-        <l-radio id="radio-2"></l-radio>
-      </l-radio-group>
+      <lynk-radio-group>
+        <lynk-radio id="radio-1"></lynk-radio>
+        <lynk-radio id="radio-2"></lynk-radio>
+      </lynk-radio-group>
     `);
     const radio1 = radioGroup.querySelector<SlRadio>('#radio-1')!;
     const radio2 = radioGroup.querySelector<SlRadio>('#radio-2')!;
@@ -53,13 +53,13 @@ describe('<l-radio>', () => {
 
   it('should not get checked when disabled', async () => {
     const radioGroup = await fixture<SlRadioGroup>(html`
-      <l-radio-group>
-        <l-radio checked></l-radio>
-        <l-radio disabled></l-radio>
-      </l-radio-group>
+      <lynk-radio-group>
+        <lynk-radio checked></lynk-radio>
+        <lynk-radio disabled></lynk-radio>
+      </lynk-radio-group>
     `);
-    const radio1 = radioGroup.querySelector<SlRadio>('l-radio[checked]')!;
-    const radio2 = radioGroup.querySelector<SlRadio>('l-radio[disabled]')!;
+    const radio1 = radioGroup.querySelector<SlRadio>('lynk-radio[checked]')!;
+    const radio2 = radioGroup.querySelector<SlRadio>('lynk-radio[disabled]')!;
 
     radio2.click();
     await Promise.all([radio1.updateComplete, radio2.updateComplete]);
@@ -72,16 +72,16 @@ describe('<l-radio>', () => {
     it('should submit the correct value when a value is provided', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <l-radio-group>
-            <l-radio id="radio-1" name="a" value="1" checked></l-radio>
-            <l-radio id="radio-2" name="a" value="2"></l-radio>
-            <l-radio id="radio-3" name="a" value="3"></l-radio>
-          </l-radio-group>
-          <l-button type="submit">Submit</l-button>
+          <lynk-radio-group>
+            <lynk-radio id="radio-1" name="a" value="1" checked></lynk-radio>
+            <lynk-radio id="radio-2" name="a" value="2"></lynk-radio>
+            <lynk-radio id="radio-3" name="a" value="3"></lynk-radio>
+          </lynk-radio-group>
+          <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
       const button = form.querySelector('l-button')!;
-      const radio = form.querySelectorAll('l-radio')[1]!;
+      const radio = form.querySelectorAll('lynk-radio')[1]!;
       const submitHandler = sinon.spy((event: SubmitEvent) => {
         formData = new FormData(form);
         event.preventDefault();
@@ -101,16 +101,16 @@ describe('<l-radio>', () => {
   it('should submit "on" when no value is provided', async () => {
     const form = await fixture<HTMLFormElement>(html`
       <form>
-        <l-radio-group>
-          <l-radio id="radio-1" name="a" checked></l-radio>
-          <l-radio id="radio-2" name="a"></l-radio>
-          <l-radio id="radio-3" name="a"></l-radio>
-        </l-radio-group>
-        <l-button type="submit">Submit</l-button>
+        <lynk-radio-group>
+          <lynk-radio id="radio-1" name="a" checked></lynk-radio>
+          <lynk-radio id="radio-2" name="a"></lynk-radio>
+          <lynk-radio id="radio-3" name="a"></lynk-radio>
+        </lynk-radio-group>
+        <lynk-button type="submit">Submit</lynk-button>
       </form>
     `);
     const button = form.querySelector('l-button')!;
-    const radio = form.querySelectorAll('l-radio')[1]!;
+    const radio = form.querySelectorAll('lynk-radio')[1]!;
     const submitHandler = sinon.spy((event: SubmitEvent) => {
       formData = new FormData(form);
       event.preventDefault();
@@ -129,15 +129,15 @@ describe('<l-radio>', () => {
   it('should show a constraint validation error when setCustomValidity() is called', async () => {
     const form = await fixture<HTMLFormElement>(html`
       <form>
-        <l-radio-group>
-          <l-radio id="radio-1" name="a" value="1" checked></l-radio>
-          <l-radio id="radio-2" name="a" value="2"></l-radio>
-        </l-radio-group>
-        <l-button type="submit">Submit</l-button>
+        <lynk-radio-group>
+          <lynk-radio id="radio-1" name="a" value="1" checked></lynk-radio>
+          <lynk-radio id="radio-2" name="a" value="2"></lynk-radio>
+        </lynk-radio-group>
+        <lynk-button type="submit">Submit</lynk-button>
       </form>
     `);
     const button = form.querySelector('l-button')!;
-    const radio = form.querySelectorAll('l-radio')[1]!;
+    const radio = form.querySelectorAll('lynk-radio')[1]!;
     const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
     // Submitting the form after setting custom validity should not trigger the handler

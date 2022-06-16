@@ -10,7 +10,7 @@ export default css`
     display: block;
   }
 
-  .tab-panel {
+  .lynk-tab-panel {
     border: solid 1px transparent;
     padding: var(--padding);
   }

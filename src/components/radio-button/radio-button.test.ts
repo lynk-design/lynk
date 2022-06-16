@@ -4,42 +4,42 @@ import sinon from 'sinon';
 import type SlRadioGroup from '../../components/radio-group/radio-group';
 import type SlRadioButton from './radio-button';
 
-describe('<l-radio-button>', () => {
+describe('<lynk-radio-button>', () => {
   it('should be disabled with the disabled attribute', async () => {
-    const el = await fixture<SlRadioButton>(html` <l-radio-button disabled></l-radio-button> `);
+    const el = await fixture<SlRadioButton>(html` <lynk-radio-button disabled></lynk-radio-button> `);
 
     expect(el.input.disabled).to.be.true;
   });
 
   it('should be valid by default', async () => {
-    const el = await fixture<SlRadioButton>(html` <l-radio-button></l-radio-button> `);
+    const el = await fixture<SlRadioButton>(html` <lynk-radio-button></lynk-radio-button> `);
 
     expect(el.invalid).to.be.false;
   });
 
-  it('should fire l-change when clicked', async () => {
-    const el = await fixture<SlRadioButton>(html` <l-radio-button></l-radio-button> `);
+  it('should fire lynk-change when clicked', async () => {
+    const el = await fixture<SlRadioButton>(html` <lynk-radio-button></lynk-radio-button> `);
     setTimeout(() => el.input.click());
-    const event = (await oneEvent(el, 'l-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should fire l-change when toggled via keyboard - space', async () => {
-    const el = await fixture<SlRadioButton>(html` <l-radio-button></l-radio-button> `);
+  it('should fire lynk-change when toggled via keyboard - space', async () => {
+    const el = await fixture<SlRadioButton>(html` <lynk-radio-button></lynk-radio-button> `);
     el.input.focus();
     setTimeout(() => sendKeys({ press: ' ' }));
-    const event = (await oneEvent(el, 'l-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should fire l-change when toggled via keyboard - arrow key', async () => {
+  it('should fire lynk-change when toggled via keyboard - arrow key', async () => {
     const radioGroup = await fixture<SlRadioGroup>(html`
-      <l-radio-group>
-        <l-radio-button id="radio-1"></l-radio-button>
-        <l-radio-button id="radio-2"></l-radio-button>
-      </l-radio-group>
+      <lynk-radio-group>
+        <lynk-radio-button id="radio-1"></lynk-radio-button>
+        <lynk-radio-button id="radio-2"></lynk-radio-button>
+      </lynk-radio-group>
     `);
     const radio1 = radioGroup.querySelector<SlRadioButton>('#radio-1')!;
     const radio2 = radioGroup.querySelector<SlRadioButton>('#radio-2')!;
@@ -52,13 +52,13 @@ describe('<l-radio-button>', () => {
 
   it('should not get checked when disabled', async () => {
     const radioGroup = await fixture<SlRadioGroup>(html`
-      <l-radio-group>
-        <l-radio-button checked></l-radio-button>
-        <l-radio-button disabled></l-radio-button>
-      </l-radio-group>
+      <lynk-radio-group>
+        <lynk-radio-button checked></lynk-radio-button>
+        <lynk-radio-button disabled></lynk-radio-button>
+      </lynk-radio-group>
     `);
-    const radio1 = radioGroup.querySelector<SlRadioButton>('l-radio-button[checked]')!;
-    const radio2 = radioGroup.querySelector<SlRadioButton>('l-radio-button[disabled]')!;
+    const radio1 = radioGroup.querySelector<SlRadioButton>('lynk-radio-button[checked]')!;
+    const radio2 = radioGroup.querySelector<SlRadioButton>('lynk-radio-button[disabled]')!;
 
     radio2.click();
     await Promise.all([radio1.updateComplete, radio2.updateComplete]);
@@ -71,16 +71,16 @@ describe('<l-radio-button>', () => {
     it('should submit the correct value', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <l-radio-group>
-            <l-radio-button id="radio-1" name="a" value="1" checked></l-radio-button>
-            <l-radio-button id="radio-2" name="a" value="2"></l-radio-button>
-            <l-radio-button id="radio-3" name="a" value="3"></l-radio-button>
-          </l-radio-group>
-          <l-button type="submit">Submit</l-button>
+          <lynk-radio-group>
+            <lynk-radio-button id="radio-1" name="a" value="1" checked></lynk-radio-button>
+            <lynk-radio-button id="radio-2" name="a" value="2"></lynk-radio-button>
+            <lynk-radio-button id="radio-3" name="a" value="3"></lynk-radio-button>
+          </lynk-radio-group>
+          <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
       const button = form.querySelector('l-button')!;
-      const radio = form.querySelectorAll('l-radio-button')[1]!;
+      const radio = form.querySelectorAll('lynk-radio-button')[1]!;
       const submitHandler = sinon.spy((event: SubmitEvent) => {
         formData = new FormData(form);
         event.preventDefault();
@@ -100,15 +100,15 @@ describe('<l-radio-button>', () => {
   it('should show a constraint validation error when setCustomValidity() is called', async () => {
     const form = await fixture<HTMLFormElement>(html`
       <form>
-        <l-radio-group>
-          <l-radio-button id="radio-1" name="a" value="1" checked></l-radio-button>
-          <l-radio-button id="radio-2" name="a" value="2"></l-radio-button>
-        </l-radio-group>
-        <l-button type="submit">Submit</l-button>
+        <lynk-radio-group>
+          <lynk-radio-button id="radio-1" name="a" value="1" checked></lynk-radio-button>
+          <lynk-radio-button id="radio-2" name="a" value="2"></lynk-radio-button>
+        </lynk-radio-group>
+        <lynk-button type="submit">Submit</lynk-button>
       </form>
     `);
     const button = form.querySelector('l-button')!;
-    const radio = form.querySelectorAll('l-radio-button')[1]!;
+    const radio = form.querySelectorAll('lynk-radio-button')[1]!;
     const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
     // Submitting the form after setting custom validity should not trigger the handler

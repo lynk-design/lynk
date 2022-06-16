@@ -3,47 +3,47 @@ import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
 import type LynkAccordion from './accordion';
 
-describe('<l-accordion>', () => {
+describe('<lynk-accordion>', () => {
   it('should be visible with the open attribute', async () => {
     const el = await fixture<LynkAccordion>(html`
-      <l-accordion open>
+      <lynk-accordion open>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat.
-      </l-accordion>
+      </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.l-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
 
     expect(body.hidden).to.be.false;
   });
 
   it('should not be visible without the open attribute', async () => {
     const el = await fixture<LynkAccordion>(html`
-      <l-accordion>
+      <lynk-accordion>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat.
-      </l-accordion>
+      </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.l-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
 
     expect(body.hidden).to.be.true;
   });
 
-  it('should emit le-show and le-after-show when calling show()', async () => {
+  it('should emit lynk-show and lynk-after-show when calling show()', async () => {
     const el = await fixture<LynkAccordion>(html`
-      <l-accordion>
+      <lynk-accordion>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat.
-      </l-accordion>
+      </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.l-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('le-show', showHandler);
-    el.addEventListener('le-after-show', afterShowHandler);
+    el.addEventListener('lynk-show', showHandler);
+    el.addEventListener('lynk-after-show', afterShowHandler);
     el.show();
 
     await waitUntil(() => showHandler.calledOnce);
@@ -54,20 +54,20 @@ describe('<l-accordion>', () => {
     expect(body.hidden).to.be.false;
   });
 
-  it('should emit le-hide and le-after-hide when calling hide()', async () => {
+  it('should emit lynk-hide and lynk-after-hide when calling hide()', async () => {
     const el = await fixture<LynkAccordion>(html`
-      <l-accordion open>
+      <lynk-accordion open>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat.
-      </l-accordion>
+      </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.l-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('le-hide', hideHandler);
-    el.addEventListener('le-after-hide', afterHideHandler);
+    el.addEventListener('lynk-hide', hideHandler);
+    el.addEventListener('lynk-after-hide', afterHideHandler);
     el.hide();
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -78,20 +78,20 @@ describe('<l-accordion>', () => {
     expect(body.hidden).to.be.true;
   });
 
-  it('should emit le-show and le-after-show when setting open = true', async () => {
+  it('should emit lynk-show and lynk-after-show when setting open = true', async () => {
     const el = await fixture<LynkAccordion>(html`
-      <l-accordion>
+      <lynk-accordion>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat.
-      </l-accordion>
+      </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.l-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('le-show', showHandler);
-    el.addEventListener('le-after-show', afterShowHandler);
+    el.addEventListener('lynk-show', showHandler);
+    el.addEventListener('lynk-after-show', afterShowHandler);
     el.open = true;
 
     await waitUntil(() => showHandler.calledOnce);
@@ -102,20 +102,20 @@ describe('<l-accordion>', () => {
     expect(body.hidden).to.be.false;
   });
 
-  it('should emit le-hide and le-after-hide when setting open = false', async () => {
+  it('should emit lynk-hide and lynk-after-hide when setting open = false', async () => {
     const el = await fixture<LynkAccordion>(html`
-      <l-accordion open>
+      <lynk-accordion open>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat.
-      </l-accordion>
+      </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.l-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('le-hide', hideHandler);
-    el.addEventListener('le-after-hide', afterHideHandler);
+    el.addEventListener('lynk-hide', hideHandler);
+    el.addEventListener('lynk-after-hide', afterHideHandler);
     el.open = false;
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -129,18 +129,18 @@ describe('<l-accordion>', () => {
   it('should be the correct size after opening more than one instance', async () => {
     const el = await fixture<LynkAccordion>(html`
       <div>
-        <l-accordion>
+        <lynk-accordion>
           <div style="height: 200px;"></div>
-        </l-accordion>
-        <l-accordion>
+        </lynk-accordion>
+        <lynk-accordion>
           <div style="height: 400px;"></div>
-        </l-accordion>
+        </lynk-accordion>
       </div>
     `);
-    const first = el.querySelectorAll('l-accordion')[0];
-    const second = el.querySelectorAll('l-accordion')[1];
-    const firstBody = first.shadowRoot!.querySelector('.l-accordion__body')!;
-    const secondBody = second.shadowRoot!.querySelector('.l-accordion__body')!;
+    const first = el.querySelectorAll('lynk-accordion')[0];
+    const second = el.querySelectorAll('lynk-accordion')[1];
+    const firstBody = first.shadowRoot!.querySelector('.lynk-accordion__body')!;
+    const secondBody = second.shadowRoot!.querySelector('.lynk-accordion__body')!;
 
     await first.show();
     await second.show();

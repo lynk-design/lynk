@@ -8,7 +8,7 @@ const locks = new Set();
 //
 export function lockBodyScrolling(lockingEl: HTMLElement) {
   locks.add(lockingEl);
-  document.body.classList.add('l-scroll-lock');
+  document.body.classList.add('lynk-scroll-lock');
 }
 
 //
@@ -18,7 +18,7 @@ export function unlockBodyScrolling(lockingEl: HTMLElement) {
   locks.delete(lockingEl);
 
   if (locks.size === 0) {
-    document.body.classList.remove('l-scroll-lock');
+    document.body.classList.remove('lynk-scroll-lock');
   }
 }
 

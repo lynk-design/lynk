@@ -15,22 +15,22 @@ import { LocalizeController } from '../../utilities/localize';
 import styles from './drawer.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
- * @dependency l-icon-button
+ * @dependency lynk-icon-button
  *
  * @slot - The drawer's content.
  * @slot label - The drawer's label. Alternatively, you can use the label prop.
  * @slot footer - The drawer's footer, usually one or more buttons representing various options.
  *
- * @event l-show - Emitted when the drawer opens.
- * @event l-after-show - Emitted after the drawer opens and all animations are complete.
- * @event l-hide - Emitted when the drawer closes.
- * @event l-after-hide - Emitted after the drawer closes and all animations are complete.
- * @event l-initial-focus - Emitted when the drawer opens and is ready to receive focus. Calling
+ * @event lynk-show - Emitted when the drawer opens.
+ * @event lynk-after-show - Emitted after the drawer opens and all animations are complete.
+ * @event lynk-hide - Emitted when the drawer closes.
+ * @event lynk-after-hide - Emitted after the drawer closes and all animations are complete.
+ * @event lynk-initial-focus - Emitted when the drawer opens and is ready to receive focus. Calling
  *   `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
- * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} l-request-close - Emitted when the user attempts to
+ * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} lynk-request-close - Emitted when the user attempts to
  *   close the drawer by clicking the close button, clicking the overlay, or pressing escape. Calling
  *   `event.preventDefault()` will keep the drawer open. Avoid using this unless closing the drawer will result in
  *   destructive behavior such as data loss.
@@ -63,13 +63,13 @@ import styles from './drawer.styles';
  * @animation drawer.overlay.show - The animation to use when showing the drawer's overlay.
  * @animation drawer.overlay.hide - The animation to use when hiding the drawer's overlay.
  */
-@customElement('l-drawer')
-export default class SlDrawer extends LitElement {
+@customElement('lynk-drawer')
+export default class LynkDrawer extends LitElement {
   static styles = styles;
 
-  @query('.drawer') drawer: HTMLElement;
-  @query('.drawer__panel') panel: HTMLElement;
-  @query('.drawer__overlay') overlay: HTMLElement;
+  @query('.lynk-drawer') drawer: HTMLElement;
+  @query('.lynk-drawer__panel') panel: HTMLElement;
+  @query('.lynk-drawer__overlay') overlay: HTMLElement;
 
   private readonly hasSlotController = new HasSlotController(this, 'footer');
   private readonly localize = new LocalizeController(this);
@@ -126,7 +126,7 @@ export default class SlDrawer extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'l-after-show');
+    return waitForEvent(this, 'lynk-after-show');
   }
 
   /** Hides the drawer */
@@ -136,11 +136,11 @@ export default class SlDrawer extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'l-after-hide');
+    return waitForEvent(this, 'lynk-after-hide');
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
-    const slRequestClose = emit(this, 'l-request-close', {
+    const slRequestClose = emit(this, 'lynk-request-close', {
       cancelable: true,
       detail: { source }
     });
@@ -165,7 +165,7 @@ export default class SlDrawer extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'l-show');
+      emit(this, 'lynk-show');
       this.originalTrigger = document.activeElement as HTMLElement;
 
       // Lock body scrolling only if the drawer isn't contained
@@ -190,7 +190,7 @@ export default class SlDrawer extends LitElement {
 
       // Set initial focus
       requestAnimationFrame(() => {
-        const slInitialFocus = emit(this, 'l-initial-focus', { cancelable: true });
+        const slInitialFocus = emit(this, 'lynk-initial-focus', { cancelable: true });
 
         if (!slInitialFocus.defaultPrevented) {
           // Set focus to the autofocus target and restore the attribute
@@ -214,10 +214,10 @@ export default class SlDrawer extends LitElement {
         animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
       ]);
 
-      emit(this, 'l-after-show');
+      emit(this, 'lynk-after-show');
     } else {
       // Hide
-      emit(this, 'l-hide');
+      emit(this, 'lynk-hide');
       this.modal.deactivate();
       unlockBodyScrolling(this);
 
@@ -237,7 +237,7 @@ export default class SlDrawer extends LitElement {
         setTimeout(() => trigger.focus());
       }
 
-      emit(this, 'l-after-hide');
+      emit(this, 'lynk-after-hide');
     }
   }
 
@@ -247,23 +247,23 @@ export default class SlDrawer extends LitElement {
       <div
         part="base"
         class=${classMap({
-          drawer: true,
-          'drawer--open': this.open,
-          'drawer--top': this.placement === 'top',
-          'drawer--end': this.placement === 'end',
-          'drawer--bottom': this.placement === 'bottom',
-          'drawer--start': this.placement === 'start',
-          'drawer--contained': this.contained,
-          'drawer--fixed': !this.contained,
-          'drawer--has-footer': this.hasSlotController.test('footer')
+          'lynk-drawer': true,
+          'lynk-drawer--open': this.open,
+          'lynk-drawer--top': this.placement === 'top',
+          'lynk-drawer--end': this.placement === 'end',
+          'lynk-drawer--bottom': this.placement === 'bottom',
+          'lynk-drawer--start': this.placement === 'start',
+          'lynk-drawer--contained': this.contained,
+          'lynk-drawer--fixed': !this.contained,
+          'lynk-drawer--has-footer': this.hasSlotController.test('footer')
         })}
         @keydown=${this.handleKeyDown}
       >
-        <div part="overlay" class="drawer__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
+        <div part="overlay" class="lynk-drawer__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
 
         <div
           part="panel"
-          class="drawer__panel"
+          class="lynk-drawer__panel"
           role="dialog"
           aria-modal="true"
           aria-hidden=${this.open ? 'false' : 'true'}
@@ -273,29 +273,29 @@ export default class SlDrawer extends LitElement {
         >
           ${!this.noHeader
             ? html`
-                <header part="header" class="drawer__header">
-                  <h2 part="title" class="drawer__title" id="title">
+                <header part="header" class="lynk-drawer__header">
+                  <h2 part="title" class="lynk-drawer__title" id="title">
                     <!-- If there's no label, use an invisible character to prevent the header from collapsing -->
                     <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
                   </h2>
-                  <l-icon-button
+                  <lynk-icon-button
                     part="close-button"
                     exportparts="base:close-button__base"
-                    class="drawer__close"
+                    class="lynk-drawer__close"
                     name="x"
                     label=${this.localize.term('close')}
                     library="system"
                     @click=${() => this.requestClose('close-button')}
-                  ></l-icon-button>
+                  ></lynk-icon-button>
                 </header>
               `
             : ''}
 
-          <div part="body" class="drawer__body">
+          <div part="body" class="lynk-drawer__body">
             <slot></slot>
           </div>
 
-          <footer part="footer" class="drawer__footer">
+          <footer part="footer" class="lynk-drawer__footer">
             <slot name="footer"></slot>
           </footer>
         </div>
@@ -392,6 +392,6 @@ setDefaultAnimation('drawer.overlay.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-drawer': SlDrawer;
+    'lynk-drawer': LynkDrawer;
   }
 }

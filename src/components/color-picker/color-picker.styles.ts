@@ -16,37 +16,37 @@ export default css`
     display: inline-block;
   }
 
-  .color-picker {
+  .lynk-color-picker {
     width: var(--grid-width);
-    font-family: var(--l-font-sans);
-    font-size: var(--l-font-size-medium);
-    font-weight: var(--l-font-weight-normal);
+    font-family: var(--lynk-font-sans);
+    font-size: var(--lynk-font-size-medium);
+    font-weight: var(--lynk-font-weight-normal);
     color: var(--color);
-    background-color: var(--l-panel-background-color);
-    border-radius: var(--l-border-radius-medium);
+    background-color: var(--lynk-panel-background-color);
+    border-radius: var(--lynk-border-radius-medium);
     user-select: none;
   }
 
-  .color-picker--inline {
-    border: solid var(--l-panel-border-width) var(--l-panel-border-color);
+  .lynk-color-picker--inline {
+    border: solid var(--lynk-panel-border-width) var(--lynk-panel-border-color);
   }
 
-  .color-picker--inline${focusVisibleSelector} {
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-color-picker--inline${focusVisibleSelector} {
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
-  .color-picker__grid {
+  .lynk-color-picker__grid {
     position: relative;
     height: var(--grid-height);
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
       linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
-    border-top-left-radius: var(--l-border-radius-medium);
-    border-top-right-radius: var(--l-border-radius-medium);
+    border-top-left-radius: var(--lynk-border-radius-medium);
+    border-top-right-radius: var(--lynk-border-radius-medium);
     cursor: crosshair;
   }
 
-  .color-picker__grid-handle {
+  .lynk-color-picker__grid-handle {
     position: absolute;
     width: var(--grid-handle-size);
     height: var(--grid-handle-size);
@@ -55,40 +55,40 @@ export default css`
     border: solid 2px white;
     margin-top: calc(var(--grid-handle-size) / -2);
     margin-left: calc(var(--grid-handle-size) / -2);
-    transition: var(--l-transition-fast) transform;
+    transition: var(--lynk-transition-fast) transform;
   }
 
-  .color-picker__grid-handle--dragging {
+  .lynk-color-picker__grid-handle--dragging {
     cursor: none;
     transform: scale(1.5);
   }
 
-  .color-picker__grid-handle${focusVisibleSelector} {
-    outline: var(--l-focus-ring);
+  .lynk-color-picker__grid-handle${focusVisibleSelector} {
+    outline: var(--lynk-focus-ring);
   }
 
-  .color-picker__controls {
-    padding: var(--l-spacing-small);
+  .lynk-color-picker__controls {
+    padding: var(--lynk-spacing-small);
     display: flex;
     align-items: center;
   }
 
-  .color-picker__sliders {
+  .lynk-color-picker__sliders {
     flex: 1 1 auto;
   }
 
-  .color-picker__slider {
+  .lynk-color-picker__slider {
     position: relative;
     height: var(--slider-height);
-    border-radius: var(--l-border-radius-pill);
+    border-radius: var(--lynk-border-radius-pill);
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
   }
 
-  .color-picker__slider:not(:last-of-type) {
-    margin-bottom: var(--l-spacing-small);
+  .lynk-color-picker__slider:not(:last-of-type) {
+    margin-bottom: var(--lynk-spacing-small);
   }
 
-  .color-picker__slider-handle {
+  .lynk-color-picker__slider-handle {
     position: absolute;
     top: calc(50% - var(--slider-handle-size) / 2);
     width: var(--slider-handle-size);
@@ -99,11 +99,11 @@ export default css`
     margin-left: calc(var(--slider-handle-size) / -2);
   }
 
-  .color-picker__slider-handle${focusVisibleSelector} {
-    outline: var(--l-focus-ring);
+  .lynk-color-picker__slider-handle${focusVisibleSelector} {
+    outline: var(--lynk-focus-ring);
   }
 
-  .color-picker__hue {
+  .lynk-color-picker__hue {
     background-image: linear-gradient(
       to right,
       rgb(255, 0, 0) 0%,
@@ -116,7 +116,7 @@ export default css`
     );
   }
 
-  .color-picker__alpha .color-picker__alpha-gradient {
+  .lynk-color-picker__alpha .lynk-color-picker__alpha-gradient {
     position: absolute;
     top: 0;
     left: 0;
@@ -125,7 +125,7 @@ export default css`
     border-radius: inherit;
   }
 
-  .color-picker__preview {
+  .lynk-color-picker__preview {
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
@@ -134,13 +134,13 @@ export default css`
     width: 2.25rem;
     height: 2.25rem;
     border: none;
-    border-radius: var(--l-border-radius-circle);
+    border-radius: var(--lynk-border-radius-circle);
     background: none;
-    margin-left: var(--l-spacing-small);
+    margin-left: var(--lynk-spacing-small);
     cursor: copy;
   }
 
-  .color-picker__preview:before {
+  .lynk-color-picker__preview:before {
     content: '';
     position: absolute;
     top: 0;
@@ -154,12 +154,12 @@ export default css`
     background-color: var(--preview-color);
   }
 
-  .color-picker__preview${focusVisibleSelector} {
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-color-picker__preview${focusVisibleSelector} {
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
-  .color-picker__preview-color {
+  .lynk-color-picker__preview-color {
     position: absolute;
     top: 0;
     left: 0;
@@ -168,13 +168,13 @@ export default css`
     border: solid 1px rgba(0, 0, 0, 0.125);
   }
 
-  .color-picker__preview-color--copied {
+  .lynk-color-picker__preview-color--copied {
     animation: pulse 0.75s;
   }
 
   @keyframes pulse {
     0% {
-      box-shadow: 0 0 0 0 var(--l-color-primary-500);
+      box-shadow: 0 0 0 0 var(--lynk-color-primary-500);
     }
     70% {
       box-shadow: 0 0 0 0.5rem transparent;
@@ -184,43 +184,43 @@ export default css`
     }
   }
 
-  .color-picker__user-input {
+  .lynk-color-picker__user-input {
     display: flex;
-    padding: 0 var(--l-spacing-small) var(--l-spacing-small) var(--l-spacing-small);
+    padding: 0 var(--lynk-spacing-small) var(--lynk-spacing-small) var(--lynk-spacing-small);
   }
 
-  .color-picker__user-input l-input {
+  .lynk-color-picker__user-input l-input {
     min-width: 0; /* fix input width in Safari */
     flex: 1 1 auto;
   }
 
-  .color-picker__user-input l-button-group {
-    margin-left: var(--l-spacing-small);
+  .lynk-color-picker__user-input l-button-group {
+    margin-left: var(--lynk-spacing-small);
   }
 
-  .color-picker__user-input l-button {
+  .lynk-color-picker__user-input l-button {
     min-width: 3.25rem;
     max-width: 3.25rem;
     font-size: 1rem;
   }
 
-  .color-picker__swatches {
+  .lynk-color-picker__swatches {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-gap: 0.5rem;
     justify-items: center;
-    border-top: solid 1px var(--l-color-neutral-200);
-    padding: var(--l-spacing-small);
+    border-top: solid 1px var(--lynk-color-neutral-200);
+    padding: var(--lynk-spacing-small);
   }
 
-  .color-picker__swatch {
+  .lynk-color-picker__swatch {
     position: relative;
     width: var(--swatch-size);
     height: var(--swatch-size);
-    border-radius: var(--l-border-radius-small);
+    border-radius: var(--lynk-border-radius-small);
   }
 
-  .color-picker__swatch .color-picker__swatch-color {
+  .lynk-color-picker__swatch .lynk-color-picker__swatch-color {
     position: absolute;
     top: 0;
     left: 0;
@@ -231,32 +231,32 @@ export default css`
     cursor: pointer;
   }
 
-  .color-picker__swatch${focusVisibleSelector} {
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-color-picker__swatch${focusVisibleSelector} {
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
-  .color-picker__transparent-bg {
-    background-image: linear-gradient(45deg, var(--l-color-neutral-300) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, var(--l-color-neutral-300) 75%),
-      linear-gradient(45deg, transparent 75%, var(--l-color-neutral-300) 75%),
-      linear-gradient(45deg, var(--l-color-neutral-300) 25%, transparent 25%);
+  .lynk-color-picker__transparent-bg {
+    background-image: linear-gradient(45deg, var(--lynk-color-neutral-300) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--lynk-color-neutral-300) 75%),
+      linear-gradient(45deg, transparent 75%, var(--lynk-color-neutral-300) 75%),
+      linear-gradient(45deg, var(--lynk-color-neutral-300) 25%, transparent 25%);
     background-size: 10px 10px;
     background-position: 0 0, 0 0, -5px -5px, 5px 5px;
   }
 
-  .color-picker--disabled {
+  .lynk-color-picker--disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  .color-picker--disabled .color-picker__grid,
-  .color-picker--disabled .color-picker__grid-handle,
-  .color-picker--disabled .color-picker__slider,
-  .color-picker--disabled .color-picker__slider-handle,
-  .color-picker--disabled .color-picker__preview,
-  .color-picker--disabled .color-picker__swatch,
-  .color-picker--disabled .color-picker__swatch-color {
+  .lynk-color-picker--disabled .lynk-color-picker__grid,
+  .lynk-color-picker--disabled .lynk-color-picker__grid-handle,
+  .lynk-color-picker--disabled .lynk-color-picker__slider,
+  .lynk-color-picker--disabled .lynk-color-picker__slider-handle,
+  .lynk-color-picker--disabled .lynk-color-picker__preview,
+  .lynk-color-picker--disabled .lynk-color-picker__swatch,
+  .lynk-color-picker--disabled .lynk-color-picker__swatch-color {
     pointer-events: none;
   }
 
@@ -266,9 +266,9 @@ export default css`
 
   .color-dropdown::part(panel) {
     max-height: none;
-    background-color: var(--l-panel-background-color);
-    border: solid var(--l-panel-border-width) var(--l-panel-border-color);
-    border-radius: var(--l-border-radius-medium);
+    background-color: var(--lynk-panel-background-color);
+    border: solid var(--lynk-panel-border-width) var(--lynk-panel-border-color);
+    border-radius: var(--lynk-border-radius-medium);
     overflow: visible;
   }
 
@@ -281,21 +281,21 @@ export default css`
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--small {
-    width: var(--l-input-height-small);
-    height: var(--l-input-height-small);
-    border-radius: var(--l-border-radius-circle);
+    width: var(--lynk-input-height-small);
+    height: var(--lynk-input-height-small);
+    border-radius: var(--lynk-border-radius-circle);
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--medium {
-    width: var(--l-input-height-medium);
-    height: var(--l-input-height-medium);
-    border-radius: var(--l-border-radius-circle);
+    width: var(--lynk-input-height-medium);
+    height: var(--lynk-input-height-medium);
+    border-radius: var(--lynk-border-radius-circle);
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--large {
-    width: var(--l-input-height-large);
-    height: var(--l-input-height-large);
-    border-radius: var(--l-border-radius-circle);
+    width: var(--lynk-input-height-large);
+    height: var(--lynk-input-height-large);
+    border-radius: var(--lynk-border-radius-circle);
   }
 
   .color-dropdown__trigger:before {
@@ -307,7 +307,7 @@ export default css`
     height: 100%;
     border-radius: inherit;
     background-color: currentColor;
-    box-shadow: inset 0 0 0 2px var(--l-input-border-color), inset 0 0 0 4px var(--l-color-neutral-0);
+    box-shadow: inset 0 0 0 2px var(--lynk-input-border-color), inset 0 0 0 4px var(--lynk-color-neutral-0);
   }
 
   .color-dropdown__trigger${focusVisibleSelector} {
@@ -315,8 +315,8 @@ export default css`
   }
 
   .color-dropdown__trigger${focusVisibleSelector}:not(.color-dropdown__trigger--disabled) {
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
   .color-dropdown__trigger.color-dropdown__trigger--disabled {

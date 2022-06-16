@@ -100,7 +100,7 @@ Here's an example that loads only the button component. Again, if you're not usi
 <script type="module" data-shoelace="/path/to/shoelace/dist">
   import '@shoelace-style/shoelace/dist/components/button/button.js';
 
-  // <l-button> is ready to use!
+  // <lynk-button> is ready to use!
 </script>
 ```
 
@@ -138,7 +138,7 @@ import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.j
 // Set the base path to the folder you copied Shoelace's assets to
 setBasePath('/path/to/shoelace/dist');
 
-// <l-button>, <l-icon>, <l-input>, and <l-rating> are ready to use!
+// <lynk-button>, <lynk-icon>, <lynk-input>, and <lynk-rating> are ready to use!
 ```
 
 !> Component modules include side effects for registration purposes. Because of this, importing directly from `@shoelace-style/shoelace` may result in a larger bundle size than necessary. For optimal tree shaking, always cherry pick, i.e. import components and utilities from their respective files, as shown above.

@@ -2,15 +2,15 @@
 
 # Accordion
 
-[component-header:l-accordion]
+[component-header:lynk-accordion]
 
 The Accordion single shows a brief summary and expands on click to show additional content.
 
 ```html preview
-<l-accordion summary="Toggle Me">
+<lynk-accordion summary="Toggle Me">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
   aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-</l-accordion>
+</lynk-accordion>
 ```
 
 ## Examples
@@ -20,48 +20,48 @@ The Accordion single shows a brief summary and expands on click to show addition
 Use the `disable` attribute to prevent the Accordion from expanding.
 
 ```html preview
-<l-accordion summary="Disabled" disabled>
+<lynk-accordion summary="Disabled" disabled>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
   aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-</l-accordion>
+</lynk-accordion>
 ```
 
 ### Grouping Accordions
 
-Accordions are designed to function independently, but you can group multiple Accordion components where only one is shown at a time by listening for the `le-show` event.
+Accordions are designed to function independently, but you can group multiple Accordion components where only one is shown at a time by listening for the `lynk-show` event.
 
 ```html preview
 <div class="accordion-group-example">
-  <l-accordion summary="First" open>
+  <lynk-accordion summary="First" open>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </l-accordion>
+  </lynk-accordion>
 
-  <l-accordion summary="Second">
+  <lynk-accordion summary="Second">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </l-accordion>
+  </lynk-accordion>
 
-  <l-accordion summary="Third">
+  <lynk-accordion summary="Third">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </l-accordion>
+  </lynk-accordion>
 </div>
 
 <script>
   const container = document.querySelector('.accordion-group-example');
 
   // Close all other details when one is shown
-  container.addEventListener('le-show', event => {
-    [...container.querySelectorAll('l-accordion')].map(accordion => (accordion.open = event.target === accordion));
+  container.addEventListener('lynk-show', event => {
+    [...container.querySelectorAll('lynk-accordion')].map(accordion => (accordion.open = event.target === accordion));
   });
 </script>
 
 <style>
-  .accordion-group-example l-accordion:not(:last-of-type) {
-    margin-bottom: var(--l-spacing-2x-small);
+  .accordion-group-example lynk-accordion:not(:last-of-type) {
+    margin-bottom: var(--lynk-spacing-2x-small);
   }
 </style>
 ```
 
-[component-metadata:l-accordion]
+[component-metadata:lynk-accordion]

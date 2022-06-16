@@ -28,8 +28,8 @@ fs.mkdirSync(outdir, { recursive: true });
   try {
     execSync(`node scripts/make-metadata.js --outdir "${outdir}"`, { stdio: 'inherit' });
     execSync(`node scripts/make-search.js --outdir "${outdir}"`, { stdio: 'inherit' });
-    execSync(`node scripts/make-react.js --outdir "${outdir}"`, { stdio: 'inherit' });
-    execSync(`node scripts/make-vscode-data.js --outdir "${outdir}"`, { stdio: 'inherit' });
+    // execSync(`node scripts/make-react.js --outdir "${outdir}"`, { stdio: 'inherit' });
+    // execSync(`node scripts/make-vscode-data.js --outdir "${outdir}"`, { stdio: 'inherit' });
     execSync(`node scripts/make-web-types.js --outdir "${outdir}"`, { stdio: 'inherit' });
     execSync(`node scripts/make-themes.js --outdir "${outdir}"`, { stdio: 'inherit' });
     execSync(`node scripts/make-icons.js --outdir "${outdir}"`, { stdio: 'inherit' });
@@ -59,7 +59,7 @@ fs.mkdirSync(outdir, { recursive: true });
         // Theme stylesheets
         ...(await globby('./src/themes/**/!(*.test).ts')),
         // React wrappers
-        ...(await globby('./src/react/**/*.ts'))
+        // ...(await globby('./src/react/**/*.ts'))
       ],
       outdir,
       chunkNames: 'chunks/[name].[hash]',

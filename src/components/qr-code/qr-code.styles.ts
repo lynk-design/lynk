@@ -8,7 +8,7 @@ export default css`
     display: inline-block;
   }
 
-  .qr-code {
+  .lynk-qr-code {
     position: relative;
   }
 

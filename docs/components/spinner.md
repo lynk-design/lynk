@@ -1,11 +1,11 @@
 # Spinner
 
-[component-header:l-spinner]
+[component-header:lynk-spinner]
 
 Spinners are used to show the progress of an indeterminate operation.
 
 ```html preview
-<l-spinner></l-spinner>
+<lynk-spinner></lynk-spinner>
 ```
 
 ## Examples
@@ -15,9 +15,9 @@ Spinners are used to show the progress of an indeterminate operation.
 Spinners are sized based on the current font size. To change their size, set the `font-size` property on the spinner itself or on a parent element as shown below.
 
 ```html preview
-<l-spinner></l-spinner>
-<l-spinner style="font-size: 2rem;"></l-spinner>
-<l-spinner style="font-size: 3rem;"></l-spinner>
+<lynk-spinner></lynk-spinner>
+<lynk-spinner style="font-size: 2rem;"></lynk-spinner>
+<lynk-spinner style="font-size: 3rem;"></lynk-spinner>
 ```
 
 ### Track Width
@@ -25,7 +25,7 @@ Spinners are sized based on the current font size. To change their size, set the
 The width of the spinner's track can be changed by setting the `--track-width` custom property.
 
 ```html preview
-<l-spinner style="font-size: 50px; --track-width: 10px;"></l-spinner>
+<lynk-spinner style="font-size: 50px; --track-width: 10px;"></lynk-spinner>
 ```
 
 ### Color
@@ -33,7 +33,7 @@ The width of the spinner's track can be changed by setting the `--track-width` c
 The spinner's colors can be changed by setting the `--indicator-color` and `--track-color` custom properties.
 
 ```html preview
-<l-spinner style="font-size: 3rem; --indicator-color: deeppink; --track-color: pink;"></l-spinner>
+<lynk-spinner style="font-size: 3rem; --indicator-color: deeppink; --track-color: pink;"></lynk-spinner>
 ```
 
-[component-metadata:l-spinner]
+[component-metadata:lynk-spinner]

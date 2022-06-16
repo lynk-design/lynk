@@ -7,28 +7,28 @@ export default css`
   :host {
     --size: 128px;
     --track-width: 4px;
-    --track-color: var(--l-color-neutral-200);
-    --indicator-color: var(--l-color-primary-600);
+    --track-color: var(--lynk-color-neutral-200);
+    --indicator-color: var(--lynk-color-primary-600);
 
     display: inline-flex;
   }
 
-  .progress-ring {
+  .lynk-progress-ring {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     position: relative;
   }
 
-  .progress-ring__image {
+  .lynk-progress-ring__image {
     width: var(--size);
     height: var(--size);
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
   }
 
-  .progress-ring__track,
-  .progress-ring__indicator {
+  .lynk-progress-ring__track,
+  .lynk-progress-ring__indicator {
     --radius: calc(var(--size) / 2 - var(--track-width) * 0.5);
     --circumference: calc(var(--radius) * 2 * 3.141592654);
 
@@ -39,11 +39,11 @@ export default css`
     cy: calc(var(--size) / 2);
   }
 
-  .progress-ring__track {
+  .lynk-progress-ring__track {
     stroke: var(--track-color);
   }
 
-  .progress-ring__indicator {
+  .lynk-progress-ring__indicator {
     stroke: var(--indicator-color);
     stroke-linecap: round;
     transition: 0.35s stroke-dashoffset;
@@ -51,7 +51,7 @@ export default css`
     stroke-dashoffset: calc(var(--circumference) - var(--percentage) * var(--circumference));
   }
 
-  .progress-ring__label {
+  .lynk-progress-ring__label {
     display: flex;
     align-items: center;
     justify-content: center;

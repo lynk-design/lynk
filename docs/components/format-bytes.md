@@ -1,21 +1,21 @@
 # Format Bytes
 
-[component-header:l-format-bytes]
+[component-header:lynk-format-bytes]
 
 Formats a number as a human readable bytes value.
 
 ```html preview
 <div class="format-bytes-overview">
-  The file is <l-format-bytes value="1000"></l-format-bytes> in size. <br /><br />
-  <l-input type="number" value="1000" label="Number to Format" style="max-width: 180px;"></l-input>
+  The file is <lynk-format-bytes value="1000"></lynk-format-bytes> in size. <br /><br />
+  <lynk-input type="number" value="1000" label="Number to Format" style="max-width: 180px;"></lynk-input>
 </div>
 
 <script>
   const container = document.querySelector('.format-bytes-overview');
-  const formatter = container.querySelector('l-format-bytes');
-  const input = container.querySelector('l-input');
+  const formatter = container.querySelector('lynk-format-bytes');
+  const input = container.querySelector('lynk-input');
 
-  input.addEventListener('l-input', () => (formatter.value = input.value || 0));
+  input.addEventListener('lynk-input', () => (formatter.value = input.value || 0));
 </script>
 ```
 
@@ -50,10 +50,10 @@ const App = () => {
 Set the `value` attribute to a number to get the value in bytes.
 
 ```html preview
-<l-format-bytes value="12"></l-format-bytes><br />
-<l-format-bytes value="1200"></l-format-bytes><br />
-<l-format-bytes value="1200000"></l-format-bytes><br />
-<l-format-bytes value="1200000000"></l-format-bytes>
+<lynk-format-bytes value="12"></lynk-format-bytes><br />
+<lynk-format-bytes value="1200"></lynk-format-bytes><br />
+<lynk-format-bytes value="1200000"></lynk-format-bytes><br />
+<lynk-format-bytes value="1200000000"></lynk-format-bytes>
 ```
 
 ```jsx react
@@ -77,10 +77,10 @@ const App = () => (
 To get the value in bits, set the `unit` attribute to `bit`.
 
 ```html preview
-<l-format-bytes value="12" unit="bit"></l-format-bytes><br />
-<l-format-bytes value="1200" unit="bit"></l-format-bytes><br />
-<l-format-bytes value="1200000" unit="bit"></l-format-bytes><br />
-<l-format-bytes value="1200000000" unit="bit"></l-format-bytes>
+<lynk-format-bytes value="12" unit="bit"></lynk-format-bytes><br />
+<lynk-format-bytes value="1200" unit="bit"></lynk-format-bytes><br />
+<lynk-format-bytes value="1200000" unit="bit"></lynk-format-bytes><br />
+<lynk-format-bytes value="1200000000" unit="bit"></lynk-format-bytes>
 ```
 
 ```jsx react
@@ -104,10 +104,10 @@ const App = () => (
 Use the `lang` attribute to set the number formatting locale.
 
 ```html preview
-<l-format-bytes value="12" lang="de"></l-format-bytes><br />
-<l-format-bytes value="1200" lang="de"></l-format-bytes><br />
-<l-format-bytes value="1200000" lang="de"></l-format-bytes><br />
-<l-format-bytes value="1200000000" lang="de"></l-format-bytes>
+<lynk-format-bytes value="12" lang="de"></lynk-format-bytes><br />
+<lynk-format-bytes value="1200" lang="de"></lynk-format-bytes><br />
+<lynk-format-bytes value="1200000" lang="de"></lynk-format-bytes><br />
+<lynk-format-bytes value="1200000000" lang="de"></lynk-format-bytes>
 ```
 
 ```jsx react
@@ -126,4 +126,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-format-bytes]
+[component-metadata:lynk-format-bytes]

@@ -1,6 +1,6 @@
 # Dropdown
 
-[component-header:l-dropdown]
+[component-header:lynk-dropdown]
 
 Dropdowns expose additional content that "drops down" in a panel.
 
@@ -9,26 +9,26 @@ Dropdowns consist of a trigger and a panel. By default, activating the trigger w
 Dropdowns are designed to work well with [menus](/components/menu) to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. [color picker](/components/color-picker) and [select](/components/select)). The API gives you complete control over showing, hiding, and positioning the panel.
 
 ```html preview
-<l-dropdown>
-  <l-button slot="trigger" caret>Dropdown</l-button>
-  <l-menu>
-    <l-menu-item>Dropdown Item 1</l-menu-item>
-    <l-menu-item>Dropdown Item 2</l-menu-item>
-    <l-menu-item>Dropdown Item 3</l-menu-item>
-    <l-divider></l-divider>
-    <l-menu-item checked>Checked</l-menu-item>
-    <l-menu-item disabled>Disabled</l-menu-item>
-    <l-divider></l-divider>
-    <l-menu-item>
+<lynk-dropdown>
+  <lynk-button slot="trigger" caret>Dropdown</lynk-button>
+  <lynk-menu>
+    <lynk-menu-item>Dropdown Item 1</lynk-menu-item>
+    <lynk-menu-item>Dropdown Item 2</lynk-menu-item>
+    <lynk-menu-item>Dropdown Item 3</lynk-menu-item>
+    <lynk-divider></lynk-divider>
+    <lynk-menu-item checked>Checked</lynk-menu-item>
+    <lynk-menu-item disabled>Disabled</lynk-menu-item>
+    <lynk-divider></lynk-divider>
+    <lynk-menu-item>
       Prefix
-      <l-icon slot="prefix" name="gift"></l-icon>
-    </l-menu-item>
-    <l-menu-item>
+      <lynk-icon slot="prefix" name="gift"></lynk-icon>
+    </lynk-menu-item>
+    <lynk-menu-item>
       Suffix Icon
-      <l-icon slot="suffix" name="heart"></l-icon>
-    </l-menu-item>
-  </l-menu>
-</l-dropdown>
+      <lynk-icon slot="suffix" name="heart"></lynk-icon>
+    </lynk-menu-item>
+  </lynk-menu>
+</lynk-dropdown>
 ```
 
 ## Examples
@@ -39,21 +39,21 @@ When dropdowns are used with [menus](/components/menu), you can listen for the `
 
 ```html preview
 <div class="dropdown-selection">
-  <l-dropdown>
-    <l-button slot="trigger" caret>Edit</l-button>
-    <l-menu>
-      <l-menu-item value="cut">Cut</l-menu-item>
-      <l-menu-item value="copy">Copy</l-menu-item>
-      <l-menu-item value="paste">Paste</l-menu-item>
-    </l-menu>
-  </l-dropdown>
+  <lynk-dropdown>
+    <lynk-button slot="trigger" caret>Edit</lynk-button>
+    <lynk-menu>
+      <lynk-menu-item value="cut">Cut</lynk-menu-item>
+      <lynk-menu-item value="copy">Copy</lynk-menu-item>
+      <lynk-menu-item value="paste">Paste</lynk-menu-item>
+    </lynk-menu>
+  </lynk-dropdown>
 </div>
 
 <script>
   const container = document.querySelector('.dropdown-selection');
-  const dropdown = container.querySelector('l-dropdown');
+  const dropdown = container.querySelector('lynk-dropdown');
 
-  dropdown.addEventListener('le-select', event => {
+  dropdown.addEventListener('lynk-select', event => {
     const selectedItem = event.detail.item;
     console.log(selectedItem.value);
   });
@@ -64,21 +64,21 @@ Alternatively, you can listen for the `click` event on individual menu items. No
 
 ```html preview
 <div class="dropdown-selection-alt">
-  <l-dropdown>
-    <l-button slot="trigger" caret>Edit</l-button>
-    <l-menu>
-      <l-menu-item value="cut">Cut</l-menu-item>
-      <l-menu-item value="copy">Copy</l-menu-item>
-      <l-menu-item value="paste">Paste</l-menu-item>
-    </l-menu>
-  </l-dropdown>
+  <lynk-dropdown>
+    <lynk-button slot="trigger" caret>Edit</lynk-button>
+    <lynk-menu>
+      <lynk-menu-item value="cut">Cut</lynk-menu-item>
+      <lynk-menu-item value="copy">Copy</lynk-menu-item>
+      <lynk-menu-item value="paste">Paste</lynk-menu-item>
+    </lynk-menu>
+  </lynk-dropdown>
 </div>
 
 <script>
   const container = document.querySelector('.dropdown-selection-alt');
-  const cut = container.querySelector('l-menu-item[value="cut"]');
-  const copy = container.querySelector('l-menu-item[value="copy"]');
-  const paste = container.querySelector('l-menu-item[value="paste"]');
+  const cut = container.querySelector('lynk-menu-item[value="cut"]');
+  const copy = container.querySelector('lynk-menu-item[value="copy"]');
+  const paste = container.querySelector('lynk-menu-item[value="paste"]');
 
   cut.addEventListener('click', () => console.log('cut'));
   copy.addEventListener('click', () => console.log('copy'));
@@ -91,17 +91,17 @@ Alternatively, you can listen for the `click` event on individual menu items. No
 The preferred placement of the dropdown can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport.
 
 ```html preview
-<l-dropdown placement="top-start">
-  <l-button slot="trigger" caret>Edit</l-button>
-  <l-menu>
-    <l-menu-item>Cut</l-menu-item>
-    <l-menu-item>Copy</l-menu-item>
-    <l-menu-item>Paste</l-menu-item>
-    <l-divider></l-divider>
-    <l-menu-item>Find</l-menu-item>
-    <l-menu-item>Replace</l-menu-item>
-  </l-menu>
-</l-dropdown>
+<lynk-dropdown placement="top-start">
+  <lynk-button slot="trigger" caret>Edit</lynk-button>
+  <lynk-menu>
+    <lynk-menu-item>Cut</lynk-menu-item>
+    <lynk-menu-item>Copy</lynk-menu-item>
+    <lynk-menu-item>Paste</lynk-menu-item>
+    <lynk-divider></lynk-divider>
+    <lynk-menu-item>Find</lynk-menu-item>
+    <lynk-menu-item>Replace</lynk-menu-item>
+  </lynk-menu>
+</lynk-dropdown>
 ```
 
 ### Distance
@@ -109,17 +109,17 @@ The preferred placement of the dropdown can be set with the `placement` attribut
 The distance from the panel to the trigger can be customized using the `distance` attribute. This value is specified in pixels.
 
 ```html preview
-<l-dropdown distance="30">
-  <l-button slot="trigger" caret>Edit</l-button>
-  <l-menu>
-    <l-menu-item>Cut</l-menu-item>
-    <l-menu-item>Copy</l-menu-item>
-    <l-menu-item>Paste</l-menu-item>
-    <l-divider></l-divider>
-    <l-menu-item>Find</l-menu-item>
-    <l-menu-item>Replace</l-menu-item>
-  </l-menu>
-</l-dropdown>
+<lynk-dropdown distance="30">
+  <lynk-button slot="trigger" caret>Edit</lynk-button>
+  <lynk-menu>
+    <lynk-menu-item>Cut</lynk-menu-item>
+    <lynk-menu-item>Copy</lynk-menu-item>
+    <lynk-menu-item>Paste</lynk-menu-item>
+    <lynk-divider></lynk-divider>
+    <lynk-menu-item>Find</lynk-menu-item>
+    <lynk-menu-item>Replace</lynk-menu-item>
+  </lynk-menu>
+</lynk-dropdown>
 ```
 
 ### Skidding
@@ -127,17 +127,17 @@ The distance from the panel to the trigger can be customized using the `distance
 The offset of the panel along the trigger can be customized using the `skidding` attribute. This value is specified in pixels.
 
 ```html preview
-<l-dropdown skidding="30">
-  <l-button slot="trigger" caret>Edit</l-button>
-  <l-menu>
-    <l-menu-item>Cut</l-menu-item>
-    <l-menu-item>Copy</l-menu-item>
-    <l-menu-item>Paste</l-menu-item>
-    <l-divider></l-divider>
-    <l-menu-item>Find</l-menu-item>
-    <l-menu-item>Replace</l-menu-item>
-  </l-menu>
-</l-dropdown>
+<lynk-dropdown skidding="30">
+  <lynk-button slot="trigger" caret>Edit</lynk-button>
+  <lynk-menu>
+    <lynk-menu-item>Cut</lynk-menu-item>
+    <lynk-menu-item>Copy</lynk-menu-item>
+    <lynk-menu-item>Paste</lynk-menu-item>
+    <lynk-divider></lynk-divider>
+    <lynk-menu-item>Find</lynk-menu-item>
+    <lynk-menu-item>Replace</lynk-menu-item>
+  </lynk-menu>
+</lynk-dropdown>
 ```
 
 ### Hoisting
@@ -146,32 +146,32 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
 
 ```html preview
 <div class="l-dropdown-hoist">
-  <l-dropdown>
-    <l-button slot="trigger" caret>No Hoist</l-button>
-    <l-menu>
-      <l-menu-item>Item 1</l-menu-item>
-      <l-menu-item>Item 2</l-menu-item>
-      <l-menu-item>Item 3</l-menu-item>
-    </l-menu>
-  </l-dropdown>
+  <lynk-dropdown>
+    <lynk-button slot="trigger" caret>No Hoist</lynk-button>
+    <lynk-menu>
+      <lynk-menu-item>Item 1</lynk-menu-item>
+      <lynk-menu-item>Item 2</lynk-menu-item>
+      <lynk-menu-item>Item 3</lynk-menu-item>
+    </lynk-menu>
+  </lynk-dropdown>
 
-  <l-dropdown hoist>
-    <l-button slot="trigger" caret>Hoist</l-button>
-    <l-menu>
-      <l-menu-item>Item 1</l-menu-item>
-      <l-menu-item>Item 2</l-menu-item>
-      <l-menu-item>Item 3</l-menu-item>
-    </l-menu>
-  </l-dropdown>
+  <lynk-dropdown hoist>
+    <lynk-button slot="trigger" caret>Hoist</lynk-button>
+    <lynk-menu>
+      <lynk-menu-item>Item 1</lynk-menu-item>
+      <lynk-menu-item>Item 2</lynk-menu-item>
+      <lynk-menu-item>Item 3</lynk-menu-item>
+    </lynk-menu>
+  </lynk-dropdown>
 </div>
 
 <style>
   .l-dropdown-hoist {
-    border: solid 2px var(--l-panel-border-color);
-    padding: var(--l-spacing-medium);
+    border: solid 2px var(--lynk-panel-border-color);
+    padding: var(--lynk-spacing-medium);
     overflow: hidden;
   }
 </style>
 ```
 
-[component-metadata:l-dropdown]
+[component-metadata:lynk-dropdown]

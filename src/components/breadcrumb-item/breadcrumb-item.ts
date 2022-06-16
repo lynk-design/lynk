@@ -6,14 +6,14 @@ import { HasSlotController } from '../../internal/slot';
 import styles from './breadcrumb-item.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The breadcrumb item's label.
  * @slot prefix - An optional prefix, usually an icon or icon button.
  * @slot suffix - An optional suffix, usually an icon or icon button.
  * @slot separator - The separator to use for the breadcrumb item. This will only change the separator for this item. If
- * you want to change it for all items in the group, set the separator on `<l-breadcrumb>` instead.
+ * you want to change it for all items in the group, set the separator on `<lynk-breadcrumb>` instead.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart label - The breadcrumb item's label.
@@ -21,8 +21,8 @@ import styles from './breadcrumb-item.styles';
  * @csspart suffix - The container that wraps the suffix slot.
  * @csspart separator - The container that wraps the separator slot.
  */
-@customElement('l-breadcrumb-item')
-export default class SlBreadcrumbItem extends LitElement {
+@customElement('lynk-breadcrumb-item')
+export default class LynkBreadcrumbItem extends LitElement {
   static styles = styles;
 
   private readonly hasSlotController = new HasSlotController(this, 'prefix', 'suffix');
@@ -46,12 +46,12 @@ export default class SlBreadcrumbItem extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'breadcrumb-item': true,
-          'breadcrumb-item--has-prefix': this.hasSlotController.test('prefix'),
-          'breadcrumb-item--has-suffix': this.hasSlotController.test('suffix')
+          'lynk-breadcrumb-item': true,
+          'lynk-breadcrumb-item--has-prefix': this.hasSlotController.test('prefix'),
+          'lynk-breadcrumb-item--has-suffix': this.hasSlotController.test('suffix')
         })}
       >
-        <span part="prefix" class="breadcrumb-item__prefix">
+        <span part="prefix" class="lynk-breadcrumb-item__prefix">
           <slot name="prefix"></slot>
         </span>
 
@@ -59,7 +59,7 @@ export default class SlBreadcrumbItem extends LitElement {
           ? html`
               <a
                 part="label"
-                class="breadcrumb-item__label breadcrumb-item__label--link"
+                class="lynk-breadcrumb-item__label lynk-breadcrumb-item__label--link"
                 href="${this.href!}"
                 target="${ifDefined(this.target ? this.target : undefined)}"
                 rel=${ifDefined(this.target ? this.rel : undefined)}
@@ -68,16 +68,16 @@ export default class SlBreadcrumbItem extends LitElement {
               </a>
             `
           : html`
-              <button part="label" type="button" class="breadcrumb-item__label breadcrumb-item__label--button">
+              <button part="label" type="button" class="lynk-breadcrumb-item__label lynk-breadcrumb-item__label--button">
                 <slot></slot>
               </button>
             `}
 
-        <span part="suffix" class="breadcrumb-item__suffix">
+        <span part="suffix" class="lynk-breadcrumb-item__suffix">
           <slot name="suffix"></slot>
         </span>
 
-        <span part="separator" class="breadcrumb-item__separator" aria-hidden="true">
+        <span part="separator" class="lynk-breadcrumb-item__separator" aria-hidden="true">
           <slot name="separator"></slot>
         </span>
       </div>
@@ -87,6 +87,6 @@ export default class SlBreadcrumbItem extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-breadcrumb-item': SlBreadcrumbItem;
+    'lynk-breadcrumb-item': LynkBreadcrumbItem;
   }
 }

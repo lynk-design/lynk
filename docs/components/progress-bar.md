@@ -1,11 +1,11 @@
 # Progress Bar
 
-[component-header:l-progress-bar]
+[component-header:lynk-progress-bar]
 
 Progress bars are used to show the status of an ongoing operation.
 
 ```html preview
-<l-progress-bar value="50"></l-progress-bar>
+<lynk-progress-bar value="50"></lynk-progress-bar>
 ```
 
 ```jsx react
@@ -21,7 +21,7 @@ const App = () => <SlProgressBar value={50} />;
 Use the `label` attribute to label the progress bar and tell assistive devices how to announce it.
 
 ```html preview
-<l-progress-bar value="50" label="Upload progress"></l-progress-bar>
+<lynk-progress-bar value="50" label="Upload progress"></lynk-progress-bar>
 ```
 
 ```jsx react
@@ -35,7 +35,7 @@ const App = () => <SlProgressBar value="50" label="Upload progress" />;
 Use the `--height` custom property to set the progress bar's height.
 
 ```html preview
-<l-progress-bar value="50" style="--height: 6px;"></l-progress-bar>
+<lynk-progress-bar value="50" style="--height: 6px;"></lynk-progress-bar>
 ```
 
 ```jsx react
@@ -49,12 +49,12 @@ const App = () => <SlProgressBar value={50} style={{ '--height': '6px' }} />;
 Use the default slot to show a value.
 
 ```html preview
-<l-progress-bar value="50" class="progress-bar-values">50%</l-progress-bar>
+<lynk-progress-bar value="50" class="progress-bar-values">50%</lynk-progress-bar>
 
 <br />
 
-<l-button circle><l-icon name="dash" label="Decrease"></l-icon></l-button>
-<l-button circle><l-icon name="plus" label="Increase"></l-icon></l-button>
+<lynk-button circle><lynk-icon name="dash" label="Decrease"></lynk-icon></lynk-button>
+<lynk-button circle><lynk-icon name="plus" label="Increase"></lynk-icon></lynk-button>
 
 <script>
   const progressBar = document.querySelector('.progress-bar-values');
@@ -112,7 +112,7 @@ const App = () => {
 The `indeterminate` attribute can be used to inform the user that the operation is pending, but its status cannot currently be determined. In this state, `value` is ignored and the label, if present, will not be shown.
 
 ```html preview
-<l-progress-bar indeterminate></l-progress-bar>
+<lynk-progress-bar indeterminate></lynk-progress-bar>
 ```
 
 ```jsx react
@@ -121,4 +121,4 @@ import { SlProgressBar } from '@shoelace-style/shoelace/dist/react';
 const App = () => <SlProgressBar indeterminate />;
 ```
 
-[component-metadata:l-progress-bar]
+[component-metadata:lynk-progress-bar]

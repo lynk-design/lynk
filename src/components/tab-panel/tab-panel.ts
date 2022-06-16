@@ -4,7 +4,7 @@ import { autoIncrement } from '../../internal/auto-increment';
 import styles from './tab-panel.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The tab panel's content.
@@ -13,12 +13,12 @@ import styles from './tab-panel.styles';
  *
  * @cssproperty --padding - The tab panel's padding.
  */
-@customElement('l-tab-panel')
-export default class SlTabPanel extends LitElement {
+@customElement('lynk-tab-panel')
+export default class LynkTabPanel extends LitElement {
   static styles = styles;
 
   private readonly attrId = autoIncrement();
-  private readonly componentId = `l-tab-panel-${this.attrId}`;
+  private readonly componentId = `lynk-tab-panel-${this.attrId}`;
 
   /** The tab panel's name. */
   @property({ reflect: true }) name = '';
@@ -35,7 +35,7 @@ export default class SlTabPanel extends LitElement {
     this.style.display = this.active ? 'block' : 'none';
 
     return html`
-      <div part="base" class="tab-panel" role="tabpanel" aria-hidden=${this.active ? 'false' : 'true'}>
+      <div part="base" class="lynk-tab-panel" role="tabpanel" aria-hidden=${this.active ? 'false' : 'true'}>
         <slot></slot>
       </div>
     `;
@@ -44,6 +44,6 @@ export default class SlTabPanel extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-tab-panel': SlTabPanel;
+    'lynk-tab-panel': LynkTabPanel;
   }
 }

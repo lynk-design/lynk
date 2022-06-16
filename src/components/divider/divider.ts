@@ -11,7 +11,7 @@ import styles from './divider.styles';
  * @cssproperty --width - The width of the divider.
  * @cssproperty --spacing - The spacing of the divider.
  */
-@customElement('l-divider')
+@customElement('lynk-divider')
 export default class LynkDivider extends LitElement {
   static styles = styles;
 
@@ -30,6 +30,6 @@ export default class LynkDivider extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-divider': LynkDivider;
+    'lynk-divider': LynkDivider;
   }
 }

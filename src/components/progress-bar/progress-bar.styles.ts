@@ -6,27 +6,27 @@ export default css`
 
   :host {
     --height: 1rem;
-    --track-color: var(--l-color-neutral-200);
-    --indicator-color: var(--l-color-primary-600);
-    --label-color: var(--l-color-neutral-0);
+    --track-color: var(--lynk-color-neutral-200);
+    --indicator-color: var(--lynk-color-primary-600);
+    --label-color: var(--lynk-color-neutral-0);
 
     display: block;
   }
 
-  .progress-bar {
+  .lynk-progress-bar {
     position: relative;
     background-color: var(--track-color);
     height: var(--height);
-    border-radius: var(--l-border-radius-pill);
-    box-shadow: inset var(--l-shadow-small);
+    border-radius: var(--lynk-border-radius-pill);
+    box-shadow: inset var(--lynk-shadow-small);
     overflow: hidden;
   }
 
-  .progress-bar__indicator {
+  .lynk-progress-bar__indicator {
     height: 100%;
-    font-family: var(--l-font-sans);
+    font-family: var(--lynk-font-sans);
     font-size: 12px;
-    font-weight: var(--l-font-weight-normal);
+    font-weight: var(--lynk-font-weight-normal);
     background-color: var(--indicator-color);
     color: var(--label-color);
     text-align: center;
@@ -38,7 +38,7 @@ export default css`
   }
 
   /* Indeterminate */
-  .progress-bar--indeterminate .progress-bar__indicator {
+  .lynk-progress-bar--indeterminate .lynk-progress-bar__indicator {
     position: absolute;
     animation: indeterminate 2.5s infinite cubic-bezier(0.37, 0, 0.63, 1);
   }

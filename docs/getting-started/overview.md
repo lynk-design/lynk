@@ -2,7 +2,7 @@
 <div class="splash-start">
 <img class="splash-logo" src="/assets/images/logo.svg" alt="Lynk">
 
-# <l-visually-hidden>Lynk:</l-visually-hidden> A style and component library for building web applications with the Edgio Streaming design language.
+# <lynk-visually-hidden>Lynk:</lynk-visually-hidden> A style and component library for building web applications with the Edgio Streaming design language.
 
 - Works with any framework
 - Fully customizable with CSS

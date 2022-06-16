@@ -1,27 +1,27 @@
 # Menu Item
 
-[component-header:l-menu-item]
+[component-header:lynk-menu-item]
 
 Menu items provide options for the user to pick from in a menu.
 
 ```html preview
-<l-menu style="max-width: 200px;">
-  <l-menu-item>Option 1</l-menu-item>
-  <l-menu-item>Option 2</l-menu-item>
-  <l-menu-item>Option 3</l-menu-item>
-  <l-divider></l-divider>
-  <l-menu-item checked>Checked</l-menu-item>
-  <l-menu-item disabled>Disabled</l-menu-item>
-  <l-divider></l-divider>
-  <l-menu-item>
+<lynk-menu style="max-width: 200px;">
+  <lynk-menu-item>Option 1</lynk-menu-item>
+  <lynk-menu-item>Option 2</lynk-menu-item>
+  <lynk-menu-item>Option 3</lynk-menu-item>
+  <lynk-divider></lynk-divider>
+  <lynk-menu-item checked>Checked</lynk-menu-item>
+  <lynk-menu-item disabled>Disabled</lynk-menu-item>
+  <lynk-divider></lynk-divider>
+  <lynk-menu-item>
     Prefix Icon
-    <l-icon slot="prefix" name="gift"></l-icon>
-  </l-menu-item>
-  <l-menu-item>
+    <lynk-icon slot="prefix" name="gift"></lynk-icon>
+  </lynk-menu-item>
+  <lynk-menu-item>
     Suffix Icon
-    <l-icon slot="suffix" name="heart"></l-icon>
-  </l-menu-item>
-</l-menu>
+    <lynk-icon slot="suffix" name="heart"></lynk-icon>
+  </lynk-menu-item>
+</lynk-menu>
 ```
 
 ## Examples
@@ -31,11 +31,11 @@ Menu items provide options for the user to pick from in a menu.
 Use the `checked` attribute to draw menu items in a checked state.
 
 ```html preview
-<l-menu style="max-width: 200px;">
-  <l-menu-item>Option 1</l-menu-item>
-  <l-menu-item checked>Option 2</l-menu-item>
-  <l-menu-item>Option 3</l-menu-item>
-</l-menu>
+<lynk-menu style="max-width: 200px;">
+  <lynk-menu-item>Option 1</lynk-menu-item>
+  <lynk-menu-item checked>Option 2</lynk-menu-item>
+  <lynk-menu-item>Option 3</lynk-menu-item>
+</lynk-menu>
 ```
 
 ### Disabled
@@ -43,11 +43,11 @@ Use the `checked` attribute to draw menu items in a checked state.
 Add the `disabled` attribute to disable the menu item so it cannot be selected.
 
 ```html preview
-<l-menu style="max-width: 200px;">
-  <l-menu-item>Option 1</l-menu-item>
-  <l-menu-item disabled>Option 2</l-menu-item>
-  <l-menu-item>Option 3</l-menu-item>
-</l-menu>
+<lynk-menu style="max-width: 200px;">
+  <lynk-menu-item>Option 1</lynk-menu-item>
+  <lynk-menu-item disabled>Option 2</lynk-menu-item>
+  <lynk-menu-item>Option 3</lynk-menu-item>
+</lynk-menu>
 ```
 
 ### Prefix & Suffix
@@ -55,25 +55,25 @@ Add the `disabled` attribute to disable the menu item so it cannot be selected.
 Add content to the start and end of menu items using the `prefix` and `suffix` slots.
 
 ```html preview
-<l-menu style="max-width: 200px;">
-  <l-menu-item>
-    <l-icon slot="prefix" name="house"></l-icon>
+<lynk-menu style="max-width: 200px;">
+  <lynk-menu-item>
+    <lynk-icon slot="prefix" name="house"></lynk-icon>
     Home
-  </l-menu-item>
+  </lynk-menu-item>
 
-  <l-menu-item>
-    <l-icon slot="prefix" name="envelope"></l-icon>
+  <lynk-menu-item>
+    <lynk-icon slot="prefix" name="envelope"></lynk-icon>
     Messages
-    <l-badge slot="suffix" variant="primary" pill>12</l-badge>
-  </l-menu-item>
+    <lynk-badge slot="suffix" variant="primary" pill>12</lynk-badge>
+  </lynk-menu-item>
 
-  <l-divider></l-divider>
+  <lynk-divider></lynk-divider>
 
-  <l-menu-item>
-    <l-icon slot="prefix" name="gear"></l-icon>
+  <lynk-menu-item>
+    <lynk-icon slot="prefix" name="gear"></lynk-icon>
     Settings
-  </l-menu-item>
-</l-menu>
+  </lynk-menu-item>
+</lynk-menu>
 ```
 
 ### Value & Selection
@@ -81,16 +81,16 @@ Add content to the start and end of menu items using the `prefix` and `suffix` s
 The `value` attribute can be used to assign a hidden value, such as a unique identifier, to a menu item. When an item is selected, the `l-select` event will be emitted and a reference to the item will be available at `event.detail.item`. You can use this reference to access the selected item's value, its checked state, and more.
 
 ```html preview
-<l-menu class="menu-value" style="max-width: 200px;">
-  <l-menu-item value="opt-1">Option 1</l-menu-item>
-  <l-menu-item value="opt-2">Option 2</l-menu-item>
-  <l-menu-item value="opt-3">Option 3</l-menu-item>
-</l-menu>
+<lynk-menu class="menu-value" style="max-width: 200px;">
+  <lynk-menu-item value="opt-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="opt-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="opt-3">Option 3</lynk-menu-item>
+</lynk-menu>
 
 <script>
   const menu = document.querySelector('.menu-value');
 
-  menu.addEventListener('l-select', event => {
+  menu.addEventListener('lynk-select', event => {
     const item = event.detail.item;
 
     // Toggle checked state
@@ -102,4 +102,4 @@ The `value` attribute can be used to assign a hidden value, such as a unique ide
 </script>
 ```
 
-[component-metadata:l-menu-item]
+[component-metadata:lynk-menu-item]

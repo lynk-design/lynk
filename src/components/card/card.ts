@@ -5,7 +5,7 @@ import { HasSlotController } from '../../internal/slot';
 import styles from './card.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The card's body.
@@ -24,8 +24,8 @@ import styles from './card.styles';
  * @cssproperty --border-width - The width of card borders.
  * @cssproperty --padding - The padding to use for card sections.*
  */
-@customElement('l-card')
-export default class SlCard extends LitElement {
+@customElement('lynk-card')
+export default class LynkCard extends LitElement {
   static styles = styles;
 
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');
@@ -35,25 +35,25 @@ export default class SlCard extends LitElement {
       <div
         part="base"
         class=${classMap({
-          card: true,
-          'card--has-footer': this.hasSlotController.test('footer'),
-          'card--has-image': this.hasSlotController.test('image'),
-          'card--has-header': this.hasSlotController.test('header')
+          'lynk-card': true,
+          'lynk-card--has-footer': this.hasSlotController.test('footer'),
+          'lynk-card--has-image': this.hasSlotController.test('image'),
+          'lynk-card--has-header': this.hasSlotController.test('header')
         })}
       >
-        <div part="image" class="card__image">
+        <div part="image" class="lynk-card__image">
           <slot name="image"></slot>
         </div>
 
-        <div part="header" class="card__header">
+        <div part="header" class="lynk-card__header">
           <slot name="header"></slot>
         </div>
 
-        <div part="body" class="card__body">
+        <div part="body" class="lynk-card__body">
           <slot></slot>
         </div>
 
-        <div part="footer" class="card__footer">
+        <div part="footer" class="lynk-card__footer">
           <slot name="footer"></slot>
         </div>
       </div>
@@ -63,6 +63,6 @@ export default class SlCard extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-card': SlCard;
+    'lynk-card': LynkCard;
   }
 }

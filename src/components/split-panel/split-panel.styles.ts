@@ -25,8 +25,8 @@ export default css`
     position: relative;
     align-items: center;
     justify-content: center;
-    background-color: var(--l-color-neutral-200);
-    color: var(--l-color-neutral-900);
+    background-color: var(--lynk-color-neutral-200);
+    color: var(--lynk-color-neutral-900);
     z-index: 1;
   }
 
@@ -35,8 +35,8 @@ export default css`
   }
 
   :host(:not([disabled])) .divider${focusVisibleSelector} {
-    background-color: var(--l-color-primary-600);
-    color: var(--l-color-neutral-0);
+    background-color: var(--lynk-color-primary-600);
+    color: var(--lynk-color-neutral-0);
   }
 
   :host([disabled]) .divider {

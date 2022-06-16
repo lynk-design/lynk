@@ -18,9 +18,9 @@ aside.nav.nothing {
 
 .page-toc {
   position: fixed;
-  font-size: var(--l-font-size-small);
+  font-size: var(--lynk-font-size-small);
   top: 48px;
-  border-left: 1px solid var(--l-color-neutral-200);
+  border-left: 1px solid var(--lynk-color-neutral-200);
 }
 
 .page-toc a > * {
@@ -39,8 +39,8 @@ aside.nav.nothing {
 
 .page-toc p.title {
   margin: 0 0 0 12px;
-  padding-bottom: var(--l-spacing-small);
-  font-weight: var(--l-font-weight-bold);
+  padding-bottom: var(--lynk-spacing-small);
+  font-weight: var(--lynk-font-weight-bold);
 }
 .page-toc .anchor:hover:after {
   content: "";
@@ -56,17 +56,17 @@ aside.nav.nothing {
 
 .page-toc a {
   color: inherit;
-  border-left: 1px solid var(--l-color-neutral-200);
+  border-left: 1px solid var(--lynk-color-neutral-200);
   padding-left: 12px;
   text-decoration: none;
 }
 
 .page-toc a:hover {
   text-decoration: none;
-  color: var(--l-color-primary-600);
+  color: var(--lynk-color-primary-600);
 }
 
 .page-toc a.active {
-  border-left-color: var(--l-color-primary-600);
-  color: var(--l-color-primary-600);
+  border-left-color: var(--lynk-color-primary-600);
+  color: var(--lynk-color-primary-600);
 }

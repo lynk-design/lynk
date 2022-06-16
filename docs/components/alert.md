@@ -1,14 +1,14 @@
 # Alert
 
-[component-header:l-alert]
+[component-header:lynk-alert]
 
 Alerts are used to display important messages inline or as toast notifications.
 
 ```html preview
-<l-alert open>
-  <l-icon slot="icon" name="info-circle"></l-icon>
+<lynk-alert open>
+  <lynk-icon slot="icon" name="info-circle"></lynk-icon>
   This is a standard alert. Add the <code>open</code> attribute to make it visible.
-</l-alert>
+</lynk-alert>
 ```
 
 ## Examples
@@ -18,43 +18,43 @@ Alerts are used to display important messages inline or as toast notifications.
 Set the `type` attribute to change the alert's color.
 
 ```html preview
-<l-alert type="primary" open>
-  <l-icon slot="icon" name="info-circle"></l-icon>
+<lynk-alert type="primary" open>
+  <lynk-icon slot="icon" name="info-circle"></lynk-icon>
   <strong>This is super informative</strong><br />
   You can tell by how pretty the alert is.
-</l-alert>
+</lynk-alert>
 
 <br />
 
-<l-alert type="success" open>
-  <l-icon slot="icon" name="check2-circle"></l-icon>
+<lynk-alert type="success" open>
+  <lynk-icon slot="icon" name="check2-circle"></lynk-icon>
   <strong>Your changes have been saved</strong><br />
   You can safely exit the app now.
-</l-alert>
+</lynk-alert>
 
 <br />
 
-<l-alert type="neutral" open>
-  <l-icon slot="icon" name="gear"></l-icon>
+<lynk-alert type="neutral" open>
+  <lynk-icon slot="icon" name="gear"></lynk-icon>
   <strong>Your settings have been updated</strong><br />
   Settings will take affect on next login.
-</l-alert>
+</lynk-alert>
 
 <br />
 
-<l-alert type="warning" open>
-  <l-icon slot="icon" name="exclamation-triangle"></l-icon>
+<lynk-alert type="warning" open>
+  <lynk-icon slot="icon" name="exclamation-triangle"></lynk-icon>
   <strong>Your session has ended</strong><br />
   Please login again to continue.
-</l-alert>
+</lynk-alert>
 
 <br />
 
-<l-alert type="danger" open>
-  <l-icon slot="icon" name="exclamation-octagon"></l-icon>
+<lynk-alert type="danger" open>
+  <lynk-icon slot="icon" name="exclamation-octagon"></lynk-icon>
   <strong>Your account has been deleted</strong><br />
   We're very sorry to see you go!
-</l-alert>
+</lynk-alert>
 ```
 
 ### Closable
@@ -62,14 +62,14 @@ Set the `type` attribute to change the alert's color.
 Add the `closable` attribute to show a close button that will hide the alert.
 
 ```html preview
-<l-alert type="primary" open closable class="alert-closable">
-  <l-icon slot="icon" name="info-circle"></l-icon>
+<lynk-alert type="primary" open closable class="alert-closable">
+  <lynk-icon slot="icon" name="info-circle"></lynk-icon>
   You can close this alert any time!
-</l-alert>
+</lynk-alert>
 
 <script>
   const alert = document.querySelector('.alert-closable');
-  alert.addEventListener('l-after-hide', () => {
+  alert.addEventListener('lynk-after-hide', () => {
     setTimeout(() => (alert.open = true), 2000);
   });
 </script>
@@ -80,7 +80,7 @@ Add the `closable` attribute to show a close button that will hide the alert.
 Icons are optional. Simply omit the `icon` slot if you don't want them.
 
 ```html preview
-<l-alert type="primary" open> Nothing fancy here, just a simple alert. </l-alert>
+<lynk-alert type="primary" open> Nothing fancy here, just a simple alert. </lynk-alert>
 ```
 
 ### Duration
@@ -89,25 +89,25 @@ Set the `duration` attribute to automatically hide an alert after a period of ti
 
 ```html preview
 <div class="alert-duration">
-  <l-button type="primary">Show Alert</l-button>
+  <lynk-button type="primary">Show Alert</lynk-button>
 
-  <l-alert type="primary" duration="3000" closable>
-    <l-icon slot="icon" name="info-circle"></l-icon>
+  <lynk-alert type="primary" duration="3000" closable>
+    <lynk-icon slot="icon" name="info-circle"></lynk-icon>
     This alert will automatically hide itself after three seconds, unless you interact with it.
-  </l-alert>
+  </lynk-alert>
 </div>
 
 <script>
   const container = document.querySelector('.alert-duration');
-  const button = container.querySelector('l-button');
-  const alert = container.querySelector('l-alert');
+  const button = container.querySelector('lynk-button');
+  const alert = container.querySelector('lynk-alert');
 
   button.addEventListener('click', () => alert.show());
 </script>
 
 <style>
-  .alert-duration l-alert {
-    margin-top: var(--l-spacing-medium);
+  .alert-duration lynk-alert {
+    margin-top: var(--lynk-spacing-medium);
   }
 </style>
 ```
@@ -121,49 +121,49 @@ You should always use the `closable` attribute so users can dismiss the notifica
 
 ```html preview
 <div class="alert-toast">
-  <l-button type="primary">Primary</l-button>
-  <l-button type="success">Success</l-button>
-  <l-button type="neutral">Neutral</l-button>
-  <l-button type="warning">Warning</l-button>
-  <l-button type="danger">Danger</l-button>
+  <lynk-button type="primary">Primary</lynk-button>
+  <lynk-button type="success">Success</lynk-button>
+  <lynk-button type="neutral">Neutral</lynk-button>
+  <lynk-button type="warning">Warning</lynk-button>
+  <lynk-button type="danger">Danger</lynk-button>
 
-  <l-alert type="primary" duration="3000" closable>
-    <l-icon slot="icon" name="info-circle"></l-icon>
+  <lynk-alert type="primary" duration="3000" closable>
+    <lynk-icon slot="icon" name="info-circle"></lynk-icon>
     <strong>This is super informative</strong><br />
     You can tell by how pretty the alert is.
-  </l-alert>
+  </lynk-alert>
 
-  <l-alert type="success" duration="3000" closable>
-    <l-icon slot="icon" name="check2-circle"></l-icon>
+  <lynk-alert type="success" duration="3000" closable>
+    <lynk-icon slot="icon" name="check2-circle"></lynk-icon>
     <strong>Your changes have been saved</strong><br />
     You can safely exit the app now.
-  </l-alert>
+  </lynk-alert>
 
-  <l-alert type="neutral" duration="3000" closable>
-    <l-icon slot="icon" name="gear"></l-icon>
+  <lynk-alert type="neutral" duration="3000" closable>
+    <lynk-icon slot="icon" name="gear"></lynk-icon>
     <strong>Your settings have been updated</strong><br />
     Settings will take affect on next login.
-  </l-alert>
+  </lynk-alert>
 
-  <l-alert type="warning" duration="3000" closable>
-    <l-icon slot="icon" name="exclamation-triangle"></l-icon>
+  <lynk-alert type="warning" duration="3000" closable>
+    <lynk-icon slot="icon" name="exclamation-triangle"></lynk-icon>
     <strong>Your session has ended</strong><br />
     Please login again to continue.
-  </l-alert>
+  </lynk-alert>
 
-  <l-alert type="danger" duration="3000" closable>
-    <l-icon slot="icon" name="exclamation-octagon"></l-icon>
+  <lynk-alert type="danger" duration="3000" closable>
+    <lynk-icon slot="icon" name="exclamation-octagon"></lynk-icon>
     <strong>Your account has been deleted</strong><br />
     We're very sorry to see you go!
-  </l-alert>
+  </lynk-alert>
 </div>
 
 <script>
   const container = document.querySelector('.alert-toast');
 
   ['primary', 'success', 'neutral', 'warning', 'danger'].map(type => {
-    const button = container.querySelector(`l-button[type="${type}"]`);
-    const alert = container.querySelector(`l-alert[type="${type}"]`);
+    const button = container.querySelector(`lynk-button[type="${type}"]`);
+    const alert = container.querySelector(`lynk-alert[type="${type}"]`);
 
     button.addEventListener('click', () => alert.toast());
   });
@@ -176,12 +176,12 @@ For convenience, you can create a utility that emits toast notifications with a 
 
 ```html preview
 <div class="alert-toast-wrapper">
-  <l-button type="primary">Create Toast</l-button>
+  <lynk-button type="primary">Create Toast</lynk-button>
 </div>
 
 <script>
   const container = document.querySelector('.alert-toast-wrapper');
-  const button = container.querySelector('l-button');
+  const button = container.querySelector('lynk-button');
   let count = 0;
 
   // Always escape HTML for text arguments!
@@ -193,12 +193,12 @@ For convenience, you can create a utility that emits toast notifications with a 
 
   // Custom function to emit toast notifications
   function notify(message, type = 'primary', icon = 'info-circle', duration = 3000) {
-    const alert = Object.assign(document.createElement('l-alert'), {
+    const alert = Object.assign(document.createElement('lynk-alert'), {
       type,
       closable: true,
       duration: duration,
       innerHTML: `
-        <l-icon name="${icon}" slot="icon"></l-icon>
+        <lynk-icon name="${icon}" slot="icon"></lynk-icon>
         ${escapeHtml(message)}
       `
     });
@@ -226,6 +226,6 @@ By default, the toast stack is positioned at the top-right of the viewport. You 
 }
 ```
 
-<l-alert open>By design, it is not possible to show toasts in more than one stack simultaneously. Such behavior is confusing and makes for a poor user experience.</l-alert>
+<lynk-alert open>By design, it is not possible to show toasts in more than one stack simultaneously. Such behavior is confusing and makes for a poor user experience.</lynk-alert>
 
-[component-metadata:l-alert]
+[component-metadata:lynk-alert]

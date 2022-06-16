@@ -9,66 +9,66 @@ export default css`
     display: block;
   }
 
-  .l-menu-item {
+  .lynk-menu-item {
     position: relative;
     display: flex;
     align-items: stretch;
-    font-family: var(--l-font-sans);
-    font-size: var(--l-font-size-medium);
-    font-weight: var(--l-font-weight-normal);
-    line-height: var(--l-line-height-normal);
-    letter-spacing: var(--l-letter-spacing-normal);
-    color: var(--l-color-neutral-700);
-    padding: var(--l-spacing-2x-small) var(--l-spacing-2x-small);
-    transition: var(--l-transition-fast) fill;
+    font-family: var(--lynk-font-sans);
+    font-size: var(--lynk-font-size-medium);
+    font-weight: var(--lynk-font-weight-normal);
+    line-height: var(--lynk-line-height-normal);
+    letter-spacing: var(--lynk-letter-spacing-normal);
+    color: var(--lynk-color-neutral-700);
+    padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-2x-small);
+    transition: var(--lynk-transition-fast) fill;
     user-select: none;
     white-space: nowrap;
     cursor: pointer;
   }
 
-  .l-menu-item.l-menu-item--disabled {
+  .lynk-menu-item.lynk-menu-item--disabled {
     outline: none;
-    color: var(--l-color-neutral-400);
+    color: var(--lynk-color-neutral-400);
     cursor: not-allowed;
   }
 
-  .l-menu-item .l-menu-item__label {
+  .lynk-menu-item .lynk-menu-item__label {
     flex: 1 1 auto;
   }
 
-  .l-menu-item .l-menu-item__prefix {
+  .lynk-menu-item .lynk-menu-item__prefix {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
   }
 
-  .l-menu-item .l-menu-item__prefix ::slotted(*) {
-    margin-inline-end: var(--l-spacing-x-small);
+  .lynk-menu-item .lynk-menu-item__prefix ::slotted(*) {
+    margin-inline-end: var(--lynk-spacing-x-small);
   }
 
-  .l-menu-item .l-menu-item__suffix {
+  .lynk-menu-item .lynk-menu-item__suffix {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
   }
 
-  .l-menu-item .l-menu-item__suffix ::slotted(*) {
-    margin-inline-start: var(--l-spacing-x-small);
+  .lynk-menu-item .lynk-menu-item__suffix ::slotted(*) {
+    margin-inline-start: var(--lynk-spacing-x-small);
   }
 
   :host(:focus) {
     outline: none;
   }
 
-  :host(:hover:not([aria-disabled='true'])) .l-menu-item,
-  :host(${focusVisibleSelector}:not(.l-focus-invisible):not([aria-disabled='true'])) .l-menu-item {
+  :host(:hover:not([aria-disabled='true'])) .lynk-menu-item,
+  :host(${focusVisibleSelector}:not(.lynk-focus-invisible):not([aria-disabled='true'])) .lynk-menu-item {
     outline: none;
-    background-color: var(--l-color-primary-600);
-    color: var(--l-color-neutral-0);
+    background-color: var(--lynk-color-primary-600);
+    color: var(--lynk-color-neutral-0);
   }
 
-  .l-menu-item .l-menu-item__check,
-  .l-menu-item .l-menu-item__chevron {
+  .lynk-menu-item .lynk-menu-item__check,
+  .lynk-menu-item .lynk-menu-item__chevron {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,8 +76,8 @@ export default css`
     visibility: hidden;
   }
 
-  .l-menu-item--checked .l-menu-item__check,
-  .l-menu-item--has-submenu .l-menu-item__chevron {
+  .lynk-menu-item--checked .lynk-menu-item__check,
+  .lynk-menu-item--has-submenu .lynk-menu-item__chevron {
     visibility: visible;
   }
 `;

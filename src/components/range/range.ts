@@ -11,15 +11,15 @@ import { LocalizeController } from '../../utilities/localize';
 import styles from './range.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot label - The input's label. Alternatively, you can use the label prop.
  * @slot help-text - Help text that describes how to use the input. Alternatively, you can use the help-text prop.
  *
- * @event l-change - Emitted when the control's value changes.
- * @event l-blur - Emitted when the control loses focus.
- * @event l-focus - Emitted when the control gains focus.
+ * @event lynk-change - Emitted when the control's value changes.
+ * @event lynk-blur - Emitted when the control loses focus.
+ * @event lynk-focus - Emitted when the control gains focus.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -35,12 +35,12 @@ import styles from './range.styles';
  * @cssproperty --track-color-inactive - The of the portion of the track that represents the remaining value.
  * @cssproperty --track-height - The height of the track.
  */
-@customElement('l-range')
-export default class SlRange extends LitElement {
+@customElement('lynk-range')
+export default class LynkRange extends LitElement {
   static styles = styles;
 
-  @query('.range__control') input: HTMLInputElement;
-  @query('.range__tooltip') output: HTMLOutputElement | null;
+  @query('.lynk-range__control') input: HTMLInputElement;
+  @query('.lynk-range__tooltip') output: HTMLOutputElement | null;
 
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this);
@@ -130,7 +130,7 @@ export default class SlRange extends LitElement {
 
   handleInput() {
     this.value = parseFloat(this.input.value);
-    emit(this, 'l-change');
+    emit(this, 'lynk-change');
 
     this.syncRange();
   }
@@ -138,7 +138,7 @@ export default class SlRange extends LitElement {
   handleBlur() {
     this.hasFocus = false;
     this.hasTooltip = false;
-    emit(this, 'l-blur');
+    emit(this, 'lynk-blur');
   }
 
   @watch('value', { waitUntilFirstUpdate: true })
@@ -163,7 +163,7 @@ export default class SlRange extends LitElement {
   handleFocus() {
     this.hasFocus = true;
     this.hasTooltip = true;
-    emit(this, 'l-focus');
+    emit(this, 'lynk-focus');
   }
 
   handleThumbDragStart() {
@@ -241,12 +241,12 @@ export default class SlRange extends LitElement {
           <div
             part="base"
             class=${classMap({
-              range: true,
-              'range--disabled': this.disabled,
-              'range--focused': this.hasFocus,
-              'range--tooltip-visible': this.hasTooltip,
-              'range--tooltip-top': this.tooltip === 'top',
-              'range--tooltip-bottom': this.tooltip === 'bottom'
+              'lynk-range': true,
+              'lynk-range--disabled': this.disabled,
+              'lynk-range--focused': this.hasFocus,
+              'lynk-range--tooltip-visible': this.hasTooltip,
+              'lynk-range--tooltip-top': this.tooltip === 'top',
+              'lynk-range--tooltip-bottom': this.tooltip === 'bottom'
             })}
             @mousedown=${this.handleThumbDragStart}
             @mouseup=${this.handleThumbDragEnd}
@@ -257,7 +257,7 @@ export default class SlRange extends LitElement {
               part="input"
               id="input"
               type="range"
-              class="range__control"
+              class="lynk-range__control"
               name=${ifDefined(this.name)}
               ?disabled=${this.disabled}
               min=${ifDefined(this.min)}
@@ -271,7 +271,7 @@ export default class SlRange extends LitElement {
             />
             ${this.tooltip !== 'none' && !this.disabled
               ? html`
-                  <output part="tooltip" class="range__tooltip">
+                  <output part="tooltip" class="lynk-range__tooltip">
                     ${typeof this.tooltipFormatter === 'function' ? this.tooltipFormatter(this.value) : this.value}
                   </output>
                 `
@@ -294,6 +294,6 @@ export default class SlRange extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-range': SlRange;
+    'lynk-range': LynkRange;
   }
 }

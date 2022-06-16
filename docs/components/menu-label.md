@@ -1,21 +1,21 @@
 # Menu Label
 
-[component-header:l-menu-label]
+[component-header:lynk-menu-label]
 
 Menu labels are used to describe a group of menu items.
 
 ```html preview
-<l-menu style="max-width: 200px;">
-  <l-menu-label>Fruits</l-menu-label>
-  <l-menu-item value="apple">Apple</l-menu-item>
-  <l-menu-item value="banana">Banana</l-menu-item>
-  <l-menu-item value="orange">Orange</l-menu-item>
-  <l-divider></l-divider>
-  <l-menu-label>Vegetables</l-menu-label>
-  <l-menu-item value="broccoli">Broccoli</l-menu-item>
-  <l-menu-item value="carrot">Carrot</l-menu-item>
-  <l-menu-item value="zucchini">Zucchini</l-menu-item>
-</l-menu>
+<lynk-menu style="max-width: 200px;">
+  <lynk-menu-label>Fruits</lynk-menu-label>
+  <lynk-menu-item value="apple">Apple</lynk-menu-item>
+  <lynk-menu-item value="banana">Banana</lynk-menu-item>
+  <lynk-menu-item value="orange">Orange</lynk-menu-item>
+  <lynk-divider></lynk-divider>
+  <lynk-menu-label>Vegetables</lynk-menu-label>
+  <lynk-menu-item value="broccoli">Broccoli</lynk-menu-item>
+  <lynk-menu-item value="carrot">Carrot</lynk-menu-item>
+  <lynk-menu-item value="zucchini">Zucchini</lynk-menu-item>
+</lynk-menu>
 ```
 
 ```jsx react
@@ -36,4 +36,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-menu-label]
+[component-metadata:lynk-menu-label]

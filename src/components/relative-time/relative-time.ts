@@ -21,8 +21,8 @@ const availableUnits: UnitConfig[] = [
  * @since 2.0
  * @status stable
  */
-@customElement('l-relative-time')
-export default class SlRelativeTime extends LitElement {
+@customElement('lynk-relative-time')
+export default class LynkRelativeTime extends LitElement {
   private readonly localize = new LocalizeController(this);
   private updateTimeout: number;
 
@@ -119,6 +119,6 @@ function getTimeUntilNextUnit(unit: 'second' | 'minute' | 'hour' | 'day') {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-relative-time': SlRelativeTime;
+    'lynk-relative-time': LynkRelativeTime;
   }
 }

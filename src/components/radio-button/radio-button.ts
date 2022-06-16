@@ -15,9 +15,9 @@ import styles from './radio-button.styles';
  *
  * @slot - The radio's label.
  *
- * @event l-blur - Emitted when the button loses focus.
- * @event l-change - Emitted when the button's checked state changes.
- * @event l-focus - Emitted when the button gains focus.
+ * @event lynk-blur - Emitted when the button loses focus.
+ * @event lynk-change - Emitted when the button's checked state changes.
+ * @event lynk-focus - Emitted when the button gains focus.
  *
  * @slot - The button's label.
  * @slot prefix - Used to prepend an icon or similar element to the button.
@@ -29,11 +29,11 @@ import styles from './radio-button.styles';
  * @csspart label - The button's label.
  * @csspart suffix - The suffix slot's container.
  */
-@customElement('l-radio-button')
+@customElement('lynk-radio-button')
 export default class LynkRadioButton extends LitElement {
   static styles = styles;
 
-  @query('.l-button') input: HTMLInputElement;
+  @query('.lynk-button') input: HTMLInputElement;
   @query('.hidden-input') hiddenInput: HTMLInputElement;
 
   protected readonly formSubmitController = new FormSubmitController(this, {
@@ -93,7 +93,7 @@ export default class LynkRadioButton extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'le-blur');
+    emit(this, 'lynk-blur');
   }
 
   handleClick() {
@@ -104,7 +104,7 @@ export default class LynkRadioButton extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'le-focus');
+    emit(this, 'lynk-focus');
   }
 
   @watch('checked')
@@ -112,7 +112,7 @@ export default class LynkRadioButton extends LitElement {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
 
     if (this.hasUpdated) {
-      emit(this, 'le-change');
+      emit(this, 'lynk-change');
     }
   }
 
@@ -179,6 +179,6 @@ export default class LynkRadioButton extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-radio-button': LynkRadioButton;
+    'lynk-radio-button': LynkRadioButton;
   }
 }

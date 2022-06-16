@@ -18,8 +18,8 @@ import { clamp } from '../../internal/math';
 import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
 import styles from './color-picker.styles';
-import type SlDropdown from '../../components/dropdown/dropdown';
-import type SlInput from '../../components/input/input';
+import type LynkDropdown from '../../components/dropdown/dropdown';
+import type LynkInput from '../../components/input/input';
 
 const hasEyeDropper = 'EyeDropper' in window;
 
@@ -34,18 +34,18 @@ interface EyeDropperInterface {
 declare const EyeDropper: EyeDropperConstructor;
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
- * @dependency l-button
- * @dependency l-button-group
- * @dependency l-dropdown
- * @dependency l-input
- * @dependency l-visually-hidden
+ * @dependency lynk-button
+ * @dependency lynk-button-group
+ * @dependency lynk-dropdown
+ * @dependency lynk-input
+ * @dependency lynk-visually-hidden
  *
  * @slot label - The color picker's label. Alternatively, you can use the label prop.
  *
- * @event l-change Emitted when the color picker's value changes.
+ * @event lynk-change Emitted when the color picker's value changes.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart trigger - The color picker's dropdown trigger.
@@ -79,13 +79,13 @@ declare const EyeDropper: EyeDropperConstructor;
  * @cssproperty --slider-handle-size - The diameter of the slider's handle.
  * @cssproperty --swatch-size - The size of each predefined color swatch.
  */
-@customElement('l-color-picker')
-export default class SlColorPicker extends LitElement {
+@customElement('lynk-color-picker')
+export default class LynkColorPicker extends LitElement {
   static styles = styles;
 
-  @query('[part="input"]') input: SlInput;
+  @query('[part="input"]') input: LynkInput;
   @query('[part="preview"]') previewButton: HTMLButtonElement;
-  @query('.color-dropdown') dropdown: SlDropdown;
+  @query('.lynk-color-dropdown') dropdown: LynkDropdown;
 
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this);
@@ -227,7 +227,7 @@ export default class SlColorPicker extends LitElement {
     if (!this.inline && this.input.invalid) {
       return new Promise<void>(resolve => {
         this.dropdown.addEventListener(
-          'l-after-show',
+          'lynk-after-show',
           () => {
             this.input.reportValidity();
             resolve();
@@ -252,9 +252,9 @@ export default class SlColorPicker extends LitElement {
     this.previewButton.focus();
 
     // Show copied animation
-    this.previewButton.classList.add('color-picker__preview-color--copied');
+    this.previewButton.classList.add('lynk-color-picker__preview-color--copied');
     this.previewButton.addEventListener('animationend', () => {
-      this.previewButton.classList.remove('color-picker__preview-color--copied');
+      this.previewButton.classList.remove('lynk-color-picker__preview-color--copied');
     });
   }
 
@@ -265,8 +265,8 @@ export default class SlColorPicker extends LitElement {
   }
 
   handleAlphaDrag(event: PointerEvent) {
-    const container = this.shadowRoot!.querySelector<HTMLElement>('.color-picker__slider.color-picker__alpha')!;
-    const handle = container.querySelector<HTMLElement>('.color-picker__slider-handle')!;
+    const container = this.shadowRoot!.querySelector<HTMLElement>('.lynk-color-picker__slider.lynk-color-picker__alpha')!;
+    const handle = container.querySelector<HTMLElement>('.lynk-color-picker__slider-handle')!;
     const { width } = container.getBoundingClientRect();
 
     handle.focus();
@@ -282,8 +282,8 @@ export default class SlColorPicker extends LitElement {
   }
 
   handleHueDrag(event: PointerEvent) {
-    const container = this.shadowRoot!.querySelector<HTMLElement>('.color-picker__slider.color-picker__hue')!;
-    const handle = container.querySelector<HTMLElement>('.color-picker__slider-handle')!;
+    const container = this.shadowRoot!.querySelector<HTMLElement>('.lynk-color-picker__slider.lynk-color-picker__hue')!;
+    const handle = container.querySelector<HTMLElement>('.lynk-color-picker__slider-handle')!;
     const { width } = container.getBoundingClientRect();
 
     handle.focus();
@@ -299,8 +299,8 @@ export default class SlColorPicker extends LitElement {
   }
 
   handleGridDrag(event: PointerEvent) {
-    const grid = this.shadowRoot!.querySelector<HTMLElement>('.color-picker__grid')!;
-    const handle = grid.querySelector<HTMLElement>('.color-picker__grid-handle')!;
+    const grid = this.shadowRoot!.querySelector<HTMLElement>('.lynk-color-picker__grid')!;
+    const handle = grid.querySelector<HTMLElement>('.lynk-color-picker__grid-handle')!;
     const { width, height } = grid.getBoundingClientRect();
 
     handle.focus();
@@ -600,7 +600,7 @@ export default class SlColorPicker extends LitElement {
   }
 
   handleAfterHide() {
-    this.previewButton.classList.remove('color-picker__preview-color--copied');
+    this.previewButton.classList.remove('lynk-color-picker__preview-color--copied');
   }
 
   handleEyeDropper() {
@@ -646,7 +646,7 @@ export default class SlColorPicker extends LitElement {
     }
 
     if (this.value !== this.lastValueEmitted) {
-      emit(this, 'l-change');
+      emit(this, 'lynk-change');
       this.lastValueEmitted = this.value;
     }
   }
@@ -659,9 +659,9 @@ export default class SlColorPicker extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'color-picker': true,
-          'color-picker--inline': this.inline,
-          'color-picker--disabled': this.disabled
+          'lynk-color-picker': true,
+          'lynk-color-picker--inline': this.inline,
+          'lynk-color-picker--disabled': this.disabled
         })}
         aria-disabled=${this.disabled ? 'true' : 'false'}
         aria-labelledby="label"
@@ -669,15 +669,15 @@ export default class SlColorPicker extends LitElement {
       >
         ${this.inline
           ? html`
-              <l-visually-hidden id="label">
+              <lynk-visually-hidden id="label">
                 <slot name="label">${this.label}</slot>
-              </l-visually-hidden>
+              </lynk-visually-hidden>
             `
           : null}
 
         <div
           part="grid"
-          class="color-picker__grid"
+          class="lynk-color-picker__grid"
           style=${styleMap({ backgroundColor: `hsl(${this.hue}deg, 100%, 50%)` })}
           @mousedown=${this.handleGridDrag}
           @touchstart=${this.handleGridDrag}
@@ -685,8 +685,8 @@ export default class SlColorPicker extends LitElement {
           <span
             part="grid-handle"
             class=${classMap({
-              'color-picker__grid-handle': true,
-              'color-picker__grid-handle--dragging': this.isDraggingGridHandle
+              'lynk-color-picker__grid-handle': true,
+              'lynk-color-picker__grid-handle--dragging': this.isDraggingGridHandle
             })}
             style=${styleMap({
               top: `${gridHandleY}%`,
@@ -700,17 +700,17 @@ export default class SlColorPicker extends LitElement {
           ></span>
         </div>
 
-        <div class="color-picker__controls">
-          <div class="color-picker__sliders">
+        <div class="lynk-color-picker__controls">
+          <div class="lynk-color-picker__sliders">
             <div
               part="slider hue-slider"
-              class="color-picker__hue color-picker__slider"
+              class="lynk-color-picker__hue lynk-color-picker__slider"
               @mousedown=${this.handleHueDrag}
               @touchstart=${this.handleHueDrag}
             >
               <span
                 part="slider-handle"
-                class="color-picker__slider-handle"
+                class="lynk-color-picker__slider-handle"
                 style=${styleMap({
                   left: `${this.hue === 0 ? 0 : 100 / (360 / this.hue)}%`
                 })}
@@ -729,12 +729,12 @@ export default class SlColorPicker extends LitElement {
               ? html`
                   <div
                     part="slider opacity-slider"
-                    class="color-picker__alpha color-picker__slider color-picker__transparent-bg"
+                    class="lynk-color-picker__alpha lynk-color-picker__slider lynk-color-picker__transparent-bg"
                     @mousedown="${this.handleAlphaDrag}"
                     @touchstart="${this.handleAlphaDrag}"
                   >
                     <div
-                      class="color-picker__alpha-gradient"
+                      class="lynk-color-picker__alpha-gradient"
                       style=${styleMap({
                         backgroundImage: `linear-gradient(
                           to right,
@@ -745,7 +745,7 @@ export default class SlColorPicker extends LitElement {
                     ></div>
                     <span
                       part="slider-handle"
-                      class="color-picker__slider-handle"
+                      class="lynk-color-picker__slider-handle"
                       style=${styleMap({
                         left: `${this.alpha}%`
                       })}
@@ -766,7 +766,7 @@ export default class SlColorPicker extends LitElement {
           <button
             type="button"
             part="preview"
-            class="color-picker__preview color-picker__transparent-bg"
+            class="lynk-color-picker__preview lynk-color-picker__transparent-bg"
             aria-label=${this.localize.term('copy')}
             style=${styleMap({
               '--preview-color': `hsla(${this.hue}deg, ${this.saturation}%, ${this.lightness}%, ${this.alpha / 100})`
@@ -775,8 +775,8 @@ export default class SlColorPicker extends LitElement {
           ></button>
         </div>
 
-        <div class="color-picker__user-input" aria-live="polite">
-          <l-input
+        <div class="lynk-color-picker__user-input" aria-live="polite">
+          <lynk-input
             part="input"
             type="text"
             name=${this.name}
@@ -789,12 +789,12 @@ export default class SlColorPicker extends LitElement {
             aria-label=${this.localize.term('currentValue')}
             @keydown=${this.handleInputKeyDown}
             @l-change=${this.handleInputChange}
-          ></l-input>
+          ></lynk-input>
 
-          <l-button-group>
+          <lynk-button-group>
             ${!this.noFormatToggle
               ? html`
-                  <l-button
+                  <lynk-button
                     part="format-button"
                     aria-label=${this.localize.term('toggleColorFormat')}
                     exportparts="
@@ -807,12 +807,12 @@ export default class SlColorPicker extends LitElement {
                     @click=${this.handleFormatToggle}
                   >
                     ${this.setLetterCase(this.format)}
-                  </l-button>
+                  </lynk-button>
                 `
               : ''}
             ${hasEyeDropper
               ? html`
-                  <l-button
+                  <lynk-button
                     part="eye-dropper-button"
                     exportparts="
                       base:eye-dropper-button__base,
@@ -823,25 +823,25 @@ export default class SlColorPicker extends LitElement {
                     "
                     @click=${this.handleEyeDropper}
                   >
-                    <l-icon
+                    <lynk-icon
                       library="system"
                       name="eyedropper"
                       label=${this.localize.term('selectAColorFromTheScreen')}
-                    ></l-icon>
-                  </l-button>
+                    ></lynk-icon>
+                  </lynk-button>
                 `
               : ''}
-          </l-button-group>
+          </lynk-button-group>
         </div>
 
         ${this.swatches.length > 0
           ? html`
-              <div part="swatches" class="color-picker__swatches">
+              <div part="swatches" class="lynk-color-picker__swatches">
                 ${this.swatches.map(swatch => {
                   return html`
                     <div
                       part="swatch"
-                      class="color-picker__swatch color-picker__transparent-bg"
+                      class="lynk-color-picker__swatch lynk-color-picker__transparent-bg"
                       tabindex=${ifDefined(this.disabled ? undefined : '0')}
                       role="button"
                       aria-label=${swatch}
@@ -849,7 +849,7 @@ export default class SlColorPicker extends LitElement {
                       @keydown=${(event: KeyboardEvent) =>
                         !this.disabled && event.key === 'Enter' && this.setColor(swatch)}
                     >
-                      <div class="color-picker__swatch-color" style=${styleMap({ backgroundColor: swatch })}></div>
+                      <div class="lynk-color-picker__swatch-color" style=${styleMap({ backgroundColor: swatch })}></div>
                     </div>
                   `;
                 })}
@@ -866,7 +866,7 @@ export default class SlColorPicker extends LitElement {
 
     // Render as a dropdown
     return html`
-      <l-dropdown
+      <lynk-dropdown
         class="color-dropdown"
         aria-disabled=${this.disabled ? 'true' : 'false'}
         .containing-element=${this}
@@ -878,24 +878,24 @@ export default class SlColorPicker extends LitElement {
           part="trigger"
           slot="trigger"
           class=${classMap({
-            'color-dropdown__trigger': true,
-            'color-dropdown__trigger--disabled': this.disabled,
-            'color-dropdown__trigger--small': this.size === 'small',
-            'color-dropdown__trigger--medium': this.size === 'medium',
-            'color-dropdown__trigger--large': this.size === 'large',
-            'color-picker__transparent-bg': true
+            'lynk-color-dropdown__trigger': true,
+            'lynk-color-dropdown__trigger--disabled': this.disabled,
+            'lynk-color-dropdown__trigger--small': this.size === 'small',
+            'lynk-color-dropdown__trigger--medium': this.size === 'medium',
+            'lynk-color-dropdown__trigger--large': this.size === 'large',
+            'lynk-color-picker__transparent-bg': true
           })}
           style=${styleMap({
             color: `hsla(${this.hue}deg, ${this.saturation}%, ${this.lightness}%, ${this.alpha / 100})`
           })}
           type="button"
         >
-          <l-visually-hidden>
+          <lynk-visually-hidden>
             <slot name="label">${this.label}</slot>
-          </l-visually-hidden>
+          </lynk-visually-hidden>
         </button>
         ${colorPicker}
-      </l-dropdown>
+      </lynk-dropdown>
     `;
   }
 }
@@ -907,6 +907,6 @@ function toHex(value: number) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-color-picker': SlColorPicker;
+    'lynk-color-picker': LynkColorPicker;
   }
 }

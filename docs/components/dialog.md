@@ -2,22 +2,22 @@
 
 # Dialog
 
-[component-header:l-dialog]
+[component-header:lynk-dialog]
 
 Dialogs or "modals" are elevated workflows above the page and require the user's immediate attention.
 
 ```html preview
-<l-dialog label="Dialog" class="dialog-overview">
+<lynk-dialog label="Dialog" class="dialog-overview">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <l-button slot="footer" variant="primary">Close</l-button>
-</l-dialog>
+  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+</lynk-dialog>
 
-<l-button>Open Dialog</l-button>
+<lynk-button>Open Dialog</lynk-button>
 
 <script>
   const dialog = document.querySelector('.dialog-overview');
   const openButton = dialog.nextElementSibling;
-  const closeButton = dialog.querySelector('l-button[slot="footer"]');
+  const closeButton = dialog.querySelector('lynk-button[slot="footer"]');
 
   openButton.addEventListener('click', () => dialog.show());
   closeButton.addEventListener('click', () => dialog.hide());
@@ -37,17 +37,17 @@ Dialogs or "modals" are elevated workflows above the page and require the user's
 Use the `--width` custom property to set the dialog's width.
 
 ```html preview
-<l-dialog label="Dialog" class="dialog-width" style="--width: 50vw;">
+<lynk-dialog label="Dialog" class="dialog-width" style="--width: 50vw;">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <l-button slot="footer" variant="primary">Close</l-button>
-</l-dialog>
+  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+</lynk-dialog>
 
-<l-button>Open Dialog</l-button>
+<lynk-button>Open Dialog</lynk-button>
 
 <script>
   const dialog = document.querySelector('.dialog-width');
   const openButton = dialog.nextElementSibling;
-  const closeButton = dialog.querySelector('l-button[slot="footer"]');
+  const closeButton = dialog.querySelector('lynk-button[slot="footer"]');
 
   openButton.addEventListener('click', () => dialog.show());
   closeButton.addEventListener('click', () => dialog.hide());
@@ -59,19 +59,19 @@ Use the `--width` custom property to set the dialog's width.
 By design, a dialog's height will never exceed that of the viewport. As such, dialogs will not scroll with the page ensuring the header and footer are always accessible to the user.
 
 ```html preview
-<l-dialog label="Dialog" class="dialog-scrolling">
-  <div style="height: 150vh; border: dashed 2px var(--l-color-neutral-200); padding: 0 1rem;">
+<lynk-dialog label="Dialog" class="dialog-scrolling">
+  <div style="height: 150vh; border: dashed 2px var(--lynk-color-neutral-200); padding: 0 1rem;">
     <p>Scroll down and give it a try! 👇</p>
   </div>
-  <l-button slot="footer" variant="primary">Close</l-button>
-</l-dialog>
+  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+</lynk-dialog>
 
-<l-button>Open Dialog</l-button>
+<lynk-button>Open Dialog</lynk-button>
 
 <script>
   const dialog = document.querySelector('.dialog-scrolling');
   const openButton = dialog.nextElementSibling;
-  const closeButton = dialog.querySelector('l-button[slot="footer"]');
+  const closeButton = dialog.querySelector('lynk-button[slot="footer"]');
 
   openButton.addEventListener('click', () => dialog.show());
   closeButton.addEventListener('click', () => dialog.hide());
@@ -87,23 +87,23 @@ To keep the dialog open in such cases, you can cancel the `l-request-close` even
 You can use `event.detail.source` to determine what triggered the request to close. This example prevents the dialog from closing when the overlay is clicked, but allows the close button or <kbd>Escape</kbd> to dismiss it.
 
 ```html preview
-<l-dialog label="Dialog" class="dialog-deny-close">
+<lynk-dialog label="Dialog" class="dialog-deny-close">
   This dialog will not close when you click on the overlay.
-  <l-button slot="footer" variant="primary">Close</l-button>
-</l-dialog>
+  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+</lynk-dialog>
 
-<l-button>Open Dialog</l-button>
+<lynk-button>Open Dialog</lynk-button>
 
 <script>
   const dialog = document.querySelector('.dialog-deny-close');
   const openButton = dialog.nextElementSibling;
-  const closeButton = dialog.querySelector('l-button[slot="footer"]');
+  const closeButton = dialog.querySelector('lynk-button[slot="footer"]');
 
   openButton.addEventListener('click', () => dialog.show());
   closeButton.addEventListener('click', () => dialog.hide());
 
   // Prevent the dialog from closing when the user clicks on the overlay
-  dialog.addEventListener('l-request-close', event => {
+  dialog.addEventListener('lynk-request-close', event => {
     if (event.detail.source === 'overlay') {
       event.preventDefault();
     }
@@ -116,24 +116,24 @@ You can use `event.detail.source` to determine what triggered the request to clo
 By default, the dialog's panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the dialog. If you want a different element to have focus, add the `autofocus` attribute to it as shown below.
 
 ```html preview
-<l-dialog label="Dialog" class="dialog-focus">
-  <l-input autofocus placeholder="I will have focus when the dialog is opened"></l-input>
-  <l-button slot="footer" variant="primary">Close</l-button>
-</l-dialog>
+<lynk-dialog label="Dialog" class="dialog-focus">
+  <lynk-input autofocus placeholder="I will have focus when the dialog is opened"></lynk-input>
+  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+</lynk-dialog>
 
-<l-button>Open Dialog</l-button>
+<lynk-button>Open Dialog</lynk-button>
 
 <script>
   const dialog = document.querySelector('.dialog-focus');
-  const input = dialog.querySelector('l-input');
+  const input = dialog.querySelector('lynk-input');
   const openButton = dialog.nextElementSibling;
-  const closeButton = dialog.querySelector('l-button[slot="footer"]');
+  const closeButton = dialog.querySelector('lynk-button[slot="footer"]');
 
   openButton.addEventListener('click', () => dialog.show());
   closeButton.addEventListener('click', () => dialog.hide());
 </script>
 ```
 
-<l-alert open>You can further customize initial focus behavior by canceling the `l-initial-focus` event and setting focus yourself inside the event handler.</l-alert>
+<lynk-alert open>You can further customize initial focus behavior by canceling the `l-initial-focus` event and setting focus yourself inside the event handler.</lynk-alert>
 
-[component-metadata:l-dialog]
+[component-metadata:lynk-dialog]

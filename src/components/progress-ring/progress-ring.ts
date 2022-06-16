@@ -4,7 +4,7 @@ import { LocalizeController } from '../../utilities/localize';
 import styles from './progress-ring.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - A label to show inside the ring.
@@ -17,12 +17,12 @@ import styles from './progress-ring.styles';
  * @cssproperty --track-color - The color of the track.
  * @cssproperty --indicator-color - The indicator color.
  */
-@customElement('l-progress-ring')
-export default class SlProgressRing extends LitElement {
+@customElement('lynk-progress-ring')
+export default class LynkProgressRing extends LitElement {
   static styles = styles;
   private readonly localize = new LocalizeController(this);
 
-  @query('.progress-ring__indicator') indicator: SVGCircleElement;
+  @query('.lynk-progress-ring__indicator') indicator: SVGCircleElement;
 
   @state() indicatorOffset: string;
 
@@ -56,7 +56,7 @@ export default class SlProgressRing extends LitElement {
     return html`
       <div
         part="base"
-        class="progress-ring"
+        class="lynk-progress-ring"
         role="progressbar"
         aria-label=${this.label.length > 0 ? this.label : this.localize.term('progress')}
         aria-valuemin="0"
@@ -64,12 +64,12 @@ export default class SlProgressRing extends LitElement {
         aria-valuenow="${this.value}"
         style="--percentage: ${this.value / 100}"
       >
-        <svg class="progress-ring__image">
-          <circle class="progress-ring__track"></circle>
-          <circle class="progress-ring__indicator" style="stroke-dashoffset: ${this.indicatorOffset}"></circle>
+        <svg class="lynk-progress-ring__image">
+          <circle class="lynk-progress-ring__track"></circle>
+          <circle class="lynk-progress-ring__indicator" style="stroke-dashoffset: ${this.indicatorOffset}"></circle>
         </svg>
 
-        <span part="label" class="progress-ring__label">
+        <span part="label" class="lynk-progress-ring__label">
           <slot></slot>
         </span>
       </div>
@@ -79,6 +79,6 @@ export default class SlProgressRing extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-progress-ring': SlProgressRing;
+    'lynk-progress-ring': LynkProgressRing;
   }
 }

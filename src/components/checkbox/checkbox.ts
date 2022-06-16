@@ -14,9 +14,9 @@ import styles from './checkbox.styles';
  *
  * @slot - The checkbox's label.
  *
- * @event le-blur - Emitted when the control loses focus.
- * @event le-change - Emitted when the control's checked state changes.
- * @event le-focus - Emitted when the control gains focus.
+ * @event lynk-blur - Emitted when the control loses focus.
+ * @event lynk-change - Emitted when the control's checked state changes.
+ * @event lynk-focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The checkbox control.
@@ -24,7 +24,7 @@ import styles from './checkbox.styles';
  * @csspart indeterminate-icon - The container that wraps the indeterminate icon.
  * @csspart label - The checkbox label.
  */
-@customElement('l-checkbox')
+@customElement('lynk-checkbox')
 export default class LynkCheckbox extends LitElement {
   static styles = styles;
 
@@ -91,12 +91,12 @@ export default class LynkCheckbox extends LitElement {
   handleClick() {
     this.checked = !this.checked;
     this.indeterminate = false;
-    emit(this, 'le-change');
+    emit(this, 'lynk-change');
   }
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'le-blur');
+    emit(this, 'lynk-blur');
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -108,7 +108,7 @@ export default class LynkCheckbox extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'le-focus');
+    emit(this, 'lynk-focus');
   }
 
   @watch('checked', { waitUntilFirstUpdate: true })
@@ -122,15 +122,15 @@ export default class LynkCheckbox extends LitElement {
       <label
         part="base"
         class=${classMap({
-          'l-checkbox': true,
-          'l-checkbox--checked': this.checked,
-          'l-checkbox--disabled': this.disabled,
-          'l-checkbox--focused': this.hasFocus,
-          'l-checkbox--indeterminate': this.indeterminate
+          'lynk-checkbox': true,
+          'lynk-checkbox--checked': this.checked,
+          'lynk-checkbox--disabled': this.disabled,
+          'lynk-checkbox--focused': this.hasFocus,
+          'lynk-checkbox--indeterminate': this.indeterminate
         })}
       >
         <input
-          class="l-checkbox__input"
+          class="lynk-checkbox__input"
           type="checkbox"
           name=${ifDefined(this.name)}
           value=${ifDefined(this.value)}
@@ -144,10 +144,10 @@ export default class LynkCheckbox extends LitElement {
           @focus=${this.handleFocus}
         />
 
-        <span part="control" class="l-checkbox__control">
+        <span part="control" class="lynk-checkbox__control">
           ${this.checked
             ? html`
-                <span part="checked-icon" class="l-checkbox__icon">
+                <span part="checked-icon" class="lynk-checkbox__icon">
                   <svg viewBox="0 0 16 16">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
                       <g stroke="currentColor" stroke-width="2">
@@ -163,7 +163,7 @@ export default class LynkCheckbox extends LitElement {
             : ''}
           ${!this.checked && this.indeterminate
             ? html`
-                <span part="indeterminate-icon" class="l-checkbox__icon">
+                <span part="indeterminate-icon" class="lynk-checkbox__icon">
                   <svg viewBox="0 0 16 16">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
                       <g stroke="currentColor" stroke-width="2">
@@ -178,7 +178,7 @@ export default class LynkCheckbox extends LitElement {
             : ''}
         </span>
 
-        <span part="label" class="l-checkbox__label">
+        <span part="label" class="lynk-checkbox__label">
           <slot></slot>
         </span>
       </label>
@@ -188,6 +188,6 @@ export default class LynkCheckbox extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-checkbox': LynkCheckbox;
+    'lynk-checkbox': LynkCheckbox;
   }
 }

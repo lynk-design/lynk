@@ -10,18 +10,18 @@ import styles from './tag.styles';
  * @since 2.0
  * @status stable
  *
- * @dependency l-icon-button
+ * @dependency lynk-icon-button
  *
  * @slot - The tag's content.
  *
- * @event l-remove - Emitted when the remove button is activated.
+ * @event lynk-remove - Emitted when the remove button is activated.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart content - The tag content.
  * @csspart remove-button - The remove button.
  * @csspart remove-button__base - The remove button's `base` part.
  */
-@customElement('l-tag')
+@customElement('lynk-tag')
 export default class SlTag extends LitElement {
   static styles = styles;
   private readonly localize = new LocalizeController(this);
@@ -39,7 +39,7 @@ export default class SlTag extends LitElement {
   @property({ type: Boolean }) removable = false;
 
   handleRemoveClick() {
-    emit(this, 'l-remove');
+    emit(this, 'lynk-remove');
   }
 
   render() {
@@ -73,7 +73,7 @@ export default class SlTag extends LitElement {
 
         ${this.removable
           ? html`
-              <l-icon-button
+              <lynk-icon-button
                 part="remove-button"
                 exportparts="base:remove-button__base"
                 name="x"
@@ -81,7 +81,7 @@ export default class SlTag extends LitElement {
                 label=${this.localize.term('remove')}
                 class="tag__remove"
                 @click=${this.handleRemoveClick}
-              ></l-icon-button>
+              ></lynk-icon-button>
             `
           : ''}
       </span>

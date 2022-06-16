@@ -1,6 +1,6 @@
 # Relative Time
 
-[component-header:l-relative-time]
+[component-header:lynk-relative-time]
 
 Outputs a localized time phrase relative to the current date and time.
 
@@ -8,7 +8,7 @@ Localization is handled by the browser's [`Intl.RelativeTimeFormat` API](https:/
 
 ```html preview
 <!-- Shoelace 2 release date 🎉 -->
-<l-relative-time date="2020-07-15T09:17:00-04:00"></l-relative-time>
+<lynk-relative-time date="2020-07-15T09:17:00-04:00"></lynk-relative-time>
 ```
 
 ```jsx react
@@ -31,12 +31,12 @@ Use the `sync` attribute to update the displayed value automatically as time pas
 
 ```html preview
 <div class="relative-time-sync">
-  <l-relative-time sync></l-relative-time>
+  <lynk-relative-time sync></lynk-relative-time>
 </div>
 
 <script>
   const container = document.querySelector('.relative-time-sync');
-  const relativeTime = container.querySelector('l-relative-time');
+  const relativeTime = container.querySelector('lynk-relative-time');
 
   relativeTime.date = new Date(new Date().getTime() - 60000);
 </script>
@@ -55,9 +55,9 @@ const App = () => <SlRelativeTime date={date} sync />;
 You can change how the time is displayed using the `format` attribute. Note that some locales may display the same values for `narrow` and `short` formats.
 
 ```html preview
-<l-relative-time date="2020-07-15T09:17:00-04:00" format="narrow"></l-relative-time><br />
-<l-relative-time date="2020-07-15T09:17:00-04:00" format="short"></l-relative-time><br />
-<l-relative-time date="2020-07-15T09:17:00-04:00" format="long"></l-relative-time>
+<lynk-relative-time date="2020-07-15T09:17:00-04:00" format="narrow"></lynk-relative-time><br />
+<lynk-relative-time date="2020-07-15T09:17:00-04:00" format="short"></lynk-relative-time><br />
+<lynk-relative-time date="2020-07-15T09:17:00-04:00" format="long"></lynk-relative-time>
 ```
 
 ```jsx react
@@ -79,11 +79,11 @@ const App = () => (
 Use the `lang` attribute to set the desired locale.
 
 ```html preview
-English: <l-relative-time date="2020-07-15T09:17:00-04:00" lang="en-US"></l-relative-time><br />
-Chinese: <l-relative-time date="2020-07-15T09:17:00-04:00" lang="zh-CN"></l-relative-time><br />
-German: <l-relative-time date="2020-07-15T09:17:00-04:00" lang="de"></l-relative-time><br />
-Greek: <l-relative-time date="2020-07-15T09:17:00-04:00" lang="el"></l-relative-time><br />
-Russian: <l-relative-time date="2020-07-15T09:17:00-04:00" lang="ru"></l-relative-time>
+English: <lynk-relative-time date="2020-07-15T09:17:00-04:00" lang="en-US"></lynk-relative-time><br />
+Chinese: <lynk-relative-time date="2020-07-15T09:17:00-04:00" lang="zh-CN"></lynk-relative-time><br />
+German: <lynk-relative-time date="2020-07-15T09:17:00-04:00" lang="de"></lynk-relative-time><br />
+Greek: <lynk-relative-time date="2020-07-15T09:17:00-04:00" lang="el"></lynk-relative-time><br />
+Russian: <lynk-relative-time date="2020-07-15T09:17:00-04:00" lang="ru"></lynk-relative-time>
 ```
 
 ```jsx react
@@ -104,4 +104,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-relative-time]
+[component-metadata:lynk-relative-time]

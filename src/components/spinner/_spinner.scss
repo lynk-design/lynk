@@ -1,11 +1,11 @@
-.l-spinner {
+.lynk-spinner {
   flex: 1 1 auto;
   height: 100%;
   width: 100%;
 }
 
-.l-spinner__track,
-.l-spinner__indicator {
+.lynk-spinner__track,
+.lynk-spinner__indicator {
   fill: none;
   stroke-width: var(--track-width);
   r: calc(0.5em - var(--track-width) / 2);
@@ -14,13 +14,13 @@
   transform-origin: 50% 50%;
 }
 
-.l-spinner__track {
+.lynk-spinner__track {
   stroke: var(--track-color);
   transform-origin: 0% 0%;
   mix-blend-mode: multiply;
 }
 
-.l-spinner__indicator {
+.lynk-spinner__indicator {
   stroke: var(--indicator-color);
   stroke-linecap: round;
   stroke-dasharray: 150% 75%;

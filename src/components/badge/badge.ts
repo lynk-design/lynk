@@ -9,9 +9,9 @@ import styles from './badge.styles';
  *
  * @slot - The badge's content.
  *
- * @csspart base | .l-badge - The component's internal wrapper.
+ * @csspart base | .lynk-badge - The component's internal wrapper.
  */
-@customElement('l-badge')
+@customElement('lynk-badge')
 export default class LynkBadge extends LitElement {
   static styles = styles;
 
@@ -29,14 +29,14 @@ export default class LynkBadge extends LitElement {
       <span
         part="base"
         class=${classMap({
-          'l-badge': true,
-          'l-badge--primary': this.type === 'primary',
-          'l-badge--success': this.type === 'success',
-          'l-badge--neutral': this.type === 'neutral',
-          'l-badge--warning': this.type === 'warning',
-          'l-badge--danger': this.type === 'danger',
-          'l-badge--pill': this.pill,
-          'l-badge--pulse': this.pulse
+          'lynk-badge': true,
+          'lynk-badge--primary': this.type === 'primary',
+          'lynk-badge--success': this.type === 'success',
+          'lynk-badge--neutral': this.type === 'neutral',
+          'lynk-badge--warning': this.type === 'warning',
+          'lynk-badge--danger': this.type === 'danger',
+          'lynk-badge--pill': this.pill,
+          'lynk-badge--pulse': this.pulse
         })}
         role="status"
       >
@@ -48,6 +48,6 @@ export default class LynkBadge extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-badge': LynkBadge;
+    'lynk-badge': LynkBadge;
   }
 }

@@ -10,13 +10,13 @@ import styles from './menu-label.styles';
  *
  * @csspart base - The component's internal wrapper.
  */
-@customElement('l-menu-label')
+@customElement('lynk-menu-label')
 export default class LynkMenuLabel extends LitElement {
   static styles = styles;
 
   render() {
     return html`
-      <div part="base" class="l-menu-label">
+      <div part="base" class="lynk-menu-label">
         <slot></slot>
       </div>
     `;
@@ -25,6 +25,6 @@ export default class LynkMenuLabel extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-menu-label': LynkMenuLabel;
+    'lynk-menu-label': LynkMenuLabel;
   }
 }

@@ -6,13 +6,13 @@ import { watch } from '../../internal/watch';
 import styles from './animated-image.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status experimental
  *
- * @dependency l-icon
+ * @dependency lynk-icon
  *
- * @event l-load - Emitted when the image loads successfully.
- * @event l-error - Emitted when the image fails to load.
+ * @event lynk-load - Emitted when the image loads successfully.
+ * @event lynk-error - Emitted when the image fails to load.
  *
  * @part - control-box - The container that surrounds the pause/play icons and provides their background.
  * @part - play-icon - The icon to use for the play button.
@@ -21,14 +21,14 @@ import styles from './animated-image.styles';
  * @cssproperty --control-box-size - The size of the icon box.
  * @cssproperty --icon-size - The size of the play/pause icons.
  */
-@customElement('l-animated-image')
-export default class SlAnimatedImage extends LitElement {
+@customElement('lynk-animated-image')
+export default class LynkAnimatedImage extends LitElement {
   static styles = styles;
 
   @state() frozenFrame: string;
   @state() isLoaded = false;
 
-  @query('.animated-image__animated') animatedImage: HTMLImageElement;
+  @query('.lynk-animated-image__animated') animatedImage: HTMLImageElement;
 
   /** The image's src attribute. */
   @property() src: string;
@@ -52,13 +52,13 @@ export default class SlAnimatedImage extends LitElement {
     this.frozenFrame = canvas.toDataURL('image/gif');
 
     if (!this.isLoaded) {
-      emit(this, 'l-load');
+      emit(this, 'lynk-load');
       this.isLoaded = true;
     }
   }
 
   handleError() {
-    emit(this, 'l-error');
+    emit(this, 'lynk-error');
   }
 
   @watch('play')
@@ -78,9 +78,9 @@ export default class SlAnimatedImage extends LitElement {
 
   render() {
     return html`
-      <div class="animated-image">
+      <div class="lynk-animated-image">
         <img
-          class="animated-image__animated"
+          class="lynk-animated-image__animated"
           src=${this.src}
           alt=${this.alt}
           crossorigin="anonymous"
@@ -93,17 +93,17 @@ export default class SlAnimatedImage extends LitElement {
         ${this.isLoaded
           ? html`
               <img
-                class="animated-image__frozen"
+                class="lynk-animated-image__frozen"
                 src=${this.frozenFrame}
                 alt=${this.alt}
                 aria-hidden=${this.play ? 'true' : 'false'}
                 @click=${this.handleClick}
               />
 
-              <div part="control-box" class="animated-image__control-box">
+              <div part="control-box" class="lynk-animated-image__control-box">
                 ${this.play
-                  ? html`<l-icon part="pause-icon" name="pause-fill" library="system"></l-icon>`
-                  : html`<l-icon part="play-icon" name="play-fill" library="system"></l-icon>`}
+                  ? html`<lynk-icon part="pause-icon" name="pause-fill" library="system"></lynk-icon>`
+                  : html`<lynk-icon part="play-icon" name="play-fill" library="system"></lynk-icon>`}
               </div>
             `
           : ''}
@@ -114,6 +114,6 @@ export default class SlAnimatedImage extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-animated-image': SlAnimatedImage;
+    'lynk-animated-image': LynkAnimatedImage;
   }
 }

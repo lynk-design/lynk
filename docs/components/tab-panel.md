@@ -1,21 +1,21 @@
 # Tab Panel
 
-[component-header:l-tab-panel]
+[component-header:lynk-tab-panel]
 
 Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.
 
 ```html preview
-<l-tab-group>
-  <l-tab slot="nav" panel="general">General</l-tab>
-  <l-tab slot="nav" panel="custom">Custom</l-tab>
-  <l-tab slot="nav" panel="advanced">Advanced</l-tab>
-  <l-tab slot="nav" panel="disabled" disabled>Disabled</l-tab>
+<lynk-tab-group>
+  <lynk-tab slot="nav" panel="general">General</lynk-tab>
+  <lynk-tab slot="nav" panel="custom">Custom</lynk-tab>
+  <lynk-tab slot="nav" panel="advanced">Advanced</lynk-tab>
+  <lynk-tab slot="nav" panel="disabled" disabled>Disabled</lynk-tab>
 
-  <l-tab-panel name="general">This is the general tab panel.</l-tab-panel>
-  <l-tab-panel name="custom">This is the custom tab panel.</l-tab-panel>
-  <l-tab-panel name="advanced">This is the advanced tab panel.</l-tab-panel>
-  <l-tab-panel name="disabled">This is a disabled tab panel.</l-tab-panel>
-</l-tab-group>
+  <lynk-tab-panel name="general">This is the general tab panel.</lynk-tab-panel>
+  <lynk-tab-panel name="custom">This is the custom tab panel.</lynk-tab-panel>
+  <lynk-tab-panel name="advanced">This is the advanced tab panel.</lynk-tab-panel>
+  <lynk-tab-panel name="disabled">This is a disabled tab panel.</lynk-tab-panel>
+</lynk-tab-group>
 ```
 
 ```jsx react
@@ -46,4 +46,4 @@ const App = () => (
 
 ?> Additional demonstrations can be found in the [tab group examples](/components/tab-group).
 
-[component-metadata:l-tab-panel]
+[component-metadata:lynk-tab-panel]

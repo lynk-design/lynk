@@ -11,15 +11,15 @@ import { requestIcon } from './request';
 let parser: DOMParser;
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
- * @event l-load - Emitted when the icon has loaded.
- * @event l-error - Emitted when the icon fails to load due to an error.
+ * @event lynk-load - Emitted when the icon has loaded.
+ * @event lynk-error - Emitted when the icon fails to load due to an error.
  *
  * @csspart base - The component's internal wrapper.
  */
-@customElement('l-icon')
+@customElement('lynk-icon')
 export default class LynkIcon extends LitElement {
   static styles = styles;
 
@@ -94,17 +94,17 @@ export default class LynkIcon extends LitElement {
           if (svgEl !== null) {
             library?.mutator?.(svgEl);
             this.svg = svgEl.outerHTML;
-            emit(this, 'l-load');
+            emit(this, 'lynk-load');
           } else {
             this.svg = '';
-            emit(this, 'l-error');
+            emit(this, 'lynk-error');
           }
         } else {
           this.svg = '';
-          emit(this, 'l-error');
+          emit(this, 'lynk-error');
         }
       } catch {
-        emit(this, 'l-error');
+        emit(this, 'lynk-error');
       }
     } else if (this.svg.length > 0) {
       // If we can't resolve a URL and an icon was previously set, remove it
@@ -121,7 +121,7 @@ export default class LynkIcon extends LitElement {
 
     return html` <div
       part="base"
-      class="icon"
+      class="l-icon"
       role=${ifDefined(hasLabel ? 'img' : undefined)}
       aria-label=${ifDefined(hasLabel ? this.label : undefined)}
       aria-hidden=${ifDefined(hasLabel ? undefined : 'true')}
@@ -133,6 +133,6 @@ export default class LynkIcon extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-icon': LynkIcon;
+    'lynk-icon': LynkIcon;
   }
 }

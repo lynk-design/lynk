@@ -1,9 +1,9 @@
 {
   "name": "@lynk-design/lynk",
-  "description": "A forward-thinking library of web components.",
-  "version": "2.0.0-beta.74",
+  "description": "A library of web components and styles for building web applications with the Edgio Streaming design language.",
+  "version": "1.0.0",
   "homepage": "",
-  "author": "Cory LaViska",
+  "author": "Harley Jessop",
   "license": "MIT",
   "main": "dist/lynk.js",
   "module": "dist/lynk.js",

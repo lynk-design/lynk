@@ -9,34 +9,34 @@ export default css`
     display: inline-block;
   }
 
-  .l-checkbox {
+  .lynk-checkbox {
     display: inline-flex;
     align-items: center;
-    font-family: var(--l-input-font-family);
-    font-size: var(--l-input-font-size-medium);
-    font-weight: var(--l-input-font-weight);
-    color: var(--l-input-color);
+    font-family: var(--lynk-input-font-family);
+    font-size: var(--lynk-input-font-size-medium);
+    font-weight: var(--lynk-input-font-weight);
+    color: var(--lynk-input-color);
     vertical-align: middle;
     cursor: pointer;
   }
 
-  .l-checkbox__control {
+  .lynk-checkbox__control {
     flex: 0 0 auto;
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--l-toggle-size);
-    height: var(--l-toggle-size);
-    border: solid var(--l-input-border-width) var(--l-input-border-color);
+    width: var(--lynk-toggle-size);
+    height: var(--lynk-toggle-size);
+    border: solid var(--lynk-input-border-width) var(--lynk-input-border-color);
     border-radius: 2px;
-    background-color: var(--l-input-background-color);
-    color: var(--l-color-neutral-0);
-    transition: var(--l-transition-fast) border-color, var(--l-transition-fast) background-color,
-      var(--l-transition-fast) color, var(--l-transition-fast) box-shadow;
+    background-color: var(--lynk-input-background-color);
+    color: var(--lynk-color-neutral-0);
+    transition: var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) background-color,
+      var(--lynk-transition-fast) color, var(--lynk-transition-fast) box-shadow;
   }
 
-  .l-checkbox__input {
+  .lynk-checkbox__input {
     position: absolute;
     opacity: 0;
     padding: 0;
@@ -44,62 +44,62 @@ export default css`
     pointer-events: none;
   }
 
-  .l-checkbox__control .l-checkbox__icon {
+  .lynk-checkbox__control .lynk-checkbox__icon {
     display: inline-flex;
-    width: var(--l-toggle-size);
-    height: var(--l-toggle-size);
+    width: var(--lynk-toggle-size);
+    height: var(--lynk-toggle-size);
   }
 
-  .l-checkbox__control .l-checkbox__icon svg {
+  .lynk-checkbox__control .lynk-checkbox__icon svg {
     width: 100%;
     height: 100%;
   }
 
   /* Hover */
-  .l-checkbox:not(.l-checkbox--checked):not(.l-checkbox--disabled) .l-checkbox__control:hover {
-    border-color: var(--l-input-border-color-hover);
-    background-color: var(--l-input-background-color-hover);
+  .lynk-checkbox:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled) .lynk-checkbox__control:hover {
+    border-color: var(--lynk-input-border-color-hover);
+    background-color: var(--lynk-input-background-color-hover);
   }
 
   /* Focus */
-  .l-checkbox:not(.l-checkbox--checked):not(.l-checkbox--disabled)
-    .l-checkbox__input${focusVisibleSelector}
-    ~ .l-checkbox__control {
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-checkbox:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled)
+    .lynk-checkbox__input${focusVisibleSelector}
+    ~ .lynk-checkbox__control {
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
   /* Checked/indeterminate */
-  .l-checkbox--checked .l-checkbox__control,
-  .l-checkbox--indeterminate .l-checkbox__control {
-    border-color: var(--l-color-primary-600);
-    background-color: var(--l-color-primary-600);
+  .lynk-checkbox--checked .lynk-checkbox__control,
+  .lynk-checkbox--indeterminate .lynk-checkbox__control {
+    border-color: var(--lynk-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
   }
 
   /* Checked/indeterminate + hover */
-  .l-checkbox.l-checkbox--checked:not(.l-checkbox--disabled) .l-checkbox__control:hover,
-  .l-checkbox.l-checkbox--indeterminate:not(.l-checkbox--disabled) .l-checkbox__control:hover {
-    border-color: var(--l-color-primary-500);
-    background-color: var(--l-color-primary-500);
+  .lynk-checkbox.lynk-checkbox--checked:not(.lynk-checkbox--disabled) .lynk-checkbox__control:hover,
+  .lynk-checkbox.lynk-checkbox--indeterminate:not(.lynk-checkbox--disabled) .lynk-checkbox__control:hover {
+    border-color: var(--lynk-color-primary-500);
+    background-color: var(--lynk-color-primary-500);
   }
 
   /* Checked/indeterminate + focus */
-  .l-checkbox.l-checkbox--checked:not(.l-checkbox--disabled) .l-checkbox__input${focusVisibleSelector} ~ .l-checkbox__control,
-  .l-checkbox.l-checkbox--indeterminate:not(.l-checkbox--disabled)
-    .l-checkbox__input${focusVisibleSelector}
-    ~ .l-checkbox__control {
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-checkbox.lynk-checkbox--checked:not(.lynk-checkbox--disabled) .lynk-checkbox__input${focusVisibleSelector} ~ .lynk-checkbox__control,
+  .lynk-checkbox.lynk-checkbox--indeterminate:not(.lynk-checkbox--disabled)
+    .lynk-checkbox__input${focusVisibleSelector}
+    ~ .lynk-checkbox__control {
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
   /* Disabled */
-  .l-checkbox--disabled {
+  .lynk-checkbox--disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  .l-checkbox__label {
-    line-height: var(--l-toggle-size);
+  .lynk-checkbox__label {
+    line-height: var(--lynk-toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;
   }

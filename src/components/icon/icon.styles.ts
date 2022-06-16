@@ -12,7 +12,7 @@ export default css`
     box-sizing: content-box !important;
   }
 
-  .icon,
+  .lynk-icon,
   svg {
     display: block;
     height: 100%;

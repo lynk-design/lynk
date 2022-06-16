@@ -11,25 +11,25 @@ import styles from './tab.styles';
  * @since 2.0
  * @status stable
  *
- * @dependency l-icon-button
+ * @dependency lynk-icon-button
  *
  * @slot - The tab's label.
  *
- * @event l-close - Emitted when the tab is closable and the close button is activated.
+ * @event lynk-close - Emitted when the tab is closable and the close button is activated.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart close-button - The close button.
  * @csspart close-button__base - The close button's `base` part.
  */
-@customElement('l-tab')
-export default class SlTab extends LitElement {
+@customElement('lynk-tab')
+export default class LynkTab extends LitElement {
   static styles = styles;
   private readonly localize = new LocalizeController(this);
 
   @query('.tab') tab: HTMLElement;
 
   private readonly attrId = autoIncrement();
-  private readonly componentId = `l-tab-${this.attrId}`;
+  private readonly componentId = `lynk-tab-${this.attrId}`;
 
   /** The name of the tab panel the tab will control. The panel must be located in the same tab group. */
   @property({ reflect: true }) panel = '';
@@ -57,7 +57,7 @@ export default class SlTab extends LitElement {
   }
 
   handleCloseClick() {
-    emit(this, 'l-close');
+    emit(this, 'lynk-close');
   }
 
   render() {
@@ -68,10 +68,10 @@ export default class SlTab extends LitElement {
       <div
         part="base"
         class=${classMap({
-          tab: true,
-          'tab--active': this.active,
-          'tab--closable': this.closable,
-          'tab--disabled': this.disabled
+          'lynk-tab': true,
+          'lynk-tab--active': this.active,
+          'lynk-tab--closable': this.closable,
+          'lynk-tab--disabled': this.disabled
         })}
         role="tab"
         aria-disabled=${this.disabled ? 'true' : 'false'}
@@ -81,7 +81,7 @@ export default class SlTab extends LitElement {
         <slot></slot>
         ${this.closable
           ? html`
-              <l-icon-button
+              <lynk-icon-button
                 part="close-button"
                 exportparts="base:close-button__base"
                 name="x"
@@ -90,7 +90,7 @@ export default class SlTab extends LitElement {
                 class="tab__close-button"
                 @click=${this.handleCloseClick}
                 tabindex="-1"
-              ></l-icon-button>
+              ></lynk-icon-button>
             `
           : ''}
       </div>
@@ -100,6 +100,6 @@ export default class SlTab extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-tab': SlTab;
+    'lynk-tab': LynkTab;
   }
 }

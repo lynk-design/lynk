@@ -1,17 +1,17 @@
 # Radio Button
 
-[component-header:l-radio-button]
+[component-header:lynk-radio-button]
 
 Radios buttons allow the user to select a single option from a group using a button-like control.
 
 Radio buttons are designed to be used with [radio groups](/components/radio-group). When a radio button has focus, the arrow keys can be used to change the selected option just like standard radio controls.
 
 ```html preview
-<l-radio-group label="Select an option">
-  <l-radio-button name="a" value="1" checked>Option 1</l-radio-button>
-  <l-radio-button name="a" value="2">Option 2</l-radio-button>
-  <l-radio-button name="a" value="3">Option 3</l-radio-button>
-</l-radio-group>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button name="a" value="1" checked>Option 1</lynk-radio-button>
+  <lynk-radio-button name="a" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button name="a" value="3">Option 3</lynk-radio-button>
+</lynk-radio-group>
 ```
 
 ```jsx react
@@ -39,11 +39,11 @@ const App = () => (
 To set the initial checked state, use the `checked` attribute.
 
 ```html preview
-<l-radio-group label="Select an option">
-  <l-radio-button name="option" value="1" checked>Option 1</l-radio-button>
-  <l-radio-button name="option" value="2">Option 2</l-radio-button>
-  <l-radio-button name="option" value="3">Option 3</l-radio-button>
-</l-radio-group>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button name="option" value="1" checked>Option 1</lynk-radio-button>
+  <lynk-radio-button name="option" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button name="option" value="3">Option 3</lynk-radio-button>
+</lynk-radio-group>
 ```
 
 ```jsx react
@@ -69,11 +69,11 @@ const App = () => (
 Use the `disabled` attribute to disable a radio button.
 
 ```html preview
-<l-radio-group label="Select an option">
-  <l-radio-button name="option" value="1" checked>Option 1</l-radio-button>
-  <l-radio-button name="option" value="2">Option 2</l-radio-button>
-  <l-radio-button name="option" value="3" disabled>Option 3</l-radio-button>
-</l-radio-group>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button name="option" value="1" checked>Option 1</lynk-radio-button>
+  <lynk-radio-button name="option" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button name="option" value="3" disabled>Option 3</lynk-radio-button>
+</lynk-radio-group>
 ```
 
 ```jsx react
@@ -99,27 +99,27 @@ const App = () => (
 Use the `size` attribute to change a radio button's size.
 
 ```html preview
-<l-radio-group label="Select an option">
-  <l-radio-button size="small" name="option" value="1" checked>Option 1</l-radio-button>
-  <l-radio-button size="small" name="option" value="2">Option 2</l-radio-button>
-  <l-radio-button size="small" name="option" value="3">Option 3</l-radio-button>
-</l-radio-group>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button size="small" name="option" value="1" checked>Option 1</lynk-radio-button>
+  <lynk-radio-button size="small" name="option" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button size="small" name="option" value="3">Option 3</lynk-radio-button>
+</lynk-radio-group>
 
 <br />
 
-<l-radio-group label="Select an option">
-  <l-radio-button size="medium" name="option" value="1" checked>Option 1</l-radio-button>
-  <l-radio-button size="medium" name="option" value="2">Option 2</l-radio-button>
-  <l-radio-button size="medium" name="option" value="3">Option 3</l-radio-button>
-</l-radio-group>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button size="medium" name="option" value="1" checked>Option 1</lynk-radio-button>
+  <lynk-radio-button size="medium" name="option" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button size="medium" name="option" value="3">Option 3</lynk-radio-button>
+</lynk-radio-group>
 
 <br />
 
-<l-radio-group label="Select an option">
-  <l-radio-button size="large" name="option" value="1" checked>Option 1</l-radio-button>
-  <l-radio-button size="large" name="option" value="2">Option 2</l-radio-button>
-  <l-radio-button size="large" name="option" value="3">Option 3</l-radio-button>
-</l-radio-group>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button size="large" name="option" value="1" checked>Option 1</lynk-radio-button>
+  <lynk-radio-button size="large" name="option" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button size="large" name="option" value="3">Option 3</lynk-radio-button>
+</lynk-radio-group>
 ```
 
 ```jsx react
@@ -155,27 +155,27 @@ const App = () => (
 Use the `pill` attribute to give radio buttons rounded edges.
 
 ```html preview
-<l-radio-group label="Select an option">
-  <l-radio-button pill size="small" name="option" value="1" checked>Option 1</l-radio-button>
-  <l-radio-button pill size="small" name="option" value="2">Option 2</l-radio-button>
-  <l-radio-button pill size="small" name="option" value="3">Option 3</l-radio-button>
-</l-radio-group>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button pill size="small" name="option" value="1" checked>Option 1</lynk-radio-button>
+  <lynk-radio-button pill size="small" name="option" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button pill size="small" name="option" value="3">Option 3</lynk-radio-button>
+</lynk-radio-group>
 
 <br />
 
-<l-radio-group label="Select an option">
-  <l-radio-button pill size="medium" name="option" value="1" checked>Option 1</l-radio-button>
-  <l-radio-button pill size="medium" name="option" value="2">Option 2</l-radio-button>
-  <l-radio-button pill size="medium" name="option" value="3">Option 3</l-radio-button>
-</l-radio-group>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button pill size="medium" name="option" value="1" checked>Option 1</lynk-radio-button>
+  <lynk-radio-button pill size="medium" name="option" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button pill size="medium" name="option" value="3">Option 3</lynk-radio-button>
+</lynk-radio-group>
 
 <br />
 
-<l-radio-group label="Select an option">
-  <l-radio-button pill size="large" name="option" value="1" checked>Option 1</l-radio-button>
-  <l-radio-button pill size="large" name="option" value="2">Option 2</l-radio-button>
-  <l-radio-button pill size="large" name="option" value="3">Option 3</l-radio-button>
-</l-radio-group>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button pill size="large" name="option" value="1" checked>Option 1</lynk-radio-button>
+  <lynk-radio-button pill size="large" name="option" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button pill size="large" name="option" value="3">Option 3</lynk-radio-button>
+</lynk-radio-group>
 ```
 
 ```jsx react
@@ -211,23 +211,23 @@ const App = () => (
 Use the `prefix` and `suffix` slots to add icons.
 
 ```html preview
-<l-radio-group label="Select an option">
-  <l-radio-button name="a" value="1" checked>
-    <l-icon slot="prefix" name="archive"></l-icon>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button name="a" value="1" checked>
+    <lynk-icon slot="prefix" name="archive"></lynk-icon>
     Option 1
-  </l-radio-button>
+  </lynk-radio-button>
 
-  <l-radio-button name="a" value="2">
-    <l-icon slot="suffix" name="bag"></l-icon>
+  <lynk-radio-button name="a" value="2">
+    <lynk-icon slot="suffix" name="bag"></lynk-icon>
     Option 2
-  </l-radio-button>
+  </lynk-radio-button>
 
-  <l-radio-button name="a" value="3">
-    <l-icon slot="prefix" name="gift"></l-icon>
-    <l-icon slot="suffix" name="cart"></l-icon>
+  <lynk-radio-button name="a" value="3">
+    <lynk-icon slot="prefix" name="gift"></lynk-icon>
+    <lynk-icon slot="suffix" name="cart"></lynk-icon>
     Option 3
-  </l-radio-button>
-</l-radio-group>
+  </lynk-radio-button>
+</lynk-radio-group>
 ```
 
 ```jsx react
@@ -259,27 +259,27 @@ const App = () => (
 You can omit button labels and use icons instead. Make sure to set a `label` attribute on each icon so screen readers will announce each option correctly.
 
 ```html preview
-<l-radio-group label="Select an option">
-  <l-radio-button name="a" value="angry">
-    <l-icon name="emoji-angry" label="Angry"></l-icon>
-  </l-radio-button>
+<lynk-radio-group label="Select an option">
+  <lynk-radio-button name="a" value="angry">
+    <lynk-icon name="emoji-angry" label="Angry"></lynk-icon>
+  </lynk-radio-button>
 
-  <l-radio-button name="a" value="sad">
-    <l-icon name="emoji-frown" label="Sad"></l-icon>
-  </l-radio-button>
+  <lynk-radio-button name="a" value="sad">
+    <lynk-icon name="emoji-frown" label="Sad"></lynk-icon>
+  </lynk-radio-button>
 
-  <l-radio-button name="a" value="neutral" checked>
-    <l-icon name="emoji-neutral" label="Neutral"></l-icon>
-  </l-radio-button>
+  <lynk-radio-button name="a" value="neutral" checked>
+    <lynk-icon name="emoji-neutral" label="Neutral"></lynk-icon>
+  </lynk-radio-button>
 
-  <l-radio-button name="a" value="happy">
-    <l-icon name="emoji-smile" label="Happy"></l-icon>
-  </l-radio-button>
+  <lynk-radio-button name="a" value="happy">
+    <lynk-icon name="emoji-smile" label="Happy"></lynk-icon>
+  </lynk-radio-button>
 
-  <l-radio-button name="a" value="laughing">
-    <l-icon name="emoji-laughing" label="Laughing"></l-icon>
-  </l-radio-button>
-</l-radio-group>
+  <lynk-radio-button name="a" value="laughing">
+    <lynk-icon name="emoji-laughing" label="Laughing"></lynk-icon>
+  </lynk-radio-button>
+</lynk-radio-group>
 ```
 
 ```jsx react
@@ -316,24 +316,24 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 
 ```html preview
 <form class="custom-validity">
-  <l-radio-group label="Select an option">
-    <l-radio-button name="a" value="1" checked>Not me</l-radio-button>
-    <l-radio-button name="a" value="2">Me neither</l-radio-button>
-    <l-radio-button name="a" value="3">Choose me</l-radio-button>
-  </l-radio-group>
+  <lynk-radio-group label="Select an option">
+    <lynk-radio-button name="a" value="1" checked>Not me</lynk-radio-button>
+    <lynk-radio-button name="a" value="2">Me neither</lynk-radio-button>
+    <lynk-radio-button name="a" value="3">Choose me</lynk-radio-button>
+  </lynk-radio-group>
   <br />
-  <l-button type="submit" variant="primary">Submit</l-button>
+  <lynk-button type="submit" variant="primary">Submit</lynk-button>
 </form>
 <script>
   const form = document.querySelector('.custom-validity');
-  const radioButton = form.querySelectorAll('l-radio-button')[2];
+  const radioButton = form.querySelectorAll('lynk-radio-button')[2];
   const errorMessage = 'You must choose this option';
   // Set initial validity as soon as the element is defined
-  customElements.whenDefined('l-radio-button').then(() => {
+  customElements.whenDefined('lynk-radio-button').then(() => {
     radioButton.setCustomValidity(errorMessage);
   });
   // Update validity when a selection is made
-  form.addEventListener('l-change', () => {
+  form.addEventListener('lynk-change', () => {
     const isValid = radioButton.checked;
     radioButton.setCustomValidity(isValid ? '' : errorMessage);
   });
@@ -383,4 +383,4 @@ const App = () => {
 };
 ```
 
-[component-metadata:l-radio-button]
+[component-metadata:lynk-radio-button]

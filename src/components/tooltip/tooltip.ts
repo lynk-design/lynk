@@ -15,10 +15,10 @@ import styles from './tooltip.styles';
  * @slot - The tooltip's target element. Only the first element will be used as the target.
  * @slot content - The tooltip's content. Alternatively, you can use the content prop.
  *
- * @event le-show - Emitted when the tooltip begins to show.
- * @event le-after-show - Emitted after the tooltip has shown and all animations are complete.
- * @event le-hide - Emitted when the tooltip begins to hide.
- * @event le-after-hide - Emitted after the tooltip has hidden and all animations are complete.
+ * @event lynk-show - Emitted when the tooltip begins to show.
+ * @event lynk-after-show - Emitted after the tooltip has shown and all animations are complete.
+ * @event lynk-hide - Emitted when the tooltip begins to hide.
+ * @event lynk-after-hide - Emitted after the tooltip has hidden and all animations are complete.
  *
  * @csspart base - The component's internal wrapper.
  *
@@ -29,13 +29,13 @@ import styles from './tooltip.styles';
  * @animation tooltip.show - The animation to use when showing the tooltip.
  * @animation tooltip.hide - The animation to use when hiding the tooltip.
  */
-@customElement('l-tooltip')
+@customElement('lynk-tooltip')
 export default class LynkTooltip extends LitElement {
   static styles = styles;
 
-  @query('.l-tooltip-positioner') positioner: HTMLElement;
-  @query('.l-tooltip') tooltip: HTMLElement;
-  @query('.l-tooltip__arrow') arrow: HTMLElement;
+  @query('.lynk-tooltip-positioner') positioner: HTMLElement;
+  @query('.lynk-tooltip') tooltip: HTMLElement;
+  @query('.lynk-tooltip__arrow') arrow: HTMLElement;
 
   private target: HTMLElement;
   private hoverTimeout: number;
@@ -135,7 +135,7 @@ export default class LynkTooltip extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'le-after-show');
+    return waitForEvent(this, 'lynk-after-show');
   }
 
   /** Hides the tooltip */
@@ -145,7 +145,7 @@ export default class LynkTooltip extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'le-after-hide');
+    return waitForEvent(this, 'lynk-after-hide');
   }
 
   getTarget() {
@@ -215,7 +215,7 @@ export default class LynkTooltip extends LitElement {
       }
 
       // Show
-      emit(this, 'le-show');
+      emit(this, 'lynk-show');
 
       await stopAnimations(this.tooltip);
       this.startPositioner();
@@ -223,10 +223,10 @@ export default class LynkTooltip extends LitElement {
       const { keyframes, options } = getAnimation(this, 'tooltip.show');
       await animateTo(this.tooltip, keyframes, options);
 
-      emit(this, 'le-after-show');
+      emit(this, 'lynk-after-show');
     } else {
       // Hide
-      emit(this, 'le-hide');
+      emit(this, 'lynk-hide');
 
       await stopAnimations(this.tooltip);
       const { keyframes, options } = getAnimation(this, 'tooltip.hide');
@@ -234,7 +234,7 @@ export default class LynkTooltip extends LitElement {
       this.tooltip.hidden = true;
       this.stopPositioner();
 
-      emit(this, 'le-after-hide');
+      emit(this, 'lynk-after-hide');
     }
   }
 
@@ -300,7 +300,7 @@ export default class LynkTooltip extends LitElement {
         top: typeof arrowY === 'number' ? `${arrowY}px` : '',
         right: '',
         bottom: '',
-        [staticSide]: 'calc(var(--l-tooltip-arrow-size) * -1)'
+        [staticSide]: 'calc(var(--lynk-tooltip-arrow-size) * -1)'
       });
     });
   }
@@ -315,23 +315,23 @@ export default class LynkTooltip extends LitElement {
 
   render() {
     return html`
-      <div class="l-tooltip-target" aria-describedby="tooltip">
+      <div class="lynk-tooltip-target" aria-describedby="tooltip">
         <slot></slot>
       </div>
 
-      <div class="l-tooltip-positioner">
+      <div class="lynk-tooltip-positioner">
         <div
           part="base"
           id="tooltip"
           class=${classMap({
-            'l-tooltip': true,
-            'l-tooltip--open': this.open
+            'lynk-tooltip': true,
+            'lynk-tooltip--open': this.open
           })}
           role="tooltip"
           aria-hidden=${this.open ? 'false' : 'true'}
         >
-          <div class="l-tooltip__arrow"></div>
-          <div class="l-tooltip__content" aria-live=${this.open ? 'polite' : 'off'}>
+          <div class="lynk-tooltip__arrow"></div>
+          <div class="lynk-tooltip__content" aria-live=${this.open ? 'polite' : 'off'}>
             <slot name="content"> ${this.content} </slot>
           </div>
         </div>
@@ -358,6 +358,6 @@ setDefaultAnimation('tooltip.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-tooltip': LynkTooltip;
+    'lynk-tooltip': LynkTooltip;
   }
 }

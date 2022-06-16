@@ -1,11 +1,11 @@
 # Input
 
-[component-header:l-input]
+[component-header:lynk-input]
 
 Inputs collect data from the user.
 
 ```html preview
-<l-input></l-input>
+<lynk-input></lynk-input>
 ```
 
 ```jsx react
@@ -23,7 +23,7 @@ const App = () => <SlInput />;
 Use the `label` attribute to give the input an accessible label. For labels that contain HTML, use the `label` slot instead.
 
 ```html preview
-<l-input label="What is your name?"></l-input>
+<lynk-input label="What is your name?"></lynk-input>
 ```
 
 ```jsx react
@@ -37,7 +37,7 @@ const App = () => <SlInput label="What is your name?" />;
 Add descriptive help text to an input with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
 ```html preview
-<l-input label="Nickname" help-text="What would you like people to call you?"></l-input>
+<lynk-input label="Nickname" help-text="What would you like people to call you?"></lynk-input>
 ```
 
 ```jsx react
@@ -51,7 +51,7 @@ const App = () => <SlInput label="Nickname" help-text="What would you like peopl
 Use the `placeholder` attribute to add a placeholder.
 
 ```html preview
-<l-input placeholder="Type something"></l-input>
+<lynk-input placeholder="Type something"></lynk-input>
 ```
 
 ```jsx react
@@ -65,7 +65,7 @@ const App = () => <SlInput placeholder="Type something" />;
 Add the `clearable` attribute to add a clear button when the input has content.
 
 ```html preview
-<l-input placeholder="Clearable" clearable></l-input>
+<lynk-input placeholder="Clearable" clearable></lynk-input>
 ```
 
 ```jsx react
@@ -79,11 +79,11 @@ const App = () => <SlInput placeholder="Clearable" clearable />;
 Add the `toggle-password` attribute to add a toggle button that will show the password when activated.
 
 ```html preview
-<l-input type="password" placeholder="Password Toggle" size="small" toggle-password></l-input>
+<lynk-input type="password" placeholder="Password Toggle" size="small" toggle-password></lynk-input>
 <br />
-<l-input type="password" placeholder="Password Toggle" size="medium" toggle-password></l-input>
+<lynk-input type="password" placeholder="Password Toggle" size="medium" toggle-password></lynk-input>
 <br />
-<l-input type="password" placeholder="Password Toggle" size="large" toggle-password></l-input>
+<lynk-input type="password" placeholder="Password Toggle" size="large" toggle-password></lynk-input>
 ```
 
 ```jsx react
@@ -105,7 +105,7 @@ const App = () => (
 Add the `filled` attribute to draw a filled input.
 
 ```html preview
-<l-input placeholder="Type something" filled></l-input>
+<lynk-input placeholder="Type something" filled></lynk-input>
 ```
 
 ```jsx react
@@ -119,11 +119,11 @@ const App = () => <SlInput placeholder="Type something" filled />;
 Use the `pill` attribute to give inputs rounded edges.
 
 ```html preview
-<l-input placeholder="Small" size="small" pill></l-input>
+<lynk-input placeholder="Small" size="small" pill></lynk-input>
 <br />
-<l-input placeholder="Medium" size="medium" pill></l-input>
+<lynk-input placeholder="Medium" size="medium" pill></lynk-input>
 <br />
-<l-input placeholder="Large" size="large" pill></l-input>
+<lynk-input placeholder="Large" size="large" pill></lynk-input>
 ```
 
 ```jsx react
@@ -145,11 +145,11 @@ const App = () => (
 The `type` attribute controls the type of input the browser renders.
 
 ```html preview
-<l-input type="email" placeholder="Email"></l-input>
+<lynk-input type="email" placeholder="Email"></lynk-input>
 <br />
-<l-input type="number" placeholder="Number"></l-input>
+<lynk-input type="number" placeholder="Number"></lynk-input>
 <br />
-<l-input type="date" placeholder="Date"></l-input>
+<lynk-input type="date" placeholder="Date"></lynk-input>
 ```
 
 ```jsx react
@@ -171,11 +171,11 @@ const App = () => (
 Use the `disabled` attribute to disable an input.
 
 ```html preview
-<l-input placeholder="Disabled" size="small" disabled></l-input>
+<lynk-input placeholder="Disabled" size="small" disabled></lynk-input>
 <br />
-<l-input placeholder="Disabled" size="medium" disabled></l-input>
+<lynk-input placeholder="Disabled" size="medium" disabled></lynk-input>
 <br />
-<l-input placeholder="Disabled" size="large" disabled></l-input>
+<lynk-input placeholder="Disabled" size="large" disabled></lynk-input>
 ```
 
 ```jsx react
@@ -197,11 +197,11 @@ const App = () => (
 Use the `size` attribute to change an input's size.
 
 ```html preview
-<l-input placeholder="Small" size="small"></l-input>
+<lynk-input placeholder="Small" size="small"></lynk-input>
 <br />
-<l-input placeholder="Medium" size="medium"></l-input>
+<lynk-input placeholder="Medium" size="medium"></lynk-input>
 <br />
-<l-input placeholder="Large" size="large"></l-input>
+<lynk-input placeholder="Large" size="large"></lynk-input>
 ```
 
 ```jsx react
@@ -223,20 +223,20 @@ const App = () => (
 Use the `prefix` and `suffix` slots to add icons.
 
 ```html preview
-<l-input placeholder="Small" size="small">
-  <l-icon name="house" slot="prefix"></l-icon>
-  <l-icon name="chat" slot="suffix"></l-icon>
-</l-input>
+<lynk-input placeholder="Small" size="small">
+  <lynk-icon name="house" slot="prefix"></lynk-icon>
+  <lynk-icon name="chat" slot="suffix"></lynk-icon>
+</lynk-input>
 <br />
-<l-input placeholder="Medium" size="medium">
-  <l-icon name="house" slot="prefix"></l-icon>
-  <l-icon name="chat" slot="suffix"></l-icon>
-</l-input>
+<lynk-input placeholder="Medium" size="medium">
+  <lynk-icon name="house" slot="prefix"></lynk-icon>
+  <lynk-icon name="chat" slot="suffix"></lynk-icon>
+</lynk-input>
 <br />
-<l-input placeholder="Large" size="large">
-  <l-icon name="house" slot="prefix"></l-icon>
-  <l-icon name="chat" slot="suffix"></l-icon>
-</l-input>
+<lynk-input placeholder="Large" size="large">
+  <lynk-icon name="house" slot="prefix"></lynk-icon>
+  <lynk-icon name="chat" slot="suffix"></lynk-icon>
+</lynk-input>
 ```
 
 ```jsx react
@@ -267,8 +267,8 @@ const App = () => (
 Use parts to customize the label's position.
 
 ```html preview
-<l-input class="label-on-left" label="Name"></l-input><br />
-<l-input class="label-on-left" label="Email" type="email"></l-input>
+<lynk-input class="label-on-left" label="Name"></lynk-input><br />
+<lynk-input class="label-on-left" label="Email" type="email"></lynk-input>
 
 <style>
   .label-on-left::part(form-control) {
@@ -289,4 +289,4 @@ Use parts to customize the label's position.
 </style>
 ```
 
-[component-metadata:l-input]
+[component-metadata:lynk-input]

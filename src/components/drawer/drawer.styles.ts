@@ -6,14 +6,14 @@ export default css`
 
   :host {
     --size: 25rem;
-    --header-spacing: var(--l-spacing-large);
-    --body-spacing: var(--l-spacing-large);
-    --footer-spacing: var(--l-spacing-large);
+    --header-spacing: var(--lynk-spacing-large);
+    --body-spacing: var(--lynk-spacing-large);
+    --footer-spacing: var(--lynk-spacing-large);
 
     display: contents;
   }
 
-  .drawer {
+  .lynk-drawer {
     top: 0;
     left: 0;
     width: 100%;
@@ -22,35 +22,35 @@ export default css`
     overflow: hidden;
   }
 
-  .drawer--contained {
+  .lynk-drawer--contained {
     position: absolute;
     z-index: initial;
   }
 
-  .drawer--fixed {
+  .lynk-drawer--fixed {
     position: fixed;
-    z-index: var(--l-z-index-drawer);
+    z-index: var(--lynk-z-index-drawer);
   }
 
-  .drawer__panel {
+  .lynk-drawer__panel {
     position: absolute;
     display: flex;
     flex-direction: column;
     z-index: 2;
     max-width: 100%;
     max-height: 100%;
-    background-color: var(--l-panel-background-color);
-    box-shadow: var(--l-shadow-x-large);
-    transition: var(--l-transition-medium) transform;
+    background-color: var(--lynk-panel-background-color);
+    box-shadow: var(--lynk-shadow-x-large);
+    transition: var(--lynk-transition-medium) transform;
     overflow: auto;
     pointer-events: all;
   }
 
-  .drawer__panel:focus {
+  .lynk-drawer__panel:focus {
     outline: none;
   }
 
-  .drawer--top .drawer__panel {
+  .lynk-drawer--top .lynk-drawer__panel {
     top: 0;
     right: auto;
     bottom: auto;
@@ -59,7 +59,7 @@ export default css`
     height: var(--size);
   }
 
-  .drawer--end .drawer__panel {
+  .lynk-drawer--end .lynk-drawer__panel {
     top: 0;
     right: 0;
     bottom: auto;
@@ -68,7 +68,7 @@ export default css`
     height: 100%;
   }
 
-  .drawer--bottom .drawer__panel {
+  .lynk-drawer--bottom .lynk-drawer__panel {
     top: auto;
     right: auto;
     bottom: 0;
@@ -77,7 +77,7 @@ export default css`
     height: var(--size);
   }
 
-  .drawer--start .drawer__panel {
+  .lynk-drawer--start .lynk-drawer__panel {
     top: 0;
     right: auto;
     bottom: auto;
@@ -86,59 +86,59 @@ export default css`
     height: 100%;
   }
 
-  .drawer__header {
+  .lynk-drawer__header {
     display: flex;
   }
 
-  .drawer__title {
+  .lynk-drawer__title {
     flex: 1 1 auto;
     font: inherit;
-    font-size: var(--l-font-size-large);
-    line-height: var(--l-line-height-dense);
+    font-size: var(--lynk-font-size-large);
+    line-height: var(--lynk-line-height-dense);
     padding: var(--header-spacing);
     margin: 0;
   }
 
-  .drawer__close {
+  .lynk-drawer__close {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    font-size: var(--l-font-size-x-large);
+    font-size: var(--lynk-font-size-x-large);
     padding: 0 var(--header-spacing);
   }
 
-  .drawer__body {
+  .lynk-drawer__body {
     flex: 1 1 auto;
     padding: var(--body-spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-  .drawer__footer {
+  .lynk-drawer__footer {
     text-align: right;
     padding: var(--footer-spacing);
   }
 
-  .drawer__footer ::slotted(l-button:not(:last-of-type)) {
-    margin-inline-end: var(--l-spacing-x-small);
+  .lynk-drawer__footer ::slotted(l-button:not(:last-of-type)) {
+    margin-inline-end: var(--lynk-spacing-x-small);
   }
 
-  .drawer:not(.drawer--has-footer) .drawer__footer {
+  .lynk-drawer:not(.lynk-drawer--has-footer) .lynk-drawer__footer {
     display: none;
   }
 
-  .drawer__overlay {
+  .lynk-drawer__overlay {
     display: block;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: var(--l-overlay-background-color);
+    background-color: var(--lynk-overlay-background-color);
     pointer-events: all;
   }
 
-  .drawer--contained .drawer__overlay {
+  .lynk-drawer--contained .lynk-drawer__overlay {
     position: absolute;
   }
 `;

@@ -1,13 +1,13 @@
 # Icon Button
 
-[component-header:l-icon-button]
+[component-header:lynk-icon-button]
 
 Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
 
 For a full list of icons that come bundled with Shoelace, refer to the [icon component](/components/icon).
 
 ```html preview
-<l-icon-button name="gear" label="Settings"></l-icon-button>
+<lynk-icon-button name="gear" label="Settings"></lynk-icon-button>
 ```
 
 ```jsx react
@@ -23,9 +23,9 @@ const App = () => <SlIconButton name="gear" label="Settings" />;
 Icon buttons inherit their parent element's `font-size`.
 
 ```html preview
-<l-icon-button name="pencil" label="Edit" style="font-size: 1.5rem;"></l-icon-button>
-<l-icon-button name="pencil" label="Edit" style="font-size: 2rem;"></l-icon-button>
-<l-icon-button name="pencil" label="Edit" style="font-size: 2.5rem;"></l-icon-button>
+<lynk-icon-button name="pencil" label="Edit" style="font-size: 1.5rem;"></lynk-icon-button>
+<lynk-icon-button name="pencil" label="Edit" style="font-size: 2rem;"></lynk-icon-button>
+<lynk-icon-button name="pencil" label="Edit" style="font-size: 2.5rem;"></lynk-icon-button>
 ```
 
 ```jsx react
@@ -46,22 +46,22 @@ Icon buttons are designed to have a uniform appearance, so their color is not in
 
 ```html preview
 <div class="icon-button-color">
-  <l-icon-button name="type-bold" label="Bold"></l-icon-button>
-  <l-icon-button name="type-italic" label="Italic"></l-icon-button>
-  <l-icon-button name="type-underline" label="Underline"></l-icon-button>
+  <lynk-icon-button name="type-bold" label="Bold"></lynk-icon-button>
+  <lynk-icon-button name="type-italic" label="Italic"></lynk-icon-button>
+  <lynk-icon-button name="type-underline" label="Underline"></lynk-icon-button>
 </div>
 
 <style>
-  .icon-button-color l-icon-button::part(base) {
+  .icon-button-color lynk-icon-button::part(base) {
     color: #b00091;
   }
 
-  .icon-button-color l-icon-button::part(base):hover,
-  .icon-button-color l-icon-button::part(base):focus {
+  .icon-button-color lynk-icon-button::part(base):hover,
+  .icon-button-color lynk-icon-button::part(base):focus {
     color: #c913aa;
   }
 
-  .icon-button-color l-icon-button::part(base):active {
+  .icon-button-color lynk-icon-button::part(base):active {
     color: #960077;
   }
 </style>
@@ -71,16 +71,16 @@ Icon buttons are designed to have a uniform appearance, so their color is not in
 import { SlIconButton } from '@shoelace-style/shoelace/dist/react';
 
 const css = `
-  .icon-button-color l-icon-button::part(base) {
+  .icon-button-color lynk-icon-button::part(base) {
     color: #b00091;
   }
 
-  .icon-button-color l-icon-button::part(base):hover,
-  .icon-button-color l-icon-button::part(base):focus {
+  .icon-button-color lynk-icon-button::part(base):hover,
+  .icon-button-color lynk-icon-button::part(base):focus {
     color: #c913aa;
   }
 
-  .icon-button-color l-icon-button::part(base):active {
+  .icon-button-color lynk-icon-button::part(base):active {
     color: #960077;
   }
 `;
@@ -103,7 +103,7 @@ const App = () => (
 Use the `href` attribute to convert the button to a link.
 
 ```html preview
-<l-icon-button name="gear" label="Settings" href="https://example.com" target="_blank"></l-icon-button>
+<lynk-icon-button name="gear" label="Settings" href="https://example.com" target="_blank"></lynk-icon-button>
 ```
 
 ```jsx react
@@ -117,9 +117,9 @@ const App = () => <SlIconButton name="gear" label="Settings" href="https://examp
 Wrap a tooltip around an icon button to provide contextual information to the user.
 
 ```html preview
-<l-tooltip content="Settings">
-  <l-icon-button name="gear" label="Settings"></l-icon-button>
-</l-tooltip>
+<lynk-tooltip content="Settings">
+  <lynk-icon-button name="gear" label="Settings"></lynk-icon-button>
+</lynk-tooltip>
 ```
 
 ```jsx react
@@ -137,7 +137,7 @@ const App = () => (
 Use the `disabled` attribute to disable the icon button.
 
 ```html preview
-<l-icon-button name="gear" label="Settings" disabled></l-icon-button>
+<lynk-icon-button name="gear" label="Settings" disabled></lynk-icon-button>
 ```
 
 ```jsx react
@@ -146,4 +146,4 @@ import { SlIconButton } from '@shoelace-style/shoelace/dist/react';
 const App = () => <SlIconButton name="gear" label="Settings" disabled />;
 ```
 
-[component-metadata:l-icon-button]
+[component-metadata:lynk-icon-button]

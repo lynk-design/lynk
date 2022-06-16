@@ -15,15 +15,15 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'l-
  * @since 1.0
  * @status stable
  *
- * @dependency l-icon-button
+ * @dependency lynk-icon-button
  *
  * @slot - The alert's content.
  * @slot icon - An icon to show in the alert.
  *
- * @event le-show - Emitted when the alert opens.
- * @event le-after-show - Emitted after the alert opens and all animations are complete.
- * @event le-hide - Emitted when the alert closes.
- * @event le-after-hide - Emitted after the alert closes and all animations are complete.
+ * @event lynk-show - Emitted when the alert opens.
+ * @event lynk-after-show - Emitted after the alert opens and all animations are complete.
+ * @event lynk-hide - Emitted when the alert closes.
+ * @event lynk-after-hide - Emitted after the alert closes and all animations are complete.
  *
  * @csspart base - The component's internal block wrapper.
  * @csspart icon - The container that wraps the alert icon.
@@ -36,7 +36,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'l-
  * @animation alert.hide - The animation to use when hiding the alert.
  */
 
-@customElement('l-alert')
+@customElement('lynk-alert')
 export default class LynkAlert extends LitElement {
   static styles = styles;
 
@@ -71,7 +71,7 @@ export default class LynkAlert extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'le-after-show');
+    return waitForEvent(this, 'lynk-after-show');
   }
 
   /** Hides the alert */
@@ -81,7 +81,7 @@ export default class LynkAlert extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'le-after-hide');
+    return waitForEvent(this, 'lynk-after-hide');
   }
 
   /**
@@ -105,13 +105,13 @@ export default class LynkAlert extends LitElement {
       });
 
       this.addEventListener(
-        'le-after-hide',
+        'lynk-after-hide',
         () => {
           toastStack.removeChild(this);
           resolve();
 
           // Remove the toast stack from the DOM when there are no more alerts
-          if (toastStack.querySelector('l-alert') === null) {
+          if (toastStack.querySelector('lynk-alert') === null) {
             toastStack.remove();
           }
         },
@@ -139,7 +139,7 @@ export default class LynkAlert extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'le-show');
+      emit(this, 'lynk-show');
 
       if (this.duration < Infinity) {
         this.restartAutoHide();
@@ -150,10 +150,10 @@ export default class LynkAlert extends LitElement {
       const { keyframes, options } = getAnimation(this, 'alert.show');
       await animateTo(this.base, keyframes, options);
 
-      emit(this, 'le-after-show');
+      emit(this, 'lynk-after-show');
     } else {
       // Hide
-      emit(this, 'le-hide');
+      emit(this, 'lynk-hide');
 
       clearTimeout(this.autoHideTimeout);
 
@@ -162,7 +162,7 @@ export default class LynkAlert extends LitElement {
       await animateTo(this.base, keyframes, options);
       this.base.hidden = true;
 
-      emit(this, 'le-after-hide');
+      emit(this, 'lynk-after-hide');
     }
   }
 
@@ -176,15 +176,15 @@ export default class LynkAlert extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'l-alert': true,
-          'l-alert--open': this.open,
-          'l-alert--closable': this.closable,
-          'l-alert--has-icon': this.hasSlotController.test('icon'),
-          'l-alert--primary': this.type === 'primary',
-          'l-alert--success': this.type === 'success',
-          'l-alert--neutral': this.type === 'neutral',
-          'l-alert--warning': this.type === 'warning',
-          'l-alert--danger': this.type === 'danger'
+          'lynk-alert': true,
+          'lynk-alert--open': this.open,
+          'lynk-alert--closable': this.closable,
+          'lynk-alert--has-icon': this.hasSlotController.test('icon'),
+          'lynk-alert--primary': this.type === 'primary',
+          'lynk-alert--success': this.type === 'success',
+          'lynk-alert--neutral': this.type === 'neutral',
+          'lynk-alert--warning': this.type === 'warning',
+          'lynk-alert--danger': this.type === 'danger'
         })}
         role="alert"
         aria-live="assertive"
@@ -192,24 +192,24 @@ export default class LynkAlert extends LitElement {
         aria-hidden=${this.open ? 'false' : 'true'}
         @mousemove=${this.handleMouseMove}
       >
-        <span part="icon" class="l-alert__icon">
+        <span part="icon" class="lynk-alert__icon">
           <slot name="icon"></slot>
         </span>
 
-        <span part="message" class="l-alert__message">
+        <span part="message" class="lynk-alert__message">
           <slot></slot>
         </span>
 
         ${this.closable
           ? html`
-              <l-icon-button
+              <lynk-icon-button
                 part="close-button"
                 exportparts="base:close-button__base"
-                class="l-alert__close-button"
+                class="lynk-alert__close-button"
                 name="x"
                 library="system"
                 @click=${this.handleCloseClick}
-              ></l-icon-button>
+              ></lynk-icon-button>
             `
           : ''}
       </div>
@@ -235,6 +235,6 @@ setDefaultAnimation('alert.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-alert': LynkAlert;
+    'lynk-alert': LynkAlert;
   }
 }

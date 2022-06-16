@@ -2,65 +2,65 @@
     display: block;
   }
 
-  .l-accordion {
-    border: solid 1px var(--l-color-neutral-200);
-    border-radius: var(--l-border-radius-medium);
-    background-color: var(--l-color-neutral-0);
+  .lynk-accordion {
+    border: solid 1px var(--lynk-color-neutral-200);
+    border-radius: var(--lynk-border-radius-medium);
+    background-color: var(--lynk-color-neutral-0);
     overflow-anchor: none;
   }
 
-  .l-accordion--disabled {
+  .lynk-accordion--disabled {
     opacity: 0.5;
   }
 
-  .l-accordion__header {
+  .lynk-accordion__header {
     display: flex;
     align-items: center;
     border-radius: inherit;
-    padding: var(--l-spacing-medium);
+    padding: var(--lynk-spacing-medium);
     user-select: none;
     cursor: pointer;
   }
 
-  .l-accordion__header:focus {
+  .lynk-accordion__header:focus {
     outline: none;
   }
 
-  .l-accordion__header:focus-visible {
-    outline: var(--l-focus-ring);
-    outline-offset: calc(1px + var(--l-focus-ring-offset));
+  .lynk-accordion__header:focus-visible {
+    outline: var(--lynk-focus-ring);
+    outline-offset: calc(1px + var(--lynk-focus-ring-offset));
   }
 
-  .l-accordion--disabled .l-accordion__header {
+  .lynk-accordion--disabled .lynk-accordion__header {
     cursor: not-allowed;
   }
 
-  .l-accordion--disabled .l-accordion__header:focus-visible {
+  .lynk-accordion--disabled .lynk-accordion__header:focus-visible {
     outline: none;
     box-shadow: none;
   }
 
-  .l-accordion__summary {
+  .lynk-accordion__summary {
     flex: 1 1 auto;
     display: flex;
     align-items: center;
   }
 
-  .l-accordion__summary-icon {
+  .lynk-accordion__summary-icon {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    transition: var(--l-transition-medium) transform ease;
+    transition: var(--lynk-transition-medium) transform ease;
   }
 
-  .l-accordion--open .l-accordion__summary-icon {
+  .lynk-accordion--open .lynk-accordion__summary-icon {
     transform: rotate(90deg);
   }
 
-  .l-accordion__body {
+  .lynk-accordion__body {
     overflow: hidden;
   }
 
-  .l-accordion__content {
-    padding: var(--l-spacing-medium);
+  .lynk-accordion__content {
+    padding: var(--lynk-spacing-medium);
   }

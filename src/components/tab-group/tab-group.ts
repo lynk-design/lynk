@@ -7,20 +7,20 @@ import { scrollIntoView } from '../../internal/scroll';
 import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
 import styles from './tab-group.styles';
-import type SlTabPanel from '../../components/tab-panel/tab-panel';
-import type SlTab from '../../components/tab/tab';
+import type LynkTabPanel from '../../components/tab-panel/tab-panel';
+import type LynkTab from '../../components/tab/tab';
 
 /**
  * @since 2.0
  * @status stable
  *
- * @dependency l-icon-button
+ * @dependency lynk-icon-button
  *
  * @slot - Used for grouping tab panels in the tab group.
  * @slot nav - Used for grouping tabs in the tab group.
  *
- * @event {{ name: String }} l-tab-show - Emitted when a tab is shown.
- * @event {{ name: String }} l-tab-hide - Emitted when a tab is hidden.
+ * @event {{ name: String }} lynk-tab-show - Emitted when a tab is shown.
+ * @event {{ name: String }} lynk-tab-hide - Emitted when a tab is hidden.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart nav - The tab group navigation container.
@@ -36,21 +36,21 @@ import type SlTab from '../../components/tab/tab';
  * @cssproperty --track-color - The color of the indicator's track (i.e. the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
  */
-@customElement('l-tab-group')
-export default class SlTabGroup extends LitElement {
+@customElement('lynk-tab-group')
+export default class LynkTabGroup extends LitElement {
   static styles = styles;
   private readonly localize = new LocalizeController(this);
 
-  @query('.tab-group') tabGroup: HTMLElement;
-  @query('.tab-group__body') body: HTMLElement;
-  @query('.tab-group__nav') nav: HTMLElement;
-  @query('.tab-group__indicator') indicator: HTMLElement;
+  @query('.lynk-tab-group') tabGroup: HTMLElement;
+  @query('.lynk-tab-group__body') body: HTMLElement;
+  @query('.lynk-tab-group__nav') nav: HTMLElement;
+  @query('.lynk-tab-group__indicator') indicator: HTMLElement;
 
-  private activeTab?: SlTab;
+  private activeTab?: LynkTab;
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
-  private tabs: SlTab[] = [];
-  private panels: SlTabPanel[] = [];
+  private tabs: LynkTab[] = [];
+  private panels: LynkTabPanel[] = [];
 
   @state() private hasScrollControls = false;
 
@@ -124,16 +124,16 @@ export default class SlTabGroup extends LitElement {
   getAllTabs(includeDisabled = false) {
     const slot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="nav"]')!;
 
-    return [...(slot.assignedElements() as SlTab[])].filter(el => {
+    return [...(slot.assignedElements() as LynkTab[])].filter(el => {
       return includeDisabled
-        ? el.tagName.toLowerCase() === 'l-tab'
-        : el.tagName.toLowerCase() === 'l-tab' && !el.disabled;
+        ? el.tagName.toLowerCase() === 'lynk-tab'
+        : el.tagName.toLowerCase() === 'lynk-tab' && !el.disabled;
     });
   }
 
   getAllPanels() {
     const slot = this.body.querySelector('slot')!;
-    return [...slot.assignedElements()].filter(el => el.tagName.toLowerCase() === 'l-tab-panel') as [SlTabPanel];
+    return [...slot.assignedElements()].filter(el => el.tagName.toLowerCase() === 'lynk-tab-panel') as [LynkTabPanel];
   }
 
   getActiveTab() {
@@ -142,8 +142,8 @@ export default class SlTabGroup extends LitElement {
 
   handleClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const tab = target.closest('l-tab');
-    const tabGroup = tab?.closest('l-tab-group');
+    const tab = target.closest('lynk-tab');
+    const tabGroup = tab?.closest('lynk-tab-group');
 
     // Ensure the target tab is in this tab group
     if (tabGroup !== this) {
@@ -157,8 +157,8 @@ export default class SlTabGroup extends LitElement {
 
   handleKeyDown(event: KeyboardEvent) {
     const target = event.target as HTMLElement;
-    const tab = target.closest('l-tab');
-    const tabGroup = tab?.closest('l-tab-group');
+    const tab = target.closest('lynk-tab');
+    const tabGroup = tab?.closest('lynk-tab-group');
 
     // Ensure the target tab is in this tab group
     if (tabGroup !== this) {
@@ -177,8 +177,8 @@ export default class SlTabGroup extends LitElement {
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
       const activeEl = document.activeElement;
 
-      if (activeEl?.tagName.toLowerCase() === 'l-tab') {
-        let index = this.tabs.indexOf(activeEl as SlTab);
+      if (activeEl?.tagName.toLowerCase() === 'lynk-tab') {
+        let index = this.tabs.indexOf(activeEl as LynkTab);
 
         if (event.key === 'Home') {
           index = 0;
@@ -243,7 +243,7 @@ export default class SlTabGroup extends LitElement {
     }
   }
 
-  setActiveTab(tab: SlTab, options?: { emitEvents?: boolean; scrollBehavior?: 'auto' | 'smooth' }) {
+  setActiveTab(tab: LynkTab, options?: { emitEvents?: boolean; scrollBehavior?: 'auto' | 'smooth' }) {
     options = {
       emitEvents: true,
       scrollBehavior: 'auto',
@@ -266,10 +266,10 @@ export default class SlTabGroup extends LitElement {
       // Emit events
       if (options.emitEvents) {
         if (previousTab) {
-          emit(this, 'l-tab-hide', { detail: { name: previousTab.panel } });
+          emit(this, 'lynk-tab-hide', { detail: { name: previousTab.panel } });
         }
 
-        emit(this, 'l-tab-show', { detail: { name: this.activeTab.panel } });
+        emit(this, 'lynk-tab-show', { detail: { name: this.activeTab.panel } });
       }
     }
   }
@@ -360,13 +360,13 @@ export default class SlTabGroup extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'tab-group': true,
-          'tab-group--top': this.placement === 'top',
-          'tab-group--bottom': this.placement === 'bottom',
-          'tab-group--start': this.placement === 'start',
-          'tab-group--end': this.placement === 'end',
-          'tab-group--rtl': this.localize.dir() === 'rtl',
-          'tab-group--has-scroll-controls': this.hasScrollControls
+          'lynk-tab-group': true,
+          'lynk-tab-group--top': this.placement === 'top',
+          'lynk-tab-group--bottom': this.placement === 'bottom',
+          'lynk-tab-group--start': this.placement === 'start',
+          'lynk-tab-group--end': this.placement === 'end',
+          'lynk-tab-group--rtl': this.localize.dir() === 'rtl',
+          'lynk-tab-group--has-scroll-controls': this.hasScrollControls
         })}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
@@ -374,41 +374,41 @@ export default class SlTabGroup extends LitElement {
         <div class="tab-group__nav-container" part="nav">
           ${this.hasScrollControls
             ? html`
-                <l-icon-button
+                <lynk-icon-button
                   part="scroll-button scroll-button--start"
                   exportparts="base:scroll-button__base"
-                  class="tab-group__scroll-button tab-group__scroll-button--start"
+                  class="lynk-tab-group__scroll-button lynk-tab-group__scroll-button--start"
                   name="chevron-left"
                   library="system"
                   label=${this.localize.term('scrollToStart')}
                   @click=${this.handleScrollToStart}
-                ></l-icon-button>
+                ></lynk-icon-button>
               `
             : ''}
 
-          <div class="tab-group__nav">
-            <div part="tabs" class="tab-group__tabs" role="tablist">
-              <div part="active-tab-indicator" class="tab-group__indicator"></div>
+          <div class="lynk-tab-group__nav">
+            <div part="tabs" class="lynk-tab-group__tabs" role="tablist">
+              <div part="active-tab-indicator" class="lynk-tab-group__indicator"></div>
               <slot name="nav" @slotchange=${this.syncTabsAndPanels}></slot>
             </div>
           </div>
 
           ${this.hasScrollControls
             ? html`
-                <l-icon-button
+                <lynk-icon-button
                   part="scroll-button scroll-button--end"
                   exportparts="base:scroll-button__base"
-                  class="tab-group__scroll-button tab-group__scroll-button--end"
+                  class="lynk-tab-group__scroll-button lynk-tab-group__scroll-button--end"
                   name="chevron-right"
                   library="system"
                   label=${this.localize.term('scrollToEnd')}
                   @click=${this.handleScrollToEnd}
-                ></l-icon-button>
+                ></lynk-icon-button>
               `
             : ''}
         </div>
 
-        <div part="body" class="tab-group__body">
+        <div part="body" class="lynk-tab-group__body">
           <slot @slotchange=${this.syncTabsAndPanels}></slot>
         </div>
       </div>
@@ -418,6 +418,6 @@ export default class SlTabGroup extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-tab-group': SlTabGroup;
+    'lynk-tab-group': LynkTabGroup;
   }
 }

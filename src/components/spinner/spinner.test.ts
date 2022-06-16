@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import type SlSpinner from './spinner';
 
-describe('<l-spinner>', () => {
+describe('<lynk-spinner>', () => {
   let el: SlSpinner;
 
   describe('when provided no parameters', () => {
     before(async () => {
-      el = await fixture<SlSpinner>(html` <l-spinner></l-spinner> `);
+      el = await fixture<SlSpinner>(html` <lynk-spinner></lynk-spinner> `);
     });
 
     it('should pass accessibility tests', async () => {

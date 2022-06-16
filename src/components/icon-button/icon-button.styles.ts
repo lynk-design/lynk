@@ -9,45 +9,45 @@ export default css`
     display: inline-block;
   }
 
-  .l-icon-button {
+  .lynk-icon-button {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     background: none;
     border: none;
-    border-radius: var(--l-border-radius-medium);
+    border-radius: var(--lynk-border-radius-medium);
     font-size: inherit;
-    color: var(--l-color-neutral-600);
-    padding: var(--l-spacing-x-small);
+    color: var(--lynk-color-neutral-600);
+    padding: var(--lynk-spacing-x-small);
     cursor: pointer;
-    transition: var(--l-transition-medium) color;
+    transition: var(--lynk-transition-medium) color;
     -webkit-appearance: none;
   }
 
-  .l-icon-button:hover:not(.l-icon-button--disabled),
-  .l-icon-button:focus:not(.l-icon-button--disabled) {
-    color: var(--l-color-primary-600);
+  .lynk-icon-button:hover:not(.lynk-icon-button--disabled),
+  .lynk-icon-button:focus:not(.lynk-icon-button--disabled) {
+    color: var(--lynk-color-primary-600);
   }
 
-  .l-icon-button:active:not(.l-icon-button--disabled) {
-    color: var(--l-color-primary-700);
+  .lynk-icon-button:active:not(.lynk-icon-button--disabled) {
+    color: var(--lynk-color-primary-700);
   }
 
-  .l-icon-button:focus {
+  .lynk-icon-button:focus {
     outline: none;
   }
 
-  .l-icon-button--disabled {
+  .lynk-icon-button--disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  .l-icon-button${focusVisibleSelector} {
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-icon-button${focusVisibleSelector} {
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
-  .l-icon-button__icon {
+  .lynk-icon-button__icon {
     pointer-events: none;
   }
 `;

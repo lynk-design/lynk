@@ -14,9 +14,9 @@ import styles from './switch.styles';
  *
  * @slot - The switch's label.
  *
- * @event le-blur - Emitted when the control loses focus.
- * @event le-change - Emitted when the control's checked state changes.
- * @event le-focus - Emitted when the control gains focus.
+ * @event lynk-blur - Emitted when the control loses focus.
+ * @event lynk-change - Emitted when the control's checked state changes.
+ * @event lynk-focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The switch control.
@@ -27,7 +27,7 @@ import styles from './switch.styles';
  * @cssproperty --height - The height of the switch.
  * @cssproperty --thumb-size - The size of the thumb.
  */
-@customElement('l-switch')
+@customElement('lynk-switch')
 export default class LynkSwitch extends LitElement {
   static styles = styles;
 
@@ -90,7 +90,7 @@ export default class LynkSwitch extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'le-blur');
+    emit(this, 'lynk-blur');
   }
 
   @watch('checked', { waitUntilFirstUpdate: true })
@@ -101,7 +101,7 @@ export default class LynkSwitch extends LitElement {
 
   handleClick() {
     this.checked = !this.checked;
-    emit(this, 'le-change');
+    emit(this, 'lynk-change');
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -113,20 +113,20 @@ export default class LynkSwitch extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'le-focus');
+    emit(this, 'lynk-focus');
   }
 
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       this.checked = false;
-      emit(this, 'le-change');
+      emit(this, 'lynk-change');
     }
 
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       this.checked = true;
-      emit(this, 'le-change');
+      emit(this, 'lynk-change');
     }
   }
 
@@ -135,14 +135,14 @@ export default class LynkSwitch extends LitElement {
       <label
         part="base"
         class=${classMap({
-          'l-switch': true,
-          'l-switch--checked': this.checked,
-          'l-switch--disabled': this.disabled,
-          'l-switch--focused': this.hasFocus
+          'lynk-switch': true,
+          'lynk-switch--checked': this.checked,
+          'lynk-switch--disabled': this.disabled,
+          'lynk-switch--focused': this.hasFocus
         })}
       >
         <input
-          class="l-switch__input"
+          class="lynk-switch__input"
           type="checkbox"
           name=${ifDefined(this.name)}
           value=${ifDefined(this.value)}
@@ -157,11 +157,11 @@ export default class LynkSwitch extends LitElement {
           @keydown=${this.handleKeyDown}
         />
 
-        <span part="control" class="l-switch__control">
-          <span part="thumb" class="l-switch__thumb"></span>
+        <span part="control" class="lynk-switch__control">
+          <span part="thumb" class="lynk-switch__thumb"></span>
         </span>
 
-        <span part="label" class="l-switch__label">
+        <span part="label" class="lynk-switch__label">
           <slot></slot>
         </span>
       </label>
@@ -171,6 +171,6 @@ export default class LynkSwitch extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-switch': LynkSwitch;
+    'lynk-switch': LynkSwitch;
   }
 }

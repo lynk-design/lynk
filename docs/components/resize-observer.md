@@ -1,6 +1,6 @@
 # Resize Observer
 
-[component-header:l-resize-observer]
+[component-header:lynk-resize-observer]
 
 The Resize Observer component offers a thin, declarative interface to the [`ResizeObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver).
 
@@ -8,16 +8,16 @@ The resize observer will report changes to the dimensions of the elements it wra
 
 ```html preview
 <div class="resize-observer-overview">
-  <l-resize-observer>
+  <lynk-resize-observer>
     <div>Resize this box and watch the console 👉</div>
-  </l-resize-observer>
+  </lynk-resize-observer>
 </div>
 
 <script>
   const container = document.querySelector('.resize-observer-overview');
-  const resizeObserver = container.querySelector('l-resize-observer');
+  const resizeObserver = container.querySelector('lynk-resize-observer');
 
-  resizeObserver.addEventListener('l-resize', event => {
+  resizeObserver.addEventListener('lynk-resize', event => {
     console.log(event.detail);
   });
 </script>
@@ -25,7 +25,7 @@ The resize observer will report changes to the dimensions of the elements it wra
 <style>
   .resize-observer-overview div {
     display: flex;
-    border: solid 2px var(--l-input-border-color);
+    border: solid 2px var(--lynk-input-border-color);
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -40,7 +40,7 @@ import { SlResizeObserver } from '@shoelace-style/shoelace/dist/react';
 const css = `
   .resize-observer-overview div {
     display: flex; 
-    border: solid 2px var(--l-input-border-color); 
+    border: solid 2px var(--lynk-input-border-color); 
     align-items: center; 
     justify-content: center;
     text-align: center;
@@ -61,4 +61,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-resize-observer]
+[component-metadata:lynk-resize-observer]

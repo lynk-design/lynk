@@ -7,8 +7,8 @@ import { LocalizeController } from '../../utilities/localize';
  * @since 2.0
  * @status stable
  */
-@customElement('l-format-bytes')
-export default class SlFormatBytes extends LitElement {
+@customElement('lynk-format-bytes')
+export default class LynkFormatBytes extends LitElement {
   private readonly localize = new LocalizeController(this);
 
   /** The number to format in bytes. */
@@ -45,6 +45,6 @@ export default class SlFormatBytes extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-format-bytes': SlFormatBytes;
+    'lynk-format-bytes': LynkFormatBytes;
   }
 }

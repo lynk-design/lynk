@@ -22,7 +22,7 @@ export default css`
     display: none;
   }
 
-  .animated-image__control-box {
+  .lynk-animated-image__control-box {
     display: flex;
     position: absolute;
     align-items: center;
@@ -35,18 +35,18 @@ export default css`
     background: none;
     border: solid 2px currentColor;
     background-color: rgb(0 0 0 /50%);
-    border-radius: var(--l-border-radius-circle);
+    border-radius: var(--lynk-border-radius-circle);
     color: white;
     pointer-events: none;
-    transition: var(--l-transition-fast) opacity;
+    transition: var(--lynk-transition-fast) opacity;
   }
 
-  :host([play]:hover) .animated-image__control-box {
+  :host([play]:hover) .lynk-animated-image__control-box {
     opacity: 1;
     transform: scale(1);
   }
 
-  :host([play]:not(:hover)) .animated-image__control-box {
+  :host([play]:not(:hover)) .lynk-animated-image__control-box {
     opacity: 0;
   }
 `;

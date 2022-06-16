@@ -1,6 +1,6 @@
 # Format Date
 
-[component-header:l-format-date]
+[component-header:lynk-format-date]
 
 Formats a date/time using the specified locale and options.
 
@@ -8,7 +8,7 @@ Localization is handled by the browser's [`Intl.DateTimeFormat` API](https://dev
 
 ```html preview
 <!-- Shoelace 2 release date 🎉 -->
-<l-format-date date="2020-07-15T09:17:00-04:00"></l-format-date>
+<lynk-format-date date="2020-07-15T09:17:00-04:00"></lynk-format-date>
 ```
 
 ```jsx react
@@ -29,22 +29,22 @@ Formatting options are based on those found in the [`Intl.DateTimeFormat` API](h
 
 ```html preview
 <!-- Human-readable date -->
-<l-format-date month="long" day="numeric" year="numeric"></l-format-date><br />
+<lynk-format-date month="long" day="numeric" year="numeric"></lynk-format-date><br />
 
 <!-- Time -->
-<l-format-date hour="numeric" minute="numeric"></l-format-date><br />
+<lynk-format-date hour="numeric" minute="numeric"></lynk-format-date><br />
 
 <!-- Weekday -->
-<l-format-date weekday="long"></l-format-date><br />
+<lynk-format-date weekday="long"></lynk-format-date><br />
 
 <!-- Month -->
-<l-format-date month="long"></l-format-date><br />
+<lynk-format-date month="long"></lynk-format-date><br />
 
 <!-- Year -->
-<l-format-date year="numeric"></l-format-date><br />
+<lynk-format-date year="numeric"></lynk-format-date><br />
 
 <!-- No formatting options -->
-<l-format-date></l-format-date>
+<lynk-format-date></lynk-format-date>
 ```
 
 ```jsx react
@@ -83,8 +83,8 @@ const App = () => (
 By default, the browser will determine whether to use 12-hour or 24-hour time. To force one or the other, set the `hour-format` attribute to `12` or `24`.
 
 ```html preview
-<l-format-date hour="numeric" minute="numeric" hour-format="12"></l-format-date><br />
-<l-format-date hour="numeric" minute="numeric" hour-format="24"></l-format-date>
+<lynk-format-date hour="numeric" minute="numeric" hour-format="12"></lynk-format-date><br />
+<lynk-format-date hour="numeric" minute="numeric" hour-format="24"></lynk-format-date>
 ```
 
 ```jsx react
@@ -104,9 +104,9 @@ const App = () => (
 Use the `lang` attribute to set the date/time formatting locale.
 
 ```html preview
-English: <l-format-date lang="en"></l-format-date><br />
-French: <l-format-date lang="fr"></l-format-date><br />
-Russian: <l-format-date lang="ru"></l-format-date>
+English: <lynk-format-date lang="en"></lynk-format-date><br />
+French: <lynk-format-date lang="fr"></lynk-format-date><br />
+Russian: <lynk-format-date lang="ru"></lynk-format-date>
 ```
 
 ```jsx react
@@ -123,4 +123,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-format-date]
+[component-metadata:lynk-format-date]

@@ -11,8 +11,8 @@ import styles from './qr-code.styles';
  *
  * @csspart base - The component's internal wrapper.
  */
-@customElement('l-qr-code')
-export default class SlQrCode extends LitElement {
+@customElement('lynk-qr-code')
+export default class LynkQrCode extends LitElement {
   static styles = styles;
 
   @query('canvas') canvas: HTMLElement;
@@ -70,7 +70,7 @@ export default class SlQrCode extends LitElement {
   render() {
     return html`
       <div
-        class="qr-code"
+        class="lynk-qr-code"
         part="base"
         style=${styleMap({
           width: `${this.size}px`,
@@ -85,6 +85,6 @@ export default class SlQrCode extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-qr-code': SlQrCode;
+    'lynk-qr-code': LynkQrCode;
   }
 }

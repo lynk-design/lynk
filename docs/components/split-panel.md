@@ -1,24 +1,24 @@
 # Split Panel
 
-[component-header:l-split-panel]
+[component-header:lynk-split-panel]
 
 Split panels display two adjacent panels, allowing the user to reposition them.
 
 ```html preview
-<l-split-panel>
+<lynk-split-panel>
   <div
     slot="start"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     End
   </div>
-</l-split-panel>
+</lynk-split-panel>
 ```
 
 ```jsx react
@@ -30,7 +30,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -42,7 +42,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -61,20 +61,20 @@ const App = () => (
 To set the initial position, use the `position` attribute. If no position is provided, it will default to 50% of the available space.
 
 ```html preview
-<l-split-panel position="75">
+<lynk-split-panel position="75">
   <div
     slot="start"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     End
   </div>
-</l-split-panel>
+</lynk-split-panel>
 ```
 
 ### Initial Position in Pixels
@@ -82,20 +82,20 @@ To set the initial position, use the `position` attribute. If no position is pro
 To set the initial position in pixels instead of a percentage, use the `position-in-pixels` attribute.
 
 ```html preview
-<l-split-panel position-in-pixels="150">
+<lynk-split-panel position-in-pixels="150">
   <div
     slot="start"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     End
   </div>
-</l-split-panel>
+</lynk-split-panel>
 ```
 
 ```jsx react
@@ -107,7 +107,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -119,7 +119,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -136,20 +136,20 @@ const App = () => (
 Add the `vertical` attribute to render the split panel in a vertical orientation where the start and end panels are stacked. You also need to set a height when using the vertical orientation.
 
 ```html preview
-<l-split-panel vertical style="height: 400px;">
+<lynk-split-panel vertical style="height: 400px;">
   <div
     slot="start"
-    style="height: 100%; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 100%; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 100%; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 100%; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     End
   </div>
-</l-split-panel>
+</lynk-split-panel>
 ```
 
 ```jsx react
@@ -161,7 +161,7 @@ const App = () => (
       slot="start"
       style={{
         height: '100%',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -173,7 +173,7 @@ const App = () => (
       slot="end"
       style={{
         height: '100%',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -191,20 +191,20 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
 
 ```html preview
 <div class="split-panel-snapping">
-  <l-split-panel snap="100px 50%">
+  <lynk-split-panel snap="100px 50%">
     <div
       slot="start"
-      style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+      style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     >
       Start
     </div>
     <div
       slot="end"
-      style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+      style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     >
       End
     </div>
-  </l-split-panel>
+  </lynk-split-panel>
 
   <div class="split-panel-snapping-dots"></div>
 </div>
@@ -222,7 +222,7 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--l-color-neutral-400);
+    background: var(--lynk-color-neutral-400);
     transform: translateX(-3px);
   }
 
@@ -252,7 +252,7 @@ const css = `
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--l-color-neutral-400);
+    background: var(--lynk-color-neutral-400);
     transform: translateX(-3px);
   }
 
@@ -273,7 +273,7 @@ const App = () => (
           slot="start"
           style={{
             height: '200px',
-            background: 'var(--l-color-neutral-50)',
+            background: 'var(--lynk-color-neutral-50)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -285,7 +285,7 @@ const App = () => (
           slot="end"
           style={{
             height: '200px',
-            background: 'var(--l-color-neutral-50)',
+            background: 'var(--lynk-color-neutral-50)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -308,20 +308,20 @@ const App = () => (
 Add the `disabled` attribute to prevent the divider from being repositioned.
 
 ```html preview
-<l-split-panel disabled>
+<lynk-split-panel disabled>
   <div
     slot="start"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     End
   </div>
-</l-split-panel>
+</lynk-split-panel>
 ```
 
 ```jsx react
@@ -333,7 +333,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -345,7 +345,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -365,34 +365,34 @@ Try resizing the example below with each option and notice how the panels respon
 
 ```html preview
 <div class="split-panel-primary">
-  <l-split-panel>
+  <lynk-split-panel>
     <div
       slot="start"
-      style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+      style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     >
       Start
     </div>
     <div
       slot="end"
-      style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+      style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     >
       End
     </div>
-  </l-split-panel>
+  </lynk-split-panel>
 
-  <l-select label="Primary Panel" value="" style="max-width: 200px; margin-top: 1rem;">
-    <l-menu-item value="">None</l-menu-item>
-    <l-menu-item value="start">Start</l-menu-item>
-    <l-menu-item value="end">End</l-menu-item>
-  </l-select>
+  <lynk-select label="Primary Panel" value="" style="max-width: 200px; margin-top: 1rem;">
+    <lynk-menu-item value="">None</lynk-menu-item>
+    <lynk-menu-item value="start">Start</lynk-menu-item>
+    <lynk-menu-item value="end">End</lynk-menu-item>
+  </lynk-select>
 </div>
 
 <script>
   const container = document.querySelector('.split-panel-primary');
-  const splitPanel = container.querySelector('l-split-panel');
-  const select = container.querySelector('l-select');
+  const splitPanel = container.querySelector('lynk-split-panel');
+  const select = container.querySelector('lynk-select');
 
-  select.addEventListener('l-change', () => (splitPanel.primary = select.value));
+  select.addEventListener('lynk-change', () => (splitPanel.primary = select.value));
 </script>
 ```
 
@@ -410,7 +410,7 @@ const App = () => {
           slot="start"
           style={{
             height: '200px',
-            background: 'var(--l-color-neutral-50)',
+            background: 'var(--lynk-color-neutral-50)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -422,7 +422,7 @@ const App = () => {
           slot="end"
           style={{
             height: '200px',
-            background: 'var(--l-color-neutral-50)',
+            background: 'var(--lynk-color-neutral-50)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -454,20 +454,20 @@ To set a minimum or maximum size of the primary panel, use the `--min` and `--ma
 This examples demonstrates how you can ensure both panels are at least 150px using `--min`, `--max`, and the `calc()` function.
 
 ```html preview
-<l-split-panel style="--min: 150px; --max: calc(100% - 150px);">
+<lynk-split-panel style="--min: 150px; --max: calc(100% - 150px);">
   <div
     slot="start"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     End
   </div>
-</l-split-panel>
+</lynk-split-panel>
 ```
 
 ```jsx react
@@ -479,7 +479,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -491,7 +491,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -508,30 +508,30 @@ const App = () => (
 Create complex layouts that can be repositioned independently by nesting split panels.
 
 ```html preview
-<l-split-panel>
+<lynk-split-panel>
   <div
     slot="start"
-    style="height: 400px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 400px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     Start
   </div>
   <div slot="end">
-    <l-split-panel vertical style="height: 400px;">
+    <lynk-split-panel vertical style="height: 400px;">
       <div
         slot="start"
-        style="height: 100%; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+        style="height: 100%; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
       >
         Top
       </div>
       <div
         slot="end"
-        style="height: 100%; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+        style="height: 100%; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
       >
         Bottom
       </div>
-    </l-split-panel>
+    </lynk-split-panel>
   </div>
-</l-split-panel>
+</lynk-split-panel>
 ```
 
 ```jsx react
@@ -543,7 +543,7 @@ const App = () => (
       slot="start"
       style={{
         height: '400px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -557,7 +557,7 @@ const App = () => (
           slot="start"
           style={{
             height: '100%',
-            background: 'var(--l-color-neutral-50)',
+            background: 'var(--lynk-color-neutral-50)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -569,7 +569,7 @@ const App = () => (
           slot="end"
           style={{
             height: '100%',
-            background: 'var(--l-color-neutral-50)',
+            background: 'var(--lynk-color-neutral-50)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -588,21 +588,21 @@ const App = () => (
 You can target the `divider` part to apply CSS properties to the divider. To add a handle, slot an icon or another element into the `handle` slot. When customizing the divider, make sure to think about focus styles for keyboard users.
 
 ```html preview
-<l-split-panel style="--divider-width: 20px;">
-  <l-icon slot="handle" name="grip-vertical"></l-icon>
+<lynk-split-panel style="--divider-width: 20px;">
+  <lynk-icon slot="handle" name="grip-vertical"></lynk-icon>
   <div
     slot="start"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     Start
   </div>
   <div
     slot="end"
-    style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+    style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
   >
     End
   </div>
-</l-split-panel>
+</lynk-split-panel>
 ```
 
 ```jsx react
@@ -615,7 +615,7 @@ const App = () => (
       slot="start"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -627,7 +627,7 @@ const App = () => (
       slot="end"
       style={{
         height: '200px',
-        background: 'var(--l-color-neutral-50)',
+        background: 'var(--lynk-color-neutral-50)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -643,21 +643,21 @@ Here's a more elaborate example that changes the divider's color and width and a
 
 ```html preview
 <div class="split-panel-handle">
-  <l-split-panel>
-    <l-icon slot="handle" name="grip-vertical"></l-icon>
+  <lynk-split-panel>
+    <lynk-icon slot="handle" name="grip-vertical"></lynk-icon>
     <div
       slot="start"
-      style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+      style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     >
       Start
     </div>
     <div
       slot="end"
-      style="height: 200px; background: var(--l-color-neutral-50); display: flex; align-items: center; justify-content: center;"
+      style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
     >
       End
     </div>
-  </l-split-panel>
+  </lynk-split-panel>
 </div>
 
 <style>
@@ -666,24 +666,24 @@ Here's a more elaborate example that changes the divider's color and width and a
   }
 
   .split-panel-handle l-split-panel::part(divider) {
-    background-color: var(--l-color-pink-600);
+    background-color: var(--lynk-color-pink-600);
   }
 
-  .split-panel-handle l-icon {
+  .split-panel-handle lynk-icon {
     position: absolute;
-    border-radius: var(--l-border-radius-small);
-    background: var(--l-color-pink-600);
-    color: var(--l-color-neutral-0);
+    border-radius: var(--lynk-border-radius-small);
+    background: var(--lynk-color-pink-600);
+    color: var(--lynk-color-neutral-0);
     padding: 0.5rem 0.125rem;
   }
 
   .split-panel-handle l-split-panel::part(divider):focus-visible {
-    background-color: var(--l-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
   }
 
-  .split-panel-handle l-split-panel:focus-within l-icon {
-    background-color: var(--l-color-primary-600);
-    color: var(--l-color-neutral-0);
+  .split-panel-handle l-split-panel:focus-within lynk-icon {
+    background-color: var(--lynk-color-primary-600);
+    color: var(--lynk-color-neutral-0);
   }
 </style>
 ```
@@ -697,24 +697,24 @@ const css = `
   }
 
   .split-panel-handle l-split-panel::part(divider) {
-    background-color: var(--l-color-pink-600);
+    background-color: var(--lynk-color-pink-600);
   }
 
-  .split-panel-handle l-icon {
+  .split-panel-handle lynk-icon {
     position: absolute;
-    border-radius: var(--l-border-radius-small);
-    background: var(--l-color-pink-600);
-    color: var(--l-color-neutral-0);
+    border-radius: var(--lynk-border-radius-small);
+    background: var(--lynk-color-pink-600);
+    color: var(--lynk-color-neutral-0);
     padding: .5rem .125rem;
   }
 
   .split-panel-handle l-split-panel::part(divider):focus-visible {
-    background-color: var(--l-color-primary-600);
+    background-color: var(--lynk-color-primary-600);
   }
 
-  .split-panel-handle l-split-panel:focus-within l-icon {
-    background-color: var(--l-color-primary-600);
-    color: var(--l-color-neutral-0);
+  .split-panel-handle l-split-panel:focus-within lynk-icon {
+    background-color: var(--lynk-color-primary-600);
+    color: var(--lynk-color-neutral-0);
   }
 `;
 
@@ -727,7 +727,7 @@ const App = () => (
           slot="start"
           style={{
             height: '200px',
-            background: 'var(--l-color-neutral-50)',
+            background: 'var(--lynk-color-neutral-50)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -739,7 +739,7 @@ const App = () => (
           slot="end"
           style={{
             height: '200px',
-            background: 'var(--l-color-neutral-50)',
+            background: 'var(--lynk-color-neutral-50)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -755,4 +755,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-split-panel]
+[component-metadata:lynk-split-panel]

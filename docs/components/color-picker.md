@@ -1,11 +1,11 @@
 # Color Picker
 
-[component-header:l-color-picker]
+[component-header:lynk-color-picker]
 
 Color pickers allow the user to select a color.
 
 ```html preview
-<l-color-picker label="Select a color"></l-color-picker>
+<lynk-color-picker label="Select a color"></lynk-color-picker>
 ```
 
 ```jsx react
@@ -23,7 +23,7 @@ const App = () => <SlColorPicker label="Select a color" />;
 Use the `value` attribute to set an initial value for the color picker.
 
 ```html preview
-<l-color-picker value="#4a90e2" label="Select a color"></l-color-picker>
+<lynk-color-picker value="#4a90e2" label="Select a color"></lynk-color-picker>
 ```
 
 ```jsx react
@@ -37,7 +37,7 @@ const App = () => <SlColorPicker value="#4a90e2" label="Select a color" />;
 Use the `opacity` attribute to enable the opacity slider. When this is enabled, the value will be displayed as HEXA, RGBA, or HSLA based on `format`.
 
 ```html preview
-<l-color-picker opacity label="Select a color"></l-color-picker>
+<lynk-color-picker opacity label="Select a color"></lynk-color-picker>
 ```
 
 ```jsx react
@@ -53,9 +53,9 @@ Set the color picker's format with the `format` attribute. Valid options include
 To prevent users from toggling the format themselves, add the `no-format-toggle` attribute.
 
 ```html preview
-<l-color-picker format="hex" value="#4a90e2" label="Select a color"></l-color-picker>
-<l-color-picker format="rgb" value="rgb(80, 227, 194)" label="Select a color"></l-color-picker>
-<l-color-picker format="hsl" value="hsl(290, 87%, 47%)" label="Select a color"></l-color-picker>
+<lynk-color-picker format="hex" value="#4a90e2" label="Select a color"></lynk-color-picker>
+<lynk-color-picker format="rgb" value="rgb(80, 227, 194)" label="Select a color"></lynk-color-picker>
+<lynk-color-picker format="hsl" value="hsl(290, 87%, 47%)" label="Select a color"></lynk-color-picker>
 ```
 
 ```jsx react
@@ -75,9 +75,9 @@ const App = () => (
 Use the `size` attribute to change the color picker's trigger size.
 
 ```html preview
-<l-color-picker size="small" label="Select a color"></l-color-picker>
-<l-color-picker size="medium" label="Select a color"></l-color-picker>
-<l-color-picker size="large" label="Select a color"></l-color-picker>
+<lynk-color-picker size="small" label="Select a color"></lynk-color-picker>
+<lynk-color-picker size="medium" label="Select a color"></lynk-color-picker>
+<lynk-color-picker size="large" label="Select a color"></lynk-color-picker>
 ```
 
 ```jsx react
@@ -97,7 +97,7 @@ const App = () => (
 The color picker can be rendered inline instead of in a dropdown using the `inline` attribute.
 
 ```html preview
-<l-color-picker inline label="Select a color"></l-color-picker>
+<lynk-color-picker inline label="Select a color"></lynk-color-picker>
 ```
 
 ```jsx react
@@ -106,4 +106,4 @@ import { SlColorPicker } from '@shoelace-style/shoelace/dist/react';
 const App = () => <SlColorPicker inline label="Select a color" />;
 ```
 
-[component-metadata:l-color-picker]
+[component-metadata:lynk-color-picker]

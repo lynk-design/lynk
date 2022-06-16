@@ -1,10 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import type SlFormatNumber from './format-number';
+import type LynkFormatNumber from './format-number';
 
-describe('<l-format-number>', () => {
+describe('<lynk-format-number>', () => {
   describe('defaults ', () => {
     it('default properties', async () => {
-      const el = await fixture<SlFormatNumber>(html` <l-format-number></l-format-number> `);
+      const el = await fixture<LynkFormatNumber>(html` <lynk-format-number></lynk-format-number> `);
       expect(el.value).to.equal(0);
 
       expect(el.lang).to.be.undefined;
@@ -23,8 +23,8 @@ describe('<l-format-number>', () => {
   describe('lang property', () => {
     ['de', 'de-CH', 'fr', 'es', 'he', 'ja', 'nl', 'pl', 'pt', 'ru'].forEach(lang => {
       it(`number has correct language format: ${lang}`, async () => {
-        const el = await fixture<SlFormatNumber>(
-          html` <l-format-number value="1000" lang="${lang}"></l-format-number> `
+        const el = await fixture<LynkFormatNumber>(
+          html` <lynk-format-number value="1000" lang="${lang}"></lynk-format-number> `
         );
         const expected = new Intl.NumberFormat(lang, { style: 'decimal', useGrouping: true }).format(1000);
         expect(el.shadowRoot?.textContent).to.equal(expected);
@@ -35,8 +35,8 @@ describe('<l-format-number>', () => {
   describe('type property', () => {
     ['currency', 'decimal', 'percent'].forEach(type => {
       it(`number has correct type format: ${type}`, async () => {
-        const el = await fixture<SlFormatNumber>(
-          html` <l-format-number value="1000" type="${type}"></l-format-number> `
+        const el = await fixture<LynkFormatNumber>(
+          html` <lynk-format-number value="1000" type="${type}"></lynk-format-number> `
         );
         const expected = new Intl.NumberFormat('en-US', { style: type, currency: 'USD' }).format(1000);
         expect(el.shadowRoot?.textContent).to.equal(expected);
@@ -46,13 +46,13 @@ describe('<l-format-number>', () => {
 
   describe('noGrouping property', () => {
     it(`number has correct grouping format: no grouping`, async () => {
-      const el = await fixture<SlFormatNumber>(html` <l-format-number value="1000" no-grouping></l-format-number> `);
+      const el = await fixture<LynkFormatNumber>(html` <lynk-format-number value="1000" no-grouping></lynk-format-number> `);
       const expected = new Intl.NumberFormat('en-US', { useGrouping: false }).format(1000);
       expect(el.shadowRoot?.textContent).to.equal(expected);
     });
 
     it(`number has correct grouping format: grouping`, async () => {
-      const el = await fixture<SlFormatNumber>(html` <l-format-number value="1000"></l-format-number> `);
+      const el = await fixture<LynkFormatNumber>(html` <lynk-format-number value="1000"></lynk-format-number> `);
       const expected = new Intl.NumberFormat('en-US', { useGrouping: true }).format(1000);
       expect(el.shadowRoot?.textContent).to.equal(expected);
     });
@@ -61,8 +61,8 @@ describe('<l-format-number>', () => {
   describe('currency property', () => {
     ['USD', 'CAD', 'AUD', 'UAH'].forEach(currency => {
       it(`number has correct type format: ${currency}`, async () => {
-        const el = await fixture<SlFormatNumber>(
-          html` <l-format-number value="1000" currency="${currency}"></l-format-number> `
+        const el = await fixture<LynkFormatNumber>(
+          html` <lynk-format-number value="1000" currency="${currency}"></lynk-format-number> `
         );
         const expected = new Intl.NumberFormat('en-US', { style: 'decimal', currency: currency }).format(1000);
         expect(el.shadowRoot?.textContent).to.equal(expected);
@@ -73,8 +73,8 @@ describe('<l-format-number>', () => {
   describe('currencyDisplay property', () => {
     ['symbol', 'narrowSymbol', 'code', 'name'].forEach(currencyDisplay => {
       it(`number has correct type format: ${currencyDisplay}`, async () => {
-        const el = await fixture<SlFormatNumber>(
-          html` <l-format-number value="1000" currency-display="${currencyDisplay}"></l-format-number> `
+        const el = await fixture<LynkFormatNumber>(
+          html` <lynk-format-number value="1000" currency-display="${currencyDisplay}"></lynk-format-number> `
         );
         const expected = new Intl.NumberFormat('en-US', { style: 'decimal', currencyDisplay: currencyDisplay }).format(
           1000
@@ -87,8 +87,8 @@ describe('<l-format-number>', () => {
   describe('minimumIntegerDigits property', () => {
     [4, 5, 6].forEach(minDigits => {
       it(`number has correct type format: ${minDigits}`, async () => {
-        const el = await fixture<SlFormatNumber>(
-          html` <l-format-number value="1000" minimum-integer-digits="${minDigits}"></l-format-number> `
+        const el = await fixture<LynkFormatNumber>(
+          html` <lynk-format-number value="1000" minimum-integer-digits="${minDigits}"></lynk-format-number> `
         );
         const expected = new Intl.NumberFormat('en-US', {
           style: 'decimal',
@@ -103,8 +103,8 @@ describe('<l-format-number>', () => {
   describe('minimumFractionDigits property', () => {
     [4, 5, 6].forEach(minFractionDigits => {
       it(`number has correct type format: ${minFractionDigits}`, async () => {
-        const el = await fixture<SlFormatNumber>(
-          html` <l-format-number value="1000" minimum-fraction-digits="${minFractionDigits}"></l-format-number> `
+        const el = await fixture<LynkFormatNumber>(
+          html` <lynk-format-number value="1000" minimum-fraction-digits="${minFractionDigits}"></lynk-format-number> `
         );
         const expected = new Intl.NumberFormat('en-US', {
           style: 'decimal',
@@ -119,8 +119,8 @@ describe('<l-format-number>', () => {
   describe('maximumFractionDigits property', () => {
     [4, 5, 6].forEach(maxFractionDigits => {
       it(`number has correct type format: ${maxFractionDigits}`, async () => {
-        const el = await fixture<SlFormatNumber>(
-          html` <l-format-number value="1000" maximum-fraction-digits="${maxFractionDigits}"></l-format-number> `
+        const el = await fixture<LynkFormatNumber>(
+          html` <lynk-format-number value="1000" maximum-fraction-digits="${maxFractionDigits}"></lynk-format-number> `
         );
         const expected = new Intl.NumberFormat('en-US', {
           style: 'decimal',
@@ -135,9 +135,9 @@ describe('<l-format-number>', () => {
   describe('minimumSignificantDigits property', () => {
     [4, 5, 6].forEach(minSignificantDigits => {
       it(`number has correct type format: ${minSignificantDigits}`, async () => {
-        const el = await fixture<SlFormatNumber>(
+        const el = await fixture<LynkFormatNumber>(
           html`
-            <l-format-number value="1000" minimum-significant-digits="${minSignificantDigits}"></l-format-number>
+            <lynk-format-number value="1000" minimum-significant-digits="${minSignificantDigits}"></lynk-format-number>
           `
         );
         const expected = new Intl.NumberFormat('en-US', {
@@ -153,9 +153,9 @@ describe('<l-format-number>', () => {
   describe('maximumSignificantDigits property', () => {
     [4, 5, 6].forEach(maxSignificantDigits => {
       it(`number has correct type format: ${maxSignificantDigits}`, async () => {
-        const el = await fixture<SlFormatNumber>(
+        const el = await fixture<LynkFormatNumber>(
           html`
-            <l-format-number value="1000" maximum-significant-digits="${maxSignificantDigits}"></l-format-number>
+            <lynk-format-number value="1000" maximum-significant-digits="${maxSignificantDigits}"></lynk-format-number>
           `
         );
         const expected = new Intl.NumberFormat('en-US', {

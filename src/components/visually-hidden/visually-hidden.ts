@@ -3,13 +3,13 @@ import { customElement } from 'lit/decorators.js';
 import styles from './visually-hidden.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The content you'd like to be visually hidden.
  */
-@customElement('l-visually-hidden')
-export default class SlVisuallyHidden extends LitElement {
+@customElement('lynk-visually-hidden')
+export default class LynkVisuallyHidden extends LitElement {
   static styles = styles;
 
   render() {
@@ -19,6 +19,6 @@ export default class SlVisuallyHidden extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-visually-hidden': SlVisuallyHidden;
+    'lynk-visually-hidden': LynkVisuallyHidden;
   }
 }

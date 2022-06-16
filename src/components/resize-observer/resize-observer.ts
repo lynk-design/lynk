@@ -5,15 +5,15 @@ import { watch } from '../../internal/watch';
 import styles from './resize-observer.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - One or more elements to watch for resizing.
  *
  * @event {{ entries: ResizeObserverEntry[] }} l-resize - Emitted when the element is resized.
  */
-@customElement('l-resize-observer')
-export default class SlResizeObserver extends LitElement {
+@customElement('lynk-resize-observer')
+export default class LynkResizeObserver extends LitElement {
   static styles = styles;
 
   private resizeObserver: ResizeObserver;
@@ -25,7 +25,7 @@ export default class SlResizeObserver extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-      emit(this, 'l-resize', { detail: { entries } });
+      emit(this, 'lynk-resize', { detail: { entries } });
     });
 
     if (!this.disabled) {
@@ -82,6 +82,6 @@ export default class SlResizeObserver extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-resize-observer': SlResizeObserver;
+    'lynk-resize-observer': LynkResizeObserver;
   }
 }

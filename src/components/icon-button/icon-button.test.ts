@@ -4,10 +4,10 @@ import type SlIconButton from './icon-button';
 
 type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
 
-describe('<l-icon-button>', () => {
+describe('<lynk-icon-button>', () => {
   describe('defaults ', () => {
     it('default properties', async () => {
-      const el = await fixture<SlIconButton>(html` <l-icon-button></l-icon-button> `);
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button></lynk-icon-button> `);
 
       expect(el.name).to.be.undefined;
       expect(el.library).to.be.undefined;
@@ -20,7 +20,7 @@ describe('<l-icon-button>', () => {
     });
 
     it('renders as a button by default', async () => {
-      const el = await fixture<SlIconButton>(html` <l-icon-button></l-icon-button> `);
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button></lynk-icon-button> `);
 
       expect(el.shadowRoot?.querySelector('button')).to.exist;
       expect(el.shadowRoot?.querySelector('a')).not.to.exist;
@@ -30,14 +30,14 @@ describe('<l-icon-button>', () => {
   describe('when icon attributes are present', () => {
     it('renders an l-icon from a library', async () => {
       const el = await fixture<SlIconButton>(
-        html` <l-icon-button library="system" name="check-lg"></l-icon-button> `
+        html` <lynk-icon-button library="system" name="check-lg"></lynk-icon-button> `
       );
       expect(el.shadowRoot?.querySelector('l-icon')).to.exist;
     });
 
     it('renders an l-icon from a src', async () => {
       const fakeId = 'test-src';
-      const el = await fixture<SlIconButton>(html` <l-icon-button></l-icon-button> `);
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button></lynk-icon-button> `);
 
       el.src = `data:image/svg+xml,${encodeURIComponent(`<svg id="${fakeId}"></svg>`)}`;
 
@@ -53,14 +53,14 @@ describe('<l-icon-button>', () => {
 
   describe('when href is present', () => {
     it('renders as an anchor', async () => {
-      const el = await fixture<SlIconButton>(html` <l-icon-button href="some/path"></l-icon-button> `);
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button href="some/path"></lynk-icon-button> `);
 
       expect(el.shadowRoot?.querySelector('a')).to.exist;
       expect(el.shadowRoot?.querySelector('button')).not.to.exist;
     });
 
     it(`the anchor rel is not present`, async () => {
-      const el = await fixture<SlIconButton>(html` <l-icon-button href="some/path"></l-icon-button> `);
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button href="some/path"></lynk-icon-button> `);
       expect(el.shadowRoot?.querySelector(`a[rel]`)).not.to.exist;
     });
 
@@ -68,14 +68,14 @@ describe('<l-icon-button>', () => {
       ['_blank', '_parent', '_self', '_top'].forEach((target: LinkTarget) => {
         it(`the anchor target is the provided target: ${target}`, async () => {
           const el = await fixture<SlIconButton>(
-            html` <l-icon-button href="some/path" target="${target}"></l-icon-button> `
+            html` <lynk-icon-button href="some/path" target="${target}"></lynk-icon-button> `
           );
           expect(el.shadowRoot?.querySelector(`a[target="${target}"]`)).to.exist;
         });
 
         it(`the anchor rel is set to 'noreferrer noopener'`, async () => {
           const el = await fixture<SlIconButton>(
-            html` <l-icon-button href="some/path" target="${target}"></l-icon-button> `
+            html` <lynk-icon-button href="some/path" target="${target}"></lynk-icon-button> `
           );
           expect(el.shadowRoot?.querySelector(`a[rel="noreferrer noopener"]`)).to.exist;
         });
@@ -86,7 +86,7 @@ describe('<l-icon-button>', () => {
       it(`the anchor download attribute is the provided download`, async () => {
         const fakeDownload = 'some/path';
         const el = await fixture<SlIconButton>(
-          html` <l-icon-button href="some/path" download="${fakeDownload}"></l-icon-button> `
+          html` <lynk-icon-button href="some/path" download="${fakeDownload}"></lynk-icon-button> `
         );
 
         expect(el.shadowRoot?.querySelector(`a[download="${fakeDownload}"]`)).to.exist;
@@ -97,14 +97,14 @@ describe('<l-icon-button>', () => {
   describe('when label is present', () => {
     it('the internal aria-label attribute is set to the provided label when rendering a button', async () => {
       const fakeLabel = 'some label';
-      const el = await fixture<SlIconButton>(html` <l-icon-button label="${fakeLabel}"></l-icon-button> `);
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button label="${fakeLabel}"></lynk-icon-button> `);
       expect(el.shadowRoot?.querySelector(`button[aria-label="${fakeLabel}"]`)).to.exist;
     });
 
     it('the internal aria-label attribute is set to the provided label when rendering an anchor', async () => {
       const fakeLabel = 'some label';
       const el = await fixture<SlIconButton>(
-        html` <l-icon-button href="some/path" label="${fakeLabel}"></l-icon-button> `
+        html` <lynk-icon-button href="some/path" label="${fakeLabel}"></lynk-icon-button> `
       );
       expect(el.shadowRoot?.querySelector(`a[aria-label="${fakeLabel}"]`)).to.exist;
     });
@@ -112,24 +112,24 @@ describe('<l-icon-button>', () => {
 
   describe('when disabled is present', () => {
     it('the internal button has a disabled attribute when rendering a button', async () => {
-      const el = await fixture<SlIconButton>(html` <l-icon-button disabled></l-icon-button> `);
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button disabled></lynk-icon-button> `);
       expect(el.shadowRoot?.querySelector(`button[disabled]`)).to.exist;
     });
 
     it('the internal anchor has an aria-disabled attribute when rendering an anchor', async () => {
-      const el = await fixture<SlIconButton>(html` <l-icon-button href="some/path" disabled></l-icon-button> `);
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button href="some/path" disabled></lynk-icon-button> `);
       expect(el.shadowRoot?.querySelector(`a[aria-disabled="true"]`)).to.exist;
     });
   });
 
   describe('when using methods', () => {
-    it('should emit l-focus and l-blur when the button is focused and blurred', async () => {
-      const el = await fixture<SlIconButton>(html` <l-icon-button></l-icon-button> `);
+    it('should emit lynk-focus and lynk-blur when the button is focused and blurred', async () => {
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button></lynk-icon-button> `);
       const focusHandler = sinon.spy();
       const blurHandler = sinon.spy();
 
-      el.addEventListener('l-focus', focusHandler);
-      el.addEventListener('l-blur', blurHandler);
+      el.addEventListener('lynk-focus', focusHandler);
+      el.addEventListener('lynk-blur', blurHandler);
 
       el.focus();
       await waitUntil(() => focusHandler.calledOnce);
@@ -142,7 +142,7 @@ describe('<l-icon-button>', () => {
     });
 
     it('should emit a click event when calling click()', async () => {
-      const el = await fixture<SlIconButton>(html` <l-icon-button></l-icon-button> `);
+      const el = await fixture<SlIconButton>(html` <lynk-icon-button></lynk-icon-button> `);
       const clickHandler = sinon.spy();
 
       el.addEventListener('click', clickHandler);

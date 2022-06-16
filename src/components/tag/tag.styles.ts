@@ -28,33 +28,33 @@ export default css`
    */
 
   .tag--primary {
-    background-color: var(--l-color-primary-50);
-    border-color: var(--l-color-primary-200);
-    color: var(--l-color-primary-800);
+    background-color: var(--lynk-color-primary-50);
+    border-color: var(--lynk-color-primary-200);
+    color: var(--lynk-color-primary-800);
   }
 
   .tag--success {
-    background-color: var(--l-color-success-50);
-    border-color: var(--l-color-success-200);
-    color: var(--l-color-success-800);
+    background-color: var(--lynk-color-success-50);
+    border-color: var(--lynk-color-success-200);
+    color: var(--lynk-color-success-800);
   }
 
   .tag--neutral {
-    background-color: var(--l-color-neutral-50);
-    border-color: var(--l-color-neutral-200);
-    color: var(--l-color-neutral-800);
+    background-color: var(--lynk-color-neutral-50);
+    border-color: var(--lynk-color-neutral-200);
+    color: var(--lynk-color-neutral-800);
   }
 
   .tag--warning {
-    background-color: var(--l-color-warning-50);
-    border-color: var(--l-color-warning-200);
-    color: var(--l-color-warning-800);
+    background-color: var(--lynk-color-warning-50);
+    border-color: var(--lynk-color-warning-200);
+    color: var(--lynk-color-warning-800);
   }
 
   .tag--danger {
-    background-color: var(--l-color-danger-50);
-    border-color: var(--l-color-danger-200);
-    color: var(--l-color-danger-800);
+    background-color: var(--lynk-color-danger-50);
+    border-color: var(--lynk-color-danger-200);
+    color: var(--lynk-color-danger-800);
   }
 
   /*
@@ -62,38 +62,38 @@ export default css`
    */
 
   .tag--small {
-    font-size: var(--l-button-font-size-small);
-    height: calc(var(--l-input-height-small) * 0.8);
-    line-height: calc(var(--l-input-height-small) - var(--l-input-border-width) * 2);
-    border-radius: var(--l-input-border-radius-small);
-    padding: 0 var(--l-spacing-x-small);
+    font-size: var(--lynk-button-font-size-small);
+    height: calc(var(--lynk-input-height-small) * 0.8);
+    line-height: calc(var(--lynk-input-height-small) - var(--lynk-input-border-width) * 2);
+    border-radius: var(--lynk-input-border-radius-small);
+    padding: 0 var(--lynk-spacing-x-small);
   }
 
   .tag--small .tag__remove {
-    margin-inline-start: var(--l-spacing-2x-small);
-    margin-right: calc(-1 * var(--l-spacing-tiny));
+    margin-inline-start: var(--lynk-spacing-2x-small);
+    margin-right: calc(-1 * var(--lynk-spacing-tiny));
   }
 
   .tag--medium {
-    font-size: var(--l-button-font-size-medium);
-    height: calc(var(--l-input-height-medium) * 0.8);
-    line-height: calc(var(--l-input-height-medium) - var(--l-input-border-width) * 2);
-    border-radius: var(--l-input-border-radius-medium);
-    padding: 0 var(--l-spacing-small);
+    font-size: var(--lynk-button-font-size-medium);
+    height: calc(var(--lynk-input-height-medium) * 0.8);
+    line-height: calc(var(--lynk-input-height-medium) - var(--lynk-input-border-width) * 2);
+    border-radius: var(--lynk-input-border-radius-medium);
+    padding: 0 var(--lynk-spacing-small);
   }
 
   .tag--large {
-    font-size: var(--l-button-font-size-large);
-    height: calc(var(--l-input-height-large) * 0.8);
-    line-height: calc(var(--l-input-height-large) - var(--l-input-border-width) * 2);
-    border-radius: var(--l-input-border-radius-large);
-    padding: 0 var(--l-spacing-medium);
+    font-size: var(--lynk-button-font-size-large);
+    height: calc(var(--lynk-input-height-large) * 0.8);
+    line-height: calc(var(--lynk-input-height-large) - var(--lynk-input-border-width) * 2);
+    border-radius: var(--lynk-input-border-radius-large);
+    padding: 0 var(--lynk-spacing-medium);
   }
 
   .tag__remove {
     font-size: 1.4em;
-    margin-inline-start: var(--l-spacing-2x-small);
-    margin-inline-end: calc(-1 * var(--l-spacing-x-small));
+    margin-inline-start: var(--lynk-spacing-2x-small);
+    margin-inline-end: calc(-1 * var(--lynk-spacing-x-small));
   }
 
   /*
@@ -101,6 +101,6 @@ export default css`
    */
 
   .tag--pill {
-    border-radius: var(--l-border-radius-pill);
+    border-radius: var(--lynk-border-radius-pill);
   }
 `;

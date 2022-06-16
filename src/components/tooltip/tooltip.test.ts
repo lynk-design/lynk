@@ -2,12 +2,12 @@ import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
 import type LynkTooltip from './tooltip';
 
-describe('<l-tooltip>', () => {
+describe('<lynk-tooltip>', () => {
   it('should be visible with the open attribute', async () => {
     const el = await fixture<LynkTooltip>(html`
-      <l-tooltip content="This is a tooltip" open>
-        <l-button>Hover Me</l-button>
-      </l-tooltip>
+      <lynk-tooltip content="This is a tooltip" open>
+        <lynk-button>Hover Me</lynk-button>
+      </lynk-tooltip>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
 
@@ -16,27 +16,27 @@ describe('<l-tooltip>', () => {
 
   it('should not be visible without the open attribute', async () => {
     const el = await fixture<LynkTooltip>(html`
-      <l-tooltip content="This is a tooltip">
-        <l-button>Hover Me</l-button>
-      </l-tooltip>
+      <lynk-tooltip content="This is a tooltip">
+        <lynk-button>Hover Me</lynk-button>
+      </lynk-tooltip>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
 
     expect(base.hidden).to.be.true;
   });
 
-  it('should emit le-show and le-after-show when calling show()', async () => {
+  it('should emit lynk-show and lynk-after-show when calling show()', async () => {
     const el = await fixture<LynkTooltip>(html`
-      <l-tooltip content="This is a tooltip">
-        <l-button>Hover Me</l-button>
-      </l-tooltip>
+      <lynk-tooltip content="This is a tooltip">
+        <lynk-button>Hover Me</lynk-button>
+      </lynk-tooltip>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('le-show', showHandler);
-    el.addEventListener('le-after-show', afterShowHandler);
+    el.addEventListener('lynk-show', showHandler);
+    el.addEventListener('lynk-after-show', afterShowHandler);
     el.show();
 
     await waitUntil(() => showHandler.calledOnce);
@@ -47,18 +47,18 @@ describe('<l-tooltip>', () => {
     expect(base.hidden).to.be.false;
   });
 
-  it('should emit le-hide and le-after-hide when calling hide()', async () => {
+  it('should emit lynk-hide and lynk-after-hide when calling hide()', async () => {
     const el = await fixture<LynkTooltip>(html`
-      <l-tooltip content="This is a tooltip" open>
-        <l-button>Hover Me</l-button>
-      </l-tooltip>
+      <lynk-tooltip content="This is a tooltip" open>
+        <lynk-button>Hover Me</lynk-button>
+      </lynk-tooltip>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('le-hide', hideHandler);
-    el.addEventListener('le-after-hide', afterHideHandler);
+    el.addEventListener('lynk-hide', hideHandler);
+    el.addEventListener('lynk-after-hide', afterHideHandler);
     el.hide();
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -69,18 +69,18 @@ describe('<l-tooltip>', () => {
     expect(base.hidden).to.be.true;
   });
 
-  it('should emit l-show and l-after-show when setting open = true', async () => {
+  it('should emit lynk-show and lynk-after-show when setting open = true', async () => {
     const el = await fixture<LynkTooltip>(html`
-      <l-tooltip content="This is a tooltip">
-        <l-button>Hover Me</l-button>
-      </l-tooltip>
+      <lynk-tooltip content="This is a tooltip">
+        <lynk-button>Hover Me</lynk-button>
+      </lynk-tooltip>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('le-show', showHandler);
-    el.addEventListener('le-after-show', afterShowHandler);
+    el.addEventListener('lynk-show', showHandler);
+    el.addEventListener('lynk-after-show', afterShowHandler);
     el.open = true;
 
     await waitUntil(() => showHandler.calledOnce);
@@ -91,18 +91,18 @@ describe('<l-tooltip>', () => {
     expect(base.hidden).to.be.false;
   });
 
-  it('should emit le-hide and le-after-hide when setting open = false', async () => {
+  it('should emit lynk-hide and lynk-after-hide when setting open = false', async () => {
     const el = await fixture<LynkTooltip>(html`
-      <l-tooltip content="This is a tooltip" open>
-        <l-button>Hover Me</l-button>
-      </l-tooltip>
+      <lynk-tooltip content="This is a tooltip" open>
+        <lynk-button>Hover Me</lynk-button>
+      </lynk-tooltip>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('le-hide', hideHandler);
-    el.addEventListener('le-after-hide', afterHideHandler);
+    el.addEventListener('lynk-hide', hideHandler);
+    el.addEventListener('lynk-after-hide', afterHideHandler);
     el.open = false;
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -115,16 +115,16 @@ describe('<l-tooltip>', () => {
 
   it('should hide the tooltip when tooltip is visible and disabled becomes true', async () => {
     const el = await fixture<LynkTooltip>(html`
-      <l-tooltip content="This is a tooltip" open>
-        <l-button>Hover Me</l-button>
-      </l-tooltip>
+      <lynk-tooltip content="This is a tooltip" open>
+        <lynk-button>Hover Me</lynk-button>
+      </lynk-tooltip>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('le-hide', hideHandler);
-    el.addEventListener('le-after-hide', afterHideHandler);
+    el.addEventListener('lynk-hide', hideHandler);
+    el.addEventListener('lynk-after-hide', afterHideHandler);
     el.disabled = true;
 
     await waitUntil(() => hideHandler.calledOnce);

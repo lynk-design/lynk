@@ -16,7 +16,7 @@ const testLibraryIcons = {
   'bad-icon': `<div></div>`
 };
 
-describe('<l-icon>', () => {
+describe('<lynk-icon>', () => {
   before(() => {
     registerIconLibrary('test-library', {
       resolver: (name: keyof typeof testLibraryIcons) => {
@@ -36,7 +36,7 @@ describe('<l-icon>', () => {
 
   describe('defaults ', () => {
     it('default properties', async () => {
-      const el = await fixture<LynkIcon>(html` <l-icon></l-icon> `);
+      const el = await fixture<LynkIcon>(html` <lynk-icon></lynk-icon> `);
 
       expect(el.name).to.be.undefined;
       expect(el.src).to.be.undefined;
@@ -45,8 +45,8 @@ describe('<l-icon>', () => {
     });
 
     it('renders pre-loaded system icons and emits l-load event', async () => {
-      const el = await fixture<LynkIcon>(html` <l-icon library="system"></l-icon> `);
-      const listener = oneEvent(el, 'l-load') as Promise<CustomEvent>;
+      const el = await fixture<LynkIcon>(html` <lynk-icon library="system"></lynk-icon> `);
+      const listener = oneEvent(el, 'lynk-load') as Promise<CustomEvent>;
 
       el.name = 'check-lg';
       const ev = await listener;
@@ -57,12 +57,12 @@ describe('<l-icon>', () => {
     });
 
     it('the icon is accessible', async () => {
-      const el = await fixture<LynkIcon>(html` <l-icon library="system" name="check-lg"></l-icon> `);
+      const el = await fixture<LynkIcon>(html` <lynk-icon library="system" name="check-lg"></lynk-icon> `);
       await expect(el).to.be.accessible();
     });
 
     it('the icon has the correct default aria attributes', async () => {
-      const el = await fixture<LynkIcon>(html` <l-icon library="system" name="check-lg"></l-icon> `);
+      const el = await fixture<LynkIcon>(html` <lynk-icon library="system" name="check-lg"></lynk-icon> `);
       const rootDiv = el.shadowRoot?.querySelector('div.icon');
 
       expect(rootDiv?.getAttribute('role')).to.be.null;
@@ -74,7 +74,7 @@ describe('<l-icon>', () => {
   describe('when a label is provided', () => {
     it('the icon has the correct default aria attributes', async () => {
       const fakeLabel = 'a label';
-      const el = await fixture<LynkIcon>(html` <l-icon label="${fakeLabel}" library="system" name="check"></l-icon> `);
+      const el = await fixture<LynkIcon>(html` <lynk-icon label="${fakeLabel}" library="system" name="check"></lynk-icon> `);
       const rootDiv = el.shadowRoot?.querySelector('div.icon');
 
       expect(rootDiv?.getAttribute('role')).to.equal('img');
@@ -86,9 +86,9 @@ describe('<l-icon>', () => {
   describe('when a valid src is provided', () => {
     it('the svg is rendered', async () => {
       const fakeId = 'test-src';
-      const el = await fixture<LynkIcon>(html` <l-icon></l-icon> `);
+      const el = await fixture<LynkIcon>(html` <lynk-icon></lynk-icon> `);
 
-      const listener = oneEvent(el, 'l-load');
+      const listener = oneEvent(el, 'lynk-load');
       el.src = `data:image/svg+xml,${encodeURIComponent(`<svg id="${fakeId}"></svg>`)}`;
 
       await listener;
@@ -101,8 +101,8 @@ describe('<l-icon>', () => {
 
   describe('new library', () => {
     it('renders icons from the new library and emits l-load event', async () => {
-      const el = await fixture<LynkIcon>(html` <l-icon library="test-library"></l-icon> `);
-      const listener = oneEvent(el, 'l-load') as Promise<CustomEvent>;
+      const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library"></lynk-icon> `);
+      const listener = oneEvent(el, 'lynk-load') as Promise<CustomEvent>;
 
       el.name = 'test-icon1';
       const ev = await listener;
@@ -113,7 +113,7 @@ describe('<l-icon>', () => {
     });
 
     it('runs mutator from new library', async () => {
-      const el = await fixture<LynkIcon>(html` <l-icon library="test-library" name="test-icon1"></l-icon> `);
+      const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library" name="test-icon1"></lynk-icon> `);
       await elementUpdated(el);
 
       const svg = el.shadowRoot?.querySelector('svg');
@@ -124,14 +124,14 @@ describe('<l-icon>', () => {
   describe('negative cases', () => {
     // using new library so we can test for malformed icons when registered
     it("svg not rendered with an icon that doesn't exist in the library", async () => {
-      const el = await fixture<LynkIcon>(html` <l-icon library="test-library" name="does-not-exist"></l-icon> `);
+      const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library" name="does-not-exist"></lynk-icon> `);
 
       expect(el.shadowRoot?.querySelector('svg')).to.be.null;
     });
 
     it('emits l-error when the file cant be retrieved', async () => {
-      const el = await fixture<LynkIcon>(html` <l-icon library="test-library"></l-icon> `);
-      const listener = oneEvent(el, 'l-error') as Promise<CustomEvent>;
+      const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library"></lynk-icon> `);
+      const listener = oneEvent(el, 'lynk-error') as Promise<CustomEvent>;
 
       el.name = 'bad-request';
       const ev = await listener;
@@ -142,8 +142,8 @@ describe('<l-icon>', () => {
     });
 
     it("emits l-error when there isn't an svg element in the registered icon", async () => {
-      const el = await fixture<LynkIcon>(html` <l-icon library="test-library"></l-icon> `);
-      const listener = oneEvent(el, 'l-error') as Promise<CustomEvent>;
+      const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library"></lynk-icon> `);
+      const listener = oneEvent(el, 'lynk-error') as Promise<CustomEvent>;
 
       el.name = 'bad-icon';
       const ev = await listener;

@@ -12,41 +12,41 @@ export default css`
   /* Label */
   .form-control--has-label .form-control__label {
     display: inline-block;
-    color: var(--l-input-label-color);
-    margin-bottom: var(--l-spacing-tiny);
+    color: var(--lynk-input-label-color);
+    margin-bottom: var(--lynk-spacing-tiny);
   }
 
   .form-control--has-label.form-control--small .form-control__label {
-    font-size: var(--l-input-label-font-size-small);
+    font-size: var(--lynk-input-label-font-size-small);
   }
 
   .form-control--has-label.form-control--medium .form-control__label {
-    font-size: var(--l-input-label-font-size-medium);
+    font-size: var(--lynk-input-label-font-size-medium);
   }
 
   .form-control--has-label.form-control--large .form-control_label {
-    font-size: var(--l-input-label-font-size-large);
+    font-size: var(--lynk-input-label-font-size-large);
   }
 
   /* Help text */
   .form-control--has-help-text .form-control__help-text {
     display: block;
-    color: var(--l-input-help-text-color);
+    color: var(--lynk-input-help-text-color);
   }
 
   .form-control--has-help-text .form-control__help-text ::slotted(*) {
-    margin-top: var(--l-spacing-tiny);
+    margin-top: var(--lynk-spacing-tiny);
   }
 
   .form-control--has-help-text.form-control--small .form-control__help-text {
-    font-size: var(--l-input-help-text-font-size-small);
+    font-size: var(--lynk-input-help-text-font-size-small);
   }
 
   .form-control--has-help-text.form-control--medium .form-control__help-text {
-    font-size: var(--l-input-help-text-font-size-medium);
+    font-size: var(--lynk-input-help-text-font-size-medium);
   }
 
   .form-control--has-help-text.form-control--large .form-control__help-text {
-    font-size: var(--l-input-help-text-font-size-large);
+    font-size: var(--lynk-input-help-text-font-size-large);
   }
 `;

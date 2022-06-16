@@ -14,10 +14,10 @@ import styles from './button.styles';
  * @since 1.0
  * @status stable
  *
- * @dependency l-spinner
+ * @dependency lynk-spinner
  *
- * @event le-blur - Emitted when the button loses focus.
- * @event le-focus - Emitted when the button gains focus.
+ * @event lynk-blur - Emitted when the button loses focus.
+ * @event lynk-focus - Emitted when the button gains focus.
  *
  * @slot - The button's label.
  * @slot prefix - Used to prepend an icon or similar element to the button.
@@ -29,11 +29,11 @@ import styles from './button.styles';
  * @csspart suffix - The suffix slot's container.
  * @csspart caret - The button's caret.
  */
-@customElement('l-button')
+@customElement('lynk-button')
 export default class LynkButton extends LitElement {
   static styles = styles;
 
-  @query('.l-button') button: HTMLButtonElement | HTMLLinkElement;
+  @query('.lynk-button') button: HTMLButtonElement | HTMLLinkElement;
 
   private readonly formSubmitController = new FormSubmitController(this, {
     form: (input: HTMLInputElement) => {
@@ -123,27 +123,27 @@ export default class LynkButton extends LitElement {
 
   /** Simulates a click on the button. */
   click() {
-    this.l-button.click();
+    this.lynk-button.click();
   }
 
   /** Sets focus on the button. */
   focus(options?: FocusOptions) {
-    this.l-button.focus(options);
+    this.lynk-button.focus(options);
   }
 
   /** Removes focus from the button. */
   blur() {
-    this.l-button.blur();
+    this.lynk-button.blur();
   }
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'le-blur');
+    emit(this, 'lynk-blur');
   }
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'le-focus');
+    emit(this, 'lynk-focus');
   }
 
   handleClick(event: MouseEvent) {
@@ -167,29 +167,29 @@ export default class LynkButton extends LitElement {
       <${tag}
         part="base"
         class=${classMap({
-          'l-button': true,
-          'l-button--default': this.color === 'default',
-          'l-button--primary': this.color === 'primary',
-          'l-button--success': this.color === 'success',
-          'l-button--neutral': this.color === 'neutral',
-          'l-button--warning': this.color === 'warning',
-          'l-button--danger': this.color === 'danger',
-          'l-button--text': this.color === 'text',
-          'l-button--small': this.size === 'small',
-          'l-button--medium': this.size === 'medium',
-          'l-button--large': this.size === 'large',
-          'l-button--caret': this.caret,
-          'l-button--circle': this.circle,
-          'l-button--disabled': this.disabled,
-          'l-button--focused': this.hasFocus,
-          'l-button--loading': this.loading,
-          'l-button--standard': !this.outline,
-          'l-button--outline': this.outline,
-          'l-button--pill': this.pill,
-          'l-button--rtl': this.localize.dir() === 'rtl',
-          'l-button--has-label': this.hasSlotController.test('[default]'),
-          'l-button--has-prefix': this.hasSlotController.test('prefix'),
-          'l-button--has-suffix': this.hasSlotController.test('suffix')
+          'lynk-button': true,
+          'lynk-button--default': this.color === 'default',
+          'lynk-button--primary': this.color === 'primary',
+          'lynk-button--success': this.color === 'success',
+          'lynk-button--neutral': this.color === 'neutral',
+          'lynk-button--warning': this.color === 'warning',
+          'lynk-button--danger': this.color === 'danger',
+          'lynk-button--text': this.color === 'text',
+          'lynk-button--small': this.size === 'small',
+          'lynk-button--medium': this.size === 'medium',
+          'lynk-button--large': this.size === 'large',
+          'lynk-button--caret': this.caret,
+          'lynk-button--circle': this.circle,
+          'lynk-button--disabled': this.disabled,
+          'lynk-button--focused': this.hasFocus,
+          'lynk-button--loading': this.loading,
+          'lynk-button--standard': !this.outline,
+          'lynk-button--outline': this.outline,
+          'lynk-button--pill': this.pill,
+          'lynk-button--rtl': this.localize.dir() === 'rtl',
+          'lynk-button--has-label': this.hasSlotController.test('[default]'),
+          'lynk-button--has-prefix': this.hasSlotController.test('prefix'),
+          'lynk-button--has-suffix': this.hasSlotController.test('suffix')
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
@@ -206,19 +206,19 @@ export default class LynkButton extends LitElement {
         @focus=${this.handleFocus}
         @click=${this.handleClick}
       >
-        <span part="prefix" class="l-button__prefix">
+        <span part="prefix" class="lynk-button__prefix">
           <slot name="prefix"></slot>
         </span>
-        <span part="label" class="l-button__label">
+        <span part="label" class="lynk-button__label">
           <slot></slot>
         </span>
-        <span part="suffix" class="l-button__suffix">
+        <span part="suffix" class="lynk-button__suffix">
           <slot name="suffix"></slot>
         </span>
         ${
           this.caret
             ? html`
-                <span part="caret" class="l-button__caret">
+                <span part="caret" class="lynk-button__caret">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -233,7 +233,7 @@ export default class LynkButton extends LitElement {
               `
             : ''
         }
-        ${this.loading ? html`<l-spinner></l-spinner>` : ''}
+        ${this.loading ? html`<lynk-spinner></lynk-spinner>` : ''}
       </${tag}>
     `;
     /* eslint-enable lit/binding-positions, lit/no-invalid-html */
@@ -242,6 +242,6 @@ export default class LynkButton extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-button': LynkButton;
+    'lynk-button': LynkButton;
   }
 }

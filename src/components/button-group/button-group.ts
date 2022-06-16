@@ -2,17 +2,17 @@ import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import styles from './button-group.styles';
 
-const BUTTON_CHILDREN = ['l-button', 'l-radio-button'];
+const BUTTON_CHILDREN = ['lynk-button', 'lynk-radio-button'];
 
 /**
  * @since 1.0
  * @status stable
  *
- * @slot - One or more `<l-button>` elements to display in the button group.
+ * @slot - One or more `<lynk-button>` elements to display in the button group.
  *
  * @csspart base - The component's internal wrapper.
  */
-@customElement('l-button-group')
+@customElement('lynk-button-group')
 export default class LynkButtonGroup extends LitElement {
   static styles = styles;
 
@@ -23,22 +23,22 @@ export default class LynkButtonGroup extends LitElement {
 
   handleFocus(event: CustomEvent) {
     const button = findButton(event.target as HTMLElement);
-    button?.classList.add('l-button-group__button--focus');
+    button?.classList.add('lynk-button-group__button--focus');
   }
 
   handleBlur(event: CustomEvent) {
     const button = findButton(event.target as HTMLElement);
-    button?.classList.remove('l-button-group__button--focus');
+    button?.classList.remove('lynk-button-group__button--focus');
   }
 
   handleMouseOver(event: CustomEvent) {
     const button = findButton(event.target as HTMLElement);
-    button?.classList.add('l-button-group__button--hover');
+    button?.classList.add('lynk-button-group__button--hover');
   }
 
   handleMouseOut(event: CustomEvent) {
     const button = findButton(event.target as HTMLElement);
-    button?.classList.remove('l-button-group__button--hover');
+    button?.classList.remove('lynk-button-group__button--hover');
   }
 
   handleSlotChange() {
@@ -49,10 +49,10 @@ export default class LynkButtonGroup extends LitElement {
       const button = findButton(el);
 
       if (button !== null) {
-        button.classList.add('l-button-group__button');
-        button.classList.toggle('l-button-group__button--first', index === 0);
-        button.classList.toggle('l-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
-        button.classList.toggle('l-button-group__button--last', index === slottedElements.length - 1);
+        button.classList.add('lynk-button-group__button');
+        button.classList.toggle('lynk-button-group__button--first', index === 0);
+        button.classList.toggle('lynk-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
+        button.classList.toggle('lynk-button-group__button--last', index === slottedElements.length - 1);
       }
     });
   }
@@ -62,7 +62,7 @@ export default class LynkButtonGroup extends LitElement {
     return html`
       <div
         part="base"
-        class="l-button-group"
+        class="lynk-button-group"
         role="group"
         aria-label=${this.label}
         @focusout=${this.handleBlur}
@@ -82,6 +82,6 @@ function findButton(el: HTMLElement) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-button-group': LynkButtonGroup;
+    'lynk-button-group': LynkButtonGroup;
   }
 }

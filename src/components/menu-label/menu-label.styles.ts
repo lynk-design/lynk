@@ -8,14 +8,14 @@ export default css`
     display: block;
   }
 
-  .l-menu-label {
-    font-family: var(--l-font-sans);
-    font-size: var(--l-font-size-small);
-    font-weight: var(--l-font-weight-semibold);
-    line-height: var(--l-line-height-normal);
-    letter-spacing: var(--l-letter-spacing-normal);
-    color: var(--l-color-neutral-500);
-    padding: var(--l-spacing-2x-small) var(--l-spacing-x-large);
+  .lynk-menu-label {
+    font-family: var(--lynk-font-sans);
+    font-size: var(--lynk-font-size-small);
+    font-weight: var(--lynk-font-weight-semibold);
+    line-height: var(--lynk-line-height-normal);
+    letter-spacing: var(--lynk-letter-spacing-normal);
+    color: var(--lynk-color-neutral-500);
+    padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-x-large);
     user-select: none;
   }
 `;

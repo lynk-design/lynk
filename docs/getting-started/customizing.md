@@ -8,24 +8,24 @@ Shoelace makes use of several design tokens to provide a consistent appearance a
 
 Design tokens offer a high-level way to customize the library with minimal effort. There are no component-specific variables, however, as design tokens are intended to be generic and highly reusable. To customize an individual component, refer to the section entitled [Component Parts](#component-parts).
 
-Design tokens are accessed through CSS custom properties that are defined in your theme. Because design tokens live at the page level, they're prefixed with `--l-` to avoid collisions with other libraries.
+Design tokens are accessed through CSS custom properties that are defined in your theme. Because design tokens live at the page level, they're prefixed with `--lynk-` to avoid collisions with other libraries.
 
 To customize a design token, simply override it in your stylesheet using a `:root` block. Here's an example that changes the primary theme to purple based on existing [color primitives](/tokens/color#primitives).
 
 ```css
 :root {
   /* Changes the primary theme color to purple using primitives */
-  --l-color-primary-50: var(--l-color-purple-50);
-  --l-color-primary-100: var(--l-color-purple-100);
-  --l-color-primary-200: var(--l-color-purple-200);
-  --l-color-primary-300: var(--l-color-purple-300);
-  --l-color-primary-400: var(--l-color-purple-400);
-  --l-color-primary-500: var(--l-color-purple-500);
-  --l-color-primary-600: var(--l-color-purple-600);
-  --l-color-primary-700: var(--l-color-purple-700);
-  --l-color-primary-800: var(--l-color-purple-800);
-  --l-color-primary-900: var(--l-color-purple-900);
-  --l-color-primary-950: var(--l-color-purple-950);
+  --lynk-color-primary-50: var(--lynk-color-purple-50);
+  --lynk-color-primary-100: var(--lynk-color-purple-100);
+  --lynk-color-primary-200: var(--lynk-color-purple-200);
+  --lynk-color-primary-300: var(--lynk-color-purple-300);
+  --lynk-color-primary-400: var(--lynk-color-purple-400);
+  --lynk-color-primary-500: var(--lynk-color-purple-500);
+  --lynk-color-primary-600: var(--lynk-color-purple-600);
+  --lynk-color-primary-700: var(--lynk-color-purple-700);
+  --lynk-color-primary-800: var(--lynk-color-purple-800);
+  --lynk-color-primary-900: var(--lynk-color-purple-900);
+  --lynk-color-primary-950: var(--lynk-color-purple-950);
 }
 ```
 
@@ -40,11 +40,11 @@ Shoelace components use a [shadow DOM](https://developer.mozilla.org/en-US/docs/
 Here's an example that modifies buttons with the `tomato-button` class.
 
 ```html preview
-<l-button class="tomato-button"> Tomato Button </l-button>
+<lynk-button class="tomato-button"> Tomato Button </lynk-button>
 
 <style>
   .tomato-button::part(base) {
-    background: var(--l-color-neutral-0);
+    background: var(--lynk-color-neutral-0);
     border: solid 1px tomato;
   }
 
@@ -78,7 +78,7 @@ Most (but not all) components expose parts. You can find them in each component'
 
 ## Custom Properties
 
-For convenience, some components expose CSS custom properties you can override. These are not design tokens, nor do they have the same `--l-` prefix since they're scoped to a component.
+For convenience, some components expose CSS custom properties you can override. These are not design tokens, nor do they have the same `--lynk-` prefix since they're scoped to a component.
 
 You can set custom properties on a component in your stylesheet.
 
@@ -99,7 +99,7 @@ l-avatar.your-class {
 Alternatively, you can set them inline directly on the element.
 
 ```html
-<l-avatar style="--size: 6rem;"></l-avatar>
+<lynk-avatar style="--size: 6rem;"></lynk-avatar>
 ```
 
 Not all components expose CSS custom properties. For those that do, they can be found in the component's API documentation.

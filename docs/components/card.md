@@ -1,11 +1,11 @@
 # Card
 
-[component-header:l-card]
+[component-header:lynk-card]
 
 Cards can be used to group related subjects in a container.
 
 ```html preview
-<l-card class="card-overview">
+<lynk-card class="card-overview">
   <img
     slot="image"
     src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
@@ -17,10 +17,10 @@ Cards can be used to group related subjects in a container.
   <small>6 weeks old</small>
 
   <div slot="footer">
-    <l-button variant="primary" pill>More Info</l-button>
-    <l-rating></l-rating>
+    <lynk-button variant="primary" pill>More Info</lynk-button>
+    <lynk-rating></lynk-rating>
   </div>
-</l-card>
+</lynk-card>
 
 <style>
   .card-overview {
@@ -28,7 +28,7 @@ Cards can be used to group related subjects in a container.
   }
 
   .card-overview small {
-    color: var(--l-color-neutral-500);
+    color: var(--lynk-color-neutral-500);
   }
 
   .card-overview [slot='footer'] {
@@ -48,7 +48,7 @@ const css = `
   }
 
   .card-overview small {
-    color: var(--l-color-neutral-500);
+    color: var(--lynk-color-neutral-500);
   }
 
   .card-overview [slot="footer"] {
@@ -91,9 +91,9 @@ const App = () => (
 Basic cards aren't very exciting, but they can display any content you want them to.
 
 ```html preview
-<l-card class="card-basic">
+<lynk-card class="card-basic">
   This is just a basic card. No image, no header, and no footer. Just your content.
-</l-card>
+</lynk-card>
 
 <style>
   .card-basic {
@@ -127,15 +127,15 @@ const App = () => (
 Headers can be used to display titles and more.
 
 ```html preview
-<l-card class="card-header">
+<lynk-card class="card-header">
   <div slot="header">
     Header Title
 
-    <l-icon-button name="gear" label="Settings"></l-icon-button>
+    <lynk-icon-button name="gear" label="Settings"></lynk-icon-button>
   </div>
 
   This card has a header. You can put all sorts of things in it!
-</l-card>
+</lynk-card>
 
 <style>
   .card-header {
@@ -152,8 +152,8 @@ Headers can be used to display titles and more.
     margin: 0;
   }
 
-  .card-header l-icon-button {
-    font-size: var(--l-font-size-medium);
+  .card-header lynk-icon-button {
+    font-size: var(--lynk-font-size-medium);
   }
 </style>
 ```
@@ -176,8 +176,8 @@ const css = `
     margin: 0;
   }
 
-  .card-header l-icon-button {
-    font-size: var(--l-font-size-medium);
+  .card-header lynk-icon-button {
+    font-size: var(--lynk-font-size-medium);
   }
 `;
 
@@ -201,14 +201,14 @@ const App = () => (
 Footers can be used to display actions, summaries, or other relevant content.
 
 ```html preview
-<l-card class="card-footer">
+<lynk-card class="card-footer">
   This card has a footer. You can put all sorts of things in it!
 
   <div slot="footer">
-    <l-rating></l-rating>
-    <l-button slot="footer" variant="primary">Preview</l-button>
+    <lynk-rating></lynk-rating>
+    <lynk-button slot="footer" variant="primary">Preview</lynk-button>
   </div>
-</l-card>
+</lynk-card>
 
 <style>
   .card-footer {
@@ -260,14 +260,14 @@ const App = () => (
 Cards accept an `image` slot. The image is displayed atop the card and stretches to fit.
 
 ```html preview
-<l-card class="card-image">
+<lynk-card class="card-image">
   <img
     slot="image"
     src="https://images.unsplash.com/photo-1547191783-94d5f8f6d8b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"
     alt="A kitten walks towards camera on top of pallet."
   />
   This is a kitten, but not just any kitten. This kitten likes walking along pallets.
-</l-card>
+</lynk-card>
 
 <style>
   .card-image {
@@ -301,4 +301,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-card]
+[component-metadata:lynk-card]

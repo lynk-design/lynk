@@ -1,13 +1,13 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import type SlCard from './card';
+import type LynkCard from './card';
 
-describe('<l-card>', () => {
-  let el: SlCard;
+describe('<lynk-card>', () => {
+  let el: LynkCard;
 
   describe('when provided no parameters', () => {
     before(async () => {
-      el = await fixture<SlCard>(
-        html` <l-card>This is just a basic card. No image, no header, and no footer. Just your content.</l-card> `
+      el = await fixture<LynkCard>(
+        html` <lynk-card>This is just a basic card. No image, no header, and no footer. Just your content.</lynk-card> `
       );
     });
 
@@ -20,18 +20,18 @@ describe('<l-card>', () => {
     });
 
     it('should contain the class card.', () => {
-      const card = el.shadowRoot!.querySelector('.card')!;
-      expect(card.classList.value.trim()).to.eq('card');
+      const card = el.shadowRoot!.querySelector('.lynk-card')!;
+      expect(card.classList.value.trim()).to.eq('lynk-card');
     });
   });
 
   describe('when provided an element in the slot "header" to render a header', () => {
     before(async () => {
-      el = await fixture<SlCard>(
-        html`<l-card>
+      el = await fixture<LynkCard>(
+        html`<lynk-card>
           <div slot="header">Header Title</div>
           This card has a header. You can put all sorts of things in it!
-        </l-card>`
+        </lynk-card>`
       );
     });
 
@@ -56,19 +56,19 @@ describe('<l-card>', () => {
     });
 
     it('should contain the class card--has-header.', () => {
-      const card = el.shadowRoot!.querySelector('.card')!;
-      expect(card.classList.value.trim()).to.eq('card card--has-header');
+      const card = el.shadowRoot!.querySelector('.lynk-card')!;
+      expect(card.classList.value.trim()).to.eq('lynk-card lynk-card--has-header');
     });
   });
 
   describe('when provided an element in the slot "footer" to render a footer', () => {
     before(async () => {
-      el = await fixture<SlCard>(
-        html`<l-card>
+      el = await fixture<LynkCard>(
+        html`<lynk-card>
           This card has a footer. You can put all sorts of things in it!
 
           <div slot="footer">Footer Content</div>
-        </l-card>`
+        </lynk-card>`
       );
     });
 
@@ -93,22 +93,22 @@ describe('<l-card>', () => {
     });
 
     it('should contain the class card--has-footer.', () => {
-      const card = el.shadowRoot!.querySelector('.card')!;
-      expect(card.classList.value.trim()).to.eq('card card--has-footer');
+      const card = el.shadowRoot!.querySelector('.lynk-card')!;
+      expect(card.classList.value.trim()).to.eq('lynk-card lynk-card--has-footer');
     });
   });
 
   describe('when provided an element in the slot "image" to render a image', () => {
     before(async () => {
-      el = await fixture<SlCard>(
-        html`<l-card>
+      el = await fixture<LynkCard>(
+        html`<lynk-card>
           <img
             slot="image"
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
             alt="A kitten walks towards camera on top of pallet."
           />
           This is a kitten, but not just any kitten. This kitten likes walking along pallets.
-        </l-card>`
+        </lynk-card>`
       );
     });
 
@@ -130,8 +130,8 @@ describe('<l-card>', () => {
     });
 
     it('should contain the class card--has-image.', () => {
-      const card = el.shadowRoot!.querySelector('.card')!;
-      expect(card.classList.value.trim()).to.eq('card card--has-image');
+      const card = el.shadowRoot!.querySelector('.lynk-card')!;
+      expect(card.classList.value.trim()).to.eq('lynk-card lynk-card--has-image');
     });
   });
 });

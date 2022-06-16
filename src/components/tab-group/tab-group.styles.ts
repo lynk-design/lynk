@@ -5,49 +5,49 @@ export default css`
   ${componentStyles}
 
   :host {
-    --indicator-color: var(--l-color-primary-600);
-    --track-color: var(--l-color-neutral-200);
+    --indicator-color: var(--lynk-color-primary-600);
+    --track-color: var(--lynk-color-neutral-200);
     --track-width: 2px;
 
     display: block;
   }
 
-  .tab-group {
+  .lynk-tab-group {
     display: flex;
     border: solid 1px transparent;
     border-radius: 0;
   }
 
-  .tab-group .tab-group__tabs {
+  .lynk-tab-group .lynk-tab-group__tabs {
     display: flex;
     position: relative;
   }
 
-  .tab-group .tab-group__indicator {
+  .lynk-tab-group .lynk-tab-group__indicator {
     position: absolute;
-    transition: var(--l-transition-fast) transform ease, var(--l-transition-fast) width ease;
+    transition: var(--lynk-transition-fast) transform ease, var(--lynk-transition-fast) width ease;
   }
 
-  .tab-group--has-scroll-controls .tab-group__nav-container {
+  .lynk-tab-group--has-scroll-controls .lynk-tab-group__nav-container {
     position: relative;
-    padding: 0 var(--l-spacing-x-large);
+    padding: 0 var(--lynk-spacing-x-large);
   }
 
-  .tab-group__scroll-button {
+  .lynk-tab-group__scroll-button {
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     top: 0;
     bottom: 0;
-    width: var(--l-spacing-x-large);
+    width: var(--lynk-spacing-x-large);
   }
 
-  .tab-group__scroll-button--start {
+  .lynk-tab-group__scroll-button--start {
     left: 0;
   }
 
-  .tab-group__scroll-button--end {
+  .lynk-tab-group__scroll-button--end {
     right: 0;
   }
 
@@ -55,15 +55,15 @@ export default css`
    * Top
    */
 
-  .tab-group--top {
+  .lynk-tab-group--top {
     flex-direction: column;
   }
 
-  .tab-group--top .tab-group__nav-container {
+  .lynk-tab-group--top .lynk-tab-group__nav-container {
     order: 1;
   }
 
-  .tab-group--top .tab-group__nav {
+  .lynk-tab-group--top .lynk-tab-group__nav {
     display: flex;
     overflow-x: auto;
 
@@ -72,44 +72,44 @@ export default css`
   }
 
   /* Hide scrollbar in Chrome/Safari */
-  .tab-group--top .tab-group__nav::-webkit-scrollbar {
+  .lynk-tab-group--top .lynk-tab-group__nav::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
 
-  .tab-group--top .tab-group__tabs {
+  .lynk-tab-group--top .lynk-tab-group__tabs {
     flex: 1 1 auto;
     position: relative;
     flex-direction: row;
     border-bottom: solid var(--track-width) var(--track-color);
   }
 
-  .tab-group--top .tab-group__indicator {
+  .lynk-tab-group--top .lynk-tab-group__indicator {
     bottom: calc(-1 * var(--track-width));
     border-bottom: solid var(--track-width) var(--indicator-color);
   }
 
-  .tab-group--top .tab-group__body {
+  .lynk-tab-group--top .lynk-tab-group__body {
     order: 2;
   }
 
-  .tab-group--top ::slotted(l-tab-panel) {
-    --padding: var(--l-spacing-medium) 0;
+  .lynk-tab-group--top ::slotted(lynk-tab-panel) {
+    --padding: var(--lynk-spacing-medium) 0;
   }
 
   /*
    * Bottom
    */
 
-  .tab-group--bottom {
+  .lynk-tab-group--bottom {
     flex-direction: column;
   }
 
-  .tab-group--bottom .tab-group__nav-container {
+  .lynk-tab-group--bottom .lynk-tab-group__nav-container {
     order: 2;
   }
 
-  .tab-group--bottom .tab-group__nav {
+  .lynk-tab-group--bottom .lynk-tab-group__nav {
     display: flex;
     overflow-x: auto;
 
@@ -118,102 +118,102 @@ export default css`
   }
 
   /* Hide scrollbar in Chrome/Safari */
-  .tab-group--bottom .tab-group__nav::-webkit-scrollbar {
+  .lynk-tab-group--bottom .lynk-tab-group__nav::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
 
-  .tab-group--bottom .tab-group__tabs {
+  .lynk-tab-group--bottom .lynk-tab-group__tabs {
     flex: 1 1 auto;
     position: relative;
     flex-direction: row;
     border-top: solid var(--track-width) var(--track-color);
   }
 
-  .tab-group--bottom .tab-group__indicator {
+  .lynk-tab-group--bottom .lynk-tab-group__indicator {
     top: calc(-1 * var(--track-width));
     border-top: solid var(--track-width) var(--indicator-color);
   }
 
-  .tab-group--bottom .tab-group__body {
+  .lynk-tab-group--bottom .lynk-tab-group__body {
     order: 1;
   }
 
-  .tab-group--bottom ::slotted(l-tab-panel) {
-    --padding: var(--l-spacing-medium) 0;
+  .lynk-tab-group--bottom ::slotted(lynk-tab-panel) {
+    --padding: var(--lynk-spacing-medium) 0;
   }
 
   /*
    * Start
    */
 
-  .tab-group--start {
+  .lynk-tab-group--start {
     flex-direction: row;
   }
 
-  .tab-group--start .tab-group__nav-container {
+  .lynk-tab-group--start .lynk-tab-group__nav-container {
     order: 1;
   }
 
-  .tab-group--start .tab-group__tabs {
+  .lynk-tab-group--start .lynk-tab-group__tabs {
     flex: 0 0 auto;
     flex-direction: column;
     border-inline-end: solid var(--track-width) var(--track-color);
   }
 
-  .tab-group--start .tab-group__indicator {
+  .lynk-tab-group--start .lynk-tab-group__indicator {
     right: calc(-1 * var(--track-width));
     border-right: solid var(--track-width) var(--indicator-color);
   }
 
-  .tab-group--start.tab-group--rtl .tab-group__indicator {
+  .lynk-tab-group--start.lynk-tab-group--rtl .lynk-tab-group__indicator {
     right: auto;
     left: calc(-1 * var(--track-width));
   }
 
-  .tab-group--start .tab-group__body {
+  .lynk-tab-group--start .lynk-tab-group__body {
     flex: 1 1 auto;
     order: 2;
   }
 
-  .tab-group--start ::slotted(l-tab-panel) {
-    --padding: 0 var(--l-spacing-medium);
+  .lynk-tab-group--start ::slotted(lynk-tab-panel) {
+    --padding: 0 var(--lynk-spacing-medium);
   }
 
   /*
    * End
    */
 
-  .tab-group--end {
+  .lynk-tab-group--end {
     flex-direction: row;
   }
 
-  .tab-group--end .tab-group__nav-container {
+  .lynk-tab-group--end .lynk-tab-group__nav-container {
     order: 2;
   }
 
-  .tab-group--end .tab-group__tabs {
+  .lynk-tab-group--end .lynk-tab-group__tabs {
     flex: 0 0 auto;
     flex-direction: column;
     border-right: solid var(--track-width) var(--track-color);
   }
 
-  .tab-group--end .tab-group__indicator {
+  .lynk-tab-group--end .lynk-tab-group__indicator {
     left: calc(-1 * var(--track-width));
     border-inline-start: solid var(--track-width) var(--indicator-color);
   }
 
-  .tab-group--end.tab-group--rtl .tab-group__indicator {
+  .lynk-tab-group--end.lynk-tab-group--rtl .lynk-tab-group__indicator {
     right: calc(-1 * var(--track-width));
     left: auto;
   }
 
-  .tab-group--end .tab-group__body {
+  .lynk-tab-group--end .lynk-tab-group__body {
     flex: 1 1 auto;
     order: 1;
   }
 
-  .tab-group--end ::slotted(l-tab-panel) {
-    --padding: 0 var(--l-spacing-medium);
+  .lynk-tab-group--end ::slotted(lynk-tab-panel) {
+    --padding: 0 var(--lynk-spacing-medium);
   }
 `;

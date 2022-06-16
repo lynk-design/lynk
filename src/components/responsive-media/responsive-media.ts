@@ -4,13 +4,13 @@ import { classMap } from 'lit/directives/class-map.js';
 import styles from './responsive-media.styles';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @slot - The element to receive the aspect ratio. Should be a replaced element, such as `<img>`, `<iframe>`, or `<video>`.
  */
-@customElement('l-responsive-media')
-export default class SlResponsiveMedia extends LitElement {
+@customElement('lynk-responsive-media')
+export default class LynkResponsiveMedia extends LitElement {
   static styles = styles;
 
   /**
@@ -31,9 +31,9 @@ export default class SlResponsiveMedia extends LitElement {
     return html`
       <div
         class=${classMap({
-          'responsive-media': true,
-          'responsive-media--cover': this.fit === 'cover',
-          'responsive-media--contain': this.fit === 'contain'
+          'lynk-responsive-media': true,
+          'lynk-responsive-media--cover': this.fit === 'cover',
+          'lynk-responsive-media--contain': this.fit === 'contain'
         })}
         style="padding-bottom: ${paddingBottom}"
       >
@@ -45,6 +45,6 @@ export default class SlResponsiveMedia extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-responsive-media': SlResponsiveMedia;
+    'lynk-responsive-media': LynkResponsiveMedia;
   }
 }

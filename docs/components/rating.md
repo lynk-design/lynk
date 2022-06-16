@@ -1,11 +1,11 @@
 # Rating
 
-[component-header:l-rating]
+[component-header:lynk-rating]
 
 Ratings give users a way to quickly view and provide feedback.
 
 ```html preview
-<l-rating></l-rating>
+<lynk-rating></lynk-rating>
 ```
 
 ```jsx react
@@ -21,7 +21,7 @@ const App = () => <SlRating />;
 Ratings are 0-5 by default. To change the maximum possible value, use the `max` attribute.
 
 ```html preview
-<l-rating max="3"></l-rating>
+<lynk-rating max="3"></lynk-rating>
 ```
 
 ```jsx react
@@ -35,7 +35,7 @@ const App = () => <SlRating max={3} />;
 Use the `precision` attribute to let users select fractional ratings.
 
 ```html preview
-<l-rating precision="0.5" value="2.5"></l-rating>
+<lynk-rating precision="0.5" value="2.5"></lynk-rating>
 ```
 
 ```jsx react
@@ -49,7 +49,7 @@ const App = () => <SlRating precision={0.5} value={2.5} />;
 Set the `--symbol-size` custom property to adjust the size.
 
 ```html preview
-<l-rating style="--symbol-size: 2rem;"></l-rating>
+<lynk-rating style="--symbol-size: 2rem;"></lynk-rating>
 ```
 
 ```jsx react
@@ -63,7 +63,7 @@ const App = () => <SlRating style={{ '--symbol-size': '2rem' }} />;
 Use the `readonly` attribute to display a rating that users can't change.
 
 ```html preview
-<l-rating readonly value="3"></l-rating>
+<lynk-rating readonly value="3"></lynk-rating>
 ```
 
 ```jsx react
@@ -77,7 +77,7 @@ const App = () => <SlRating readonly value={3} />;
 Use the `disable` attribute to disable the rating.
 
 ```html preview
-<l-rating disabled value="3"></l-rating>
+<lynk-rating disabled value="3"></lynk-rating>
 ```
 
 ```jsx react
@@ -91,11 +91,11 @@ const App = () => <SlRating disabled value={3} />;
 You can provide custom icons by passing a function to the `getSymbol` property.
 
 ```html preview
-<l-rating class="rating-hearts" style="--symbol-color-active: #ff4136;"></l-rating>
+<lynk-rating class="rating-hearts" style="--symbol-color-active: #ff4136;"></lynk-rating>
 
 <script>
   const rating = document.querySelector('.rating-hearts');
-  rating.getSymbol = () => '<l-icon name="heart-fill"></l-icon>';
+  rating.getSymbol = () => '<lynk-icon name="heart-fill"></lynk-icon>';
 </script>
 ```
 
@@ -104,7 +104,7 @@ import '@shoelace-style/shoelace/dist/components/icon/icon';
 import { SlRating } from '@shoelace-style/shoelace/dist/react';
 
 const App = () => (
-  <SlRating getSymbol={() => '<l-icon name="heart-fill"></l-icon>'} style={{ '--symbol-color-active': '#ff4136' }} />
+  <SlRating getSymbol={() => '<lynk-icon name="heart-fill"></lynk-icon>'} style={{ '--symbol-color-active': '#ff4136' }} />
 );
 ```
 
@@ -113,14 +113,14 @@ const App = () => (
 You can also use the `getSymbol` property to render different icons based on value.
 
 ```html preview
-<l-rating class="rating-emojis"></l-rating>
+<lynk-rating class="rating-emojis"></lynk-rating>
 
 <script>
   const rating = document.querySelector('.rating-emojis');
 
   rating.getSymbol = value => {
     const icons = ['emoji-angry', 'emoji-frown', 'emoji-expressionless', 'emoji-smile', 'emoji-laughing'];
-    return `<l-icon name="${icons[value - 1]}"></l-icon>`;
+    return `<lynk-icon name="${icons[value - 1]}"></lynk-icon>`;
   };
 </script>
 ```
@@ -131,10 +131,10 @@ import { SlRating } from '@shoelace-style/shoelace/dist/react';
 
 function getSymbol(value) {
   const icons = ['emoji-angry', 'emoji-frown', 'emoji-expressionless', 'emoji-smile', 'emoji-laughing'];
-  return `<l-icon name="${icons[value - 1]}"></l-icon>`;
+  return `<lynk-icon name="${icons[value - 1]}"></lynk-icon>`;
 }
 
 const App = () => <SlRating getSymbol={getSymbol} />;
 ```
 
-[component-metadata:l-rating]
+[component-metadata:lynk-rating]

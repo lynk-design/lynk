@@ -6,14 +6,14 @@ export default css`
 
   :host {
     --width: 31rem;
-    --header-spacing: var(--l-spacing-large);
-    --body-spacing: var(--l-spacing-large);
-    --footer-spacing: var(--l-spacing-large);
+    --header-spacing: var(--lynk-spacing-large);
+    --body-spacing: var(--lynk-spacing-large);
+    --footer-spacing: var(--lynk-spacing-large);
 
     display: contents;
   }
 
-  .l-dialog {
+  .lynk-dialog {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,87 +22,87 @@ export default css`
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: var(--l-z-index-dialog);
+    z-index: var(--lynk-z-index-dialog);
   }
 
-  .l-dialog__panel {
+  .lynk-dialog__panel {
     display: flex;
     flex-direction: column;
     z-index: 2;
     width: var(--width);
-    max-width: calc(100% - var(--l-spacing-2x-large));
-    max-height: calc(100% - var(--l-spacing-2x-large));
-    background-color: var(--l-panel-background-color);
-    border-radius: var(--l-border-radius-medium);
-    box-shadow: var(--l-shadow-x-large);
+    max-width: calc(100% - var(--lynk-spacing-2x-large));
+    max-height: calc(100% - var(--lynk-spacing-2x-large));
+    background-color: var(--lynk-panel-background-color);
+    border-radius: var(--lynk-border-radius-medium);
+    box-shadow: var(--lynk-shadow-x-large);
   }
 
-  .l-dialog__panel:focus {
+  .lynk-dialog__panel:focus {
     outline: none;
   }
 
   /* Ensure there's enough vertical padding for phones that don't update vh when chrome appears (e.g. iPhone) */
   @media screen and (max-width: 420px) {
-    .l-dialog__panel {
+    .lynk-dialog__panel {
       max-height: 80vh;
     }
   }
 
-  .l-dialog--open .l-dialog__panel {
+  .lynk-dialog--open .lynk-dialog__panel {
     display: flex;
     opacity: 1;
     transform: none;
   }
 
-  .l-dialog__header {
+  .lynk-dialog__header {
     flex: 0 0 auto;
     display: flex;
   }
 
-  .l-dialog__title {
+  .lynk-dialog__title {
     flex: 1 1 auto;
     font: inherit;
-    font-size: var(--l-font-size-large);
-    line-height: var(--l-line-height-dense);
+    font-size: var(--lynk-font-size-large);
+    line-height: var(--lynk-line-height-dense);
     padding: var(--header-spacing);
     margin: 0;
   }
 
-  .l-dialog__close {
+  .lynk-dialog__close {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    font-size: var(--l-font-size-x-large);
+    font-size: var(--lynk-font-size-x-large);
     padding: 0 var(--header-spacing);
   }
 
-  .l-dialog__body {
+  .lynk-dialog__body {
     flex: 1 1 auto;
     padding: var(--body-spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-  .l-dialog__footer {
+  .lynk-dialog__footer {
     flex: 0 0 auto;
     text-align: right;
     padding: var(--footer-spacing);
   }
 
-  .l-dialog__footer ::slotted(l-button:not(:first-of-type)) {
-    margin-inline-start: var(--l-spacing-x-small);
+  .lynk-dialog__footer ::slotted(l-button:not(:first-of-type)) {
+    margin-inline-start: var(--lynk-spacing-x-small);
   }
 
-  .l-dialog:not(.l-dialog--has-footer) .l-dialog__footer {
+  .lynk-dialog:not(.lynk-dialog--has-footer) .lynk-dialog__footer {
     display: none;
   }
 
-  .l-dialog__overlay {
+  .lynk-dialog__overlay {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: var(--l-overlay-background-color);
+    background-color: var(--lynk-overlay-background-color);
   }
 `;

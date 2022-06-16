@@ -1,12 +1,12 @@
 // cspell:dictionaries lorem-ipsum
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
-import type SlDialog from './dialog';
+import type LynkDialog from './dialog';
 
-describe('<l-dialog>', () => {
+describe('<lynk-dialog>', () => {
   it('should be visible with the open attribute', async () => {
-    const el = await fixture<SlDialog>(html`
-      <l-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</l-dialog>
+    const el = await fixture<LynkDialog>(html`
+      <lynk-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
 
@@ -14,24 +14,24 @@ describe('<l-dialog>', () => {
   });
 
   it('should not be visible without the open attribute', async () => {
-    const el = await fixture<SlDialog>(
-      html` <l-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</l-dialog> `
+    const el = await fixture<LynkDialog>(
+      html` <lynk-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog> `
     );
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
 
     expect(base.hidden).to.be.true;
   });
 
-  it('should emit l-show and l-after-show when calling show()', async () => {
-    const el = await fixture<SlDialog>(html`
-      <l-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</l-dialog>
+  it('should emit lynk-show and lynk-after-show when calling show()', async () => {
+    const el = await fixture<LynkDialog>(html`
+      <lynk-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('l-show', showHandler);
-    el.addEventListener('l-after-show', afterShowHandler);
+    el.addEventListener('lynk-show', showHandler);
+    el.addEventListener('lynk-after-show', afterShowHandler);
     el.show();
 
     await waitUntil(() => showHandler.calledOnce);
@@ -42,16 +42,16 @@ describe('<l-dialog>', () => {
     expect(base.hidden).to.be.false;
   });
 
-  it('should emit l-hide and l-after-hide when calling hide()', async () => {
-    const el = await fixture<SlDialog>(html`
-      <l-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</l-dialog>
+  it('should emit lynk-hide and lynk-after-hide when calling hide()', async () => {
+    const el = await fixture<LynkDialog>(html`
+      <lynk-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('l-hide', hideHandler);
-    el.addEventListener('l-after-hide', afterHideHandler);
+    el.addEventListener('lynk-hide', hideHandler);
+    el.addEventListener('lynk-after-hide', afterHideHandler);
     el.hide();
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -62,16 +62,16 @@ describe('<l-dialog>', () => {
     expect(base.hidden).to.be.true;
   });
 
-  it('should emit l-show and l-after-show when setting open = true', async () => {
-    const el = await fixture<SlDialog>(html`
-      <l-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</l-dialog>
+  it('should emit lynk-show and lynk-after-show when setting open = true', async () => {
+    const el = await fixture<LynkDialog>(html`
+      <lynk-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('l-show', showHandler);
-    el.addEventListener('l-after-show', afterShowHandler);
+    el.addEventListener('lynk-show', showHandler);
+    el.addEventListener('lynk-after-show', afterShowHandler);
     el.open = true;
 
     await waitUntil(() => showHandler.calledOnce);
@@ -82,16 +82,16 @@ describe('<l-dialog>', () => {
     expect(base.hidden).to.be.false;
   });
 
-  it('should emit l-hide and l-after-hide when setting open = false', async () => {
-    const el = await fixture<SlDialog>(html`
-      <l-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</l-dialog>
+  it('should emit lynk-hide and lynk-after-hide when setting open = false', async () => {
+    const el = await fixture<LynkDialog>(html`
+      <lynk-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('l-hide', hideHandler);
-    el.addEventListener('l-after-hide', afterHideHandler);
+    el.addEventListener('lynk-hide', hideHandler);
+    el.addEventListener('lynk-after-hide', afterHideHandler);
     el.open = false;
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -102,13 +102,13 @@ describe('<l-dialog>', () => {
     expect(base.hidden).to.be.true;
   });
 
-  it('should not close when l-request-close is prevented', async () => {
-    const el = await fixture<SlDialog>(html`
-      <l-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</l-dialog>
+  it('should not close when lynk-request-close is prevented', async () => {
+    const el = await fixture<LynkDialog>(html`
+      <lynk-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
     const overlay = el.shadowRoot!.querySelector<HTMLElement>('[part="overlay"]')!;
 
-    el.addEventListener('l-request-close', event => {
+    el.addEventListener('lynk-request-close', event => {
       event.preventDefault();
     });
     overlay.click();
@@ -117,14 +117,14 @@ describe('<l-dialog>', () => {
   });
 
   it('should allow initial focus to be set', async () => {
-    const el = await fixture<SlDialog>(html` <l-dialog><input /></l-dialog> `);
+    const el = await fixture<LynkDialog>(html` <lynk-dialog><input /></lynk-dialog> `);
     const input = el.querySelector('input')!;
     const initialFocusHandler = sinon.spy((event: Event) => {
       event.preventDefault();
       input.focus();
     });
 
-    el.addEventListener('l-initial-focus', initialFocusHandler);
+    el.addEventListener('lynk-initial-focus', initialFocusHandler);
     el.show();
 
     await waitUntil(() => initialFocusHandler.calledOnce);

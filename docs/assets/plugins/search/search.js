@@ -11,17 +11,17 @@
       const searchBox = document.createElement('div');
       searchBox.classList.add('search-box');
       searchBox.innerHTML = `
-        <l-input
+        <lynk-input
           type="search"
           placeholder="Search"
           clearable
           pill
         >
-          <l-icon slot="prefix" name="search"></l-icon>
+          <lynk-icon slot="prefix" name="search"></lynk-icon>
           <kbd slot="suffix" title="Press / to search">/</kbd>
-        </l-input>
+        </lynk-input>
       `;
-      const searchBoxInput = searchBox.querySelector('l-input');
+      const searchBoxInput = searchBox.querySelector('lynk-input');
 
       appName.insertAdjacentElement('afterend', searchBox);
 
@@ -61,7 +61,7 @@
         aria-activedescendant=""
       >
         <header class="site-search__header">
-          <l-input
+          <lynk-input
             class="site-search__input"
             type="search"
             placeholder="Search this site"
@@ -70,8 +70,8 @@
             size="large"
             clearable
           >
-            <l-icon slot="prefix" name="search"></l-icon>
-          </l-input>
+            <lynk-icon slot="prefix" name="search"></lynk-icon>
+          </lynk-input>
         </header>
         <div class="site-search__body">
           <ul
@@ -280,7 +280,7 @@
           a.href = window.$docsify.routerMode === 'hash' ? `/#/${page.url}` : `/${page.url}`;
           a.innerHTML = `
             <div class="site-search__result-icon">
-              <l-icon name="${icon}" aria-hidden="true"></l-icon>
+              <lynk-icon name="${icon}" aria-hidden="true"></lynk-icon>
             </div>
             <div class="site-search__result__details">
               <h3>${page.title}</h3>
@@ -310,7 +310,7 @@
       }
     });
 
-    input.addEventListener('l-input', handleInput);
+    input.addEventListener('lynk-input', handleInput);
 
     // Close when a result is selected
     results.addEventListener('click', event => {

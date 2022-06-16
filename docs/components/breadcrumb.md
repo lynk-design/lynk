@@ -1,18 +1,18 @@
 # Breadcrumb
 
-[component-header:l-breadcrumb]
+[component-header:lynk-breadcrumb]
 
 Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
 
 Breadcrumbs are usually placed before a page's main content with the current page shown last to indicate the user's position in the navigation.
 
 ```html preview
-<l-breadcrumb>
-  <l-breadcrumb-item>Catalog</l-breadcrumb-item>
-  <l-breadcrumb-item>Clothing</l-breadcrumb-item>
-  <l-breadcrumb-item>Women's</l-breadcrumb-item>
-  <l-breadcrumb-item>Shirts &amp; Tops</l-breadcrumb-item>
-</l-breadcrumb>
+<lynk-breadcrumb>
+  <lynk-breadcrumb-item>Catalog</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Clothing</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Women's</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Shirts &amp; Tops</lynk-breadcrumb-item>
+</lynk-breadcrumb>
 ```
 
 ```jsx react
@@ -37,15 +37,15 @@ By default, breadcrumb items are rendered as buttons so you can use them to navi
 For websites, you'll probably want to use links instead. You can make any breadcrumb item a link by applying an `href` attribute to it. Now, when the user activates it, they'll be taken to the corresponding page — no event listeners required.
 
 ```html preview
-<l-breadcrumb>
-  <l-breadcrumb-item href="https://example.com/home">Homepage</l-breadcrumb-item>
+<lynk-breadcrumb>
+  <lynk-breadcrumb-item href="https://example.com/home">Homepage</lynk-breadcrumb-item>
 
-  <l-breadcrumb-item href="https://example.com/home/services">Our Services</l-breadcrumb-item>
+  <lynk-breadcrumb-item href="https://example.com/home/services">Our Services</lynk-breadcrumb-item>
 
-  <l-breadcrumb-item href="https://example.com/home/services/digital">Digital Media</l-breadcrumb-item>
+  <lynk-breadcrumb-item href="https://example.com/home/services/digital">Digital Media</lynk-breadcrumb-item>
 
-  <l-breadcrumb-item href="https://example.com/home/services/digital/web-design">Web Design</l-breadcrumb-item>
-</l-breadcrumb>
+  <lynk-breadcrumb-item href="https://example.com/home/services/digital/web-design">Web Design</lynk-breadcrumb-item>
+</lynk-breadcrumb>
 ```
 
 ```jsx react
@@ -69,30 +69,30 @@ const App = () => (
 Use the `separator` slot to change the separator that goes between breadcrumb items. Icons work well, but you can also use text or an image.
 
 ```html preview
-<l-breadcrumb>
-  <l-icon name="dot" slot="separator"></l-icon>
-  <l-breadcrumb-item>First</l-breadcrumb-item>
-  <l-breadcrumb-item>Second</l-breadcrumb-item>
-  <l-breadcrumb-item>Third</l-breadcrumb-item>
-</l-breadcrumb>
+<lynk-breadcrumb>
+  <lynk-icon name="dot" slot="separator"></lynk-icon>
+  <lynk-breadcrumb-item>First</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Second</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Third</lynk-breadcrumb-item>
+</lynk-breadcrumb>
 
 <br />
 
-<l-breadcrumb>
-  <l-icon name="arrow-right" slot="separator"></l-icon>
-  <l-breadcrumb-item>First</l-breadcrumb-item>
-  <l-breadcrumb-item>Second</l-breadcrumb-item>
-  <l-breadcrumb-item>Third</l-breadcrumb-item>
-</l-breadcrumb>
+<lynk-breadcrumb>
+  <lynk-icon name="arrow-right" slot="separator"></lynk-icon>
+  <lynk-breadcrumb-item>First</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Second</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Third</lynk-breadcrumb-item>
+</lynk-breadcrumb>
 
 <br />
 
-<l-breadcrumb>
+<lynk-breadcrumb>
   <span slot="separator">/</span>
-  <l-breadcrumb-item>First</l-breadcrumb-item>
-  <l-breadcrumb-item>Second</l-breadcrumb-item>
-  <l-breadcrumb-item>Third</l-breadcrumb-item>
-</l-breadcrumb>
+  <lynk-breadcrumb-item>First</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Second</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Third</lynk-breadcrumb-item>
+</lynk-breadcrumb>
 ```
 
 ```jsx react
@@ -102,7 +102,7 @@ import { SlBreadcrumb, SlBreadcrumbItem } from '@shoelace-style/shoelace/dist/re
 const App = () => (
   <>
     <SlBreadcrumb>
-      <l-icon name="dot" slot="separator" />
+      <lynk-icon name="dot" slot="separator" />
       <SlBreadcrumbItem>First</SlBreadcrumbItem>
       <SlBreadcrumbItem>Second</SlBreadcrumbItem>
       <SlBreadcrumbItem>Third</SlBreadcrumbItem>
@@ -111,7 +111,7 @@ const App = () => (
     <br />
 
     <SlBreadcrumb>
-      <l-icon name="arrow-right" slot="separator" />
+      <lynk-icon name="arrow-right" slot="separator" />
       <SlBreadcrumbItem>First</SlBreadcrumbItem>
       <SlBreadcrumbItem>Second</SlBreadcrumbItem>
       <SlBreadcrumbItem>Third</SlBreadcrumbItem>
@@ -134,14 +134,14 @@ const App = () => (
 Use the `prefix` slot to add content before any breadcrumb item.
 
 ```html preview
-<l-breadcrumb>
-  <l-breadcrumb-item>
-    <l-icon slot="prefix" name="house"></l-icon>
+<lynk-breadcrumb>
+  <lynk-breadcrumb-item>
+    <lynk-icon slot="prefix" name="house"></lynk-icon>
     Home
-  </l-breadcrumb-item>
-  <l-breadcrumb-item>Articles</l-breadcrumb-item>
-  <l-breadcrumb-item>Traveling</l-breadcrumb-item>
-</l-breadcrumb>
+  </lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Articles</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Traveling</lynk-breadcrumb-item>
+</lynk-breadcrumb>
 ```
 
 ```jsx react
@@ -164,14 +164,14 @@ const App = () => (
 Use the `suffix` slot to add content after any breadcrumb item.
 
 ```html preview
-<l-breadcrumb>
-  <l-breadcrumb-item>Documents</l-breadcrumb-item>
-  <l-breadcrumb-item>Policies</l-breadcrumb-item>
-  <l-breadcrumb-item>
+<lynk-breadcrumb>
+  <lynk-breadcrumb-item>Documents</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Policies</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>
     Security
-    <l-icon slot="suffix" name="shield-lock"></l-icon>
-  </l-breadcrumb-item>
-</l-breadcrumb>
+    <lynk-icon slot="suffix" name="shield-lock"></lynk-icon>
+  </lynk-breadcrumb-item>
+</lynk-breadcrumb>
 ```
 
 ```jsx react
@@ -194,24 +194,24 @@ const App = () => (
 Dropdown menus can be placed in a prefix or suffix slot to provide additional options.
 
 ```html preview
-<l-breadcrumb>
-  <l-breadcrumb-item>Homepage</l-breadcrumb-item>
-  <l-breadcrumb-item>Our Services</l-breadcrumb-item>
-  <l-breadcrumb-item>Digital Media</l-breadcrumb-item>
-  <l-breadcrumb-item>
+<lynk-breadcrumb>
+  <lynk-breadcrumb-item>Homepage</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Our Services</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>Digital Media</lynk-breadcrumb-item>
+  <lynk-breadcrumb-item>
     Web Design
-    <l-dropdown slot="suffix">
-      <l-button slot="trigger" size="small" circle>
-        <l-icon label="More options" name="three-dots"></l-icon>
-      </l-button>
-      <l-menu>
-        <l-menu-item checked>Web Design</l-menu-item>
-        <l-menu-item>Web Development</l-menu-item>
-        <l-menu-item>Marketing</l-menu-item>
-      </l-menu>
-    </l-dropdown>
-  </l-breadcrumb-item>
-</l-breadcrumb>
+    <lynk-dropdown slot="suffix">
+      <lynk-button slot="trigger" size="small" circle>
+        <lynk-icon label="More options" name="three-dots"></lynk-icon>
+      </lynk-button>
+      <lynk-menu>
+        <lynk-menu-item checked>Web Design</lynk-menu-item>
+        <lynk-menu-item>Web Development</lynk-menu-item>
+        <lynk-menu-item>Marketing</lynk-menu-item>
+      </lynk-menu>
+    </lynk-dropdown>
+  </lynk-breadcrumb-item>
+</lynk-breadcrumb>
 ```
 
 ```jsx react
@@ -247,4 +247,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-breadcrumb]
+[component-metadata:lynk-breadcrumb]

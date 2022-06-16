@@ -1,11 +1,11 @@
 # Badge
 
-[component-header:l-badge]
+[component-header:lynk-badge]
 
 Badges are used to draw attention and display statuses or counts.
 
 ```html preview
-<l-badge>Badge</l-badge>
+<lynk-badge>Badge</lynk-badge>
 ```
 
 ## Examples
@@ -15,11 +15,11 @@ Badges are used to draw attention and display statuses or counts.
 Set the `type` attribute to change the badge's type.
 
 ```html preview
-<l-badge type="primary">Primary</l-badge>
-<l-badge type="success">Success</l-badge>
-<l-badge type="neutral">Neutral</l-badge>
-<l-badge type="warning">Warning</l-badge>
-<l-badge type="danger">Danger</l-badge>
+<lynk-badge type="primary">Primary</lynk-badge>
+<lynk-badge type="success">Success</lynk-badge>
+<lynk-badge type="neutral">Neutral</lynk-badge>
+<lynk-badge type="warning">Warning</lynk-badge>
+<lynk-badge type="danger">Danger</lynk-badge>
 ```
 
 ### Pill Badges
@@ -27,11 +27,11 @@ Set the `type` attribute to change the badge's type.
 Use the `pill` attribute to give badges rounded edges.
 
 ```html preview
-<l-badge type="primary" pill>Primary</l-badge>
-<l-badge type="success" pill>Success</l-badge>
-<l-badge type="neutral" pill>Neutral</l-badge>
-<l-badge type="warning" pill>Warning</l-badge>
-<l-badge type="danger" pill>Danger</l-badge>
+<lynk-badge type="primary" pill>Primary</lynk-badge>
+<lynk-badge type="success" pill>Success</lynk-badge>
+<lynk-badge type="neutral" pill>Neutral</lynk-badge>
+<lynk-badge type="warning" pill>Warning</lynk-badge>
+<lynk-badge type="danger" pill>Danger</lynk-badge>
 ```
 
 ### Pulsating Badges
@@ -40,15 +40,15 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
 
 ```html preview
 <div class="badge-pulse">
-  <l-badge type="primary" pill pulse>1</l-badge>
-  <l-badge type="success" pill pulse>1</l-badge>
-  <l-badge type="neutral" pill pulse>1</l-badge>
-  <l-badge type="warning" pill pulse>1</l-badge>
-  <l-badge type="danger" pill pulse>1</l-badge>
+  <lynk-badge type="primary" pill pulse>1</lynk-badge>
+  <lynk-badge type="success" pill pulse>1</lynk-badge>
+  <lynk-badge type="neutral" pill pulse>1</lynk-badge>
+  <lynk-badge type="warning" pill pulse>1</lynk-badge>
+  <lynk-badge type="danger" pill pulse>1</lynk-badge>
 </div>
 
 <style>
-  .badge-pulse l-badge:not(:last-of-type) {
+  .badge-pulse lynk-badge:not(:last-of-type) {
     margin-right: 1rem;
   }
 </style>
@@ -59,20 +59,20 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
 One of the most common use cases for badges is attaching them to buttons. To make this easier, badges will be automatically positioned at the top-right when they're a child of a button.
 
 ```html preview
-<l-button>
+<lynk-button>
   Requests
-  <l-badge pill>30</l-badge>
-</l-button>
+  <lynk-badge pill>30</lynk-badge>
+</lynk-button>
 
-<l-button style="margin-inline-start: 1rem;">
+<lynk-button style="margin-inline-start: 1rem;">
   Warnings
-  <l-badge type="warning" pill>8</l-badge>
-</l-button>
+  <lynk-badge type="warning" pill>8</lynk-badge>
+</lynk-button>
 
-<l-button style="margin-inline-start: 1rem;">
+<lynk-button style="margin-inline-start: 1rem;">
   Errors
-  <l-badge type="danger" pill>6</l-badge>
-</l-button>
+  <lynk-badge type="danger" pill>6</lynk-badge>
+</lynk-button>
 ```
 
 ### With Menu Items
@@ -80,11 +80,11 @@ One of the most common use cases for badges is attaching them to buttons. To mak
 When including badges in menu items, use the `suffix` slot to make sure they're aligned correctly.
 
 ```html preview
-<l-menu style="max-width: 240px;">
-  <l-menu-label>Messages</l-menu-label>
-  <l-menu-item>Comments <l-badge slot="suffix" type="primary" pill>4</l-badge></l-menu-item>
-  <l-menu-item>Replies <l-badge slot="suffix" type="primary" pill>12</l-badge></l-menu-item>
-</l-menu>
+<lynk-menu style="max-width: 240px;">
+  <lynk-menu-label>Messages</lynk-menu-label>
+  <lynk-menu-item>Comments <lynk-badge slot="suffix" type="primary" pill>4</lynk-badge></lynk-menu-item>
+  <lynk-menu-item>Replies <lynk-badge slot="suffix" type="primary" pill>12</lynk-badge></lynk-menu-item>
+</lynk-menu>
 ```
 
-[component-metadata:l-badge]
+[component-metadata:lynk-badge]

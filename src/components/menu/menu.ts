@@ -15,15 +15,15 @@ export interface MenuSelectEventDetail {
  *
  * @slot - The menu's content, including menu items, menu labels, and dividers.
  *
- * @event {{ item: LynkMenuItem }} le-select - Emitted when a menu item is selected.
+ * @event {{ item: LynkMenuItem }} lynk-select - Emitted when a menu item is selected.
  *
  * @csspart base - The component's internal wrapper.
  */
-@customElement('l-menu')
+@customElement('lynk-menu')
 export default class LynkMenu extends LitElement {
   static styles = styles;
 
-  @query('.l-menu') menu: HTMLElement;
+  @query('.lynk-menu') menu: HTMLElement;
   @query('slot') defaultSlot: HTMLSlotElement;
 
   private typeToSelectString = '';
@@ -92,7 +92,7 @@ export default class LynkMenu extends LitElement {
 
     // Restore focus in browsers that don't support :focus-visible when using the keyboard
     if (!hasFocusVisible) {
-      items.forEach(item => item.classList.remove('l-focus-invisible'));
+      items.forEach(item => item.classList.remove('lynk-focus-invisible'));
     }
 
     for (const item of items) {
@@ -110,10 +110,10 @@ export default class LynkMenu extends LitElement {
 
   handleClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const item = target.closest('l-menu-item');
+    const item = target.closest('lynk-menu-item');
 
     if (item?.disabled === false) {
-      emit(this, 'le-select', { detail: { item } });
+      emit(this, 'lynk-select', { detail: { item } });
     }
   }
 
@@ -122,7 +122,7 @@ export default class LynkMenu extends LitElement {
     if (!hasFocusVisible) {
       const items = this.getAllItems();
       items.forEach(item => {
-        item.classList.remove('l-focus-invisible');
+        item.classList.remove('lynk-focus-invisible');
       });
     }
   }
@@ -186,7 +186,7 @@ export default class LynkMenu extends LitElement {
 
       // Hide focus in browsers that don't support :focus-visible when using the mouse
       if (!hasFocusVisible) {
-        target.classList.add('l-focus-invisible');
+        target.classList.add('lynk-focus-invisible');
       }
     }
   }
@@ -204,7 +204,7 @@ export default class LynkMenu extends LitElement {
     return html`
       <div
         part="base"
-        class="l-menu"
+        class="lynk-menu"
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
         @keyup=${this.handleKeyUp}
@@ -218,6 +218,6 @@ export default class LynkMenu extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-menu': LynkMenu;
+    'lynk-menu': LynkMenu;
   }
 }

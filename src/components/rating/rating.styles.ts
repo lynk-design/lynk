@@ -6,31 +6,31 @@ export default css`
   ${componentStyles}
 
   :host {
-    --symbol-color: var(--l-color-neutral-300);
-    --symbol-color-active: var(--l-color-amber-500);
+    --symbol-color: var(--lynk-color-neutral-300);
+    --symbol-color-active: var(--lynk-color-amber-500);
     --symbol-size: 1.2rem;
-    --symbol-spacing: var(--l-spacing-tiny);
+    --symbol-spacing: var(--lynk-spacing-tiny);
 
     display: inline-flex;
   }
 
-  .rating {
+  .lynk-rating {
     position: relative;
     display: inline-flex;
-    border-radius: var(--l-border-radius-medium);
+    border-radius: var(--lynk-border-radius-medium);
     vertical-align: middle;
   }
 
-  .rating:focus {
+  .lynk-rating:focus {
     outline: none;
   }
 
-  .rating${focusVisibleSelector} {
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-rating${focusVisibleSelector} {
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
-  .rating__symbols {
+  .lynk-rating__symbols {
     display: inline-flex;
     position: relative;
     font-size: var(--symbol-size);
@@ -40,11 +40,11 @@ export default css`
     cursor: pointer;
   }
 
-  .rating__symbols > * {
+  .lynk-rating__symbols > * {
     padding: var(--symbol-spacing);
   }
 
-  .rating__symbols--indicator {
+  .lynk-rating__symbols--indicator {
     position: absolute;
     top: 0;
     left: 0;
@@ -52,29 +52,29 @@ export default css`
     pointer-events: none;
   }
 
-  .rating__symbol {
-    transition: var(--l-transition-fast) transform;
+  .lynk-rating__symbol {
+    transition: var(--lynk-transition-fast) transform;
   }
 
-  .rating__symbol--hover {
+  .lynk-rating__symbol--hover {
     transform: scale(1.2);
   }
 
-  .rating--disabled .rating__symbols,
-  .rating--readonly .rating__symbols {
+  .lynk-rating--disabled .lynk-rating__symbols,
+  .lynk-rating--readonly .lynk-rating__symbols {
     cursor: default;
   }
 
-  .rating--disabled .rating__symbol--hover,
-  .rating--readonly .rating__symbol--hover {
+  .lynk-rating--disabled .lynk-rating__symbol--hover,
+  .lynk-rating--readonly .lynk-rating__symbol--hover {
     transform: none;
   }
 
-  .rating--disabled {
+  .lynk-rating--disabled {
     opacity: 0.5;
   }
 
-  .rating--disabled .rating__symbols {
+  .lynk-rating--disabled .lynk-rating__symbols {
     cursor: not-allowed;
   }
 `;

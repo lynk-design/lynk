@@ -64,8 +64,8 @@ You can use a different locale for an individual component by setting its `lang`
   ...
 
   <body>
-    <l-button><!-- Spanish --></l-button>
-    <l-button lang="ru"><!-- Russian --></l-button>
+    <lynk-button><!-- Spanish --></lynk-button>
+    <lynk-button lang="ru"><!-- Russian --></lynk-button>
   </body>
 </html>
 ```
@@ -78,7 +78,7 @@ For performance reasons, the `lang` attribute must be on the component itself, n
 
   <body>
     <div lang="ru">
-      <l-button><!-- still in Spanish --></l-button>
+      <lynk-button><!-- still in Spanish --></lynk-button>
     </div>
   </body>
 </html>

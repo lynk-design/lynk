@@ -30,13 +30,13 @@
             } else if (isAttributeDifferent) {
               attributeInfo = `
                 <br>
-                <l-tooltip content="This attribute is different from its property">
+                <lynk-tooltip content="This attribute is different from its property">
                   <small>
                     <code class="nowrap">
                       ${escapeHtml(prop.attribute)}
                     </code>
                   </small>
-                </l-tooltip>`;
+                </lynk-tooltip>`;
             }
 
             return `
@@ -49,7 +49,7 @@
                   ${escapeHtml(prop.description)}
                 </td>
                 <td style="text-align: center;">${
-                  prop.reflects ? '<l-icon label="yes" name="check"></l-icon>' : ''
+                  prop.reflects ? '<lynk-icon label="yes" name="check"></lynk-icon>' : ''
                 }</td>
                 <td>${prop.type?.text ? `<code>${escapeHtml(prop.type?.text || '')}</code>` : '-'}</td>
                 <td>${prop.default ? `<code>${escapeHtml(prop.default)}</code>` : '-'}</td>
@@ -363,13 +363,13 @@
             </div>
 
             <div class="component-header__info">
-              <l-badge pill>
+              <lynk-badge pill>
                 Since ${component.since || '?'}
-              </l-badge>
+              </lynk-badge>
 
-              <l-badge type="${badgeType}" pill style="text-transform: capitalize;">
+              <lynk-badge type="${badgeType}" pill style="text-transform: capitalize;">
                 ${component.status}
-              </l-badge>
+              </lynk-badge>
             </div>
           </div>
         `;

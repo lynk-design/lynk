@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>LYNK: A library of web components and CSS for building web applications with the Edgio Streaming design language.</title>
+    <title>Lynk: A library of web components and CSS for building web applications with the Edgio Streaming design language.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta
       name="description"
@@ -36,7 +36,7 @@
       // Set the initial theme to prevent flashing
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const theme = localStorage.getItem('theme') || 'auto';
-      document.documentElement.classList.toggle('l-theme-dark', theme === 'dark' || (theme === 'auto' && prefersDark));
+      document.documentElement.classList.toggle('lynk-theme-dark', theme === 'dark' || (theme === 'auto' && prefersDark));
     </script>
     <script>
       window.$docsify = {
@@ -66,7 +66,7 @@
           crossChapterText: false
         },
         routerMode: 'history',
-        themeColor: 'var(--l-color-primary-500)',
+        themeColor: 'var(--lynk-color-primary-500)',
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>

@@ -3,11 +3,11 @@ import { customElement, property } from 'lit/decorators.js';
 import { LocalizeController } from '../../utilities/localize';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  */
-@customElement('l-format-date')
-export default class SlFormatDate extends LitElement {
+@customElement('lynk-format-date')
+export default class LynkFormatDate extends LitElement {
   private readonly localize = new LocalizeController(this);
 
   /** The date/time to format. If not set, the current date and time will be used. */
@@ -80,6 +80,6 @@ export default class SlFormatDate extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-format-date': SlFormatDate;
+    'lynk-format-date': LynkFormatDate;
   }
 }

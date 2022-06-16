@@ -19,12 +19,12 @@ import type LynkMenu from '../../components/menu/menu';
  * @status stable
  *
  * @slot - The dropdown's content.
- * @slot trigger - The dropdown's trigger, usually a `<l-button>` element.
+ * @slot trigger - The dropdown's trigger, usually a `<lynk-button>` element.
  *
- * @event le-show - Emitted when the dropdown opens.
- * @event le-after-show - Emitted after the dropdown opens and all animations are complete.
- * @event le-hide - Emitted when the dropdown closes.
- * @event le-after-hide - Emitted after the dropdown closes and all animations are complete.
+ * @event lynk-show - Emitted when the dropdown opens.
+ * @event lynk-after-show - Emitted after the dropdown opens and all animations are complete.
+ * @event lynk-hide - Emitted when the dropdown closes.
+ * @event lynk-after-hide - Emitted after the dropdown closes and all animations are complete.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart trigger - The container that wraps the trigger.
@@ -33,13 +33,13 @@ import type LynkMenu from '../../components/menu/menu';
  * @animation dropdown.show - The animation to use when showing the dropdown.
  * @animation dropdown.hide - The animation to use when hiding the dropdown.
  */
-@customElement('l-dropdown')
+@customElement('lynk-dropdown')
 export default class LynkDropdown extends LitElement {
   static styles = styles;
 
-  @query('.l-dropdown__trigger') trigger: HTMLElement;
-  @query('.l-dropdown__panel') panel: HTMLElement;
-  @query('.l-dropdown__positioner') positioner: HTMLElement;
+  @query('.lynk-dropdown__trigger') trigger: HTMLElement;
+  @query('.lynk-dropdown__panel') panel: HTMLElement;
+  @query('.lynk-dropdown__positioner') positioner: HTMLElement;
 
   private positionerCleanup: ReturnType<typeof autoUpdate> | undefined;
 
@@ -128,7 +128,7 @@ export default class LynkDropdown extends LitElement {
 
   getMenu() {
     const slot = this.panel.querySelector('slot')!;
-    return slot.assignedElements({ flatten: true }).find(el => el.tagName.toLowerCase() === 'l-menu') as
+    return slot.assignedElements({ flatten: true }).find(el => el.tagName.toLowerCase() === 'lynk-menu') as
       | SlMenu
       | undefined;
   }
@@ -144,7 +144,7 @@ export default class LynkDropdown extends LitElement {
     // Handle tabbing
     if (event.key === 'Tab') {
       // Tabbing within an open menu should close the dropdown and refocus the trigger
-      if (this.open && document.activeElement?.tagName.toLowerCase() === 'l-menu-item') {
+      if (this.open && document.activeElement?.tagName.toLowerCase() === 'lynk-menu-item') {
         event.preventDefault();
         this.hide();
         this.focusOnTrigger();
@@ -188,7 +188,7 @@ export default class LynkDropdown extends LitElement {
     const target = event.target as HTMLElement;
 
     // Hide the dropdown when a menu item is selected
-    if (!this.stayOpenOnSelect && target.tagName.toLowerCase() === 'l-menu') {
+    if (!this.stayOpenOnSelect && target.tagName.toLowerCase() === 'lynk-menu') {
       this.hide();
       this.focusOnTrigger();
     }
@@ -285,7 +285,7 @@ export default class LynkDropdown extends LitElement {
   // that gets slotted in) so screen readers will understand them. The accessible trigger could be the slotted element,
   // a child of the slotted element, or an element in the slotted element's shadow root.
   //
-  // For example, the accessible trigger of an <l-button> is a <button> located inside its shadow root.
+  // For example, the accessible trigger of an <lynk-button> is a <button> located inside its shadow root.
   //
   // To determine this, we assume the first tabbable element in the trigger slot is the "accessible trigger."
   //
@@ -298,8 +298,8 @@ export default class LynkDropdown extends LitElement {
     if (accessibleTrigger) {
       switch (accessibleTrigger.tagName.toLowerCase()) {
         // Lynk buttons have to update the internal button so it's announced correctly by screen readers
-        case 'l-button':
-        case 'l-icon-button':
+        case 'lynk-button':
+        case 'lynk-icon-button':
           target = (accessibleTrigger as LynkButton | LynkIconButton).button;
           break;
 
@@ -319,7 +319,7 @@ export default class LynkDropdown extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'le-after-show');
+    return waitForEvent(this, 'lynk-after-show');
   }
 
   /** Hides the dropdown panel */
@@ -329,7 +329,7 @@ export default class LynkDropdown extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'le-after-hide');
+    return waitForEvent(this, 'lynk-after-hide');
   }
 
   /**
@@ -341,15 +341,15 @@ export default class LynkDropdown extends LitElement {
   }
 
   addOpenListeners() {
-    this.panel.addEventListener('le-activate', this.handleMenuItemActivate);
-    this.panel.addEventListener('le-select', this.handlePanelSelect);
+    this.panel.addEventListener('lynk-activate', this.handleMenuItemActivate);
+    this.panel.addEventListener('lynk-select', this.handlePanelSelect);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
   }
 
   removeOpenListeners() {
-    this.panel.removeEventListener('le-activate', this.handleMenuItemActivate);
-    this.panel.removeEventListener('le-select', this.handlePanelSelect);
+    this.panel.removeEventListener('lynk-activate', this.handleMenuItemActivate);
+    this.panel.removeEventListener('lynk-select', this.handlePanelSelect);
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
   }
@@ -365,7 +365,7 @@ export default class LynkDropdown extends LitElement {
 
     if (this.open) {
       // Show
-      emit(this, 'le-show');
+      emit(this, 'lynk-show');
       this.addOpenListeners();
 
       await stopAnimations(this);
@@ -374,10 +374,10 @@ export default class LynkDropdown extends LitElement {
       const { keyframes, options } = getAnimation(this, 'dropdown.show');
       await animateTo(this.panel, keyframes, options);
 
-      emit(this, 'le-after-show');
+      emit(this, 'lynk-after-show');
     } else {
       // Hide
-      emit(this, 'le-hide');
+      emit(this, 'lynk-hide');
       this.removeOpenListeners();
 
       await stopAnimations(this);
@@ -386,7 +386,7 @@ export default class LynkDropdown extends LitElement {
       this.panel.hidden = true;
       this.stopPositioner();
 
-      emit(this, 'le-after-hide');
+      emit(this, 'lynk-after-hide');
     }
   }
 
@@ -443,13 +443,13 @@ export default class LynkDropdown extends LitElement {
         part="base"
         id="dropdown"
         class=${classMap({
-          'l-dropdown': true,
-          'l-dropdown--open': this.open
+          'lynk-dropdown': true,
+          'lynk-dropdown--open': this.open
         })}
       >
         <span
           part="trigger"
-          class="l-dropdown__trigger"
+          class="lynk-dropdown__trigger"
           @click=${this.handleTriggerClick}
           @keydown=${this.handleTriggerKeyDown}
           @keyup=${this.handleTriggerKeyUp}
@@ -459,10 +459,10 @@ export default class LynkDropdown extends LitElement {
 
         <!-- Position the panel with a wrapper since the popover makes use of translate. This let's us add animations
         on the panel without interfering with the position. -->
-        <div class="l-dropdown__positioner">
+        <div class="lynk-dropdown__positioner">
           <div
             part="panel"
-            class="l-dropdown__panel"
+            class="lynk-dropdown__panel"
             aria-hidden=${this.open ? 'false' : 'true'}
             aria-labelledby="dropdown"
           >
@@ -492,6 +492,6 @@ setDefaultAnimation('dropdown.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-dropdown': LynkDropdown;
+    'lynk-dropdown': LynkDropdown;
   }
 }

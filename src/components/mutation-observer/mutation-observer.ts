@@ -8,12 +8,12 @@ import styles from './mutation-observer.styles';
  * @since 2.0
  * @status stable
  *
- * @event l-mutation - Emitted when a mutation occurs.
+ * @event lynk-mutation - Emitted when a mutation occurs.
  *
  * @slot - The content to watch for mutations.
  */
-@customElement('l-mutation-observer')
-export default class SlMutationObserver extends LitElement {
+@customElement('lynk-mutation-observer')
+export default class LynkMutationObserver extends LitElement {
   static styles = styles;
 
   private mutationObserver: MutationObserver;
@@ -74,7 +74,7 @@ export default class SlMutationObserver extends LitElement {
   }
 
   handleMutation(mutationList: MutationRecord[]) {
-    emit(this, 'l-mutation', {
+    emit(this, 'lynk-mutation', {
       detail: { mutationList }
     });
   }
@@ -113,6 +113,6 @@ export default class SlMutationObserver extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-mutation-observer': SlMutationObserver;
+    'lynk-mutation-observer': LynkMutationObserver;
   }
 }

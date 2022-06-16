@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import type SlFormatDate from './format-date';
+import type LynkFormatDate from './format-date';
 
-describe('<l-format-date>', () => {
+describe('<lynk-format-date>', () => {
   describe('defaults ', () => {
     let clock: sinon.SinonFakeTimers;
 
@@ -18,7 +18,7 @@ describe('<l-format-date>', () => {
     });
 
     it('default properties', async () => {
-      const el = await fixture<SlFormatDate>(html` <l-format-date></l-format-date> `);
+      const el = await fixture<LynkFormatDate>(html` <lynk-format-date></lynk-format-date> `);
       expect(el.date).to.deep.equal(new Date());
 
       expect(el.lang).to.be.undefined;
@@ -51,9 +51,9 @@ describe('<l-format-date>', () => {
     ];
     results.forEach(setup => {
       it(`date has correct language format: ${setup.lang}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" lang="${setup.lang}"></l-format-date>
+            <lynk-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" lang="${setup.lang}"></lynk-format-date>
           `
         );
         expect(el.shadowRoot?.textContent?.trim()).to.equal(setup.result);
@@ -65,12 +65,12 @@ describe('<l-format-date>', () => {
     const weekdays = ['narrow', 'short', 'long'];
     weekdays.forEach((weekdayFormat: 'narrow' | 'short' | 'long') => {
       it(`date has correct weekday format: ${weekdayFormat}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date
+            <lynk-format-date
               .date="${new Date(new Date().getFullYear(), 0, 1)}"
               weekday="${weekdayFormat}"
-            ></l-format-date>
+            ></lynk-format-date>
           `
         );
 
@@ -86,9 +86,9 @@ describe('<l-format-date>', () => {
     const eras = ['narrow', 'short', 'long'];
     eras.forEach((eraFormat: 'narrow' | 'short' | 'long') => {
       it(`date has correct era format: ${eraFormat}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" era="${eraFormat}"></l-format-date>
+            <lynk-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" era="${eraFormat}"></lynk-format-date>
           `
         );
 
@@ -104,9 +104,9 @@ describe('<l-format-date>', () => {
     const yearFormats = ['numeric', '2-digit'];
     yearFormats.forEach((yearFormat: 'numeric' | '2-digit') => {
       it(`date has correct year format: ${yearFormat}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" year="${yearFormat}"></l-format-date>
+            <lynk-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" year="${yearFormat}"></lynk-format-date>
           `
         );
 
@@ -122,9 +122,9 @@ describe('<l-format-date>', () => {
     const monthFormats = ['numeric', '2-digit', 'narrow', 'short', 'long'];
     monthFormats.forEach((monthFormat: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long') => {
       it(`date has correct month format: ${monthFormat}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" month="${monthFormat}"></l-format-date>
+            <lynk-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" month="${monthFormat}"></lynk-format-date>
           `
         );
 
@@ -140,9 +140,9 @@ describe('<l-format-date>', () => {
     const dayFormats = ['numeric', '2-digit'];
     dayFormats.forEach((dayFormat: 'numeric' | '2-digit') => {
       it(`date has correct day format: ${dayFormat}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" day="${dayFormat}"></l-format-date>
+            <lynk-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" day="${dayFormat}"></lynk-format-date>
           `
         );
 
@@ -158,9 +158,9 @@ describe('<l-format-date>', () => {
     const hourFormats = ['numeric', '2-digit'];
     hourFormats.forEach((hourFormat: 'numeric' | '2-digit') => {
       it(`date has correct hour format: ${hourFormat}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" hour="${hourFormat}"></l-format-date>
+            <lynk-format-date .date="${new Date(new Date().getFullYear(), 0, 1)}" hour="${hourFormat}"></lynk-format-date>
           `
         );
 
@@ -176,12 +176,12 @@ describe('<l-format-date>', () => {
     const minuteFormats = ['numeric', '2-digit'];
     minuteFormats.forEach((minuteFormat: 'numeric' | '2-digit') => {
       it(`date has correct minute format: ${minuteFormat}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date
+            <lynk-format-date
               .date="${new Date(new Date().getFullYear(), 0, 1)}"
               minute="${minuteFormat}"
-            ></l-format-date>
+            ></lynk-format-date>
           `
         );
 
@@ -197,12 +197,12 @@ describe('<l-format-date>', () => {
     const secondFormats = ['numeric', '2-digit'];
     secondFormats.forEach((secondFormat: 'numeric' | '2-digit') => {
       it(`date has correct second format: ${secondFormat}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date
+            <lynk-format-date
               .date="${new Date(new Date().getFullYear(), 0, 1)}"
               second="${secondFormat}"
-            ></l-format-date>
+            ></lynk-format-date>
           `
         );
 
@@ -218,12 +218,12 @@ describe('<l-format-date>', () => {
     const timeZoneNameFormats = ['short', 'long'];
     timeZoneNameFormats.forEach((timeZoneNameFormat: 'short' | 'long') => {
       it(`date has correct timeZoneName format: ${timeZoneNameFormat}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date
+            <lynk-format-date
               .date="${new Date(new Date().getFullYear(), 0, 1)}"
               time-zone-name="${timeZoneNameFormat}"
-            ></l-format-date>
+            ></lynk-format-date>
           `
         );
 
@@ -239,12 +239,12 @@ describe('<l-format-date>', () => {
     const timeZones = ['America/New_York', 'America/Los_Angeles', 'Europe/Zurich'];
     timeZones.forEach(timeZone => {
       it(`date has correct timeZoneName format: ${timeZone}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date
+            <lynk-format-date
               .date="${new Date(new Date().getFullYear(), 0, 1)}"
               time-zone="${timeZone}"
-            ></l-format-date>
+            ></lynk-format-date>
           `
         );
 
@@ -260,12 +260,12 @@ describe('<l-format-date>', () => {
     const hourFormatValues = ['auto', '12', '24'];
     hourFormatValues.forEach(hourFormatValue => {
       it(`date has correct hourFormat format: ${hourFormatValue}`, async () => {
-        const el = await fixture<SlFormatDate>(
+        const el = await fixture<LynkFormatDate>(
           html`
-            <l-format-date
+            <lynk-format-date
               .date="${new Date(new Date().getFullYear(), 0, 1)}"
               hour-format="${hourFormatValue as 'auto' | '12' | '24'}"
-            ></l-format-date>
+            ></lynk-format-date>
           `
         );
 

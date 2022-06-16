@@ -13,27 +13,27 @@ export default css`
     position: relative;
   }
 
-  .image-comparer {
+  .lynk-image-comparer {
     max-width: 100%;
     max-height: 100%;
     overflow: hidden;
   }
 
-  .image-comparer__before,
-  .image-comparer__after {
+  .lynk-image-comparer__before,
+  .lynk-image-comparer__after {
     pointer-events: none;
   }
 
-  .image-comparer__before ::slotted(img),
-  .image-comparer__after ::slotted(img),
-  .image-comparer__before ::slotted(svg),
-  .image-comparer__after ::slotted(svg) {
+  .lynk-image-comparer__before ::slotted(img),
+  .lynk-image-comparer__after ::slotted(img),
+  .lynk-image-comparer__before ::slotted(svg),
+  .lynk-image-comparer__after ::slotted(svg) {
     display: block;
     max-width: 100% !important;
     height: auto;
   }
 
-  .image-comparer__after {
+  .lynk-image-comparer__after {
     position: absolute;
     top: 0;
     left: 0;
@@ -41,7 +41,7 @@ export default css`
     width: 100%;
   }
 
-  .image-comparer__divider {
+  .lynk-image-comparer__divider {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,12 +49,12 @@ export default css`
     top: 0;
     width: var(--divider-width);
     height: 100%;
-    background-color: var(--l-color-neutral-0);
+    background-color: var(--lynk-color-neutral-0);
     transform: translateX(calc(var(--divider-width) / -2));
     cursor: ew-resize;
   }
 
-  .image-comparer__handle {
+  .lynk-image-comparer__handle {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,16 +62,16 @@ export default css`
     top: calc(50% - (var(--handle-size) / 2));
     width: var(--handle-size);
     height: var(--handle-size);
-    background-color: var(--l-color-neutral-0);
-    border-radius: var(--l-border-radius-circle);
+    background-color: var(--lynk-color-neutral-0);
+    border-radius: var(--lynk-border-radius-circle);
     font-size: calc(var(--handle-size) * 0.5);
-    color: var(--l-color-neutral-600);
+    color: var(--lynk-color-neutral-600);
     cursor: inherit;
     z-index: 10;
   }
 
-  .image-comparer__handle${focusVisibleSelector} {
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-image-comparer__handle${focusVisibleSelector} {
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 `;

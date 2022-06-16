@@ -1,14 +1,14 @@
 # Tab
 
-[component-header:l-tab]
+[component-header:lynk-tab]
 
 Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
 
 ```html preview
-<l-tab>Tab</l-tab>
-<l-tab active>Active</l-tab>
-<l-tab closable>Closable</l-tab>
-<l-tab disabled>Disabled</l-tab>
+<lynk-tab>Tab</lynk-tab>
+<lynk-tab active>Active</lynk-tab>
+<lynk-tab closable>Closable</lynk-tab>
+<lynk-tab disabled>Disabled</lynk-tab>
 ```
 
 ```jsx react
@@ -26,4 +26,4 @@ const App = () => (
 
 ?> Additional demonstrations can be found in the [tab group examples](/components/tab-group).
 
-[component-metadata:l-tab]
+[component-metadata:lynk-tab]

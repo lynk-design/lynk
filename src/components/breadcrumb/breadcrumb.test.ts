@@ -1,18 +1,18 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import type SlBreadcrumb from './breadcrumb';
+import type LynkBreadcrumb from './breadcrumb';
 
-describe('<l-breadcrumb>', () => {
-  let el: SlBreadcrumb;
+describe('<lynk-breadcrumb>', () => {
+  let el: LynkBreadcrumb;
 
-  describe('when provided a standard list of el-breadcrumb-item children and no parameters', () => {
+  describe('when provided a standard list of elynk-breadcrumb-item children and no parameters', () => {
     before(async () => {
-      el = await fixture<SlBreadcrumb>(html`
-        <l-breadcrumb>
-          <l-breadcrumb-item>Catalog</l-breadcrumb-item>
-          <l-breadcrumb-item>Clothing</l-breadcrumb-item>
-          <l-breadcrumb-item>Women's</l-breadcrumb-item>
-          <l-breadcrumb-item>Shirts &amp; Tops</l-breadcrumb-item>
-        </l-breadcrumb>
+      el = await fixture<LynkBreadcrumb>(html`
+        <lynk-breadcrumb>
+          <lynk-breadcrumb-item>Catalog</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>Clothing</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>Women's</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>Shirts &amp; Tops</lynk-breadcrumb-item>
+        </lynk-breadcrumb>
       `);
     });
 
@@ -20,26 +20,26 @@ describe('<l-breadcrumb>', () => {
       await expect(el).to.be.accessible();
     });
 
-    it('should render l-icon as separator', () => {
-      expect(el.querySelectorAll('l-icon').length).to.eq(4);
+    it('should render lynk-icon as separator', () => {
+      expect(el.querySelectorAll('lynk-icon').length).to.eq(4);
     });
 
     it('should attach aria-current "page" on the last breadcrumb item.', () => {
-      const breadcrumbItems = el.querySelectorAll('l-breadcrumb-item');
+      const breadcrumbItems = el.querySelectorAll('lynk-breadcrumb-item');
       const lastNode = breadcrumbItems[3];
       expect(lastNode).attribute('aria-current', 'page');
     });
   });
 
-  describe('when provided a standard list of el-breadcrumb-item children and an element in the slot "separator" to support Custom Separators', () => {
+  describe('when provided a standard list of lynk-breadcrumb-item children and an element in the slot "separator" to support Custom Separators', () => {
     before(async () => {
-      el = await fixture<SlBreadcrumb>(html`
-        <l-breadcrumb>
+      el = await fixture<LynkBreadcrumb>(html`
+        <lynk-breadcrumb>
           <span class="replacement-separator" slot="separator">/</span>
-          <l-breadcrumb-item>First</l-breadcrumb-item>
-          <l-breadcrumb-item>Second</l-breadcrumb-item>
-          <l-breadcrumb-item>Third</l-breadcrumb-item>
-        </l-breadcrumb>
+          <lynk-breadcrumb-item>First</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>Second</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>Third</lynk-breadcrumb-item>
+        </lynk-breadcrumb>
       `);
     });
 
@@ -54,24 +54,24 @@ describe('<l-breadcrumb>', () => {
       expect(childNodes.length).to.eq(1);
     });
 
-    it('should replace the l-icon separator with the provided separator', () => {
+    it('should replace the lynk-icon separator with the provided separator', () => {
       expect(el.querySelectorAll('.replacement-separator').length).to.eq(4);
-      expect(el.querySelectorAll('l-icon').length).to.eq(0);
+      expect(el.querySelectorAll('lynk-icon').length).to.eq(0);
     });
   });
 
-  describe('when provided a standard list of el-breadcrumb-item children and an element in the slot "prefix" to support prefix icons', () => {
+  describe('when provided a standard list of elynk-breadcrumb-item children and an element in the slot "prefix" to support prefix icons', () => {
     before(async () => {
-      el = await fixture<SlBreadcrumb>(html`
-        <l-breadcrumb>
-          <l-breadcrumb-item>
+      el = await fixture<LynkBreadcrumb>(html`
+        <lynk-breadcrumb>
+          <lynk-breadcrumb-item>
             <span class="prefix-example" slot="prefix">/</span>
             Home
-          </l-breadcrumb-item>
-          <l-breadcrumb-item>First</l-breadcrumb-item>
-          <l-breadcrumb-item>Second</l-breadcrumb-item>
-          <l-breadcrumb-item>Third</l-breadcrumb-item>
-        </l-breadcrumb>
+          </lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>First</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>Second</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>Third</lynk-breadcrumb-item>
+        </lynk-breadcrumb>
       `);
     });
 
@@ -80,18 +80,18 @@ describe('<l-breadcrumb>', () => {
     });
   });
 
-  describe('when provided a standard list of el-breadcrumb-item children and an element in the slot "suffix" to support suffix icons', () => {
+  describe('when provided a standard list of elynk-breadcrumb-item children and an element in the slot "suffix" to support suffix icons', () => {
     before(async () => {
-      el = await fixture<SlBreadcrumb>(html`
-        <l-breadcrumb>
-          <l-breadcrumb-item>First</l-breadcrumb-item>
-          <l-breadcrumb-item>Second</l-breadcrumb-item>
-          <l-breadcrumb-item>Third</l-breadcrumb-item>
-          <l-breadcrumb-item>
+      el = await fixture<LynkBreadcrumb>(html`
+        <lynk-breadcrumb>
+          <lynk-breadcrumb-item>First</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>Second</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>Third</lynk-breadcrumb-item>
+          <lynk-breadcrumb-item>
             <span class="prefix-example" slot="suffix">/</span>
             Security
-          </l-breadcrumb-item>
-        </l-breadcrumb>
+          </lynk-breadcrumb-item>
+        </lynk-breadcrumb>
       `);
     });
 

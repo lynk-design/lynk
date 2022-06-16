@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import type SlProgressRing from './progress-ring';
+import type LynkProgressRing from './progress-ring';
 
-describe('<l-progress-ring>', () => {
-  let el: SlProgressRing;
+describe('<lynk-progress-ring>', () => {
+  let el: LynkProgressRing;
 
   describe('when provided just a value parameter', () => {
     before(async () => {
-      el = await fixture<SlProgressRing>(html`<l-progress-ring value="25"></l-progress-ring>`);
+      el = await fixture<LynkProgressRing>(html`<lynk-progress-ring value="25"></lynk-progress-ring>`);
     });
 
     it('should pass accessibility tests', async () => {
@@ -18,8 +18,8 @@ describe('<l-progress-ring>', () => {
     let base: HTMLDivElement;
 
     before(async () => {
-      el = await fixture<SlProgressRing>(
-        html`<l-progress-ring title="Titled Progress Ring" value="25"></l-progress-ring>`
+      el = await fixture<LynkProgressRing>(
+        html`<lynk-progress-ring title="Titled Progress Ring" value="25"></lynk-progress-ring>`
       );
       base = el.shadowRoot!.querySelector('[part="base"]')!;
     });
@@ -39,8 +39,8 @@ describe('<l-progress-ring>', () => {
 
   describe('when provided a ariaLabel, and value parameter', () => {
     before(async () => {
-      el = await fixture<SlProgressRing>(
-        html`<l-progress-ring ariaLabel="Labelled Progress Ring" value="25"></l-progress-ring>`
+      el = await fixture<LynkProgressRing>(
+        html`<lynk-progress-ring ariaLabel="Labelled Progress Ring" value="25"></lynk-progress-ring>`
       );
     });
 
@@ -51,10 +51,10 @@ describe('<l-progress-ring>', () => {
 
   describe('when provided a ariaLabelledBy, and value parameter', () => {
     before(async () => {
-      el = await fixture<SlProgressRing>(
+      el = await fixture<LynkProgressRing>(
         html`
           <label id="labelledby">Progress Ring Label</label>
-          <l-progress-ring ariaLabelledBy="labelledby" value="25"></l-progress-ring>
+          <lynk-progress-ring ariaLabelledBy="labelledby" value="25"></lynk-progress-ring>
         `
       );
     });

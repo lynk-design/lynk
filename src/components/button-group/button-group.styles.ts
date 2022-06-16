@@ -8,7 +8,7 @@ export default css`
     display: inline-block;
   }
 
-  .l-button-group {
+  .lynk-button-group {
     display: flex;
     flex-wrap: nowrap;
   }

@@ -1,14 +1,14 @@
 # Animated Image
 
-[component-header:l-animated-image]
+[component-header:lynk-animated-image]
 
 A component for displaying animated GIFs and WEBPs that play and pause on interaction.
 
 ```html preview
-<l-animated-image
+<lynk-animated-image
   src="https://shoelace.style/assets/images/walk.gif"
   alt="Animation of untied shoes walking on pavement"
-></l-animated-image>
+></lynk-animated-image>
 ```
 
 ```jsx react
@@ -31,10 +31,10 @@ const App = () => (
 Both GIF and WEBP images are supported.
 
 ```html preview
-<l-animated-image
+<lynk-animated-image
   src="https://shoelace.style/assets/images/tie.webp"
   alt="Animation of a shoe being tied"
-></l-animated-image>
+></lynk-animated-image>
 ```
 
 ```jsx react
@@ -50,12 +50,12 @@ const App = () => (
 To set a custom size, apply a width and/or height to the host element.
 
 ```html preview
-<l-animated-image
+<lynk-animated-image
   src="https://shoelace.style/assets/images/walk.gif"
   alt="Animation of untied shoes walking on pavement"
   style="width: 150px; height: 200px;"
 >
-</l-animated-image>
+</lynk-animated-image>
 ```
 
 ```jsx react
@@ -75,11 +75,11 @@ const App = () => (
 You can change the appearance and location of the control box by targeting the `control-box` part in your styles.
 
 ```html preview
-<l-animated-image
+<lynk-animated-image
   src="https://shoelace.style/assets/images/walk.gif"
   alt="Animation of untied shoes walking on pavement"
   class="animated-image-custom-control-box"
-></l-animated-image>
+></lynk-animated-image>
 
 <style>
   .animated-image-custom-control-box::part(control-box) {
@@ -122,4 +122,4 @@ const App = () => (
 );
 ```
 
-[component-metadata:l-animated-image]
+[component-metadata:lynk-animated-image]

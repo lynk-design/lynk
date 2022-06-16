@@ -6,25 +6,25 @@ export default css`
   ${componentStyles}
 
   :host {
-    --height: var(--l-toggle-size);
-    --thumb-size: calc(var(--l-toggle-size) + 4px);
+    --height: var(--lynk-toggle-size);
+    --thumb-size: calc(var(--lynk-toggle-size) + 4px);
     --width: calc(var(--height) * 2);
 
     display: inline-block;
   }
 
-  .l-switch {
+  .lynk-switch {
     display: inline-flex;
     align-items: center;
-    font-family: var(--l-input-font-family);
-    font-size: var(--l-input-font-size-medium);
-    font-weight: var(--l-input-font-weight);
-    color: var(--l-input-color);
+    font-family: var(--lynk-input-font-family);
+    font-size: var(--lynk-input-font-size-medium);
+    font-weight: var(--lynk-input-font-weight);
+    color: var(--lynk-input-color);
     vertical-align: middle;
     cursor: pointer;
   }
 
-  .l-switch__control {
+  .lynk-switch__control {
     flex: 0 0 auto;
     position: relative;
     display: inline-flex;
@@ -32,24 +32,24 @@ export default css`
     justify-content: center;
     width: var(--width);
     height: var(--height);
-    background-color: var(--l-color-neutral-400);
-    border: solid var(--l-input-border-width) var(--l-color-neutral-400);
+    background-color: var(--lynk-color-neutral-400);
+    border: solid var(--lynk-input-border-width) var(--lynk-color-neutral-400);
     border-radius: var(--height);
-    transition: var(--l-transition-fast) border-color, var(--l-transition-fast) background-color;
+    transition: var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) background-color;
   }
 
-  .l-switch__control .l-switch__thumb {
+  .lynk-switch__control .lynk-switch__thumb {
     width: var(--thumb-size);
     height: var(--thumb-size);
-    background-color: var(--l-color-neutral-0);
+    background-color: var(--lynk-color-neutral-0);
     border-radius: 50%;
-    border: solid var(--l-input-border-width) var(--l-color-neutral-400);
+    border: solid var(--lynk-input-border-width) var(--lynk-color-neutral-400);
     transform: translateX(calc((var(--width) - var(--height)) / -2));
-    transition: var(--l-transition-fast) transform ease, var(--l-transition-fast) background-color,
-      var(--l-transition-fast) border-color, var(--l-transition-fast) box-shadow;
+    transition: var(--lynk-transition-fast) transform ease, var(--lynk-transition-fast) background-color,
+      var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) box-shadow;
   }
 
-  .l-switch__input {
+  .lynk-switch__input {
     position: absolute;
     opacity: 0;
     padding: 0;
@@ -58,78 +58,78 @@ export default css`
   }
 
   /* Hover */
-  .l-switch:not(.l-switch--checked):not(.l-switch--disabled) .l-switch__control:hover {
-    background-color: var(--l-color-neutral-400);
-    border-color: var(--l-color-neutral-400);
+  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled) .lynk-switch__control:hover {
+    background-color: var(--lynk-color-neutral-400);
+    border-color: var(--lynk-color-neutral-400);
   }
 
-  .l-switch:not(.l-switch--checked):not(.l-switch--disabled) .l-switch__control:hover .l-switch__thumb {
-    background-color: var(--l-color-neutral-0);
-    border-color: var(--l-color-neutral-400);
+  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled) .lynk-switch__control:hover .lynk-switch__thumb {
+    background-color: var(--lynk-color-neutral-0);
+    border-color: var(--lynk-color-neutral-400);
   }
 
   /* Focus */
-  .l-switch:not(.l-switch--checked):not(.l-switch--disabled) .l-switch__input${focusVisibleSelector} ~ .l-switch__control {
-    background-color: var(--l-color-neutral-400);
-    border-color: var(--l-color-neutral-400);
+  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled) .lynk-switch__input${focusVisibleSelector} ~ .lynk-switch__control {
+    background-color: var(--lynk-color-neutral-400);
+    border-color: var(--lynk-color-neutral-400);
   }
 
-  .l-switch:not(.l-switch--checked):not(.l-switch--disabled)
-    .l-switch__input${focusVisibleSelector}
-    ~ .l-switch__control
-    .l-switch__thumb {
-    background-color: var(--l-color-neutral-0);
-    border-color: var(--l-color-primary-600);
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled)
+    .lynk-switch__input${focusVisibleSelector}
+    ~ .lynk-switch__control
+    .lynk-switch__thumb {
+    background-color: var(--lynk-color-neutral-0);
+    border-color: var(--lynk-color-primary-600);
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
   /* Checked */
-  .l-switch--checked .l-switch__control {
-    background-color: var(--l-color-primary-600);
-    border-color: var(--l-color-primary-600);
+  .lynk-switch--checked .lynk-switch__control {
+    background-color: var(--lynk-color-primary-600);
+    border-color: var(--lynk-color-primary-600);
   }
 
-  .l-switch--checked .l-switch__control .l-switch__thumb {
-    background-color: var(--l-color-neutral-0);
-    border-color: var(--l-color-primary-600);
+  .lynk-switch--checked .lynk-switch__control .lynk-switch__thumb {
+    background-color: var(--lynk-color-neutral-0);
+    border-color: var(--lynk-color-primary-600);
     transform: translateX(calc((var(--width) - var(--height)) / 2));
   }
 
   /* Checked + hover */
-  .l-switch.l-switch--checked:not(.l-switch--disabled) .l-switch__control:hover {
-    background-color: var(--l-color-primary-600);
-    border-color: var(--l-color-primary-600);
+  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover {
+    background-color: var(--lynk-color-primary-600);
+    border-color: var(--lynk-color-primary-600);
   }
 
-  .l-switch.l-switch--checked:not(.l-switch--disabled) .l-switch__control:hover .l-switch__thumb {
-    background-color: var(--l-color-neutral-0);
-    border-color: var(--l-color-primary-600);
+  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover .lynk-switch__thumb {
+    background-color: var(--lynk-color-neutral-0);
+    border-color: var(--lynk-color-primary-600);
   }
 
   /* Checked + focus */
-  .l-switch.l-switch--checked:not(.l-switch--disabled) .l-switch__input${focusVisibleSelector} ~ .l-switch__control {
-    background-color: var(--l-color-primary-600);
-    border-color: var(--l-color-primary-600);
+  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input${focusVisibleSelector} ~ .lynk-switch__control {
+    background-color: var(--lynk-color-primary-600);
+    border-color: var(--lynk-color-primary-600);
   }
 
-  .l-switch.l-switch--checked:not(.l-switch--disabled)
-    .l-switch__input${focusVisibleSelector}
-    ~ .l-switch__control
-    .l-switch__thumb {
-    background-color: var(--l-color-neutral-0);
-    border-color: var(--l-color-primary-600);
-    outline: var(--l-focus-ring);
-    outline-offset: var(--l-focus-ring-offset);
+  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input${focusVisibleSelector}
+    ~ .lynk-switch__control
+    .lynk-switch__thumb {
+    background-color: var(--lynk-color-neutral-0);
+    border-color: var(--lynk-color-primary-600);
+    outline: var(--lynk-focus-ring);
+    outline-offset: var(--lynk-focus-ring-offset);
   }
 
   /* Disabled */
-  .l-switch--disabled {
+  .lynk-switch--disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  .l-switch__label {
+  .lynk-switch__label {
     line-height: var(--height);
     margin-inline-start: 0.5em;
     user-select: none;

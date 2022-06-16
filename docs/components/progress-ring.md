@@ -1,11 +1,11 @@
 # Progress Ring
 
-[component-header:l-progress-ring]
+[component-header:lynk-progress-ring]
 
 Progress rings are used to show the progress of a determinate operation in a circular fashion.
 
 ```html preview
-<l-progress-ring value="25"></l-progress-ring>
+<lynk-progress-ring value="25"></lynk-progress-ring>
 ```
 
 ```jsx react
@@ -21,7 +21,7 @@ const App = () => <SlProgressRing value="25" />;
 Use the `--size` custom property to set the diameter of the progress ring.
 
 ```html preview
-<l-progress-ring value="50" style="--size: 200px;"></l-progress-ring>
+<lynk-progress-ring value="50" style="--size: 200px;"></lynk-progress-ring>
 ```
 
 ```jsx react
@@ -35,7 +35,7 @@ const App = () => <SlProgressRing value="50" style={{ '--size': '200px' }} />;
 Use the `--track-width` custom property to set the width of the progress ring's track.
 
 ```html preview
-<l-progress-ring value="50" style="--track-width: 10px;"></l-progress-ring>
+<lynk-progress-ring value="50" style="--track-width: 10px;"></lynk-progress-ring>
 ```
 
 ```jsx react
@@ -49,13 +49,13 @@ const App = () => <SlProgressRing value="50" style={{ '--track-width': '10px' }}
 To change the color, use the `--track-color` and `--indicator-color` custom properties.
 
 ```html preview
-<l-progress-ring
+<lynk-progress-ring
   value="50"
   style="
     --track-color: pink; 
     --indicator-color: deeppink;
   "
-></l-progress-ring>
+></lynk-progress-ring>
 ```
 
 ```jsx react
@@ -77,7 +77,7 @@ const App = () => (
 Use the `label` attribute to label the progress ring and tell assistive devices how to announce it.
 
 ```html preview
-<l-progress-ring value="50" label="Upload progress"></l-progress-ring>
+<lynk-progress-ring value="50" label="Upload progress"></lynk-progress-ring>
 ```
 
 ```jsx react
@@ -91,12 +91,12 @@ const App = () => <SlProgressRing value="50" label="Upload progress" />;
 Use the default slot to show a label inside the progress ring.
 
 ```html preview
-<l-progress-ring value="50" class="progress-ring-values" style="margin-bottom: .5rem;">50%</l-progress-ring>
+<lynk-progress-ring value="50" class="progress-ring-values" style="margin-bottom: .5rem;">50%</lynk-progress-ring>
 
 <br />
 
-<l-button circle><l-icon name="dash" label="Decrease"></l-icon></l-button>
-<l-button circle><l-icon name="plus" label="Increase"></l-icon></l-button>
+<lynk-button circle><lynk-icon name="dash" label="Decrease"></lynk-icon></lynk-button>
+<lynk-button circle><lynk-icon name="plus" label="Increase"></lynk-icon></lynk-button>
 
 <script>
   const progressRing = document.querySelector('.progress-ring-values');
@@ -151,4 +151,4 @@ const App = () => {
 };
 ```
 
-[component-metadata:l-progress-ring]
+[component-metadata:lynk-progress-ring]

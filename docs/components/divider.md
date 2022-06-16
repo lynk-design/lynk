@@ -1,11 +1,11 @@
 # Divider
 
-[component-header:l-divider]
+[component-header:lynk-divider]
 
 Dividers are used to visually separate or group elements.
 
 ```html preview
-<l-divider></l-divider>
+<lynk-divider></lynk-divider>
 ```
 
 ## Examples
@@ -15,7 +15,7 @@ Dividers are used to visually separate or group elements.
 Use the `--width` custom property to change the width of the divider.
 
 ```html preview
-<l-divider style="--width: 4px;"></l-divider>
+<lynk-divider style="--width: 4px;"></lynk-divider>
 ```
 
 ### Color
@@ -23,7 +23,7 @@ Use the `--width` custom property to change the width of the divider.
 Use the `--color` custom property to change the color of the divider.
 
 ```html preview
-<l-divider style="--color: tomato;"></l-divider>
+<lynk-divider style="--color: tomato;"></lynk-divider>
 ```
 
 ### Spacing
@@ -33,7 +33,7 @@ Use the `--spacing` custom property to change the amount of space between the di
 ```html preview
 <div style="text-align: center;">
   Above
-  <l-divider style="--spacing: 2rem;"></l-divider>
+  <lynk-divider style="--spacing: 2rem;"></lynk-divider>
   Below
 </div>
 ```
@@ -46,9 +46,9 @@ Add the `vertical` attribute to draw the divider in a vertical orientation. The 
 ```html preview
 <div style="display: flex; align-items: center; height: 2rem;">
   First
-  <l-divider vertical></l-divider>
+  <lynk-divider vertical></lynk-divider>
   Middle
-  <l-divider vertical></l-divider>
+  <lynk-divider vertical></lynk-divider>
   Last
 </div>
 ```
@@ -58,15 +58,15 @@ Add the `vertical` attribute to draw the divider in a vertical orientation. The 
 Use dividers in [menus](/components/menu) to visually group menu items.
 
 ```html preview
-<l-menu style="max-width: 200px;">
-  <l-menu-item value="1">Option 1</l-menu-item>
-  <l-menu-item value="2">Option 2</l-menu-item>
-  <l-menu-item value="3">Option 3</l-menu-item>
-  <l-divider></l-divider>
-  <l-menu-item value="4">Option 4</l-menu-item>
-  <l-menu-item value="5">Option 5</l-menu-item>
-  <l-menu-item value="6">Option 6</l-menu-item>
-</l-menu>
+<lynk-menu style="max-width: 200px;">
+  <lynk-menu-item value="1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="3">Option 3</lynk-menu-item>
+  <lynk-divider></lynk-divider>
+  <lynk-menu-item value="4">Option 4</lynk-menu-item>
+  <lynk-menu-item value="5">Option 5</lynk-menu-item>
+  <lynk-menu-item value="6">Option 6</lynk-menu-item>
+</lynk-menu>
 ```
 
-[component-metadata:l-divider]
+[component-metadata:lynk-divider]
