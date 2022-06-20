@@ -43,7 +43,7 @@ export default class LynkRadioGroup extends LitElement {
   getAllRadios() {
     return [...this.querySelectorAll(RADIO_CHILDREN.join(','))].filter(el =>
       RADIO_CHILDREN.includes(el.tagName.toLowerCase())
-    ) as SlRadio[];
+    ) as LynkRadio[];
   }
 
   handleRadioClick(event: MouseEvent) {

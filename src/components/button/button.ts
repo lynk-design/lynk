@@ -79,8 +79,11 @@ export default class LynkButton extends LitElement {
   /** Draws a pill-style button with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
 
-  /** Draws a circle button. */
+  /** Draws an icon only circle button. */
   @property({ type: Boolean, reflect: true }) circle = false;
+
+  /** Draws an icon only square button. */
+  @property({ type: Boolean, reflect: true }) square = false;
 
   /**
    * The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default
@@ -123,17 +126,17 @@ export default class LynkButton extends LitElement {
 
   /** Simulates a click on the button. */
   click() {
-    this.lynk-button.click();
+    this.button.click();
   }
 
   /** Sets focus on the button. */
   focus(options?: FocusOptions) {
-    this.lynk-button.focus(options);
+    this.button.focus(options);
   }
 
   /** Removes focus from the button. */
   blur() {
-    this.lynk-button.blur();
+    this.button.blur();
   }
 
   handleBlur() {
@@ -180,6 +183,7 @@ export default class LynkButton extends LitElement {
           'lynk-button--large': this.size === 'large',
           'lynk-button--caret': this.caret,
           'lynk-button--circle': this.circle,
+          'lynk-button--square': this.square,
           'lynk-button--disabled': this.disabled,
           'lynk-button--focused': this.hasFocus,
           'lynk-button--loading': this.loading,

@@ -140,19 +140,19 @@ export default class LynkRadioButton extends LitElement {
         <button
           part="button"
           class=${classMap({
-            'l-button': true,
-            'l-button--default': true,
-            'l-button--small': this.size === 'small',
-            'l-button--medium': this.size === 'medium',
-            'l-button--large': this.size === 'large',
-            'l-button--checked': this.checked,
-            'l-button--disabled': this.disabled,
-            'l-button--focused': this.hasFocus,
-            'l-button--outline': true,
-            'l-button--pill': this.pill,
-            'l-button--has-label': this.hasSlotController.test('[default]'),
-            'l-button--has-prefix': this.hasSlotController.test('prefix'),
-            'l-button--has-suffix': this.hasSlotController.test('suffix')
+            'lynk-button': true,
+            'lynk-button--default': true,
+            'lynk-button--small': this.size === 'small',
+            'lynk-button--medium': this.size === 'medium',
+            'lynk-button--large': this.size === 'large',
+            'lynk-button--checked': this.checked,
+            'lynk-button--disabled': this.disabled,
+            'lynk-button--focused': this.hasFocus,
+            'lynk-button--outline': true,
+            'lynk-button--pill': this.pill,
+            'lynk-button--has-label': this.hasSlotController.test('[default]'),
+            'lynk-button--has-prefix': this.hasSlotController.test('prefix'),
+            'lynk-button--has-suffix': this.hasSlotController.test('suffix')
           })}
           ?disabled=${this.disabled}
           type="button"
@@ -162,13 +162,13 @@ export default class LynkRadioButton extends LitElement {
           @focus=${this.handleFocus}
           @click=${this.handleClick}
         >
-          <span part="prefix" class="l-button__prefix">
+          <span part="prefix" class="lynk-button__prefix">
             <slot name="prefix"></slot>
           </span>
-          <span part="label" class="l-button__label">
+          <span part="label" class="lynk-button__label">
             <slot></slot>
           </span>
-          <span part="suffix" class="l-button__suffix">
+          <span part="suffix" class="lynk-button__suffix">
             <slot name="suffix"></slot>
           </span>
         </button>

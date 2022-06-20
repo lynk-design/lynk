@@ -74,6 +74,24 @@ Use the `circle` attribute to create circular icon buttons.
 </lynk-button>
 ```
 
+### Square Buttons
+
+Use the `square` attribute to create square icon buttons.
+
+```html preview
+<lynk-button color="default" size="small" square>
+  <lynk-icon name="gear" label="Settings"></lynk-icon>
+</lynk-button>
+
+<lynk-button color="default" size="medium" square>
+  <lynk-icon name="gear" label="Settings"></lynk-icon>
+</lynk-button>
+
+<lynk-button color="default" size="large" square>
+  <lynk-icon name="gear" label="Settings"></lynk-icon>
+</lynk-button>
+```
+
 ### Text Buttons
 
 Use the `text` color to create text buttons that share the same size as regular buttons but don't have backgrounds or borders.

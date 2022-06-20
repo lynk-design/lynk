@@ -18,7 +18,7 @@
     border-style: solid;
     border-width: var(--lynk-button-border-width);
     font-family: var(--lynk-button-font-family);
-    font-weight: var(--lynk-font-weight-semibold);
+    font-weight: var(--lynk-font-weight-bold);
     text-decoration: none;
     user-select: none;
     white-space: nowrap;
@@ -71,14 +71,14 @@
   /* Default */
   .lynk-button--standard.lynk-button--default {
     background-color: var(--lynk-color-neutral-0);
-    border-color: var(--lynk-color-neutral-800);
+    border-color: var(--lynk-color-neutral-300);
     color: var(--lynk-color-neutral-700);
   }
 
   .lynk-button--standard.lynk-button--default:hover:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-neutral-900);
-    border-color: var(--lynk-color-neutral-900);
-    color: var(--lynk-color-neutral-100);
+    background-color: var(--lynk-color-primary-50);
+    border-color: var(--lynk-color-primary-300);
+    color: var(--lynk-color-primary-700);
   }
 
   .lynk-button--standard.lynk-button--default:active:not(.lynk-button--disabled) {
@@ -89,20 +89,20 @@
 
   /* Primary */
   .lynk-button--standard.lynk-button--primary {
-    background-color: var(--lynk-color-primary-600);
-    border-color: var(--lynk-color-primary-600);
-    color: var(--lynk-color-neutral-0);
-  }
-
-  .lynk-button--standard.lynk-button--primary:hover:not(.lynk-button--disabled) {
     background-color: var(--lynk-color-primary-500);
     border-color: var(--lynk-color-primary-500);
     color: var(--lynk-color-neutral-0);
   }
 
+  .lynk-button--standard.lynk-button--primary:hover:not(.lynk-button--disabled) {
+    background-color: var(--lynk-color-primary-400);
+    border-color: var(--lynk-color-primary-400);
+    color: var(--lynk-color-neutral-0);
+  }
+
   .lynk-button--standard.lynk-button--primary:active:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-primary-600);
-    border-color: var(--lynk-color-primary-600);
+    background-color: var(--lynk-color-primary-300);
+    border-color: var(--lynk-color-primary-400);
     color: var(--lynk-color-neutral-0);
   }
 
@@ -369,12 +369,13 @@
   }
 
   /*
-   * Circle modifier
+   * Circle modifier for icon only buttons
    */
 
   .lynk-button--circle {
     padding-left: 0;
     padding-right: 0;
+    padding-top: 2px;
   }
 
   .lynk-button--circle.lynk-button--small {
@@ -395,6 +396,37 @@
   .lynk-button--circle .lynk-button__prefix,
   .lynk-button--circle .lynk-button__suffix,
   .lynk-button--circle .lynk-button__caret {
+    display: none;
+  }
+
+  /*
+   * Square modifier for icon only buttons
+   */
+
+  .lynk-button--square {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 2px;
+  }
+
+  .lynk-button--square.lynk-button--small {
+    width: var(--lynk-button-height-small);
+    border-radius: var(--lynk-button-border-radius-small);
+  }
+
+  .lynk-button--square.lynk-button--medium {
+    width: var(--lynk-button-height-medium);
+    border-radius: var(--lynk-button-border-radius-medium);
+  }
+
+  .lynk-button--square.lynk-button--large {
+    width: var(--lynk-button-height-large);
+    border-radius: var(--lynk-button-border-radius-large);
+  }
+
+  .lynk-button--square .lynk-button__prefix,
+  .lynk-button--square .lynk-button__suffix,
+  .lynk-button--square .lynk-button__caret {
     display: none;
   }
 

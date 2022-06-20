@@ -428,14 +428,14 @@
   --lynk-button-font-size-small: var(--lynk-font-size-x-small);
   --lynk-button-font-size-medium: var(--lynk-font-size-small);
   --lynk-button-font-size-large: var(--lynk-font-size-medium);
-  --lynk-button-height-small: 1.75rem; /* 28px */
+  --lynk-button-height-small: 1.875rem; /* 30px */
   --lynk-button-height-medium: 2.5rem; /* 40px */
-  --lynk-button-height-large: 3.5rem; /* 56px */
+  --lynk-button-height-large: 3.125rem; /* 50px */
 
   /* Inputs */
-  --lynk-input-height-small: 1.75rem; /* 30px */
+  --lynk-input-height-small: 1.875rem; /* 30px */
   --lynk-input-height-medium: 2.5rem; /* 40px */
-  --lynk-input-height-large: 3.5rem; /* 56px */
+  --lynk-input-height-large: 3.125rem; /* 50px */
 
   --lynk-input-background-color: var(--lynk-color-neutral-0);
   --lynk-input-background-color-hover: var(--lynk-input-background-color);

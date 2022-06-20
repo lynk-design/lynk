@@ -121,7 +121,7 @@ export default class LynkIcon extends LitElement {
 
     return html` <div
       part="base"
-      class="l-icon"
+      class="lynk-icon"
       role=${ifDefined(hasLabel ? 'img' : undefined)}
       aria-label=${ifDefined(hasLabel ? this.label : undefined)}
       aria-hidden=${ifDefined(hasLabel ? undefined : 'true')}
