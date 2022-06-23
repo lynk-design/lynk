@@ -102,7 +102,7 @@ For non-decorative icons, use the `label` attribute to announce it to assistive 
 Custom icons can be loaded individually with the `src` attribute. Only SVGs on a local or CORS-enabled endpoint are supported. If you're using more than one custom icon, it might make sense to register a [custom icon library](#icon-libraries).
 
 ```html preview
-<lynk-icon src="https://shoelace.style/assets/images/shoe.svg" style="font-size: 8rem;"></lynk-icon>
+<lynk-icon src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNzUycHQiIGhlaWdodD0iNzUycHQiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDc1MiA3NTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8ZyBmaWxsPSIjZmZmIj4KICA8cGF0aCBkPSJtMzU0LjY5IDQzNy41N3YyMS4zMTJoNDIuNjIxdi0yMS4zMTJ6Ii8+CiAgPHBhdGggZD0ibTI5My4xMiAzNTQuNjloMjEuMzEydjIxLjMxMmgtMjEuMzEyeiIvPgogIDxwYXRoIGQ9Im0yOTMuMTIgMjUwLjVoMjEuMzEydjIxLjMxMmgtMjEuMzEyeiIvPgogIDxwYXRoIGQ9Im00MzcuNTcgMzU0LjY5aDIxLjMxMnYyMS4zMTJoLTIxLjMxMnoiLz4KICA8cGF0aCBkPSJtNDM3LjU3IDI1MC41aDIxLjMxMnYyMS4zMTJoLTIxLjMxMnoiLz4KICA8cGF0aCBkPSJtNTIwLjg5IDIwNy44OGgtMzEzLjAydjMzMy44OGgzMzMuODh2LTMzMy44OHptLTgxLjc2NiAyMS4zMTJoNDEuMDU5djE2OC4xMmgtNjEuNTYydi0xNjguMTJ6bS0xNDYuODEgMGg0MS4wNTl2MTY4LjEyaC02MS41NjZ2LTE2OC4xMnptMjMwLjQ5IDI1Mi41OXY0MS4wMzVoLTI5MS4yNXYtNjEuNTY2aDE4Ljk0MXY0MC4yNTRoMjUxdi00MC4yNTRoMjEuMzEyem0tMjA4LjM4LTEuNTg5OGgtNDIuNjI1di0yMS4zMTJsNDIuNjI1IDAuMDAzOTA2em0xMjMuMTMtMjEuMzEyaDQyLjYyMXYyMS4zMTJoLTQyLjYyNXptODUuMjQ2LTIwOC45LTAuMDAzOTA2IDE4Ny41OWgtMTA0LjE5djQyLjYyMWgtODUuMjQ2di00Mi42MjFoLTEwNC4xOXYtMjA4LjM4aDIxLjMxMnYxODcuMDdsMTA0LjE5LTAuMDAzOTA2di0xODcuMDZoNDIuNjIxdjE4Ny4wN2gxMDQuMTl2LTE4Ny4wN2gyMS4zMTJ6Ii8+CiA8L2c+Cjwvc3ZnPgo=" style="font-size: 8rem;"></lynk-icon>
 ```
 
 ## Icon Libraries
@@ -152,7 +152,7 @@ Icons in this library are licensed under the [Apache 2.0 License](https://github
   registerIconLibrary('material', {
     resolver: name => {
       const match = name.match(/^(.*?)(_(round|sharp))?$/);
-      return `https://cdn.jsdelivr.net/npm/@materialynk-icons/svg@1.0.5/svg/${match[1]}/${match[3] || 'outline'}.svg`;
+      return `https://cdn.jsdelivr.net/npm/@material-icons/svg@1.0.5/svg/${match[1]}/${match[3] || 'outline'}.svg`;
     },
     mutator: svg => svg.setAttribute('fill', 'currentColor')
   });

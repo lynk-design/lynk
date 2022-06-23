@@ -6,8 +6,8 @@ export default css`
 
   :host {
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 1.125em;
+    height: 1.125em;
     contain: strict;
     box-sizing: content-box !important;
   }

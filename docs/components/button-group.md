@@ -181,34 +181,34 @@ Create interactive toolbars with button groups.
 <div class="button-group-toolbar">
   <lynk-button-group label="History">
     <lynk-tooltip content="Undo">
-      <lynk-button><lynk-icon name="arrow-counterclockwise" label="Undo"></lynk-icon></lynk-button>
+      <lynk-button square><lynk-icon name="arrow-counterclockwise" label="Undo"></lynk-icon></lynk-button>
     </lynk-tooltip>
     <lynk-tooltip content="Redo">
-      <lynk-button><lynk-icon name="arrow-clockwise" label="Redo"></lynk-icon></lynk-button>
+      <lynk-button square><lynk-icon name="arrow-clockwise" label="Redo"></lynk-icon></lynk-button>
     </lynk-tooltip>
   </lynk-button-group>
 
   <lynk-button-group label="Formatting">
     <lynk-tooltip content="Bold">
-      <lynk-button><lynk-icon name="type-bold" label="Bold"></lynk-icon></lynk-button>
+      <lynk-button square><lynk-icon name="type-bold" label="Bold"></lynk-icon></lynk-button>
     </lynk-tooltip>
     <lynk-tooltip content="Italic">
-      <lynk-button><lynk-icon name="type-italic" label="Italic"></lynk-icon></lynk-button>
+      <lynk-button square><lynk-icon name="type-italic" label="Italic"></lynk-icon></lynk-button>
     </lynk-tooltip>
     <lynk-tooltip content="Underline">
-      <lynk-button><lynk-icon name="type-underline" label="Underline"></lynk-icon></lynk-button>
+      <lynk-button square><lynk-icon name="type-underline" label="Underline"></lynk-icon></lynk-button>
     </lynk-tooltip>
   </lynk-button-group>
 
   <lynk-button-group label="Alignment">
     <lynk-tooltip content="Align Left">
-      <lynk-button><lynk-icon name="justify-left" label="Align Left"></lynk-icon></lynk-button>
+      <lynk-button square><lynk-icon name="justify-left" label="Align Left"></lynk-icon></lynk-button>
     </lynk-tooltip>
     <lynk-tooltip content="Align Center">
-      <lynk-button><lynk-icon name="justify" label="Align Center"></lynk-icon></lynk-button>
+      <lynk-button square><lynk-icon name="justify" label="Align Center"></lynk-icon></lynk-button>
     </lynk-tooltip>
     <lynk-tooltip content="Align Right">
-      <lynk-button><lynk-icon name="justify-right" label="Align Right"></lynk-icon></lynk-button>
+      <lynk-button square><lynk-icon name="justify-right" label="Align Right"></lynk-icon></lynk-button>
     </lynk-tooltip>
   </lynk-button-group>
 </div>

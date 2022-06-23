@@ -17,7 +17,7 @@ The easiest way to install Shoelace is with the CDN. Just add the following tags
 
 ### Dark Theme
 
-If you prefer to use the [dark theme](/getting-started/themes#dark-theme) instead, use this code and add `<html class="l-theme-dark">` to the page.
+If you prefer to use the [dark theme](/getting-started/themes#dark-theme) instead, use this code and add `<html class="lynk-theme-dark">` to the page.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/dist/themes/dark.css" />
@@ -38,7 +38,7 @@ If you want to load the light or dark theme based on the user's `prefers-color-s
   rel="stylesheet"
   media="(prefers-color-scheme:dark)"
   href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/dist/themes/dark.css"
-  onload="document.documentElement.classList.add('l-theme-dark');"
+  onload="document.documentElement.classList.add('lynk-theme-dark');"
 />
 <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/dist/shoelace.js"></script>
 ```

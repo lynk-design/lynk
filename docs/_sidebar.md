@@ -19,11 +19,15 @@
 - Content
 
   - [Icons](/components/icon)
+  - [Icon Button](/components/icon-button)
+  - [Tooltip](/components/tooltip)
 
 - Layout & Organization
 
   - [Accordian](/components/accordion)
   - [Divider](/components/divider)
+  - [Grid](/components/grid)
+  - [Box](/components/box)
 
 - Action & Input
   <!-- - [Avatar](/components/avatar) -->
@@ -37,7 +41,6 @@
   <!-- - [Card](/components/card) -->
   <!-- - [Color Picker](/components/color-picker) -->
   <!-- - [Drawer](/components/drawer) -->
-  - [Icon Button](/components/icon-button)
   <!-- - [Image Comparer](/components/image-comparer) -->
   <!-- - [Input](/components/input) -->
   - [Menu](/components/menu)
@@ -65,8 +68,8 @@
 
   - [Alert](/components/alert)
   - [Badge](/components/badge)
-  - [Tooltip](/components/tooltip)
   - [Spinner](/components/spinner)
+  - [Grid Item](/components/grid-item)
   <!--plop:component-->
 
 - Utilities

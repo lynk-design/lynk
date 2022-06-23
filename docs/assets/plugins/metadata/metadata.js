@@ -186,6 +186,8 @@
       </tbody>
     `;
 
+// <td>${style.type?.text ? `${escapeHtml(style.type?.text)}` : '-'}</td>
+
     return table.outerHTML;
   }
 
@@ -322,7 +324,7 @@
       target.appendChild(version);
 
       // Store version for reuse
-      sessionStorage.setItem('l-version', metadata.package.version);
+      sessionStorage.setItem('lynk-version', metadata.package.version);
 
     });
 

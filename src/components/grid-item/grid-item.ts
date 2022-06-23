@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { emit } from '../../internal/event';
 import { watch } from '../../internal/watch';
-import styles from './{{ tagWithoutPrefix tag }}.styles';
+import styles from './grid-item.styles';
 
 /**
  * @since 1.0
@@ -19,26 +19,27 @@ import styles from './{{ tagWithoutPrefix tag }}.styles';
  *
  * @cssproperty --example - An example CSS custom property.
  */
-@customElement('{{ tag }}')
-export default class {{ properCase tag }} extends LitElement {
+@customElement('lynk-grid-item')
+export default class LynkGridItem extends LitElement {
   static styles = styles;
 
-  /** An example property. */
-  @property() prop = 'example';
-
-  @watch('someProp')
-  doSomething() {
-    // Example event
-    emit(this, 'l-event-name');
-  }
+  /** The flow direction of grid items */
+  @property({ type: Number, reflect: true }) span: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' = null;
 
   render() {
-    return html` <slot></slot> `;
+    return html`
+      <div
+        part="base"
+        class="lynk-grid-item ${this.span ? 'lynk-grid-item--span-' + this.span : ''}"
+      >
+        <slot></slot>
+      </div>
+    `;
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    '{{ tag }}': {{ properCase tag }};
+    'lynk-grid-item': LynkGridItem;
   }
 }

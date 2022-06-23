@@ -8,13 +8,13 @@ A theme is nothing more than a stylesheet that uses the Lynk API to define desig
 
 ## Theme Basics
 
-All themes are scoped to classes using the `l-theme-{name}` convention, where `{name}` is a lowercase, hyphen-delimited value representing the name of the theme. The included light and dark themes use `l-theme-light` and `l-theme-dark`, respectively. A custom theme called "Yahoo", for example, would use a class called `l-theme-yahoo`
+All themes are scoped to classes using the `lynk-theme-{name}` convention, where `{name}` is a lowercase, hyphen-delimited value representing the name of the theme. The included light and dark themes use `lynk-theme-light` and `lynk-theme-dark`, respectively. A custom theme called "Yahoo", for example, would use a class called `lynk-theme-yahoo`
 
 All selectors must be scoped to the theme's class to ensure interoperability with other themes. You should also scope them to `:host` so they can be imported and applied to custom element shadow roots.
 
 ```css
 :host,
-.l-theme-yahoo {
+.lynk-theme-yahoo {
   /* ... */
 }
 ```
@@ -24,7 +24,7 @@ All selectors must be scoped to the theme's class to ensure interoperability wit
 To activate a theme, import it and apply the theme's class to the `<html>` element. This example imports and activates the built-in dark theme.
 
 ```html
-<html class="l-theme-dark">
+<html class="lynk-theme-dark">
   <head>
     <link rel="stylesheet" href="path/to/lynk/dist/themes/dark.css" />
   </head>
@@ -49,7 +49,7 @@ You can activate themes on various containers throughout the page. This example 
   </head>
 
   <body>
-    <nav class="l-theme-dark">
+    <nav class="lynk-theme-dark">
       <!-- dark-themed sidebar -->
     </nav>
 
@@ -73,7 +73,7 @@ If you're customizing the light theme, you should scope your styles to the follo
 ```css
 :root,
 :host,
-.l-theme-light {
+.lynk-theme-light {
   /* your custom styles here */
 }
 ```
@@ -82,7 +82,7 @@ If you're customizing the dark theme, you should scope your styles to the follow
 
 ```css
 :host,
-.l-theme-dark {
+.lynk-theme-dark {
   /* your custom styles here */
 }
 ```
@@ -99,7 +99,7 @@ Start by changing the selector to match your theme's name. Assuming your new the
 
 ```css
 :host,
-.l-theme-yahoo {
+.lynk-theme-yahoo {
   /* your custom styles here */
 }
 ```
@@ -120,10 +120,10 @@ To install the dark theme, add the following to the `<head>` section of your pag
 <link rel="stylesheet" href="https://.../dist/themes/dark.css" />
 ```
 
-To activate the theme, apply the `l-theme-dark` class to the `<html>` element.
+To activate the theme, apply the `lynk-theme-dark` class to the `<html>` element.
 
 ```html
-<html class="l-theme-dark">
+<html class="lynk-theme-dark">
   ...
 </html>
 ```

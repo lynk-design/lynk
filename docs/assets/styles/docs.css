@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  font-size: var(--lynk-font-size-base);
 }
 
 *,
@@ -35,7 +36,6 @@ strong {
 .sidebar {
   background-color: var(--lynk-color-neutral-0);
   border-right: solid 1px var(--lynk-color-neutral-200);
-  font-size: var(--lynk-font-size-small);
   width: 256px;
 }
 
@@ -44,7 +44,7 @@ strong {
 }
 
 .sidebar-version {
-  font-size: var(--lynk-font-size-x-small);
+  font-size: var(--lynk-font-size-small);
   font-weight: var(--lynk-font-weight-normal);
   color: var(--lynk-color-neutral-600);
   text-align: right;
@@ -142,7 +142,7 @@ strong {
 
 .sidebar ul ul ul li {
   list-style: none;
-  font-size: var(--lynk-font-size-x-small);
+  font-size: var(--lynk-font-size-small);
   margin-left: 12px;
 }
 
@@ -253,6 +253,10 @@ strong {
   opacity: 1 !important;
 }
 
+.pagination-item-label > * {
+  font-size: var(--lynk-font-size-medium);
+}
+
 .markdown-section h1,
 .markdown-section h2,
 .markdown-section h3,
@@ -278,15 +282,15 @@ strong {
 }
 
 .markdown-section h4 {
-  font-size: var(--lynk-font-size-medium);
+  font-size: var(--lynk-font-size-base);
 }
 
 .markdown-section h5 {
-  font-size: var(--lynk-font-size-small);
+  font-size: var(--lynk-font-size-medium);
 }
 
 .markdown-section h6 {
-  font-size: var(--lynk-font-size-x-small);
+  font-size: var(--lynk-font-size-small);
 }
 
 .markdown-section pre {
@@ -299,7 +303,7 @@ strong {
 
 .markdown-section code {
   font-family: var(--lynk-font-mono);
-  font-size: 87.5%;
+  font-size: var(--lynk-font-size-medium);
   background-color: var(--lynk-color-neutral-50);
   border-radius: var(--lynk-border-radius-small);
   padding: 2px 4px;
@@ -308,7 +312,7 @@ strong {
 kbd,
 .markdown-section kbd {
   font-family: var(--lynk-font-mono);
-  font-size: 87.5%;
+  font-size: var(--lynk-font-size-medium);
   background-color: var(--lynk-color-neutral-50);
   border-radius: var(--lynk-border-radius-small);
   border: solid 1px var(--lynk-color-neutral-200);
@@ -624,11 +628,11 @@ body[data-page^='/tokens/'] .table-wrapper td:first-child code {
 
 .color-palette__name code {
   background: none;
-  font-size: var(--lynk-font-size-x-small);
+  font-size: var(--lynk-font-size-small);
 }
 
 .color-palette__example {
-  font-size: var(--lynk-font-size-x-small);
+  font-size: var(--lynk-font-size-small);
   text-align: center;
 }
 

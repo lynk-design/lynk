@@ -1,0 +1,69 @@
+.lynk-grid {
+  display: flex;
+  flex-flow: row wrap;
+  margin: calc((var(--gutter, var(--lynk-spacing-base)) * 0.5) * -1);
+}
+
+::slotted(lynk-grid-item) {
+  --spacing: calc(var(--gutter, var(--lynk-spacing-base))/2);
+}
+
+.lynk-grid--row {
+  flex-flow: row wrap;
+}
+
+.lynk-grid--row-reverse {
+  flex-flow: row-reverse wrap;
+}
+
+.lynk-grid--column {
+  flex-flow: column wrap;
+}
+
+.lynk-grid--column-reverse {
+  flex-flow: column-reverse wrap;
+}
+
+.lynk-grid--justify-start {
+  justify-content: flex-start;
+}
+
+.lynk-grid--justify-center {
+  justify-content: center;
+}
+
+.lynk-grid--justify-end {
+  justify-content: flex-end;
+}
+
+.lynk-grid--justify-between {
+  justify-content: space-between;
+}
+
+.lynk-grid--justify-around {
+  justify-content: space-around;
+}
+
+.lynk-grid--justify-evenly {
+  justify-content: space-evenly;
+}
+
+.lynk-grid--align-start {
+  align-items: flex-start;
+}
+
+.lynk-grid--align-center {
+  align-items: center;
+}
+
+.lynk-grid--align-end {
+  align-items: flex-end;
+}
+
+.lynk-grid--align-stretch {
+  align-items: stretch;
+}
+
+.lynk-grid--align-baseline {
+  align-items: baseline;
+}

@@ -31,7 +31,7 @@
         // Toggle the dark mode class without transitions
         document.body.appendChild(noTransitions);
         requestAnimationFrame(() => {
-          document.documentElement.classList.toggle('l-theme-dark', isDark());
+          document.documentElement.classList.toggle('lynk-theme-dark', isDark());
           requestAnimationFrame(() => document.body.removeChild(noTransitions));
         });
       }
@@ -39,7 +39,7 @@
       let theme = getTheme();
 
       // Generate the theme picker dropdown
-      const dropdown = document.createElement('l-dropdown');
+      const dropdown = document.createElement('lynk-dropdown');
       dropdown.classList.add('theme-picker');
       dropdown.innerHTML = `
         <lynk-button size="small" pill slot="trigger" caret>

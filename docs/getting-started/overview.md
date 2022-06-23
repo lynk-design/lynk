@@ -5,8 +5,7 @@
 # <lynk-visually-hidden>Lynk:</lynk-visually-hidden> A style and component library for building web applications with the Edgio Streaming design language.
 
 - Works with any framework
-- Fully customizable with CSS
-- Includes a dark & light theme
+- Fully customizable & themeable
 - Built with accessibility in mind
 - First-class [Aurelia](/frameworks/aurelia) & [React](/frameworks/react) support
 - Built-in localization

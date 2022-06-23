@@ -51,6 +51,9 @@ export { default as LynkTabPanel } from './components/tab-panel/tab-panel';
 // export { default as LynkTextarea } from './components/textarea/textarea';
 export { default as LynkTooltip } from './components/tooltip/tooltip';
 export { default as LynkVisuallyHidden } from './components/visually-hidden/visually-hidden';
+export { default as LynkGrid } from './components/grid/grid';
+export { default as LynkBox } from './components/box/box';
+export { default as LynkGridItem } from './components/grid-item/grid-item';
 /* plop:component */
 
 // Utilities

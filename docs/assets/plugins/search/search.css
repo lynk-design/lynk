@@ -109,9 +109,9 @@ body.site-search-visible {
   background-color: var(--lynk-color-primary-600);
 }
 
-.l-theme-dark .site-search__results li[aria-selected='true'] a,
-.l-theme-dark .site-search__results li[aria-selected='true'] a small,
-.l-theme-dark .site-search__results li[aria-selected='true'] a lynk-icon {
+.lynk-theme-dark .site-search__results li[aria-selected='true'] a,
+.lynk-theme-dark .site-search__results li[aria-selected='true'] a small,
+.lynk-theme-dark .site-search__results li[aria-selected='true'] a lynk-icon {
   background-color: var(--lynk-color-primary-400);
   color: var(--lynk-color-neutral-1000);
 }

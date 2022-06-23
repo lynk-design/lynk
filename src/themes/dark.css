@@ -1,4 +1,5 @@
 :root,
+:host,
 .lynk-theme-dark {
   color-scheme: dark;
 
@@ -377,10 +378,10 @@
   --lynk-font-serif: Georgia, 'Times New Roman', serif;
 
   /* Font sizes */
-  --lynk-font-size-2x-small: 0.625rem; /* 10px */
-  --lynk-font-size-x-small: 0.75rem; /* 12px */
-  --lynk-font-size-small: 0.875rem; /* 14px */
-  --lynk-font-size-medium: 1rem; /* 16px */
+  --lynk-font-size-x-small: 0.625rem; /* 10px */
+  --lynk-font-size-small: 0.75rem; /* 12px */
+  --lynk-font-size-medium: 0.875rem; /* 14px */
+  --lynk-font-size-base: 1rem; /* 16px */
   --lynk-font-size-large: 1.25rem; /* 20px */
   --lynk-font-size-x-large: 1.5rem; /* 24px */
   --lynk-font-size-2x-large: 2.25rem; /* 36px */
@@ -425,9 +426,9 @@
   --lynk-button-border-radius-large: var(--lynk-border-radius-medium);
 
   --lynk-button-font-family: var(--lynk-font-sans);
-  --lynk-button-font-size-small: var(--lynk-font-size-x-small);
-  --lynk-button-font-size-medium: var(--lynk-font-size-small);
-  --lynk-button-font-size-large: var(--lynk-font-size-medium);
+  --lynk-button-font-size-small: var(--lynk-font-size-small);
+  --lynk-button-font-size-medium: var(--lynk-font-size-medium);
+  --lynk-button-font-size-large: var(--lynk-font-size-base);
   --lynk-button-height-small: 1.875rem; /* 30px */
   --lynk-button-height-medium: 2.5rem; /* 40px */
   --lynk-button-height-large: 3.125rem; /* 50px */
@@ -486,14 +487,14 @@
   /* Labels */
   --lynk-input-label-font-size-small: var(--lynk-font-size-small);
   --lynk-input-label-font-size-medium: var(--lynk-font-size-medium);
-  --lynk-input-label-font-size-large: var(--lynk-font-size-large);
+  --lynk-input-label-font-size-large: var(--lynk-font-size-base);
 
   --lynk-input-label-color: inherit;
 
   /* Help text */
-  --lynk-input-help-text-font-size-small: var(--lynk-font-size-x-small);
-  --lynk-input-help-text-font-size-medium: var(--lynk-font-size-small);
-  --lynk-input-help-text-font-size-large: var(--lynk-font-size-medium);
+  --lynk-input-help-text-font-size-small: var(--lynk-font-size-small);
+  --lynk-input-help-text-font-size-medium: var(--lynk-font-size-medium);
+  --lynk-input-help-text-font-size-large: var(--lynk-font-size-base);
 
   --lynk-input-help-text-color: var(--lynk-color-neutral-500);
 

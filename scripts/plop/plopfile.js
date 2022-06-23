@@ -1,5 +1,5 @@
 export default function (plop) {
-  plop.setHelper('tagWithoutPrefix', tag => tag.replace(/^l-/, ''));
+  plop.setHelper('tagWithoutPrefix', tag => tag.replace(/^lynk-/, ''));
 
   plop.setHelper('tagToTitle', tag => {
     const withoutPrefix = plop.getHelper('tagWithoutPrefix');
@@ -13,10 +13,10 @@ export default function (plop) {
       {
         type: 'input',
         name: 'tag',
-        message: 'Tag name? (e.g. l-button)',
+        message: 'Tag name? (e.g. lynk-button)',
         validate: value => {
-          // Start with l- and include only a-z + dashes
-          if (!/^l-[a-z-+]+/.test(value)) {
+          // Start with lynk- and include only a-z + dashes
+          if (!/^lynk-[a-z-+]+/.test(value)) {
             return false;
           }
 
