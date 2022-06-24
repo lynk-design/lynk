@@ -283,7 +283,7 @@ export default class LynkTextarea extends LitElement {
           <div
             part="base"
             class=${classMap({
-              textarea: true,
+              'lynk-textarea': true,
               'lynk-textarea--small': this.size === 'small',
               'lynk-textarea--medium': this.size === 'medium',
               'lynk-textarea--large': this.size === 'large',
@@ -301,7 +301,7 @@ export default class LynkTextarea extends LitElement {
             <textarea
               part="textarea"
               id="input"
-              class="textarea__control"
+              class="lynk-textarea__control"
               name=${ifDefined(this.name)}
               .value=${live(this.value)}
               ?disabled=${this.disabled}

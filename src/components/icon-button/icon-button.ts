@@ -55,17 +55,17 @@ export default class LynkIconButton extends LitElement {
 
   /** Simulates a click on the icon button. */
   click() {
-    this.lynk-button.click();
+    this.button.click();
   }
 
   /** Sets focus on the icon button. */
   focus(options?: FocusOptions) {
-    this.lynk-button.focus(options);
+    this.button.focus(options);
   }
 
   /** Removes focus from the icon button. */
   blur() {
-    this.lynk-button.blur();
+    this.button.blur();
   }
 
   handleBlur() {

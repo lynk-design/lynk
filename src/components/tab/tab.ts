@@ -26,7 +26,7 @@ export default class LynkTab extends LitElement {
   static styles = styles;
   private readonly localize = new LocalizeController(this);
 
-  @query('.tab') tab: HTMLElement;
+  @query('.lynk-tab') tab: HTMLElement;
 
   private readonly attrId = autoIncrement();
   private readonly componentId = `lynk-tab-${this.attrId}`;
@@ -87,7 +87,7 @@ export default class LynkTab extends LitElement {
                 name="x"
                 library="system"
                 label=${this.localize.term('close')}
-                class="tab__close-button"
+                class="lynk-tab__close-button"
                 @click=${this.handleCloseClick}
                 tabindex="-1"
               ></lynk-icon-button>

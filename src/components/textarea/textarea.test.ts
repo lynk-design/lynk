@@ -1,23 +1,23 @@
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
 import { serialize } from '../../utilities/form';
-import type SlTextarea from './textarea';
+import type LynkTextarea from './textarea';
 
 describe('<lynk-textarea>', () => {
   it('should pass accessibility tests', async () => {
-    const el = await fixture<SlTextarea>(html` <lynk-textarea label="Name"></lynk-textarea> `);
+    const el = await fixture<LynkTextarea>(html` <lynk-textarea label="Name"></lynk-textarea> `);
     await expect(el).to.be.accessible();
   });
 
   it('should be disabled with the disabled attribute', async () => {
-    const el = await fixture<SlTextarea>(html` <lynk-textarea disabled></lynk-textarea> `);
+    const el = await fixture<LynkTextarea>(html` <lynk-textarea disabled></lynk-textarea> `);
     const textarea = el.shadowRoot!.querySelector<HTMLTextAreaElement>('[part="textarea"]')!;
 
     expect(textarea.disabled).to.be.true;
   });
 
   it('should focus the textarea when clicking on the label', async () => {
-    const el = await fixture<SlTextarea>(html` <lynk-textarea label="Name"></lynk-textarea> `);
+    const el = await fixture<LynkTextarea>(html` <lynk-textarea label="Name"></lynk-textarea> `);
     const label = el.shadowRoot!.querySelector('[part="form-control-label"]')!;
     const submitHandler = sinon.spy();
 
@@ -30,19 +30,19 @@ describe('<lynk-textarea>', () => {
 
   describe('when using constraint validation', () => {
     it('should be valid by default', async () => {
-      const el = await fixture<SlTextarea>(html` <lynk-textarea></lynk-textarea> `);
+      const el = await fixture<LynkTextarea>(html` <lynk-textarea></lynk-textarea> `);
 
       expect(el.invalid).to.be.false;
     });
 
     it('should be invalid when required and empty', async () => {
-      const el = await fixture<SlTextarea>(html` <lynk-textarea required></lynk-textarea> `);
+      const el = await fixture<LynkTextarea>(html` <lynk-textarea required></lynk-textarea> `);
 
       expect(el.invalid).to.be.true;
     });
 
     it('should be invalid when required and after removing disabled ', async () => {
-      const el = await fixture<SlTextarea>(html` <lynk-textarea disabled required></lynk-textarea> `);
+      const el = await fixture<LynkTextarea>(html` <lynk-textarea disabled required></lynk-textarea> `);
 
       el.disabled = false;
       await el.updateComplete;
@@ -51,7 +51,7 @@ describe('<lynk-textarea>', () => {
     });
 
     it('should be invalid when required and disabled is removed', async () => {
-      const el = await fixture<SlTextarea>(html` <lynk-textarea disabled required></lynk-textarea> `);
+      const el = await fixture<LynkTextarea>(html` <lynk-textarea disabled required></lynk-textarea> `);
       el.disabled = false;
       await el.updateComplete;
       expect(el.invalid).to.be.true;

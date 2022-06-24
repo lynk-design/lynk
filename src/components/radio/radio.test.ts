@@ -1,25 +1,25 @@
 import { aTimeout, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import type SlRadioGroup from '../../components/radio-group/radio-group';
-import type SlRadio from './radio';
+import type LynkRadioGroup from '../../components/radio-group/radio-group';
+import type LynkRadio from './radio';
 
 describe('<lynk-radio>', () => {
   it('should be disabled with the disabled attribute', async () => {
-    const el = await fixture<SlRadio>(html` <lynk-radio disabled></lynk-radio> `);
+    const el = await fixture<LynkRadio>(html` <lynk-radio disabled></lynk-radio> `);
     const radio = el.input;
 
     expect(radio.disabled).to.be.true;
   });
 
   it('should be valid by default', async () => {
-    const el = await fixture<SlRadio>(html` <lynk-radio></lynk-radio> `);
+    const el = await fixture<LynkRadio>(html` <lynk-radio></lynk-radio> `);
 
     expect(el.invalid).to.be.false;
   });
 
   it('should fire lynk-change when clicked', async () => {
-    const el = await fixture<SlRadio>(html` <lynk-radio></lynk-radio> `);
+    const el = await fixture<LynkRadio>(html` <lynk-radio></lynk-radio> `);
     setTimeout(() => el.input.click());
     const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
     expect(event.target).to.equal(el);
@@ -27,7 +27,7 @@ describe('<lynk-radio>', () => {
   });
 
   it('should fire lynk-change when toggled via keyboard - space', async () => {
-    const el = await fixture<SlRadio>(html` <lynk-radio></lynk-radio> `);
+    const el = await fixture<LynkRadio>(html` <lynk-radio></lynk-radio> `);
     el.input.focus();
     setTimeout(() => sendKeys({ press: ' ' }));
     const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
@@ -36,30 +36,30 @@ describe('<lynk-radio>', () => {
   });
 
   it('should fire lynk-change when toggled via keyboard - arrow key', async () => {
-    const radioGroup = await fixture<SlRadioGroup>(html`
+    const radioGroup = await fixture<LynkRadioGroup>(html`
       <lynk-radio-group>
         <lynk-radio id="radio-1"></lynk-radio>
         <lynk-radio id="radio-2"></lynk-radio>
       </lynk-radio-group>
     `);
-    const radio1 = radioGroup.querySelector<SlRadio>('#radio-1')!;
-    const radio2 = radioGroup.querySelector<SlRadio>('#radio-2')!;
+    const radio1 = radioGroup.querySelector<LynkRadio>('#radio-1')!;
+    const radio2 = radioGroup.querySelector<LynkRadio>('#radio-2')!;
     radio1.input.focus();
     setTimeout(() => sendKeys({ press: 'ArrowRight' }));
-    const event = (await oneEvent(radio2, 'l-change')) as CustomEvent;
+    const event = (await oneEvent(radio2, 'lynk-change')) as CustomEvent;
     expect(event.target).to.equal(radio2);
     expect(radio2.checked).to.be.true;
   });
 
   it('should not get checked when disabled', async () => {
-    const radioGroup = await fixture<SlRadioGroup>(html`
+    const radioGroup = await fixture<LynkRadioGroup>(html`
       <lynk-radio-group>
         <lynk-radio checked></lynk-radio>
         <lynk-radio disabled></lynk-radio>
       </lynk-radio-group>
     `);
-    const radio1 = radioGroup.querySelector<SlRadio>('lynk-radio[checked]')!;
-    const radio2 = radioGroup.querySelector<SlRadio>('lynk-radio[disabled]')!;
+    const radio1 = radioGroup.querySelector<LynkRadio>('lynk-radio[checked]')!;
+    const radio2 = radioGroup.querySelector<LynkRadio>('lynk-radio[disabled]')!;
 
     radio2.click();
     await Promise.all([radio1.updateComplete, radio2.updateComplete]);
@@ -80,7 +80,7 @@ describe('<lynk-radio>', () => {
           <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
-      const button = form.querySelector('l-button')!;
+      const button = form.querySelector('lynk-button')!;
       const radio = form.querySelectorAll('lynk-radio')[1]!;
       const submitHandler = sinon.spy((event: SubmitEvent) => {
         formData = new FormData(form);
@@ -109,7 +109,7 @@ describe('<lynk-radio>', () => {
         <lynk-button type="submit">Submit</lynk-button>
       </form>
     `);
-    const button = form.querySelector('l-button')!;
+    const button = form.querySelector('lynk-button')!;
     const radio = form.querySelectorAll('lynk-radio')[1]!;
     const submitHandler = sinon.spy((event: SubmitEvent) => {
       formData = new FormData(form);
@@ -136,7 +136,7 @@ describe('<lynk-radio>', () => {
         <lynk-button type="submit">Submit</lynk-button>
       </form>
     `);
-    const button = form.querySelector('l-button')!;
+    const button = form.querySelector('lynk-button')!;
     const radio = form.querySelectorAll('lynk-radio')[1]!;
     const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 

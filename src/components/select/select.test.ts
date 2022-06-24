@@ -1,11 +1,11 @@
 import { expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import type SlSelect from './select';
+import type LynkSelect from './select';
 
 describe('<lynk-select>', () => {
   it('should pass accessibility tests', async () => {
-    const el = await fixture<SlSelect>(html`
+    const el = await fixture<LynkSelect>(html`
       <lynk-select>
         <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
         <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
@@ -16,7 +16,7 @@ describe('<lynk-select>', () => {
   });
 
   it('should be disabled with the disabled attribute', async () => {
-    const el = await fixture<SlSelect>(html`
+    const el = await fixture<LynkSelect>(html`
       <lynk-select disabled>
         <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
         <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
@@ -28,7 +28,7 @@ describe('<lynk-select>', () => {
   });
 
   it('should focus the select when clicking on the label', async () => {
-    const el = await fixture<SlSelect>(html`
+    const el = await fixture<LynkSelect>(html`
       <lynk-select label="Select One">
         <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
         <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
@@ -46,7 +46,7 @@ describe('<lynk-select>', () => {
   });
 
   it('should emit lynk-change when the value changes', async () => {
-    const el = await fixture<SlSelect>(html`
+    const el = await fixture<LynkSelect>(html`
       <lynk-select>
         <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
         <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
@@ -62,15 +62,15 @@ describe('<lynk-select>', () => {
     expect(changeHandler).to.have.been.calledOnce;
   });
 
-  it('should open the menu when any letter key is pressed with l-select is on focus', async () => {
-    const el = await fixture<SlSelect>(html`
+  it('should open the menu when any letter key is pressed with lynk-select is on focus', async () => {
+    const el = await fixture<LynkSelect>(html`
       <lynk-select>
         <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
         <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
         <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
       </lynk-select>
     `);
-    const control = el.shadowRoot!.querySelector<HTMLSelectElement>('.select__control')!;
+    const control = el.shadowRoot!.querySelector<HTMLSelectElement>('.lynk-select__control')!;
     control.focus();
     await sendKeys({ press: 'r' });
     await el.updateComplete;
@@ -78,15 +78,15 @@ describe('<lynk-select>', () => {
     expect(control.getAttribute('aria-expanded')).to.equal('true');
   });
 
-  it('should not open the menu when ctrl + R is pressed with l-select is on focus', async () => {
-    const el = await fixture<SlSelect>(html`
+  it('should not open the menu when ctrl + R is pressed with lynk-select is on focus', async () => {
+    const el = await fixture<LynkSelect>(html`
       <lynk-select>
         <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
         <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
         <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
       </lynk-select>
     `);
-    const control = el.shadowRoot!.querySelector<HTMLSelectElement>('.select__control')!;
+    const control = el.shadowRoot!.querySelector<HTMLSelectElement>('.lynk-select__control')!;
     control.focus();
     await sendKeys({ down: 'Control' });
     await sendKeys({ press: 'r' });
@@ -105,14 +105,14 @@ describe('<lynk-select>', () => {
         </lynk-select>
       </form>
     `);
-    const select = el.querySelector('l-select')!;
+    const select = el.querySelector('lynk-select')!;
     el.requestSubmit();
 
     expect(select.shadowRoot!.activeElement).to.equal(select.control);
   });
 
   it('should update the display label when a menu item changes', async () => {
-    const el = await fixture<SlSelect>(html`
+    const el = await fixture<LynkSelect>(html`
       <lynk-select value="option-1">
         <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
         <lynk-menu-item value="option-2">Option 2</lynk-menu-item>

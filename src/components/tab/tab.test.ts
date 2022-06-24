@@ -12,7 +12,7 @@ describe('<lynk-tab>', () => {
     expect(base.getAttribute('aria-disabled')).to.equal('false');
     expect(base.getAttribute('aria-selected')).to.equal('false');
     expect(base.getAttribute('tabindex')).to.equal('-1');
-    expect(base.getAttribute('class')).to.equal(' tab ');
+    expect(base.getAttribute('class')).to.equal(' lynk-tab ');
     expect(el.active).to.equal(false);
     expect(el.closable).to.equal(false);
     expect(el.disabled).to.equal(false);

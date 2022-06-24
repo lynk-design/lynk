@@ -92,7 +92,7 @@ describe('<lynk-input>', () => {
   describe('when submitting a form', () => {
     it('should submit the form when pressing enter in a form without a submit button', async () => {
       const form = await fixture<HTMLFormElement>(html` <form><lynk-input></lynk-input></form> `);
-      const input = form.querySelector('l-input')!;
+      const input = form.querySelector('lynk-input')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
       form.addEventListener('submit', submitHandler);
@@ -105,7 +105,7 @@ describe('<lynk-input>', () => {
 
     it('should prevent submission when pressing enter in an input and canceling the keydown event', async () => {
       const form = await fixture<HTMLFormElement>(html` <form><lynk-input></lynk-input></form> `);
-      const input = form.querySelector('l-input')!;
+      const input = form.querySelector('lynk-input')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
       const keydownHandler = sinon.spy((event: KeyboardEvent) => {
         if (event.key === 'Enter') {

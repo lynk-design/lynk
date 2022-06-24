@@ -1,5 +1,5 @@
 import { elementUpdated, expect, fixture, html, oneEvent } from '@open-wc/testing';
-import { registerIconLibrary } from '../../../dist/shoelace.js';
+import { registerIconLibrary } from '../../../dist/lynk.js';
 import type LynkIcon from './icon';
 
 const testLibraryIcons = {
@@ -63,7 +63,7 @@ describe('<lynk-icon>', () => {
 
     it('the icon has the correct default aria attributes', async () => {
       const el = await fixture<LynkIcon>(html` <lynk-icon library="system" name="check-lg"></lynk-icon> `);
-      const rootDiv = el.shadowRoot?.querySelector('div.icon');
+      const rootDiv = el.shadowRoot?.querySelector('div.lynk-icon');
 
       expect(rootDiv?.getAttribute('role')).to.be.null;
       expect(rootDiv?.getAttribute('aria-label')).to.be.null;
@@ -75,7 +75,7 @@ describe('<lynk-icon>', () => {
     it('the icon has the correct default aria attributes', async () => {
       const fakeLabel = 'a label';
       const el = await fixture<LynkIcon>(html` <lynk-icon label="${fakeLabel}" library="system" name="check"></lynk-icon> `);
-      const rootDiv = el.shadowRoot?.querySelector('div.icon');
+      const rootDiv = el.shadowRoot?.querySelector('div.lynk-icon');
 
       expect(rootDiv?.getAttribute('role')).to.equal('img');
       expect(rootDiv?.getAttribute('aria-label')).to.equal(fakeLabel);
@@ -100,7 +100,7 @@ describe('<lynk-icon>', () => {
   });
 
   describe('new library', () => {
-    it('renders icons from the new library and emits l-load event', async () => {
+    it('renders icons from the new library and emits lynk-load event', async () => {
       const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library"></lynk-icon> `);
       const listener = oneEvent(el, 'lynk-load') as Promise<CustomEvent>;
 
@@ -129,7 +129,7 @@ describe('<lynk-icon>', () => {
       expect(el.shadowRoot?.querySelector('svg')).to.be.null;
     });
 
-    it('emits l-error when the file cant be retrieved', async () => {
+    it('emits lynk-error when the file cant be retrieved', async () => {
       const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library"></lynk-icon> `);
       const listener = oneEvent(el, 'lynk-error') as Promise<CustomEvent>;
 
@@ -141,7 +141,7 @@ describe('<lynk-icon>', () => {
       expect(ev).to.exist;
     });
 
-    it("emits l-error when there isn't an svg element in the registered icon", async () => {
+    it("emits lynk-error when there isn't an svg element in the registered icon", async () => {
       const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library"></lynk-icon> `);
       const listener = oneEvent(el, 'lynk-error') as Promise<CustomEvent>;
 
