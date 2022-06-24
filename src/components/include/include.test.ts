@@ -1,6 +1,6 @@
 import { expect, fixture, html, waitUntil, aTimeout } from '@open-wc/testing';
 import sinon from 'sinon';
-import type LynkInclude from './include';
+import type SlInclude from './include';
 
 const stubbedFetchResponse: Response = {
   headers: new Headers(),
@@ -26,39 +26,39 @@ async function delayResolve(resolveValue: string) {
   return resolveValue;
 }
 
-describe('<lynk-include>', () => {
+describe('<sl-include>', () => {
   afterEach(() => {
     sinon.verifyAndRestore();
   });
 
-  it('should load content and emit lynk-load', async () => {
+  it('should load content and emit sl-load', async () => {
     sinon.stub(window, 'fetch').resolves({
       ...stubbedFetchResponse,
       ok: true,
       status: 200,
       text: () => delayResolve('"id": 1')
     });
-    const el = await fixture<LynkInclude>(html` <lynk-include src="/found"></lynk-include> `);
+    const el = await fixture<SlInclude>(html` <sl-include src="/found"></sl-include> `);
     const loadHandler = sinon.spy();
 
-    el.addEventListener('lynk-load', loadHandler);
+    el.addEventListener('sl-load', loadHandler);
     await waitUntil(() => loadHandler.calledOnce);
 
     expect(el.innerHTML).to.contain('"id": 1');
     expect(loadHandler).to.have.been.calledOnce;
   });
 
-  it('should emit lynk-error when content cannot be loaded', async () => {
+  it('should emit sl-error when content cannot be loaded', async () => {
     sinon.stub(window, 'fetch').resolves({
       ...stubbedFetchResponse,
       ok: false,
       status: 404,
       text: () => delayResolve('{}')
     });
-    const el = await fixture<LynkInclude>(html` <lynk-include src="/not-found"></lynk-include> `);
+    const el = await fixture<SlInclude>(html` <sl-include src="/not-found"></sl-include> `);
     const loadHandler = sinon.spy();
 
-    el.addEventListener('lynk-error', loadHandler);
+    el.addEventListener('sl-error', loadHandler);
     await waitUntil(() => loadHandler.calledOnce);
 
     expect(loadHandler).to.have.been.calledOnce;

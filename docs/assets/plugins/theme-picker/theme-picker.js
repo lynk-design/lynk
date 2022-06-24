@@ -41,6 +41,7 @@
       // Generate the theme picker dropdown
       const dropdown = document.createElement('lynk-dropdown');
       dropdown.classList.add('theme-picker');
+      dropdown.style.display = 'none';
       dropdown.innerHTML = `
         <lynk-button size="small" pill slot="trigger" caret>
           <lynk-icon name="sun" label="Select Theme"></lynk-icon>

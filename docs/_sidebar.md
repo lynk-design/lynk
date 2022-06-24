@@ -4,7 +4,7 @@
   <!-- - [Installation](/getting-started/installation) -->
   - [Usage](/getting-started/usage)
   - [Themes](/getting-started/themes)
-  <!-- - [Customizing](/getting-started/customizing) -->
+  - [Customizing](/getting-started/customizing)
   <!-- - [Localization](/getting-started/localization) -->
 
 - Foundation Tokens
@@ -19,7 +19,6 @@
 - Content
 
   - [Icons](/components/icon)
-  - [Icon Button](/components/icon-button)
   - [Tooltip](/components/tooltip)
 
 - Layout & Organization
@@ -30,37 +29,20 @@
   - [Box](/components/box)
 
 - Action & Input
-  <!-- - [Avatar](/components/avatar) -->
-  <!-- - [Breadcrumb](/components/breadcrumb) -->
-  <!-- - [Breadcrumb Item](/components/breadcrumb-item) -->
   - [Buttons](/components/button)
   - [Button Group](/components/button-group)
   - [Checkbox](/components/checkbox)
   - [Dropdown](/components/dropdown)
-  - [Dialog](/components/dialog)
-  <!-- - [Card](/components/card) -->
-  <!-- - [Color Picker](/components/color-picker) -->
-  <!-- - [Drawer](/components/drawer) -->
-  <!-- - [Image Comparer](/components/image-comparer) -->
+  <!-- - [Dialog](/components/dialog) -->
   <!-- - [Input](/components/input) -->
+  - [Icon Button](/components/icon-button)
   - [Menu](/components/menu)
   - [Menu Item](/components/menu-item)
   - [Menu Label](/components/menu-label)
-  <!-- - [Progress Bar](/components/progress-bar) -->
-  <!-- - [Progress Ring](/components/progress-ring) -->
-  <!-- - [QR Code](/components/qr-code) -->
-  <!-- - [Radio Button](/components/radio-button) -->
-  <!-- - [Range](/components/range) -->
-  <!-- - [Rating](/components/rating) -->
   <!-- - [Select](/components/select) -->
-  <!-- - [Skeleton](/components/skeleton) -->
-  <!-- - [Split Panel](/components/split-panel) -->
-  <!-- - [Tab Group](/components/tab-group) -->
-  <!-- - [Tab](/components/tab) -->
-  <!-- - [Tab Panel](/components/tab-panel) -->
-  <!-- - [Tag](/components/tag) -->
   <!-- - [Textarea](/components/textarea) -->
   - [Radio](/components/radio)
+  <!-- - [Radio Button](/components/radio-button) -->
   - [Radio Group](/components/radio-group)
   - [Switch](/components/switch)
 
@@ -69,12 +51,12 @@
   - [Alert](/components/alert)
   - [Badge](/components/badge)
   - [Spinner](/components/spinner)
-  - [Grid Item](/components/grid-item)
+  <!-- - [Progress Bar](/components/progress-bar) -->
+  <!-- - [Progress Ring](/components/progress-ring) -->
   <!--plop:component-->
 
 - Utilities
 
-  <!-- - [Animated Image](/components/animated-image) -->
   - [Animation](/components/animation)
   - [Format Bytes](/components/format-bytes)
   - [Format Date](/components/format-date)

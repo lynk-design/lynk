@@ -15,7 +15,7 @@ import styles from './dialog.styles';
 
 /**
  * @since 1.0
- * @status stable
+ * @status experimental
  *
  * @dependency lynk-icon-button
  *

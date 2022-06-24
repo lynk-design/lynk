@@ -1,6 +1,5 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
 import styles from './grid.styles';
 
 /**
@@ -11,30 +10,44 @@ import styles from './grid.styles';
  *
  * @csspart base - The component's internal wrapper.
  *
- * @cssproperty --width - Set a custom width for the entire grid. Defaults to 100%..
+ * @cssproperty --container-width - Set a custom width for the grid container element. Defaults to 100%.
  */
 @customElement('lynk-grid')
 export default class LynkGrid extends LitElement {
   static styles = styles;
 
-  /** The flow direction of grid items */
+  /** A container of grid items */
+  @property({ type: Boolean, reflect: true }) container = false;
+
+  /** A singular grid item */
+  @property({ type: Boolean, reflect: true }) item = false;
+
+  /** The flow direction of grid items, requries container property being set */
   @property({ reflect: true }) direction: 'row' | 'row-reverse' | 'column' | 'column-revers' = null;
 
-  /** The alert's type (color). */
+  /** How to justify grid items, requires container property */
   @property({ reflect: true }) justify: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' = null;
 
-  /** The alert's type (color). */
+  /** Hot to align grid items to eachother, requires container property */
   @property({ reflect: true }) align: 'start' | 'center' | 'end' | 'stretch' | 'baseline' = null;
 
+  /** The width of a singular grid item, requires item property being set */
+  @property({ type: Number, reflect: true }) span: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' = null;
+
   render() {
-    const directionClass = this.direction ? 'lynk-grid--' + this.direction : '';
-    const justifyClass = this.justify ? 'lynk-grid--justify-' + this.justify : '';
-    const alignClass = this.align ? 'lynk-grid--align-' + this.align : '';
+    const containerClass = this.container ? 'lynk-grid' : null;
+    const directionClass = this.direction && this.container ? 'lynk-grid--' + this.direction : null;
+    const justifyClass = this.justify && this.container ? 'lynk-grid--justify-' + this.justify : null;
+    const alignClass = this.align && this.container ? 'lynk-grid--align-' + this.align : null;
+    const itemClass = this.item ? 'lynk-grid__item' : null;
+    const spanClass = this.span && this.item ? 'lynk-grid__item--span-' + this.span : null;
+
+    const classList = [containerClass, directionClass, justifyClass, alignClass, itemClass, spanClass];
 
     return html`
       <div
         part="base"
-        class="lynk-grid ${directionClass} ${justifyClass} ${alignClass}"
+        class="${classList.join(' ')}"
       >
         <slot></slot>
       </div>

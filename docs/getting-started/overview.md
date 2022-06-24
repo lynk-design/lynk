@@ -4,11 +4,11 @@
 
 # <lynk-visually-hidden>Lynk:</lynk-visually-hidden> A style and component library for building web applications with the Edgio Streaming design language.
 
-- Works with any framework
+- Works with any framework that support Native Web Components
 - Fully customizable & themeable
 - Built with accessibility in mind
-- First-class [Aurelia](/frameworks/aurelia) & [React](/frameworks/react) support
-- Built-in localization
+<!-- - First-class [Aurelia](/frameworks/aurelia) & [React](/frameworks/react) support -->
+<!-- - Built-in localization -->
 
 </div>
 </div>
@@ -38,7 +38,7 @@ Special thanks to the following projects and individuals that help make Lynk pos
 - Documentation is powered by [Docsify](https://docsify.js.org/)
 - Color primitives are inspired by [Tailwind](https://tailwindcss.com/)
 - Icons are courtesy of [Bootstrap Icons](https://icons.getbootstrap.com/)
-- Positioning of dropdowns, tooltips, et al is handled by [Floating UI](https://floating-ui.com/)
+- Positioning of dropdowns and tooltips is handled by [Floating UI](https://floating-ui.com/)
 - Animations are courtesy of [animate.css](https://animate.style/)
 - Search is powered by [Lunr](https://lunrjs.com/)
-- [Shoelace.style](https://shoelace.style) and all the fine work of [Cory LaViska](https://twitter.com/claviska) on which the foundation of Lynk is shamelessly derived.
+- And finally [Shoelace.style](https://shoelace.style) and all the fine work of [Cory LaViska](https://twitter.com/claviska) on which the foundation of Lynk is shamelessly derived.

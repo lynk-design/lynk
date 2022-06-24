@@ -4,7 +4,7 @@ Lynk is designed to be highly customizable through pure CSS. Out of the box, you
 
 A theme is nothing more than a stylesheet that uses the Lynk API to define design tokens and apply custom styles to components. To create a theme, you will need a decent understanding of CSS, including [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) and the [`::part` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
 
-?> For component developers, built-in themes are also available as JavaScript modules that export [Lit CSSResult](https://lit.dev/docs/api/styles/#CSSResult) objects. You can find them in `dist/themes/*.styles.js`.
+<lynk-alert open>For component developers, built-in themes are also available as JavaScript modules that export [Lit CSSResult](https://lit.dev/docs/api/styles/#CSSResult) objects. You can find them in `dist/themes/*.styles.js`.</lynk-alert>
 
 ## Theme Basics
 
@@ -35,7 +35,7 @@ To activate a theme, import it and apply the theme's class to the `<html>` eleme
 </html>
 ```
 
-?> There is one exception to this rule — the light theme _does not_ need to be activated. For convenience, the light theme is scoped to `:root` and will be activated by default when imported.
+<lynk-alert open>There is one exception to this rule — the light theme _does not_ need to be activated. For convenience, the light theme is scoped to `:root` and will be activated by default when imported.</lynk-alert>
 
 ### Using Multiple Themes
 

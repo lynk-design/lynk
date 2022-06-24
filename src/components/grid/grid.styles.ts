@@ -6,8 +6,11 @@ export default css`
   ${shared}
 
   :host {
-    display: content;
-    width: var(--width, 100%);
+    display: contents;
+  }
+
+  :host([container]) {
+    width: var(--container-width, 100%);
   }
 
   ${styles}

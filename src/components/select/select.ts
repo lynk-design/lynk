@@ -21,7 +21,7 @@ import type { TemplateResult } from 'lit';
 
 /**
  * @since 1.0
- * @status stable
+ * @status experiemental
  *
  * @dependency lynk-dropdown
  * @dependency lynk-icon

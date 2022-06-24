@@ -1,10 +1,10 @@
 # Customizing
 
-Shoelace components can be customized at a high level through design tokens. This gives you control over theme colors and general styling. For more advanced customizations, you can make use of component parts and custom properties to target individual components.
+Lynk components can be customized at a high level through the foundation design tokens. This gives you control over theme colors and general styling. For advanced customizations, you can make use of component parts and custom properties to target individual components.
 
 ## Design Tokens
 
-Shoelace makes use of several design tokens to provide a consistent appearance across components. You can customize them and use them in your own application with pure CSS — no preprocessor required.
+Lynk makes use of several design tokens to provide a consistent appearance across components. You can customize them and use them in your own application with pure CSS — no preprocessor required.
 
 Design tokens offer a high-level way to customize the library with minimal effort. There are no component-specific variables, however, as design tokens are intended to be generic and highly reusable. To customize an individual component, refer to the section entitled [Component Parts](#component-parts).
 
@@ -29,39 +29,39 @@ To customize a design token, simply override it in your stylesheet using a `:roo
 }
 ```
 
-Many design tokens are described further along in this documentation. For a complete list, refer to `src/themes/light.css` in the project's [source code](https://github.com/shoelace-style/shoelace/blob/current/src/themes/light.css).
+Many design tokens are described further along in this documentation. For a complete list, refer to `src/themes/light.css`.
 
 ## Component Parts
 
 Whereas design tokens offer a high-level way to customize the library, component parts offer a low-level way to customize individual components. Again, this is done with pure CSS — no preprocessor required.
 
-Shoelace components use a [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) to encapsulate their styles and behaviors. As a result, you can't simply target their internals with the usual CSS selectors. Instead, components expose "parts" that can be targeted with the [CSS part selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part), or `::part()`.
+Lynk components use a [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) to encapsulate their styles and behaviors. As a result, you can't simply target their internals with the usual CSS selectors. Instead, components expose "parts" that can be targeted with the [CSS part selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part), or `::part()`.
 
-Here's an example that modifies buttons with the `tomato-button` class.
+Here's an example that modifies buttons with the `red-button` class.
 
 ```html preview
-<lynk-button class="tomato-button"> Tomato Button </lynk-button>
+<lynk-button class="red-button"> Red Button </lynk-button>
 
 <style>
-  .tomato-button::part(base) {
+  .red-button::part(base) {
     background: var(--lynk-color-neutral-0);
-    border: solid 1px tomato;
+    border: solid 1px red;
   }
 
-  .tomato-button::part(base):hover {
+  .red-button::part(base):hover {
     background: rgba(255, 99, 71, 0.1);
   }
 
-  .tomato-button::part(base):active {
+  .red-button::part(base):active {
     background: rgba(255, 99, 71, 0.2);
   }
 
-  .tomato-button::part(base):focus-visible {
+  .red-button::part(base):focus-visible {
     box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.33);
   }
 
-  .tomato-button::part(label) {
-    color: tomato;
+  .red-button::part(label) {
+    color: red;
   }
 </style>
 ```
@@ -83,37 +83,37 @@ For convenience, some components expose CSS custom properties you can override. 
 You can set custom properties on a component in your stylesheet.
 
 ```css
-l-avatar {
-  --size: 6rem;
+lynk-box {
+  --height: 6rem;
 }
 ```
 
 This will also work if you need to target a subset of components with a specific class.
 
 ```css
-l-avatar.your-class {
-  --size: 6rem;
+lynk-box.your-class {
+  --height: 6rem;
 }
 ```
 
 Alternatively, you can set them inline directly on the element.
 
 ```html
-<lynk-avatar style="--size: 6rem;"></lynk-avatar>
+<lynk-box style="--height: 6rem;"></lynk-box>
 ```
 
 Not all components expose CSS custom properties. For those that do, they can be found in the component's API documentation.
 
 ## Animations
 
-Some components use animation, such as when a dialog is shown or hidden. Animations are performed using the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) rather than CSS. However, you can still customize them through Shoelace's animation registry. If a component has customizable animations, they'll be listed in the "Animation" section of its documentation.
+Some components use animation, such as when a dialog is shown or hidden. Animations are performed using the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) rather than CSS. However, you can still customize them through Lynks's animation registry. If a component has customizable animations, they'll be listed in the "Animation" section of its documentation.
 
 To customize a default animation, use the `setDefaultAnimation()` method. The function accepts an animation name (found in the component's docs) and an object with `keyframes` and `options` or `null` to disable the animation.
 
 This example will make all dialogs use a custom show animation.
 
 ```js
-import { setDefaultAnimation } from '@shoelace-style/shoelace/dist/utilities/animation-registry.js';
+import { setDefaultAnimation } from '@lynk-design/lynk/dist/utilities/animation-registry.js';
 
 // Change the default animation for all dialogs
 setDefaultAnimation('dialog.show', {
@@ -132,7 +132,7 @@ If you only want to target a single component, use the `setAnimation()` method i
 In this example, only the target dialog will use a custom show animation.
 
 ```js
-import { setAnimation } from '@shoelace-style/shoelace/dist/utilities/animation-registry.js';
+import { setAnimation } from '@lynk-design/lynk/dist/utilities/animation-registry.js';
 
 // Change the animation for a single dialog
 const dialog = document.querySelector('#my-dialog');
@@ -150,4 +150,4 @@ setAnimation(dialog, 'dialog.show', {
 
 To learn more about creating Web Animations, refer to the documentation for [`Element.animate()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate).
 
-?> Animations respect the users `prefers-reduced-motion` setting. When this setting is enabled, animations will not be played. To disable animations for all users, pass in `null` instead of a keyframes/options object.
+<lynk-alert open>Animations respect the users `prefers-reduced-motion` setting. When this setting is enabled, animations will not be played. To disable animations for all users, pass in `null` instead of a keyframes/options object.</lynk-alert>

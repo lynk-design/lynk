@@ -13,7 +13,7 @@ import styles from './input.styles';
 
 /**
  * @since 1.0
- * @status stable
+ * @status experimental
  *
  * @dependency lynk-icon
  *

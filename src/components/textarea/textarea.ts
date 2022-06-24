@@ -11,7 +11,7 @@ import styles from './textarea.styles';
 
 /**
  * @since 1.0
- * @status stable
+ * @status experimental
  *
  * @slot label - The textarea's label. Alternatively, you can use the label prop.
  * @slot help-text - Help text that describes how to use the input.

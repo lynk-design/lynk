@@ -91,13 +91,11 @@ Custom elements cannot have self-closing tags. Similar to `<script>` and `<texta
 
 You might expect similarly named elements to share the same API as native HTML elements. This is not always the case. Lynk components **are not** designed to be one-to-one replacements for their HTML counterparts.
 
-For example, `<button>` and `<lynk-button>` both have a `type` attribute, but it does different things. The former controls whether the button submits a form and the latter controls the button's appearance.
-
-?> **Don't make assumptions about a component's API!** To prevent unexpected behaviors, please take the time to review the documentation and make sure you understand what each attribute, property, method, and event is intended to do.
+<lynk-alert type="warning" open><strong>Don't make assumptions about a component's API!</strong> To prevent unexpected behaviors, please take the time to review the documentation and make sure you understand what each attribute, property, method, and event is intended to do.</lynk-alert>
 
 ## Waiting for Components to Load
 
-Web components are registered with JavaScript, so depending on how and when you load Shoelace, you may notice a [Flash of Undefined Custom Elements (FOUCE)](https://www.abeautifulsite.net/posts/flash-of-undefined-custom-elements/) when the page loads. There are a couple ways to prevent this, both of which are described in the linked article.
+Web components are registered with JavaScript, so depending on how and when you load Lynk, you may notice a [Flash of Undefined Custom Elements (FOUCE)](https://www.abeautifulsite.net/posts/flash-of-undefined-custom-elements/) when the page loads. There are a couple ways to prevent this, both of which are described in the linked article.
 
 One option is to use the [`:defined`](https://developer.mozilla.org/en-US/docs/Web/CSS/:defined) CSS pseudo-class to "hide" custom elements that haven't been registered yet. You can scope it to specific tags or you can hide all undefined custom elements as shown below.
 
@@ -128,8 +126,7 @@ A clever way to use this method is to hide the `<body>` with `opacity: 0` and ad
 <script type="module">
   await Promise.allSettled([
     customElements.whenDefined('lynk-button'),
-    customElements.whenDefined('lynk-card'),
-    customElements.whenDefined('lynk-rating')
+    customElements.whenDefined('lynk-alert')
   ]);
 
   // Button, card, and rating are registered now! Add
