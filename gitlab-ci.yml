@@ -1,0 +1,34 @@
+stages:
+  - test
+  - deploy
+
+pages:
+  image:
+    name: cirocosta/alpine-envsubst:latest
+    entrypoint: [""]
+  variables:
+    DOCSIFY_BASE_PATH: https://gitlab.edgecastcdn.net/uplynk/ucc-team/lynk-design/-/tree/main/docs
+    docsify: $docsify
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r docs/. public
+    - mv .public public
+    - ls
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+"Create Preview Environment":
+  extends: pages
+  variables:
+    DOCSIFY_BASE_PATH: https://gitlab.edgecastcdn.net/uplynk/ucc-team/lynk-design/-/jobs/$CI_JOB_ID/artifacts/public/docs
+  script:
+    - mkdir .public
+    - cp -r docs/. public
+    - mv .public public
+  stage: test
+  only:
+    - merge_requests
