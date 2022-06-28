@@ -12,14 +12,13 @@ pages:
     docsify: $docsify
   stage: deploy
   script:
-    - mkdir .public
     - cp -r docs/. public
-    - mv .public public
+    - cp -r dist/. public/dist
     - cd public
     - ls
   artifacts:
     paths:
-      - public
+      - public/
   only:
     - main
 
