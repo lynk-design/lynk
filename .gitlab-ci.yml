@@ -8,7 +8,7 @@ pages:
     name: cirocosta/alpine-envsubst:latest
     entrypoint: [""]
   variables:
-    DOCSIFY_BASE_PATH: https://gitlab.edgecastcdn.net/uplynk/ucc-team/lynk-design/-/tree/main/docs
+    DOCSIFY_BASE_PATH: https://uplynk.pages.gitlab.edgecastcdn.net/ucc-team/lynk-design
     docsify: $docsify
   stage: deploy
   script:
@@ -18,7 +18,7 @@ pages:
     - ls
   artifacts:
     paths:
-      - public/
+      - public
   only:
     - main
 

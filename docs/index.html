@@ -17,18 +17,18 @@
     />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/pure.css" />
-    <link rel="stylesheet" href="./assets/styles/docs.css" />
-    <link rel="stylesheet" href="./assets/plugins/code-block/code-block.css" />
-    <link rel="stylesheet" href="./assets/plugins/search/search.css" />
-    <link rel="stylesheet" href="./assets/plugins/theme-picker/theme-picker.css" />
-    <link rel="stylesheet" href="./assets/plugins/toc/toc.css" />
-    <link rel="icon" href="./assets/images/mark.svg" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/mark.png" />
+    <link rel="stylesheet" href="/assets/styles/docs.css" />
+    <link rel="stylesheet" href="/assets/plugins/code-block/code-block.css" />
+    <link rel="stylesheet" href="/assets/plugins/search/search.css" />
+    <link rel="stylesheet" href="/assets/plugins/theme-picker/theme-picker.css" />
+    <link rel="stylesheet" href="/assets/plugins/toc/toc.css" />
+    <link rel="icon" href="/assets/images/mark.svg" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/mark.png" />
 
     <!-- Import LYNK -->
-    <link rel="stylesheet" href="./dist/themes/light.css" />
-    <link rel="stylesheet" href="./dist/themes/dark.css" />
-    <script type="module" src="./dist/lynk.js"></script>
+    <link rel="stylesheet" href="/dist/themes/light.css" />
+    <link rel="stylesheet" href="/dist/themes/dark.css" />
+    <script type="module" src="/dist/lynk.js"></script>
   </head>
   <body data-lynk="/dist">
     <div id="app"></div>
@@ -50,14 +50,16 @@
           successText: 'Copied'
         },
         coverpage: false,
+        basePath: "$DOCSIFY_BASE_PATH",
         executeScript: true,
-        homepage: './getting-started/overview.md',
+        relativePath: false,
+        homepage: '/getting-started/overview.md',
         loadSidebar: true,
-        logo: './assets/images/wordmark.svg',
+        logo: '/assets/images/wordmark.svg',
         maxLevel: 4,
         subMaxLevel: 1,
         name: 'LYNK',
-        nameLink: './',
+        nameLink: '/',
         notFoundPage: '404.md',
         pagination: {
           previousText: 'Previous',
@@ -75,12 +77,12 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-bash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-jsx.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-tsx.min.js"></script>
-    <script src="./assets/plugins/code-block/code-block.js"></script>
-    <script src="./assets/plugins/metadata/metadata.js"></script>
-    <script src="./assets/plugins/scroll-position/scroll-position.js"></script>
-    <script src="./assets/plugins/search/lunr.min.js"></script>
-    <script src="./assets/plugins/search/search.js"></script>
-    <script src="./assets/plugins/theme-picker/theme-picker.js"></script>
-    <script src="./assets/plugins/toc/toc.js"></script>
+    <script src="/assets/plugins/code-block/code-block.js"></script>
+    <script src="/assets/plugins/metadata/metadata.js"></script>
+    <script src="/assets/plugins/scroll-position/scroll-position.js"></script>
+    <script src="/assets/plugins/search/lunr.min.js"></script>
+    <script src="/assets/plugins/search/search.js"></script>
+    <script src="/assets/plugins/theme-picker/theme-picker.js"></script>
+    <script src="/assets/plugins/toc/toc.js"></script>
   </body>
 </html>
