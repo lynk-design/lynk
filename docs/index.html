@@ -9,7 +9,7 @@
       content="LYNK provides a collection of professionally designed, every day UI components built on a framework-agnostic technology."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="custom-elements-manifest" content="dist/custom-elements.json" />
+    <meta name="custom-elements-manifest" content="./dist/custom-elements.json" />
     <meta property="og:title" content="LYNK" />
     <meta
       property="og:description"
@@ -41,7 +41,7 @@
     <script>
       window.$docsify = {
         alias: {
-          '/.*/_sidebar.md': '/_sidebar.md'
+          '/.*/_sidebar.md': './_sidebar.md'
         },
         auto2top: true,
         copyCode: {
@@ -52,14 +52,14 @@
         coverpage: false,
         executeScript: true,
         relativePath: false,
-        homepage: '/getting-started/overview.md',
+        homepage: './getting-started/overview.md',
         loadSidebar: true,
-        logo: '/assets/images/wordmark.svg',
+        logo: './assets/images/wordmark.svg',
         maxLevel: 4,
         subMaxLevel: 1,
         name: 'LYNK',
         nameLink: '/',
-        notFoundPage: '404.md',
+        notFoundPage: './404.md',
         pagination: {
           previousText: 'Previous',
           nextText: 'Next',
