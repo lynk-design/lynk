@@ -15,6 +15,7 @@ pages:
     - mkdir .public
     - cp -r docs/. public
     - mv .public public
+    - cd public
     - ls
   artifacts:
     paths:
