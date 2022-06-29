@@ -1,4 +1,4 @@
-import { html, css, LitElement } from 'lit';
+import { html, LitElement } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import '../../components/icon-button/icon-button';

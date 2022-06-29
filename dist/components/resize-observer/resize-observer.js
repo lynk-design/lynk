@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkResizeObserver
 } from "../../chunks/chunk.EGMXEAXA.js";

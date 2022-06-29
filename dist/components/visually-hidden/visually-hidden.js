@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkVisuallyHidden
 } from "../../chunks/chunk.KFKGE5TE.js";

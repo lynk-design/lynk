@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkDivider
 } from "../../chunks/chunk.BTAPJYMU.js";

@@ -1,3 +1,4 @@
+"use strict";
 import "../chunks/chunk.LKA3TPUC.js";
 
 // src/utilities/form.ts

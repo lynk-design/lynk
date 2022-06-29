@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkMenu
 } from "../../chunks/chunk.2BVLKLEV.js";

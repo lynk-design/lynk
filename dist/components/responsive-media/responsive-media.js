@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkResponsiveMedia
 } from "../../chunks/chunk.YAPFKWC3.js";

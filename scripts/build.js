@@ -9,7 +9,7 @@ import getPort, { portNumbers } from 'get-port';
 import { globby } from 'globby';
 import open from 'open';
 import copy from 'recursive-copy';
-import {sassPlugin} from 'esbuild-sass-plugin';
+import { litCssPlugin } from 'esbuild-plugin-lit-css';
 
 const { bundle, copydir, dir, serve, types } = commandLineArgs([
   { name: 'bundle', type: Boolean },
@@ -56,8 +56,6 @@ fs.mkdirSync(outdir, { recursive: true });
         ...(await globby('./src/utilities/**/!(*.(style|test)).ts')),
         // Theme stylesheets
         ...(await globby('./src/themes/**/!(*.test).ts')),
-        // React wrappers
-        // ...(await globby('./src/react/**/*.ts'))
       ],
       outdir,
       chunkNames: 'chunks/[name].[hash]',
@@ -70,16 +68,11 @@ fs.mkdirSync(outdir, { recursive: true });
       //
       // We don't bundle certain dependencies in the unbundled build. This ensures we ship bare module specifiers,
       // allowing end users to better optimize when using a bundler. (Only packages that ship ESM can be external.)
-      //
-      // We never bundle React or @lit-labs/react though!
-      //
       external: bundle
         ? alwaysExternal
         : [...alwaysExternal, '@floating-ui/dom', '@shoelace-style/animations', 'lit', 'qr-creator'],
       splitting: true,
-      plugins: [sassPlugin({
-        type: "lit-css",
-      })]
+      plugins: [litCssPlugin()]
     })
     .catch(err => {
       console.error(chalk.red(err));

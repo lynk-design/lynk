@@ -1,3 +1,4 @@
+"use strict";
 import {
   select_styles_default
 } from "../../chunks/chunk.SVF6RGSV.js";

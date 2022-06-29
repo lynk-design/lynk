@@ -1,3 +1,4 @@
+"use strict";
 import {
   en_default
 } from "../chunks/chunk.E66L43KD.js";

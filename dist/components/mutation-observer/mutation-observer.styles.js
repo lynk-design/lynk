@@ -1,3 +1,4 @@
+"use strict";
 import {
   mutation_observer_styles_default
 } from "../../chunks/chunk.BDVVEAC6.js";

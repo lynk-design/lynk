@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkMenuLabel
 } from "../../chunks/chunk.7MFRWESV.js";

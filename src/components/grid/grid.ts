@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import styles from './grid.styles';
 
@@ -23,16 +23,16 @@ export default class LynkGrid extends LitElement {
   @property({ type: Boolean, reflect: true }) item = false;
 
   /** The flow direction of grid items, requries container property being set */
-  @property({ reflect: true }) direction: 'row' | 'row-reverse' | 'column' | 'column-revers' = null;
+  @property({ reflect: true }) direction: 'row' | 'row-reverse' | 'column' | 'column-revers' = 'row';
 
   /** How to justify grid items, requires container property */
-  @property({ reflect: true }) justify: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' = null;
+  @property({ reflect: true }) justify: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' = 'start';
 
   /** Hot to align grid items to eachother, requires container property */
-  @property({ reflect: true }) align: 'start' | 'center' | 'end' | 'stretch' | 'baseline' = null;
+  @property({ reflect: true }) align: 'start' | 'center' | 'end' | 'stretch' | 'baseline' = 'start';
 
   /** The width of a singular grid item, requires item property being set */
-  @property({ type: Number, reflect: true }) span: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' = null;
+  @property({ type: String, reflect: true }) span: 'auto' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' = 'auto';
 
   render() {
     const containerClass = this.container ? 'lynk-grid' : null;

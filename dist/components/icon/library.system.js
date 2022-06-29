@@ -1,3 +1,4 @@
+"use strict";
 import {
   library_system_default
 } from "../../chunks/chunk.OAACI5QO.js";

@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkMutationObserver
 } from "../../chunks/chunk.UR4URODQ.js";

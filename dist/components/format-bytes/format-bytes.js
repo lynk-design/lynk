@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkFormatBytes
 } from "../../chunks/chunk.HONZGNKY.js";

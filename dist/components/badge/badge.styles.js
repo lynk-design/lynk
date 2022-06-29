@@ -1,7 +1,8 @@
+"use strict";
 import {
   badge_styles_default
-} from "../../chunks/chunk.6RFWLK3B.js";
-import "../../chunks/chunk.ONHQXJBE.js";
+} from "../../chunks/chunk.MZUBKTJE.js";
+import "../../chunks/chunk.EEAXDKRP.js";
 import "../../chunks/chunk.4DJQ63TK.js";
 import "../../chunks/chunk.LKA3TPUC.js";
 export {

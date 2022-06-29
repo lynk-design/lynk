@@ -1,3 +1,4 @@
+"use strict";
 import {
   input_styles_default
 } from "../../chunks/chunk.LKFDI4QZ.js";

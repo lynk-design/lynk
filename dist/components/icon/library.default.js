@@ -1,3 +1,4 @@
+"use strict";
 import {
   library_default_default
 } from "../../chunks/chunk.E6A7ZHE5.js";

@@ -1,3 +1,4 @@
+"use strict";
 import {
   menu_label_styles_default
 } from "../../chunks/chunk.7ESH56FH.js";

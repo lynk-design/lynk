@@ -1,3 +1,4 @@
+"use strict";
 import {
   tab_panel_styles_default
 } from "../../chunks/chunk.DCBVZBWK.js";

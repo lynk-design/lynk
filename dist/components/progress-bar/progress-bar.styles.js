@@ -1,3 +1,4 @@
+"use strict";
 import {
   progress_bar_styles_default
 } from "../../chunks/chunk.LT7H3F66.js";

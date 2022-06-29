@@ -1,3 +1,4 @@
+"use strict";
 import {
   textarea_styles_default
 } from "../../chunks/chunk.SEDCRCED.js";

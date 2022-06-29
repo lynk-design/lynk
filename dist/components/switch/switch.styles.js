@@ -1,3 +1,4 @@
+"use strict";
 import {
   switch_styles_default
 } from "../../chunks/chunk.O7DDGNMG.js";

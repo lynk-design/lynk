@@ -1,3 +1,4 @@
+"use strict";
 import {
   icon_button_styles_default
 } from "../../chunks/chunk.DPAE2EP6.js";

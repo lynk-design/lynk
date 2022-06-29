@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkRelativeTime
 } from "../../chunks/chunk.HAU5D3WA.js";

@@ -1,3 +1,4 @@
+"use strict";
 import {
   divider_styles_default
 } from "../../chunks/chunk.KQ6GSZIJ.js";

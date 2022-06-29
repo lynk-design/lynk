@@ -129,7 +129,7 @@ export default class LynkDropdown extends LitElement {
   getMenu() {
     const slot = this.panel.querySelector('slot')!;
     return slot.assignedElements({ flatten: true }).find(el => el.tagName.toLowerCase() === 'lynk-menu') as
-      | SlMenu
+      | LynkMenu
       | undefined;
   }
 
@@ -180,7 +180,7 @@ export default class LynkDropdown extends LitElement {
   }
 
   handleMenuItemActivate(event: CustomEvent) {
-    const item = event.target as SlMenuItem;
+    const item = event.target as LynkMenuItem;
     scrollIntoView(item, this.panel);
   }
 
@@ -229,7 +229,7 @@ export default class LynkDropdown extends LitElement {
     const menu = this.getMenu();
 
     if (menu) {
-      const menuItems = menu.defaultSlot.assignedElements({ flatten: true }) as SlMenuItem[];
+      const menuItems = menu.defaultSlot.assignedElements({ flatten: true }) as LynkMenuItem[];
       const firstMenuItem = menuItems[0];
       const lastMenuItem = menuItems[menuItems.length - 1];
 

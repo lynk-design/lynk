@@ -1,3 +1,4 @@
+"use strict";
 import {
   tag_styles_default
 } from "../../chunks/chunk.DU5LPHIA.js";

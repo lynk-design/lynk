@@ -1,3 +1,4 @@
+"use strict";
 import {
   menu_item_styles_default
 } from "../../chunks/chunk.MXU5IFJE.js";

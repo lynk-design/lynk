@@ -1,3 +1,4 @@
+"use strict";
 import {
   animation_styles_default
 } from "../../chunks/chunk.CKW4STSW.js";

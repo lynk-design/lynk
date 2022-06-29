@@ -1,3 +1,4 @@
+"use strict";
 import {
   icon_styles_default
 } from "../../chunks/chunk.ICLXIKXJ.js";

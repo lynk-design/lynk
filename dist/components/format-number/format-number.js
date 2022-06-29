@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkFormatNumber
 } from "../../chunks/chunk.OTCRGURK.js";

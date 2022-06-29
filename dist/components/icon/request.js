@@ -1,3 +1,4 @@
+"use strict";
 import {
   requestIcon
 } from "../../chunks/chunk.P52GZVKG.js";

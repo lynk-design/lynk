@@ -1,3 +1,4 @@
+"use strict";
 import {
   registerTranslation
 } from "../chunks/chunk.E66L43KD.js";

@@ -322,7 +322,7 @@ export default class LynkSelect extends LitElement {
 
   async handleMenuSlotChange() {
     // Wait for items to render before gathering labels otherwise the slot won't exist
-    this.menuItems = [...this.querySelectorAll<SlMenuItem>('lynk-menu-item')];
+    this.menuItems = [...this.querySelectorAll<LynkMenuItem>('lynk-menu-item')];
 
     // Check for duplicate values in menu items
     const values: string[] = [];
@@ -341,7 +341,7 @@ export default class LynkSelect extends LitElement {
   handleTagInteraction(event: KeyboardEvent | MouseEvent) {
     // Don't toggle the menu when a tag's clear button is activated
     const path = event.composedPath();
-    const clearButton = path.find((el: SlIconButton) => {
+    const clearButton = path.find((el: LynkIconButton) => {
       if (el instanceof HTMLElement) {
         const element = el as HTMLElement;
         return element.classList.contains('tag__remove');
@@ -378,7 +378,7 @@ export default class LynkSelect extends LitElement {
       const checkedItems = this.menuItems.filter(item => value.includes(item.value));
 
       this.displayLabel = checkedItems.length > 0 ? checkedItems[0].getTextLabel() : '';
-      this.displayTags = checkedItems.map((item: SlMenuItem) => {
+      this.displayTags = checkedItems.map((item: LynkMenuItem) => {
         return html`
           <lynk-tag
             part="tag"

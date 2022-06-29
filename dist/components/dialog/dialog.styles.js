@@ -1,3 +1,4 @@
+"use strict";
 import {
   dialog_styles_default
 } from "../../chunks/chunk.Z7WBMOTV.js";

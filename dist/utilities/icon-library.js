@@ -1,3 +1,4 @@
+"use strict";
 import "../chunks/chunk.HAL7R4WT.js";
 import {
   registerIconLibrary,

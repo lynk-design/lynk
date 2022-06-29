@@ -1,3 +1,4 @@
+"use strict";
 import {
   LynkFormatDate
 } from "../../chunks/chunk.GTGQDT3L.js";

@@ -1,3 +1,4 @@
+"use strict";
 import {
   progress_ring_styles_default
 } from "../../chunks/chunk.ELJ2UMO3.js";

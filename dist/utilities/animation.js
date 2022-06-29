@@ -1,3 +1,4 @@
+"use strict";
 import "../chunks/chunk.QL5C2XOW.js";
 import {
   getAnimationNames,

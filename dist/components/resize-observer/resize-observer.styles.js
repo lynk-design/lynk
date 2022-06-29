@@ -1,3 +1,4 @@
+"use strict";
 import {
   resize_observer_styles_default
 } from "../../chunks/chunk.6ULPFFB4.js";

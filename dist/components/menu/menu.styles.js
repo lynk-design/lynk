@@ -1,3 +1,4 @@
+"use strict";
 import {
   menu_styles_default
 } from "../../chunks/chunk.QAKCFRTN.js";
