@@ -2,14 +2,14 @@ import {
   select_styles_default
 } from "./chunk.SVF6RGSV.js";
 import {
-  FormSubmitController
-} from "./chunk.QRRAQY34.js";
-import {
   LocalizeController
 } from "./chunk.E66L43KD.js";
 import {
   HasSlotController
 } from "./chunk.7DIJ2SI4.js";
+import {
+  FormSubmitController
+} from "./chunk.QRRAQY34.js";
 import {
   watch
 } from "./chunk.EYJTTIDT.js";

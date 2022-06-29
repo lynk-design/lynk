@@ -1,7 +1,4 @@
 import {
-  HasSlotController
-} from "./chunk.7DIJ2SI4.js";
-import {
   animateTo,
   stopAnimations
 } from "./chunk.LYIRHJ4T.js";
@@ -10,15 +7,18 @@ import {
   setDefaultAnimation
 } from "./chunk.5FIVCLSV.js";
 import {
+  alert_styles_default
+} from "./chunk.AKU5P6B2.js";
+import {
+  HasSlotController
+} from "./chunk.7DIJ2SI4.js";
+import {
   watch
 } from "./chunk.EYJTTIDT.js";
 import {
   emit,
   waitForEvent
 } from "./chunk.TOL7LDIN.js";
-import {
-  alert_styles_default
-} from "./chunk.AKU5P6B2.js";
 import {
   o
 } from "./chunk.AY3TXN3C.js";

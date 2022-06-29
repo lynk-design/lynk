@@ -1,12 +1,6 @@
 import {
-  FormSubmitController
-} from "./chunk.QRRAQY34.js";
-import {
   LocalizeController
 } from "./chunk.E66L43KD.js";
-import {
-  button_styles_default
-} from "./chunk.NGHR3WUY.js";
 import {
   HasSlotController
 } from "./chunk.7DIJ2SI4.js";
@@ -14,6 +8,12 @@ import {
   l as l2,
   n as n2
 } from "./chunk.K6X3Y6UE.js";
+import {
+  button_styles_default
+} from "./chunk.NGHR3WUY.js";
+import {
+  FormSubmitController
+} from "./chunk.QRRAQY34.js";
 import {
   l
 } from "./chunk.CRMBCBPN.js";

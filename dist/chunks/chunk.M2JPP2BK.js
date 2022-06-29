@@ -9,12 +9,6 @@ import {
   unlockBodyScrolling
 } from "./chunk.MZXL76U3.js";
 import {
-  LocalizeController
-} from "./chunk.E66L43KD.js";
-import {
-  HasSlotController
-} from "./chunk.7DIJ2SI4.js";
-import {
   animateTo,
   stopAnimations
 } from "./chunk.LYIRHJ4T.js";
@@ -23,11 +17,17 @@ import {
   setDefaultAnimation
 } from "./chunk.5FIVCLSV.js";
 import {
-  watch
-} from "./chunk.EYJTTIDT.js";
+  LocalizeController
+} from "./chunk.E66L43KD.js";
+import {
+  HasSlotController
+} from "./chunk.7DIJ2SI4.js";
 import {
   l
 } from "./chunk.CRMBCBPN.js";
+import {
+  watch
+} from "./chunk.EYJTTIDT.js";
 import {
   emit,
   waitForEvent

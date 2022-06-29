@@ -2,11 +2,11 @@ import {
   menu_styles_default
 } from "./chunk.QAKCFRTN.js";
 import {
-  hasFocusVisible
-} from "./chunk.5OSOZA74.js";
-import {
   getTextContent
 } from "./chunk.7DIJ2SI4.js";
+import {
+  hasFocusVisible
+} from "./chunk.5OSOZA74.js";
 import {
   emit
 } from "./chunk.TOL7LDIN.js";

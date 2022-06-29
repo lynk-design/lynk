@@ -2,23 +2,23 @@ import {
   input_styles_default
 } from "./chunk.LKFDI4QZ.js";
 import {
-  l as l2
-} from "./chunk.6OV4IUTN.js";
-import {
-  FormSubmitController
-} from "./chunk.QRRAQY34.js";
-import {
   LocalizeController
 } from "./chunk.E66L43KD.js";
 import {
   HasSlotController
 } from "./chunk.7DIJ2SI4.js";
 import {
-  watch
-} from "./chunk.EYJTTIDT.js";
+  l as l2
+} from "./chunk.6OV4IUTN.js";
+import {
+  FormSubmitController
+} from "./chunk.QRRAQY34.js";
 import {
   l
 } from "./chunk.CRMBCBPN.js";
+import {
+  watch
+} from "./chunk.EYJTTIDT.js";
 import {
   emit
 } from "./chunk.TOL7LDIN.js";

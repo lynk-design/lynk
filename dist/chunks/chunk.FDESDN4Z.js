@@ -1,12 +1,12 @@
 import {
+  box_styles_default
+} from "./chunk.DKFCH2XY.js";
+import {
   o
 } from "./chunk.AY3TXN3C.js";
 import {
   n
 } from "./chunk.ML4GKG4X.js";
-import {
-  box_styles_default
-} from "./chunk.DKFCH2XY.js";
 import {
   $,
   s
