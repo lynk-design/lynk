@@ -9,7 +9,6 @@ import getPort, { portNumbers } from 'get-port';
 import { globby } from 'globby';
 import open from 'open';
 import copy from 'recursive-copy';
-import { litCssPlugin } from 'esbuild-plugin-lit-css';
 
 const { bundle, copydir, dir, serve, types } = commandLineArgs([
   { name: 'bundle', type: Boolean },
@@ -71,8 +70,7 @@ fs.mkdirSync(outdir, { recursive: true });
       external: bundle
         ? alwaysExternal
         : [...alwaysExternal, '@floating-ui/dom', '@shoelace-style/animations', 'lit', 'qr-creator'],
-      splitting: true,
-      plugins: [litCssPlugin()]
+      splitting: true
     })
     .catch(err => {
       console.error(chalk.red(err));
