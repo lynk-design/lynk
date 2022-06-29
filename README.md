@@ -10,6 +10,10 @@ Lynk is a WIP, but it's primary goals are:
 
 ---
 
+Documentation: [lynk-design.web.app](https://lynk-design.web.app/)
+
+---
+
 ### What are we using to build Lynk?
 
 Components are built with [LitElement](https://lit-element.polymer-project.org/), a custom elements base class that provides an intuitive API and reactive data binding. The build is a custom script with bundling powered by [esbuild](https://esbuild.github.io/).
