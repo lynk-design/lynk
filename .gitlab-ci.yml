@@ -22,6 +22,7 @@ test-job:
   stage: test
   script:
     - echo "Testing the code..."
+    - npx playwright install
     - yarn test
     - echo "Testing complete."
 
