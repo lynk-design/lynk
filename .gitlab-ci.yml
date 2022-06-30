@@ -1,26 +1,20 @@
 image: node:14.18
 
 stages:
-  - build
   - deploy
-
-build-job:
-  stage: build
-  script:
-    - echo "Compiling the code..."
-    - yarn
-    - yarn build
-    - echo "Compile complete."
 
 deploy-job:
   stage: deploy
   before_script:
     - npm i -g firebase-tools
   script:
-    - echo "Deploying application..."
+    - echo "Compiling the code..."
+    - yarn
+    - yarn build
+    - echo "Deploying the docs"
     - cp -r dist/. docs/dist
     - firebase deploy --token $FIREBASE_TOKEN
-    - echo "Application successfully deployed."
+    - echo "Docs successfully deployed."
   only:
     refs:
       - main
