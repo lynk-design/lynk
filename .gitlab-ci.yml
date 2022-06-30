@@ -12,10 +12,14 @@
 # Stages run in sequential order, but jobs within stages run in parallel.
 #
 # For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
-image: node:14.18
+image: node:14.18.0-alpine
+
+before_script:
+  - npm i -g firebase-tools
 
 stages:
   - build
+  - test
   - deploy
 
 build-job:
@@ -26,15 +30,20 @@ build-job:
     - yarn build
     - echo "Compile complete."
 
+build-job:
+  stage: test
+  script:
+    - echo "Testing the code..."
+    - yarn test
+    - echo "Testing complete."
+
 deploy-job:
   stage: deploy
-  before_script:
-    - npm i -g firebase-tools
   script:
-    - echo "Deploying application..."
+    - echo "Deploying docs..."
     - cp -r dist/. docs/dist
     - firebase deploy --token $FIREBASE_TOKEN
-    - echo "Application successfully deployed."
+    - echo "Lynk docs successfully deployed."
   only:
     refs:
-      - main
+      - tags
