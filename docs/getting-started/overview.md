@@ -13,9 +13,8 @@
 </div>
 </div>
 
-
 ```console
-yarn add @edgio/lynk
+yarn add git+ssh://git@gitlab.edgecastcdn.net:uplynk/ucc-team/lynk-design.git
 ```
 
 ## Browser Support
