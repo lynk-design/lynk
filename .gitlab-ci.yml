@@ -13,7 +13,7 @@ build-job:
     - yarn build
     - echo "Compile complete."
 
-build-job:
+test-job:
   stage: test
   script:
     - echo "Testing the code..."
