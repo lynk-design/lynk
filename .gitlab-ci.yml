@@ -32,6 +32,7 @@ deploy-job:
     - npm i -g firebase-tools
   script:
     - echo "Deploying application..."
+    - cp -r dist/. docs/dist
     - firebase deploy --token $FIREBASE_TOKEN
     - echo "Application successfully deployed."
   only:
