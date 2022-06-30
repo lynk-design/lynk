@@ -60,5 +60,4 @@ export default css`
       stroke-dasharray: 0.01em, 2.75em;
     }
   }
-
 `;

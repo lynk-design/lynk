@@ -7,8 +7,8 @@
 - Works with any framework that support Native Web Components
 - Fully customizable & themeable
 - Built with accessibility in mind
-<!-- - First-class [Aurelia](/frameworks/aurelia) & [React](/frameworks/react) support -->
-<!-- - Built-in localization -->
+  <!-- - First-class [Aurelia](/frameworks/aurelia) & [React](/frameworks/react) support -->
+  <!-- - Built-in localization -->
 
 </div>
 </div>
@@ -26,7 +26,6 @@ Lynk is tested in the latest two versions of the following browsers.
 <img src="/assets/images/firefox.png" alt="Firefox" width="64" height="64">
 <img src="/assets/images/opera.png" alt="Opera" width="64" height="64">
 <img src="/assets/images/safari.png" alt="Safari" width="64" height="64">
-
 
 ## Attribution
 

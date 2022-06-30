@@ -60,13 +60,17 @@ describe('<lynk-textarea>', () => {
 
   describe('when serializing', () => {
     it('should serialize its name and value with FormData', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><lynk-textarea name="a" value="1"></lynk-textarea></form> `);
+      const form = await fixture<HTMLFormElement>(
+        html` <form><lynk-textarea name="a" value="1"></lynk-textarea></form> `
+      );
       const formData = new FormData(form);
       expect(formData.get('a')).to.equal('1');
     });
 
     it('should serialize its name and value with JSON', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><lynk-textarea name="a" value="1"></lynk-textarea></form> `);
+      const form = await fixture<HTMLFormElement>(
+        html` <form><lynk-textarea name="a" value="1"></lynk-textarea></form> `
+      );
       const json = serialize(form);
       expect(json.a).to.equal('1');
     });

@@ -569,7 +569,10 @@ export default class LynkSelect extends LitElement {
             </div>
 
             <lynk-menu part="menu" id="menu" class="lynk-select__menu" @l-select=${this.handleMenuSelect}>
-              <slot @slotchange=${this.handleMenuSlotChange} @lynk-label-change=${this.handleMenuItemLabelChange}></slot>
+              <slot
+                @slotchange=${this.handleMenuSlotChange}
+                @lynk-label-change=${this.handleMenuItemLabelChange}
+              ></slot>
             </lynk-menu>
           </lynk-dropdown>
         </div>

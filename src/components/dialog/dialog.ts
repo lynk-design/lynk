@@ -233,7 +233,12 @@ export default class LynkDialog extends LitElement {
         })}
         @keydown=${this.handleKeyDown}
       >
-        <div part="overlay" class="lynk-dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
+        <div
+          part="overlay"
+          class="lynk-dialog__overlay"
+          @click=${() => this.requestClose('overlay')}
+          tabindex="-1"
+        ></div>
 
         <div
           part="panel"

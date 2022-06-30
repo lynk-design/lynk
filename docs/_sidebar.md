@@ -29,18 +29,19 @@
   - [Box](/components/box)
 
 - Action & Input
+
   - [Buttons](/components/button)
   - [Button Group](/components/button-group)
   - [Checkbox](/components/checkbox)
   - [Dropdown](/components/dropdown)
-  <!-- - [Dialog](/components/dialog) -->
-  <!-- - [Input](/components/input) -->
+    <!-- - [Dialog](/components/dialog) -->
+    <!-- - [Input](/components/input) -->
   - [Icon Button](/components/icon-button)
   - [Menu](/components/menu)
   - [Menu Item](/components/menu-item)
   - [Menu Label](/components/menu-label)
-  <!-- - [Select](/components/select) -->
-  <!-- - [Textarea](/components/textarea) -->
+    <!-- - [Select](/components/select) -->
+    <!-- - [Textarea](/components/textarea) -->
   - [Radio](/components/radio)
   <!-- - [Radio Button](/components/radio-button) -->
   - [Radio Group](/components/radio-group)
@@ -51,9 +52,9 @@
   - [Alert](/components/alert)
   - [Badge](/components/badge)
   - [Spinner](/components/spinner)
-  <!-- - [Progress Bar](/components/progress-bar) -->
-  <!-- - [Progress Ring](/components/progress-ring) -->
-  <!--plop:component-->
+    <!-- - [Progress Bar](/components/progress-bar) -->
+    <!-- - [Progress Ring](/components/progress-ring) -->
+    <!--plop:component-->
 
 - Utilities
 

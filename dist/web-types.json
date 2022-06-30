@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/web-types",
   "name": "@lynk-design/lynk",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description-markup": "markdown",
   "framework-config": {
     "enable-when": {
@@ -13,6 +13,117 @@
   "contributions": {
     "html": {
       "elements": [
+        {
+          "name": "lynk-accordion",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-accordion",
+          "js": {
+            "properties": [
+              {
+                "name": "accordion",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "header",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "body",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "summary",
+                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the accordion so it can't be toggled.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the accordion.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the accordion",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryClick",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "lynk-show",
+                "description": "Emitted when the accordion opens."
+              },
+              {
+                "name": "lynk-after-show",
+                "description": "Emitted after the accordion opens and all animations are complete."
+              },
+              {
+                "name": "lynk-hide",
+                "description": "Emitted when the accordion closes."
+              },
+              {
+                "name": "lynk-after-hide",
+                "description": "Emitted after the accordion closes and all animations are complete."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "summary",
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables the accordion so it can't be toggled.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
         {
           "name": "lynk-alert",
           "description": "",
@@ -142,117 +253,6 @@
               "name": "duration",
               "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
               "value": {}
-            }
-          ]
-        },
-        {
-          "name": "lynk-accordion",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-accordion",
-          "js": {
-            "properties": [
-              {
-                "name": "accordion",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "header",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "body",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "open",
-                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "summary",
-                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Disables the accordion so it can't be toggled.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "show",
-                "description": "Shows the accordion.",
-                "value": {}
-              },
-              {
-                "name": "hide",
-                "description": "Hides the accordion",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryClick",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleOpenChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "lynk-show",
-                "description": "Emitted when the accordion opens."
-              },
-              {
-                "name": "lynk-after-show",
-                "description": "Emitted after the accordion opens and all animations are complete."
-              },
-              {
-                "name": "lynk-hide",
-                "description": "Emitted when the accordion closes."
-              },
-              {
-                "name": "lynk-after-hide",
-                "description": "Emitted after the accordion closes and all animations are complete."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "summary",
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "disabled",
-              "description": "Disables the accordion so it can't be toggled.",
-              "value": {
-                "type": "boolean"
-              }
             }
           ]
         },
@@ -576,6 +576,16 @@
               }
             }
           ]
+        },
+        {
+          "name": "lynk-box",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-box",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
         },
         {
           "name": "lynk-button",
@@ -944,16 +954,6 @@
           ]
         },
         {
-          "name": "lynk-box",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-box",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
-        },
-        {
           "name": "lynk-button-group",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-button-group",
@@ -1001,175 +1001,6 @@
               "description": "A label to use for the button group's `aria-label` attribute.",
               "value": {
                 "type": "string"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-dialog",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-dialog",
-          "js": {
-            "properties": [
-              {
-                "name": "dialog",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "panel",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "overlay",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "hasSlotController",
-                "value": {}
-              },
-              {
-                "name": "localize",
-                "value": {}
-              },
-              {
-                "name": "modal",
-                "value": {
-                  "type": "Modal"
-                }
-              },
-              {
-                "name": "originalTrigger",
-                "value": {
-                  "type": "HTMLElement | null"
-                }
-              },
-              {
-                "name": "open",
-                "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "label",
-                "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "noHeader",
-                "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "show",
-                "description": "Shows the dialog.",
-                "value": {}
-              },
-              {
-                "name": "hide",
-                "description": "Hides the dialog",
-                "value": {}
-              },
-              {
-                "name": "requestClose",
-                "value": {}
-              },
-              {
-                "name": "handleKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleOpenChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "lynk-show",
-                "description": "Emitted when the dialog opens."
-              },
-              {
-                "name": "lynk-after-show",
-                "description": "Emitted after the dialog opens and all animations are complete."
-              },
-              {
-                "name": "lynk-hide",
-                "description": "Emitted when the dialog closes."
-              },
-              {
-                "name": "lynk-after-hide",
-                "description": "Emitted after the dialog closes and all animations are complete."
-              },
-              {
-                "name": "lynk-initial-focus",
-                "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input."
-              },
-              {
-                "name": "lynk-request-close",
-                "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "label",
-              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "no-header",
-              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-divider",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-divider",
-          "js": {
-            "properties": [
-              {
-                "name": "vertical",
-                "description": "Draws the divider in a vertical orientation.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "handleVerticalChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "vertical",
-              "description": "Draws the divider in a vertical orientation.",
-              "value": {
-                "type": "boolean"
               }
             }
           ]
@@ -1597,6 +1428,175 @@
             {
               "name": "hoist",
               "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-dialog",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-dialog",
+          "js": {
+            "properties": [
+              {
+                "name": "dialog",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "panel",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "overlay",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "hasSlotController",
+                "value": {}
+              },
+              {
+                "name": "localize",
+                "value": {}
+              },
+              {
+                "name": "modal",
+                "value": {
+                  "type": "Modal"
+                }
+              },
+              {
+                "name": "originalTrigger",
+                "value": {
+                  "type": "HTMLElement | null"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "label",
+                "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "noHeader",
+                "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the dialog.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the dialog",
+                "value": {}
+              },
+              {
+                "name": "requestClose",
+                "value": {}
+              },
+              {
+                "name": "handleKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "lynk-show",
+                "description": "Emitted when the dialog opens."
+              },
+              {
+                "name": "lynk-after-show",
+                "description": "Emitted after the dialog opens and all animations are complete."
+              },
+              {
+                "name": "lynk-hide",
+                "description": "Emitted when the dialog closes."
+              },
+              {
+                "name": "lynk-after-hide",
+                "description": "Emitted after the dialog closes and all animations are complete."
+              },
+              {
+                "name": "lynk-initial-focus",
+                "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input."
+              },
+              {
+                "name": "lynk-request-close",
+                "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "no-header",
+              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-divider",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-divider",
+          "js": {
+            "properties": [
+              {
+                "name": "vertical",
+                "description": "Draws the divider in a vertical orientation.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleVerticalChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "vertical",
+              "description": "Draws the divider in a vertical orientation.",
               "value": {
                 "type": "boolean"
               }
@@ -3532,6 +3532,162 @@
           ]
         },
         {
+          "name": "lynk-radio",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-radio",
+          "js": {
+            "properties": [
+              {
+                "name": "input",
+                "value": {
+                  "type": "HTMLInputElement"
+                }
+              },
+              {
+                "name": "formSubmitController",
+                "value": {}
+              },
+              {
+                "name": "hasFocus",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "name",
+                "description": "The radio's name attribute.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "value",
+                "description": "The radio's value attribute.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the radio.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "checked",
+                "description": "Draws the radio in a checked state.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "invalid",
+                "description": "This will be true when the control is in an invalid state. Validity in radios is determined by the message provided\nby the `setCustomValidity` method.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "click",
+                "description": "Simulates a click on the radio.",
+                "value": {}
+              },
+              {
+                "name": "focus",
+                "description": "Sets focus on the radio.",
+                "value": {}
+              },
+              {
+                "name": "blur",
+                "description": "Removes focus from the radio.",
+                "value": {}
+              },
+              {
+                "name": "reportValidity",
+                "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
+                "value": {}
+              },
+              {
+                "name": "setCustomValidity",
+                "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
+                "value": {}
+              },
+              {
+                "name": "handleBlur",
+                "value": {}
+              },
+              {
+                "name": "handleClick",
+                "value": {}
+              },
+              {
+                "name": "handleFocus",
+                "value": {}
+              },
+              {
+                "name": "handleCheckedChange",
+                "value": {}
+              },
+              {
+                "name": "handleDisabledChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "lynk-blur",
+                "description": "Emitted when the control loses focus."
+              },
+              {
+                "name": "lynk-change",
+                "description": "Emitted when the control's checked state changes."
+              },
+              {
+                "name": "lynk-focus",
+                "description": "Emitted when the control gains focus."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "name",
+              "description": "The radio's name attribute.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "value",
+              "description": "The radio's value attribute.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables the radio.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "checked",
+              "description": "Draws the radio in a checked state.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "invalid",
+              "description": "This will be true when the control is in an invalid state. Validity in radios is determined by the message provided\nby the `setCustomValidity` method.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-radio-button",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-radio-button",
@@ -3719,162 +3875,6 @@
             {
               "name": "pill",
               "description": "Draws a pill-style button with rounded edges.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-radio",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-radio",
-          "js": {
-            "properties": [
-              {
-                "name": "input",
-                "value": {
-                  "type": "HTMLInputElement"
-                }
-              },
-              {
-                "name": "formSubmitController",
-                "value": {}
-              },
-              {
-                "name": "hasFocus",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "name",
-                "description": "The radio's name attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "value",
-                "description": "The radio's value attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Disables the radio.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "checked",
-                "description": "Draws the radio in a checked state.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "invalid",
-                "description": "This will be true when the control is in an invalid state. Validity in radios is determined by the message provided\nby the `setCustomValidity` method.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "click",
-                "description": "Simulates a click on the radio.",
-                "value": {}
-              },
-              {
-                "name": "focus",
-                "description": "Sets focus on the radio.",
-                "value": {}
-              },
-              {
-                "name": "blur",
-                "description": "Removes focus from the radio.",
-                "value": {}
-              },
-              {
-                "name": "reportValidity",
-                "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
-                "value": {}
-              },
-              {
-                "name": "setCustomValidity",
-                "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
-                "value": {}
-              },
-              {
-                "name": "handleBlur",
-                "value": {}
-              },
-              {
-                "name": "handleClick",
-                "value": {}
-              },
-              {
-                "name": "handleFocus",
-                "value": {}
-              },
-              {
-                "name": "handleCheckedChange",
-                "value": {}
-              },
-              {
-                "name": "handleDisabledChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "lynk-blur",
-                "description": "Emitted when the control loses focus."
-              },
-              {
-                "name": "lynk-change",
-                "description": "Emitted when the control's checked state changes."
-              },
-              {
-                "name": "lynk-focus",
-                "description": "Emitted when the control gains focus."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "name",
-              "description": "The radio's name attribute.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "value",
-              "description": "The radio's value attribute.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "disabled",
-              "description": "Disables the radio.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "checked",
-              "description": "Draws the radio in a checked state.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "invalid",
-              "description": "This will be true when the control is in an invalid state. Validity in radios is determined by the message provided\nby the `setCustomValidity` method.",
               "value": {
                 "type": "boolean"
               }

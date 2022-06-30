@@ -74,7 +74,9 @@ describe('<lynk-icon>', () => {
   describe('when a label is provided', () => {
     it('the icon has the correct default aria attributes', async () => {
       const fakeLabel = 'a label';
-      const el = await fixture<LynkIcon>(html` <lynk-icon label="${fakeLabel}" library="system" name="check"></lynk-icon> `);
+      const el = await fixture<LynkIcon>(
+        html` <lynk-icon label="${fakeLabel}" library="system" name="check"></lynk-icon> `
+      );
       const rootDiv = el.shadowRoot?.querySelector('div.lynk-icon');
 
       expect(rootDiv?.getAttribute('role')).to.equal('img');

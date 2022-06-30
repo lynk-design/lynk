@@ -58,5 +58,4 @@ export default css`
     transform: rotate(45deg);
     z-index: -1;
   }
-
 `;

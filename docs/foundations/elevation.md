@@ -2,8 +2,8 @@
 
 Elevation tokens are used to give elements the appearance of being raised off the page. Use them with the `box-shadow` property. These are especially useful for menus, popovers, and dialogs.
 
-| Token                 | Example                                                                          |
-| --------------------- | -------------------------------------------------------------------------------- |
+| Token                   | Example                                                                            |
+| ----------------------- | ---------------------------------------------------------------------------------- |
 | `--lynk-shadow-x-small` | <div class="elevation-demo" style="box-shadow: var(--lynk-shadow-x-small);"></div> |
 | `--lynk-shadow-small`   | <div class="elevation-demo" style="box-shadow: var(--lynk-shadow-small);"></div>   |
 | `--lynk-shadow-medium`  | <div class="elevation-demo" style="box-shadow: var(--lynk-shadow-medium);"></div>  |
@@ -12,8 +12,8 @@ Elevation tokens are used to give elements the appearance of being raised off th
 
 Z-index tokens are used to stack components in a logical manner. In most instances higher z-index components should also use a higher elevation token.
 
-| Token                      | Value |
-| -------------------------- | ----- |
+| Token                        | Value |
+| ---------------------------- | ----- |
 | `--lynk-z-index-drawer`      | 700   |
 | `--lynk-z-index-dialog`      | 800   |
 | `--lynk-z-index-dropdown`    | 900   |

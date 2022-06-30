@@ -185,7 +185,7 @@
       </tbody>
     `;
 
-// <td>${style.type?.text ? `${escapeHtml(style.type?.text)}` : '-'}</td>
+    // <td>${style.type?.text ? `${escapeHtml(style.type?.text)}` : '-'}</td>
 
     return table.outerHTML;
   }
@@ -324,7 +324,6 @@
 
       // Store version for reuse
       sessionStorage.setItem('lynk-version', metadata.package.version);
-
     });
 
     hook.beforeEach(async (content, next) => {

@@ -77,7 +77,9 @@ describe('<lynk-button>', () => {
       button.shadowRoot!.querySelector('button')!.click();
       expect(handleClick).not.to.have.been.called;
 
-      const buttonLink = await fixture<LynkButton>(html` <lynk-button href="some/path" disabled>Button Label</lynk-button> `);
+      const buttonLink = await fixture<LynkButton>(
+        html` <lynk-button href="some/path" disabled>Button Label</lynk-button> `
+      );
       buttonLink.addEventListener('click', handleClick);
       buttonLink.click();
 

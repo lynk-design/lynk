@@ -46,7 +46,9 @@ describe('<lynk-format-number>', () => {
 
   describe('noGrouping property', () => {
     it(`number has correct grouping format: no grouping`, async () => {
-      const el = await fixture<LynkFormatNumber>(html` <lynk-format-number value="1000" no-grouping></lynk-format-number> `);
+      const el = await fixture<LynkFormatNumber>(
+        html` <lynk-format-number value="1000" no-grouping></lynk-format-number> `
+      );
       const expected = new Intl.NumberFormat('en-US', { useGrouping: false }).format(1000);
       expect(el.shadowRoot?.textContent).to.equal(expected);
     });

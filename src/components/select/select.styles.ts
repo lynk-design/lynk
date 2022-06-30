@@ -25,7 +25,8 @@ export default css`
     letter-spacing: var(--lynk-input-letter-spacing);
     vertical-align: middle;
     overflow: hidden;
-    transition: var(--lynk-transition-fast) color, var(--lynk-transition-fast) border, var(--lynk-transition-fast) box-shadow;
+    transition: var(--lynk-transition-fast) color, var(--lynk-transition-fast) border,
+      var(--lynk-transition-fast) box-shadow;
     cursor: pointer;
   }
 

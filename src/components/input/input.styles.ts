@@ -23,8 +23,8 @@ export default css`
     vertical-align: middle;
     overflow: hidden;
     cursor: text;
-    transition: var(--lynk-transition-fast) color, var(--lynk-transition-fast) border, var(--lynk-transition-fast) box-shadow,
-      var(--lynk-transition-fast) background-color;
+    transition: var(--lynk-transition-fast) color, var(--lynk-transition-fast) border,
+      var(--lynk-transition-fast) box-shadow, var(--lynk-transition-fast) background-color;
   }
 
   /* Standard inputs */

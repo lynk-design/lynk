@@ -124,10 +124,7 @@ A clever way to use this method is to hide the `<body>` with `opacity: 0` and ad
 </style>
 
 <script type="module">
-  await Promise.allSettled([
-    customElements.whenDefined('lynk-button'),
-    customElements.whenDefined('lynk-alert')
-  ]);
+  await Promise.allSettled([customElements.whenDefined('lynk-button'), customElements.whenDefined('lynk-alert')]);
 
   // Button, card, and rating are registered now! Add
   // the `ready` class so the UI fades in.

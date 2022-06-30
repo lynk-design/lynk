@@ -54,7 +54,7 @@ fs.mkdirSync(outdir, { recursive: true });
         // Public utilities
         ...(await globby('./src/utilities/**/!(*.(style|test)).ts')),
         // Theme stylesheets
-        ...(await globby('./src/themes/**/!(*.test).ts')),
+        ...(await globby('./src/themes/**/!(*.test).ts'))
       ],
       outdir,
       chunkNames: 'chunks/[name].[hash]',

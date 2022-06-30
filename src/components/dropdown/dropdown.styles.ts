@@ -51,5 +51,4 @@ export default css`
   .lynk-dropdown__positioner[data-placement^='right'] .lynk-dropdown__panel {
     transform-origin: left;
   }
-
 `;

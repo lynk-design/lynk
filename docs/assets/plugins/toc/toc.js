@@ -4,17 +4,15 @@ var defaultOptions = {
 
   // To make work
   title: 'Contents',
-  listType: 'ul',
-}
+  listType: 'ul'
+};
 
 // Element builders
-var tocHeading = function(Title) {
-  return document.createElement('h2').appendChild(
-    document.createTextNode(Title)
-  )
-}
+var tocHeading = function (Title) {
+  return document.createElement('h2').appendChild(document.createTextNode(Title));
+};
 
-var aTag = function(src) {
+var aTag = function (src) {
   var a = document.createElement('a');
   var content = src.firstChild.innerHTML;
 
@@ -22,20 +20,20 @@ var aTag = function(src) {
   // https://github.com/arendjr/text-clipper
   a.innerHTML = content;
   a.href = src.firstChild.href;
-  a.onclick = tocClick
+  a.onclick = tocClick;
 
   // In order to remove this gotta fix the styles.
   a.setAttribute('class', 'anchor');
 
-  return a
+  return a;
 };
 
-var tocClick = function(e) {
+var tocClick = function (e) {
   var divs = document.querySelectorAll('.page-toc .active');
 
   // Remove the previous classes
-  [].forEach.call(divs, function(div) {
-    div.setAttribute('class', 'anchor')
+  [].forEach.call(divs, function (div) {
+    div.setAttribute('class', 'anchor');
   });
 
   // Make sure this is attached to the parent not itself
@@ -43,25 +41,21 @@ var tocClick = function(e) {
   setTimeout(setSidebarParent(), 500);
 };
 
-var setSidebarParent = function() {
+var setSidebarParent = function () {
   var sidebar_nodes = document.querySelectorAll(`[href='${location.pathname}']`);
 
   if (sidebar_nodes.length) {
     sidebar_nodes[0].parentNode.classList.add('sub-active');
-  };
+  }
 };
 
-var createList = function(wrapper, count) {
+var createList = function (wrapper, count) {
   while (count--) {
-    if(wrapper){
-	    wrapper = wrapper.appendChild(
-	      document.createElement('ul')
-	    );
+    if (wrapper) {
+      wrapper = wrapper.appendChild(document.createElement('ul'));
     }
     if (count) {
-      wrapper = wrapper.appendChild(
-        document.createElement('li')
-      );
+      wrapper = wrapper.appendChild(document.createElement('li'));
     }
   }
 
@@ -70,24 +64,24 @@ var createList = function(wrapper, count) {
 
 //------------------------------------------------------------------------
 
-var getHeaders = function(selector) {
+var getHeaders = function (selector) {
   var headings2 = document.querySelectorAll(selector);
   var ret = [];
 
-  [].forEach.call(headings2, function(heading) {
+  [].forEach.call(headings2, function (heading) {
     ret = ret.concat(heading);
   });
 
   return ret;
 };
 
-var getLevel = function(header) {
+var getLevel = function (header) {
   var decs = header.match(/\d/g);
 
   return decs ? Math.min.apply(null, decs) : 1;
 };
 
-var jumpBack = function(currentWrapper, offset) {
+var jumpBack = function (currentWrapper, offset) {
   while (offset--) {
     currentWrapper = currentWrapper.parentElement;
   }
@@ -95,20 +89,18 @@ var jumpBack = function(currentWrapper, offset) {
   return currentWrapper;
 };
 
-var buildTOC = function(options) {
+var buildTOC = function (options) {
   var ret = document.createElement('ul');
   var wrapper = ret;
   var lastLi = null;
-  var selector = options.scope + ' ' + options.headings
+  var selector = options.scope + ' ' + options.headings;
   var headers = getHeaders(selector).filter(h => h.id);
 
-  headers.reduce(function(prev, curr, index) {
+  headers.reduce(function (prev, curr, index) {
     var currentLevel = getLevel(curr.tagName);
     var offset = currentLevel - prev;
 
-    wrapper = (offset > 0)
-      ? createList(lastLi, offset)
-      : jumpBack(wrapper, -offset * 2)
+    wrapper = offset > 0 ? createList(lastLi, offset) : jumpBack(wrapper, -offset * 2);
 
     wrapper = wrapper || ret;
 
@@ -124,46 +116,45 @@ var buildTOC = function(options) {
   return ret;
 };
 
-
 // Docsify plugin functions
 function plugin(hook, vm) {
   var userOptions = vm.config.toc;
 
   hook.mounted(function () {
-    var content = window.Docsify.dom.find(".content");
+    var content = window.Docsify.dom.find('.content');
     if (content) {
-      var nav = window.Docsify.dom.create("aside", "");
-      window.Docsify.dom.toggleClass(nav, "add", "nav");
+      var nav = window.Docsify.dom.create('aside', '');
+      window.Docsify.dom.toggleClass(nav, 'add', 'nav');
       window.Docsify.dom.before(content, nav);
     }
   });
 
   hook.doneEach(function () {
-    var nav = document.querySelectorAll('.nav')[0]
-    var t = Array.from(document.querySelectorAll('.nav'))
+    var nav = document.querySelectorAll('.nav')[0];
+    var t = Array.from(document.querySelectorAll('.nav'));
 
     if (!nav) {
       return;
     }
 
-  	const toc = buildTOC(userOptions);
+    const toc = buildTOC(userOptions);
 
     // Just unset it for now.
     if (!toc.innerHTML) {
-      nav.innerHTML = null
+      nav.innerHTML = null;
       return;
     }
 
     // Fix me in the future
-		var title = document.createElement('p');
-		title.innerHTML = userOptions.title;
-		title.setAttribute('class', 'title');
+    var title = document.createElement('p');
+    title.innerHTML = userOptions.title;
+    title.setAttribute('class', 'title');
 
-		var container = document.createElement('div');
-		container.setAttribute('class', 'page-toc');
+    var container = document.createElement('div');
+    container.setAttribute('class', 'page-toc');
 
-		container.appendChild(title);
-		container.appendChild(toc);
+    container.appendChild(title);
+    container.appendChild(toc);
 
     // Existing TOC
     var tocChild = document.querySelectorAll('.nav .page-toc');

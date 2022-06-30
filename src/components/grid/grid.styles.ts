@@ -78,10 +78,9 @@ export default css`
     align-items: baseline;
   }
 
-
   .lynk-grid__item {
     box-sizing: border-box;
-    padding: calc(var(--gutter, var(--lynk-spacing-base))/2);
+    padding: calc(var(--gutter, var(--lynk-spacing-base)) / 2);
   }
 
   .lynk-grid__item--span-1 {
@@ -143,5 +142,4 @@ export default css`
     flex-basis: 100%;
     max-width: 100%;
   }
-
 `;

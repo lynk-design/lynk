@@ -84,7 +84,9 @@ export default css`
   }
 
   /* Checked/indeterminate + focus */
-  .lynk-checkbox.lynk-checkbox--checked:not(.lynk-checkbox--disabled) .lynk-checkbox__input${focusVisibleSelector} ~ .lynk-checkbox__control,
+  .lynk-checkbox.lynk-checkbox--checked:not(.lynk-checkbox--disabled)
+    .lynk-checkbox__input${focusVisibleSelector}
+    ~ .lynk-checkbox__control,
   .lynk-checkbox.lynk-checkbox--indeterminate:not(.lynk-checkbox--disabled)
     .lynk-checkbox__input${focusVisibleSelector}
     ~ .lynk-checkbox__control {

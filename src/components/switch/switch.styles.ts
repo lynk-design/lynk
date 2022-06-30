@@ -69,7 +69,9 @@ export default css`
   }
 
   /* Focus */
-  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled) .lynk-switch__input${focusVisibleSelector} ~ .lynk-switch__control {
+  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled)
+    .lynk-switch__input${focusVisibleSelector}
+    ~ .lynk-switch__control {
     background-color: var(--lynk-color-neutral-400);
     border-color: var(--lynk-color-neutral-400);
   }
@@ -108,7 +110,9 @@ export default css`
   }
 
   /* Checked + focus */
-  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input${focusVisibleSelector} ~ .lynk-switch__control {
+  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input${focusVisibleSelector}
+    ~ .lynk-switch__control {
     background-color: var(--lynk-color-primary-600);
     border-color: var(--lynk-color-primary-600);
   }

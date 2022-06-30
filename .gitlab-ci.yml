@@ -36,4 +36,4 @@ deploy-job:
     - echo "Application successfully deployed."
   only:
     refs:
-      - main  
+      - main

@@ -38,7 +38,6 @@ Use the `--spacing` custom property to change the amount of space between the di
 </div>
 ```
 
-
 ### Vertical
 
 Add the `vertical` attribute to draw the divider in a vertical orientation. The divider will span the full height of its container. Vertical dividers work especially well inside of a flex container.

@@ -120,8 +120,8 @@ It's often helpful to have a button that works like a link. This is possible by 
 As expected, buttons can be given a custom width by setting the `width` attribute. This is useful for making buttons span the full width of their container on smaller screens.
 
 ```html preview
-<lynk-button color="default" size="small" style="width: 25%; margin-bottom: 1rem;">Small (25%)</lynk-button><br>
-<lynk-button color="default" size="medium" style="width: 50%; margin-bottom: 1rem;">Medium (50%)</lynk-button><br>
+<lynk-button color="default" size="small" style="width: 25%; margin-bottom: 1rem;">Small (25%)</lynk-button><br />
+<lynk-button color="default" size="medium" style="width: 50%; margin-bottom: 1rem;">Medium (50%)</lynk-button><br />
 <lynk-button color="default" size="large" style="width: 75%;">Large (75%)</lynk-button>
 ```
 
@@ -211,7 +211,6 @@ Use the `loading` attribute to make a button busy. The width will remain the sam
 <lynk-button color="warning" loading>Warning</lynk-button>
 <lynk-button color="danger" loading>Danger</lynk-button>
 ```
-
 
 ### Disabled
 

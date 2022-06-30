@@ -614,5 +614,4 @@ export default css`
   :host(.lynk-button-group__button[checked]) {
     z-index: 2;
   }
-
 `;

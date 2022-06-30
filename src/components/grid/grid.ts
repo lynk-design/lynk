@@ -32,7 +32,20 @@ export default class LynkGrid extends LitElement {
   @property({ reflect: true }) align: 'start' | 'center' | 'end' | 'stretch' | 'baseline' = 'start';
 
   /** The width of a singular grid item, requires item property being set */
-  @property({ type: String, reflect: true }) span: 'auto' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' = 'auto';
+  @property({ type: String, reflect: true }) span:
+    | 'auto'
+    | '1'
+    | '2'
+    | '3'
+    | '4'
+    | '5'
+    | '6'
+    | '7'
+    | '8'
+    | '9'
+    | '10'
+    | '11'
+    | '12' = 'auto';
 
   render() {
     const containerClass = this.container ? 'lynk-grid' : null;
@@ -45,10 +58,7 @@ export default class LynkGrid extends LitElement {
     const classList = [containerClass, directionClass, justifyClass, alignClass, itemClass, spanClass];
 
     return html`
-      <div
-        part="base"
-        class="${classList.join(' ')}"
-      >
+      <div part="base" class="${classList.join(' ')}">
         <slot></slot>
       </div>
     `;

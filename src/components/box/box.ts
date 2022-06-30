@@ -29,7 +29,7 @@ export default class LynkBox extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'lynk-box': true,
+          'lynk-box': true
         })}
       >
         <slot></slot>

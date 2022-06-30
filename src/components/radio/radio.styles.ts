@@ -62,7 +62,9 @@ export default css`
   }
 
   /* Focus */
-  .lynk-radio:not(.lynk-radio--checked):not(.lynk-radio--disabled) .lynk-radio__input${focusVisibleSelector} ~ .lynk-radio__control {
+  .lynk-radio:not(.lynk-radio--checked):not(.lynk-radio--disabled)
+    .lynk-radio__input${focusVisibleSelector}
+    ~ .lynk-radio__control {
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
   }
@@ -81,7 +83,9 @@ export default css`
   }
 
   /* Checked + focus */
-  .lynk-radio.lynk-radio--checked:not(.lynk-radio--disabled) .lynk-radio__input${focusVisibleSelector} ~ .lynk-radio__control {
+  .lynk-radio.lynk-radio--checked:not(.lynk-radio--disabled)
+    .lynk-radio__input${focusVisibleSelector}
+    ~ .lynk-radio__control {
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
   }
