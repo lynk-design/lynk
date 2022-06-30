@@ -14,10 +14,11 @@ build-job:
 
 deploy-job:
   stage: deploy
+  before_script:
+    - npm i -g firebase-tools
   script:
     - echo "Deploying docs..."
     - cp -r dist/. docs/dist
-    - npm i -g firebase-tools
     - firebase deploy --token $FIREBASE_TOKEN
     - echo "Lynk docs successfully deployed."
   only:
