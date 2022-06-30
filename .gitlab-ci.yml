@@ -46,4 +46,4 @@ deploy-job:
     - echo "Lynk docs successfully deployed."
   only:
     refs:
-      - tags
+      - main
