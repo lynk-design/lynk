@@ -1,4 +1,4 @@
-image: node:14.18.0-alpine
+image: node:14.18
 
 stages:
   - build
@@ -17,10 +17,10 @@ deploy-job:
   before_script:
     - npm i -g firebase-tools
   script:
-    - echo "Deploying docs..."
+    - echo "Deploying application..."
     - cp -r dist/. docs/dist
     - firebase deploy --token $FIREBASE_TOKEN
-    - echo "Lynk docs successfully deployed."
+    - echo "Application successfully deployed."
   only:
     refs:
-      - tags
+      - main
