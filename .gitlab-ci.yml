@@ -7,7 +7,6 @@ cache:
 
 stages:
   - build
-  - test
   - deploy
 
 build-job:
@@ -17,14 +16,6 @@ build-job:
     - yarn
     - yarn build
     - echo "Compile complete."
-
-test-job:
-  stage: test
-  script:
-    - echo "Testing the code..."
-    - npm i -g playwright
-    - yarn test
-    - echo "Testing complete."
 
 deploy-job:
   stage: deploy
