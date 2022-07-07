@@ -7,8 +7,8 @@ import { LocalizeController } from '../../utilities/localize';
 import styles from './tag.styles';
 
 /**
- * @since 2.0
- * @status stable
+ * @since 1.0
+ * @status experimental
  *
  * @dependency lynk-icon-button
  *
@@ -22,7 +22,7 @@ import styles from './tag.styles';
  * @csspart remove-button__base - The remove button's `base` part.
  */
 @customElement('lynk-tag')
-export default class SlTag extends LitElement {
+export default class LynkTag extends LitElement {
   static styles = styles;
   private readonly localize = new LocalizeController(this);
 
@@ -47,27 +47,27 @@ export default class SlTag extends LitElement {
       <span
         part="base"
         class=${classMap({
-          tag: true,
+          'lynk-tag': true,
 
           // Types
-          'tag--primary': this.variant === 'primary',
-          'tag--success': this.variant === 'success',
-          'tag--neutral': this.variant === 'neutral',
-          'tag--warning': this.variant === 'warning',
-          'tag--danger': this.variant === 'danger',
-          'tag--text': this.variant === 'text',
+          'lynk-tag--primary': this.variant === 'primary',
+          'lynk-tag--success': this.variant === 'success',
+          'lynk-tag--neutral': this.variant === 'neutral',
+          'lynk-tag--warning': this.variant === 'warning',
+          'lynk-tag--danger': this.variant === 'danger',
+          'lynk-tag--text': this.variant === 'text',
 
           // Sizes
-          'tag--small': this.size === 'small',
-          'tag--medium': this.size === 'medium',
-          'tag--large': this.size === 'large',
+          'lynk-tag--small': this.size === 'small',
+          'lynk-tag--medium': this.size === 'medium',
+          'lynk-tag--large': this.size === 'large',
 
           // Modifiers
-          'tag--pill': this.pill,
-          'tag--removable': this.removable
+          'lynk-tag--pill': this.pill,
+          'lynk-tag--removable': this.removable
         })}
       >
-        <span part="content" class="tag__content">
+        <span part="content" class="lynk-tag__content">
           <slot></slot>
         </span>
 
@@ -79,7 +79,7 @@ export default class SlTag extends LitElement {
                 name="x"
                 library="system"
                 label=${this.localize.term('remove')}
-                class="tag__remove"
+                class="lynk-tag__remove"
                 @click=${this.handleRemoveClick}
               ></lynk-icon-button>
             `
@@ -91,6 +91,6 @@ export default class SlTag extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'l-tag': SlTag;
+    'lynk-tag': LynkTag;
   }
 }

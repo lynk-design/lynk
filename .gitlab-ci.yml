@@ -3,7 +3,7 @@ image: node:14.18
 stages:
   - deploy
 
-deploy-job:
+deploy-docs:
   stage: deploy
   before_script:
     - npm i -g firebase-tools

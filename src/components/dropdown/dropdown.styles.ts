@@ -8,6 +8,10 @@ export default css`
     display: inline-block;
   }
 
+  :host([block]) {
+    display: block;
+  }
+
   .lynk-dropdown {
     position: relative;
   }

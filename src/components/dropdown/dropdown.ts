@@ -82,6 +82,9 @@ export default class LynkDropdown extends LitElement {
   /** The distance in pixels from which to offset the panel along its trigger. */
   @property({ type: Number }) skidding = 0;
 
+  /** Display the dropdown component as a block instead of inline-block. */
+  @property({ type: Boolean, reflect: true }) block = false;
+
   /**
    * Enable this option to prevent the panel from being clipped when the component is placed inside a container with
    * `overflow: auto|scroll`.

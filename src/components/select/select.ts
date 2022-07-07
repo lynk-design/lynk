@@ -21,7 +21,7 @@ import type { TemplateResult } from 'lit';
 
 /**
  * @since 1.0
- * @status experiemental
+ * @status experimental
  *
  * @dependency lynk-dropdown
  * @dependency lynk-icon
@@ -225,7 +225,7 @@ export default class LynkSelect extends LitElement {
     const lastItem = this.menuItems[this.menuItems.length - 1];
 
     // Ignore key presses on tags
-    if (target.tagName.toLowerCase() === 'l-tag') {
+    if (target.tagName.toLowerCase() === 'lynk-tag') {
       return;
     }
 
@@ -344,7 +344,7 @@ export default class LynkSelect extends LitElement {
     const clearButton = path.find((el: LynkIconButton) => {
       if (el instanceof HTMLElement) {
         const element = el as HTMLElement;
-        return element.classList.contains('tag__remove');
+        return element.classList.contains('lynk-tag__remove');
       }
       return false;
     });
@@ -383,9 +383,9 @@ export default class LynkSelect extends LitElement {
           <lynk-tag
             part="tag"
             exportparts="
-              base:tag__base,
-              content:tag__content,
-              remove-button:tag__remove-button
+              base:lynk-tag__base,
+              content:lynk-tag__content,
+              remove-button:lynk-tag__remove-button
             "
             variant="neutral"
             size=${this.size}
@@ -393,7 +393,7 @@ export default class LynkSelect extends LitElement {
             removable
             @click=${this.handleTagInteraction}
             @keydown=${this.handleTagInteraction}
-            @l-remove=${(event: CustomEvent) => {
+            @lynk-remove=${(event: CustomEvent) => {
               event.stopPropagation();
               if (!this.disabled) {
                 item.checked = false;
@@ -414,9 +414,9 @@ export default class LynkSelect extends LitElement {
           <lynk-tag
             part="tag"
             exportparts="
-              base:tag__base,
-              content:tag__content,
-              remove-button:tag__remove-button
+              base:lynk-tag__base,
+              content:lynk-tag__content,
+              remove-button:lynk-tag__remove-button
             "
             variant="neutral"
             size=${this.size}
@@ -568,11 +568,8 @@ export default class LynkSelect extends LitElement {
               />
             </div>
 
-            <lynk-menu part="menu" id="menu" class="lynk-select__menu" @l-select=${this.handleMenuSelect}>
-              <slot
-                @slotchange=${this.handleMenuSlotChange}
-                @lynk-label-change=${this.handleMenuItemLabelChange}
-              ></slot>
+            <lynk-menu part="menu" id="menu" class="lynk-select__menu" @lynk-select=${this.handleMenuSelect}>
+              <slot @slotchange=${this.handleMenuSlotChange} @lynk-label-change=${this.handleMenuItemLabelChange}></slot>
             </lynk-menu>
           </lynk-dropdown>
         </div>

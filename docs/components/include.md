@@ -12,12 +12,6 @@ The included content will be inserted into the `<lynk-include>` element's defaul
 <lynk-include src="https://shoelace.style/assets/examples/include.html"></lynk-include>
 ```
 
-```jsx react
-import { SlInclude } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlInclude src="https://shoelace.style/assets/examples/include.html" />;
-```
-
 ## Examples
 
 ### Listening for Events

@@ -40,7 +40,7 @@
   - [Menu](/components/menu)
   - [Menu Item](/components/menu-item)
   - [Menu Label](/components/menu-label)
-    <!-- - [Select](/components/select) -->
+  <!-- - [Select](/components/select) -->
     <!-- - [Textarea](/components/textarea) -->
   - [Radio](/components/radio)
   <!-- - [Radio Button](/components/radio-button) -->

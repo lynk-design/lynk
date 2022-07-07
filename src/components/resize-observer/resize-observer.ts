@@ -10,7 +10,7 @@ import styles from './resize-observer.styles';
  *
  * @slot - One or more elements to watch for resizing.
  *
- * @event {{ entries: ResizeObserverEntry[] }} l-resize - Emitted when the element is resized.
+ * @event {{ entries: ResizeObserverEntry[] }} lynk-resize - Emitted when the element is resized.
  */
 @customElement('lynk-resize-observer')
 export default class LynkResizeObserver extends LitElement {

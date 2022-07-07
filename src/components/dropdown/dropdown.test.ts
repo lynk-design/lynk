@@ -1,11 +1,11 @@
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import { sendKeys, sendMouse } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import type SlDropdown from './dropdown';
+import type LynkDropdown from './dropdown';
 
 describe('<lynk-dropdown>', () => {
   it('should be visible with the open attribute', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown open>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -21,7 +21,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should not be visible without the open attribute', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -37,7 +37,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should emit lynk-show and lynk-after-show when calling show()', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -64,7 +64,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should emit lynk-hide and lynk-after-hide when calling hide()', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown open>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -91,7 +91,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should emit lynk-show and lynk-after-show when setting open = true', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -118,7 +118,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should emit lynk-hide and lynk-after-hide when setting open = false', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown open>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -145,7 +145,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should still open on arrow navigation when no menu items', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu> </lynk-menu>
@@ -161,7 +161,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should open on arrow navigation', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -180,7 +180,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should close on escape key', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown open>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -199,7 +199,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should not open on arrow navigation when no menu exists', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <div>Some custom content</div>
@@ -215,7 +215,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should open on enter key', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -234,7 +234,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should open on enter key when no menu exists', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <div>Some custom content</div>
@@ -251,7 +251,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should hide when clicked outside container and initially open', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown open>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>
@@ -267,7 +267,7 @@ describe('<lynk-dropdown>', () => {
   });
 
   it('should hide when clicked outside container', async () => {
-    const el = await fixture<SlDropdown>(html`
+    const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
         <lynk-menu>

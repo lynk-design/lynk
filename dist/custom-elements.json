@@ -4,222 +4,6 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/components/accordion/accordion.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkAccordion",
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            },
-            {
-              "description": "The summary header.",
-              "name": "header"
-            },
-            {
-              "description": "The accordion summary.",
-              "name": "summary"
-            },
-            {
-              "description": "The expand/collapse summary icon.",
-              "name": "summary-icon"
-            },
-            {
-              "description": "The accordion content.",
-              "name": "content"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The accordions content.",
-              "name": ""
-            },
-            {
-              "description": "The accordions summary. Alternatively, you can use the summary prop.",
-              "name": "summary"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "accordion",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "header",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "body",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "attribute": "open",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "summary",
-              "type": {
-                "text": "string"
-              },
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "attribute": "summary"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the accordion so it can't be toggled.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "show",
-              "description": "Shows the accordion."
-            },
-            {
-              "kind": "method",
-              "name": "hide",
-              "description": "Hides the accordion"
-            },
-            {
-              "kind": "method",
-              "name": "handleSummaryClick"
-            },
-            {
-              "kind": "method",
-              "name": "handleSummaryKeyDown",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleOpenChange"
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the accordion opens.",
-              "name": "lynk-show",
-              "reactName": "onLynkShow"
-            },
-            {
-              "description": "Emitted after the accordion opens and all animations are complete.",
-              "name": "lynk-after-show",
-              "reactName": "onLynkAfterShow"
-            },
-            {
-              "description": "Emitted when the accordion closes.",
-              "name": "lynk-hide",
-              "reactName": "onLynkHide"
-            },
-            {
-              "description": "Emitted after the accordion closes and all animations are complete.",
-              "name": "lynk-after-hide",
-              "reactName": "onLynkAfterHide"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "fieldName": "open"
-            },
-            {
-              "name": "summary",
-              "type": {
-                "text": "string"
-              },
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "fieldName": "summary"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the accordion so it can't be toggled.",
-              "fieldName": "disabled"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "dependencies": [
-            "lynk-icon"
-          ],
-          "animations": [
-            {
-              "name": "accordion.show",
-              "description": "The animation to use when showing accordion. You can use `height: auto` with this animation."
-            },
-            {
-              "name": "accordion.hide",
-              "description": "The animation to use when hiding accordion. You can use `height: auto` with this animation."
-            }
-          ],
-          "tagName": "lynk-accordion",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkAccordion",
-            "module": "src/components/accordion/accordion.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-accordion",
-          "declaration": {
-            "name": "LynkAccordion",
-            "module": "src/components/accordion/accordion.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/alert/alert.ts",
       "declarations": [
         {
@@ -230,6 +14,10 @@
             {
               "description": "The alert's box shadow.",
               "name": "--box-shadow"
+            },
+            {
+              "description": "The top and bottom padding of the message. Use any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "-[--padding=--lynk-spacing-large]"
             }
           ],
           "cssParts": [
@@ -851,6 +639,222 @@
           "declaration": {
             "name": "getEasingNames",
             "module": "src/components/animation/animations.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/accordion/accordion.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkAccordion",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The summary header.",
+              "name": "header"
+            },
+            {
+              "description": "The accordion summary.",
+              "name": "summary"
+            },
+            {
+              "description": "The expand/collapse summary icon.",
+              "name": "summary-icon"
+            },
+            {
+              "description": "The accordion content.",
+              "name": "content"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The accordions content.",
+              "name": ""
+            },
+            {
+              "description": "The accordions summary. Alternatively, you can use the summary prop.",
+              "name": "summary"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "accordion",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "header",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "body",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "summary",
+              "type": {
+                "text": "string"
+              },
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "attribute": "summary"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the accordion so it can't be toggled.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the accordion."
+            },
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the accordion"
+            },
+            {
+              "kind": "method",
+              "name": "handleSummaryClick"
+            },
+            {
+              "kind": "method",
+              "name": "handleSummaryKeyDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenChange"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the accordion opens.",
+              "name": "lynk-show",
+              "reactName": "onLynkShow"
+            },
+            {
+              "description": "Emitted after the accordion opens and all animations are complete.",
+              "name": "lynk-after-show",
+              "reactName": "onLynkAfterShow"
+            },
+            {
+              "description": "Emitted when the accordion closes.",
+              "name": "lynk-hide",
+              "reactName": "onLynkHide"
+            },
+            {
+              "description": "Emitted after the accordion closes and all animations are complete.",
+              "name": "lynk-after-hide",
+              "reactName": "onLynkAfterHide"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "fieldName": "open"
+            },
+            {
+              "name": "summary",
+              "type": {
+                "text": "string"
+              },
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "fieldName": "summary"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the accordion so it can't be toggled.",
+              "fieldName": "disabled"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "dependencies": [
+            "lynk-icon"
+          ],
+          "animations": [
+            {
+              "name": "accordion.show",
+              "description": "The animation to use when showing accordion. You can use `height: auto` with this animation."
+            },
+            {
+              "name": "accordion.hide",
+              "description": "The animation to use when hiding accordion. You can use `height: auto` with this animation."
+            }
+          ],
+          "tagName": "lynk-accordion",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkAccordion",
+            "module": "src/components/accordion/accordion.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-accordion",
+          "declaration": {
+            "name": "LynkAccordion",
+            "module": "src/components/accordion/accordion.ts"
           }
         }
       ]
@@ -2053,415 +2057,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/dropdown/dropdown.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkDropdown",
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            },
-            {
-              "description": "The container that wraps the trigger.",
-              "name": "trigger"
-            },
-            {
-              "description": "The panel that gets shown when the dropdown is open.",
-              "name": "panel"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The dropdown's content.",
-              "name": ""
-            },
-            {
-              "description": "The dropdown's trigger, usually a `<lynk-button>` element.",
-              "name": "trigger"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "trigger",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "panel",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "positioner",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "positionerCleanup",
-              "type": {
-                "text": "ReturnType<typeof autoUpdate> | undefined"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the dropdown is open. You can use this in lieu of the show/hide methods.",
-              "attribute": "open",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "placement",
-              "type": {
-                "text": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
-              },
-              "default": "'bottom-start'",
-              "description": "The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
-              "attribute": "placement",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the dropdown so the panel will not open.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "stayOpenOnSelect",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for\ncontrols that allow multiple selections.",
-              "attribute": "stay-open-on-select",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "containingElement",
-              "type": {
-                "text": "HTMLElement | undefined"
-              },
-              "description": "The dropdown will close when the user interacts outside of this element (e.g. clicking)."
-            },
-            {
-              "kind": "field",
-              "name": "distance",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The distance in pixels from which to offset the panel away from its trigger.",
-              "attribute": "distance"
-            },
-            {
-              "kind": "field",
-              "name": "skidding",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The distance in pixels from which to offset the panel along its trigger.",
-              "attribute": "skidding"
-            },
-            {
-              "kind": "field",
-              "name": "hoist",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
-              "attribute": "hoist"
-            },
-            {
-              "kind": "method",
-              "name": "focusOnTrigger"
-            },
-            {
-              "kind": "method",
-              "name": "getMenu"
-            },
-            {
-              "kind": "method",
-              "name": "handleDocumentKeyDown",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleDocumentMouseDown",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "MouseEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleMenuItemActivate",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handlePanelSelect",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handlePopoverOptionsChange"
-            },
-            {
-              "kind": "method",
-              "name": "handleTriggerClick"
-            },
-            {
-              "kind": "method",
-              "name": "handleTriggerKeyDown",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleTriggerKeyUp",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleTriggerSlotChange"
-            },
-            {
-              "kind": "method",
-              "name": "updateAccessibleTrigger"
-            },
-            {
-              "kind": "method",
-              "name": "show",
-              "description": "Shows the dropdown panel."
-            },
-            {
-              "kind": "method",
-              "name": "hide",
-              "description": "Hides the dropdown panel"
-            },
-            {
-              "kind": "method",
-              "name": "reposition",
-              "description": "Instructs the dropdown menu to reposition. Useful when the position or size of the trigger changes when the menu\nis activated."
-            },
-            {
-              "kind": "method",
-              "name": "addOpenListeners"
-            },
-            {
-              "kind": "method",
-              "name": "removeOpenListeners"
-            },
-            {
-              "kind": "method",
-              "name": "handleOpenChange"
-            },
-            {
-              "kind": "method",
-              "name": "startPositioner",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "updatePositioner",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "stopPositioner",
-              "privacy": "private"
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the dropdown opens.",
-              "name": "lynk-show",
-              "reactName": "onLynkShow"
-            },
-            {
-              "description": "Emitted after the dropdown opens and all animations are complete.",
-              "name": "lynk-after-show",
-              "reactName": "onLynkAfterShow"
-            },
-            {
-              "description": "Emitted when the dropdown closes.",
-              "name": "lynk-hide",
-              "reactName": "onLynkHide"
-            },
-            {
-              "description": "Emitted after the dropdown closes and all animations are complete.",
-              "name": "lynk-after-hide",
-              "reactName": "onLynkAfterHide"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the dropdown is open. You can use this in lieu of the show/hide methods.",
-              "fieldName": "open"
-            },
-            {
-              "name": "placement",
-              "type": {
-                "text": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
-              },
-              "default": "'bottom-start'",
-              "description": "The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
-              "fieldName": "placement"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the dropdown so the panel will not open.",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "stay-open-on-select",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for\ncontrols that allow multiple selections.",
-              "fieldName": "stayOpenOnSelect"
-            },
-            {
-              "name": "distance",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The distance in pixels from which to offset the panel away from its trigger.",
-              "fieldName": "distance"
-            },
-            {
-              "name": "skidding",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The distance in pixels from which to offset the panel along its trigger.",
-              "fieldName": "skidding"
-            },
-            {
-              "name": "hoist",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
-              "fieldName": "hoist"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "animations": [
-            {
-              "name": "dropdown.show",
-              "description": "The animation to use when showing the dropdown."
-            },
-            {
-              "name": "dropdown.hide",
-              "description": "The animation to use when hiding the dropdown."
-            }
-          ],
-          "tagName": "lynk-dropdown",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkDropdown",
-            "module": "src/components/dropdown/dropdown.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-dropdown",
-          "declaration": {
-            "name": "LynkDropdown",
-            "module": "src/components/dropdown/dropdown.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/dialog/dialog.ts",
       "declarations": [
         {
@@ -2854,6 +2449,435 @@
           "declaration": {
             "name": "LynkDivider",
             "module": "src/components/divider/divider.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dropdown/dropdown.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkDropdown",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The container that wraps the trigger.",
+              "name": "trigger"
+            },
+            {
+              "description": "The panel that gets shown when the dropdown is open.",
+              "name": "panel"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The dropdown's content.",
+              "name": ""
+            },
+            {
+              "description": "The dropdown's trigger, usually a `<lynk-button>` element.",
+              "name": "trigger"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "trigger",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "panel",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "positioner",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "positionerCleanup",
+              "type": {
+                "text": "ReturnType<typeof autoUpdate> | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the dropdown is open. You can use this in lieu of the show/hide methods.",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "placement",
+              "type": {
+                "text": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+              },
+              "default": "'bottom-start'",
+              "description": "The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
+              "attribute": "placement",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the dropdown so the panel will not open.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "stayOpenOnSelect",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for\ncontrols that allow multiple selections.",
+              "attribute": "stay-open-on-select",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "containingElement",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "description": "The dropdown will close when the user interacts outside of this element (e.g. clicking)."
+            },
+            {
+              "kind": "field",
+              "name": "distance",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The distance in pixels from which to offset the panel away from its trigger.",
+              "attribute": "distance"
+            },
+            {
+              "kind": "field",
+              "name": "skidding",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The distance in pixels from which to offset the panel along its trigger.",
+              "attribute": "skidding"
+            },
+            {
+              "kind": "field",
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Display the dropdown component as a block instead of inline-block.",
+              "attribute": "block",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "hoist",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
+              "attribute": "hoist"
+            },
+            {
+              "kind": "method",
+              "name": "focusOnTrigger"
+            },
+            {
+              "kind": "method",
+              "name": "getMenu"
+            },
+            {
+              "kind": "method",
+              "name": "handleDocumentKeyDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleDocumentMouseDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleMenuItemActivate",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handlePanelSelect",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handlePopoverOptionsChange"
+            },
+            {
+              "kind": "method",
+              "name": "handleTriggerClick"
+            },
+            {
+              "kind": "method",
+              "name": "handleTriggerKeyDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleTriggerKeyUp",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleTriggerSlotChange"
+            },
+            {
+              "kind": "method",
+              "name": "updateAccessibleTrigger"
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the dropdown panel."
+            },
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the dropdown panel"
+            },
+            {
+              "kind": "method",
+              "name": "reposition",
+              "description": "Instructs the dropdown menu to reposition. Useful when the position or size of the trigger changes when the menu\nis activated."
+            },
+            {
+              "kind": "method",
+              "name": "addOpenListeners"
+            },
+            {
+              "kind": "method",
+              "name": "removeOpenListeners"
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenChange"
+            },
+            {
+              "kind": "method",
+              "name": "startPositioner",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updatePositioner",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "stopPositioner",
+              "privacy": "private"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the dropdown opens.",
+              "name": "lynk-show",
+              "reactName": "onLynkShow"
+            },
+            {
+              "description": "Emitted after the dropdown opens and all animations are complete.",
+              "name": "lynk-after-show",
+              "reactName": "onLynkAfterShow"
+            },
+            {
+              "description": "Emitted when the dropdown closes.",
+              "name": "lynk-hide",
+              "reactName": "onLynkHide"
+            },
+            {
+              "description": "Emitted after the dropdown closes and all animations are complete.",
+              "name": "lynk-after-hide",
+              "reactName": "onLynkAfterHide"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the dropdown is open. You can use this in lieu of the show/hide methods.",
+              "fieldName": "open"
+            },
+            {
+              "name": "placement",
+              "type": {
+                "text": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+              },
+              "default": "'bottom-start'",
+              "description": "The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
+              "fieldName": "placement"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the dropdown so the panel will not open.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "stay-open-on-select",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for\ncontrols that allow multiple selections.",
+              "fieldName": "stayOpenOnSelect"
+            },
+            {
+              "name": "distance",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The distance in pixels from which to offset the panel away from its trigger.",
+              "fieldName": "distance"
+            },
+            {
+              "name": "skidding",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The distance in pixels from which to offset the panel along its trigger.",
+              "fieldName": "skidding"
+            },
+            {
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Display the dropdown component as a block instead of inline-block.",
+              "fieldName": "block"
+            },
+            {
+              "name": "hoist",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
+              "fieldName": "hoist"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "animations": [
+            {
+              "name": "dropdown.show",
+              "description": "The animation to use when showing the dropdown."
+            },
+            {
+              "name": "dropdown.hide",
+              "description": "The animation to use when hiding the dropdown."
+            }
+          ],
+          "tagName": "lynk-dropdown",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkDropdown",
+            "module": "src/components/dropdown/dropdown.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-dropdown",
+          "declaration": {
+            "name": "LynkDropdown",
+            "module": "src/components/dropdown/dropdown.ts"
           }
         }
       ]
@@ -3548,9 +3572,8 @@
               "kind": "field",
               "name": "direction",
               "type": {
-                "text": "'row' | 'row-reverse' | 'column' | 'column-revers'"
+                "text": "'row' | 'row-reverse' | 'column' | 'column-revers' | undefined"
               },
-              "default": "'row'",
               "description": "The flow direction of grid items, requries container property being set",
               "attribute": "direction",
               "reflects": true
@@ -3559,9 +3582,8 @@
               "kind": "field",
               "name": "justify",
               "type": {
-                "text": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'"
+                "text": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
               },
-              "default": "'start'",
               "description": "How to justify grid items, requires container property",
               "attribute": "justify",
               "reflects": true
@@ -3570,9 +3592,8 @@
               "kind": "field",
               "name": "align",
               "type": {
-                "text": "'start' | 'center' | 'end' | 'stretch' | 'baseline'"
+                "text": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
               },
-              "default": "'start'",
               "description": "Hot to align grid items to eachother, requires container property",
               "attribute": "align",
               "reflects": true
@@ -3581,12 +3602,25 @@
               "kind": "field",
               "name": "span",
               "type": {
-                "text": "'auto' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12'"
+                "text": "string | undefined"
               },
-              "default": "'auto'",
-              "description": "The width of a singular grid item, requires item property being set",
+              "description": "The width of a grid item. Requires item property  being set. This can be a single string or an array.",
               "attribute": "span",
               "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "gap",
+              "type": {
+                "text": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
+              },
+              "default": "'base'",
+              "attribute": "gap",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "getBreakpointClasses"
             }
           ],
           "attributes": [
@@ -3611,38 +3645,42 @@
             {
               "name": "direction",
               "type": {
-                "text": "'row' | 'row-reverse' | 'column' | 'column-revers'"
+                "text": "'row' | 'row-reverse' | 'column' | 'column-revers' | undefined"
               },
-              "default": "'row'",
               "description": "The flow direction of grid items, requries container property being set",
               "fieldName": "direction"
             },
             {
               "name": "justify",
               "type": {
-                "text": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'"
+                "text": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
               },
-              "default": "'start'",
               "description": "How to justify grid items, requires container property",
               "fieldName": "justify"
             },
             {
               "name": "align",
               "type": {
-                "text": "'start' | 'center' | 'end' | 'stretch' | 'baseline'"
+                "text": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
               },
-              "default": "'start'",
               "description": "Hot to align grid items to eachother, requires container property",
               "fieldName": "align"
             },
             {
               "name": "span",
               "type": {
-                "text": "'auto' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12'"
+                "text": "string | undefined"
               },
-              "default": "'auto'",
-              "description": "The width of a singular grid item, requires item property being set",
+              "description": "The width of a grid item. Requires item property  being set. This can be a single string or an array.",
               "fieldName": "span"
+            },
+            {
+              "name": "gap",
+              "type": {
+                "text": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
+              },
+              "default": "'base'",
+              "fieldName": "gap"
             }
           ],
           "superclass": {
@@ -4295,7 +4333,7 @@
         {
           "kind": "class",
           "description": "",
-          "name": "SlInclude",
+          "name": "LynkInclude",
           "members": [
             {
               "kind": "field",
@@ -4346,16 +4384,16 @@
           "events": [
             {
               "description": "Emitted when the included file is loaded.",
-              "name": "sl-load",
-              "reactName": "onSlLoad"
+              "name": "lynk-load",
+              "reactName": "onLynkLoad"
             },
             {
               "type": {
                 "text": "{ status: number }"
               },
               "description": "Emitted when the included file fails to load due to an error.",
-              "name": "sl-error",
-              "reactName": "onSlError"
+              "name": "lynk-error",
+              "reactName": "onLynkError"
             }
           ],
           "attributes": [
@@ -4390,9 +4428,9 @@
             "name": "LitElement",
             "package": "lit"
           },
-          "since": "2.0",
+          "since": "1.0",
           "status": "stable",
-          "tagName": "sl-include",
+          "tagName": "lynk-include",
           "customElement": true
         }
       ],
@@ -4401,15 +4439,15 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "SlInclude",
+            "name": "LynkInclude",
             "module": "src/components/include/include.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "sl-include",
+          "name": "lynk-include",
           "declaration": {
-            "name": "SlInclude",
+            "name": "LynkInclude",
             "module": "src/components/include/include.ts"
           }
         }
@@ -7215,8 +7253,8 @@
                 "text": "{ entries: ResizeObserverEntry[] }"
               },
               "description": "Emitted when the element is resized.",
-              "name": "l-resize",
-              "reactName": "onLResize"
+              "name": "lynk-resize",
+              "reactName": "onLynkResize"
             }
           ],
           "attributes": [
@@ -8029,7 +8067,7 @@
             "package": "lit"
           },
           "since": "1.0",
-          "status": "experiemental",
+          "status": "experimental",
           "dependencies": [
             "lynk-dropdown",
             "lynk-icon",
@@ -9148,7 +9186,7 @@
         {
           "kind": "class",
           "description": "",
-          "name": "SlTag",
+          "name": "LynkTag",
           "cssParts": [
             {
               "description": "The component's internal wrapper.",
@@ -9277,8 +9315,8 @@
             "name": "LitElement",
             "package": "lit"
           },
-          "since": "2.0",
-          "status": "stable",
+          "since": "1.0",
+          "status": "experimental",
           "dependencies": [
             "lynk-icon-button"
           ],
@@ -9291,7 +9329,7 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "SlTag",
+            "name": "LynkTag",
             "module": "src/components/tag/tag.ts"
           }
         },
@@ -9299,7 +9337,7 @@
           "kind": "custom-element-definition",
           "name": "lynk-tag",
           "declaration": {
-            "name": "SlTag",
+            "name": "LynkTag",
             "module": "src/components/tag/tag.ts"
           }
         }
@@ -10428,7 +10466,7 @@
   "package": {
     "name": "@lynk-design/lynk",
     "description": "A library of web components and styles for building web applications with the Edgio Streaming design language.",
-    "version": "1.0.0-beta.2",
+    "version": "1.0.0-beta.9",
     "author": "Harley Jessop",
     "homepage": "https://lynk-design.web.app/",
     "license": "MIT"

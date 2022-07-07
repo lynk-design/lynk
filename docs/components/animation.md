@@ -24,43 +24,7 @@ To animate an element, wrap it in `<lynk-animation>` and set an animation `name`
   }
 </style>
 ```
-
-```jsx react
-import { SlAnimation } from '@shoelace-style/shoelace/dist/react';
-
-const css = `
-  .animation-overview .box {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: var(--lynk-color-primary-600);
-    margin: 1.5rem;
-  }
-`;
-
-const App = () => (
-  <>
-    <div class="animation-overview">
-      <SlAnimation name="bounce" duration={2000} play>
-        <div class="box" />
-      </SlAnimation>
-      <SlAnimation name="jello" duration={2000} play>
-        <div class="box" />
-      </SlAnimation>
-      <SlAnimation name="heartBeat" duration={2000} play>
-        <div class="box" />
-      </SlAnimation>
-      <SlAnimation name="flip" duration={2000} play>
-        <div class="box" />
-      </SlAnimation>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-
-?> The animation will only be applied to the first child element found in `<lynk-animation>`.
+<lynk-alert open>The animation will only be applied to the first child element found in `<lynk-animation>`.</lynk-alert>
 
 ## Examples
 
@@ -168,56 +132,6 @@ Use an [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/
 </style>
 ```
 
-```jsx react
-import { useEffect, useRef, useState } from 'react';
-import { SlAnimation } from '@shoelace-style/shoelace/dist/react';
-
-const css = `
-  .animation-scroll {
-    height: calc(100vh + 100px);
-  }
-
-  .animation-scroll .box {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: var(--lynk-color-primary-600);
-  }
-`;
-
-const App = () => {
-  const animation = useRef(null);
-  const box = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        animation.current.play = true;
-      } else {
-        animation.current.play = false;
-        animation.current.currentTime = 0;
-      }
-    });
-
-    if (box.current) {
-      observer.observe(box.current);
-    }
-  }, [box]);
-
-  return (
-    <>
-      <div class="animation-scroll">
-        <SlAnimation ref={animation} name="jackInTheBox" duration={2000} iterations={1}>
-          <div ref={box} class="box" />
-        </SlAnimation>
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-
 ### Custom Keyframe Formats
 
 Supply your own [keyframe formats](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats) to build custom animations.
@@ -258,50 +172,6 @@ Supply your own [keyframe formats](https://developer.mozilla.org/en-US/docs/Web/
 </style>
 ```
 
-```jsx react
-import { SlAnimation } from '@shoelace-style/shoelace/dist/react';
-
-const css = `
-  .animation-keyframes .box {
-    width: 100px;
-    height: 100px;
-    background-color: var(--lynk-color-primary-600);
-  }
-`;
-
-const App = () => (
-  <>
-    <div class="animation-keyframes">
-      <SlAnimation
-        easing="ease-in-out"
-        duration={2000}
-        play
-        keyframes={[
-          {
-            offset: 0,
-            easing: 'cubic-bezier(0.250, 0.460, 0.450, 0.940)',
-            fillMode: 'both',
-            transformOrigin: 'center center',
-            transform: 'rotate(0)'
-          },
-          {
-            offset: 1,
-            easing: 'cubic-bezier(0.250, 0.460, 0.450, 0.940)',
-            fillMode: 'both',
-            transformOrigin: 'center center',
-            transform: 'rotate(90deg)'
-          }
-        ]}
-      >
-        <div class="box" />
-      </SlAnimation>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-
 ### Playing Animations on Demand
 
 Animations won't play until you apply the `play` attribute. You can omit it initially, then apply it on demand such as after a user interaction. In this example, the button will animate once every time the button is clicked.
@@ -322,25 +192,6 @@ Animations won't play until you apply the `play` attribute. You can omit it init
     animation.play = true;
   });
 </script>
-```
-
-```jsx react
-import { useState } from 'react';
-import { SlAnimation, SlButton } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => {
-  const [play, setPlay] = useState(false);
-
-  return (
-    <div class="animation-form">
-      <SlAnimation name="rubberBand" duration={1000} iterations={1} play={play} onSlFinish={() => setPlay(false)}>
-        <SlButton variant="primary" onClick={() => setPlay(true)}>
-          Click me
-        </SlButton>
-      </SlAnimation>
-    </div>
-  );
-};
 ```
 
 [component-metadata:lynk-animation]

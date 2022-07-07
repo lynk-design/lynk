@@ -6,14 +6,14 @@ import styles from './include.styles';
 import { requestInclude } from './request';
 
 /**
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
- * @event sl-load - Emitted when the included file is loaded.
- * @event {{ status: number }} sl-error - Emitted when the included file fails to load due to an error.
+ * @event lynk-load - Emitted when the included file is loaded.
+ * @event {{ status: number }} lynk-error - Emitted when the included file fails to load due to an error.
  */
-@customElement('sl-include')
-export default class SlInclude extends LitElement {
+@customElement('lynk-include')
+export default class LynkInclude extends LitElement {
   static styles = styles;
 
   /**
@@ -52,7 +52,7 @@ export default class SlInclude extends LitElement {
       }
 
       if (!file.ok) {
-        emit(this, 'sl-error', { detail: { status: file.status } });
+        emit(this, 'lynk-error', { detail: { status: file.status } });
         return;
       }
 
@@ -62,9 +62,9 @@ export default class SlInclude extends LitElement {
         [...this.querySelectorAll('script')].forEach(script => this.executeScript(script));
       }
 
-      emit(this, 'sl-load');
+      emit(this, 'lynk-load');
     } catch {
-      emit(this, 'sl-error', { detail: { status: -1 } });
+      emit(this, 'lynk-error', { detail: { status: -1 } });
     }
   }
 
@@ -75,6 +75,6 @@ export default class SlInclude extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sl-include': SlInclude;
+    'lynk-include': LynkInclude;
   }
 }

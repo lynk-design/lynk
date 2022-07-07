@@ -14,4 +14,9 @@ export default css`
   [hidden] {
     display: none !important;
   }
+
+  [disabled] {
+    opacity: 0.4 !important;
+    pointer-events: none !important;
+  }
 `;

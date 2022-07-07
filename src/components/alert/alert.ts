@@ -9,7 +9,7 @@ import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import styles from './alert.styles';
 
-const toastStack = Object.assign(document.createElement('div'), { className: 'l-toast-stack' });
+const toastStack = Object.assign(document.createElement('div'), { className: 'lynk-toast-stack' });
 
 /**
  * @since 1.0
@@ -31,6 +31,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'l-
  * @csspart close-button - The close button.
  *
  * @cssproperty --box-shadow - The alert's box shadow.
+ * @cssproperty -[--padding=--lynk-spacing-large] - The top and bottom padding of the message. Use any spacing token (--lynk-spacing-large) or a custom value.
  *
  * @animation alert.show - The animation to use when showing the alert.
  * @animation alert.hide - The animation to use when hiding the alert.

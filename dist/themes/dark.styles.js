@@ -287,6 +287,18 @@ export default css`
     --lynk-color-black: hsl(240, 5.9%, 11%);
     --lynk-color-white: hsl(0, 0%, 100%);
 
+    --lynk-breakpoint-sm: 600px;
+    --lynk-breakpoint-phone: var(--lynk-breakpoint-sm);
+
+    --lynk-breakpoint-md: 960px;
+    --lynk-breakpoint-tablet: var(--lynk-breakpoint-md);
+
+    --lynk-breakpoint-lg: 1195px;
+    --lynk-breakpoint-desktop: var(--lynk-breakpoint-lg);
+
+    --lynk-breakpoint-xl: 1440px;
+    --lynk-breakpoint-widescreen: var(--lynk-breakpoint-xl);
+
     --lynk-border-radius-small: 0.1875rem;
     --lynk-border-radius-medium: 0.25rem;
     --lynk-border-radius-large: 0.5rem;

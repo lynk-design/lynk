@@ -82,7 +82,7 @@ export default css`
 
   .lynk-alert__message {
     flex: 1 1 auto;
-    padding: var(--lynk-spacing-large);
+    padding: var(--padding, var(--lynk-spacing-base)) var(--lynk-spacing-large);
     overflow: hidden;
   }
 

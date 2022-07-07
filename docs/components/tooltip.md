@@ -129,8 +129,8 @@ Tooltips can be controller programmatically by setting the `trigger` attribute t
 ```html preview
 <lynk-button style="margin-right: 4rem;">Toggle Manually</lynk-button>
 
-<lynk-tooltip content="This is an avatar" trigger="manual" class="manual-tooltip">
-  <lynk-avatar label="User"></lynk-avatar>
+<lynk-tooltip content="This is an icon!" trigger="manual" class="manual-tooltip">
+  <lynk-icon name="person-circle"></lynk-icon>
 </lynk-tooltip>
 
 <script>

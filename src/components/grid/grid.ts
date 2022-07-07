@@ -23,29 +23,22 @@ export default class LynkGrid extends LitElement {
   @property({ type: Boolean, reflect: true }) item = false;
 
   /** The flow direction of grid items, requries container property being set */
-  @property({ reflect: true }) direction: 'row' | 'row-reverse' | 'column' | 'column-revers' = 'row';
+  @property({ reflect: true }) direction?: 'row' | 'row-reverse' | 'column' | 'column-revers';
 
   /** How to justify grid items, requires container property */
-  @property({ reflect: true }) justify: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' = 'start';
+  @property({ reflect: true }) justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
 
   /** Hot to align grid items to eachother, requires container property */
-  @property({ reflect: true }) align: 'start' | 'center' | 'end' | 'stretch' | 'baseline' = 'start';
+  @property({ reflect: true }) align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
 
-  /** The width of a singular grid item, requires item property being set */
-  @property({ type: String, reflect: true }) span:
-    | 'auto'
-    | '1'
-    | '2'
-    | '3'
-    | '4'
-    | '5'
-    | '6'
-    | '7'
-    | '8'
-    | '9'
-    | '10'
-    | '11'
-    | '12' = 'auto';
+  /** The width of a grid item. Requires item property  being set. This can be a single string or an array. */
+  @property({ reflect: true }) span? : string;
+
+  @property({ reflect: true }) gap: '0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large' = 'base';
+
+  getBreakpointClasses() {
+    return this.span ? this.span.split(',').map(key => `span--${key.trim()}`).join(' ') : '';
+  };
 
   render() {
     const containerClass = this.container ? 'lynk-grid' : null;
@@ -53,12 +46,12 @@ export default class LynkGrid extends LitElement {
     const justifyClass = this.justify && this.container ? 'lynk-grid--justify-' + this.justify : null;
     const alignClass = this.align && this.container ? 'lynk-grid--align-' + this.align : null;
     const itemClass = this.item ? 'lynk-grid__item' : null;
-    const spanClass = this.span && this.item ? 'lynk-grid__item--span-' + this.span : null;
+    const spanClass = this.span && this.item ? this.getBreakpointClasses() : null;
 
     const classList = [containerClass, directionClass, justifyClass, alignClass, itemClass, spanClass];
 
     return html`
-      <div part="base" class="${classList.join(' ')}">
+      <div part="base" class="${classList.join(' ')}" style="--gap: var(--lynk-spacing-${this.gap})">
         <slot></slot>
       </div>
     `;
