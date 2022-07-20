@@ -1,7 +1,4 @@
 import {
-  accordion_styles_default
-} from "./chunk.QKGGN2MJ.js";
-import {
   animateTo,
   shimKeyframesHeightAuto,
   stopAnimations
@@ -10,6 +7,9 @@ import {
   getAnimation,
   setDefaultAnimation
 } from "./chunk.5FIVCLSV.js";
+import {
+  accordion_styles_default
+} from "./chunk.QKGGN2MJ.js";
 import {
   o
 } from "./chunk.AY3TXN3C.js";

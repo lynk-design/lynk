@@ -22,7 +22,7 @@ Refer to a component's documentation for a complete list of its properties.
 
 ## Events
 
-You can listen for standard events such as `click`, `mouseover`, etc. as you normally would. In addition, some components emit custom events. These work the same way as standard events, but are prefixed with `lynk-` to prevent collisions with standard events and other libraries.
+You can listen for standard events such as `click`, `mouseover`, etc. as you normally would. In addition, some components emit custom events. These work the same way as standard events, but use a custom naming convention by prefixing `on:` `before:` or `after:` to prevent collisions with standard events and other libraries.
 
 ```html
 <lynk-checkbox>Check me</lynk-checkbox>

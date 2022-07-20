@@ -1,7 +1,4 @@
 import {
-  dialog_styles_default
-} from "./chunk.YBG2WRR6.js";
-import {
   getTabbableBoundary
 } from "./chunk.SCUNOITN.js";
 import {
@@ -14,6 +11,9 @@ import {
 import {
   HasSlotController
 } from "./chunk.7DIJ2SI4.js";
+import {
+  dialog_styles_default
+} from "./chunk.YBG2WRR6.js";
 import {
   animateTo,
   stopAnimations

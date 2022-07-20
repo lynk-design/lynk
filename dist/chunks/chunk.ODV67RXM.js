@@ -1,9 +1,9 @@
 import {
-  badge_styles_default
-} from "./chunk.6HJCYV2B.js";
-import {
   o
 } from "./chunk.AY3TXN3C.js";
+import {
+  badge_styles_default
+} from "./chunk.6HJCYV2B.js";
 import {
   e,
   n
