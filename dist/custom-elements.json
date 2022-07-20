@@ -466,208 +466,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/box/box.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkBox",
-          "cssProperties": [
-            {
-              "description": "Custom text align (left, center, right).",
-              "name": "--align",
-              "default": "left"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--background",
-              "default": "transparent"
-            },
-            {
-              "description": "<border-style> <border-width> <border-color>.",
-              "name": "--border"
-            },
-            {
-              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
-              "name": "--border-radius"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--color",
-              "default": "inherit"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--margin",
-              "default": "0"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--padding",
-              "default": "0"
-            },
-            {
-              "description": "Any elevation shadow token (--lynk-shadow-large);",
-              "name": "--shadow"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The default slot.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-box",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-box",
-          "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/badge/badge.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkBadge",
-          "cssParts": [
-            {
-              "description": "| .lynk-badge - The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The badge's content.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "attribute": "type",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "attribute": "pill",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "attribute": "pulse",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "fieldName": "type"
-            },
-            {
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "fieldName": "pill"
-            },
-            {
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "fieldName": "pulse"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-badge",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-badge",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/animation/animation.ts",
       "declarations": [
         {
@@ -1057,6 +855,208 @@
           "declaration": {
             "name": "getEasingNames",
             "module": "src/components/animation/animations.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/badge/badge.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkBadge",
+          "cssParts": [
+            {
+              "description": "| .lynk-badge - The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The badge's content.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "attribute": "pill",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "attribute": "pulse",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "fieldName": "type"
+            },
+            {
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "fieldName": "pill"
+            },
+            {
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "fieldName": "pulse"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-badge",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-badge",
+          "declaration": {
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/box/box.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkBox",
+          "cssProperties": [
+            {
+              "description": "Custom text align (left, center, right).",
+              "name": "--align",
+              "default": "left"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--background",
+              "default": "transparent"
+            },
+            {
+              "description": "<border-style> <border-width> <border-color>.",
+              "name": "--border"
+            },
+            {
+              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
+              "name": "--border-radius"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--color",
+              "default": "inherit"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--margin",
+              "default": "0"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--padding",
+              "default": "0"
+            },
+            {
+              "description": "Any elevation shadow token (--lynk-shadow-large);",
+              "name": "--shadow"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The default slot.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-box",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-box",
+          "declaration": {
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
           }
         }
       ]
@@ -2057,85 +2057,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/divider/divider.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkDivider",
-          "cssProperties": [
-            {
-              "description": "The color of the divider.",
-              "name": "--color"
-            },
-            {
-              "description": "The width of the divider.",
-              "name": "--width"
-            },
-            {
-              "description": "The spacing of the divider.",
-              "name": "--spacing"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "vertical",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the divider in a vertical orientation.",
-              "attribute": "vertical",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "handleVerticalChange"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "vertical",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the divider in a vertical orientation.",
-              "fieldName": "vertical"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-divider",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkDivider",
-            "module": "src/components/divider/divider.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-divider",
-          "declaration": {
-            "name": "LynkDivider",
-            "module": "src/components/divider/divider.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/dialog/dialog.ts",
       "declarations": [
         {
@@ -2449,6 +2370,85 @@
           "declaration": {
             "name": "LynkDialog",
             "module": "src/components/dialog/dialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/divider/divider.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkDivider",
+          "cssProperties": [
+            {
+              "description": "The color of the divider.",
+              "name": "--color"
+            },
+            {
+              "description": "The width of the divider.",
+              "name": "--width"
+            },
+            {
+              "description": "The spacing of the divider.",
+              "name": "--spacing"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "vertical",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the divider in a vertical orientation.",
+              "attribute": "vertical",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "handleVerticalChange"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "vertical",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the divider in a vertical orientation.",
+              "fieldName": "vertical"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-divider",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkDivider",
+            "module": "src/components/divider/divider.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-divider",
+          "declaration": {
+            "name": "LynkDivider",
+            "module": "src/components/divider/divider.ts"
           }
         }
       ]
@@ -10466,7 +10466,7 @@
   "package": {
     "name": "@lynk-design/lynk",
     "description": "A library of web components and styles for building web applications with the Edgio Streaming design language.",
-    "version": "1.0.0-beta.9",
+    "version": "1.0.0-beta.10",
     "author": "Harley Jessop",
     "homepage": "https://lynk-design.web.app/",
     "license": "MIT"
