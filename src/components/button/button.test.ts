@@ -199,12 +199,12 @@ describe('<lynk-button>', () => {
   });
 
   describe('when using methods', () => {
-    it('should emit lynk-focus and on:blur when the button is focused and blurred', async () => {
+    it('should emit on:focus and on:blur when the button is focused and blurred', async () => {
       const el = await fixture<LynkButton>(html` <lynk-button>Button</lynk-button> `);
       const focusHandler = sinon.spy();
       const blurHandler = sinon.spy();
 
-      el.addEventListener('lynk-focus', focusHandler);
+      el.addEventListener('on:focus', focusHandler);
       el.addEventListener('on:blur', blurHandler);
 
       el.focus();
