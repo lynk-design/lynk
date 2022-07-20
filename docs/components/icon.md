@@ -259,7 +259,7 @@ If you want to change the icons Lynk uses internally, you can register an icon l
       });
 
       // Filter as the user types
-      input.addEventListener('lynk-input', () => {
+      input.addEventListener('on:input', () => {
         clearTimeout(inputTimeout);
         inputTimeout = setTimeout(() => {
           [...list.querySelectorAll('.icon-list-item')].map(item => {
@@ -278,7 +278,7 @@ If you want to change the icons Lynk uses internally, you can register an icon l
       const iconType = localStorage.getItem('lynk-icon:type') || 'outline';
       select.value = iconType;
       list.setAttribute('data-type', select.value);
-      select.addEventListener('lynk-change', () => {
+      select.addEventListener('on:change', () => {
         list.setAttribute('data-type', select.value);
         localStorage.setItem('lynk-icon:type', select.value);
       });

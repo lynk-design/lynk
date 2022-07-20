@@ -86,7 +86,7 @@ describe('<lynk-tab>', () => {
       const closeButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part="close-button"]')!;
       const spy = sinon.spy();
 
-      el.addEventListener('lynk-close', spy, { once: true });
+      el.addEventListener('on:close', spy, { once: true });
 
       closeButton.click();
 

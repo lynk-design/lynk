@@ -18,24 +18,24 @@ describe('<lynk-radio>', () => {
     expect(el.invalid).to.be.false;
   });
 
-  it('should fire lynk-change when clicked', async () => {
+  it('should fire on:change when clicked', async () => {
     const el = await fixture<LynkRadio>(html` <lynk-radio></lynk-radio> `);
     setTimeout(() => el.input.click());
-    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'on:change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should fire lynk-change when toggled via keyboard - space', async () => {
+  it('should fire on:change when toggled via keyboard - space', async () => {
     const el = await fixture<LynkRadio>(html` <lynk-radio></lynk-radio> `);
     el.input.focus();
     setTimeout(() => sendKeys({ press: ' ' }));
-    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'on:change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should fire lynk-change when toggled via keyboard - arrow key', async () => {
+  it('should fire on:change when toggled via keyboard - arrow key', async () => {
     const radioGroup = await fixture<LynkRadioGroup>(html`
       <lynk-radio-group>
         <lynk-radio id="radio-1"></lynk-radio>
@@ -46,7 +46,7 @@ describe('<lynk-radio>', () => {
     const radio2 = radioGroup.querySelector<LynkRadio>('#radio-2')!;
     radio1.input.focus();
     setTimeout(() => sendKeys({ press: 'ArrowRight' }));
-    const event = (await oneEvent(radio2, 'lynk-change')) as CustomEvent;
+    const event = (await oneEvent(radio2, 'on:change')) as CustomEvent;
     expect(event.target).to.equal(radio2);
     expect(radio2.checked).to.be.true;
   });

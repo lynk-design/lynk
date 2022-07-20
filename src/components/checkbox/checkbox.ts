@@ -14,9 +14,9 @@ import styles from './checkbox.styles';
  *
  * @slot - The checkbox's label.
  *
- * @event lynk-blur - Emitted when the control loses focus.
- * @event lynk-change - Emitted when the control's checked state changes.
- * @event lynk-focus - Emitted when the control gains focus.
+ * @event on:blur - Emitted when the control loses focus.
+ * @event on:change - Emitted when the control's checked state changes.
+ * @event on:focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The checkbox control.
@@ -91,12 +91,12 @@ export default class LynkCheckbox extends LitElement {
   handleClick() {
     this.checked = !this.checked;
     this.indeterminate = false;
-    emit(this, 'lynk-change');
+    emit(this, 'on:change');
   }
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'lynk-blur');
+    emit(this, 'on:blur');
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -108,7 +108,7 @@ export default class LynkCheckbox extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'lynk-focus');
+    emit(this, 'on:focus');
   }
 
   @watch('checked', { waitUntilFirstUpdate: true })

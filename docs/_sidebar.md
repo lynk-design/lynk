@@ -7,6 +7,9 @@
   - [Customizing](/getting-started/customizing)
   <!-- - [Localization](/getting-started/localization) -->
 
+- Integrations
+  - [Aurelia 1](/integrations/aurelia-1)
+
 - Foundation Tokens
 
   - [Border Radius](/foundations/border-radius)

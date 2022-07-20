@@ -122,7 +122,7 @@ Use the direction, justify, and align properties to arrange your grid.
   const options = document.querySelectorAll('lynk-radio');
 
   options.forEach(function (option) {
-    option.addEventListener('lynk-change', event => {
+    option.addEventListener('on:change', event => {
       if (event.target.checked) {
         grid.setAttribute(event.target.name, event.target.value);
       }

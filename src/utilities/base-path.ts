@@ -26,7 +26,7 @@ export function getBasePath() {
     const configScript = scripts.find(script => script.hasAttribute('data-lynk'));
 
     if (configScript) {
-      // Use the data-shoelace attribute
+      // Use the data-lynk attribute
       setBasePath(configScript.getAttribute('data-lynk')!);
     } else {
       const fallbackScript = scripts.find(s => /lynk(\.min)?\.js($|\?)/.test(s.src));

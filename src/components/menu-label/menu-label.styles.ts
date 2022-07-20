@@ -15,7 +15,7 @@ export default css`
     line-height: var(--lynk-line-height-normal);
     letter-spacing: var(--lynk-letter-spacing-normal);
     color: var(--lynk-color-neutral-500);
-    padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-x-large);
+    padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-large);
     user-select: none;
   }
 `;

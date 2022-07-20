@@ -21,39 +21,6 @@ Split panels display two adjacent panels, allowing the user to reposition them.
 </lynk-split-panel>
 ```
 
-```jsx react
-import { SlSplitPanel } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlSplitPanel>
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </SlSplitPanel>
-);
-```
-
 ## Examples
 
 ### Initial Position
@@ -98,39 +65,6 @@ To set the initial position in pixels instead of a percentage, use the `position
 </lynk-split-panel>
 ```
 
-```jsx react
-import { SlSplitPanel } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlSplitPanel position="200">
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </SlSplitPanel>
-);
-```
-
 ### Vertical
 
 Add the `vertical` attribute to render the split panel in a vertical orientation where the start and end panels are stacked. You also need to set a height when using the vertical orientation.
@@ -150,39 +84,6 @@ Add the `vertical` attribute to render the split panel in a vertical orientation
     End
   </div>
 </lynk-split-panel>
-```
-
-```jsx react
-import { SlSplitPanel } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlSplitPanel vertical style={{ height: '400px' }}>
-    <div
-      slot="start"
-      style={{
-        height: '100%',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '100%',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </SlSplitPanel>
-);
 ```
 
 ### Snapping
@@ -236,73 +137,6 @@ To snap panels at specific positions while dragging, add the `snap` attribute wi
 </style>
 ```
 
-```jsx react
-import { SlSplitPanel } from '@shoelace-style/shoelace/dist/react';
-
-const css = `
-  .split-panel-snapping {
-    position: relative;
-  }
-
-  .split-panel-snapping-dots::before,
-  .split-panel-snapping-dots::after {
-    content: '';
-    position: absolute;
-    bottom: -12px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--lynk-color-neutral-400);
-    transform: translateX(-3px);
-  }
-
-  .split-panel-snapping-dots::before {
-    left: 100px;
-  }
-
-  .split-panel-snapping-dots::after {
-    left: 50%;
-  }
-`;
-
-const App = () => (
-  <>
-    <div className="split-panel-snapping">
-      <SlSplitPanel snap="100px 50%">
-        <div
-          slot="start"
-          style={{
-            height: '200px',
-            background: 'var(--lynk-color-neutral-50)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          Start
-        </div>
-        <div
-          slot="end"
-          style={{
-            height: '200px',
-            background: 'var(--lynk-color-neutral-50)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          End
-        </div>
-      </SlSplitPanel>
-
-      <div className="split-panel-snapping-dots" />
-    </div>
-
-    <style>{css}</style>
-  </>
-);
-```
-
 ### Disabled
 
 Add the `disabled` attribute to prevent the divider from being repositioned.
@@ -322,39 +156,6 @@ Add the `disabled` attribute to prevent the divider from being repositioned.
     End
   </div>
 </lynk-split-panel>
-```
-
-```jsx react
-import { SlSplitPanel } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlSplitPanel disabled>
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </SlSplitPanel>
-);
 ```
 
 ### Setting the Primary Panel
@@ -392,59 +193,8 @@ Try resizing the example below with each option and notice how the panels respon
   const splitPanel = container.querySelector('lynk-split-panel');
   const select = container.querySelector('lynk-select');
 
-  select.addEventListener('lynk-change', () => (splitPanel.primary = select.value));
+  select.addEventListener('on:change', () => (splitPanel.primary = select.value));
 </script>
-```
-
-```jsx react
-import { useState } from 'react';
-import { SlSplitPanel, SlSelect, SlMenuItem } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => {
-  const [primary, setPrimary] = useState('');
-
-  return (
-    <>
-      <SlSplitPanel primary={primary}>
-        <div
-          slot="start"
-          style={{
-            height: '200px',
-            background: 'var(--lynk-color-neutral-50)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          Start
-        </div>
-        <div
-          slot="end"
-          style={{
-            height: '200px',
-            background: 'var(--lynk-color-neutral-50)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          End
-        </div>
-      </SlSplitPanel>
-
-      <SlSelect
-        label="Primary Panel"
-        value={primary}
-        style={{ maxWidth: '200px', marginTop: '1rem' }}
-        onSlChange={event => setPrimary(event.target.value)}
-      >
-        <SlMenuItem value="">None</SlMenuItem>
-        <SlMenuItem value="start">Start</SlMenuItem>
-        <SlMenuItem value="end">End</SlMenuItem>
-      </SlSelect>
-    </>
-  );
-};
 ```
 
 ### Min & Max
@@ -468,39 +218,6 @@ This examples demonstrates how you can ensure both panels are at least 150px usi
     End
   </div>
 </lynk-split-panel>
-```
-
-```jsx react
-import { SlSplitPanel } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlSplitPanel style={{ '--min': '150px', '--max': 'calc(100% - 150px)' }}>
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </SlSplitPanel>
-);
 ```
 
 ### Nested Split Panels
@@ -534,55 +251,6 @@ Create complex layouts that can be repositioned independently by nesting split p
 </lynk-split-panel>
 ```
 
-```jsx react
-import { SlSplitPanel } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlSplitPanel>
-    <div
-      slot="start"
-      style={{
-        height: '400px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div slot="end">
-      <SlSplitPanel vertical style={{ height: '400px' }}>
-        <div
-          slot="start"
-          style={{
-            height: '100%',
-            background: 'var(--lynk-color-neutral-50)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          Start
-        </div>
-        <div
-          slot="end"
-          style={{
-            height: '100%',
-            background: 'var(--lynk-color-neutral-50)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          End
-        </div>
-      </SlSplitPanel>
-    </div>
-  </SlSplitPanel>
-);
-```
-
 ### Customizing the Divider
 
 You can target the `divider` part to apply CSS properties to the divider. To add a handle, slot an icon or another element into the `handle` slot. When customizing the divider, make sure to think about focus styles for keyboard users.
@@ -603,40 +271,6 @@ You can target the `divider` part to apply CSS properties to the divider. To add
     End
   </div>
 </lynk-split-panel>
-```
-
-```jsx react
-import { SlSplitPanel, SlIcon } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <SlSplitPanel style={{ '--divider-width': '20px' }}>
-    <SlIcon slot="handle" name="grip-vertical" />
-    <div
-      slot="start"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      Start
-    </div>
-    <div
-      slot="end"
-      style={{
-        height: '200px',
-        background: 'var(--lynk-color-neutral-50)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      End
-    </div>
-  </SlSplitPanel>
-);
 ```
 
 Here's a more elaborate example that changes the divider's color and width and adds a styled handle.
@@ -686,73 +320,6 @@ Here's a more elaborate example that changes the divider's color and width and a
     color: var(--lynk-color-neutral-0);
   }
 </style>
-```
-
-```jsx react
-import { SlSplitPanel, SlIcon } from '@shoelace-style/shoelace/dist/react';
-
-const css = `
-  .split-panel-handle l-split-panel {
-    --divider-width: 2px;
-  }
-
-  .split-panel-handle l-split-panel::part(divider) {
-    background-color: var(--lynk-color-pink-600);
-  }
-
-  .split-panel-handle lynk-icon {
-    position: absolute;
-    border-radius: var(--lynk-border-radius-small);
-    background: var(--lynk-color-pink-600);
-    color: var(--lynk-color-neutral-0);
-    padding: .5rem .125rem;
-  }
-
-  .split-panel-handle l-split-panel::part(divider):focus-visible {
-    background-color: var(--lynk-color-primary-600);
-  }
-
-  .split-panel-handle l-split-panel:focus-within lynk-icon {
-    background-color: var(--lynk-color-primary-600);
-    color: var(--lynk-color-neutral-0);
-  }
-`;
-
-const App = () => (
-  <>
-    <div className="split-panel-handle">
-      <SlSplitPanel>
-        <SlIcon slot="handle" name="grip-vertical" />
-        <div
-          slot="start"
-          style={{
-            height: '200px',
-            background: 'var(--lynk-color-neutral-50)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          Start
-        </div>
-        <div
-          slot="end"
-          style={{
-            height: '200px',
-            background: 'var(--lynk-color-neutral-50)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          End
-        </div>
-      </SlSplitPanel>
-    </div>
-
-    <style>{css}</style>
-  </>
-);
 ```
 
 [component-metadata:lynk-split-panel]

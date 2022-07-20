@@ -15,10 +15,10 @@ import styles from './tooltip.styles';
  * @slot - The tooltip's target element. Only the first element will be used as the target.
  * @slot content - The tooltip's content. Alternatively, you can use the content prop.
  *
- * @event lynk-show - Emitted when the tooltip begins to show.
- * @event lynk-after-show - Emitted after the tooltip has shown and all animations are complete.
- * @event lynk-hide - Emitted when the tooltip begins to hide.
- * @event lynk-after-hide - Emitted after the tooltip has hidden and all animations are complete.
+ * @event on:show - Emitted when the tooltip begins to show.
+ * @event after:show - Emitted after the tooltip has shown and all animations are complete.
+ * @event on:hide - Emitted when the tooltip begins to hide.
+ * @event after:hide - Emitted after the tooltip has hidden and all animations are complete.
  *
  * @csspart base - The component's internal wrapper.
  *
@@ -135,7 +135,7 @@ export default class LynkTooltip extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'lynk-after-show');
+    return waitForEvent(this, 'after:show');
   }
 
   /** Hides the tooltip */
@@ -145,7 +145,7 @@ export default class LynkTooltip extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'lynk-after-hide');
+    return waitForEvent(this, 'after:hide');
   }
 
   getTarget() {
@@ -215,7 +215,7 @@ export default class LynkTooltip extends LitElement {
       }
 
       // Show
-      emit(this, 'lynk-show');
+      emit(this, 'on:show');
 
       await stopAnimations(this.tooltip);
       this.startPositioner();
@@ -223,10 +223,10 @@ export default class LynkTooltip extends LitElement {
       const { keyframes, options } = getAnimation(this, 'tooltip.show');
       await animateTo(this.tooltip, keyframes, options);
 
-      emit(this, 'lynk-after-show');
+      emit(this, 'after:show');
     } else {
       // Hide
-      emit(this, 'lynk-hide');
+      emit(this, 'on:hide');
 
       await stopAnimations(this.tooltip);
       const { keyframes, options } = getAnimation(this, 'tooltip.hide');
@@ -234,7 +234,7 @@ export default class LynkTooltip extends LitElement {
       this.tooltip.hidden = true;
       this.stopPositioner();
 
-      emit(this, 'lynk-after-hide');
+      emit(this, 'after:hide');
     }
   }
 

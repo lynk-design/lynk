@@ -53,7 +53,7 @@ When dropdowns are used with [menus](/components/menu), you can listen for the `
   const container = document.querySelector('.dropdown-selection');
   const dropdown = container.querySelector('lynk-dropdown');
 
-  dropdown.addEventListener('lynk-select', event => {
+  dropdown.addEventListener('on:select', event => {
     const selectedItem = event.detail.item;
     console.log(selectedItem.value);
   });
@@ -145,7 +145,7 @@ The offset of the panel along the trigger can be customized using the `skidding`
 Dropdown panels will be clipped if they're inside a container that has `overflow: auto|hidden`. The `hoist` attribute forces the panel to use a fixed positioning strategy, allowing it to break out of the container. In this case, the panel will be positioned relative to its containing block, which is usually the viewport unless an ancestor uses a `transform`, `perspective`, or `filter`. [Refer to this page](https://developer.mozilla.org/en-US/docs/Web/CSS/position#fixed) for more details.
 
 ```html preview
-<div class="l-dropdown-hoist">
+<div class="dropdown-hoist">
   <lynk-dropdown>
     <lynk-button slot="trigger" caret>No Hoist</lynk-button>
     <lynk-menu>
@@ -166,7 +166,7 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
 </div>
 
 <style>
-  .l-dropdown-hoist {
+  .dropdown-hoist {
     border: solid 2px var(--lynk-panel-border-color);
     padding: var(--lynk-spacing-medium);
     overflow: hidden;

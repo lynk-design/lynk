@@ -87,7 +87,7 @@ If you're customizing the dark theme, you should scope your styles to the follow
 }
 ```
 
-By customizing a built-in theme, you'll maintain a smaller stylesheet containing only the changes you've made. Contrast this to [creating a new theme](#creating-a-new-theme), where you need to explicitly define every design token required by the library. This approach is more "future-proof," as new design tokens that emerge in subsequent versions of Shoelace will be accounted for by the built-in theme.
+By customizing a built-in theme, you'll maintain a smaller stylesheet containing only the changes you've made. Contrast this to [creating a new theme](#creating-a-new-theme), where you need to explicitly define every design token required by the library. This approach is more "future-proof," as new design tokens that emerge in subsequent versions of LYNK will be accounted for by the built-in theme.
 
 While this approach is easier to maintain, the drawback is that your theme can't be activated independently — it's tied to the built-in theme you're extending.
 
@@ -106,7 +106,7 @@ Start by changing the selector to match your theme's name. Assuming your new the
 
 By creating a new theme, you won't be relying on a built-in theme as a foundation. Because the theme is decoupled from the built-ins, you can activate it independently as an alternative to the built-ins. This is the recommended approach if you're looking to open source your theme for others to use.
 
-You will, however, need to maintain your theme more carefully, as new versions of Shoelace may introduce new design tokens that your theme won't have accounted for. Because of this, it's recommended that you clearly specify which version(s) of Shoelace your theme is designed to work with and keep it up to date as new versions of Shoelace are released.
+You will, however, need to maintain your theme more carefully, as new versions of LYNK may introduce new design tokens that your theme won't have accounted for. Because of this, it's recommended that you clearly specify which version(s) of LYNK your theme is designed to work with and keep it up to date as new versions of LYNK are released.
 
 ## Dark Theme
 

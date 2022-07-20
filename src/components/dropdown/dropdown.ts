@@ -21,10 +21,10 @@ import type LynkMenu from '../../components/menu/menu';
  * @slot - The dropdown's content.
  * @slot trigger - The dropdown's trigger, usually a `<lynk-button>` element.
  *
- * @event lynk-show - Emitted when the dropdown opens.
- * @event lynk-after-show - Emitted after the dropdown opens and all animations are complete.
- * @event lynk-hide - Emitted when the dropdown closes.
- * @event lynk-after-hide - Emitted after the dropdown closes and all animations are complete.
+ * @event on:show - Emitted when the dropdown opens.
+ * @event after:show - Emitted after the dropdown opens and all animations are complete.
+ * @event on:hide - Emitted when the dropdown closes.
+ * @event after:hide - Emitted after the dropdown closes and all animations are complete.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart trigger - The container that wraps the trigger.
@@ -322,7 +322,7 @@ export default class LynkDropdown extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'lynk-after-show');
+    return waitForEvent(this, 'after:show');
   }
 
   /** Hides the dropdown panel */
@@ -332,7 +332,7 @@ export default class LynkDropdown extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'lynk-after-hide');
+    return waitForEvent(this, 'after:hide');
   }
 
   /**
@@ -344,15 +344,15 @@ export default class LynkDropdown extends LitElement {
   }
 
   addOpenListeners() {
-    this.panel.addEventListener('lynk-activate', this.handleMenuItemActivate);
-    this.panel.addEventListener('lynk-select', this.handlePanelSelect);
+    this.panel.addEventListener('on:activate', this.handleMenuItemActivate);
+    this.panel.addEventListener('on:select', this.handlePanelSelect);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
   }
 
   removeOpenListeners() {
-    this.panel.removeEventListener('lynk-activate', this.handleMenuItemActivate);
-    this.panel.removeEventListener('lynk-select', this.handlePanelSelect);
+    this.panel.removeEventListener('lon:activate', this.handleMenuItemActivate);
+    this.panel.removeEventListener('on:select', this.handlePanelSelect);
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
   }
@@ -368,7 +368,7 @@ export default class LynkDropdown extends LitElement {
 
     if (this.open) {
       // Show
-      emit(this, 'lynk-show');
+      emit(this, 'on:show');
       this.addOpenListeners();
 
       await stopAnimations(this);
@@ -377,10 +377,10 @@ export default class LynkDropdown extends LitElement {
       const { keyframes, options } = getAnimation(this, 'dropdown.show');
       await animateTo(this.panel, keyframes, options);
 
-      emit(this, 'lynk-after-show');
+      emit(this, 'after:show');
     } else {
       // Hide
-      emit(this, 'lynk-hide');
+      emit(this, 'on:hide');
       this.removeOpenListeners();
 
       await stopAnimations(this);
@@ -389,7 +389,7 @@ export default class LynkDropdown extends LitElement {
       this.panel.hidden = true;
       this.stopPositioner();
 
-      emit(this, 'lynk-after-hide');
+      emit(this, 'after:hide');
     }
   }
 

@@ -21,7 +21,7 @@ describe('<lynk-textarea>', () => {
     const label = el.shadowRoot!.querySelector('[part="form-control-label"]')!;
     const submitHandler = sinon.spy();
 
-    el.addEventListener('lynk-focus', submitHandler);
+    el.addEventListener('on:focus', submitHandler);
     (label as HTMLLabelElement).click();
     await waitUntil(() => submitHandler.calledOnce);
 

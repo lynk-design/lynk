@@ -14,9 +14,9 @@ import styles from './switch.styles';
  *
  * @slot - The switch's label.
  *
- * @event lynk-blur - Emitted when the control loses focus.
- * @event lynk-change - Emitted when the control's checked state changes.
- * @event lynk-focus - Emitted when the control gains focus.
+ * @event on:blur - Emitted when the control loses focus.
+ * @event on:change - Emitted when the control's checked state changes.
+ * @event on:focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The switch control.
@@ -90,7 +90,7 @@ export default class LynkSwitch extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'lynk-blur');
+    emit(this, 'on:blur');
   }
 
   @watch('checked', { waitUntilFirstUpdate: true })
@@ -101,7 +101,7 @@ export default class LynkSwitch extends LitElement {
 
   handleClick() {
     this.checked = !this.checked;
-    emit(this, 'lynk-change');
+    emit(this, 'on:change');
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -113,20 +113,20 @@ export default class LynkSwitch extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'lynk-focus');
+    emit(this, 'on:focus');
   }
 
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       this.checked = false;
-      emit(this, 'lynk-change');
+      emit(this, 'on:change');
     }
 
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       this.checked = true;
-      emit(this, 'lynk-change');
+      emit(this, 'on:change');
     }
   }
 

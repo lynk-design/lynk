@@ -50,8 +50,8 @@ This example demonstrates all of the baked-in animations and easings. Animations
 
   const container = document.querySelector('.animation-sandbox');
   const animation = container.querySelector('lynk-animation');
-  const animationName = container.querySelector('.controls l-select:nth-child(1)');
-  const easingName = container.querySelector('.controls l-select:nth-child(2)');
+  const animationName = container.querySelector('.controls lynk-select:nth-child(1)');
+  const easingName = container.querySelector('.controls lynk-select:nth-child(2)');
   const playbackRate = container.querySelector('lynk-input[type="number"]');
   const animations = getAnimationNames();
   const easings = getEasingNames();
@@ -72,9 +72,9 @@ This example demonstrates all of the baked-in animations and easings. Animations
     easingName.appendChild(menuItem);
   });
 
-  animationName.addEventListener('lynk-change', () => (animation.name = animationName.value));
-  easingName.addEventListener('lynk-change', () => (animation.easing = easingName.value));
-  playbackRate.addEventListener('lynk-input', () => (animation.playbackRate = playbackRate.value));
+  animationName.addEventListener('on:change', () => (animation.name = animationName.value));
+  easingName.addEventListener('on:change', () => (animation.easing = easingName.value));
+  playbackRate.addEventListener('on:input', () => (animation.playbackRate = playbackRate.value));
 </script>
 
 <style>
@@ -89,7 +89,7 @@ This example demonstrates all of the baked-in animations and easings. Animations
     margin-top: 2rem;
   }
 
-  .animation-sandbox .controls l-select {
+  .animation-sandbox .controls lynk-select {
     margin-bottom: 1rem;
   }
 </style>
@@ -179,7 +179,7 @@ Animations won't play until you apply the `play` attribute. You can omit it init
 ```html preview
 <div class="animation-form">
   <lynk-animation name="rubberBand" duration="1000" iterations="1">
-    <lynk-button variant="primary">Click me</lynk-button>
+    <lynk-button color="primary">Click me</lynk-button>
   </lynk-animation>
 </div>
 

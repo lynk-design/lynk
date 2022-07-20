@@ -25,11 +25,11 @@ import styles from './input.styles';
  * @slot hide-password-icon - An icon to use in lieu of the default hide password icon.
  * @slot help-text - Help text that describes how to use the input. Alternatively, you can use the help-text prop.
  *
- * @event lynk-change - Emitted when an alteration to the control's value is committed by the user.
- * @event lynk-clear - Emitted when the clear button is activated.
- * @event lynk-input - Emitted when the control receives input and its value changes.
- * @event lynk-focus - Emitted when the control gains focus.
- * @event lynk-blur - Emitted when the control loses focus.
+ * @event on:change - Emitted when an alteration to the control's value is committed by the user.
+ * @event on:clear - Emitted when the clear button is activated.
+ * @event on:input - Emitted when the control receives input and its value changes.
+ * @event on:focus - Emitted when the control gains focus.
+ * @event on:blur - Emitted when the control loses focus.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -214,8 +214,8 @@ export default class LynkInput extends LitElement {
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      emit(this, 'lynk-input');
-      emit(this, 'lynk-change');
+      emit(this, 'on:input');
+      emit(this, 'on:change');
     }
   }
 
@@ -232,19 +232,19 @@ export default class LynkInput extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'lynk-blur');
+    emit(this, 'on:blur');
   }
 
   handleChange() {
     this.value = this.input.value;
-    emit(this, 'lynk-change');
+    emit(this, 'on:change');
   }
 
   handleClearClick(event: MouseEvent) {
     this.value = '';
-    emit(this, 'lynk-clear');
-    emit(this, 'lynk-input');
-    emit(this, 'lynk-change');
+    emit(this, 'on:clear');
+    emit(this, 'on:input');
+    emit(this, 'on:change');
     this.input.focus();
 
     event.stopPropagation();
@@ -259,12 +259,12 @@ export default class LynkInput extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'lynk-focus');
+    emit(this, 'on:focus');
   }
 
   handleInput() {
     this.value = this.input.value;
-    emit(this, 'lynk-input');
+    emit(this, 'on:input');
   }
 
   handleInvalid() {
@@ -305,24 +305,24 @@ export default class LynkInput extends LitElement {
       <div
         part="form-control"
         class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
+          'lynk-form-control': true,
+          'lynk-form-control--small': this.size === 'small',
+          'lynk-form-control--medium': this.size === 'medium',
+          'lynk-form-control--large': this.size === 'large',
+          'lynk-form-control--has-label': hasLabel,
+          'lynk-form-control--has-help-text': hasHelpText
         })}
       >
         <label
           part="form-control-label"
-          class="form-control__label"
+          class="lynk-form-control__label"
           for="input"
           aria-hidden=${hasLabel ? 'false' : 'true'}
         >
           <slot name="label">${this.label}</slot>
         </label>
 
-        <div part="form-control-input" class="form-control-input">
+        <div part="form-control-input" class="lynk-form-control-input">
           <div
             part="base"
             class=${classMap({
@@ -431,7 +431,7 @@ export default class LynkInput extends LitElement {
         <div
           part="form-control-help-text"
           id="help-text"
-          class="form-control__help-text"
+          class="lynk-form-control__help-text"
           aria-hidden=${hasHelpText ? 'false' : 'true'}
         >
           <slot name="help-text">${this.helpText}</slot>

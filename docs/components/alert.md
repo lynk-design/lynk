@@ -69,7 +69,7 @@ Add the `closable` attribute to show a close button that will hide the alert.
 
 <script>
   const alert = document.querySelector('.alert-closable');
-  alert.addEventListener('lynk-after-hide', () => {
+  alert.addEventListener('after:hide', () => {
     setTimeout(() => (alert.open = true), 2000);
   });
 </script>

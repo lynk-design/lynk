@@ -29,7 +29,7 @@ You can listen for standard events such as `click`, `mouseover`, etc. as you nor
 
 <script>
   const checkbox = document.querySelector('lynk-checkbox');
-  checkbox.addEventListener('lynk-change', event => {
+  checkbox.addEventListener('on:change', event => {
     console.log(event.target.checked ? 'checked' : 'not checked');
   });
 </script>

@@ -16,8 +16,8 @@ import styles from './button.styles';
  *
  * @dependency lynk-spinner
  *
- * @event lynk-blur - Emitted when the button loses focus.
- * @event lynk-focus - Emitted when the button gains focus.
+ * @event on:blur - Emitted when the button loses focus.
+ * @event on:focus - Emitted when the button gains focus.
  *
  * @slot - The button's label.
  * @slot prefix - Used to prepend an icon or similar element to the button.
@@ -141,12 +141,12 @@ export default class LynkButton extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'lynk-blur');
+    emit(this, 'on:blur');
   }
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'lynk-focus');
+    emit(this, 'on:focus');
   }
 
   handleClick(event: MouseEvent) {

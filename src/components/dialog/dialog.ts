@@ -23,13 +23,13 @@ import styles from './dialog.styles';
  * @slot label - The dialog's label. Alternatively, you can use the label prop.
  * @slot footer - The dialog's footer, usually one or more buttons representing various options.
  *
- * @event lynk-show - Emitted when the dialog opens.
- * @event lynk-after-show - Emitted after the dialog opens and all animations are complete.
- * @event lynk-hide - Emitted when the dialog closes.
- * @event lynk-after-hide - Emitted after the dialog closes and all animations are complete.
- * @event lynk-initial-focus - Emitted when the dialog opens and is ready to receive focus. Calling
+ * @event on:show - Emitted when the dialog opens.
+ * @event after:show - Emitted after the dialog opens and all animations are complete.
+ * @event on:hide - Emitted when the dialog closes.
+ * @event after:hide - Emitted after the dialog closes and all animations are complete.
+ * @event on:initial-focus - Emitted when the dialog opens and is ready to receive focus. Calling
  *   `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.
- * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} lynk-request-close - Emitted when the user attempts to
+ * @event {{ source: 'close-button' | 'keyboard' | 'overlay' }} on:request-close - Emitted when the user attempts to
  *   close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling
  *   `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in
  *   destructive behavior such as data loss.
@@ -109,7 +109,7 @@ export default class LynkDialog extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'lynk-after-show');
+    return waitForEvent(this, 'after:show');
   }
 
   /** Hides the dialog */
@@ -119,11 +119,11 @@ export default class LynkDialog extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'lynk-after-hide');
+    return waitForEvent(this, 'after:hide');
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
-    const requestClose = emit(this, 'lynk-request-close', {
+    const requestClose = emit(this, 'on:request-close', {
       cancelable: true,
       detail: { source }
     });
@@ -148,7 +148,7 @@ export default class LynkDialog extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'lynk-show');
+      emit(this, 'on:show');
       this.originalTrigger = document.activeElement as HTMLElement;
       this.modal.activate();
 
@@ -157,8 +157,6 @@ export default class LynkDialog extends LitElement {
       // When the dialog is shown, Safari will attempt to set focus on whatever element has autofocus. This can cause
       // the dialogs's animation to jitter (if it starts offscreen), so we'll temporarily remove the attribute, call
       // `focus({ preventScroll: true })` ourselves, and add the attribute back afterwards.
-      //
-      // Related: https://github.com/shoelace-style/shoelace/issues/693
       //
       const autoFocusTarget = this.querySelector('[autofocus]');
       if (autoFocusTarget) {
@@ -170,7 +168,7 @@ export default class LynkDialog extends LitElement {
 
       // Set initial focus
       requestAnimationFrame(() => {
-        const initialFocus = emit(this, 'lynk-initial-focus', { cancelable: true });
+        const initialFocus = emit(this, 'on:initial-focus', { cancelable: true });
 
         if (!initialFocus.defaultPrevented) {
           // Set focus to the autofocus target and restore the attribute
@@ -194,10 +192,10 @@ export default class LynkDialog extends LitElement {
         animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
       ]);
 
-      emit(this, 'lynk-after-show');
+      emit(this, 'after:show');
     } else {
       // Hide
-      emit(this, 'lynk-hide');
+      emit(this, 'on:hide');
       this.modal.deactivate();
 
       await Promise.all([stopAnimations(this.dialog), stopAnimations(this.overlay)]);
@@ -217,7 +215,7 @@ export default class LynkDialog extends LitElement {
         setTimeout(() => trigger.focus());
       }
 
-      emit(this, 'lynk-after-hide');
+      emit(this, 'after:hide');
     }
   }
 

@@ -27,27 +27,27 @@ describe('<lynk-checkbox>', () => {
     expect(el.invalid).to.be.false;
   });
 
-  it('should fire lynk-change when clicked', async () => {
+  it('should fire on:change when clicked', async () => {
     const el = await fixture<LynkCheckbox>(html` <lynk-checkbox></lynk-checkbox> `);
     setTimeout(() => el.shadowRoot!.querySelector('input')!.click());
-    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'on:change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should fire lynk-change when toggled via keyboard', async () => {
+  it('should fire on:change when toggled via keyboard', async () => {
     const el = await fixture<LynkCheckbox>(html` <lynk-checkbox></lynk-checkbox> `);
     const input = el.shadowRoot!.querySelector('input')!;
     input.focus();
     setTimeout(() => sendKeys({ press: ' ' }));
-    const event = (await oneEvent(el, 'lynk-change')) as CustomEvent;
+    const event = (await oneEvent(el, 'on:change')) as CustomEvent;
     expect(event.target).to.equal(el);
     expect(el.checked).to.be.true;
   });
 
-  it('should not fire lynk-change when checked is set by javascript', async () => {
+  it('should not fire on:change when checked is set by javascript', async () => {
     const el = await fixture<LynkCheckbox>(html` <lynk-checkbox></lynk-checkbox> `);
-    el.addEventListener('lynk-change', () => expect.fail('event fired'));
+    el.addEventListener('on:change', () => expect.fail('event fired'));
     el.checked = true;
     await el.updateComplete;
     el.checked = false;

@@ -14,7 +14,7 @@ import styles from './tag.styles';
  *
  * @slot - The tag's content.
  *
- * @event lynk-remove - Emitted when the remove button is activated.
+ * @event on:remove - Emitted when the remove button is activated.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart content - The tag content.
@@ -39,7 +39,7 @@ export default class LynkTag extends LitElement {
   @property({ type: Boolean }) removable = false;
 
   handleRemoveClick() {
-    emit(this, 'lynk-remove');
+    emit(this, 'on:remove');
   }
 
   render() {

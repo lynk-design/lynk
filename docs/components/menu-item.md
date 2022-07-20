@@ -64,7 +64,7 @@ Add content to the start and end of menu items using the `prefix` and `suffix` s
   <lynk-menu-item>
     <lynk-icon slot="prefix" name="envelope"></lynk-icon>
     Messages
-    <lynk-badge slot="suffix" variant="primary" pill>12</lynk-badge>
+    <lynk-badge slot="suffix" color="primary" pill>12</lynk-badge>
   </lynk-menu-item>
 
   <lynk-divider></lynk-divider>
@@ -90,7 +90,7 @@ The `value` attribute can be used to assign a hidden value, such as a unique ide
 <script>
   const menu = document.querySelector('.menu-value');
 
-  menu.addEventListener('lynk-select', event => {
+  menu.addEventListener('on:select', event => {
     const item = event.detail.item;
 
     // Toggle checked state

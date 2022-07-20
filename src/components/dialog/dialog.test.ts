@@ -22,7 +22,7 @@ describe('<lynk-dialog>', () => {
     expect(base.hidden).to.be.true;
   });
 
-  it('should emit lynk-show and lynk-after-show when calling show()', async () => {
+  it('should emit on:show and after:show when calling show()', async () => {
     const el = await fixture<LynkDialog>(html`
       <lynk-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
@@ -30,8 +30,8 @@ describe('<lynk-dialog>', () => {
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('lynk-show', showHandler);
-    el.addEventListener('lynk-after-show', afterShowHandler);
+    el.addEventListener('on:show', showHandler);
+    el.addEventListener('after:show', afterShowHandler);
     el.show();
 
     await waitUntil(() => showHandler.calledOnce);
@@ -42,7 +42,7 @@ describe('<lynk-dialog>', () => {
     expect(base.hidden).to.be.false;
   });
 
-  it('should emit lynk-hide and lynk-after-hide when calling hide()', async () => {
+  it('should emit on:hide and after:hide when calling hide()', async () => {
     const el = await fixture<LynkDialog>(html`
       <lynk-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
@@ -50,8 +50,8 @@ describe('<lynk-dialog>', () => {
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('lynk-hide', hideHandler);
-    el.addEventListener('lynk-after-hide', afterHideHandler);
+    el.addEventListener('on:hide', hideHandler);
+    el.addEventListener('after:hide', afterHideHandler);
     el.hide();
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -62,7 +62,7 @@ describe('<lynk-dialog>', () => {
     expect(base.hidden).to.be.true;
   });
 
-  it('should emit lynk-show and lynk-after-show when setting open = true', async () => {
+  it('should emit on:show and after:show when setting open = true', async () => {
     const el = await fixture<LynkDialog>(html`
       <lynk-dialog>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
@@ -70,8 +70,8 @@ describe('<lynk-dialog>', () => {
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('lynk-show', showHandler);
-    el.addEventListener('lynk-after-show', afterShowHandler);
+    el.addEventListener('on:show', showHandler);
+    el.addEventListener('after:show', afterShowHandler);
     el.open = true;
 
     await waitUntil(() => showHandler.calledOnce);
@@ -82,7 +82,7 @@ describe('<lynk-dialog>', () => {
     expect(base.hidden).to.be.false;
   });
 
-  it('should emit lynk-hide and lynk-after-hide when setting open = false', async () => {
+  it('should emit on:hide and after:hide when setting open = false', async () => {
     const el = await fixture<LynkDialog>(html`
       <lynk-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
@@ -90,8 +90,8 @@ describe('<lynk-dialog>', () => {
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('lynk-hide', hideHandler);
-    el.addEventListener('lynk-after-hide', afterHideHandler);
+    el.addEventListener('on:hide', hideHandler);
+    el.addEventListener('after:hide', afterHideHandler);
     el.open = false;
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -102,13 +102,13 @@ describe('<lynk-dialog>', () => {
     expect(base.hidden).to.be.true;
   });
 
-  it('should not close when lynk-request-close is prevented', async () => {
+  it('should not close when on:request-close is prevented', async () => {
     const el = await fixture<LynkDialog>(html`
       <lynk-dialog open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-dialog>
     `);
     const overlay = el.shadowRoot!.querySelector<HTMLElement>('[part="overlay"]')!;
 
-    el.addEventListener('lynk-request-close', event => {
+    el.addEventListener('on:request-close', event => {
       event.preventDefault();
     });
     overlay.click();
@@ -124,7 +124,7 @@ describe('<lynk-dialog>', () => {
       input.focus();
     });
 
-    el.addEventListener('lynk-initial-focus', initialFocusHandler);
+    el.addEventListener('on:initial-focus', initialFocusHandler);
     el.show();
 
     await waitUntil(() => initialFocusHandler.calledOnce);

@@ -31,7 +31,7 @@ describe('<lynk-include>', () => {
     sinon.verifyAndRestore();
   });
 
-  it('should load content and emit lynk-load', async () => {
+  it('should load content and emit on:load', async () => {
     sinon.stub(window, 'fetch').resolves({
       ...stubbedFetchResponse,
       ok: true,
@@ -41,14 +41,14 @@ describe('<lynk-include>', () => {
     const el = await fixture<LynkInclude>(html` <lynk-include src="/found"></lynk-include> `);
     const loadHandler = sinon.spy();
 
-    el.addEventListener('lynk-load', loadHandler);
+    el.addEventListener('on:load', loadHandler);
     await waitUntil(() => loadHandler.calledOnce);
 
     expect(el.innerHTML).to.contain('"id": 1');
     expect(loadHandler).to.have.been.calledOnce;
   });
 
-  it('should emit lynk-error when content cannot be loaded', async () => {
+  it('should emit on:error when content cannot be loaded', async () => {
     sinon.stub(window, 'fetch').resolves({
       ...stubbedFetchResponse,
       ok: false,
@@ -58,7 +58,7 @@ describe('<lynk-include>', () => {
     const el = await fixture<LynkInclude>(html` <lynk-include src="/not-found"></lynk-include> `);
     const loadHandler = sinon.spy();
 
-    el.addEventListener('lynk-error', loadHandler);
+    el.addEventListener('on:error', loadHandler);
     await waitUntil(() => loadHandler.calledOnce);
 
     expect(loadHandler).to.have.been.calledOnce;

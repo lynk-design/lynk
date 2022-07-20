@@ -48,41 +48,41 @@ Theme buttons are supported through the button's `type` attribute.
 
 ```html preview
 <lynk-button-group>
-  <lynk-button variant="primary">Left</lynk-button>
-  <lynk-button variant="primary">Center</lynk-button>
-  <lynk-button variant="primary">Right</lynk-button>
+  <lynk-button color="primary">Left</lynk-button>
+  <lynk-button color="primary">Center</lynk-button>
+  <lynk-button color="primary">Right</lynk-button>
 </lynk-button-group>
 
 <br /><br />
 
 <lynk-button-group>
-  <lynk-button variant="success">Left</lynk-button>
-  <lynk-button variant="success">Center</lynk-button>
-  <lynk-button variant="success">Right</lynk-button>
+  <lynk-button color="success">Left</lynk-button>
+  <lynk-button color="success">Center</lynk-button>
+  <lynk-button color="success">Right</lynk-button>
 </lynk-button-group>
 
 <br /><br />
 
 <lynk-button-group>
-  <lynk-button variant="neutral">Left</lynk-button>
-  <lynk-button variant="neutral">Center</lynk-button>
-  <lynk-button variant="neutral">Right</lynk-button>
+  <lynk-button color="neutral">Left</lynk-button>
+  <lynk-button color="neutral">Center</lynk-button>
+  <lynk-button color="neutral">Right</lynk-button>
 </lynk-button-group>
 
 <br /><br />
 
 <lynk-button-group>
-  <lynk-button variant="warning">Left</lynk-button>
-  <lynk-button variant="warning">Center</lynk-button>
-  <lynk-button variant="warning">Right</lynk-button>
+  <lynk-button color="warning">Left</lynk-button>
+  <lynk-button color="warning">Center</lynk-button>
+  <lynk-button color="warning">Right</lynk-button>
 </lynk-button-group>
 
 <br /><br />
 
 <lynk-button-group>
-  <lynk-button variant="danger">Left</lynk-button>
-  <lynk-button variant="danger">Center</lynk-button>
-  <lynk-button variant="danger">Right</lynk-button>
+  <lynk-button color="danger">Left</lynk-button>
+  <lynk-button color="danger">Center</lynk-button>
+  <lynk-button color="danger">Right</lynk-button>
 </lynk-button-group>
 ```
 
@@ -139,9 +139,9 @@ Create a split button using a button and a dropdown. Use a [visually hidden](/co
 
 ```html preview
 <lynk-button-group>
-  <lynk-button variant="primary">Save</lynk-button>
+  <lynk-button color="primary">Save</lynk-button>
   <lynk-dropdown placement="bottom-end">
-    <lynk-button slot="trigger" variant="primary" caret>
+    <lynk-button slot="trigger" color="primary" caret>
       <lynk-visually-hidden>More options</lynk-visually-hidden>
     </lynk-button>
     <lynk-menu>

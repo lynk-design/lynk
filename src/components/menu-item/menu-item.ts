@@ -13,7 +13,7 @@ import styles from './menu-item.styles';
  *
  * @dependency lynk-icon
  *
- * @event lynk-label-change - Emitted when the menu item's text label changes. For performance reasons, this event is only
+ * @event on:label-change - Emitted when the menu item's text label changes. For performance reasons, this event is only
  *   emitted if the default slot's `slotchange` event is triggered. It will not fire when the label is first set.
  *
  * @slot - The menu item's label.
@@ -73,7 +73,7 @@ export default class LynkMenuItem extends LitElement {
 
     if (textLabel !== this.cachedTextLabel) {
       this.cachedTextLabel = textLabel;
-      emit(this, 'lynk-label-change');
+      emit(this, 'on:label-change');
     }
   }
 

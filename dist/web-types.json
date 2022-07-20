@@ -14,6 +14,117 @@
     "html": {
       "elements": [
         {
+          "name": "lynk-accordion",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-accordion",
+          "js": {
+            "properties": [
+              {
+                "name": "accordion",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "header",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "body",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "summary",
+                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the accordion so it can't be toggled.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the accordion.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the accordion",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryClick",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "lynk-show",
+                "description": "Emitted when the accordion opens."
+              },
+              {
+                "name": "lynk-after-show",
+                "description": "Emitted after the accordion opens and all animations are complete."
+              },
+              {
+                "name": "lynk-hide",
+                "description": "Emitted when the accordion closes."
+              },
+              {
+                "name": "lynk-after-hide",
+                "description": "Emitted after the accordion closes and all animations are complete."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "summary",
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables the accordion so it can't be toggled.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-alert",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-alert",
@@ -142,438 +253,6 @@
               "name": "duration",
               "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
               "value": {}
-            }
-          ]
-        },
-        {
-          "name": "lynk-animation",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-animation",
-          "js": {
-            "properties": [
-              {
-                "name": "animation",
-                "value": {
-                  "type": "Animation | undefined"
-                }
-              },
-              {
-                "name": "hasStarted",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "defaultSlot",
-                "value": {
-                  "type": "Promise<HTMLSlotElement>"
-                }
-              },
-              {
-                "name": "name",
-                "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "play",
-                "description": "Plays the animation. When omitted, the animation will be paused. This prop will be automatically removed when the\nanimation finishes or gets canceled.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "delay",
-                "description": "The number of milliseconds to delay the start of the animation.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "direction",
-                "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.",
-                "value": {
-                  "type": "PlaybackDirection"
-                }
-              },
-              {
-                "name": "duration",
-                "description": "The number of milliseconds each iteration of the animation takes to complete.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "easing",
-                "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "endDelay",
-                "description": "The number of milliseconds to delay after the active period of an animation sequence.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "fill",
-                "description": "Sets how the animation applies styles to its target before and after its execution.",
-                "value": {
-                  "type": "FillMode"
-                }
-              },
-              {
-                "name": "iterations",
-                "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
-                "value": {}
-              },
-              {
-                "name": "iterationStart",
-                "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "keyframes",
-                "description": "The keyframes to use for the animation. If this is set, `name` will be ignored.",
-                "value": {
-                  "type": "Keyframe[] | undefined"
-                }
-              },
-              {
-                "name": "playbackRate",
-                "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "currentTime",
-                "description": "Gets and sets the current animation time.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "handleAnimationChange",
-                "value": {}
-              },
-              {
-                "name": "handleAnimationFinish",
-                "value": {}
-              },
-              {
-                "name": "handleAnimationCancel",
-                "value": {}
-              },
-              {
-                "name": "handlePlayChange",
-                "value": {}
-              },
-              {
-                "name": "handlePlaybackRateChange",
-                "value": {}
-              },
-              {
-                "name": "handleSlotChange",
-                "value": {}
-              },
-              {
-                "name": "createAnimation",
-                "value": {}
-              },
-              {
-                "name": "destroyAnimation",
-                "value": {}
-              },
-              {
-                "name": "cancel",
-                "description": "Clears all KeyframeEffects caused by this animation and aborts its playback.",
-                "value": {}
-              },
-              {
-                "name": "finish",
-                "description": "Sets the playback time to the end of the animation corresponding to the current playback direction.",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "lynk-cancel",
-                "description": "Emitted when the animation is canceled."
-              },
-              {
-                "name": "lynk-finish",
-                "description": "Emitted when the animation finishes."
-              },
-              {
-                "name": "lynk-start",
-                "description": "Emitted when the animation starts or restarts."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "name",
-              "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "play",
-              "description": "Plays the animation. When omitted, the animation will be paused. This prop will be automatically removed when the\nanimation finishes or gets canceled.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "delay",
-              "description": "The number of milliseconds to delay the start of the animation.",
-              "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "direction",
-              "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.",
-              "value": {
-                "type": "PlaybackDirection"
-              }
-            },
-            {
-              "name": "duration",
-              "description": "The number of milliseconds each iteration of the animation takes to complete.",
-              "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "easing",
-              "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "end-delay",
-              "description": "The number of milliseconds to delay after the active period of an animation sequence.",
-              "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "fill",
-              "description": "Sets how the animation applies styles to its target before and after its execution.",
-              "value": {
-                "type": "FillMode"
-              }
-            },
-            {
-              "name": "iterations",
-              "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
-              "value": {}
-            },
-            {
-              "name": "iteration-start",
-              "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
-              "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "playback-rate",
-              "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
-              "value": {
-                "type": "number"
-              }
-            }
-          ]
-        },
-        {
-          "description": "Gets a list of all supported animation names.",
-          "doc-url": "https://lynk.design/components/",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
-        },
-        {
-          "description": "Gets a list of all supported easing function names.",
-          "doc-url": "https://lynk.design/components/",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
-        },
-        {
-          "name": "lynk-accordion",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-accordion",
-          "js": {
-            "properties": [
-              {
-                "name": "accordion",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "header",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "body",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "open",
-                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "summary",
-                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Disables the accordion so it can't be toggled.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "show",
-                "description": "Shows the accordion.",
-                "value": {}
-              },
-              {
-                "name": "hide",
-                "description": "Hides the accordion",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryClick",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleOpenChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "lynk-show",
-                "description": "Emitted when the accordion opens."
-              },
-              {
-                "name": "lynk-after-show",
-                "description": "Emitted after the accordion opens and all animations are complete."
-              },
-              {
-                "name": "lynk-hide",
-                "description": "Emitted when the accordion closes."
-              },
-              {
-                "name": "lynk-after-hide",
-                "description": "Emitted after the accordion closes and all animations are complete."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "summary",
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "disabled",
-              "description": "Disables the accordion so it can't be toggled.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-badge",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-badge",
-          "js": {
-            "properties": [
-              {
-                "name": "type",
-                "description": "The badge's variant.",
-                "value": {
-                  "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-                }
-              },
-              {
-                "name": "pill",
-                "description": "Draws a pill-style badge with rounded edges.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "pulse",
-                "description": "Makes the badge pulsate to draw attention.",
-                "value": {
-                  "type": "boolean"
-                }
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "type",
-              "description": "The badge's variant.",
-              "value": {
-                "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              }
-            },
-            {
-              "name": "pill",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "pulse",
-              "description": "Makes the badge pulsate to draw attention.",
-              "value": {
-                "type": "boolean"
-              }
             }
           ]
         },
@@ -954,6 +633,327 @@
           ]
         },
         {
+          "name": "lynk-animation",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-animation",
+          "js": {
+            "properties": [
+              {
+                "name": "animation",
+                "value": {
+                  "type": "Animation | undefined"
+                }
+              },
+              {
+                "name": "hasStarted",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "defaultSlot",
+                "value": {
+                  "type": "Promise<HTMLSlotElement>"
+                }
+              },
+              {
+                "name": "name",
+                "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "play",
+                "description": "Plays the animation. When omitted, the animation will be paused. This prop will be automatically removed when the\nanimation finishes or gets canceled.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "delay",
+                "description": "The number of milliseconds to delay the start of the animation.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "direction",
+                "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.",
+                "value": {
+                  "type": "PlaybackDirection"
+                }
+              },
+              {
+                "name": "duration",
+                "description": "The number of milliseconds each iteration of the animation takes to complete.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "easing",
+                "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endDelay",
+                "description": "The number of milliseconds to delay after the active period of an animation sequence.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "fill",
+                "description": "Sets how the animation applies styles to its target before and after its execution.",
+                "value": {
+                  "type": "FillMode"
+                }
+              },
+              {
+                "name": "iterations",
+                "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
+                "value": {}
+              },
+              {
+                "name": "iterationStart",
+                "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "keyframes",
+                "description": "The keyframes to use for the animation. If this is set, `name` will be ignored.",
+                "value": {
+                  "type": "Keyframe[] | undefined"
+                }
+              },
+              {
+                "name": "playbackRate",
+                "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "currentTime",
+                "description": "Gets and sets the current animation time.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "handleAnimationChange",
+                "value": {}
+              },
+              {
+                "name": "handleAnimationFinish",
+                "value": {}
+              },
+              {
+                "name": "handleAnimationCancel",
+                "value": {}
+              },
+              {
+                "name": "handlePlayChange",
+                "value": {}
+              },
+              {
+                "name": "handlePlaybackRateChange",
+                "value": {}
+              },
+              {
+                "name": "handleSlotChange",
+                "value": {}
+              },
+              {
+                "name": "createAnimation",
+                "value": {}
+              },
+              {
+                "name": "destroyAnimation",
+                "value": {}
+              },
+              {
+                "name": "cancel",
+                "description": "Clears all KeyframeEffects caused by this animation and aborts its playback.",
+                "value": {}
+              },
+              {
+                "name": "finish",
+                "description": "Sets the playback time to the end of the animation corresponding to the current playback direction.",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "lynk-cancel",
+                "description": "Emitted when the animation is canceled."
+              },
+              {
+                "name": "lynk-finish",
+                "description": "Emitted when the animation finishes."
+              },
+              {
+                "name": "lynk-start",
+                "description": "Emitted when the animation starts or restarts."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "name",
+              "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "play",
+              "description": "Plays the animation. When omitted, the animation will be paused. This prop will be automatically removed when the\nanimation finishes or gets canceled.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "delay",
+              "description": "The number of milliseconds to delay the start of the animation.",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "direction",
+              "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.",
+              "value": {
+                "type": "PlaybackDirection"
+              }
+            },
+            {
+              "name": "duration",
+              "description": "The number of milliseconds each iteration of the animation takes to complete.",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "easing",
+              "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "end-delay",
+              "description": "The number of milliseconds to delay after the active period of an animation sequence.",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "fill",
+              "description": "Sets how the animation applies styles to its target before and after its execution.",
+              "value": {
+                "type": "FillMode"
+              }
+            },
+            {
+              "name": "iterations",
+              "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
+              "value": {}
+            },
+            {
+              "name": "iteration-start",
+              "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "playback-rate",
+              "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
+              "value": {
+                "type": "number"
+              }
+            }
+          ]
+        },
+        {
+          "description": "Gets a list of all supported animation names.",
+          "doc-url": "https://lynk.design/components/",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "description": "Gets a list of all supported easing function names.",
+          "doc-url": "https://lynk.design/components/",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "name": "lynk-badge",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-badge",
+          "js": {
+            "properties": [
+              {
+                "name": "type",
+                "description": "The badge's variant.",
+                "value": {
+                  "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+                }
+              },
+              {
+                "name": "pill",
+                "description": "Draws a pill-style badge with rounded edges.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "pulse",
+                "description": "Makes the badge pulsate to draw attention.",
+                "value": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "type",
+              "description": "The badge's variant.",
+              "value": {
+                "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              }
+            },
+            {
+              "name": "pill",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "pulse",
+              "description": "Makes the badge pulsate to draw attention.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-button-group",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-button-group",
@@ -1329,36 +1329,6 @@
           ]
         },
         {
-          "name": "lynk-divider",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-divider",
-          "js": {
-            "properties": [
-              {
-                "name": "vertical",
-                "description": "Draws the divider in a vertical orientation.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "handleVerticalChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "vertical",
-              "description": "Draws the divider in a vertical orientation.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-dropdown",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-dropdown",
@@ -1611,6 +1581,36 @@
             {
               "name": "hoist",
               "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-divider",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-divider",
+          "js": {
+            "properties": [
+              {
+                "name": "vertical",
+                "description": "Draws the divider in a vertical orientation.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleVerticalChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "vertical",
+              "description": "Draws the divider in a vertical orientation.",
               "value": {
                 "type": "boolean"
               }

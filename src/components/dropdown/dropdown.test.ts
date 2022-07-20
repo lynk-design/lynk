@@ -36,7 +36,7 @@ describe('<lynk-dropdown>', () => {
     expect(panel.hidden).to.be.true;
   });
 
-  it('should emit lynk-show and lynk-after-show when calling show()', async () => {
+  it('should emit on:show and after:show when calling show()', async () => {
     const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
@@ -51,8 +51,8 @@ describe('<lynk-dropdown>', () => {
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('lynk-show', showHandler);
-    el.addEventListener('lynk-after-show', afterShowHandler);
+    el.addEventListener('on:show', showHandler);
+    el.addEventListener('after:show', afterShowHandler);
     el.show();
 
     await waitUntil(() => showHandler.calledOnce);
@@ -63,7 +63,7 @@ describe('<lynk-dropdown>', () => {
     expect(panel.hidden).to.be.false;
   });
 
-  it('should emit lynk-hide and lynk-after-hide when calling hide()', async () => {
+  it('should emit on:hide and after:hide when calling hide()', async () => {
     const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown open>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
@@ -78,8 +78,8 @@ describe('<lynk-dropdown>', () => {
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('lynk-hide', hideHandler);
-    el.addEventListener('lynk-after-hide', afterHideHandler);
+    el.addEventListener('on:hide', hideHandler);
+    el.addEventListener('after:hide', afterHideHandler);
     el.hide();
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -90,7 +90,7 @@ describe('<lynk-dropdown>', () => {
     expect(panel.hidden).to.be.true;
   });
 
-  it('should emit lynk-show and lynk-after-show when setting open = true', async () => {
+  it('should emit on:show and after:show when setting open = true', async () => {
     const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
@@ -105,8 +105,8 @@ describe('<lynk-dropdown>', () => {
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('lynk-show', showHandler);
-    el.addEventListener('lynk-after-show', afterShowHandler);
+    el.addEventListener('on:show', showHandler);
+    el.addEventListener('after:show', afterShowHandler);
     el.open = true;
 
     await waitUntil(() => showHandler.calledOnce);
@@ -117,7 +117,7 @@ describe('<lynk-dropdown>', () => {
     expect(panel.hidden).to.be.false;
   });
 
-  it('should emit lynk-hide and lynk-after-hide when setting open = false', async () => {
+  it('should emit on:hide and after:hide when setting open = false', async () => {
     const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown open>
         <lynk-button slot="trigger" caret>Toggle</lynk-button>
@@ -132,8 +132,8 @@ describe('<lynk-dropdown>', () => {
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('lynk-hide', hideHandler);
-    el.addEventListener('lynk-after-hide', afterHideHandler);
+    el.addEventListener('on:hide', hideHandler);
+    el.addEventListener('after:hide', afterHideHandler);
     el.open = false;
 
     await waitUntil(() => hideHandler.calledOnce);

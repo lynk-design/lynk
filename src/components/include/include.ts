@@ -9,8 +9,8 @@ import { requestInclude } from './request';
  * @since 1.0
  * @status stable
  *
- * @event lynk-load - Emitted when the included file is loaded.
- * @event {{ status: number }} lynk-error - Emitted when the included file fails to load due to an error.
+ * @event on:load - Emitted when the included file is loaded.
+ * @event {{ status: number }} on:error - Emitted when the included file fails to load due to an error.
  */
 @customElement('lynk-include')
 export default class LynkInclude extends LitElement {
@@ -52,7 +52,7 @@ export default class LynkInclude extends LitElement {
       }
 
       if (!file.ok) {
-        emit(this, 'lynk-error', { detail: { status: file.status } });
+        emit(this, 'on:error', { detail: { status: file.status } });
         return;
       }
 
@@ -62,9 +62,9 @@ export default class LynkInclude extends LitElement {
         [...this.querySelectorAll('script')].forEach(script => this.executeScript(script));
       }
 
-      emit(this, 'lynk-load');
+      emit(this, 'on:load');
     } catch {
-      emit(this, 'lynk-error', { detail: { status: -1 } });
+      emit(this, 'on:error', { detail: { status: -1 } });
     }
   }
 

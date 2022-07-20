@@ -310,7 +310,7 @@
       }
     });
 
-    input.addEventListener('lynk-input', handleInput);
+    input.addEventListener('on:input', handleInput);
 
     // Close when a result is selected
     results.addEventListener('click', event => {

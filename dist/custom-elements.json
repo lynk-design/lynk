@@ -4,6 +4,222 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "src/components/accordion/accordion.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkAccordion",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The summary header.",
+              "name": "header"
+            },
+            {
+              "description": "The accordion summary.",
+              "name": "summary"
+            },
+            {
+              "description": "The expand/collapse summary icon.",
+              "name": "summary-icon"
+            },
+            {
+              "description": "The accordion content.",
+              "name": "content"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The accordions content.",
+              "name": ""
+            },
+            {
+              "description": "The accordions summary. Alternatively, you can use the summary prop.",
+              "name": "summary"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "accordion",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "header",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "body",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "summary",
+              "type": {
+                "text": "string"
+              },
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "attribute": "summary"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the accordion so it can't be toggled.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the accordion."
+            },
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the accordion"
+            },
+            {
+              "kind": "method",
+              "name": "handleSummaryClick"
+            },
+            {
+              "kind": "method",
+              "name": "handleSummaryKeyDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenChange"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the accordion opens.",
+              "name": "on:show",
+              "reactName": "onOnShow"
+            },
+            {
+              "description": "Emitted after the accordion opens and all animations are complete.",
+              "name": "after:show",
+              "reactName": "onAfterShow"
+            },
+            {
+              "description": "Emitted when the accordion closes.",
+              "name": "on:hide",
+              "reactName": "onOnHide"
+            },
+            {
+              "description": "Emitted after the accordion closes and all animations are complete.",
+              "name": "after:hide",
+              "reactName": "onAfterHide"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "fieldName": "open"
+            },
+            {
+              "name": "summary",
+              "type": {
+                "text": "string"
+              },
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "fieldName": "summary"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the accordion so it can't be toggled.",
+              "fieldName": "disabled"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "dependencies": [
+            "lynk-icon"
+          ],
+          "animations": [
+            {
+              "name": "accordion.show",
+              "description": "The animation to use when showing accordion. You can use `height: auto` with this animation."
+            },
+            {
+              "name": "accordion.hide",
+              "description": "The animation to use when hiding accordion. You can use `height: auto` with this animation."
+            }
+          ],
+          "tagName": "lynk-accordion",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkAccordion",
+            "module": "src/components/accordion/accordion.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-accordion",
+          "declaration": {
+            "name": "LynkAccordion",
+            "module": "src/components/accordion/accordion.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/alert/alert.ts",
       "declarations": [
         {
@@ -149,23 +365,23 @@
           "events": [
             {
               "description": "Emitted when the alert opens.",
-              "name": "lynk-show",
-              "reactName": "onLynkShow"
+              "name": "on:show",
+              "reactName": "onOnShow"
             },
             {
               "description": "Emitted after the alert opens and all animations are complete.",
-              "name": "lynk-after-show",
-              "reactName": "onLynkAfterShow"
+              "name": "after:show",
+              "reactName": "onAfterShow"
             },
             {
               "description": "Emitted when the alert closes.",
-              "name": "lynk-hide",
-              "reactName": "onLynkHide"
+              "name": "on:hide",
+              "reactName": "onOnHide"
             },
             {
               "description": "Emitted after the alert closes and all animations are complete.",
-              "name": "lynk-after-hide",
-              "reactName": "onLynkAfterHide"
+              "name": "after:hide",
+              "reactName": "onAfterHide"
             }
           ],
           "attributes": [
@@ -250,593 +466,71 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/animation/animation.ts",
+      "path": "src/components/box/box.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "LynkAnimation",
-          "slots": [
+          "name": "LynkBox",
+          "cssProperties": [
             {
-              "description": "The element to animate. If multiple elements are to be animated, wrap them in a single container or use multiple animation elements.",
-              "name": ""
+              "description": "Custom text align (left, center, right).",
+              "name": "--align",
+              "default": "left"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--background",
+              "default": "transparent"
+            },
+            {
+              "description": "<border-style> <border-width> <border-color>.",
+              "name": "--border"
+            },
+            {
+              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
+              "name": "--border-radius"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--color",
+              "default": "inherit"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--margin",
+              "default": "0"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--padding",
+              "default": "0"
+            },
+            {
+              "description": "Any elevation shadow token (--lynk-shadow-large);",
+              "name": "--shadow"
             }
           ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "animation",
-              "type": {
-                "text": "Animation | undefined"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "hasStarted",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "defaultSlot",
-              "type": {
-                "text": "Promise<HTMLSlotElement>"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "'none'",
-              "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
-              "attribute": "name"
-            },
-            {
-              "kind": "field",
-              "name": "play",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Plays the animation. When omitted, the animation will be paused. This prop will be automatically removed when the\nanimation finishes or gets canceled.",
-              "attribute": "play",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "delay",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The number of milliseconds to delay the start of the animation.",
-              "attribute": "delay"
-            },
-            {
-              "kind": "field",
-              "name": "direction",
-              "type": {
-                "text": "PlaybackDirection"
-              },
-              "default": "'normal'",
-              "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.",
-              "attribute": "direction"
-            },
-            {
-              "kind": "field",
-              "name": "duration",
-              "type": {
-                "text": "number"
-              },
-              "default": "1000",
-              "description": "The number of milliseconds each iteration of the animation takes to complete.",
-              "attribute": "duration"
-            },
-            {
-              "kind": "field",
-              "name": "easing",
-              "type": {
-                "text": "string"
-              },
-              "default": "'linear'",
-              "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
-              "attribute": "easing"
-            },
-            {
-              "kind": "field",
-              "name": "endDelay",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The number of milliseconds to delay after the active period of an animation sequence.",
-              "attribute": "end-delay"
-            },
-            {
-              "kind": "field",
-              "name": "fill",
-              "type": {
-                "text": "FillMode"
-              },
-              "default": "'auto'",
-              "description": "Sets how the animation applies styles to its target before and after its execution.",
-              "attribute": "fill"
-            },
-            {
-              "kind": "field",
-              "name": "iterations",
-              "default": "Infinity",
-              "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
-              "attribute": "iterations"
-            },
-            {
-              "kind": "field",
-              "name": "iterationStart",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
-              "attribute": "iteration-start"
-            },
-            {
-              "kind": "field",
-              "name": "keyframes",
-              "type": {
-                "text": "Keyframe[] | undefined"
-              },
-              "description": "The keyframes to use for the animation. If this is set, `name` will be ignored."
-            },
-            {
-              "kind": "field",
-              "name": "playbackRate",
-              "type": {
-                "text": "number"
-              },
-              "default": "1",
-              "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
-              "attribute": "playback-rate"
-            },
-            {
-              "kind": "field",
-              "name": "currentTime",
-              "type": {
-                "text": "number"
-              },
-              "description": "Gets and sets the current animation time."
-            },
-            {
-              "kind": "method",
-              "name": "handleAnimationChange"
-            },
-            {
-              "kind": "method",
-              "name": "handleAnimationFinish"
-            },
-            {
-              "kind": "method",
-              "name": "handleAnimationCancel"
-            },
-            {
-              "kind": "method",
-              "name": "handlePlayChange"
-            },
-            {
-              "kind": "method",
-              "name": "handlePlaybackRateChange"
-            },
-            {
-              "kind": "method",
-              "name": "handleSlotChange"
-            },
-            {
-              "kind": "method",
-              "name": "createAnimation"
-            },
-            {
-              "kind": "method",
-              "name": "destroyAnimation"
-            },
-            {
-              "kind": "method",
-              "name": "cancel",
-              "description": "Clears all KeyframeEffects caused by this animation and aborts its playback."
-            },
-            {
-              "kind": "method",
-              "name": "finish",
-              "description": "Sets the playback time to the end of the animation corresponding to the current playback direction."
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the animation is canceled.",
-              "name": "lynk-cancel",
-              "reactName": "onLynkCancel"
-            },
-            {
-              "description": "Emitted when the animation finishes.",
-              "name": "lynk-finish",
-              "reactName": "onLynkFinish"
-            },
-            {
-              "description": "Emitted when the animation starts or restarts.",
-              "name": "lynk-start",
-              "reactName": "onLynkStart"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "'none'",
-              "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
-              "fieldName": "name"
-            },
-            {
-              "name": "play",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Plays the animation. When omitted, the animation will be paused. This prop will be automatically removed when the\nanimation finishes or gets canceled.",
-              "fieldName": "play"
-            },
-            {
-              "name": "delay",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The number of milliseconds to delay the start of the animation.",
-              "fieldName": "delay"
-            },
-            {
-              "name": "direction",
-              "type": {
-                "text": "PlaybackDirection"
-              },
-              "default": "'normal'",
-              "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.",
-              "fieldName": "direction"
-            },
-            {
-              "name": "duration",
-              "type": {
-                "text": "number"
-              },
-              "default": "1000",
-              "description": "The number of milliseconds each iteration of the animation takes to complete.",
-              "fieldName": "duration"
-            },
-            {
-              "name": "easing",
-              "type": {
-                "text": "string"
-              },
-              "default": "'linear'",
-              "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
-              "fieldName": "easing"
-            },
-            {
-              "name": "end-delay",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The number of milliseconds to delay after the active period of an animation sequence.",
-              "fieldName": "endDelay"
-            },
-            {
-              "name": "fill",
-              "type": {
-                "text": "FillMode"
-              },
-              "default": "'auto'",
-              "description": "Sets how the animation applies styles to its target before and after its execution.",
-              "fieldName": "fill"
-            },
-            {
-              "name": "iterations",
-              "default": "Infinity",
-              "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
-              "resolveInitializer": {
-                "module": "src/components/animation/animation.ts"
-              },
-              "fieldName": "iterations"
-            },
-            {
-              "name": "iteration-start",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
-              "fieldName": "iterationStart"
-            },
-            {
-              "name": "playback-rate",
-              "type": {
-                "text": "number"
-              },
-              "default": "1",
-              "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
-              "fieldName": "playbackRate"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-animation",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkAnimation",
-            "module": "src/components/animation/animation.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-animation",
-          "declaration": {
-            "name": "LynkAnimation",
-            "module": "src/components/animation/animation.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/animation/animations.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "getAnimationNames",
-          "description": "Gets a list of all supported animation names."
-        },
-        {
-          "kind": "function",
-          "name": "getEasingNames",
-          "description": "Gets a list of all supported easing function names."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "animations",
-          "declaration": {
-            "name": "animations",
-            "module": "src/components/animation/animations.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "getAnimationNames",
-          "declaration": {
-            "name": "getAnimationNames",
-            "module": "src/components/animation/animations.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "getEasingNames",
-          "declaration": {
-            "name": "getEasingNames",
-            "module": "src/components/animation/animations.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/accordion/accordion.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkAccordion",
           "cssParts": [
             {
               "description": "The component's internal wrapper.",
               "name": "base"
-            },
-            {
-              "description": "The summary header.",
-              "name": "header"
-            },
-            {
-              "description": "The accordion summary.",
-              "name": "summary"
-            },
-            {
-              "description": "The expand/collapse summary icon.",
-              "name": "summary-icon"
-            },
-            {
-              "description": "The accordion content.",
-              "name": "content"
             }
           ],
           "slots": [
             {
-              "description": "The accordions content.",
+              "description": "The default slot.",
               "name": ""
-            },
-            {
-              "description": "The accordions summary. Alternatively, you can use the summary prop.",
-              "name": "summary"
             }
           ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "accordion",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "header",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "body",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "attribute": "open",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "summary",
-              "type": {
-                "text": "string"
-              },
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "attribute": "summary"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the accordion so it can't be toggled.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "show",
-              "description": "Shows the accordion."
-            },
-            {
-              "kind": "method",
-              "name": "hide",
-              "description": "Hides the accordion"
-            },
-            {
-              "kind": "method",
-              "name": "handleSummaryClick"
-            },
-            {
-              "kind": "method",
-              "name": "handleSummaryKeyDown",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleOpenChange"
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the accordion opens.",
-              "name": "lynk-show",
-              "reactName": "onLynkShow"
-            },
-            {
-              "description": "Emitted after the accordion opens and all animations are complete.",
-              "name": "lynk-after-show",
-              "reactName": "onLynkAfterShow"
-            },
-            {
-              "description": "Emitted when the accordion closes.",
-              "name": "lynk-hide",
-              "reactName": "onLynkHide"
-            },
-            {
-              "description": "Emitted after the accordion closes and all animations are complete.",
-              "name": "lynk-after-hide",
-              "reactName": "onLynkAfterHide"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "fieldName": "open"
-            },
-            {
-              "name": "summary",
-              "type": {
-                "text": "string"
-              },
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "fieldName": "summary"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the accordion so it can't be toggled.",
-              "fieldName": "disabled"
-            }
-          ],
+          "members": [],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
           "since": "1.0",
           "status": "stable",
-          "dependencies": [
-            "lynk-icon"
-          ],
-          "animations": [
-            {
-              "name": "accordion.show",
-              "description": "The animation to use when showing accordion. You can use `height: auto` with this animation."
-            },
-            {
-              "name": "accordion.hide",
-              "description": "The animation to use when hiding accordion. You can use `height: auto` with this animation."
-            }
-          ],
-          "tagName": "lynk-accordion",
+          "tagName": "lynk-box",
           "customElement": true
         }
       ],
@@ -845,16 +539,16 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "LynkAccordion",
-            "module": "src/components/accordion/accordion.ts"
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "lynk-accordion",
+          "name": "lynk-box",
           "declaration": {
-            "name": "LynkAccordion",
-            "module": "src/components/accordion/accordion.ts"
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
           }
         }
       ]
@@ -974,71 +668,335 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/box/box.ts",
+      "path": "src/components/animation/animation.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "LynkBox",
-          "cssProperties": [
-            {
-              "description": "Custom text align (left, center, right).",
-              "name": "--align",
-              "default": "left"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--background",
-              "default": "transparent"
-            },
-            {
-              "description": "<border-style> <border-width> <border-color>.",
-              "name": "--border"
-            },
-            {
-              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
-              "name": "--border-radius"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--color",
-              "default": "inherit"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--margin",
-              "default": "0"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--padding",
-              "default": "0"
-            },
-            {
-              "description": "Any elevation shadow token (--lynk-shadow-large);",
-              "name": "--shadow"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
+          "name": "LynkAnimation",
           "slots": [
             {
-              "description": "The default slot.",
+              "description": "The element to animate. If multiple elements are to be animated, wrap them in a single container or use multiple animation elements.",
               "name": ""
             }
           ],
-          "members": [],
+          "members": [
+            {
+              "kind": "field",
+              "name": "animation",
+              "type": {
+                "text": "Animation | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "hasStarted",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "defaultSlot",
+              "type": {
+                "text": "Promise<HTMLSlotElement>"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "'none'",
+              "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "play",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Plays the animation. When omitted, the animation will be paused. This prop will be automatically removed when the\nanimation finishes or gets canceled.",
+              "attribute": "play",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "delay",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The number of milliseconds to delay the start of the animation.",
+              "attribute": "delay"
+            },
+            {
+              "kind": "field",
+              "name": "direction",
+              "type": {
+                "text": "PlaybackDirection"
+              },
+              "default": "'normal'",
+              "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.",
+              "attribute": "direction"
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "type": {
+                "text": "number"
+              },
+              "default": "1000",
+              "description": "The number of milliseconds each iteration of the animation takes to complete.",
+              "attribute": "duration"
+            },
+            {
+              "kind": "field",
+              "name": "easing",
+              "type": {
+                "text": "string"
+              },
+              "default": "'linear'",
+              "description": "The easing function to use for the animation. This can be a Lynk easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
+              "attribute": "easing"
+            },
+            {
+              "kind": "field",
+              "name": "endDelay",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The number of milliseconds to delay after the active period of an animation sequence.",
+              "attribute": "end-delay"
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "type": {
+                "text": "FillMode"
+              },
+              "default": "'auto'",
+              "description": "Sets how the animation applies styles to its target before and after its execution.",
+              "attribute": "fill"
+            },
+            {
+              "kind": "field",
+              "name": "iterations",
+              "default": "Infinity",
+              "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
+              "attribute": "iterations"
+            },
+            {
+              "kind": "field",
+              "name": "iterationStart",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
+              "attribute": "iteration-start"
+            },
+            {
+              "kind": "field",
+              "name": "keyframes",
+              "type": {
+                "text": "Keyframe[] | undefined"
+              },
+              "description": "The keyframes to use for the animation. If this is set, `name` will be ignored."
+            },
+            {
+              "kind": "field",
+              "name": "playbackRate",
+              "type": {
+                "text": "number"
+              },
+              "default": "1",
+              "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
+              "attribute": "playback-rate"
+            },
+            {
+              "kind": "field",
+              "name": "currentTime",
+              "type": {
+                "text": "number"
+              },
+              "description": "Gets and sets the current animation time."
+            },
+            {
+              "kind": "method",
+              "name": "handleAnimationChange"
+            },
+            {
+              "kind": "method",
+              "name": "handleAnimationFinish"
+            },
+            {
+              "kind": "method",
+              "name": "handleAnimationCancel"
+            },
+            {
+              "kind": "method",
+              "name": "handlePlayChange"
+            },
+            {
+              "kind": "method",
+              "name": "handlePlaybackRateChange"
+            },
+            {
+              "kind": "method",
+              "name": "handleSlotChange"
+            },
+            {
+              "kind": "method",
+              "name": "createAnimation"
+            },
+            {
+              "kind": "method",
+              "name": "destroyAnimation"
+            },
+            {
+              "kind": "method",
+              "name": "cancel",
+              "description": "Clears all KeyframeEffects caused by this animation and aborts its playback."
+            },
+            {
+              "kind": "method",
+              "name": "finish",
+              "description": "Sets the playback time to the end of the animation corresponding to the current playback direction."
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the animation is canceled.",
+              "name": "on:cancel",
+              "reactName": "onOnCancel"
+            },
+            {
+              "description": "Emitted when the animation finishes.",
+              "name": "on:finish",
+              "reactName": "onOnFinish"
+            },
+            {
+              "description": "Emitted when the animation starts or restarts.",
+              "name": "on:start",
+              "reactName": "onOnStart"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "'none'",
+              "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
+              "fieldName": "name"
+            },
+            {
+              "name": "play",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Plays the animation. When omitted, the animation will be paused. This prop will be automatically removed when the\nanimation finishes or gets canceled.",
+              "fieldName": "play"
+            },
+            {
+              "name": "delay",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The number of milliseconds to delay the start of the animation.",
+              "fieldName": "delay"
+            },
+            {
+              "name": "direction",
+              "type": {
+                "text": "PlaybackDirection"
+              },
+              "default": "'normal'",
+              "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.",
+              "fieldName": "direction"
+            },
+            {
+              "name": "duration",
+              "type": {
+                "text": "number"
+              },
+              "default": "1000",
+              "description": "The number of milliseconds each iteration of the animation takes to complete.",
+              "fieldName": "duration"
+            },
+            {
+              "name": "easing",
+              "type": {
+                "text": "string"
+              },
+              "default": "'linear'",
+              "description": "The easing function to use for the animation. This can be a Lynk easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
+              "fieldName": "easing"
+            },
+            {
+              "name": "end-delay",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The number of milliseconds to delay after the active period of an animation sequence.",
+              "fieldName": "endDelay"
+            },
+            {
+              "name": "fill",
+              "type": {
+                "text": "FillMode"
+              },
+              "default": "'auto'",
+              "description": "Sets how the animation applies styles to its target before and after its execution.",
+              "fieldName": "fill"
+            },
+            {
+              "name": "iterations",
+              "default": "Infinity",
+              "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
+              "resolveInitializer": {
+                "module": "src/components/animation/animation.ts"
+              },
+              "fieldName": "iterations"
+            },
+            {
+              "name": "iteration-start",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
+              "fieldName": "iterationStart"
+            },
+            {
+              "name": "playback-rate",
+              "type": {
+                "text": "number"
+              },
+              "default": "1",
+              "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
+              "fieldName": "playbackRate"
+            }
+          ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
           "since": "1.0",
           "status": "stable",
-          "tagName": "lynk-box",
+          "tagName": "lynk-animation",
           "customElement": true
         }
       ],
@@ -1047,16 +1005,58 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
+            "name": "LynkAnimation",
+            "module": "src/components/animation/animation.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "lynk-box",
+          "name": "lynk-animation",
           "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
+            "name": "LynkAnimation",
+            "module": "src/components/animation/animation.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/animation/animations.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getAnimationNames",
+          "description": "Gets a list of all supported animation names."
+        },
+        {
+          "kind": "function",
+          "name": "getEasingNames",
+          "description": "Gets a list of all supported easing function names."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "animations",
+          "declaration": {
+            "name": "animations",
+            "module": "src/components/animation/animations.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getAnimationNames",
+          "declaration": {
+            "name": "getAnimationNames",
+            "module": "src/components/animation/animations.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getEasingNames",
+          "declaration": {
+            "name": "getEasingNames",
+            "module": "src/components/animation/animations.ts"
           }
         }
       ]
@@ -1398,13 +1398,13 @@
           "events": [
             {
               "description": "Emitted when the button loses focus.",
-              "name": "lynk-blur",
-              "reactName": "onLynkBlur"
+              "name": "on:blur",
+              "reactName": "onOnBlur"
             },
             {
               "description": "Emitted when the button gains focus.",
-              "name": "lynk-focus",
-              "reactName": "onLynkFocus"
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             }
           ],
           "attributes": [
@@ -1949,18 +1949,18 @@
           "events": [
             {
               "description": "Emitted when the control loses focus.",
-              "name": "lynk-blur",
-              "reactName": "onLynkBlur"
+              "name": "on:blur",
+              "reactName": "onOnBlur"
             },
             {
               "description": "Emitted when the control's checked state changes.",
-              "name": "lynk-change",
-              "reactName": "onLynkChange"
+              "name": "on:change",
+              "reactName": "onOnChange"
             },
             {
               "description": "Emitted when the control gains focus.",
-              "name": "lynk-focus",
-              "reactName": "onLynkFocus"
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             }
           ],
           "attributes": [
@@ -2051,6 +2051,85 @@
           "declaration": {
             "name": "LynkCheckbox",
             "module": "src/components/checkbox/checkbox.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/divider/divider.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkDivider",
+          "cssProperties": [
+            {
+              "description": "The color of the divider.",
+              "name": "--color"
+            },
+            {
+              "description": "The width of the divider.",
+              "name": "--width"
+            },
+            {
+              "description": "The spacing of the divider.",
+              "name": "--spacing"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "vertical",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the divider in a vertical orientation.",
+              "attribute": "vertical",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "handleVerticalChange"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "vertical",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the divider in a vertical orientation.",
+              "fieldName": "vertical"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-divider",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkDivider",
+            "module": "src/components/divider/divider.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-divider",
+          "declaration": {
+            "name": "LynkDivider",
+            "module": "src/components/divider/divider.ts"
           }
         }
       ]
@@ -2259,36 +2338,36 @@
           "events": [
             {
               "description": "Emitted when the dialog opens.",
-              "name": "lynk-show",
-              "reactName": "onLynkShow"
+              "name": "on:show",
+              "reactName": "onOnShow"
             },
             {
               "description": "Emitted after the dialog opens and all animations are complete.",
-              "name": "lynk-after-show",
-              "reactName": "onLynkAfterShow"
+              "name": "after:show",
+              "reactName": "onAfterShow"
             },
             {
               "description": "Emitted when the dialog closes.",
-              "name": "lynk-hide",
-              "reactName": "onLynkHide"
+              "name": "on:hide",
+              "reactName": "onOnHide"
             },
             {
               "description": "Emitted after the dialog closes and all animations are complete.",
-              "name": "lynk-after-hide",
-              "reactName": "onLynkAfterHide"
+              "name": "after:hide",
+              "reactName": "onAfterHide"
             },
             {
               "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.",
-              "name": "lynk-initial-focus",
-              "reactName": "onLynkInitialFocus"
+              "name": "on:initial-focus",
+              "reactName": "onOnInitialFocus"
             },
             {
               "type": {
                 "text": "{ source: 'close-button' | 'keyboard' | 'overlay' }"
               },
               "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss.",
-              "name": "lynk-request-close",
-              "reactName": "onLynkRequestClose"
+              "name": "on:request-close",
+              "reactName": "onOnRequestClose"
             }
           ],
           "attributes": [
@@ -2370,85 +2449,6 @@
           "declaration": {
             "name": "LynkDialog",
             "module": "src/components/dialog/dialog.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/divider/divider.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkDivider",
-          "cssProperties": [
-            {
-              "description": "The color of the divider.",
-              "name": "--color"
-            },
-            {
-              "description": "The width of the divider.",
-              "name": "--width"
-            },
-            {
-              "description": "The spacing of the divider.",
-              "name": "--spacing"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "vertical",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the divider in a vertical orientation.",
-              "attribute": "vertical",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "handleVerticalChange"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "vertical",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the divider in a vertical orientation.",
-              "fieldName": "vertical"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-divider",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkDivider",
-            "module": "src/components/divider/divider.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-divider",
-          "declaration": {
-            "name": "LynkDivider",
-            "module": "src/components/divider/divider.ts"
           }
         }
       ]
@@ -2750,23 +2750,23 @@
           "events": [
             {
               "description": "Emitted when the dropdown opens.",
-              "name": "lynk-show",
-              "reactName": "onLynkShow"
+              "name": "on:show",
+              "reactName": "onOnShow"
             },
             {
               "description": "Emitted after the dropdown opens and all animations are complete.",
-              "name": "lynk-after-show",
-              "reactName": "onLynkAfterShow"
+              "name": "after:show",
+              "reactName": "onAfterShow"
             },
             {
               "description": "Emitted when the dropdown closes.",
-              "name": "lynk-hide",
-              "reactName": "onLynkHide"
+              "name": "on:hide",
+              "reactName": "onOnHide"
             },
             {
               "description": "Emitted after the dropdown closes and all animations are complete.",
-              "name": "lynk-after-hide",
-              "reactName": "onLynkAfterHide"
+              "name": "after:hide",
+              "reactName": "onAfterHide"
             }
           ],
           "attributes": [
@@ -3793,13 +3793,13 @@
           "events": [
             {
               "description": "Emitted when the icon has loaded.",
-              "name": "lynk-load",
-              "reactName": "onLynkLoad"
+              "name": "on:load",
+              "reactName": "onOnLoad"
             },
             {
               "description": "Emitted when the icon fails to load due to an error.",
-              "name": "lynk-error",
-              "reactName": "onLynkError"
+              "name": "on:error",
+              "reactName": "onOnError"
             }
           ],
           "attributes": [
@@ -4217,13 +4217,13 @@
           "events": [
             {
               "description": "Emitted when the icon button loses focus.",
-              "name": "lynk-blur",
-              "reactName": "onLynkBlur"
+              "name": "on:blur",
+              "reactName": "onOnBlur"
             },
             {
               "description": "Emitted when the icon button gains focus.",
-              "name": "lynk-focus",
-              "reactName": "onLynkFocus"
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             }
           ],
           "attributes": [
@@ -4384,16 +4384,16 @@
           "events": [
             {
               "description": "Emitted when the included file is loaded.",
-              "name": "lynk-load",
-              "reactName": "onLynkLoad"
+              "name": "on:load",
+              "reactName": "onOnLoad"
             },
             {
               "type": {
                 "text": "{ status: number }"
               },
               "description": "Emitted when the included file fails to load due to an error.",
-              "name": "lynk-error",
-              "reactName": "onLynkError"
+              "name": "on:error",
+              "reactName": "onOnError"
             }
           ],
           "attributes": [
@@ -5060,28 +5060,28 @@
           "events": [
             {
               "description": "Emitted when an alteration to the control's value is committed by the user.",
-              "name": "lynk-change",
-              "reactName": "onLynkChange"
+              "name": "on:change",
+              "reactName": "onOnChange"
             },
             {
               "description": "Emitted when the clear button is activated.",
-              "name": "lynk-clear",
-              "reactName": "onLynkClear"
+              "name": "on:clear",
+              "reactName": "onOnClear"
             },
             {
               "description": "Emitted when the control receives input and its value changes.",
-              "name": "lynk-input",
-              "reactName": "onLynkInput"
+              "name": "on:input",
+              "reactName": "onOnInput"
             },
             {
               "description": "Emitted when the control gains focus.",
-              "name": "lynk-focus",
-              "reactName": "onLynkFocus"
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             },
             {
               "description": "Emitted when the control loses focus.",
-              "name": "lynk-blur",
-              "reactName": "onLynkBlur"
+              "name": "on:blur",
+              "reactName": "onOnBlur"
             }
           ],
           "attributes": [
@@ -5484,8 +5484,8 @@
                 "text": "{ item: LynkMenuItem }"
               },
               "description": "Emitted when a menu item is selected.",
-              "name": "lynk-select",
-              "reactName": "onLynkSelect"
+              "name": "on:select",
+              "reactName": "onOnSelect"
             }
           ],
           "superclass": {
@@ -5633,8 +5633,8 @@
           "events": [
             {
               "description": "Emitted when the menu item's text label changes. For performance reasons, this event is only emitted if the default slot's `slotchange` event is triggered. It will not fire when the label is first set.",
-              "name": "lynk-label-change",
-              "reactName": "onLynkLabelChange"
+              "name": "on:label-change",
+              "reactName": "onOnLabelChange"
             }
           ],
           "attributes": [
@@ -5868,8 +5868,8 @@
           "events": [
             {
               "description": "Emitted when a mutation occurs.",
-              "name": "lynk-mutation",
-              "reactName": "onLynkMutation"
+              "name": "on:mutation",
+              "reactName": "onOnMutation"
             }
           ],
           "attributes": [
@@ -6440,18 +6440,18 @@
           "events": [
             {
               "description": "Emitted when the control loses focus.",
-              "name": "lynk-blur",
-              "reactName": "onLynkBlur"
+              "name": "on:blur",
+              "reactName": "onOnBlur"
             },
             {
               "description": "Emitted when the control's checked state changes.",
-              "name": "lynk-change",
-              "reactName": "onLynkChange"
+              "name": "on:change",
+              "reactName": "onOnChange"
             },
             {
               "description": "Emitted when the control gains focus.",
-              "name": "lynk-focus",
-              "reactName": "onLynkFocus"
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             }
           ],
           "attributes": [
@@ -6751,18 +6751,18 @@
           "events": [
             {
               "description": "Emitted when the button loses focus.",
-              "name": "lynk-blur",
-              "reactName": "onLynkBlur"
+              "name": "on:blur",
+              "reactName": "onOnBlur"
             },
             {
               "description": "Emitted when the button's checked state changes.",
-              "name": "lynk-change",
-              "reactName": "onLynkChange"
+              "name": "on:change",
+              "reactName": "onOnChange"
             },
             {
               "description": "Emitted when the button gains focus.",
-              "name": "lynk-focus",
-              "reactName": "onLynkFocus"
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             }
           ],
           "attributes": [
@@ -7253,8 +7253,8 @@
                 "text": "{ entries: ResizeObserverEntry[] }"
               },
               "description": "Emitted when the element is resized.",
-              "name": "lynk-resize",
-              "reactName": "onLynkResize"
+              "name": "on:resize",
+              "reactName": "onOnResize"
             }
           ],
           "attributes": [
@@ -7897,23 +7897,23 @@
           "events": [
             {
               "description": "Emitted when the clear button is activated.",
-              "name": "lynk-clear",
-              "reactName": "onLynkClear"
+              "name": "on:clear",
+              "reactName": "onOnClear"
             },
             {
               "description": "Emitted when the control's value changes.",
-              "name": "lynk-change",
-              "reactName": "onLynkChange"
+              "name": "on:change",
+              "reactName": "onOnChange"
             },
             {
               "description": "Emitted when the control gains focus.",
-              "name": "lynk-focus",
-              "reactName": "onLynkFocus"
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             },
             {
               "description": "Emitted when the control loses focus.",
-              "name": "lynk-blur",
-              "reactName": "onLynkBlur"
+              "name": "on:blur",
+              "reactName": "onOnBlur"
             }
           ],
           "attributes": [
@@ -8369,18 +8369,18 @@
           "events": [
             {
               "description": "Emitted when the control loses focus.",
-              "name": "lynk-blur",
-              "reactName": "onLynkBlur"
+              "name": "on:blur",
+              "reactName": "onOnBlur"
             },
             {
               "description": "Emitted when the control's checked state changes.",
-              "name": "lynk-change",
-              "reactName": "onLynkChange"
+              "name": "on:change",
+              "reactName": "onOnChange"
             },
             {
               "description": "Emitted when the control gains focus.",
-              "name": "lynk-focus",
-              "reactName": "onLynkFocus"
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             }
           ],
           "attributes": [
@@ -8598,8 +8598,8 @@
           "events": [
             {
               "description": "Emitted when the tab is closable and the close button is activated.",
-              "name": "lynk-close",
-              "reactName": "onLynkClose"
+              "name": "on:close",
+              "reactName": "onOnClose"
             }
           ],
           "attributes": [
@@ -8988,16 +8988,16 @@
                 "text": "{ name: String }"
               },
               "description": "Emitted when a tab is shown.",
-              "name": "lynk-tab-show",
-              "reactName": "onLynkTabShow"
+              "name": "on:tab-show",
+              "reactName": "onOnTabShow"
             },
             {
               "type": {
                 "text": "{ name: String }"
               },
               "description": "Emitted when a tab is hidden.",
-              "name": "lynk-tab-hide",
-              "reactName": "onLynkTabHide"
+              "name": "on:tab-hide",
+              "reactName": "onOnTabHide"
             }
           ],
           "attributes": [
@@ -9269,8 +9269,8 @@
           "events": [
             {
               "description": "Emitted when the remove button is activated.",
-              "name": "lynk-remove",
-              "reactName": "onLynkRemove"
+              "name": "on:remove",
+              "reactName": "onOnRemove"
             }
           ],
           "attributes": [
@@ -9794,23 +9794,23 @@
           "events": [
             {
               "description": "Emitted when an alteration to the control's value is committed by the user.",
-              "name": "lynk-change",
-              "reactName": "onLynkChange"
+              "name": "on:change",
+              "reactName": "onOnChange"
             },
             {
               "description": "Emitted when the control receives input and its value changes.",
-              "name": "lynk-input",
-              "reactName": "onLynkInput"
+              "name": "on:input",
+              "reactName": "onOnInput"
             },
             {
               "description": "Emitted when the control gains focus.",
-              "name": "lynk-focus",
-              "reactName": "onLynkFocus"
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             },
             {
               "description": "Emitted when the control loses focus.",
-              "name": "lynk-blur",
-              "reactName": "onLynkBlur"
+              "name": "on:blur",
+              "reactName": "onOnBlur"
             }
           ],
           "attributes": [
@@ -10286,23 +10286,23 @@
           "events": [
             {
               "description": "Emitted when the tooltip begins to show.",
-              "name": "lynk-show",
-              "reactName": "onLynkShow"
+              "name": "on:show",
+              "reactName": "onOnShow"
             },
             {
               "description": "Emitted after the tooltip has shown and all animations are complete.",
-              "name": "lynk-after-show",
-              "reactName": "onLynkAfterShow"
+              "name": "after:show",
+              "reactName": "onAfterShow"
             },
             {
               "description": "Emitted when the tooltip begins to hide.",
-              "name": "lynk-hide",
-              "reactName": "onLynkHide"
+              "name": "on:hide",
+              "reactName": "onOnHide"
             },
             {
               "description": "Emitted after the tooltip has hidden and all animations are complete.",
-              "name": "lynk-after-hide",
-              "reactName": "onLynkAfterHide"
+              "name": "after:hide",
+              "reactName": "onAfterHide"
             }
           ],
           "attributes": [

@@ -38,14 +38,14 @@ describe('<lynk-select>', () => {
     const label = el.shadowRoot!.querySelector('[part="form-control-label"]')!;
     const submitHandler = sinon.spy();
 
-    el.addEventListener('lynk-focus', submitHandler);
+    el.addEventListener('on:focus', submitHandler);
     (label as HTMLLabelElement).click();
     await waitUntil(() => submitHandler.calledOnce);
 
     expect(submitHandler).to.have.been.calledOnce;
   });
 
-  it('should emit lynk-change when the value changes', async () => {
+  it('should emit on:change when the value changes', async () => {
     const el = await fixture<LynkSelect>(html`
       <lynk-select>
         <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
@@ -55,7 +55,7 @@ describe('<lynk-select>', () => {
     `);
     const changeHandler = sinon.spy();
 
-    el.addEventListener('lynk-change', changeHandler);
+    el.addEventListener('on:change', changeHandler);
     el.value = 'option-2';
     await waitUntil(() => changeHandler.calledOnce);
 
@@ -125,7 +125,7 @@ describe('<lynk-select>', () => {
     expect(displayLabel.textContent?.trim()).to.equal('Option 1');
     menuItem.textContent = 'updated';
 
-    await oneEvent(el, 'lynk-label-change');
+    await oneEvent(el, 'on:label-change');
     await el.updateComplete;
 
     expect(displayLabel.textContent?.trim()).to.equal('updated');

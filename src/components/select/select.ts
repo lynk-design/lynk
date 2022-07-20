@@ -36,10 +36,10 @@ import type { TemplateResult } from 'lit';
  * @slot label - The select's label. Alternatively, you can use the label prop.
  * @slot help-text - Help text that describes how to use the select.
  *
- * @event lynk-clear - Emitted when the clear button is activated.
- * @event lynk-change - Emitted when the control's value changes.
- * @event lynk-focus - Emitted when the control gains focus.
- * @event lynk-blur - Emitted when the control loses focus.
+ * @event on:clear - Emitted when the clear button is activated.
+ * @event on:change - Emitted when the control's value changes.
+ * @event on:focus - Emitted when the control gains focus.
+ * @event on:blur - Emitted when the control loses focus.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -190,14 +190,14 @@ export default class LynkSelect extends LitElement {
     // Don't blur if the control is open. We'll move focus back once it closes.
     if (!this.isOpen) {
       this.hasFocus = false;
-      emit(this, 'lynk-blur');
+      emit(this, 'on:blur');
     }
   }
 
   handleClearClick(event: MouseEvent) {
     event.stopPropagation();
     this.value = this.multiple ? [] : '';
-    emit(this, 'lynk-clear');
+    emit(this, 'on:clear');
     this.syncItemsFromValue();
   }
 
@@ -215,7 +215,7 @@ export default class LynkSelect extends LitElement {
   handleFocus() {
     if (!this.hasFocus) {
       this.hasFocus = true;
-      emit(this, 'lynk-focus');
+      emit(this, 'on:focus');
     }
   }
 
@@ -359,7 +359,7 @@ export default class LynkSelect extends LitElement {
     this.syncItemsFromValue();
     await this.updateComplete;
     this.invalid = !this.input.checkValidity();
-    emit(this, 'lynk-change');
+    emit(this, 'on:change');
   }
 
   resizeMenu() {
@@ -393,7 +393,7 @@ export default class LynkSelect extends LitElement {
             removable
             @click=${this.handleTagInteraction}
             @keydown=${this.handleTagInteraction}
-            @lynk-remove=${(event: CustomEvent) => {
+            @on:remove=${(event: CustomEvent) => {
               event.stopPropagation();
               if (!this.disabled) {
                 item.checked = false;
@@ -456,17 +456,17 @@ export default class LynkSelect extends LitElement {
       <div
         part="form-control"
         class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
+          'lynk-form-control': true,
+          'lynk-form-control--small': this.size === 'small',
+          'lynk-form-control--medium': this.size === 'medium',
+          'lynk-form-control--large': this.size === 'large',
+          'lynk-form-control--has-label': hasLabel,
+          'lynk-form-control--has-help-text': hasHelpText
         })}
       >
         <label
           part="form-control-label"
-          class="form-control__label"
+          class="lynk-form-control__label"
           for="input"
           aria-hidden=${hasLabel ? 'false' : 'true'}
           @click=${this.handleLabelClick}
@@ -474,7 +474,7 @@ export default class LynkSelect extends LitElement {
           <slot name="label">${this.label}</slot>
         </label>
 
-        <div part="form-control-input" class="form-control-input">
+        <div part="form-control-input" class="lynk-form-control-input">
           <lynk-dropdown
             part="base"
             .hoist=${this.hoist}
@@ -500,8 +500,8 @@ export default class LynkSelect extends LitElement {
               'lynk-select--pill': this.pill,
               'lynk-select--invalid': this.invalid
             })}
-            @lynk-show=${this.handleMenuShow}
-            @lynk-hide=${this.handleMenuHide}
+            @on:show=${this.handleMenuShow}
+            @on:hide=${this.handleMenuHide}
           >
             <div
               part="control"
@@ -568,8 +568,8 @@ export default class LynkSelect extends LitElement {
               />
             </div>
 
-            <lynk-menu part="menu" id="menu" class="lynk-select__menu" @lynk-select=${this.handleMenuSelect}>
-              <slot @slotchange=${this.handleMenuSlotChange} @lynk-label-change=${this.handleMenuItemLabelChange}></slot>
+            <lynk-menu part="menu" id="menu" class="lynk-select__menu" @on:select=${this.handleMenuSelect}>
+              <slot @slotchange=${this.handleMenuSlotChange} @on:label-change=${this.handleMenuItemLabelChange}></slot>
             </lynk-menu>
           </lynk-dropdown>
         </div>
@@ -577,7 +577,7 @@ export default class LynkSelect extends LitElement {
         <div
           part="form-control-help-text"
           id="help-text"
-          class="form-control__help-text"
+          class="lynk-form-control__help-text"
           aria-hidden=${hasHelpText ? 'false' : 'true'}
         >
           <slot name="help-text">${this.helpText}</slot>

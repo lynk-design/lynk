@@ -5,25 +5,11 @@
 Tags are used as labels to organize things or to indicate a selection.
 
 ```html preview
-<lynk-tag variant="primary">Primary</lynk-tag>
-<lynk-tag variant="success">Success</lynk-tag>
-<lynk-tag variant="neutral">Neutral</lynk-tag>
-<lynk-tag variant="warning">Warning</lynk-tag>
-<lynk-tag variant="danger">Danger</lynk-tag>
-```
-
-```jsx react
-import { SlTag } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <>
-    <SlTag variant="primary">Primary</SlTag>
-    <SlTag variant="success">Success</SlTag>
-    <SlTag variant="neutral">Neutral</SlTag>
-    <SlTag variant="warning">Warning</SlTag>
-    <SlTag variant="danger">Danger</SlTag>
-  </>
-);
+<lynk-tag color="primary">Primary</lynk-tag>
+<lynk-tag color="success">Success</lynk-tag>
+<lynk-tag color="neutral">Neutral</lynk-tag>
+<lynk-tag color="warning">Warning</lynk-tag>
+<lynk-tag color="danger">Danger</lynk-tag>
 ```
 
 ## Examples
@@ -38,18 +24,6 @@ Use the `size` attribute to change a tab's size.
 <lynk-tag size="large">Large</lynk-tag>
 ```
 
-```jsx react
-import { SlTag } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <>
-    <SlTag size="small">Small</SlTag>
-    <SlTag size="medium">Medium</SlTag>
-    <SlTag size="large">Large</SlTag>
-  </>
-);
-```
-
 ### Pill
 
 Use the `pill` attribute to give tabs rounded edges.
@@ -58,24 +32,6 @@ Use the `pill` attribute to give tabs rounded edges.
 <lynk-tag size="small" pill>Small</lynk-tag>
 <lynk-tag size="medium" pill>Medium</lynk-tag>
 <lynk-tag size="large" pill>Large</lynk-tag>
-```
-
-```jsx react
-import { SlTag } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <>
-    <SlTag size="small" pill>
-      Small
-    </SlTag>
-    <SlTag size="medium" pill>
-      Medium
-    </SlTag>
-    <SlTag size="large" pill>
-      Large
-    </SlTag>
-  </>
-);
 ```
 
 ### Removable
@@ -92,7 +48,7 @@ Use the `removable` attribute to add a remove button to the tag.
 <script>
   const div = document.querySelector('.tags-removable');
 
-  div.addEventListener('lynk-remove', event => {
+  div.addEventListener('on:remove', event => {
     const tag = event.target;
     tag.style.opacity = '0';
     setTimeout(() => (tag.style.opacity = '1'), 2000);
@@ -104,44 +60,6 @@ Use the `removable` attribute to add a remove button to the tag.
     transition: var(--lynk-transition-medium) opacity;
   }
 </style>
-```
-
-```jsx react
-import { SlTag } from '@shoelace-style/shoelace/dist/react';
-
-const css = `
-  .tags-removable l-tag {
-    transition: var(--lynk-transition-medium) opacity;
-  }
-`;
-
-const App = () => {
-  function handleRemove(event) {
-    const tag = event.target;
-    tag.style.opacity = '0';
-    setTimeout(() => (tag.style.opacity = '1'), 2000);
-  }
-
-  return (
-    <>
-      <div className="tags-removable">
-        <SlTag size="small" removable onSlRemove={handleRemove}>
-          Small
-        </SlTag>
-
-        <SlTag size="medium" removable onSlRemove={handleRemove}>
-          Medium
-        </SlTag>
-
-        <SlTag size="large" removable onSlRemove={handleRemove}>
-          Large
-        </SlTag>
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
 ```
 
 [component-metadata:lynk-tag]

@@ -8,17 +8,17 @@
    */
 
   /* Gray */
-  --lynk-color-gray-50: hsl(240 5.1% 15%);
-  --lynk-color-gray-100: hsl(240 5.7% 18.2%);
-  --lynk-color-gray-200: hsl(240 4.6% 22%);
-  --lynk-color-gray-300: hsl(240 5% 27.6%);
-  --lynk-color-gray-400: hsl(240 5% 35.5%);
-  --lynk-color-gray-500: hsl(240 3.7% 44%);
-  --lynk-color-gray-600: hsl(240 5.3% 58%);
-  --lynk-color-gray-700: hsl(240 5.6% 73%);
-  --lynk-color-gray-800: hsl(240 7.3% 84%);
-  --lynk-color-gray-900: hsl(240 9.1% 91.8%);
-  --lynk-color-gray-950: hsl(0 0% 95%);
+  --lynk-color-gray-50: hsl(240 4% 13%);
+  --lynk-color-gray-100: hsl(240 4% 17%);
+  --lynk-color-gray-200: hsl(240 4% 22%);
+  --lynk-color-gray-300: hsl(240 4% 30%);
+  --lynk-color-gray-400: hsl(240 4% 40%);
+  --lynk-color-gray-500: hsl(240 4% 50%);
+  --lynk-color-gray-600: hsl(240 5% 60%);
+  --lynk-color-gray-700: hsl(240 6% 70%);
+  --lynk-color-gray-800: hsl(240 7% 80%);
+  --lynk-color-gray-900: hsl(240 8% 90%);
+  --lynk-color-gray-950: hsl(240 8% 95%);
 
   /* Red */
   --lynk-color-red-50: hsl(0 56% 23.9%);
@@ -103,13 +103,13 @@
   --lynk-color-emerald-100: hsl(163.5 72.6% 20.1%);
   --lynk-color-emerald-200: hsl(162.1 73.7% 22.4%);
   --lynk-color-emerald-300: hsl(161.3 77.3% 27.6%);
-  --lynk-color-emerald-400: hsl(159.6 77.1% 34.3%);
-  --lynk-color-emerald-500: hsl(159.1 73.5% 37.9%);
+  --lynk-color-emerald-400: hsl(160 77.1% 34.3%);
+  --lynk-color-emerald-500: hsl(160 75% 40%);
   --lynk-color-emerald-600: hsl(157.8 66.8% 48.9%);
   --lynk-color-emerald-700: hsl(156.2 76.1% 63.8%);
   --lynk-color-emerald-800: hsl(152.4 84.4% 77.4%);
-  --lynk-color-emerald-900: hsl(149.3 100% 87%);
-  --lynk-color-emerald-950: hsl(158.6 100% 94.8%);
+  --lynk-color-emerald-900: hsl(150 100% 87%);
+  --lynk-color-emerald-950: hsl(150 100% 94.8%);
 
   /* Teal */
   --lynk-color-teal-50: hsl(176.5 51.5% 15.4%);
@@ -164,30 +164,32 @@
   --lynk-color-blue-950: hsl(201.8 100% 95.3%);
 
   /* Indigo */
-  --lynk-color-indigo-50: hsl(243.5 40.8% 27%);
-  --lynk-color-indigo-100: hsl(242.9 45.7% 37.6%);
-  --lynk-color-indigo-200: hsl(244.7 52.7% 43.1%);
-  --lynk-color-indigo-300: hsl(245.3 60.5% 52.4%);
-  --lynk-color-indigo-400: hsl(244.1 79.2% 60.4%);
-  --lynk-color-indigo-500: hsl(239.6 88.7% 63.8%);
-  --lynk-color-indigo-600: hsl(234.5 96.7% 70.9%);
-  --lynk-color-indigo-700: hsl(229.4 100% 78.3%);
-  --lynk-color-indigo-800: hsl(227.1 100% 85%);
-  --lynk-color-indigo-900: hsl(223.8 100% 89.9%);
-  --lynk-color-indigo-950: hsl(220 100% 95.1%);
+  --lynk-color-indigo-50: hsl(243.5 40.8% 25%);
+  --lynk-color-indigo-100: hsl(242.9 45.7% 35%);
+  --lynk-color-indigo-200: hsl(244.7 52.7% 45%);
+  --lynk-color-indigo-300: hsl(245.3 60.5% 52%);
+  --lynk-color-indigo-400: hsl(244.1 79.2% 60%);
+  --lynk-color-indigo-500: hsl(239.6 90% 65%);
+  --lynk-color-indigo-600: hsl(234.5 97% 70%);
+  --lynk-color-indigo-700: hsl(230 100% 75%);
+  --lynk-color-indigo-800: hsl(227 100% 83%);
+  --lynk-color-indigo-900: hsl(225 100% 90%);
+  --lynk-color-indigo-950: hsl(222 100% 95%);
+
 
   /* Violet */
-  --lynk-color-violet-50: hsl(265.1 57.3% 25.4%);
-  --lynk-color-violet-100: hsl(263.5 63.8% 39.4%);
-  --lynk-color-violet-200: hsl(263.4 66.2% 44.1%);
-  --lynk-color-violet-300: hsl(263.7 72.8% 52.4%);
-  --lynk-color-violet-400: hsl(262.5 87.3% 59.8%);
-  --lynk-color-violet-500: hsl(258.3 95.1% 63.2%);
-  --lynk-color-violet-600: hsl(255.1 100% 67.2%);
-  --lynk-color-violet-700: hsl(253 100% 81.5%);
-  --lynk-color-violet-800: hsl(251.7 100% 87.9%);
-  --lynk-color-violet-900: hsl(254.1 100% 91.7%);
-  --lynk-color-violet-950: hsl(257.1 100% 96.1%);
+  --lynk-color-violet-50: hsl(263 55% 24%);
+  --lynk-color-violet-100: hsl(262 60% 35%);
+  --lynk-color-violet-200: hsl(261 65% 44%);
+  --lynk-color-violet-300: hsl(261 73% 51%);
+  --lynk-color-violet-400: hsl(260 85% 58%);
+  --lynk-color-violet-500: hsl(260 100% 65%);
+  --lynk-color-violet-600: hsl(259 100% 70%);
+  --lynk-color-violet-700: hsl(258 100% 78%);
+  --lynk-color-violet-800: hsl(257 100% 85%);
+  --lynk-color-violet-900: hsl(256 100% 90%);
+  --lynk-color-violet-950: hsl(255 100% 95%);
+
 
   /* Purple */
   --lynk-color-purple-50: hsl(276 54.3% 20.5%);
@@ -230,47 +232,47 @@
   --lynk-color-pink-950: hsl(315 100% 95.9%);
 
   /* Rose */
-  --lynk-color-rose-50: hsl(342.3 62.9% 21.5%);
-  --lynk-color-rose-100: hsl(342.8 68.9% 34.2%);
-  --lynk-color-rose-200: hsl(344.8 72.6% 37.3%);
-  --lynk-color-rose-300: hsl(346.9 75.8% 43.7%);
-  --lynk-color-rose-400: hsl(348.2 80.1% 52.7%);
-  --lynk-color-rose-500: hsl(350.4 94.8% 57.5%);
-  --lynk-color-rose-600: hsl(351.2 100% 58.1%);
-  --lynk-color-rose-700: hsl(352.3 100% 78.1%);
-  --lynk-color-rose-800: hsl(352 100% 86.2%);
-  --lynk-color-rose-900: hsl(354.5 100% 90.7%);
-  --lynk-color-rose-950: hsl(353.3 100% 95.7%);
+  --lynk-color-rose-50: hsl(342 63% 20%);
+  --lynk-color-rose-100: hsl(343 69% 30%);
+  --lynk-color-rose-200: hsl(345 70% 38%);
+  --lynk-color-rose-300: hsl(348 74% 41%);
+  --lynk-color-rose-400: hsl(348 78% 45%);
+  --lynk-color-rose-500: hsl(350 85% 55%);
+  --lynk-color-rose-600: hsl(350 95% 65%);
+  --lynk-color-rose-700: hsl(351 100% 75%);
+  --lynk-color-rose-800: hsl(352 100% 85%);
+  --lynk-color-rose-900: hsl(354.5 100% 90%);
+  --lynk-color-rose-950: hsl(353.3 100% 96%);
 
   /*
    * Theme Tokens
    */
 
   /* Primary */
-  --lynk-color-primary-50: var(--lynk-color-indigo-50);
-  --lynk-color-primary-100: var(--lynk-color-indigo-100);
-  --lynk-color-primary-200: var(--lynk-color-indigo-200);
-  --lynk-color-primary-300: var(--lynk-color-indigo-300);
-  --lynk-color-primary-400: var(--lynk-color-indigo-400);
-  --lynk-color-primary-500: var(--lynk-color-indigo-500);
-  --lynk-color-primary-600: var(--lynk-color-indigo-600);
-  --lynk-color-primary-700: var(--lynk-color-indigo-700);
-  --lynk-color-primary-800: var(--lynk-color-indigo-800);
-  --lynk-color-primary-900: var(--lynk-color-indigo-900);
-  --lynk-color-primary-950: var(--lynk-color-indigo-950);
+  --lynk-color-primary-50: var(--lynk-color-violet-50);
+  --lynk-color-primary-100: var(--lynk-color-violet-100);
+  --lynk-color-primary-200: var(--lynk-color-violet-200);
+  --lynk-color-primary-300: var(--lynk-color-violet-300);
+  --lynk-color-primary-400: var(--lynk-color-violet-400);
+  --lynk-color-primary-500: var(--lynk-color-violet-500);
+  --lynk-color-primary-600: var(--lynk-color-violet-600);
+  --lynk-color-primary-700: var(--lynk-color-violet-700);
+  --lynk-color-primary-800: var(--lynk-color-violet-800);
+  --lynk-color-primary-900: var(--lynk-color-violet-900);
+  --lynk-color-primary-950: var(--lynk-color-violet-950);
 
   /* Success */
-  --lynk-color-success-50: var(--lynk-color-green-50);
-  --lynk-color-success-100: var(--lynk-color-green-100);
-  --lynk-color-success-200: var(--lynk-color-green-200);
-  --lynk-color-success-300: var(--lynk-color-green-300);
-  --lynk-color-success-400: var(--lynk-color-green-400);
-  --lynk-color-success-500: var(--lynk-color-green-500);
-  --lynk-color-success-600: var(--lynk-color-green-600);
-  --lynk-color-success-700: var(--lynk-color-green-700);
-  --lynk-color-success-800: var(--lynk-color-green-800);
-  --lynk-color-success-900: var(--lynk-color-green-900);
-  --lynk-color-success-950: var(--lynk-color-green-950);
+  --lynk-color-success-50: var(--lynk-color-emerald-50);
+  --lynk-color-success-100: var(--lynk-color-emerald-100);
+  --lynk-color-success-200: var(--lynk-color-emerald-200);
+  --lynk-color-success-300: var(--lynk-color-emerald-300);
+  --lynk-color-success-400: var(--lynk-color-emerald-400);
+  --lynk-color-success-500: var(--lynk-color-emerald-500);
+  --lynk-color-success-600: var(--lynk-color-emerald-600);
+  --lynk-color-success-700: var(--lynk-color-emerald-700);
+  --lynk-color-success-800: var(--lynk-color-emerald-800);
+  --lynk-color-success-900: var(--lynk-color-emerald-900);
+  --lynk-color-success-950: var(--lynk-color-emerald-950);
 
   /* Warning */
   --lynk-color-warning-50: var(--lynk-color-amber-50);
@@ -286,17 +288,17 @@
   --lynk-color-warning-950: var(--lynk-color-amber-950);
 
   /* Danger */
-  --lynk-color-danger-50: var(--lynk-color-red-50);
-  --lynk-color-danger-100: var(--lynk-color-red-100);
-  --lynk-color-danger-200: var(--lynk-color-red-200);
-  --lynk-color-danger-300: var(--lynk-color-red-300);
-  --lynk-color-danger-400: var(--lynk-color-red-400);
-  --lynk-color-danger-500: var(--lynk-color-red-500);
-  --lynk-color-danger-600: var(--lynk-color-red-600);
-  --lynk-color-danger-700: var(--lynk-color-red-700);
-  --lynk-color-danger-800: var(--lynk-color-red-800);
-  --lynk-color-danger-900: var(--lynk-color-red-900);
-  --lynk-color-danger-950: var(--lynk-color-red-950);
+  --lynk-color-danger-50: var(--lynk-color-rose-50);
+  --lynk-color-danger-100: var(--lynk-color-rose-100);
+  --lynk-color-danger-200: var(--lynk-color-rose-200);
+  --lynk-color-danger-300: var(--lynk-color-rose-300);
+  --lynk-color-danger-400: var(--lynk-color-rose-400);
+  --lynk-color-danger-500: var(--lynk-color-rose-500);
+  --lynk-color-danger-600: var(--lynk-color-rose-600);
+  --lynk-color-danger-700: var(--lynk-color-rose-700);
+  --lynk-color-danger-800: var(--lynk-color-rose-800);
+  --lynk-color-danger-900: var(--lynk-color-rose-900);
+  --lynk-color-danger-950: var(--lynk-color-rose-950);
 
   /* Neutral */
   --lynk-color-neutral-50: var(--lynk-color-gray-50);
@@ -312,10 +314,10 @@
   --lynk-color-neutral-950: var(--lynk-color-gray-950);
 
   /* Neutral one-offs */
-  --lynk-color-neutral-0: hsl(240, 5.9%, 11%);
-  --lynk-color-neutral-1000: hsl(0, 0%, 100%);
-  --lynk-color-black: hsl(240, 5.9%, 11%);
-  --lynk-color-white: hsl(0, 0%, 100%);
+  --lynk-color-neutral-0: hsl(240 6% 10%);
+  --lynk-color-neutral-1000: hsl(0 0% 95%);
+  --lynk-color-black: hsl(240 6% 10%);
+  --lynk-color-white: hsl(0 0% 95%);
 
 
   /*

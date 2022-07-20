@@ -54,7 +54,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     <lynk-radio name="a" value="3">Choose me</lynk-radio>
   </lynk-radio-group>
   <br />
-  <lynk-button type="submit" variant="primary">Submit</lynk-button>
+  <lynk-button type="submit" color="primary">Submit</lynk-button>
 </form>
 <script>
   const form = document.querySelector('.custom-validity');
@@ -65,7 +65,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     radio.setCustomValidity(errorMessage);
   });
   // Update validity when a selection is made
-  form.addEventListener('lynk-change', () => {
+  form.addEventListener('on:change', () => {
     const isValid = radio.checked;
     radio.setCustomValidity(isValid ? '' : errorMessage);
   });

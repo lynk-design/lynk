@@ -46,7 +46,7 @@ describe('<lynk-icon>', () => {
 
     it('renders pre-loaded system icons and emits l-load event', async () => {
       const el = await fixture<LynkIcon>(html` <lynk-icon library="system"></lynk-icon> `);
-      const listener = oneEvent(el, 'lynk-load') as Promise<CustomEvent>;
+      const listener = oneEvent(el, 'on:load') as Promise<CustomEvent>;
 
       el.name = 'check-lg';
       const ev = await listener;
@@ -90,7 +90,7 @@ describe('<lynk-icon>', () => {
       const fakeId = 'test-src';
       const el = await fixture<LynkIcon>(html` <lynk-icon></lynk-icon> `);
 
-      const listener = oneEvent(el, 'lynk-load');
+      const listener = oneEvent(el, 'on:load');
       el.src = `data:image/svg+xml,${encodeURIComponent(`<svg id="${fakeId}"></svg>`)}`;
 
       await listener;
@@ -102,9 +102,9 @@ describe('<lynk-icon>', () => {
   });
 
   describe('new library', () => {
-    it('renders icons from the new library and emits lynk-load event', async () => {
+    it('renders icons from the new library and emits on:load event', async () => {
       const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library"></lynk-icon> `);
-      const listener = oneEvent(el, 'lynk-load') as Promise<CustomEvent>;
+      const listener = oneEvent(el, 'on:load') as Promise<CustomEvent>;
 
       el.name = 'test-icon1';
       const ev = await listener;
@@ -131,9 +131,9 @@ describe('<lynk-icon>', () => {
       expect(el.shadowRoot?.querySelector('svg')).to.be.null;
     });
 
-    it('emits lynk-error when the file cant be retrieved', async () => {
+    it('emits on:error when the file cant be retrieved', async () => {
       const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library"></lynk-icon> `);
-      const listener = oneEvent(el, 'lynk-error') as Promise<CustomEvent>;
+      const listener = oneEvent(el, 'on:error') as Promise<CustomEvent>;
 
       el.name = 'bad-request';
       const ev = await listener;
@@ -143,9 +143,9 @@ describe('<lynk-icon>', () => {
       expect(ev).to.exist;
     });
 
-    it("emits lynk-error when there isn't an svg element in the registered icon", async () => {
+    it("emits on:error when there isn't an svg element in the registered icon", async () => {
       const el = await fixture<LynkIcon>(html` <lynk-icon library="test-library"></lynk-icon> `);
-      const listener = oneEvent(el, 'lynk-error') as Promise<CustomEvent>;
+      const listener = oneEvent(el, 'on:error') as Promise<CustomEvent>;
 
       el.name = 'bad-icon';
       const ev = await listener;

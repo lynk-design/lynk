@@ -9,7 +9,7 @@ Dialogs or "modals" are elevated workflows above the page and require the user's
 ```html preview
 <lynk-dialog label="Dialog" class="dialog-overview">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+  <lynk-button slot="footer" color="primary">Close</lynk-button>
 </lynk-dialog>
 
 <lynk-button>Open Dialog</lynk-button>
@@ -39,7 +39,7 @@ Use the `--width` custom property to set the dialog's width.
 ```html preview
 <lynk-dialog label="Dialog" class="dialog-width" style="--width: 50vw;">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+  <lynk-button slot="footer" color="primary">Close</lynk-button>
 </lynk-dialog>
 
 <lynk-button>Open Dialog</lynk-button>
@@ -63,7 +63,7 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
   <div style="height: 150vh; border: dashed 2px var(--lynk-color-neutral-200); padding: 0 1rem;">
     <p>Scroll down and give it a try! 👇</p>
   </div>
-  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+  <lynk-button slot="footer" color="primary">Close</lynk-button>
 </lynk-dialog>
 
 <lynk-button>Open Dialog</lynk-button>
@@ -89,7 +89,7 @@ You can use `event.detail.source` to determine what triggered the request to clo
 ```html preview
 <lynk-dialog label="Dialog" class="dialog-deny-close">
   This dialog will not close when you click on the overlay.
-  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+  <lynk-button slot="footer" color="primary">Close</lynk-button>
 </lynk-dialog>
 
 <lynk-button>Open Dialog</lynk-button>
@@ -118,7 +118,7 @@ By default, the dialog's panel will gain focus when opened. This allows a subseq
 ```html preview
 <lynk-dialog label="Dialog" class="dialog-focus">
   <lynk-input autofocus placeholder="I will have focus when the dialog is opened"></lynk-input>
-  <lynk-button slot="footer" variant="primary">Close</lynk-button>
+  <lynk-button slot="footer" color="primary">Close</lynk-button>
 </lynk-dialog>
 
 <lynk-button>Open Dialog</lynk-button>

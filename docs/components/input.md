@@ -8,12 +8,6 @@ Inputs collect data from the user.
 <lynk-input></lynk-input>
 ```
 
-```jsx react
-import { SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlInput />;
-```
-
 ?> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 
 ## Examples
@@ -26,24 +20,12 @@ Use the `label` attribute to give the input an accessible label. For labels that
 <lynk-input label="What is your name?"></lynk-input>
 ```
 
-```jsx react
-import { SlIcon, SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlInput label="What is your name?" />;
-```
-
 ### Help Text
 
 Add descriptive help text to an input with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
 ```html preview
 <lynk-input label="Nickname" help-text="What would you like people to call you?"></lynk-input>
-```
-
-```jsx react
-import { SlIcon, SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlInput label="Nickname" help-text="What would you like people to call you?" />;
 ```
 
 ### Placeholders
@@ -54,11 +36,6 @@ Use the `placeholder` attribute to add a placeholder.
 <lynk-input placeholder="Type something"></lynk-input>
 ```
 
-```jsx react
-import { SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlInput placeholder="Type something" />;
-```
 
 ### Clearable
 
@@ -66,12 +43,6 @@ Add the `clearable` attribute to add a clear button when the input has content.
 
 ```html preview
 <lynk-input placeholder="Clearable" clearable></lynk-input>
-```
-
-```jsx react
-import { SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlInput placeholder="Clearable" clearable />;
 ```
 
 ### Toggle Password
@@ -86,32 +57,12 @@ Add the `toggle-password` attribute to add a toggle button that will show the pa
 <lynk-input type="password" placeholder="Password Toggle" size="large" toggle-password></lynk-input>
 ```
 
-```jsx react
-import { SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <>
-    <SlInput type="password" placeholder="Password Toggle" size="small" toggle-password />
-    <br />
-    <SlInput type="password" placeholder="Password Toggle" size="medium" toggle-password />
-    <br />
-    <SlInput type="password" placeholder="Password Toggle" size="large" toggle-password />
-  </>
-);
-```
-
 ### Filled Inputs
 
 Add the `filled` attribute to draw a filled input.
 
 ```html preview
 <lynk-input placeholder="Type something" filled></lynk-input>
-```
-
-```jsx react
-import { SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => <SlInput placeholder="Type something" filled />;
 ```
 
 ### Pill
@@ -126,20 +77,6 @@ Use the `pill` attribute to give inputs rounded edges.
 <lynk-input placeholder="Large" size="large" pill></lynk-input>
 ```
 
-```jsx react
-import { SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <>
-    <SlInput placeholder="Small" size="small" pill />
-    <br />
-    <SlInput placeholder="Medium" size="medium" pill />
-    <br />
-    <SlInput placeholder="Large" size="large" pill />
-  </>
-);
-```
-
 ### Input Types
 
 The `type` attribute controls the type of input the browser renders.
@@ -150,20 +87,6 @@ The `type` attribute controls the type of input the browser renders.
 <lynk-input type="number" placeholder="Number"></lynk-input>
 <br />
 <lynk-input type="date" placeholder="Date"></lynk-input>
-```
-
-```jsx react
-import { SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <>
-    <SlInput type="email" placeholder="Email" />
-    <br />
-    <SlInput type="number" placeholder="Number" />
-    <br />
-    <SlInput type="date" placeholder="Date" />
-  </>
-);
 ```
 
 ### Disabled
@@ -178,20 +101,6 @@ Use the `disabled` attribute to disable an input.
 <lynk-input placeholder="Disabled" size="large" disabled></lynk-input>
 ```
 
-```jsx react
-import { SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <>
-    <SlInput placeholder="Disabled" size="small" disabled />
-    <br />
-    <SlInput placeholder="Disabled" size="medium" disabled />
-    <br />
-    <SlInput placeholder="Disabled" size="large" disabled />
-  </>
-);
-```
-
 ### Sizes
 
 Use the `size` attribute to change an input's size.
@@ -202,20 +111,6 @@ Use the `size` attribute to change an input's size.
 <lynk-input placeholder="Medium" size="medium"></lynk-input>
 <br />
 <lynk-input placeholder="Large" size="large"></lynk-input>
-```
-
-```jsx react
-import { SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <>
-    <SlInput placeholder="Small" size="small" />
-    <br />
-    <SlInput placeholder="Medium" size="medium" />
-    <br />
-    <SlInput placeholder="Large" size="large" />
-  </>
-);
 ```
 
 ### Prefix & Suffix Icons
@@ -237,29 +132,6 @@ Use the `prefix` and `suffix` slots to add icons.
   <lynk-icon name="house" slot="prefix"></lynk-icon>
   <lynk-icon name="chat" slot="suffix"></lynk-icon>
 </lynk-input>
-```
-
-```jsx react
-import { SlIcon, SlInput } from '@shoelace-style/shoelace/dist/react';
-
-const App = () => (
-  <>
-    <SlInput placeholder="Small" size="small">
-      <SlIcon name="house" slot="prefix"></SlIcon>
-      <SlIcon name="chat" slot="suffix"></SlIcon>
-    </SlInput>
-    <br />
-    <SlInput placeholder="Medium" size="medium">
-      <SlIcon name="house" slot="prefix"></SlIcon>
-      <SlIcon name="chat" slot="suffix"></SlIcon>
-    </SlInput>
-    <br />
-    <SlInput placeholder="Large" size="large">
-      <SlIcon name="house" slot="prefix"></SlIcon>
-      <SlIcon name="chat" slot="suffix"></SlIcon>
-    </SlInput>
-  </>
-);
 ```
 
 ### Customizing Label Position

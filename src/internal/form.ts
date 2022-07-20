@@ -49,7 +49,7 @@ export class FormSubmitController implements ReactiveController {
       this.form.addEventListener('formdata', this.handleFormData);
       this.form.addEventListener('submit', this.handleFormSubmit);
 
-      // Overload the form's reportValidity() method so it looks at Shoelace form controls
+      // Overload the form's reportValidity() method so it looks at Lynk form controls
       if (!reportValidityOverloads.has(this.form)) {
         reportValidityOverloads.set(this.form, this.form.reportValidity);
         this.form.reportValidity = () => this.reportFormValidity();
@@ -100,7 +100,7 @@ export class FormSubmitController implements ReactiveController {
 
   reportFormValidity() {
     //
-    // Shoelace form controls work hard to act like regular form controls. They support the Constraint Validation API
+    // Lynk form controls work hard to act like regular form controls. They support the Constraint Validation API
     // and its associated methods such as setCustomValidity() and reportValidity(). However, the HTMLFormElement also
     // has a reportValidity() method that will trigger validation on all child controls. Since we're not yet using
     // ElementInternals, we need to overload this method so it looks for any element with the reportValidity() method.
@@ -112,7 +112,7 @@ export class FormSubmitController implements ReactiveController {
     // Note that we're also honoring the form's novalidate attribute.
     //
     if (this.form && !this.form.noValidate) {
-      // This seems sloppy, but checking all elements will cover native inputs, Shoelace inputs, and other custom
+      // This seems sloppy, but checking all elements will cover native inputs, Lynk inputs, and other custom
       // elements that support the constraint validation API.
       const elements = this.form.querySelectorAll<HTMLInputElement>('*');
 

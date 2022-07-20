@@ -14,9 +14,9 @@ import styles from './radio.styles';
  *
  * @slot - The radio's label.
  *
- * @event lynk-blur - Emitted when the control loses focus.
- * @event lynk-change - Emitted when the control's checked state changes.
- * @event lynk-focus - Emitted when the control gains focus.
+ * @event on:blur - Emitted when the control loses focus.
+ * @event on:change - Emitted when the control's checked state changes.
+ * @event on:focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The radio control.
@@ -86,7 +86,7 @@ export default class LynkRadio extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'lynk-blur');
+    emit(this, 'on:blur');
   }
 
   handleClick() {
@@ -97,7 +97,7 @@ export default class LynkRadio extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'lynk-focus');
+    emit(this, 'on:focus');
   }
 
   @watch('checked')
@@ -105,7 +105,7 @@ export default class LynkRadio extends LitElement {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
 
     if (this.hasUpdated) {
-      emit(this, 'lynk-change');
+      emit(this, 'on:change');
     }
   }
 

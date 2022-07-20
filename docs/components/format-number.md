@@ -18,7 +18,7 @@ Localization is handled by the browser's [`Intl.NumberFormat` API](https://devel
   const formatter = container.querySelector('lynk-format-number');
   const input = container.querySelector('lynk-input');
 
-  input.addEventListener('lynk-input', () => (formatter.value = input.value || 0));
+  input.addEventListener('on:input', () => (formatter.value = input.value || 0));
 </script>
 ```
 

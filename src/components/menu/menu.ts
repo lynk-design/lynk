@@ -15,7 +15,7 @@ export interface MenuSelectEventDetail {
  *
  * @slot - The menu's content, including menu items, menu labels, and dividers.
  *
- * @event {{ item: LynkMenuItem }} lynk-select - Emitted when a menu item is selected.
+ * @event {{ item: LynkMenuItem }} on:select - Emitted when a menu item is selected.
  *
  * @csspart base - The component's internal wrapper.
  */
@@ -113,7 +113,7 @@ export default class LynkMenu extends LitElement {
     const item = target.closest('lynk-menu-item');
 
     if (item?.disabled === false) {
-      emit(this, 'lynk-select', { detail: { item } });
+      emit(this, 'on:select', { detail: { item } });
     }
   }
 

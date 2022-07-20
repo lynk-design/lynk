@@ -14,8 +14,8 @@ let parser: DOMParser;
  * @since 1.0
  * @status stable
  *
- * @event lynk-load - Emitted when the icon has loaded.
- * @event lynk-error - Emitted when the icon fails to load due to an error.
+ * @event on:load - Emitted when the icon has loaded.
+ * @event on:error - Emitted when the icon fails to load due to an error.
  *
  * @csspart base - The component's internal wrapper.
  */
@@ -94,17 +94,17 @@ export default class LynkIcon extends LitElement {
           if (svgEl !== null) {
             library?.mutator?.(svgEl);
             this.svg = svgEl.outerHTML;
-            emit(this, 'lynk-load');
+            emit(this, 'on:load');
           } else {
             this.svg = '';
-            emit(this, 'lynk-error');
+            emit(this, 'on:error');
           }
         } else {
           this.svg = '';
-          emit(this, 'lynk-error');
+          emit(this, 'on:error');
         }
       } catch {
-        emit(this, 'lynk-error');
+        emit(this, 'on:error');
       }
     } else if (this.svg.length > 0) {
       // If we can't resolve a URL and an icon was previously set, remove it

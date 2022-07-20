@@ -13,8 +13,8 @@ import styles from './icon-button.styles';
  *
  * @dependency lynk-icon
  *
- * @event lynk-blur - Emitted when the icon button loses focus.
- * @event lynk-focus - Emitted when the icon button gains focus.
+ * @event on:blur - Emitted when the icon button loses focus.
+ * @event on:focus - Emitted when the icon button gains focus.
  *
  * @csspart base - The component's internal wrapper.
  */
@@ -70,12 +70,12 @@ export default class LynkIconButton extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'lynk-blur');
+    emit(this, 'on:blur');
   }
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'lynk-focus');
+    emit(this, 'on:focus');
   }
 
   handleClick(event: MouseEvent) {

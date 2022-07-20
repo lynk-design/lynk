@@ -9,7 +9,7 @@ The mutation observer will report changes to the content it wraps through the `l
 ```html preview
 <div class="mutation-overview">
   <lynk-mutation-observer attr="variant">
-    <lynk-button variant="primary">Click to mutate</lynk-button>
+    <lynk-button color="primary">Click to mutate</lynk-button>
   </lynk-mutation-observer>
 
   <br />
@@ -54,7 +54,7 @@ Use the `child-list` attribute to watch for new child elements that are added or
 <div class="mutation-child-list">
   <lynk-mutation-observer child-list>
     <div class="buttons">
-      <lynk-button variant="primary">Add button</lynk-button>
+      <lynk-button color="primary">Add button</lynk-button>
     </div>
   </lynk-mutation-observer>
 
@@ -64,7 +64,7 @@ Use the `child-list` attribute to watch for new child elements that are added or
     const container = document.querySelector('.mutation-child-list');
     const mutationObserver = container.querySelector('lynk-mutation-observer');
     const buttons = container.querySelector('.buttons');
-    const button = container.querySelector('lynk-button[variant="primary"]');
+    const button = container.querySelector('lynk-button[color="primary"]');
     let i = 0;
 
     // Add a button
@@ -76,7 +76,7 @@ Use the `child-list` attribute to watch for new child elements that are added or
 
     // Remove a button
     buttons.addEventListener('click', event => {
-      const target = event.target.closest('lynk-button:not([variant="primary"])');
+      const target = event.target.closest('lynk-button:not([color="primary"])');
       event.stopPropagation();
 
       if (target) {

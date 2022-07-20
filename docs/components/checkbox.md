@@ -49,7 +49,7 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     checkbox.setCustomValidity(errorMessage);
   });
   // Update validity on change
-  checkbox.addEventListener('lynk-change', () => {
+  checkbox.addEventListener('::change', () => {
     checkbox.setCustomValidity(checkbox.checked ? '' : errorMessage);
   });
   // Handle submit

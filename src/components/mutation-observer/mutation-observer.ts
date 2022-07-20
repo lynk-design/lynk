@@ -8,7 +8,7 @@ import styles from './mutation-observer.styles';
  * @since 2.0
  * @status stable
  *
- * @event lynk-mutation - Emitted when a mutation occurs.
+ * @event on:mutation - Emitted when a mutation occurs.
  *
  * @slot - The content to watch for mutations.
  */
@@ -74,7 +74,7 @@ export default class LynkMutationObserver extends LitElement {
   }
 
   handleMutation(mutationList: MutationRecord[]) {
-    emit(this, 'lynk-mutation', {
+    emit(this, 'on:mutation', {
       detail: { mutationList }
     });
   }

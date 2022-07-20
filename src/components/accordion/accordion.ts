@@ -17,10 +17,10 @@ import styles from './accordion.styles';
  * @slot - The accordions content.
  * @slot summary - The accordions summary. Alternatively, you can use the summary prop.
  *
- * @event lynk-show - Emitted when the accordion opens.
- * @event lynk-after-show - Emitted after the accordion opens and all animations are complete.
- * @event lynk-hide - Emitted when the accordion closes.
- * @event lynk-after-hide - Emitted after the accordion closes and all animations are complete.
+ * @event on:show - Emitted when the accordion opens.
+ * @event after:show - Emitted after the accordion opens and all animations are complete.
+ * @event on:hide - Emitted when the accordion closes.
+ * @event after:hide - Emitted after the accordion closes and all animations are complete.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart header - The summary header.
@@ -60,7 +60,7 @@ export default class LynkAccordion extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'lynk-after-show');
+    return waitForEvent(this, 'after:show');
   }
 
   /** Hides the accordion */
@@ -70,7 +70,7 @@ export default class LynkAccordion extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'lynk-after-hide');
+    return waitForEvent(this, 'after:hide');
   }
 
   handleSummaryClick() {
@@ -111,7 +111,7 @@ export default class LynkAccordion extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'lynk-show');
+      emit(this, 'on:show');
 
       await stopAnimations(this.body);
       this.body.hidden = false;
@@ -120,10 +120,10 @@ export default class LynkAccordion extends LitElement {
       await animateTo(this.body, shimKeyframesHeightAuto(keyframes, this.body.scrollHeight), options);
       this.body.style.height = 'auto';
 
-      emit(this, 'lynk-after-show');
+      emit(this, 'after:show');
     } else {
       // Hide
-      emit(this, 'lynk-hide');
+      emit(this, 'on:hide');
 
       await stopAnimations(this.body);
 
@@ -132,7 +132,7 @@ export default class LynkAccordion extends LitElement {
       this.body.hidden = true;
       this.body.style.height = 'auto';
 
-      emit(this, 'lynk-after-hide');
+      emit(this, 'after:hide');
     }
   }
 

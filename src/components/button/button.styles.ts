@@ -169,14 +169,14 @@ export default css`
 
   /* Danger */
   .lynk-button--standard.lynk-button--danger {
-    background-color: var(--lynk-color-danger-600);
-    border-color: var(--lynk-color-danger-600);
+    background-color: var(--lynk-color-danger-500);
+    border-color: var(--lynk-color-danger-500);
     color: var(--lynk-color-neutral-0);
   }
 
   .lynk-button--standard.lynk-button--danger:hover:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-danger-500);
-    border-color: var(--lynk-color-danger-500);
+    background-color: var(--lynk-color-danger-400);
+    border-color: var(--lynk-color-danger-400);
     color: var(--lynk-color-neutral-0);
   }
 
@@ -288,13 +288,13 @@ export default css`
 
   /* Danger */
   .lynk-button--outline.lynk-button--danger {
-    border-color: var(--lynk-color-danger-600);
-    color: var(--lynk-color-danger-600);
+    border-color: var(--lynk-color-danger-500);
+    color: var(--lynk-color-danger-500);
   }
 
   .lynk-button--outline.lynk-button--danger:hover:not(.lynk-button--disabled),
   .lynk-button--outline.lynk-button--danger.lynk-button--checked:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-danger-600);
+    background-color: var(--lynk-color-danger-500);
     color: var(--lynk-color-neutral-0);
   }
 

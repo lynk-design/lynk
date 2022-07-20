@@ -20,10 +20,10 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'ly
  * @slot - The alert's content.
  * @slot icon - An icon to show in the alert.
  *
- * @event lynk-show - Emitted when the alert opens.
- * @event lynk-after-show - Emitted after the alert opens and all animations are complete.
- * @event lynk-hide - Emitted when the alert closes.
- * @event lynk-after-hide - Emitted after the alert closes and all animations are complete.
+ * @event on:show - Emitted when the alert opens.
+ * @event after:show - Emitted after the alert opens and all animations are complete.
+ * @event on:hide - Emitted when the alert closes.
+ * @event after:hide - Emitted after the alert closes and all animations are complete.
  *
  * @csspart base - The component's internal block wrapper.
  * @csspart icon - The container that wraps the alert icon.
@@ -72,7 +72,7 @@ export default class LynkAlert extends LitElement {
     }
 
     this.open = true;
-    return waitForEvent(this, 'lynk-after-show');
+    return waitForEvent(this, 'after:show');
   }
 
   /** Hides the alert */
@@ -82,7 +82,7 @@ export default class LynkAlert extends LitElement {
     }
 
     this.open = false;
-    return waitForEvent(this, 'lynk-after-hide');
+    return waitForEvent(this, 'after:hide');
   }
 
   /**
@@ -106,7 +106,7 @@ export default class LynkAlert extends LitElement {
       });
 
       this.addEventListener(
-        'lynk-after-hide',
+        'after:hide',
         () => {
           toastStack.removeChild(this);
           resolve();
@@ -140,7 +140,7 @@ export default class LynkAlert extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'lynk-show');
+      emit(this, 'on:show');
 
       if (this.duration < Infinity) {
         this.restartAutoHide();
@@ -151,10 +151,10 @@ export default class LynkAlert extends LitElement {
       const { keyframes, options } = getAnimation(this, 'alert.show');
       await animateTo(this.base, keyframes, options);
 
-      emit(this, 'lynk-after-show');
+      emit(this, 'after:show');
     } else {
       // Hide
-      emit(this, 'lynk-hide');
+      emit(this, 'on:hide');
 
       clearTimeout(this.autoHideTimeout);
 
@@ -163,7 +163,7 @@ export default class LynkAlert extends LitElement {
       await animateTo(this.base, keyframes, options);
       this.base.hidden = true;
 
-      emit(this, 'lynk-after-hide');
+      emit(this, 'after:hide');
     }
   }
 

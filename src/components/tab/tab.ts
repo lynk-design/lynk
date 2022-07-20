@@ -15,7 +15,7 @@ import styles from './tab.styles';
  *
  * @slot - The tab's label.
  *
- * @event lynk-close - Emitted when the tab is closable and the close button is activated.
+ * @event on:close - Emitted when the tab is closable and the close button is activated.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart close-button - The close button.
@@ -57,7 +57,7 @@ export default class LynkTab extends LitElement {
   }
 
   handleCloseClick() {
-    emit(this, 'lynk-close');
+    emit(this, 'on:close');
   }
 
   render() {

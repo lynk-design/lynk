@@ -19,8 +19,8 @@ import type LynkTab from '../../components/tab/tab';
  * @slot - Used for grouping tab panels in the tab group.
  * @slot nav - Used for grouping tabs in the tab group.
  *
- * @event {{ name: String }} lynk-tab-show - Emitted when a tab is shown.
- * @event {{ name: String }} lynk-tab-hide - Emitted when a tab is hidden.
+ * @event {{ name: String }} on:tab-show - Emitted when a tab is shown.
+ * @event {{ name: String }} on:tab-hide - Emitted when a tab is hidden.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart nav - The tab group navigation container.
@@ -266,10 +266,10 @@ export default class LynkTabGroup extends LitElement {
       // Emit events
       if (options.emitEvents) {
         if (previousTab) {
-          emit(this, 'lynk-tab-hide', { detail: { name: previousTab.panel } });
+          emit(this, 'on:tab-hide', { detail: { name: previousTab.panel } });
         }
 
-        emit(this, 'lynk-tab-show', { detail: { name: this.activeTab.panel } });
+        emit(this, 'on:tab-show', { detail: { name: this.activeTab.panel } });
       }
     }
   }

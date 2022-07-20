@@ -9,9 +9,9 @@ import { animations } from './animations';
  * @since 1.0
  * @status stable
  *
- * @event lynk-cancel - Emitted when the animation is canceled.
- * @event lynk-finish - Emitted when the animation finishes.
- * @event lynk-start - Emitted when the animation starts or restarts.
+ * @event on:cancel - Emitted when the animation is canceled.
+ * @event on:finish - Emitted when the animation finishes.
+ * @event on:start - Emitted when the animation starts or restarts.
  *
  * @slot - The element to animate. If multiple elements are to be animated, wrap them in a single container or use
  * multiple animation elements.
@@ -44,7 +44,7 @@ export default class LynkAnimation extends LitElement {
   @property({ type: Number }) duration = 1000;
 
   /**
-   * The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function
+   * The easing function to use for the animation. This can be a Lynk easing function or a custom easing function
    * such as `cubic-bezier(0, 1, .76, 1.14)`.
    */
   @property() easing = 'linear';
@@ -115,13 +115,13 @@ export default class LynkAnimation extends LitElement {
   handleAnimationFinish() {
     this.play = false;
     this.hasStarted = false;
-    emit(this, 'lynk-finish');
+    emit(this, 'on:finish');
   }
 
   handleAnimationCancel() {
     this.play = false;
     this.hasStarted = false;
-    emit(this, 'lynk-cancel');
+    emit(this, 'on:cancel');
   }
 
   @watch('play')
@@ -129,7 +129,7 @@ export default class LynkAnimation extends LitElement {
     if (this.animation) {
       if (this.play && !this.hasStarted) {
         this.hasStarted = true;
-        emit(this, 'lynk-start');
+        emit(this, 'on:start');
       }
 
       if (this.play) {
@@ -182,7 +182,7 @@ export default class LynkAnimation extends LitElement {
 
     if (this.play) {
       this.hasStarted = true;
-      emit(this, 'lynk-start');
+      emit(this, 'on:start');
     } else {
       this.animation.pause();
     }

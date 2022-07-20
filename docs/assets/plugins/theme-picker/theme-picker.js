@@ -59,7 +59,7 @@
       // Listen for selections
       const menu = dropdown.querySelector('lynk-menu');
       const menuIcon = dropdown.querySelector('lynk-icon');
-      menu.addEventListener('lynk-select', event => setTheme(event.detail.item.value));
+      menu.addEventListener('on:select', event => setTheme(event.detail.item.value));
 
       // Update the theme when the preference changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTheme(theme));

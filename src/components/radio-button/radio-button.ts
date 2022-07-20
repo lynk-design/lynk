@@ -15,9 +15,9 @@ import styles from './radio-button.styles';
  *
  * @slot - The radio's label.
  *
- * @event lynk-blur - Emitted when the button loses focus.
- * @event lynk-change - Emitted when the button's checked state changes.
- * @event lynk-focus - Emitted when the button gains focus.
+ * @event on:blur - Emitted when the button loses focus.
+ * @event on:change - Emitted when the button's checked state changes.
+ * @event on:focus - Emitted when the button gains focus.
  *
  * @slot - The button's label.
  * @slot prefix - Used to prepend an icon or similar element to the button.
@@ -93,7 +93,7 @@ export default class LynkRadioButton extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'lynk-blur');
+    emit(this, 'on:blur');
   }
 
   handleClick() {
@@ -104,7 +104,7 @@ export default class LynkRadioButton extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'lynk-focus');
+    emit(this, 'on:focus');
   }
 
   @watch('checked')
@@ -112,7 +112,7 @@ export default class LynkRadioButton extends LitElement {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
 
     if (this.hasUpdated) {
-      emit(this, 'lynk-change');
+      emit(this, 'on:change');
     }
   }
 

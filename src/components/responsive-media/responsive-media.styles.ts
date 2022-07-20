@@ -8,11 +8,11 @@ export default css`
     display: block;
   }
 
-  .responsive-media {
+  .lynk-responsive-media {
     position: relative;
   }
 
-  .responsive-media ::slotted(*) {
+  .lynk-responsive-media ::slotted(*) {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
@@ -20,17 +20,17 @@ export default css`
     height: 100% !important;
   }
 
-  .responsive-media--cover ::slotted(embed),
-  .responsive-media--cover ::slotted(iframe),
-  .responsive-media--cover ::slotted(img),
-  .responsive-media--cover ::slotted(video) {
+  .lynk-responsive-media--cover ::slotted(embed),
+  .lynk-responsive-media--cover ::slotted(iframe),
+  .lynk-responsive-media--cover ::slotted(img),
+  .lynk-responsive-media--cover ::slotted(video) {
     object-fit: cover !important;
   }
 
-  .responsive-media--contain ::slotted(embed),
-  .responsive-media--contain ::slotted(iframe),
-  .responsive-media--contain ::slotted(img),
-  .responsive-media--contain ::slotted(video) {
+  .lynk-responsive-media--contain ::slotted(embed),
+  .lynk-responsive-media--contain ::slotted(iframe),
+  .lynk-responsive-media--contain ::slotted(img),
+  .lynk-responsive-media--contain ::slotted(video) {
     object-fit: contain !important;
   }
 `;
