@@ -51,7 +51,7 @@ export default css`
   .lynk-input--standard.lynk-input--disabled {
     background-color: var(--lynk-input-background-color-disabled);
     border-color: var(--lynk-input-border-color-disabled);
-    opacity: 0.5;
+    opacity: 0.75;
     cursor: not-allowed;
   }
 
@@ -84,6 +84,12 @@ export default css`
     background-color: var(--lynk-input-filled-background-color-disabled);
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  .lynk-input.lynk-input--restricted {
+    border: none;
+    background-color: none;
+    color: var(--lynk-input-color);
   }
 
   .lynk-input__control {
@@ -140,15 +146,16 @@ export default css`
   }
 
   .lynk-input__prefix,
-  .lynk-input__suffix {
+  .lynk-input__suffix,
+  .lynk-input__control.lynk-input__control--restricted {
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
     cursor: default;
   }
 
-  .lynk-input__prefix ::slotted(l-icon),
-  .lynk-input__suffix ::slotted(l-icon) {
+  .lynk-input__prefix ::slotted(lynk-icon),
+  .lynk-input__suffix ::slotted(lynk-icon) {
     color: var(--lynk-input-icon-color);
   }
 
@@ -280,4 +287,41 @@ export default css`
   ::-ms-reveal {
     display: none;
   }
+
+  /* Error/Warning States */
+  .lynk-input--has-error,
+  .lynk-input--has-error:hover:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-danger-500);
+  }
+
+  .lynk-input--has-error.lynk-input--focused:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-danger-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-danger-400);
+  }
+
+  .lynk-input--has-warning,
+  .lynk-input--has-warning:hover:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-warning-500);
+  }
+
+  .lynk-input--has-warning.lynk-input--focused:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-warning-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-warning-400);
+  }
+
+  .lynk-input--has-success,
+  .lynk-input--has-success:hover:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-success-500);
+  }
+
+  .lynk-input--has-success.lynk-input--focused:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-success-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-success-400);
+  }
+
+  /* Restricted */
+  .lynk-input__control.lynk-input__control--restricted {
+    padding: 0;
+  }
+
 `;

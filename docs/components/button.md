@@ -199,17 +199,17 @@ Use the `caret` attribute to add a dropdown indicator when a button will trigger
 <lynk-button size="large" caret>Large</lynk-button>
 ```
 
-### Loading
+### Thinking
 
-Use the `loading` attribute to make a button busy. The width will remain the same as before, preventing adjacent elements from moving around. Clicks will be suppressed until the loading state is removed.
+Use the `thinking` attribute to make a button busy. The width will remain the same as before, preventing adjacent elements from moving around. Clicks will be suppressed until the thinking state is removed.
 
 ```html preview
-<lynk-button color="default" loading>Default</lynk-button>
-<lynk-button color="primary" loading>Primary</lynk-button>
-<lynk-button color="success" loading>Success</lynk-button>
-<lynk-button color="neutral" loading>Neutral</lynk-button>
-<lynk-button color="warning" loading>Warning</lynk-button>
-<lynk-button color="danger" loading>Danger</lynk-button>
+<lynk-button color="default" thinking>Default</lynk-button>
+<lynk-button color="primary" thinking>Primary</lynk-button>
+<lynk-button color="success" thinking>Success</lynk-button>
+<lynk-button color="neutral" thinking>Neutral</lynk-button>
+<lynk-button color="warning" thinking>Warning</lynk-button>
+<lynk-button color="danger" thinking>Danger</lynk-button>
 ```
 
 ### Disabled

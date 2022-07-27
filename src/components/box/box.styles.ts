@@ -19,6 +19,9 @@ export default css`
     text-align: var(--text-align, left);
     box-shadow: var(--shadow, none);
     height: var(--height, auto);
+  }
+
+  .lynk-box--overflow {
     overflow-y: auto;
   }
 `;

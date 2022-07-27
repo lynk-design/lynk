@@ -8,8 +8,6 @@ Inputs collect data from the user.
 <lynk-input></lynk-input>
 ```
 
-?> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
-
 ## Examples
 
 ### Labels
@@ -36,6 +34,15 @@ Use the `placeholder` attribute to add a placeholder.
 <lynk-input placeholder="Type something"></lynk-input>
 ```
 
+### Custom Validation States
+
+Use the `state` attribute to manually add an error, warning, or success state.
+
+```html preview
+<lynk-input value="Error" label="State" state="error" help-text="That dog aint gonna hunt!"></lynk-input>
+<lynk-input value="Warning" label="State" state="warning" help-text="Proceed with caution..."></lynk-input>
+<lynk-input value="Success" label="State" state="success" help-text="Noice!"></lynk-input>
+```
 
 ### Clearable
 
@@ -99,6 +106,26 @@ Use the `disabled` attribute to disable an input.
 <lynk-input placeholder="Disabled" size="medium" disabled></lynk-input>
 <br />
 <lynk-input placeholder="Disabled" size="large" disabled></lynk-input>
+```
+
+### Readonly
+
+Use the `readonly` attribute to make an input non-editable.
+
+```html preview
+<lynk-input value="Readonly" size="small" readonly></lynk-input>
+<br />
+<lynk-input value="Readonly" size="medium" readonly></lynk-input>
+<br />
+<lynk-input value="Readonly" size="large" readonly></lynk-input>
+```
+
+### Restricted
+
+Use the `restricted` attribute to replace the input with a plain text string.
+
+```html preview
+<lynk-input label="Label" value="Restricted" restricted></lynk-input>
 ```
 
 ### Sizes

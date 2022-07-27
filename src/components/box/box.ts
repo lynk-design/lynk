@@ -16,6 +16,7 @@ import styles from './box.styles';
  * @cssproperty --border - <border-style> <border-width> <border-color>.
  * @cssproperty --border-radius - Any Border Radius token (--lynk-border-radius-medium) or a custom value.
  * @cssproperty [--color=inherit] - Any color token (--lynk-color-neutral-100) or a custom value.
+ * @cssproperty [--height] - Any custom px, rem, %, or vh value.
  * @cssproperty [--margin=0] - Any spacing token (--lynk-spacing-large) or a custom value.
  * @cssproperty [--padding=0] - Any spacing token (--lynk-spacing-large) or a custom value.
  * @cssproperty --shadow - Any elevation shadow token (--lynk-shadow-large);
@@ -29,7 +30,8 @@ export default class LynkBox extends LitElement {
       <div
         part="base"
         class=${classMap({
-          'lynk-box': true
+          'lynk-box': true,
+          'lynk-box--overflow': getComputedStyle(this).getPropertyValue('--height') ? true : false
         })}
       >
         <slot></slot>

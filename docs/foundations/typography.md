@@ -18,10 +18,10 @@ Font sizes use `rem` units so they scale with the base font size. The pixel valu
 
 | Token                       | Value           | Example                                                           |
 | --------------------------- | --------------- | ----------------------------------------------------------------- |
-| `--lynk-font-size-2x-small` | 0.625rem (10px) | <span style="font-size: var(--lynk-font-size-2x-small)">Aa</span> |
-| `--lynk-font-size-x-small`  | 0.75rem (12px)  | <span style="font-size: var(--lynk-font-size-x-small)">Aa</span>  |
-| `--lynk-font-size-small`    | 0.875rem (14px) | <span style="font-size: var(--lynk-font-size-small)">Aa</span>    |
-| `--lynk-font-size-medium`   | 1rem (16px)     | <span style="font-size: var(--lynk-font-size-medium)">Aa</span>   |
+| `--lynk-font-size-x-small`  | 0.625rem (10px) | <span style="font-size: var(--lynk-font-size-x-small)">Aa</span>  |
+| `--lynk-font-size-small`    | 0.75rem (12px)  | <span style="font-size: var(--lynk-font-size-small)">Aa</span>    |
+| `--lynk-font-size-medium`   | 0.875rem (14px) | <span style="font-size: var(--lynk-font-size-medium)">Aa</span>   |
+| `--lynk-font-size-base`     | 1rem (16px)     | <span style="font-size: var(--lynk-font-size-base)">Aa</span>     |
 | `--lynk-font-size-large`    | 1.25rem (20px)  | <span style="font-size: var(--lynk-font-size-large)">Aa</span>    |
 | `--lynk-font-size-x-large`  | 1.5rem (24px)   | <span style="font-size: var(--lynk-font-size-x-large)">Aa</span>  |
 | `--lynk-font-size-2x-large` | 2.25rem (36px)  | <span style="font-size: var(--lynk-font-size-2x-large)">Aa</span> |

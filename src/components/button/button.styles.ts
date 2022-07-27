@@ -42,7 +42,7 @@ export default css`
     outline: none;
   }
 
-  .lynk-button:focus {
+  .lynk-button:focus-visible {
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
   }
@@ -320,7 +320,7 @@ export default css`
     color: var(--lynk-color-primary-500);
   }
 
-  .lynk-button--text:focus:not(.lynk-button--disabled) {
+  .lynk-button--text:focus-visible:not(.lynk-button--disabled) {
     background-color: transparent;
     border-color: transparent;
     color: var(--lynk-color-primary-500);
@@ -454,22 +454,22 @@ export default css`
   }
 
   /*
-   * Loading modifier
+   * thinking modifier
    */
 
-  .lynk-button--loading {
+  .lynk-button--thinking {
     position: relative;
     cursor: wait;
   }
 
-  .lynk-button--loading .lynk-button__prefix,
-  .lynk-button--loading .lynk-button__label,
-  .lynk-button--loading .lynk-button__suffix,
-  .lynk-button--loading .lynk-button__caret {
+  .lynk-button--thinking .lynk-button__prefix,
+  .lynk-button--thinking .lynk-button__label,
+  .lynk-button--thinking .lynk-button__suffix,
+  .lynk-button--thinking .lynk-button__caret {
     visibility: hidden;
   }
 
-  .lynk-button--loading lynk-spinner {
+  .lynk-button--thinking lynk-spinner {
     --indicator-color: currentColor;
     position: absolute;
     font-size: 1em;

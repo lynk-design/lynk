@@ -68,6 +68,9 @@ export default class LynkInput extends LitElement {
     | 'time'
     | 'url' = 'text';
 
+  /** The input's feedback status using manual validation. Alternatively, you can use the invalid attribute */
+  @property({ reflect: true }) state: 'error' | 'warning' | 'success';
+
   /** The input's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
@@ -103,6 +106,9 @@ export default class LynkInput extends LitElement {
 
   /** Makes the input readonly. */
   @property({ type: Boolean, reflect: true }) readonly = false;
+
+  /** Replaces the input with a plain text string. */
+  @property({ type: Boolean, reflect: true }) restricted = false;
 
   /** The minimum length of input that will be considered valid. */
   @property({ type: Number }) minlength: number;
@@ -310,12 +316,18 @@ export default class LynkInput extends LitElement {
           'lynk-form-control--medium': this.size === 'medium',
           'lynk-form-control--large': this.size === 'large',
           'lynk-form-control--has-label': hasLabel,
-          'lynk-form-control--has-help-text': hasHelpText
+          'lynk-form-control--has-help-text': hasHelpText,
+          'lynk-form-control--has-error': this.state === 'error',
+          'lynk-form-control--has-warning': this.state === 'warning',
+          'lynk-form-control--has-success': this.state === 'success',
         })}
       >
         <label
           part="form-control-label"
-          class="lynk-form-control__label"
+          class=${classMap({
+            'lynk-form-control__label': true,
+            'lynk-form-control--focused': this.hasFocus,
+          })}
           for="input"
           aria-hidden=${hasLabel ? 'false' : 'true'}
         >
@@ -338,48 +350,64 @@ export default class LynkInput extends LitElement {
               'lynk-input--standard': !this.filled,
               'lynk-input--filled': this.filled,
               'lynk-input--disabled': this.disabled,
+              'lynk-input--restricted': this.restricted,
               'lynk-input--focused': this.hasFocus,
               'lynk-input--empty': !this.value,
-              'lynk-input--invalid': this.invalid
+              'lynk-input--invalid': this.invalid,
+              'lynk-input--has-error': this.state === 'error',
+              'lynk-input--has-warning': this.state === 'warning',
+              'lynk-input--has-success': this.state === 'success',
             })}
           >
             <span part="prefix" class="lynk-input__prefix">
               <slot name="prefix"></slot>
             </span>
 
-            <input
-              part="input"
-              id="input"
-              class="lynk-input__control"
-              type=${this.type === 'password' && this.isPasswordVisible ? 'text' : this.type}
-              name=${ifDefined(this.name)}
-              ?disabled=${this.disabled}
-              ?readonly=${this.readonly}
-              ?required=${this.required}
-              placeholder=${ifDefined(this.placeholder)}
-              minlength=${ifDefined(this.minlength)}
-              maxlength=${ifDefined(this.maxlength)}
-              min=${ifDefined(this.min)}
-              max=${ifDefined(this.max)}
-              step=${ifDefined(this.step)}
-              .value=${live(this.value)}
-              autocapitalize=${ifDefined(this.autocapitalize)}
-              autocomplete=${ifDefined(this.autocomplete)}
-              autocorrect=${ifDefined(this.autocorrect)}
-              ?autofocus=${this.autofocus}
-              spellcheck=${ifDefined(this.spellcheck)}
-              pattern=${ifDefined(this.pattern)}
-              enterkeyhint=${ifDefined(this.enterkeyhint)}
-              inputmode=${ifDefined(this.inputmode)}
-              aria-describedby="help-text"
-              aria-invalid=${this.invalid ? 'true' : 'false'}
-              @change=${this.handleChange}
-              @input=${this.handleInput}
-              @invalid=${this.handleInvalid}
-              @keydown=${this.handleKeyDown}
-              @focus=${this.handleFocus}
-              @blur=${this.handleBlur}
-            />
+            ${this.restricted
+              ? html`
+                <div
+                  part="input"
+                  aria-describedby="help-text"
+                  class="lynk-input__control lynk-input__control--restricted"
+                >
+                  ${this.value || 'None'}
+                </div>
+              `
+              : html`
+                <input
+                  part="input"
+                  id="input"
+                  class="lynk-input__control"
+                  type=${this.type === 'password' && this.isPasswordVisible ? 'text' : this.type}
+                  name=${ifDefined(this.name)}
+                  ?disabled=${this.disabled}
+                  ?readonly=${this.readonly}
+                  ?required=${this.required}
+                  placeholder=${ifDefined(this.placeholder)}
+                  minlength=${ifDefined(this.minlength)}
+                  maxlength=${ifDefined(this.maxlength)}
+                  min=${ifDefined(this.min)}
+                  max=${ifDefined(this.max)}
+                  step=${ifDefined(this.step)}
+                  .value=${live(this.value)}
+                  autocapitalize=${ifDefined(this.autocapitalize)}
+                  autocomplete=${ifDefined(this.autocomplete)}
+                  autocorrect=${ifDefined(this.autocorrect)}
+                  ?autofocus=${this.autofocus}
+                  spellcheck=${ifDefined(this.spellcheck)}
+                  pattern=${ifDefined(this.pattern)}
+                  enterkeyhint=${ifDefined(this.enterkeyhint)}
+                  inputmode=${ifDefined(this.inputmode)}
+                  aria-describedby="help-text"
+                  aria-invalid=${this.invalid ? 'true' : 'false'}
+                  @change=${this.handleChange}
+                  @input=${this.handleInput}
+                  @invalid=${this.handleInvalid}
+                  @keydown=${this.handleKeyDown}
+                  @focus=${this.handleFocus}
+                  @blur=${this.handleBlur}
+                />
+            `}
 
             ${hasClearIcon
               ? html`

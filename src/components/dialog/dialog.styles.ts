@@ -5,7 +5,7 @@ export default css`
   ${componentStyles}
 
   :host {
-    --width: 31rem;
+    --width: 30rem;
     --header-spacing: var(--lynk-spacing-large);
     --body-spacing: var(--lynk-spacing-large);
     --footer-spacing: var(--lynk-spacing-large);

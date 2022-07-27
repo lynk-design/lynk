@@ -27,7 +27,7 @@ describe('<lynk-button>', () => {
       expect(el.size).to.equal('medium');
       expect(el.disabled).to.equal(false);
       expect(el.caret).to.equal(false);
-      expect(el.loading).to.equal(false);
+      expect(el.thinking).to.equal(false);
       expect(el.outline).to.equal(false);
       expect(el.pill).to.equal(false);
       expect(el.circle).to.equal(false);
@@ -90,9 +90,9 @@ describe('<lynk-button>', () => {
     });
   });
 
-  describe('when loading', () => {
+  describe('when thinking', () => {
     it('should have a spinner present', async () => {
-      const el = await fixture<LynkButton>(html` <lynk-button loading>Button Label</lynk-button> `);
+      const el = await fixture<LynkButton>(html` <lynk-button thinking>Button Label</lynk-button> `);
       expect(el.shadowRoot!.querySelector('lynk-spinner')).to.exist;
     });
   });

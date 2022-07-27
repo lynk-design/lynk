@@ -387,10 +387,10 @@
   --lynk-input-height-medium: 2.5rem;
   --lynk-input-height-large: 3.125rem;
 
-  --lynk-input-background-color: var(--lynk-color-neutral-0);
-  --lynk-input-background-color-hover: var(--lynk-input-background-color);
-  --lynk-input-background-color-focus: var(--lynk-input-background-color);
-  --lynk-input-background-color-disabled: var(--lynk-color-neutral-100);
+  --lynk-input-background-color: transparent;
+  --lynk-input-background-color-hover: transparent;
+  --lynk-input-background-color-focus: transparent;
+  --lynk-input-background-color-disabled: transparent;
   --lynk-input-border-color: var(--lynk-color-neutral-300);
   --lynk-input-border-color-hover: var(--lynk-color-neutral-400);
   --lynk-input-border-color-focus: var(--lynk-color-primary-500);
@@ -403,19 +403,19 @@
 
   --lynk-input-font-family: var(--lynk-font-sans);
   --lynk-input-font-weight: var(--lynk-font-weight-normal);
-  --lynk-input-font-size-small: var(--lynk-font-size-small);
-  --lynk-input-font-size-medium: var(--lynk-font-size-medium);
+  --lynk-input-font-size-small: var(--lynk-font-size-medium);
+  --lynk-input-font-size-medium: var(--lynk-font-size-base);
   --lynk-input-font-size-large: var(--lynk-font-size-large);
   --lynk-input-letter-spacing: var(--lynk-letter-spacing-normal);
 
-  --lynk-input-color: var(--lynk-color-neutral-700);
-  --lynk-input-color-hover: var(--lynk-color-neutral-700);
-  --lynk-input-color-focus: var(--lynk-color-neutral-700);
+  --lynk-input-color: var(--lynk-color-neutral-900);
+  --lynk-input-color-hover: var(--lynk-color-neutral-900);
+  --lynk-input-color-focus: var(--lynk-color-neutral-900);
   --lynk-input-color-disabled: var(--lynk-color-neutral-900);
-  --lynk-input-icon-color: var(--lynk-color-neutral-500);
-  --lynk-input-icon-color-hover: var(--lynk-color-neutral-600);
-  --lynk-input-icon-color-focus: var(--lynk-color-neutral-600);
-  --lynk-input-placeholder-color: var(--lynk-color-neutral-500);
+  --lynk-input-icon-color: var(--lynk-color-neutral-600);
+  --lynk-input-icon-color-hover: var(--lynk-color-neutral-700);
+  --lynk-input-icon-color-focus: var(--lynk-color-neutral-700);
+  --lynk-input-placeholder-color: var(--lynk-color-neutral-600);
   --lynk-input-placeholder-color-disabled: var(--lynk-color-neutral-600);
   --lynk-input-spacing-small: var(--lynk-spacing-small);
   --lynk-input-spacing-medium: var(--lynk-spacing-medium);
@@ -430,13 +430,14 @@
   --lynk-input-filled-color-focus: var(--lynk-color-neutral-700);
   --lynk-input-filled-color-disabled: var(--lynk-color-neutral-800);
 
-  --lynk-input-focus-ring-color: hsl(198.6 88.7% 48.4% / 40%);
+  --lynk-input-focus-ring-color: var(--lynk-color-primary-100);
   --lynk-input-focus-ring-offset: 0;
 
   --lynk-input-label-font-size-small: var(--lynk-font-size-small);
   --lynk-input-label-font-size-medium: var(--lynk-font-size-medium);
   --lynk-input-label-font-size-large: var(--lynk-font-size-base);
 
+  --lynk-input-label-font-weight: var(--lynk-font-weight-normal);
   --lynk-input-label-color: inherit;
 
   --lynk-input-help-text-font-size-small: var(--lynk-font-size-small);

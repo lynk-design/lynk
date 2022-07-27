@@ -17,6 +17,7 @@ import styles from './button.styles';
  * @dependency lynk-spinner
  *
  * @event on:blur - Emitted when the button loses focus.
+ * @event on:click - Emitted when the button is clicked.
  * @event on:focus - Emitted when the button gains focus.
  *
  * @slot - The button's label.
@@ -70,8 +71,8 @@ export default class LynkButton extends LitElement {
   /** Disables the button. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /** Draws the button in a loading state. */
-  @property({ type: Boolean, reflect: true }) loading = false;
+  /** Draws the button in a thinking state. */
+  @property({ type: Boolean, reflect: true }) thinking = false;
 
   /** Draws an outlined button. */
   @property({ type: Boolean, reflect: true }) outline = false;
@@ -150,7 +151,8 @@ export default class LynkButton extends LitElement {
   }
 
   handleClick(event: MouseEvent) {
-    if (this.disabled || this.loading) {
+
+    if (this.disabled || this.thinking) {
       event.preventDefault();
       event.stopPropagation();
       return;
@@ -159,6 +161,8 @@ export default class LynkButton extends LitElement {
     if (this.type === 'submit') {
       this.formSubmitController.submit(this);
     }
+
+    emit(this, 'on:click');
   }
 
   render() {
@@ -186,7 +190,7 @@ export default class LynkButton extends LitElement {
           'lynk-button--square': this.square,
           'lynk-button--disabled': this.disabled,
           'lynk-button--focused': this.hasFocus,
-          'lynk-button--loading': this.loading,
+          'lynk-button--thinking': this.thinking,
           'lynk-button--standard': !this.outline,
           'lynk-button--outline': this.outline,
           'lynk-button--pill': this.pill,
@@ -237,7 +241,7 @@ export default class LynkButton extends LitElement {
               `
             : ''
         }
-        ${this.loading ? html`<lynk-spinner></lynk-spinner>` : ''}
+        ${this.thinking ? html`<lynk-spinner></lynk-spinner>` : ''}
       </${tag}>
     `;
     /* eslint-enable lit/binding-positions, lit/no-invalid-html */

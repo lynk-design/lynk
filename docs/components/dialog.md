@@ -82,7 +82,7 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
 
 By default, dialogs will close when the user clicks the close button, clicks the overlay, or presses the <kbd>Escape</kbd> key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.
 
-To keep the dialog open in such cases, you can cancel the `l-request-close` event. When canceled, the dialog will remain open and pulse briefly to draw the user's attention to it.
+To keep the dialog open in such cases, you can cancel the `on:request-close` event. When canceled, the dialog will remain open and pulse briefly to draw the user's attention to it.
 
 You can use `event.detail.source` to determine what triggered the request to close. This example prevents the dialog from closing when the overlay is clicked, but allows the close button or <kbd>Escape</kbd> to dismiss it.
 
@@ -103,7 +103,7 @@ You can use `event.detail.source` to determine what triggered the request to clo
   closeButton.addEventListener('click', () => dialog.hide());
 
   // Prevent the dialog from closing when the user clicks on the overlay
-  dialog.addEventListener('lynk-request-close', event => {
+  dialog.addEventListener('on:request-close', event => {
     if (event.detail.source === 'overlay') {
       event.preventDefault();
     }
