@@ -1,0 +1,78 @@
+import { LitElement } from 'lit';
+import '../../components/dropdown/dropdown';
+import '../../components/icon-button/icon-button';
+import '../../components/icon/icon';
+import '../../components/menu/menu';
+import '../../components/tag/tag';
+import '../../components/tooltip/tooltip';
+import type LynkDropdown from '../../components/dropdown/dropdown';
+import type { MenuSelectEventDetail } from '../../components/menu/menu';
+import type LynkMenu from '../../components/menu/menu';
+import type { TemplateResult } from 'lit';
+export default class LynkSelect extends LitElement {
+    static styles: import("lit").CSSResult;
+    dropdown: LynkDropdown;
+    control: LynkDropdown;
+    input: HTMLInputElement;
+    menu: LynkMenu;
+    private readonly formSubmitController;
+    private readonly hasSlotController;
+    private readonly localize;
+    private menuItems;
+    private resizeObserver;
+    private hasFocus;
+    private isOpen;
+    private displayLabel;
+    private displayTags;
+    multiple: boolean;
+    maxTagsVisible: number;
+    disabled: boolean;
+    restricted: boolean;
+    name: string;
+    placeholder: string;
+    state: 'error' | 'warning' | 'success';
+    size: 'small' | 'medium' | 'large';
+    hoist: boolean;
+    value: string | string[];
+    filled: boolean;
+    pill: boolean;
+    label: string;
+    placement: 'top' | 'bottom';
+    helpText: string;
+    helpTip: string;
+    required: boolean;
+    clearable: boolean;
+    invalid: boolean;
+    autovalidate: boolean;
+    connectedCallback(): void;
+    firstUpdated(): void;
+    disconnectedCallback(): void;
+    reportValidity(): boolean;
+    setCustomValidity(message: string): void;
+    getValueAsArray(): string[];
+    focus(options?: FocusOptions): void;
+    blur(): void;
+    handleBlur(): void;
+    handleClearClick(event: MouseEvent): void;
+    handleDisabledChange(): void;
+    handleFocus(): void;
+    handleKeyDown(event: KeyboardEvent): void;
+    handleLabelClick(): void;
+    handleMenuSelect(event: CustomEvent<MenuSelectEventDetail>): void;
+    handleMenuShow(): void;
+    handleMenuHide(): void;
+    handleMenuItemLabelChange(): void;
+    handleMultipleChange(): void;
+    handleMenuSlotChange(): Promise<void>;
+    handleTagInteraction(event: KeyboardEvent | MouseEvent): void;
+    handleValueChange(): Promise<void>;
+    resizeMenu(): void;
+    syncItemsFromValue(): void;
+    syncValueFromItems(): void;
+    render(): TemplateResult<1>;
+}
+declare global {
+    interface HTMLElementTagNameMap {
+        'lynk-select': LynkSelect;
+    }
+}

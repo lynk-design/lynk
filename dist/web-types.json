@@ -14,117 +14,6 @@
     "html": {
       "elements": [
         {
-          "name": "lynk-accordion",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-accordion",
-          "js": {
-            "properties": [
-              {
-                "name": "accordion",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "header",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "body",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "open",
-                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "summary",
-                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Disables the accordion so it can't be toggled.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "show",
-                "description": "Shows the accordion.",
-                "value": {}
-              },
-              {
-                "name": "hide",
-                "description": "Hides the accordion",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryClick",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleOpenChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:show",
-                "description": "Emitted when the accordion opens."
-              },
-              {
-                "name": "after:show",
-                "description": "Emitted after the accordion opens and all animations are complete."
-              },
-              {
-                "name": "on:hide",
-                "description": "Emitted when the accordion closes."
-              },
-              {
-                "name": "after:hide",
-                "description": "Emitted after the accordion closes and all animations are complete."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "summary",
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "disabled",
-              "description": "Disables the accordion so it can't be toggled.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-alert",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-alert",
@@ -253,6 +142,117 @@
               "name": "duration",
               "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
               "value": {}
+            }
+          ]
+        },
+        {
+          "name": "lynk-accordion",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-accordion",
+          "js": {
+            "properties": [
+              {
+                "name": "accordion",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "header",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "body",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "summary",
+                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the accordion so it can't be toggled.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the accordion.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the accordion",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryClick",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:show",
+                "description": "Emitted when the accordion opens."
+              },
+              {
+                "name": "after:show",
+                "description": "Emitted after the accordion opens and all animations are complete."
+              },
+              {
+                "name": "on:hide",
+                "description": "Emitted when the accordion closes."
+              },
+              {
+                "name": "after:hide",
+                "description": "Emitted after the accordion closes and all animations are complete."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "summary",
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables the accordion so it can't be toggled.",
+              "value": {
+                "type": "boolean"
+              }
             }
           ]
         },
@@ -524,16 +524,6 @@
           "attributes": []
         },
         {
-          "name": "lynk-box",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-box",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
-        },
-        {
           "name": "lynk-badge",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-badge",
@@ -583,6 +573,68 @@
               "description": "Makes the badge pulsate to draw attention.",
               "value": {
                 "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-box",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-box",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "name": "lynk-button-group",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-button-group",
+          "js": {
+            "properties": [
+              {
+                "name": "defaultSlot",
+                "value": {
+                  "type": "HTMLSlotElement"
+                }
+              },
+              {
+                "name": "label",
+                "description": "A label to use for the button group's `aria-label` attribute.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "handleFocus",
+                "value": {}
+              },
+              {
+                "name": "handleBlur",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOver",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOut",
+                "value": {}
+              },
+              {
+                "name": "handleSlotChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "label",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "value": {
+                "type": "string"
               }
             }
           ]
@@ -953,58 +1005,6 @@
               "description": "Used to override the form owner's `target` attribute.",
               "value": {
                 "type": "'_self' | '_blank' | '_parent' | '_top' | string"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-button-group",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-button-group",
-          "js": {
-            "properties": [
-              {
-                "name": "defaultSlot",
-                "value": {
-                  "type": "HTMLSlotElement"
-                }
-              },
-              {
-                "name": "label",
-                "description": "A label to use for the button group's `aria-label` attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "handleFocus",
-                "value": {}
-              },
-              {
-                "name": "handleBlur",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOver",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOut",
-                "value": {}
-              },
-              {
-                "name": "handleSlotChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "label",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "value": {
-                "type": "string"
               }
             }
           ]
@@ -2335,6 +2335,85 @@
           "attributes": []
         },
         {
+          "name": "lynk-include",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-include",
+          "js": {
+            "properties": [
+              {
+                "name": "src",
+                "description": "The location of the HTML file to include.\n\nWARNING: Be sure you trust the content you are including as it will be executed as code and can result in XSS attacks.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "mode",
+                "description": "The fetch mode to use.",
+                "value": {
+                  "type": "'cors' | 'no-cors' | 'same-origin'"
+                }
+              },
+              {
+                "name": "allowScripts",
+                "description": "Allows included scripts to be executed. You must ensure the content you're including is trusted, otherwise this\noption can lead to XSS vulnerabilities in your app!",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "executeScript",
+                "value": {}
+              },
+              {
+                "name": "handleSrcChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:load",
+                "description": "Emitted when the included file is loaded."
+              },
+              {
+                "name": "on:error",
+                "description": "Emitted when the included file fails to load due to an error."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "src",
+              "description": "The location of the HTML file to include.\n\nWARNING: Be sure you trust the content you are including as it will be executed as code and can result in XSS attacks.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "mode",
+              "description": "The fetch mode to use.",
+              "value": {
+                "type": "'cors' | 'no-cors' | 'same-origin'"
+              }
+            },
+            {
+              "name": "allow-scripts",
+              "description": "Allows included scripts to be executed. You must ensure the content you're including is trusted, otherwise this\noption can lead to XSS vulnerabilities in your app!",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "doc-url": "https://lynk.design/components/",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
           "name": "lynk-icon-button",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-icon-button",
@@ -2505,85 +2584,6 @@
               }
             }
           ]
-        },
-        {
-          "name": "lynk-include",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-include",
-          "js": {
-            "properties": [
-              {
-                "name": "src",
-                "description": "The location of the HTML file to include.\n\nWARNING: Be sure you trust the content you are including as it will be executed as code and can result in XSS attacks.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "mode",
-                "description": "The fetch mode to use.",
-                "value": {
-                  "type": "'cors' | 'no-cors' | 'same-origin'"
-                }
-              },
-              {
-                "name": "allowScripts",
-                "description": "Allows included scripts to be executed. You must ensure the content you're including is trusted, otherwise this\noption can lead to XSS vulnerabilities in your app!",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "executeScript",
-                "value": {}
-              },
-              {
-                "name": "handleSrcChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:load",
-                "description": "Emitted when the included file is loaded."
-              },
-              {
-                "name": "on:error",
-                "description": "Emitted when the included file fails to load due to an error."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "src",
-              "description": "The location of the HTML file to include.\n\nWARNING: Be sure you trust the content you are including as it will be executed as code and can result in XSS attacks.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "mode",
-              "description": "The fetch mode to use.",
-              "value": {
-                "type": "'cors' | 'no-cors' | 'same-origin'"
-              }
-            },
-            {
-              "name": "allow-scripts",
-              "description": "Allows included scripts to be executed. You must ensure the content you're including is trusted, otherwise this\noption can lead to XSS vulnerabilities in your app!",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "doc-url": "https://lynk.design/components/",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
         },
         {
           "name": "lynk-input",
@@ -4211,46 +4211,6 @@
           ]
         },
         {
-          "name": "lynk-responsive-media",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-responsive-media",
-          "js": {
-            "properties": [
-              {
-                "name": "aspectRatio",
-                "description": "The aspect ratio of the embedded media in the format of `width:height`, e.g. `16:9`, `4:3`, or `1:1`. Ratios not in\nthis format will be ignored.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "fit",
-                "description": "Determines how content will be resized to fit its container.",
-                "value": {
-                  "type": "'cover' | 'contain'"
-                }
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "aspect-ratio",
-              "description": "The aspect ratio of the embedded media in the format of `width:height`, e.g. `16:9`, `4:3`, or `1:1`. Ratios not in\nthis format will be ignored.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "fit",
-              "description": "Determines how content will be resized to fit its container.",
-              "value": {
-                "type": "'cover' | 'contain'"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-select",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-select",
@@ -4724,6 +4684,56 @@
           ]
         },
         {
+          "name": "lynk-responsive-media",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-responsive-media",
+          "js": {
+            "properties": [
+              {
+                "name": "aspectRatio",
+                "description": "The aspect ratio of the embedded media in the format of `width:height`, e.g. `16:9`, `4:3`, or `1:1`. Ratios not in\nthis format will be ignored.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "fit",
+                "description": "Determines how content will be resized to fit its container.",
+                "value": {
+                  "type": "'cover' | 'contain'"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "aspect-ratio",
+              "description": "The aspect ratio of the embedded media in the format of `width:height`, e.g. `16:9`, `4:3`, or `1:1`. Ratios not in\nthis format will be ignored.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "fit",
+              "description": "Determines how content will be resized to fit its container.",
+              "value": {
+                "type": "'cover' | 'contain'"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-spinner",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-spinner",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
           "name": "lynk-stack",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-stack",
@@ -4804,16 +4814,6 @@
               }
             }
           ]
-        },
-        {
-          "name": "lynk-spinner",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-spinner",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
         },
         {
           "name": "lynk-switch",
@@ -5109,6 +5109,54 @@
           ]
         },
         {
+          "name": "lynk-tab-panel",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-tab-panel",
+          "js": {
+            "properties": [
+              {
+                "name": "attrId",
+                "value": {}
+              },
+              {
+                "name": "componentId",
+                "value": {}
+              },
+              {
+                "name": "name",
+                "description": "The tab panel's name.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "active",
+                "description": "When true, the tab panel will be shown.",
+                "value": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "name",
+              "description": "The tab panel's name.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "active",
+              "description": "When true, the tab panel will be shown.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-tab-group",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-tab-group",
@@ -5306,54 +5354,6 @@
               "description": "The locale to render the component in.",
               "value": {
                 "type": "string"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-tab-panel",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-tab-panel",
-          "js": {
-            "properties": [
-              {
-                "name": "attrId",
-                "value": {}
-              },
-              {
-                "name": "componentId",
-                "value": {}
-              },
-              {
-                "name": "name",
-                "description": "The tab panel's name.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "active",
-                "description": "When true, the tab panel will be shown.",
-                "value": {
-                  "type": "boolean"
-                }
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "name",
-              "description": "The tab panel's name.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "active",
-              "description": "When true, the tab panel will be shown.",
-              "value": {
-                "type": "boolean"
               }
             }
           ]
