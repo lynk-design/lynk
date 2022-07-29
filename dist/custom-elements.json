@@ -466,218 +466,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/box/box.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkBox",
-          "cssProperties": [
-            {
-              "description": "Custom text align (left, center, right).",
-              "name": "--align",
-              "default": "left"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--background",
-              "default": "transparent"
-            },
-            {
-              "description": "<border-style> <border-width> <border-color>.",
-              "name": "--border"
-            },
-            {
-              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
-              "name": "--border-radius"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--color",
-              "default": "inherit"
-            },
-            {
-              "description": "Any custom px, rem, %, or vh value.",
-              "name": "--height",
-              "default": "auto"
-            },
-            {
-              "description": "Any custom px, rem, %, or vh value.",
-              "name": "--width",
-              "default": "auto"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--margin",
-              "default": "0"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--padding",
-              "default": "0"
-            },
-            {
-              "description": "Any elevation shadow token (--lynk-shadow-large);",
-              "name": "--shadow"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The default slot.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-box",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-box",
-          "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/badge/badge.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkBadge",
-          "cssParts": [
-            {
-              "description": "| .lynk-badge - The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The badge's content.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "attribute": "type",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "attribute": "pill",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "attribute": "pulse",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "fieldName": "type"
-            },
-            {
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "fieldName": "pill"
-            },
-            {
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "fieldName": "pulse"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-badge",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-badge",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/animation/animation.ts",
       "declarations": [
         {
@@ -1067,6 +855,782 @@
           "declaration": {
             "name": "getEasingNames",
             "module": "src/components/animation/animations.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/box/box.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkBox",
+          "cssProperties": [
+            {
+              "description": "Custom text align (left, center, right).",
+              "name": "--align",
+              "default": "left"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--background",
+              "default": "transparent"
+            },
+            {
+              "description": "<border-style> <border-width> <border-color>.",
+              "name": "--border"
+            },
+            {
+              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
+              "name": "--border-radius"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--color",
+              "default": "inherit"
+            },
+            {
+              "description": "Any custom px, rem, %, or vh value.",
+              "name": "--height",
+              "default": "auto"
+            },
+            {
+              "description": "Any custom px, rem, %, or vh value.",
+              "name": "--width",
+              "default": "auto"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--margin",
+              "default": "0"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--padding",
+              "default": "0"
+            },
+            {
+              "description": "Any elevation shadow token (--lynk-shadow-large);",
+              "name": "--shadow"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The default slot.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-box",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-box",
+          "declaration": {
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/badge/badge.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkBadge",
+          "cssParts": [
+            {
+              "description": "| .lynk-badge - The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The badge's content.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "attribute": "pill",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "attribute": "pulse",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "fieldName": "type"
+            },
+            {
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "fieldName": "pill"
+            },
+            {
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "fieldName": "pulse"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-badge",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-badge",
+          "declaration": {
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkButton",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The prefix slot's container.",
+              "name": "prefix"
+            },
+            {
+              "description": "The button's label.",
+              "name": "label"
+            },
+            {
+              "description": "The suffix slot's container.",
+              "name": "suffix"
+            },
+            {
+              "description": "The button's caret.",
+              "name": "caret"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The button's label.",
+              "name": ""
+            },
+            {
+              "description": "Used to prepend an icon or similar element to the button.",
+              "name": "prefix"
+            },
+            {
+              "description": "Used to append an icon or similar element to the button.",
+              "name": "suffix"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "button",
+              "type": {
+                "text": "HTMLButtonElement | HTMLLinkElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formSubmitController",
+              "privacy": "private",
+              "default": "new FormSubmitController(this, {\n    form: (input: HTMLInputElement) => {\n      // Buttons support a form attribute that points to an arbitrary form, so if this attribute it set we need to query\n      // the form from the same root using its id\n      if (input.hasAttribute('form')) {\n        const doc = input.getRootNode() as Document | ShadowRoot;\n        const formId = input.getAttribute('form')!;\n        return doc.getElementById(formId) as HTMLFormElement;\n      }\n\n      // Fall back to the closest containing form\n      return input.closest('form');\n    }\n  })"
+            },
+            {
+              "kind": "field",
+              "name": "hasSlotController",
+              "privacy": "private",
+              "default": "new HasSlotController(this, '[default]', 'prefix', 'suffix')"
+            },
+            {
+              "kind": "field",
+              "name": "localize",
+              "privacy": "private",
+              "default": "new LocalizeController(this)"
+            },
+            {
+              "kind": "field",
+              "name": "hasFocus",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "type": {
+                "text": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'"
+              },
+              "default": "'default'",
+              "description": "The button's color.",
+              "attribute": "color",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "'small' | 'medium' | 'large'"
+              },
+              "default": "'medium'",
+              "description": "The button's size.",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Display the button component as a block instead of inline-block.",
+              "attribute": "block",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "caret",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the button with a caret for use with dropdowns, popovers, etc.",
+              "attribute": "caret",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the button.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "thinking",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the button in a thinking state.",
+              "attribute": "thinking",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "outline",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an outlined button.",
+              "attribute": "outline",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style button with rounded edges.",
+              "attribute": "pill",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "circle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an icon only circle button.",
+              "attribute": "circle",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "square",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an icon only square button.",
+              "attribute": "square",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'button' | 'submit'"
+              },
+              "default": "'button'",
+              "description": "The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default\nvalue is `button` instead of `submit`, which is opposite of how native `<button>` elements behave.",
+              "attribute": "type"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional name for the button. Ignored when `href` is set.",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional value for the button. Ignored when `href` is set.",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
+              "attribute": "href"
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+              },
+              "description": "Tells the browser where to open the link. Only used when `href` is set.",
+              "attribute": "target"
+            },
+            {
+              "kind": "field",
+              "name": "download",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
+              "attribute": "download"
+            },
+            {
+              "kind": "field",
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "description": "The \"form owner\" to associate the button with. If omitted, the closest containing form will be used instead. The\nvalue of this attribute must be an id of a form in the same document or shadow root as the button.",
+              "attribute": "form"
+            },
+            {
+              "kind": "field",
+              "name": "formAction",
+              "type": {
+                "text": "string"
+              },
+              "description": "Used to override the form owner's `action` attribute.",
+              "attribute": "formaction"
+            },
+            {
+              "kind": "field",
+              "name": "formMethod",
+              "type": {
+                "text": "'post' | 'get'"
+              },
+              "description": "Used to override the form owner's `method` attribute.",
+              "attribute": "formmethod"
+            },
+            {
+              "kind": "field",
+              "name": "formNoValidate",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Used to override the form owner's `novalidate` attribute.",
+              "attribute": "formnovalidate"
+            },
+            {
+              "kind": "field",
+              "name": "formTarget",
+              "type": {
+                "text": "'_self' | '_blank' | '_parent' | '_top' | string"
+              },
+              "description": "Used to override the form owner's `target` attribute.",
+              "attribute": "formtarget"
+            },
+            {
+              "kind": "method",
+              "name": "click",
+              "description": "Simulates a click on the button."
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ],
+              "description": "Sets focus on the button."
+            },
+            {
+              "kind": "method",
+              "name": "blur",
+              "description": "Removes focus from the button."
+            },
+            {
+              "kind": "method",
+              "name": "handleBlur"
+            },
+            {
+              "kind": "method",
+              "name": "handleFocus"
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the button loses focus.",
+              "name": "on:blur",
+              "reactName": "onOnBlur"
+            },
+            {
+              "description": "Emitted when the button is clicked.",
+              "name": "on:click",
+              "reactName": "onOnClick"
+            },
+            {
+              "description": "Emitted when the button gains focus.",
+              "name": "on:focus",
+              "reactName": "onOnFocus"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "color",
+              "type": {
+                "text": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'"
+              },
+              "default": "'default'",
+              "description": "The button's color.",
+              "fieldName": "color"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "'small' | 'medium' | 'large'"
+              },
+              "default": "'medium'",
+              "description": "The button's size.",
+              "fieldName": "size"
+            },
+            {
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Display the button component as a block instead of inline-block.",
+              "fieldName": "block"
+            },
+            {
+              "name": "caret",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the button with a caret for use with dropdowns, popovers, etc.",
+              "fieldName": "caret"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the button.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "thinking",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the button in a thinking state.",
+              "fieldName": "thinking"
+            },
+            {
+              "name": "outline",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an outlined button.",
+              "fieldName": "outline"
+            },
+            {
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style button with rounded edges.",
+              "fieldName": "pill"
+            },
+            {
+              "name": "circle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an icon only circle button.",
+              "fieldName": "circle"
+            },
+            {
+              "name": "square",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an icon only square button.",
+              "fieldName": "square"
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "'button' | 'submit'"
+              },
+              "default": "'button'",
+              "description": "The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default\nvalue is `button` instead of `submit`, which is opposite of how native `<button>` elements behave.",
+              "fieldName": "type"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional name for the button. Ignored when `href` is set.",
+              "fieldName": "name"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional value for the button. Ignored when `href` is set.",
+              "fieldName": "value"
+            },
+            {
+              "name": "href",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
+              "fieldName": "href"
+            },
+            {
+              "name": "target",
+              "type": {
+                "text": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+              },
+              "description": "Tells the browser where to open the link. Only used when `href` is set.",
+              "fieldName": "target"
+            },
+            {
+              "name": "download",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
+              "fieldName": "download"
+            },
+            {
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "description": "The \"form owner\" to associate the button with. If omitted, the closest containing form will be used instead. The\nvalue of this attribute must be an id of a form in the same document or shadow root as the button.",
+              "fieldName": "form"
+            },
+            {
+              "name": "formaction",
+              "type": {
+                "text": "string"
+              },
+              "description": "Used to override the form owner's `action` attribute.",
+              "fieldName": "formAction"
+            },
+            {
+              "name": "formmethod",
+              "type": {
+                "text": "'post' | 'get'"
+              },
+              "description": "Used to override the form owner's `method` attribute.",
+              "fieldName": "formMethod"
+            },
+            {
+              "name": "formnovalidate",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Used to override the form owner's `novalidate` attribute.",
+              "fieldName": "formNoValidate"
+            },
+            {
+              "name": "formtarget",
+              "type": {
+                "text": "'_self' | '_blank' | '_parent' | '_top' | string"
+              },
+              "description": "Used to override the form owner's `target` attribute.",
+              "fieldName": "formTarget"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "dependencies": [
+            "lynk-spinner"
+          ],
+          "tagName": "lynk-button",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkButton",
+            "module": "src/components/button/button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-button",
+          "declaration": {
+            "name": "LynkButton",
+            "module": "src/components/button/button.ts"
           }
         }
       ]
@@ -1821,570 +2385,6 @@
           "declaration": {
             "name": "LynkDialog",
             "module": "src/components/dialog/dialog.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/button/button.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkButton",
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            },
-            {
-              "description": "The prefix slot's container.",
-              "name": "prefix"
-            },
-            {
-              "description": "The button's label.",
-              "name": "label"
-            },
-            {
-              "description": "The suffix slot's container.",
-              "name": "suffix"
-            },
-            {
-              "description": "The button's caret.",
-              "name": "caret"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The button's label.",
-              "name": ""
-            },
-            {
-              "description": "Used to prepend an icon or similar element to the button.",
-              "name": "prefix"
-            },
-            {
-              "description": "Used to append an icon or similar element to the button.",
-              "name": "suffix"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "button",
-              "type": {
-                "text": "HTMLButtonElement | HTMLLinkElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formSubmitController",
-              "privacy": "private",
-              "default": "new FormSubmitController(this, {\n    form: (input: HTMLInputElement) => {\n      // Buttons support a form attribute that points to an arbitrary form, so if this attribute it set we need to query\n      // the form from the same root using its id\n      if (input.hasAttribute('form')) {\n        const doc = input.getRootNode() as Document | ShadowRoot;\n        const formId = input.getAttribute('form')!;\n        return doc.getElementById(formId) as HTMLFormElement;\n      }\n\n      // Fall back to the closest containing form\n      return input.closest('form');\n    }\n  })"
-            },
-            {
-              "kind": "field",
-              "name": "hasSlotController",
-              "privacy": "private",
-              "default": "new HasSlotController(this, '[default]', 'prefix', 'suffix')"
-            },
-            {
-              "kind": "field",
-              "name": "localize",
-              "privacy": "private",
-              "default": "new LocalizeController(this)"
-            },
-            {
-              "kind": "field",
-              "name": "hasFocus",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "color",
-              "type": {
-                "text": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'"
-              },
-              "default": "'default'",
-              "description": "The button's color.",
-              "attribute": "color",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "'small' | 'medium' | 'large'"
-              },
-              "default": "'medium'",
-              "description": "The button's size.",
-              "attribute": "size",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "block",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Display the button component as a block instead of inline-block.",
-              "attribute": "block",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "caret",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the button with a caret for use with dropdowns, popovers, etc.",
-              "attribute": "caret",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the button.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "thinking",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the button in a thinking state.",
-              "attribute": "thinking",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "outline",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an outlined button.",
-              "attribute": "outline",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style button with rounded edges.",
-              "attribute": "pill",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "circle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an icon only circle button.",
-              "attribute": "circle",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "square",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an icon only square button.",
-              "attribute": "square",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'button' | 'submit'"
-              },
-              "default": "'button'",
-              "description": "The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default\nvalue is `button` instead of `submit`, which is opposite of how native `<button>` elements behave.",
-              "attribute": "type"
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An optional name for the button. Ignored when `href` is set.",
-              "attribute": "name"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An optional value for the button. Ignored when `href` is set.",
-              "attribute": "value"
-            },
-            {
-              "kind": "field",
-              "name": "href",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
-              "attribute": "href"
-            },
-            {
-              "kind": "field",
-              "name": "target",
-              "type": {
-                "text": "'_blank' | '_parent' | '_self' | '_top' | undefined"
-              },
-              "description": "Tells the browser where to open the link. Only used when `href` is set.",
-              "attribute": "target"
-            },
-            {
-              "kind": "field",
-              "name": "download",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
-              "attribute": "download"
-            },
-            {
-              "kind": "field",
-              "name": "form",
-              "type": {
-                "text": "string"
-              },
-              "description": "The \"form owner\" to associate the button with. If omitted, the closest containing form will be used instead. The\nvalue of this attribute must be an id of a form in the same document or shadow root as the button.",
-              "attribute": "form"
-            },
-            {
-              "kind": "field",
-              "name": "formAction",
-              "type": {
-                "text": "string"
-              },
-              "description": "Used to override the form owner's `action` attribute.",
-              "attribute": "formaction"
-            },
-            {
-              "kind": "field",
-              "name": "formMethod",
-              "type": {
-                "text": "'post' | 'get'"
-              },
-              "description": "Used to override the form owner's `method` attribute.",
-              "attribute": "formmethod"
-            },
-            {
-              "kind": "field",
-              "name": "formNoValidate",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Used to override the form owner's `novalidate` attribute.",
-              "attribute": "formnovalidate"
-            },
-            {
-              "kind": "field",
-              "name": "formTarget",
-              "type": {
-                "text": "'_self' | '_blank' | '_parent' | '_top' | string"
-              },
-              "description": "Used to override the form owner's `target` attribute.",
-              "attribute": "formtarget"
-            },
-            {
-              "kind": "method",
-              "name": "click",
-              "description": "Simulates a click on the button."
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ],
-              "description": "Sets focus on the button."
-            },
-            {
-              "kind": "method",
-              "name": "blur",
-              "description": "Removes focus from the button."
-            },
-            {
-              "kind": "method",
-              "name": "handleBlur"
-            },
-            {
-              "kind": "method",
-              "name": "handleFocus"
-            },
-            {
-              "kind": "method",
-              "name": "handleClick",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "MouseEvent"
-                  }
-                }
-              ]
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the button loses focus.",
-              "name": "on:blur",
-              "reactName": "onOnBlur"
-            },
-            {
-              "description": "Emitted when the button is clicked.",
-              "name": "on:click",
-              "reactName": "onOnClick"
-            },
-            {
-              "description": "Emitted when the button gains focus.",
-              "name": "on:focus",
-              "reactName": "onOnFocus"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "color",
-              "type": {
-                "text": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'"
-              },
-              "default": "'default'",
-              "description": "The button's color.",
-              "fieldName": "color"
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "'small' | 'medium' | 'large'"
-              },
-              "default": "'medium'",
-              "description": "The button's size.",
-              "fieldName": "size"
-            },
-            {
-              "name": "block",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Display the button component as a block instead of inline-block.",
-              "fieldName": "block"
-            },
-            {
-              "name": "caret",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the button with a caret for use with dropdowns, popovers, etc.",
-              "fieldName": "caret"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the button.",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "thinking",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the button in a thinking state.",
-              "fieldName": "thinking"
-            },
-            {
-              "name": "outline",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an outlined button.",
-              "fieldName": "outline"
-            },
-            {
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style button with rounded edges.",
-              "fieldName": "pill"
-            },
-            {
-              "name": "circle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an icon only circle button.",
-              "fieldName": "circle"
-            },
-            {
-              "name": "square",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an icon only square button.",
-              "fieldName": "square"
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "'button' | 'submit'"
-              },
-              "default": "'button'",
-              "description": "The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default\nvalue is `button` instead of `submit`, which is opposite of how native `<button>` elements behave.",
-              "fieldName": "type"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An optional name for the button. Ignored when `href` is set.",
-              "fieldName": "name"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An optional value for the button. Ignored when `href` is set.",
-              "fieldName": "value"
-            },
-            {
-              "name": "href",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
-              "fieldName": "href"
-            },
-            {
-              "name": "target",
-              "type": {
-                "text": "'_blank' | '_parent' | '_self' | '_top' | undefined"
-              },
-              "description": "Tells the browser where to open the link. Only used when `href` is set.",
-              "fieldName": "target"
-            },
-            {
-              "name": "download",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
-              "fieldName": "download"
-            },
-            {
-              "name": "form",
-              "type": {
-                "text": "string"
-              },
-              "description": "The \"form owner\" to associate the button with. If omitted, the closest containing form will be used instead. The\nvalue of this attribute must be an id of a form in the same document or shadow root as the button.",
-              "fieldName": "form"
-            },
-            {
-              "name": "formaction",
-              "type": {
-                "text": "string"
-              },
-              "description": "Used to override the form owner's `action` attribute.",
-              "fieldName": "formAction"
-            },
-            {
-              "name": "formmethod",
-              "type": {
-                "text": "'post' | 'get'"
-              },
-              "description": "Used to override the form owner's `method` attribute.",
-              "fieldName": "formMethod"
-            },
-            {
-              "name": "formnovalidate",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Used to override the form owner's `novalidate` attribute.",
-              "fieldName": "formNoValidate"
-            },
-            {
-              "name": "formtarget",
-              "type": {
-                "text": "'_self' | '_blank' | '_parent' | '_top' | string"
-              },
-              "description": "Used to override the form owner's `target` attribute.",
-              "fieldName": "formTarget"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "dependencies": [
-            "lynk-spinner"
-          ],
-          "tagName": "lynk-button",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkButton",
-            "module": "src/components/button/button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-button",
-          "declaration": {
-            "name": "LynkButton",
-            "module": "src/components/button/button.ts"
           }
         }
       ]
@@ -8281,68 +8281,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/spinner/spinner.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkSpinner",
-          "cssProperties": [
-            {
-              "description": "The width of the track.",
-              "name": "--track-width"
-            },
-            {
-              "description": "The color of the track.",
-              "name": "--track-color"
-            },
-            {
-              "description": "The color of the indicator.",
-              "name": "--indicator-color"
-            },
-            {
-              "description": "The time it takes for the spinner to complete one animation cycle.",
-              "name": "--speed"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-spinner",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkSpinner",
-            "module": "src/components/spinner/spinner.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-spinner",
-          "declaration": {
-            "name": "LynkSpinner",
-            "module": "src/components/spinner/spinner.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/stack/stack.ts",
       "declarations": [
         {
@@ -8500,6 +8438,68 @@
           "declaration": {
             "name": "LynkStack",
             "module": "src/components/stack/stack.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/spinner/spinner.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkSpinner",
+          "cssProperties": [
+            {
+              "description": "The width of the track.",
+              "name": "--track-width"
+            },
+            {
+              "description": "The color of the track.",
+              "name": "--track-color"
+            },
+            {
+              "description": "The color of the indicator.",
+              "name": "--indicator-color"
+            },
+            {
+              "description": "The time it takes for the spinner to complete one animation cycle.",
+              "name": "--speed"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-spinner",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkSpinner",
+            "module": "src/components/spinner/spinner.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-spinner",
+          "declaration": {
+            "name": "LynkSpinner",
+            "module": "src/components/spinner/spinner.ts"
           }
         }
       ]
@@ -10462,50 +10462,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/visually-hidden/visually-hidden.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkVisuallyHidden",
-          "slots": [
-            {
-              "description": "The content you'd like to be visually hidden.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-visually-hidden",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkVisuallyHidden",
-            "module": "src/components/visually-hidden/visually-hidden.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-visually-hidden",
-          "declaration": {
-            "name": "LynkVisuallyHidden",
-            "module": "src/components/visually-hidden/visually-hidden.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/tooltip/tooltip.ts",
       "declarations": [
         {
@@ -10887,6 +10843,50 @@
           "declaration": {
             "name": "LynkTooltip",
             "module": "src/components/tooltip/tooltip.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/visually-hidden/visually-hidden.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkVisuallyHidden",
+          "slots": [
+            {
+              "description": "The content you'd like to be visually hidden.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-visually-hidden",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkVisuallyHidden",
+            "module": "src/components/visually-hidden/visually-hidden.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-visually-hidden",
+          "declaration": {
+            "name": "LynkVisuallyHidden",
+            "module": "src/components/visually-hidden/visually-hidden.ts"
           }
         }
       ]

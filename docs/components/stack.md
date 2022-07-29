@@ -2,7 +2,7 @@
 
 [component-header:lynk-stack]
 
-A description of the component goes here.
+Stacks are a fundamental building block for laying out and aligning small bits of content or simple components in a vertical or horizontal  space. It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
 
 ```html preview
 <lynk-stack>
