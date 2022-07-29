@@ -40,6 +40,7 @@ export { default as LynkTooltip } from './components/tooltip/tooltip';
 export { default as LynkVisuallyHidden } from './components/visually-hidden/visually-hidden';
 export { default as LynkGrid } from './components/grid/grid';
 export { default as LynkBox } from './components/box/box';
+export { default as LynkStack } from './components/stack/stack';
 /* plop:component */
 
 // Utilities

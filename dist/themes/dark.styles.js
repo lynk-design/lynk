@@ -234,6 +234,8 @@ export default css`
     --lynk-color-primary-900: var(--lynk-color-violet-900);
     --lynk-color-primary-950: var(--lynk-color-violet-950);
 
+    --lynk-color-primary: var(--lynk-color-primary-500);
+
     --lynk-color-success-50: var(--lynk-color-emerald-50);
     --lynk-color-success-100: var(--lynk-color-emerald-100);
     --lynk-color-success-200: var(--lynk-color-emerald-200);
@@ -245,6 +247,8 @@ export default css`
     --lynk-color-success-800: var(--lynk-color-emerald-800);
     --lynk-color-success-900: var(--lynk-color-emerald-900);
     --lynk-color-success-950: var(--lynk-color-emerald-950);
+
+    --lynk-color-success: var(--lynk-color-success-500);
 
     --lynk-color-warning-50: var(--lynk-color-amber-50);
     --lynk-color-warning-100: var(--lynk-color-amber-100);
@@ -258,6 +262,8 @@ export default css`
     --lynk-color-warning-900: var(--lynk-color-amber-900);
     --lynk-color-warning-950: var(--lynk-color-amber-950);
 
+    --lynk-color-warning: var(--lynk-color-warning-500);
+
     --lynk-color-danger-50: var(--lynk-color-rose-50);
     --lynk-color-danger-100: var(--lynk-color-rose-100);
     --lynk-color-danger-200: var(--lynk-color-rose-200);
@@ -270,6 +276,8 @@ export default css`
     --lynk-color-danger-900: var(--lynk-color-rose-900);
     --lynk-color-danger-950: var(--lynk-color-rose-950);
 
+    --lynk-color-danger: var(--lynk-color-danger-500);
+
     --lynk-color-neutral-50: var(--lynk-color-gray-50);
     --lynk-color-neutral-100: var(--lynk-color-gray-100);
     --lynk-color-neutral-200: var(--lynk-color-gray-200);
@@ -281,6 +289,8 @@ export default css`
     --lynk-color-neutral-800: var(--lynk-color-gray-800);
     --lynk-color-neutral-900: var(--lynk-color-gray-900);
     --lynk-color-neutral-950: var(--lynk-color-gray-950);
+
+    --lynk-color-neutral: var(--lynk-color-neutral-500);
 
     --lynk-color-neutral-0: hsl(240 6% 10%);
     --lynk-color-neutral-1000: hsl(0 0% 95%);
@@ -366,7 +376,7 @@ export default css`
     --lynk-line-height-loose: 2.2;
     --lynk-line-height-looser: 2.6;
 
-    --lynk-focus-ring-color: var(--lynk-color-primary-700);
+    --lynk-focus-ring-color: var(--lynk-color-primary-500);
     --lynk-focus-ring-style: solid;
     --lynk-focus-ring-width: 3px;
     --lynk-focus-ring: var(--lynk-focus-ring-style) var(--lynk-focus-ring-width)

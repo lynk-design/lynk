@@ -51,24 +51,24 @@ describe('<lynk-input>', () => {
 
   describe('when using constraint validation', () => {
     it('should be valid by default', async () => {
-      const el = await fixture<LynkInput>(html` <lynk-input></lynk-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input autovalidate></lynk-input> `);
       expect(el.invalid).to.be.false;
     });
 
     it('should be invalid when required and empty', async () => {
-      const el = await fixture<LynkInput>(html` <lynk-input required></lynk-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input autovalidate required></lynk-input> `);
       expect(el.reportValidity()).to.be.false;
       expect(el.invalid).to.be.true;
     });
 
     it('should be invalid when the pattern does not match', async () => {
-      const el = await fixture<LynkInput>(html` <lynk-input pattern="^test" value="fail"></lynk-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input autovalidate pattern="^test" value="fail"></lynk-input> `);
       expect(el.invalid).to.be.true;
       expect(el.reportValidity()).to.be.false;
     });
 
     it('should be invalid when required and disabled is removed', async () => {
-      const el = await fixture<LynkInput>(html` <lynk-input disabled required></lynk-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input disabled autovalidate required></lynk-input> `);
       el.disabled = false;
       await el.updateComplete;
       expect(el.invalid).to.be.true;
@@ -91,7 +91,7 @@ describe('<lynk-input>', () => {
 
   describe('when submitting a form', () => {
     it('should submit the form when pressing enter in a form without a submit button', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><lynk-input></lynk-input></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><lynk-input autovalidate></lynk-input></form> `);
       const input = form.querySelector('lynk-input')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
@@ -128,7 +128,7 @@ describe('<lynk-input>', () => {
     it('should be invalid when the input is empty and form.reportValidity() is called', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <lynk-input required value=""></lynk-input>
+          <lynk-input required autovalidate value=""></lynk-input>
           <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
@@ -139,7 +139,7 @@ describe('<lynk-input>', () => {
     it('should be valid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form novalidate>
-          <lynk-input required value=""></lynk-input>
+          <lynk-input required autovalidate value=""></lynk-input>
           <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
@@ -150,7 +150,7 @@ describe('<lynk-input>', () => {
     it('should be invalid when a native input is empty and form.reportValidity() is called', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <input required value=""></input>
+          <input required autovalidate value=""></input>
           <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);

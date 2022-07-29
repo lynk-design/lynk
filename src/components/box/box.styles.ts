@@ -5,8 +5,9 @@ export default css`
   ${componentStyles}
 
   :host {
-    display: block;
-    width: var(--width, 100%);
+    display: contents;
+    --width: auto;
+    --height: auto;
   }
 
   .lynk-box {
@@ -18,7 +19,8 @@ export default css`
     padding: var(--padding, 0px);
     text-align: var(--text-align, left);
     box-shadow: var(--shadow, none);
-    height: var(--height, auto);
+    height: var(--height);
+    width: var(--width);
   }
 
   .lynk-box--overflow {

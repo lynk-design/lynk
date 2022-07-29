@@ -6,15 +6,14 @@ export default css`
 
   :host {
     display: contents;
-  }
-
-  :host([container]) {
-    width: var(--container-width, 100%);
+    --width: 100%;
+    --height: auto;
   }
 
   .lynk-grid {
     display: flex;
-    width: calc(100% + var(--gap));
+    width: calc(var(--width) + var(--gap));
+    height: calc(var(--height) + var(--gap));
     flex-flow: row wrap;
     margin: calc(var(--gap) * -0.5);
   }

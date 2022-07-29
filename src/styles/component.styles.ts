@@ -16,7 +16,7 @@ export default css`
   }
 
   [disabled] {
-    opacity: 0.4 !important;
+    opacity: 0.5 !important;
     pointer-events: none !important;
   }
 `;

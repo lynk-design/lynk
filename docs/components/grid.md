@@ -19,6 +19,11 @@ There are two required parts to a grid layout: `<lynk-grid container>` and `<lyn
 
 Lynk's grid uses a breakpoint based 4, 8, and 12-column layout. Passing in a `span='1|2|3|4|5|6|7|8|9|10|11|12'` value determines the width of the Grid Item based on the maximum number of columns for that breakpoint.
 
+- The 4 column breakpoint is any viewport smaller than `768px`.
+- The 8 column viewport breakpoint starts at `768px` and ends at `1024px`.
+- The 12 column breakpoint is any viewport larger than `1024px`.
+
+
 ```html preview
 <lynk-grid container>
   <lynk-grid item span="1">
@@ -75,7 +80,7 @@ Lynk's grid uses a breakpoint based 4, 8, and 12-column layout. Passing in a `sp
 Use the direction, justify, and align properties to arrange your grid.
 
 ```html preview
-<lynk-grid container class="test-grid">
+<lynk-grid container class="test-grid" style="--height: 320px;">
   <lynk-grid item>
     <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small); ">Cell 1</lynk-box>
   </lynk-grid>

@@ -30,19 +30,19 @@ describe('<lynk-textarea>', () => {
 
   describe('when using constraint validation', () => {
     it('should be valid by default', async () => {
-      const el = await fixture<LynkTextarea>(html` <lynk-textarea></lynk-textarea> `);
+      const el = await fixture<LynkTextarea>(html` <lynk-textarea autovalidate></lynk-textarea> `);
 
       expect(el.invalid).to.be.false;
     });
 
     it('should be invalid when required and empty', async () => {
-      const el = await fixture<LynkTextarea>(html` <lynk-textarea required></lynk-textarea> `);
+      const el = await fixture<LynkTextarea>(html` <lynk-textarea autovalidate required></lynk-textarea> `);
 
       expect(el.invalid).to.be.true;
     });
 
     it('should be invalid when required and after removing disabled ', async () => {
-      const el = await fixture<LynkTextarea>(html` <lynk-textarea disabled required></lynk-textarea> `);
+      const el = await fixture<LynkTextarea>(html` <lynk-textarea disabled autovalidate required></lynk-textarea> `);
 
       el.disabled = false;
       await el.updateComplete;
@@ -51,7 +51,7 @@ describe('<lynk-textarea>', () => {
     });
 
     it('should be invalid when required and disabled is removed', async () => {
-      const el = await fixture<LynkTextarea>(html` <lynk-textarea disabled required></lynk-textarea> `);
+      const el = await fixture<LynkTextarea>(html` <lynk-textarea disabled autovalidate required></lynk-textarea> `);
       el.disabled = false;
       await el.updateComplete;
       expect(el.invalid).to.be.true;

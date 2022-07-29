@@ -60,7 +60,7 @@ export default css`
     background-color: var(--lynk-input-background-color-disabled);
     border-color: var(--lynk-input-border-color-disabled);
     color: var(--lynk-input-color-disabled);
-    opacity: 0.5;
+    opacity: 0.9;
     cursor: not-allowed;
     outline: none;
   }
@@ -84,7 +84,7 @@ export default css`
 
   .lynk-select--filled.lynk-select--disabled .lynk-select__control {
     background-color: var(--lynk-input-filled-background-color-disabled);
-    opacity: 0.5;
+    opacity: 0.9;
     cursor: not-allowed;
   }
 
@@ -218,11 +218,11 @@ export default css`
     padding-bottom: 2px;
   }
 
-  .lynk-select--small .lynk-select__tags l-tag {
+  .lynk-select--small .lynk-select__tags lynk-tag {
     padding-top: 2px;
   }
 
-  .lynk-select--small .lynk-select__tags l-tag:not(:last-of-type) {
+  .lynk-select--small .lynk-select__tags lynk-tag:not(:last-of-type) {
     margin-inline-end: var(--lynk-spacing-2x-small);
   }
 
@@ -261,11 +261,11 @@ export default css`
     padding-bottom: 3px;
   }
 
-  .lynk-select--medium .lynk-select__tags l-tag {
+  .lynk-select--medium .lynk-select__tags lynk-tag {
     padding-top: 3px;
   }
 
-  .lynk-select--medium .lynk-select__tags l-tag:not(:last-of-type) {
+  .lynk-select--medium .lynk-select__tags lynk-tag:not(:last-of-type) {
     margin-inline-end: var(--lynk-spacing-2x-small);
   }
 
@@ -303,11 +303,11 @@ export default css`
   .lynk-select--large .lynk-select__tags {
     padding-bottom: 4px;
   }
-  .lynk-select--large .lynk-select__tags l-tag {
+  .lynk-select--large .lynk-select__tags lynk-tag {
     padding-top: 4px;
   }
 
-  .lynk-select--large .lynk-select__tags l-tag:not(:last-of-type) {
+  .lynk-select--large .lynk-select__tags lynk-tag:not(:last-of-type) {
     margin-inline-end: var(--lynk-spacing-2x-small);
   }
 
@@ -328,5 +328,36 @@ export default css`
 
   .lynk-select--pill.lynk-select--large .lynk-select__control {
     border-radius: var(--lynk-input-height-large);
+  }
+
+
+  /*
+   * Restricted
+   */
+  .lynk-select--restricted {
+    opacity: 1 !important;
+  }
+
+  .lynk-select--restricted .lynk-select__control {
+    opacity: 1;
+    color: var(--lynk-input-color);
+    border-color: transparent;
+    cursor: normal;
+  }
+
+  .lynk-select--restricted .lynk-select__label,
+  .lynk-select--restricted .lynk-select__tags {
+    padding: 0;
+    margin: 0;
+    gap: var(--lynk-spacing-2x-small);
+    user-select: text;
+  }
+
+  .lynk-select--restricted .lynk-select__icon {
+    display: none;
+  }
+
+  .lynk-select--restricted lynk-tag::part(base) {
+    user-select: text;
   }
 `;

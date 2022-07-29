@@ -27,9 +27,10 @@
 - Layout & Organization
 
   - [Accordian](/components/accordion)
+  - [Box](/components/box)
   - [Divider](/components/divider)
   - [Grid](/components/grid)
-  - [Box](/components/box)
+  - [Stack](/components/stack)
 
 - Action & Input
 
@@ -71,4 +72,4 @@
   - [Responsive Media](/components/responsive-media)
   - [Visually Hidden](/components/visually-hidden)
 
-<!--plop:component-->
+  <!--plop:component-->

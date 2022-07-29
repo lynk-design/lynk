@@ -51,7 +51,7 @@ export default css`
   .lynk-input--standard.lynk-input--disabled {
     background-color: var(--lynk-input-background-color-disabled);
     border-color: var(--lynk-input-border-color-disabled);
-    opacity: 0.75;
+    opacity: 0.9;
     cursor: not-allowed;
   }
 
@@ -82,7 +82,7 @@ export default css`
 
   .lynk-input--filled.lynk-input--disabled {
     background-color: var(--lynk-input-filled-background-color-disabled);
-    opacity: 0.5;
+    opacity: 0.9;
     cursor: not-allowed;
   }
 

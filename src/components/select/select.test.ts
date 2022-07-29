@@ -98,7 +98,7 @@ describe('<lynk-select>', () => {
   it('should focus on the custom control when constraint validation occurs', async () => {
     const el = await fixture<HTMLFormElement>(html`
       <form>
-        <lynk-select required>
+        <lynk-select autovalidate required>
           <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
           <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
           <lynk-menu-item value="option-3">Option 3</lynk-menu-item>

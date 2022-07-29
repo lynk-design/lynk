@@ -34,6 +34,7 @@ export default class LynkGrid extends LitElement {
   /** The width of a grid item. Requires item property  being set. This can be a single string or an array. */
   @property({ reflect: true }) span? : string;
 
+  /** The space between grid items. Uses spacing token sizes.  */
   @property({ reflect: true }) gap: '0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large' = 'base';
 
   getBreakpointClasses() {

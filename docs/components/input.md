@@ -26,6 +26,22 @@ Add descriptive help text to an input with the `help-text` attribute. For help t
 <lynk-input label="Nickname" help-text="What would you like people to call you?"></lynk-input>
 ```
 
+### Help Tip
+
+Add descriptive help tooltip to an input's label with the `help-tip` attribute. For help tips that contain HTML, use the `help-tip` slot instead.
+
+```html preview
+<lynk-input label="Nickname" help-tip="What would you like people to call you?"></lynk-input>
+```
+
+### Required Indicator
+
+Use the `required` attribute to visually indicate a required field. For native browser HTML5 validation, use the `autovalidate` and `pattern` attributes.
+
+```html preview
+<lynk-input label="Name" required></lynk-input>
+```
+
 ### Placeholders
 
 Use the `placeholder` attribute to add a placeholder.

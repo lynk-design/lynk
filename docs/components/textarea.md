@@ -8,8 +8,6 @@ Textareas collect data from the user and allow multiple lines of text.
 <lynk-textarea></lynk-textarea>
 ```
 
-?> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
-
 ## Examples
 
 ### Labels
@@ -24,8 +22,20 @@ Use the `label` attribute to give the textarea an accessible label. For labels t
 
 Add descriptive help text to a textarea with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
+Use the `help-text` value to provide realtime validation and status feedback or other important information that will assist the user as they interact with the field.
+
 ```html preview
-<lynk-textarea label="Feedback" help-text="Please tell us what you think."> </lynk-textarea>
+<lynk-textarea label="Feedback" help-text="0/500 Characters."> </lynk-textarea>
+```
+
+### Help Tip
+
+Add informative help text in a tooltip appended to the label with the `help-tip` attribute. For help tips that contain HTML, use the `help-tip` slot instead.
+
+Use the `help-tip` value to share informative content that will help the user understand the purpose of the field or how the data will be used.
+
+```html preview
+<lynk-textarea label="Feedback" help-tip="Help us make our product better! Please don't include any personally identifiable information."></lynk-textarea>
 ```
 
 ### Rows
@@ -58,6 +68,25 @@ Use the `disabled` attribute to disable a textarea.
 
 ```html preview
 <lynk-textarea placeholder="Textarea" disabled></lynk-textarea>
+```
+
+### Restricted
+
+Use the `resticted` attribute to convert a textarea value to preformatted plain text.
+
+```html preview
+<lynk-textarea label="Restricted" id="restricted-textarea" restricted></lynk-textarea>
+
+<script>
+  const textarea = document.getElementById('restricted-textarea');
+
+  textarea.value = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Negat esse eam, inquit, propter se expetendam. An hoc usque quaque, aliter in vita? Pauca mutat vel plura sane; Sit enim idem caecus, debilis.
+
+Duo enim genera quae erant, fecit tria. Sullae consulatum? Quis hoc dicit?
+
+Duo Reges: constructio interrete. In schola desinis. Age, inquies, ista parva sunt.
+`;
+</script>
 ```
 
 ### Sizes

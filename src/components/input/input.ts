@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import '../../components/icon/icon';
+import '../../components/tooltip/tooltip';
 import { emit } from '../../internal/event';
 import { FormSubmitController } from '../../internal/form';
 import { HasSlotController } from '../../internal/slot';
@@ -16,6 +17,7 @@ import styles from './input.styles';
  * @status experimental
  *
  * @dependency lynk-icon
+ * @dependency lynk-tooltip
  *
  * @slot label - The input's label. Alternatively, you can use the label prop.
  * @slot prefix - Used to prepend an icon or similar element to the input.
@@ -24,6 +26,7 @@ import styles from './input.styles';
  * @slot show-password-icon - An icon to use in lieu of the default show password icon.
  * @slot hide-password-icon - An icon to use in lieu of the default hide password icon.
  * @slot help-text - Help text that describes how to use the input. Alternatively, you can use the help-text prop.
+ * @slot help-tip - Help tooltip next to the label that can be used in place of help-text to give additional information about how to use the input. Alternatively, you can use the help-tip prop.
  *
  * @event on:change - Emitted when an alteration to the control's value is committed by the user.
  * @event on:clear - Emitted when the clear button is activated.
@@ -49,7 +52,7 @@ export default class LynkInput extends LitElement {
   @query('.lynk-input__control') input: HTMLInputElement;
 
   private readonly formSubmitController = new FormSubmitController(this);
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'help-tip', 'label');
   private readonly localize = new LocalizeController(this);
 
   @state() private hasFocus = false;
@@ -89,8 +92,11 @@ export default class LynkInput extends LitElement {
   /** The input's label. Alternatively, you can use the label slot. */
   @property() label = '';
 
-  /** The input's help text. Alternatively, you can use the help-text slot. */
+  /** The help text below the input. Alternatively, you can use the help-text slot. */
   @property({ attribute: 'help-text' }) helpText = '';
+
+  /** The help tooltip appended to the label. Alternatively, you can use the help-tip slot. */
+  @property({ attribute: 'help-tip' }) helpTip = '';
 
   /** Adds a clear button when the input is populated. */
   @property({ type: Boolean }) clearable = false;
@@ -137,6 +143,9 @@ export default class LynkInput extends LitElement {
    */
   @property({ type: Boolean, reflect: true }) invalid = false;
 
+  /** Use the browsers built constraint validation API in tandem with `required`, `pattern`, `minlength` and `maxlength` values */
+  @property({ type: Boolean, reflect: true }) autovalidate = false;
+
   /** The input's autocapitalize attribute. */
   @property() autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
 
@@ -182,7 +191,9 @@ export default class LynkInput extends LitElement {
   }
 
   firstUpdated() {
-    this.invalid = !this.input.checkValidity();
+    if (this.autovalidate) {
+      this.invalid = !this.input.checkValidity();
+    }
   }
 
   /** Sets focus on the input. */
@@ -227,7 +238,7 @@ export default class LynkInput extends LitElement {
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
-    return this.input.reportValidity();
+    return this.autovalidate ? this.input.reportValidity() : false;
   }
 
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
@@ -260,7 +271,10 @@ export default class LynkInput extends LitElement {
   handleDisabledChange() {
     // Disabled form controls are always valid, so we need to recheck validity when the state changes
     this.input.disabled = this.disabled;
-    this.invalid = !this.input.checkValidity();
+
+    if (this.autovalidate) {
+      this.invalid = !this.input.checkValidity();
+    }
   }
 
   handleFocus() {
@@ -274,7 +288,9 @@ export default class LynkInput extends LitElement {
   }
 
   handleInvalid() {
-    this.invalid = true;
+    if (this.autovalidate) {
+      this.invalid = true;
+    }
   }
 
   handleKeyDown(event: KeyboardEvent) {
@@ -297,14 +313,18 @@ export default class LynkInput extends LitElement {
 
   @watch('value', { waitUntilFirstUpdate: true })
   handleValueChange() {
-    this.invalid = !this.input.checkValidity();
+    if (this.autovalidate) {
+      this.invalid = !this.input.checkValidity();
+    }
   }
 
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasHelpTipSlot = this.hasSlotController.test('help-tip');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
+    const hasHelpTip = this.helpTip ? true : !!hasHelpTipSlot;
     const hasClearIcon = this.clearable && !this.disabled && !this.readonly && this.value.length > 0;
 
     return html`
@@ -319,7 +339,7 @@ export default class LynkInput extends LitElement {
           'lynk-form-control--has-help-text': hasHelpText,
           'lynk-form-control--has-error': this.state === 'error',
           'lynk-form-control--has-warning': this.state === 'warning',
-          'lynk-form-control--has-success': this.state === 'success',
+          'lynk-form-control--has-success': this.state === 'success'
         })}
       >
         <label
@@ -332,6 +352,26 @@ export default class LynkInput extends LitElement {
           aria-hidden=${hasLabel ? 'false' : 'true'}
         >
           <slot name="label">${this.label}</slot>
+
+          ${this.required
+            ? html`
+                <lynk-tooltip content="Required" hoist>
+                  <lynk-icon style="font-size: 9px;" name="asterisk" library="system"></lynk-icon>
+                </lynk-tooltip>
+              `
+            : ''}
+
+          ${hasHelpTip
+            ? html`
+                <lynk-tooltip hoist>
+                  <div slot="content">
+                    <slot name="help-tip">${this.helpTip}</slot>
+                  </div>
+                  <lynk-icon style="font-size: 11px;" name="question-fill" library="system"></lynk-icon>
+                </lynk-tooltip>
+              `
+            : ''}
+
         </label>
 
         <div part="form-control-input" class="lynk-form-control-input">

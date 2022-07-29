@@ -53,7 +53,7 @@ export default css`
   .lynk-textarea--standard.lynk-textarea--disabled {
     background-color: var(--lynk-input-background-color-disabled);
     border-color: var(--lynk-input-border-color-disabled);
-    opacity: 0.5;
+    opacity: 0.9;
     cursor: not-allowed;
   }
 
@@ -84,8 +84,14 @@ export default css`
 
   .lynk-textarea--filled.lynk-textarea--disabled {
     background-color: var(--lynk-input-filled-background-color-disabled);
-    opacity: 0.5;
+    opacity: 0.9;
     cursor: not-allowed;
+  }
+
+  .lynk-textarea.lynk-textarea--restricted {
+    border: none;
+    background-color: none;
+    color: var(--lynk-input-color);
   }
 
   .lynk-textarea__control {
@@ -100,6 +106,11 @@ export default css`
     box-shadow: none;
     cursor: inherit;
     -webkit-appearance: none;
+  }
+
+  .lynk-textarea__control--restricted {
+    white-space: pre-line;
+    padding: 0 !important;
   }
 
   .lynk-textarea__control::-webkit-search-decoration,

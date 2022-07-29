@@ -16,8 +16,6 @@ Selects allow you to choose one or more items from a dropdown menu.
 </lynk-select>
 ```
 
-?> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
-
 ## Examples
 
 ### Labels
@@ -36,8 +34,24 @@ Use the `label` attribute to give the select an accessible label. For labels tha
 
 Add descriptive help text to a select with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
+Use the `help-text` value to provide realtime validation and status feedback or other important information that will assist the user as they interact with the field.
+
 ```html preview
 <lynk-select label="Experience" help-text="Please tell us your skill level.">
+  <lynk-menu-item value="1">Novice</lynk-menu-item>
+  <lynk-menu-item value="2">Intermediate</lynk-menu-item>
+  <lynk-menu-item value="3">Advanced</lynk-menu-item>
+</lynk-select>
+```
+
+### Help Tip
+
+Add informative help text in a tooltip appended to the label with the `help-tip` attribute. For help tips that contain HTML, use the `help-tip` slot instead.
+
+Use the `help-tip` value to share informative content that will help the user understand the purpose of the field or how the data will be used.
+
+```html preview
+<lynk-select label="Experience" help-tip="Additional form-fields will be customized based on your selected experience level.">
   <lynk-menu-item value="1">Novice</lynk-menu-item>
   <lynk-menu-item value="2">Intermediate</lynk-menu-item>
   <lynk-menu-item value="3">Advanced</lynk-menu-item>
@@ -104,6 +118,29 @@ Use the `disabled` attribute to disable a select.
 </lynk-select>
 ```
 
+### Restricted
+
+Use the `restricted` attribute to replace the select field with a plaintext value.
+
+```html preview
+<lynk-select label="Restricted" value="option-2" restricted>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
+<lynk-divider style="--spacing: var(--lynk-spacing-small);"></lynk-divider>
+<lynk-select id="multiple-restricted-example" label="Restricted w/ Multiple" multiple restricted>
+  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+</lynk-select>
+
+<script>
+  const select = document.querySelector('#multiple-restricted-example');
+  select.value = ['option-2', 'option-3'];
+</script>
+```
+
 ### Setting the Selection
 
 Use the `value` attribute to set the current selection. When users interact with the control, its `value` will update to reflect the newly selected menu item's value. Note that the value must be an array when using the [`multiple`](#multiple) option.
@@ -164,7 +201,7 @@ To allow multiple options to be selected, use the `multiple` attribute. With thi
 ```
 
 
-?> When using the `multiple` option, the value will be an array instead of a string. You may need to [set the selection imperatively](#setting-the-selection-imperatively) unless you're using a framework that supports binding properties declaratively.
+<lynk-alert open>When using the `multiple` option, the value will be an array instead of a string. You may need to [set the selection imperatively](#setting-the-selection-imperatively) unless you're using a framework that supports binding properties declaratively.</lynk-alert>
 
 ### Grouping Options
 

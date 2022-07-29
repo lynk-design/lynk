@@ -35,7 +35,7 @@ Dropdowns are designed to work well with [menus](/components/menu) to provide a 
 
 ### Getting the Selected Item
 
-When dropdowns are used with [menus](/components/menu), you can listen for the `l-select` event to determine which menu item was selected. The menu item element will be exposed in `event.detail.item`. You can set `value` props to make it easier to identify commands.
+When dropdowns are used with [menus](/components/menu), you can listen for the `on:select` event to determine which menu item was selected. The menu item element will be exposed in `event.detail.item`. You can set `value` props to make it easier to identify commands.
 
 ```html preview
 <div class="dropdown-selection">
@@ -92,6 +92,24 @@ The preferred placement of the dropdown can be set with the `placement` attribut
 
 ```html preview
 <lynk-dropdown placement="top-start">
+  <lynk-button slot="trigger" caret>Edit</lynk-button>
+  <lynk-menu>
+    <lynk-menu-item>Cut</lynk-menu-item>
+    <lynk-menu-item>Copy</lynk-menu-item>
+    <lynk-menu-item>Paste</lynk-menu-item>
+    <lynk-divider></lynk-divider>
+    <lynk-menu-item>Find</lynk-menu-item>
+    <lynk-menu-item>Replace</lynk-menu-item>
+  </lynk-menu>
+</lynk-dropdown>
+```
+
+### Disabled
+
+Disable a menu from opening using the `disabled` attribute.
+
+```html preview
+<lynk-dropdown disabled>
   <lynk-button slot="trigger" caret>Edit</lynk-button>
   <lynk-menu>
     <lynk-menu-item>Cut</lynk-menu-item>

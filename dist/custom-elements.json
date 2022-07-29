@@ -4,6 +4,222 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "src/components/accordion/accordion.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkAccordion",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The summary header.",
+              "name": "header"
+            },
+            {
+              "description": "The accordion summary.",
+              "name": "summary"
+            },
+            {
+              "description": "The expand/collapse summary icon.",
+              "name": "summary-icon"
+            },
+            {
+              "description": "The accordion content.",
+              "name": "content"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The accordions content.",
+              "name": ""
+            },
+            {
+              "description": "The accordions summary. Alternatively, you can use the summary prop.",
+              "name": "summary"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "accordion",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "header",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "body",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "summary",
+              "type": {
+                "text": "string"
+              },
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "attribute": "summary"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the accordion so it can't be toggled.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the accordion."
+            },
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the accordion"
+            },
+            {
+              "kind": "method",
+              "name": "handleSummaryClick"
+            },
+            {
+              "kind": "method",
+              "name": "handleSummaryKeyDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenChange"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the accordion opens.",
+              "name": "on:show",
+              "reactName": "onOnShow"
+            },
+            {
+              "description": "Emitted after the accordion opens and all animations are complete.",
+              "name": "after:show",
+              "reactName": "onAfterShow"
+            },
+            {
+              "description": "Emitted when the accordion closes.",
+              "name": "on:hide",
+              "reactName": "onOnHide"
+            },
+            {
+              "description": "Emitted after the accordion closes and all animations are complete.",
+              "name": "after:hide",
+              "reactName": "onAfterHide"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "fieldName": "open"
+            },
+            {
+              "name": "summary",
+              "type": {
+                "text": "string"
+              },
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "fieldName": "summary"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the accordion so it can't be toggled.",
+              "fieldName": "disabled"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "dependencies": [
+            "lynk-icon"
+          ],
+          "animations": [
+            {
+              "name": "accordion.show",
+              "description": "The animation to use when showing accordion. You can use `height: auto` with this animation."
+            },
+            {
+              "name": "accordion.hide",
+              "description": "The animation to use when hiding accordion. You can use `height: auto` with this animation."
+            }
+          ],
+          "tagName": "lynk-accordion",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkAccordion",
+            "module": "src/components/accordion/accordion.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-accordion",
+          "declaration": {
+            "name": "LynkAccordion",
+            "module": "src/components/accordion/accordion.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/alert/alert.ts",
       "declarations": [
         {
@@ -250,198 +466,81 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/accordion/accordion.ts",
+      "path": "src/components/box/box.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "LynkAccordion",
+          "name": "LynkBox",
+          "cssProperties": [
+            {
+              "description": "Custom text align (left, center, right).",
+              "name": "--align",
+              "default": "left"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--background",
+              "default": "transparent"
+            },
+            {
+              "description": "<border-style> <border-width> <border-color>.",
+              "name": "--border"
+            },
+            {
+              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
+              "name": "--border-radius"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--color",
+              "default": "inherit"
+            },
+            {
+              "description": "Any custom px, rem, %, or vh value.",
+              "name": "--height",
+              "default": "auto"
+            },
+            {
+              "description": "Any custom px, rem, %, or vh value.",
+              "name": "--width",
+              "default": "auto"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--margin",
+              "default": "0"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--padding",
+              "default": "0"
+            },
+            {
+              "description": "Any elevation shadow token (--lynk-shadow-large);",
+              "name": "--shadow"
+            }
+          ],
           "cssParts": [
             {
               "description": "The component's internal wrapper.",
               "name": "base"
-            },
-            {
-              "description": "The summary header.",
-              "name": "header"
-            },
-            {
-              "description": "The accordion summary.",
-              "name": "summary"
-            },
-            {
-              "description": "The expand/collapse summary icon.",
-              "name": "summary-icon"
-            },
-            {
-              "description": "The accordion content.",
-              "name": "content"
             }
           ],
           "slots": [
             {
-              "description": "The accordions content.",
+              "description": "The default slot.",
               "name": ""
-            },
-            {
-              "description": "The accordions summary. Alternatively, you can use the summary prop.",
-              "name": "summary"
             }
           ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "accordion",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "header",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "body",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "attribute": "open",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "summary",
-              "type": {
-                "text": "string"
-              },
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "attribute": "summary"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the accordion so it can't be toggled.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "show",
-              "description": "Shows the accordion."
-            },
-            {
-              "kind": "method",
-              "name": "hide",
-              "description": "Hides the accordion"
-            },
-            {
-              "kind": "method",
-              "name": "handleSummaryClick"
-            },
-            {
-              "kind": "method",
-              "name": "handleSummaryKeyDown",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleOpenChange"
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the accordion opens.",
-              "name": "on:show",
-              "reactName": "onOnShow"
-            },
-            {
-              "description": "Emitted after the accordion opens and all animations are complete.",
-              "name": "after:show",
-              "reactName": "onAfterShow"
-            },
-            {
-              "description": "Emitted when the accordion closes.",
-              "name": "on:hide",
-              "reactName": "onOnHide"
-            },
-            {
-              "description": "Emitted after the accordion closes and all animations are complete.",
-              "name": "after:hide",
-              "reactName": "onAfterHide"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "fieldName": "open"
-            },
-            {
-              "name": "summary",
-              "type": {
-                "text": "string"
-              },
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "fieldName": "summary"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the accordion so it can't be toggled.",
-              "fieldName": "disabled"
-            }
-          ],
+          "members": [],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
           "since": "1.0",
           "status": "stable",
-          "dependencies": [
-            "lynk-icon"
-          ],
-          "animations": [
-            {
-              "name": "accordion.show",
-              "description": "The animation to use when showing accordion. You can use `height: auto` with this animation."
-            },
-            {
-              "name": "accordion.hide",
-              "description": "The animation to use when hiding accordion. You can use `height: auto` with this animation."
-            }
-          ],
-          "tagName": "lynk-accordion",
+          "tagName": "lynk-box",
           "customElement": true
         }
       ],
@@ -450,16 +549,129 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "LynkAccordion",
-            "module": "src/components/accordion/accordion.ts"
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "lynk-accordion",
+          "name": "lynk-box",
           "declaration": {
-            "name": "LynkAccordion",
-            "module": "src/components/accordion/accordion.ts"
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/badge/badge.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkBadge",
+          "cssParts": [
+            {
+              "description": "| .lynk-badge - The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The badge's content.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "attribute": "pill",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "attribute": "pulse",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "fieldName": "type"
+            },
+            {
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "fieldName": "pill"
+            },
+            {
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "fieldName": "pulse"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-badge",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-badge",
+          "declaration": {
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
           }
         }
       ]
@@ -861,168 +1073,12 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/badge/badge.ts",
+      "path": "src/components/button-group/button-group.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "LynkBadge",
-          "cssParts": [
-            {
-              "description": "| .lynk-badge - The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The badge's content.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "attribute": "type",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "attribute": "pill",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "attribute": "pulse",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "fieldName": "type"
-            },
-            {
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "fieldName": "pill"
-            },
-            {
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "fieldName": "pulse"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-badge",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-badge",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/box/box.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkBox",
-          "cssProperties": [
-            {
-              "description": "Custom text align (left, center, right).",
-              "name": "--align",
-              "default": "left"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--background",
-              "default": "transparent"
-            },
-            {
-              "description": "<border-style> <border-width> <border-color>.",
-              "name": "--border"
-            },
-            {
-              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
-              "name": "--border-radius"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--color",
-              "default": "inherit"
-            },
-            {
-              "description": "Any custom px, rem, %, or vh value.",
-              "name": "--height"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--margin",
-              "default": "0"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--padding",
-              "default": "0"
-            },
-            {
-              "description": "Any elevation shadow token (--lynk-shadow-large);",
-              "name": "--shadow"
-            }
-          ],
+          "name": "LynkButtonGroup",
           "cssParts": [
             {
               "description": "The component's internal wrapper.",
@@ -1031,18 +1087,99 @@
           ],
           "slots": [
             {
-              "description": "The default slot.",
+              "description": "One or more `<lynk-button>` elements to display in the button group.",
               "name": ""
             }
           ],
-          "members": [],
+          "members": [
+            {
+              "kind": "field",
+              "name": "defaultSlot",
+              "type": {
+                "text": "HTMLSlotElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "attribute": "label"
+            },
+            {
+              "kind": "method",
+              "name": "handleFocus",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleBlur",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseOver",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseOut",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleSlotChange"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "fieldName": "label"
+            }
+          ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
           "since": "1.0",
           "status": "stable",
-          "tagName": "lynk-box",
+          "tagName": "lynk-button-group",
           "customElement": true
         }
       ],
@@ -1051,16 +1188,639 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "lynk-box",
+          "name": "lynk-button-group",
           "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/checkbox/checkbox.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkCheckbox",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The checkbox control.",
+              "name": "control"
+            },
+            {
+              "description": "The container the wraps the checked icon.",
+              "name": "checked-icon"
+            },
+            {
+              "description": "The container that wraps the indeterminate icon.",
+              "name": "indeterminate-icon"
+            },
+            {
+              "description": "The checkbox label.",
+              "name": "label"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The checkbox's label.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "input",
+              "type": {
+                "text": "HTMLInputElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formSubmitController",
+              "privacy": "private",
+              "default": "new FormSubmitController(this, {\n    value: (control: LynkCheckbox) => (control.checked ? control.value || 'on' : undefined)\n  })"
+            },
+            {
+              "kind": "field",
+              "name": "hasFocus",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The checkbox's name attribute.",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "The checkbox's value attribute.",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the checkbox.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the checkbox a required field.",
+              "attribute": "required",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the checkbox in a checked state.",
+              "attribute": "checked",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the checkbox in an indeterminate state.",
+              "attribute": "indeterminate",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "invalid",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
+              "attribute": "invalid",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "click",
+              "description": "Simulates a click on the checkbox."
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ],
+              "description": "Sets focus on the checkbox."
+            },
+            {
+              "kind": "method",
+              "name": "blur",
+              "description": "Removes focus from the checkbox."
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "description": "Checks for validity and shows the browser's validation message if the control is invalid."
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
+              "parameters": [
+                {
+                  "name": "message",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ],
+              "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid."
+            },
+            {
+              "kind": "method",
+              "name": "handleClick"
+            },
+            {
+              "kind": "method",
+              "name": "handleBlur"
+            },
+            {
+              "kind": "method",
+              "name": "handleDisabledChange"
+            },
+            {
+              "kind": "method",
+              "name": "handleFocus"
+            },
+            {
+              "kind": "method",
+              "name": "handleStateChange"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the control loses focus.",
+              "name": "on:blur",
+              "reactName": "onOnBlur"
+            },
+            {
+              "description": "Emitted when the control's checked state changes.",
+              "name": "on:change",
+              "reactName": "onOnChange"
+            },
+            {
+              "description": "Emitted when the control gains focus.",
+              "name": "on:focus",
+              "reactName": "onOnFocus"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The checkbox's name attribute.",
+              "fieldName": "name"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "The checkbox's value attribute.",
+              "fieldName": "value"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the checkbox.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the checkbox a required field.",
+              "fieldName": "required"
+            },
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the checkbox in a checked state.",
+              "fieldName": "checked"
+            },
+            {
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the checkbox in an indeterminate state.",
+              "fieldName": "indeterminate"
+            },
+            {
+              "name": "invalid",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
+              "fieldName": "invalid"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-checkbox",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkCheckbox",
+            "module": "src/components/checkbox/checkbox.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-checkbox",
+          "declaration": {
+            "name": "LynkCheckbox",
+            "module": "src/components/checkbox/checkbox.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dialog/dialog.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkDialog",
+          "cssProperties": [
+            {
+              "description": "The preferred width of the dialog. Note that the dialog will shrink to accommodate smaller screens.",
+              "name": "--width"
+            },
+            {
+              "description": "The amount of padding to use for the header.",
+              "name": "--header-spacing"
+            },
+            {
+              "description": "The amount of padding to use for the body.",
+              "name": "--body-spacing"
+            },
+            {
+              "description": "The amount of padding to use for the footer.",
+              "name": "--footer-spacing"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The overlay.",
+              "name": "overlay"
+            },
+            {
+              "description": "The dialog panel (where the dialog and its content is rendered).",
+              "name": "panel"
+            },
+            {
+              "description": "The dialog header.",
+              "name": "header"
+            },
+            {
+              "description": "The dialog title.",
+              "name": "title"
+            },
+            {
+              "description": "The close button.",
+              "name": "close-button"
+            },
+            {
+              "description": "The close button's `base` part.",
+              "name": "close-button__base"
+            },
+            {
+              "description": "The dialog body.",
+              "name": "body"
+            },
+            {
+              "description": "The dialog footer.",
+              "name": "footer"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The dialog's content.",
+              "name": ""
+            },
+            {
+              "description": "The dialog's label. Alternatively, you can use the label prop.",
+              "name": "label"
+            },
+            {
+              "description": "The dialog's footer, usually one or more buttons representing various options.",
+              "name": "footer"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "dialog",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "panel",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "overlay",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "hasSlotController",
+              "privacy": "private",
+              "default": "new HasSlotController(this, 'footer')"
+            },
+            {
+              "kind": "field",
+              "name": "localize",
+              "privacy": "private",
+              "default": "new LocalizeController(this)"
+            },
+            {
+              "kind": "field",
+              "name": "modal",
+              "type": {
+                "text": "Modal"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "originalTrigger",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "attribute": "label",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "noHeader",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+              "attribute": "no-header",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the dialog."
+            },
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the dialog"
+            },
+            {
+              "kind": "method",
+              "name": "requestClose",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "source",
+                  "type": {
+                    "text": "'close-button' | 'keyboard' | 'overlay'"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleKeyDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenChange"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the dialog opens.",
+              "name": "on:show",
+              "reactName": "onOnShow"
+            },
+            {
+              "description": "Emitted after the dialog opens and all animations are complete.",
+              "name": "after:show",
+              "reactName": "onAfterShow"
+            },
+            {
+              "description": "Emitted when the dialog closes.",
+              "name": "on:hide",
+              "reactName": "onOnHide"
+            },
+            {
+              "description": "Emitted after the dialog closes and all animations are complete.",
+              "name": "after:hide",
+              "reactName": "onAfterHide"
+            },
+            {
+              "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.",
+              "name": "on:initial-focus",
+              "reactName": "onOnInitialFocus"
+            },
+            {
+              "type": {
+                "text": "{ source: 'close-button' | 'keyboard' | 'overlay' }"
+              },
+              "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss.",
+              "name": "on:request-close",
+              "reactName": "onOnRequestClose"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
+              "fieldName": "open"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "fieldName": "label"
+            },
+            {
+              "name": "no-header",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+              "fieldName": "noHeader"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "dependencies": [
+            "lynk-icon-button"
+          ],
+          "animations": [
+            {
+              "name": "dialog.show",
+              "description": "The animation to use when showing the dialog."
+            },
+            {
+              "name": "dialog.hide",
+              "description": "The animation to use when hiding the dialog."
+            },
+            {
+              "name": "dialog.denyClose",
+              "description": "The animation to use when a request to close the dialog is denied."
+            },
+            {
+              "name": "dialog.overlay.show",
+              "description": "The animation to use when showing the dialog's overlay."
+            },
+            {
+              "name": "dialog.overlay.hide",
+              "description": "The animation to use when hiding the dialog's overlay."
+            }
+          ],
+          "tagName": "lynk-dialog",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkDialog",
+            "module": "src/components/dialog/dialog.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-dialog",
+          "declaration": {
+            "name": "LynkDialog",
+            "module": "src/components/dialog/dialog.ts"
           }
         }
       ]
@@ -1631,456 +2391,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/button-group/button-group.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkButtonGroup",
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "One or more `<lynk-button>` elements to display in the button group.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "defaultSlot",
-              "type": {
-                "text": "HTMLSlotElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "attribute": "label"
-            },
-            {
-              "kind": "method",
-              "name": "handleFocus",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleBlur",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseOver",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseOut",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleSlotChange"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "fieldName": "label"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-button-group",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-button-group",
-          "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/dialog/dialog.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkDialog",
-          "cssProperties": [
-            {
-              "description": "The preferred width of the dialog. Note that the dialog will shrink to accommodate smaller screens.",
-              "name": "--width"
-            },
-            {
-              "description": "The amount of padding to use for the header.",
-              "name": "--header-spacing"
-            },
-            {
-              "description": "The amount of padding to use for the body.",
-              "name": "--body-spacing"
-            },
-            {
-              "description": "The amount of padding to use for the footer.",
-              "name": "--footer-spacing"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            },
-            {
-              "description": "The overlay.",
-              "name": "overlay"
-            },
-            {
-              "description": "The dialog panel (where the dialog and its content is rendered).",
-              "name": "panel"
-            },
-            {
-              "description": "The dialog header.",
-              "name": "header"
-            },
-            {
-              "description": "The dialog title.",
-              "name": "title"
-            },
-            {
-              "description": "The close button.",
-              "name": "close-button"
-            },
-            {
-              "description": "The close button's `base` part.",
-              "name": "close-button__base"
-            },
-            {
-              "description": "The dialog body.",
-              "name": "body"
-            },
-            {
-              "description": "The dialog footer.",
-              "name": "footer"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The dialog's content.",
-              "name": ""
-            },
-            {
-              "description": "The dialog's label. Alternatively, you can use the label prop.",
-              "name": "label"
-            },
-            {
-              "description": "The dialog's footer, usually one or more buttons representing various options.",
-              "name": "footer"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "dialog",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "panel",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "overlay",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "hasSlotController",
-              "privacy": "private",
-              "default": "new HasSlotController(this, 'footer')"
-            },
-            {
-              "kind": "field",
-              "name": "localize",
-              "privacy": "private",
-              "default": "new LocalizeController(this)"
-            },
-            {
-              "kind": "field",
-              "name": "modal",
-              "type": {
-                "text": "Modal"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "originalTrigger",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
-              "attribute": "open",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-              "attribute": "label",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "noHeader",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
-              "attribute": "no-header",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "show",
-              "description": "Shows the dialog."
-            },
-            {
-              "kind": "method",
-              "name": "hide",
-              "description": "Hides the dialog"
-            },
-            {
-              "kind": "method",
-              "name": "requestClose",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "source",
-                  "type": {
-                    "text": "'close-button' | 'keyboard' | 'overlay'"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleKeyDown",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleOpenChange"
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the dialog opens.",
-              "name": "on:show",
-              "reactName": "onOnShow"
-            },
-            {
-              "description": "Emitted after the dialog opens and all animations are complete.",
-              "name": "after:show",
-              "reactName": "onAfterShow"
-            },
-            {
-              "description": "Emitted when the dialog closes.",
-              "name": "on:hide",
-              "reactName": "onOnHide"
-            },
-            {
-              "description": "Emitted after the dialog closes and all animations are complete.",
-              "name": "after:hide",
-              "reactName": "onAfterHide"
-            },
-            {
-              "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.",
-              "name": "on:initial-focus",
-              "reactName": "onOnInitialFocus"
-            },
-            {
-              "type": {
-                "text": "{ source: 'close-button' | 'keyboard' | 'overlay' }"
-              },
-              "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss.",
-              "name": "on:request-close",
-              "reactName": "onOnRequestClose"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
-              "fieldName": "open"
-            },
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-              "fieldName": "label"
-            },
-            {
-              "name": "no-header",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
-              "fieldName": "noHeader"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "experimental",
-          "dependencies": [
-            "lynk-icon-button"
-          ],
-          "animations": [
-            {
-              "name": "dialog.show",
-              "description": "The animation to use when showing the dialog."
-            },
-            {
-              "name": "dialog.hide",
-              "description": "The animation to use when hiding the dialog."
-            },
-            {
-              "name": "dialog.denyClose",
-              "description": "The animation to use when a request to close the dialog is denied."
-            },
-            {
-              "name": "dialog.overlay.show",
-              "description": "The animation to use when showing the dialog's overlay."
-            },
-            {
-              "name": "dialog.overlay.hide",
-              "description": "The animation to use when hiding the dialog's overlay."
-            }
-          ],
-          "tagName": "lynk-dialog",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkDialog",
-            "module": "src/components/dialog/dialog.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-dialog",
-          "declaration": {
-            "name": "LynkDialog",
-            "module": "src/components/dialog/dialog.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/divider/divider.ts",
       "declarations": [
         {
@@ -2583,310 +2893,6 @@
           "declaration": {
             "name": "LynkDropdown",
             "module": "src/components/dropdown/dropdown.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/checkbox/checkbox.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkCheckbox",
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            },
-            {
-              "description": "The checkbox control.",
-              "name": "control"
-            },
-            {
-              "description": "The container the wraps the checked icon.",
-              "name": "checked-icon"
-            },
-            {
-              "description": "The container that wraps the indeterminate icon.",
-              "name": "indeterminate-icon"
-            },
-            {
-              "description": "The checkbox label.",
-              "name": "label"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The checkbox's label.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "input",
-              "type": {
-                "text": "HTMLInputElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formSubmitController",
-              "privacy": "private",
-              "default": "new FormSubmitController(this, {\n    value: (control: LynkCheckbox) => (control.checked ? control.value || 'on' : undefined)\n  })"
-            },
-            {
-              "kind": "field",
-              "name": "hasFocus",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "description": "The checkbox's name attribute.",
-              "attribute": "name"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "description": "The checkbox's value attribute.",
-              "attribute": "value"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the checkbox.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the checkbox a required field.",
-              "attribute": "required",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the checkbox in a checked state.",
-              "attribute": "checked",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the checkbox in an indeterminate state.",
-              "attribute": "indeterminate",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "invalid",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
-              "attribute": "invalid",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "click",
-              "description": "Simulates a click on the checkbox."
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ],
-              "description": "Sets focus on the checkbox."
-            },
-            {
-              "kind": "method",
-              "name": "blur",
-              "description": "Removes focus from the checkbox."
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity",
-              "description": "Checks for validity and shows the browser's validation message if the control is invalid."
-            },
-            {
-              "kind": "method",
-              "name": "setCustomValidity",
-              "parameters": [
-                {
-                  "name": "message",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ],
-              "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid."
-            },
-            {
-              "kind": "method",
-              "name": "handleClick"
-            },
-            {
-              "kind": "method",
-              "name": "handleBlur"
-            },
-            {
-              "kind": "method",
-              "name": "handleDisabledChange"
-            },
-            {
-              "kind": "method",
-              "name": "handleFocus"
-            },
-            {
-              "kind": "method",
-              "name": "handleStateChange"
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the control loses focus.",
-              "name": "on:blur",
-              "reactName": "onOnBlur"
-            },
-            {
-              "description": "Emitted when the control's checked state changes.",
-              "name": "on:change",
-              "reactName": "onOnChange"
-            },
-            {
-              "description": "Emitted when the control gains focus.",
-              "name": "on:focus",
-              "reactName": "onOnFocus"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "description": "The checkbox's name attribute.",
-              "fieldName": "name"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "description": "The checkbox's value attribute.",
-              "fieldName": "value"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the checkbox.",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the checkbox a required field.",
-              "fieldName": "required"
-            },
-            {
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the checkbox in a checked state.",
-              "fieldName": "checked"
-            },
-            {
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the checkbox in an indeterminate state.",
-              "fieldName": "indeterminate"
-            },
-            {
-              "name": "invalid",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
-              "fieldName": "invalid"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-checkbox",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkCheckbox",
-            "module": "src/components/checkbox/checkbox.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-checkbox",
-          "declaration": {
-            "name": "LynkCheckbox",
-            "module": "src/components/checkbox/checkbox.ts"
           }
         }
       ]
@@ -3624,6 +3630,7 @@
                 "text": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
               },
               "default": "'base'",
+              "description": "The space between grid items. Uses spacing token sizes.",
               "attribute": "gap",
               "reflects": true
             },
@@ -3689,6 +3696,7 @@
                 "text": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
               },
               "default": "'base'",
+              "description": "The space between grid items. Uses spacing token sizes.",
               "fieldName": "gap"
             }
           ],
@@ -4580,6 +4588,10 @@
             {
               "description": "Help text that describes how to use the input. Alternatively, you can use the help-text prop.",
               "name": "help-text"
+            },
+            {
+              "description": "Help tooltip next to the label that can be used in place of help-text to give additional information about how to use the input. Alternatively, you can use the help-tip prop.",
+              "name": "help-tip"
             }
           ],
           "members": [
@@ -4600,7 +4612,7 @@
               "kind": "field",
               "name": "hasSlotController",
               "privacy": "private",
-              "default": "new HasSlotController(this, 'help-text', 'label')"
+              "default": "new HasSlotController(this, 'help-text', 'help-tip', 'label')"
             },
             {
               "kind": "field",
@@ -4716,8 +4728,18 @@
                 "text": "string"
               },
               "default": "''",
-              "description": "The input's help text. Alternatively, you can use the help-text slot.",
+              "description": "The help text below the input. Alternatively, you can use the help-text slot.",
               "attribute": "help-text"
+            },
+            {
+              "kind": "field",
+              "name": "helpTip",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The help tooltip appended to the label. Alternatively, you can use the help-tip slot.",
+              "attribute": "help-tip"
             },
             {
               "kind": "field",
@@ -4855,6 +4877,17 @@
               "default": "false",
               "description": "This will be true when the control is in an invalid state. Validity is determined by props such as `type`,\n`required`, `minlength`, `maxlength`, and `pattern` using the browser's constraint validation API.",
               "attribute": "invalid",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "autovalidate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Use the browsers built constraint validation API in tandem with `required`, `pattern`, `minlength` and `maxlength` values",
+              "attribute": "autovalidate",
               "reflects": true
             },
             {
@@ -5191,8 +5224,17 @@
                 "text": "string"
               },
               "default": "''",
-              "description": "The input's help text. Alternatively, you can use the help-text slot.",
+              "description": "The help text below the input. Alternatively, you can use the help-text slot.",
               "fieldName": "helpText"
+            },
+            {
+              "name": "help-tip",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The help tooltip appended to the label. Alternatively, you can use the help-tip slot.",
+              "fieldName": "helpTip"
             },
             {
               "name": "clearable",
@@ -5314,6 +5356,15 @@
               "fieldName": "invalid"
             },
             {
+              "name": "autovalidate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Use the browsers built constraint validation API in tandem with `required`, `pattern`, `minlength` and `maxlength` values",
+              "fieldName": "autovalidate"
+            },
+            {
               "name": "autocapitalize",
               "type": {
                 "text": "'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'"
@@ -5377,7 +5428,8 @@
           "since": "1.0",
           "status": "experimental",
           "dependencies": [
-            "lynk-icon"
+            "lynk-icon",
+            "lynk-tooltip"
           ],
           "tagName": "lynk-input",
           "customElement": true
@@ -7531,6 +7583,10 @@
             {
               "description": "Help text that describes how to use the select.",
               "name": "help-text"
+            },
+            {
+              "description": "Help tooltip next to the label that can be used in place of help-text to give additional information about how to use the select. Alternatively, you can use the help-tip prop.",
+              "name": "help-tip"
             }
           ],
           "members": [
@@ -7572,7 +7628,7 @@
               "kind": "field",
               "name": "hasSlotController",
               "privacy": "private",
-              "default": "new HasSlotController(this, 'help-text', 'label')"
+              "default": "new HasSlotController(this, 'help-text', 'help-tip', 'label')"
             },
             {
               "kind": "field",
@@ -7667,6 +7723,17 @@
             },
             {
               "kind": "field",
+              "name": "restricted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Replaces the select with a plain text string of the selected value.",
+              "attribute": "restricted",
+              "reflects": true
+            },
+            {
+              "kind": "field",
               "name": "name",
               "type": {
                 "text": "string"
@@ -7684,6 +7751,16 @@
               "default": "''",
               "description": "The select's placeholder text.",
               "attribute": "placeholder"
+            },
+            {
+              "kind": "field",
+              "name": "state",
+              "type": {
+                "text": "'error' | 'warning' | 'success'"
+              },
+              "description": "The select's feedback status using manual validation. Alternatively, you can use the invalid attribute",
+              "attribute": "state",
+              "reflects": true
             },
             {
               "kind": "field",
@@ -7769,6 +7846,16 @@
             },
             {
               "kind": "field",
+              "name": "helpTip",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The select's help tooltip appended to the label. Alternatively, you can use the help-tip slot.",
+              "attribute": "help-tip"
+            },
+            {
+              "kind": "field",
               "name": "required",
               "type": {
                 "text": "boolean"
@@ -7797,6 +7884,17 @@
               "default": "false",
               "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
               "attribute": "invalid",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "autovalidate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Use the browsers built constraint validation API  in tandem with the `required` property`",
+              "attribute": "autovalidate",
               "reflects": true
             },
             {
@@ -7992,6 +8090,15 @@
               "fieldName": "disabled"
             },
             {
+              "name": "restricted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Replaces the select with a plain text string of the selected value.",
+              "fieldName": "restricted"
+            },
+            {
               "name": "name",
               "type": {
                 "text": "string"
@@ -8008,6 +8115,14 @@
               "default": "''",
               "description": "The select's placeholder text.",
               "fieldName": "placeholder"
+            },
+            {
+              "name": "state",
+              "type": {
+                "text": "'error' | 'warning' | 'success'"
+              },
+              "description": "The select's feedback status using manual validation. Alternatively, you can use the invalid attribute",
+              "fieldName": "state"
             },
             {
               "name": "size",
@@ -8082,6 +8197,15 @@
               "fieldName": "helpText"
             },
             {
+              "name": "help-tip",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The select's help tooltip appended to the label. Alternatively, you can use the help-tip slot.",
+              "fieldName": "helpTip"
+            },
+            {
               "name": "required",
               "type": {
                 "text": "boolean"
@@ -8107,6 +8231,15 @@
               "default": "false",
               "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
               "fieldName": "invalid"
+            },
+            {
+              "name": "autovalidate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Use the browsers built constraint validation API  in tandem with the `required` property`",
+              "fieldName": "autovalidate"
             }
           ],
           "superclass": {
@@ -8120,7 +8253,8 @@
             "lynk-icon",
             "lynk-icon-button",
             "lynk-menu",
-            "lynk-tag"
+            "lynk-tag",
+            "lynk-tooltip"
           ],
           "tagName": "lynk-select",
           "customElement": true
@@ -8203,6 +8337,169 @@
           "declaration": {
             "name": "LynkSpinner",
             "module": "src/components/spinner/spinner.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/stack/stack.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkStack",
+          "cssProperties": [
+            {
+              "description": "Customize the width of the stack group, defaults to `auto`.",
+              "name": "--width"
+            },
+            {
+              "description": "Customize the width of the stack group, defaults to `auto`.",
+              "name": "--height"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The default slot.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "horizontal",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Stack items horizontaly",
+              "attribute": "horizontal",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "reverse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Reverse the order of stack items",
+              "attribute": "reverse",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "justify",
+              "type": {
+                "text": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
+              },
+              "default": "'start'",
+              "description": "How to justify stack items",
+              "attribute": "justify",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "align",
+              "type": {
+                "text": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
+              },
+              "default": "'start'",
+              "description": "Hot to align stack items to eachother",
+              "attribute": "align",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "gap",
+              "type": {
+                "text": "string"
+              },
+              "default": "'var(--lynk-spacing-small)'",
+              "description": "The space between stack items. Use spacing tokens or any custom size.",
+              "attribute": "gap",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "horizontal",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Stack items horizontaly",
+              "fieldName": "horizontal"
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Reverse the order of stack items",
+              "fieldName": "reverse"
+            },
+            {
+              "name": "justify",
+              "type": {
+                "text": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
+              },
+              "default": "'start'",
+              "description": "How to justify stack items",
+              "fieldName": "justify"
+            },
+            {
+              "name": "align",
+              "type": {
+                "text": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
+              },
+              "default": "'start'",
+              "description": "Hot to align stack items to eachother",
+              "fieldName": "align"
+            },
+            {
+              "name": "gap",
+              "type": {
+                "text": "string"
+              },
+              "default": "'var(--lynk-spacing-small)'",
+              "description": "The space between stack items. Use spacing tokens or any custom size.",
+              "fieldName": "gap"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-stack",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkStack",
+            "module": "src/components/stack/stack.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-stack",
+          "declaration": {
+            "name": "LynkStack",
+            "module": "src/components/stack/stack.ts"
           }
         }
       ]
@@ -9432,6 +9729,10 @@
             {
               "description": "Help text that describes how to use the input.",
               "name": "help-text"
+            },
+            {
+              "description": "A help tooltip next to the label that can be used in place of help-text to give additional information about how to use the input. Alternatively, you can use the help-tip prop.",
+              "name": "help-tip"
             }
           ],
           "members": [
@@ -9452,7 +9753,7 @@
               "kind": "field",
               "name": "hasSlotController",
               "privacy": "private",
-              "default": "new HasSlotController(this, 'help-text', 'label')"
+              "default": "new HasSlotController(this, 'help-text', 'help-tip', 'label')"
             },
             {
               "kind": "field",
@@ -9470,6 +9771,16 @@
               },
               "privacy": "private",
               "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "state",
+              "type": {
+                "text": "'error' | 'warning' | 'success'"
+              },
+              "description": "The textareas feedback status using manual validation. Alternatively, you can use the invalid attribute",
+              "attribute": "state",
+              "reflects": true
             },
             {
               "kind": "field",
@@ -9534,6 +9845,16 @@
             },
             {
               "kind": "field",
+              "name": "helpTip",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The help tip accompanying the label. Alternatively, you can use the help-tip slot.",
+              "attribute": "help-tip"
+            },
+            {
+              "kind": "field",
               "name": "placeholder",
               "type": {
                 "text": "string"
@@ -9585,6 +9906,17 @@
             },
             {
               "kind": "field",
+              "name": "restricted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Replaces the textarea with a plain text string.",
+              "attribute": "restricted",
+              "reflects": true
+            },
+            {
+              "kind": "field",
               "name": "minlength",
               "type": {
                 "text": "number"
@@ -9600,6 +9932,17 @@
               },
               "description": "The maximum length of input that will be considered valid.",
               "attribute": "maxlength"
+            },
+            {
+              "kind": "field",
+              "name": "autovalidate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Use the browsers built constraint validation API in tandem with the `required`, `minlength` and `maxlength` values",
+              "attribute": "autovalidate",
+              "reflects": true
             },
             {
               "kind": "field",
@@ -9862,6 +10205,14 @@
           ],
           "attributes": [
             {
+              "name": "state",
+              "type": {
+                "text": "'error' | 'warning' | 'success'"
+              },
+              "description": "The textareas feedback status using manual validation. Alternatively, you can use the invalid attribute",
+              "fieldName": "state"
+            },
+            {
               "name": "size",
               "type": {
                 "text": "'small' | 'medium' | 'large'"
@@ -9915,6 +10266,15 @@
               "fieldName": "helpText"
             },
             {
+              "name": "help-tip",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The help tip accompanying the label. Alternatively, you can use the help-tip slot.",
+              "fieldName": "helpTip"
+            },
+            {
               "name": "placeholder",
               "type": {
                 "text": "string"
@@ -9959,6 +10319,15 @@
               "fieldName": "readonly"
             },
             {
+              "name": "restricted",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Replaces the textarea with a plain text string.",
+              "fieldName": "restricted"
+            },
+            {
               "name": "minlength",
               "type": {
                 "text": "number"
@@ -9973,6 +10342,15 @@
               },
               "description": "The maximum length of input that will be considered valid.",
               "fieldName": "maxlength"
+            },
+            {
+              "name": "autovalidate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Use the browsers built constraint validation API in tandem with the `required`, `minlength` and `maxlength` values",
+              "fieldName": "autovalidate"
             },
             {
               "name": "required",
@@ -10055,6 +10433,10 @@
           },
           "since": "1.0",
           "status": "experimental",
+          "dependencies": [
+            "lynk-icon",
+            "lynk-tooltip"
+          ],
           "tagName": "lynk-textarea",
           "customElement": true
         }
@@ -10074,6 +10456,50 @@
           "declaration": {
             "name": "LynkTextarea",
             "module": "src/components/textarea/textarea.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/visually-hidden/visually-hidden.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkVisuallyHidden",
+          "slots": [
+            {
+              "description": "The content you'd like to be visually hidden.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-visually-hidden",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkVisuallyHidden",
+            "module": "src/components/visually-hidden/visually-hidden.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-visually-hidden",
+          "declaration": {
+            "name": "LynkVisuallyHidden",
+            "module": "src/components/visually-hidden/visually-hidden.ts"
           }
         }
       ]
@@ -10464,56 +10890,12 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/visually-hidden/visually-hidden.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkVisuallyHidden",
-          "slots": [
-            {
-              "description": "The content you'd like to be visually hidden.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-visually-hidden",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkVisuallyHidden",
-            "module": "src/components/visually-hidden/visually-hidden.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-visually-hidden",
-          "declaration": {
-            "name": "LynkVisuallyHidden",
-            "module": "src/components/visually-hidden/visually-hidden.ts"
-          }
-        }
-      ]
     }
   ],
   "package": {
     "name": "@lynk-design/lynk",
     "description": "A library of web components and styles for building web applications with the Edgio Streaming design language.",
-    "version": "1.0.0-beta.11",
+    "version": "1.0.0-beta.12",
     "author": "Harley Jessop",
     "homepage": "https://lynk-design.web.app/",
     "license": "MIT"

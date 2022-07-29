@@ -6,6 +6,7 @@ import '../../components/icon-button/icon-button';
 import '../../components/icon/icon';
 import '../../components/menu/menu';
 import '../../components/tag/tag';
+import '../../components/tooltip/tooltip';
 import { emit } from '../../internal/event';
 import { FormSubmitController } from '../../internal/form';
 import { HasSlotController } from '../../internal/slot';
@@ -28,6 +29,7 @@ import type { TemplateResult } from 'lit';
  * @dependency lynk-icon-button
  * @dependency lynk-menu
  * @dependency lynk-tag
+ * @dependency lynk-tooltip
  *
  * @slot - The select's options in the form of menu items.
  * @slot prefix - Used to prepend an icon or similar element to the select.
@@ -35,6 +37,7 @@ import type { TemplateResult } from 'lit';
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
  * @slot label - The select's label. Alternatively, you can use the label prop.
  * @slot help-text - Help text that describes how to use the select.
+ * @slot help-tip - Help tooltip next to the label that can be used in place of help-text to give additional information about how to use the select. Alternatively, you can use the help-tip prop.
  *
  * @event on:clear - Emitted when the clear button is activated.
  * @event on:change - Emitted when the control's value changes.
@@ -70,7 +73,7 @@ export default class LynkSelect extends LitElement {
 
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this);
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'help-tip', 'label');
   private readonly localize = new LocalizeController(this);
   private menuItems: LynkMenuItem[] = [];
   private resizeObserver: ResizeObserver;
@@ -92,11 +95,17 @@ export default class LynkSelect extends LitElement {
   /** Disables the select control. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  /** Replaces the select with a plain text string of the selected value. */
+  @property({ type: Boolean, reflect: true }) restricted = false;
+
   /** The select's name. */
   @property() name = '';
 
   /** The select's placeholder text. */
   @property() placeholder = '';
+
+  /** The select's feedback status using manual validation. Alternatively, you can use the invalid attribute */
+  @property({ reflect: true }) state: 'error' | 'warning' | 'success';
 
   /** The select's size. */
   @property() size: 'small' | 'medium' | 'large' = 'medium';
@@ -128,6 +137,9 @@ export default class LynkSelect extends LitElement {
   /** The select's help text. Alternatively, you can use the help-text slot. */
   @property({ attribute: 'help-text' }) helpText = '';
 
+  /** The select's help tooltip appended to the label. Alternatively, you can use the help-tip slot. */
+  @property({ attribute: 'help-tip' }) helpTip = '';
+
   /** The select's required attribute. */
   @property({ type: Boolean, reflect: true }) required = false;
 
@@ -136,6 +148,9 @@ export default class LynkSelect extends LitElement {
 
   /** This will be true when the control is in an invalid state. Validity is determined by the `required` prop. */
   @property({ type: Boolean, reflect: true }) invalid = false;
+
+  /** Use the browsers built constraint validation API  in tandem with the `required` property` */
+  @property({ type: Boolean, reflect: true }) autovalidate = false;
 
   connectedCallback() {
     super.connectedCallback();
@@ -148,7 +163,9 @@ export default class LynkSelect extends LitElement {
   }
 
   firstUpdated() {
-    this.invalid = !this.input.checkValidity();
+    if (this.autovalidate) {
+      this.invalid = !this.input.checkValidity();
+    }
   }
 
   disconnectedCallback() {
@@ -158,7 +175,7 @@ export default class LynkSelect extends LitElement {
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
-    return this.input.reportValidity();
+    return this.autovalidate ? this.input.reportValidity() : false;
   }
 
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
@@ -209,7 +226,10 @@ export default class LynkSelect extends LitElement {
 
     // Disabled form controls are always valid, so we need to recheck validity when the state changes
     this.input.disabled = this.disabled;
-    this.invalid = !this.input.checkValidity();
+
+    if (this.autovalidate) {
+      this.invalid = !this.input.checkValidity();
+    }
   }
 
   handleFocus() {
@@ -275,7 +295,9 @@ export default class LynkSelect extends LitElement {
   }
 
   handleLabelClick() {
-    this.focus();
+    if (!this.restricted) {
+      this.focus();
+    }
   }
 
   handleMenuSelect(event: CustomEvent<MenuSelectEventDetail>) {
@@ -358,7 +380,10 @@ export default class LynkSelect extends LitElement {
   async handleValueChange() {
     this.syncItemsFromValue();
     await this.updateComplete;
-    this.invalid = !this.input.checkValidity();
+
+    if (this.autovalidate) {
+      this.invalid = !this.input.checkValidity();
+    }
     emit(this, 'on:change');
   }
 
@@ -390,7 +415,7 @@ export default class LynkSelect extends LitElement {
             variant="neutral"
             size=${this.size}
             ?pill=${this.pill}
-            removable
+            ?removable=${!this.restricted}
             @click=${this.handleTagInteraction}
             @keydown=${this.handleTagInteraction}
             @on:remove=${(event: CustomEvent) => {
@@ -447,9 +472,11 @@ export default class LynkSelect extends LitElement {
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasHelpTipSlot = this.hasSlotController.test('help-tip');
     const hasSelection = this.multiple ? this.value.length > 0 : this.value !== '';
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
+    const hasHelpTip = this.helpTip ? true : !!hasHelpTipSlot;
     const hasClearIcon = this.clearable && !this.disabled && hasSelection;
 
     return html`
@@ -461,17 +488,42 @@ export default class LynkSelect extends LitElement {
           'lynk-form-control--medium': this.size === 'medium',
           'lynk-form-control--large': this.size === 'large',
           'lynk-form-control--has-label': hasLabel,
-          'lynk-form-control--has-help-text': hasHelpText
+          'lynk-form-control--has-help-text': hasHelpText,
+          'lynk-form-control--has-error': this.state === 'error',
+          'lynk-form-control--has-warning': this.state === 'warning',
+          'lynk-form-control--has-success': this.state === 'success'
         })}
       >
         <label
           part="form-control-label"
-          class="lynk-form-control__label"
+          class=${classMap({
+            'lynk-form-control__label': true,
+            'lynk-form-control--focused': this.hasFocus,
+          })}
           for="input"
           aria-hidden=${hasLabel ? 'false' : 'true'}
           @click=${this.handleLabelClick}
         >
           <slot name="label">${this.label}</slot>
+
+          ${this.required
+            ? html`
+                <lynk-tooltip content="Required" hoist>
+                  <lynk-icon style="font-size: 9px;" name="asterisk" library="system"></lynk-icon>
+                </lynk-tooltip>
+              `
+            : ''}
+
+          ${hasHelpTip
+            ? html`
+                <lynk-tooltip hoist>
+                  <div slot="content">
+                    <slot name="help-tip">${this.helpTip}</slot>
+                  </div>
+                  <lynk-icon style="font-size: 11px;" name="question-fill" library="system"></lynk-icon>
+                </lynk-tooltip>
+              `
+            : ''}
         </label>
 
         <div part="form-control-input" class="lynk-form-control-input">
@@ -481,7 +533,7 @@ export default class LynkSelect extends LitElement {
             .placement=${this.placement}
             .stayOpenOnSelect=${this.multiple}
             .containingElement=${this as HTMLElement}
-            ?disabled=${this.disabled}
+            ?disabled=${this.disabled || this.restricted}
             class=${classMap({
               'lynk-select': true,
               'lynk-select--open': this.isOpen,
@@ -489,6 +541,7 @@ export default class LynkSelect extends LitElement {
               'lynk-select--focused': this.hasFocus,
               'lynk-select--clearable': this.clearable,
               'lynk-select--disabled': this.disabled,
+              'lynk-select--restricted': this.restricted,
               'lynk-select--multiple': this.multiple,
               'lynk-select--standard': !this.filled,
               'lynk-select--filled': this.filled,
@@ -498,7 +551,10 @@ export default class LynkSelect extends LitElement {
               'lynk-select--medium': this.size === 'medium',
               'lynk-select--large': this.size === 'large',
               'lynk-select--pill': this.pill,
-              'lynk-select--invalid': this.invalid
+              'lynk-select--invalid': this.invalid,
+              'lynk-select--has-error': this.state === 'error',
+              'lynk-select--has-warning': this.state === 'warning',
+              'lynk-select--has-success': this.state === 'success',
             })}
             @on:show=${this.handleMenuShow}
             @on:hide=${this.handleMenuHide}
@@ -572,6 +628,7 @@ export default class LynkSelect extends LitElement {
               <slot @slotchange=${this.handleMenuSlotChange} @on:label-change=${this.handleMenuItemLabelChange}></slot>
             </lynk-menu>
           </lynk-dropdown>
+
         </div>
 
         <div

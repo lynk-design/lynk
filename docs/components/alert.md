@@ -216,10 +216,10 @@ For convenience, you can create a utility that emits toast notifications with a 
 
 The toast stack is a fixed position singleton element created and managed internally by the alert component. It will be added and removed from the DOM as needed when toasts are shown. When more than one toast is visible, they will stack vertically in the toast stack.
 
-By default, the toast stack is positioned at the top-right of the viewport. You can change its position by targeting `.l-toast-stack` in your stylesheet. To make toasts appear at the top-left of the viewport, for example, use the following styles.
+By default, the toast stack is positioned at the top-right of the viewport. You can change its position by targeting `.lynk-toast-stack` in your stylesheet. To make toasts appear at the top-left of the viewport, for example, use the following styles.
 
 ```css
-.l-toast-stack {
+.lynk-toast-stack {
   left: 0;
   right: auto;
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/web-types",
   "name": "@lynk-design/lynk",
-  "version": "1.0.0-beta.11",
+  "version": "1.0.0-beta.12",
   "description-markup": "markdown",
   "framework-config": {
     "enable-when": {
@@ -255,6 +255,16 @@
               "value": {}
             }
           ]
+        },
+        {
+          "name": "lynk-box",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-box",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
         },
         {
           "name": "lynk-badge",
@@ -578,6 +588,381 @@
           "attributes": []
         },
         {
+          "name": "lynk-button-group",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-button-group",
+          "js": {
+            "properties": [
+              {
+                "name": "defaultSlot",
+                "value": {
+                  "type": "HTMLSlotElement"
+                }
+              },
+              {
+                "name": "label",
+                "description": "A label to use for the button group's `aria-label` attribute.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "handleFocus",
+                "value": {}
+              },
+              {
+                "name": "handleBlur",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOver",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOut",
+                "value": {}
+              },
+              {
+                "name": "handleSlotChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "label",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "value": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-checkbox",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-checkbox",
+          "js": {
+            "properties": [
+              {
+                "name": "input",
+                "value": {
+                  "type": "HTMLInputElement"
+                }
+              },
+              {
+                "name": "formSubmitController",
+                "value": {}
+              },
+              {
+                "name": "hasFocus",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "name",
+                "description": "The checkbox's name attribute.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "value",
+                "description": "The checkbox's value attribute.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the checkbox.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "required",
+                "description": "Makes the checkbox a required field.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "checked",
+                "description": "Draws the checkbox in a checked state.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "indeterminate",
+                "description": "Draws the checkbox in an indeterminate state.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "invalid",
+                "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "click",
+                "description": "Simulates a click on the checkbox.",
+                "value": {}
+              },
+              {
+                "name": "focus",
+                "description": "Sets focus on the checkbox.",
+                "value": {}
+              },
+              {
+                "name": "blur",
+                "description": "Removes focus from the checkbox.",
+                "value": {}
+              },
+              {
+                "name": "reportValidity",
+                "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
+                "value": {}
+              },
+              {
+                "name": "setCustomValidity",
+                "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
+                "value": {}
+              },
+              {
+                "name": "handleClick",
+                "value": {}
+              },
+              {
+                "name": "handleBlur",
+                "value": {}
+              },
+              {
+                "name": "handleDisabledChange",
+                "value": {}
+              },
+              {
+                "name": "handleFocus",
+                "value": {}
+              },
+              {
+                "name": "handleStateChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:blur",
+                "description": "Emitted when the control loses focus."
+              },
+              {
+                "name": "on:change",
+                "description": "Emitted when the control's checked state changes."
+              },
+              {
+                "name": "on:focus",
+                "description": "Emitted when the control gains focus."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "name",
+              "description": "The checkbox's name attribute.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "value",
+              "description": "The checkbox's value attribute.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables the checkbox.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "required",
+              "description": "Makes the checkbox a required field.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "checked",
+              "description": "Draws the checkbox in a checked state.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "indeterminate",
+              "description": "Draws the checkbox in an indeterminate state.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "invalid",
+              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-dialog",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-dialog",
+          "js": {
+            "properties": [
+              {
+                "name": "dialog",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "panel",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "overlay",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "hasSlotController",
+                "value": {}
+              },
+              {
+                "name": "localize",
+                "value": {}
+              },
+              {
+                "name": "modal",
+                "value": {
+                  "type": "Modal"
+                }
+              },
+              {
+                "name": "originalTrigger",
+                "value": {
+                  "type": "HTMLElement | null"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "label",
+                "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "noHeader",
+                "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the dialog.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the dialog",
+                "value": {}
+              },
+              {
+                "name": "requestClose",
+                "value": {}
+              },
+              {
+                "name": "handleKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:show",
+                "description": "Emitted when the dialog opens."
+              },
+              {
+                "name": "after:show",
+                "description": "Emitted after the dialog opens and all animations are complete."
+              },
+              {
+                "name": "on:hide",
+                "description": "Emitted when the dialog closes."
+              },
+              {
+                "name": "after:hide",
+                "description": "Emitted after the dialog closes and all animations are complete."
+              },
+              {
+                "name": "on:initial-focus",
+                "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input."
+              },
+              {
+                "name": "on:request-close",
+                "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "no-header",
+              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-button",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-button",
@@ -788,6 +1173,10 @@
                 "description": "Emitted when the button loses focus."
               },
               {
+                "name": "on:click",
+                "description": "Emitted when the button is clicked."
+              },
+              {
                 "name": "on:focus",
                 "description": "Emitted when the button gains focus."
               }
@@ -939,391 +1328,6 @@
               "description": "Used to override the form owner's `target` attribute.",
               "value": {
                 "type": "'_self' | '_blank' | '_parent' | '_top' | string"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-box",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-box",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
-        },
-        {
-          "name": "lynk-button-group",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-button-group",
-          "js": {
-            "properties": [
-              {
-                "name": "defaultSlot",
-                "value": {
-                  "type": "HTMLSlotElement"
-                }
-              },
-              {
-                "name": "label",
-                "description": "A label to use for the button group's `aria-label` attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "handleFocus",
-                "value": {}
-              },
-              {
-                "name": "handleBlur",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOver",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOut",
-                "value": {}
-              },
-              {
-                "name": "handleSlotChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "label",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "value": {
-                "type": "string"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-dialog",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-dialog",
-          "js": {
-            "properties": [
-              {
-                "name": "dialog",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "panel",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "overlay",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "hasSlotController",
-                "value": {}
-              },
-              {
-                "name": "localize",
-                "value": {}
-              },
-              {
-                "name": "modal",
-                "value": {
-                  "type": "Modal"
-                }
-              },
-              {
-                "name": "originalTrigger",
-                "value": {
-                  "type": "HTMLElement | null"
-                }
-              },
-              {
-                "name": "open",
-                "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "label",
-                "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "noHeader",
-                "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "show",
-                "description": "Shows the dialog.",
-                "value": {}
-              },
-              {
-                "name": "hide",
-                "description": "Hides the dialog",
-                "value": {}
-              },
-              {
-                "name": "requestClose",
-                "value": {}
-              },
-              {
-                "name": "handleKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleOpenChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:show",
-                "description": "Emitted when the dialog opens."
-              },
-              {
-                "name": "after:show",
-                "description": "Emitted after the dialog opens and all animations are complete."
-              },
-              {
-                "name": "on:hide",
-                "description": "Emitted when the dialog closes."
-              },
-              {
-                "name": "after:hide",
-                "description": "Emitted after the dialog closes and all animations are complete."
-              },
-              {
-                "name": "on:initial-focus",
-                "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input."
-              },
-              {
-                "name": "on:request-close",
-                "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "label",
-              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "no-header",
-              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-checkbox",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-checkbox",
-          "js": {
-            "properties": [
-              {
-                "name": "input",
-                "value": {
-                  "type": "HTMLInputElement"
-                }
-              },
-              {
-                "name": "formSubmitController",
-                "value": {}
-              },
-              {
-                "name": "hasFocus",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "name",
-                "description": "The checkbox's name attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "value",
-                "description": "The checkbox's value attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Disables the checkbox.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "required",
-                "description": "Makes the checkbox a required field.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "checked",
-                "description": "Draws the checkbox in a checked state.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "indeterminate",
-                "description": "Draws the checkbox in an indeterminate state.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "invalid",
-                "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "click",
-                "description": "Simulates a click on the checkbox.",
-                "value": {}
-              },
-              {
-                "name": "focus",
-                "description": "Sets focus on the checkbox.",
-                "value": {}
-              },
-              {
-                "name": "blur",
-                "description": "Removes focus from the checkbox.",
-                "value": {}
-              },
-              {
-                "name": "reportValidity",
-                "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
-                "value": {}
-              },
-              {
-                "name": "setCustomValidity",
-                "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
-                "value": {}
-              },
-              {
-                "name": "handleClick",
-                "value": {}
-              },
-              {
-                "name": "handleBlur",
-                "value": {}
-              },
-              {
-                "name": "handleDisabledChange",
-                "value": {}
-              },
-              {
-                "name": "handleFocus",
-                "value": {}
-              },
-              {
-                "name": "handleStateChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:blur",
-                "description": "Emitted when the control loses focus."
-              },
-              {
-                "name": "on:change",
-                "description": "Emitted when the control's checked state changes."
-              },
-              {
-                "name": "on:focus",
-                "description": "Emitted when the control gains focus."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "name",
-              "description": "The checkbox's name attribute.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "value",
-              "description": "The checkbox's value attribute.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "disabled",
-              "description": "Disables the checkbox.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "required",
-              "description": "Makes the checkbox a required field.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "checked",
-              "description": "Draws the checkbox in a checked state.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "indeterminate",
-              "description": "Draws the checkbox in an indeterminate state.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "invalid",
-              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
-              "value": {
-                "type": "boolean"
               }
             }
           ]
@@ -2107,6 +2111,7 @@
               },
               {
                 "name": "gap",
+                "description": "The space between grid items. Uses spacing token sizes.",
                 "value": {
                   "type": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
                 }
@@ -2163,6 +2168,7 @@
             },
             {
               "name": "gap",
+              "description": "The space between grid items. Uses spacing token sizes.",
               "value": {
                 "type": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
               }
@@ -2673,7 +2679,14 @@
               },
               {
                 "name": "helpText",
-                "description": "The input's help text. Alternatively, you can use the help-text slot.",
+                "description": "The help text below the input. Alternatively, you can use the help-text slot.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "helpTip",
+                "description": "The help tooltip appended to the label. Alternatively, you can use the help-tip slot.",
                 "value": {
                   "type": "string"
                 }
@@ -2709,6 +2722,13 @@
               {
                 "name": "readonly",
                 "description": "Makes the input readonly.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "restricted",
+                "description": "Replaces the input with a plain text string.",
                 "value": {
                   "type": "boolean"
                 }
@@ -2765,6 +2785,13 @@
               {
                 "name": "invalid",
                 "description": "This will be true when the control is in an invalid state. Validity is determined by props such as `type`,\n`required`, `minlength`, `maxlength`, and `pattern` using the browser's constraint validation API.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "autovalidate",
+                "description": "Use the browsers built constraint validation API in tandem with `required`, `pattern`, `minlength` and `maxlength` values",
                 "value": {
                   "type": "boolean"
                 }
@@ -2986,7 +3013,14 @@
             },
             {
               "name": "help-text",
-              "description": "The input's help text. Alternatively, you can use the help-text slot.",
+              "description": "The help text below the input. Alternatively, you can use the help-text slot.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "help-tip",
+              "description": "The help tooltip appended to the label. Alternatively, you can use the help-tip slot.",
               "value": {
                 "type": "string"
               }
@@ -3022,6 +3056,13 @@
             {
               "name": "readonly",
               "description": "Makes the input readonly.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "restricted",
+              "description": "Replaces the input with a plain text string.",
               "value": {
                 "type": "boolean"
               }
@@ -3078,6 +3119,13 @@
             {
               "name": "invalid",
               "description": "This will be true when the control is in an invalid state. Validity is determined by props such as `type`,\n`required`, `minlength`, `maxlength`, and `pattern` using the browser's constraint validation API.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "autovalidate",
+              "description": "Use the browsers built constraint validation API in tandem with `required`, `pattern`, `minlength` and `maxlength` values",
               "value": {
                 "type": "boolean"
               }
@@ -4302,6 +4350,13 @@
                 }
               },
               {
+                "name": "restricted",
+                "description": "Replaces the select with a plain text string of the selected value.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
                 "name": "name",
                 "description": "The select's name.",
                 "value": {
@@ -4313,6 +4368,13 @@
                 "description": "The select's placeholder text.",
                 "value": {
                   "type": "string"
+                }
+              },
+              {
+                "name": "state",
+                "description": "The select's feedback status using manual validation. Alternatively, you can use the invalid attribute",
+                "value": {
+                  "type": "'error' | 'warning' | 'success'"
                 }
               },
               {
@@ -4372,6 +4434,13 @@
                 }
               },
               {
+                "name": "helpTip",
+                "description": "The select's help tooltip appended to the label. Alternatively, you can use the help-tip slot.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
                 "name": "required",
                 "description": "The select's required attribute.",
                 "value": {
@@ -4388,6 +4457,13 @@
               {
                 "name": "invalid",
                 "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "autovalidate",
+                "description": "Use the browsers built constraint validation API  in tandem with the `required` property`",
                 "value": {
                   "type": "boolean"
                 }
@@ -4527,6 +4603,13 @@
               }
             },
             {
+              "name": "restricted",
+              "description": "Replaces the select with a plain text string of the selected value.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
               "name": "name",
               "description": "The select's name.",
               "value": {
@@ -4538,6 +4621,13 @@
               "description": "The select's placeholder text.",
               "value": {
                 "type": "string"
+              }
+            },
+            {
+              "name": "state",
+              "description": "The select's feedback status using manual validation. Alternatively, you can use the invalid attribute",
+              "value": {
+                "type": "'error' | 'warning' | 'success'"
               }
             },
             {
@@ -4597,6 +4687,13 @@
               }
             },
             {
+              "name": "help-tip",
+              "description": "The select's help tooltip appended to the label. Alternatively, you can use the help-tip slot.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
               "name": "required",
               "description": "The select's required attribute.",
               "value": {
@@ -4616,6 +4713,13 @@
               "value": {
                 "type": "boolean"
               }
+            },
+            {
+              "name": "autovalidate",
+              "description": "Use the browsers built constraint validation API  in tandem with the `required` property`",
+              "value": {
+                "type": "boolean"
+              }
             }
           ]
         },
@@ -4628,6 +4732,88 @@
             "events": []
           },
           "attributes": []
+        },
+        {
+          "name": "lynk-stack",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-stack",
+          "js": {
+            "properties": [
+              {
+                "name": "horizontal",
+                "description": "Stack items horizontaly",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "reverse",
+                "description": "Reverse the order of stack items",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "justify",
+                "description": "How to justify stack items",
+                "value": {
+                  "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
+                }
+              },
+              {
+                "name": "align",
+                "description": "Hot to align stack items to eachother",
+                "value": {
+                  "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
+                }
+              },
+              {
+                "name": "gap",
+                "description": "The space between stack items. Use spacing tokens or any custom size.",
+                "value": {
+                  "type": "string"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "horizontal",
+              "description": "Stack items horizontaly",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "reverse",
+              "description": "Reverse the order of stack items",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "justify",
+              "description": "How to justify stack items",
+              "value": {
+                "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
+              }
+            },
+            {
+              "name": "align",
+              "description": "Hot to align stack items to eachother",
+              "value": {
+                "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
+              }
+            },
+            {
+              "name": "gap",
+              "description": "The space between stack items. Use spacing tokens or any custom size.",
+              "value": {
+                "type": "string"
+              }
+            }
+          ]
         },
         {
           "name": "lynk-switch",
@@ -5286,6 +5472,13 @@
                 }
               },
               {
+                "name": "state",
+                "description": "The textareas feedback status using manual validation. Alternatively, you can use the invalid attribute",
+                "value": {
+                  "type": "'error' | 'warning' | 'success'"
+                }
+              },
+              {
                 "name": "size",
                 "description": "The textarea's size.",
                 "value": {
@@ -5328,6 +5521,13 @@
                 }
               },
               {
+                "name": "helpTip",
+                "description": "The help tip accompanying the label. Alternatively, you can use the help-tip slot.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
                 "name": "placeholder",
                 "description": "The textarea's placeholder text.",
                 "value": {
@@ -5363,6 +5563,13 @@
                 }
               },
               {
+                "name": "restricted",
+                "description": "Replaces the textarea with a plain text string.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
                 "name": "minlength",
                 "description": "The minimum length of input that will be considered valid.",
                 "value": {
@@ -5374,6 +5581,13 @@
                 "description": "The maximum length of input that will be considered valid.",
                 "value": {
                   "type": "number"
+                }
+              },
+              {
+                "name": "autovalidate",
+                "description": "Use the browsers built constraint validation API in tandem with the `required`, `minlength` and `maxlength` values",
+                "value": {
+                  "type": "boolean"
                 }
               },
               {
@@ -5533,6 +5747,13 @@
           },
           "attributes": [
             {
+              "name": "state",
+              "description": "The textareas feedback status using manual validation. Alternatively, you can use the invalid attribute",
+              "value": {
+                "type": "'error' | 'warning' | 'success'"
+              }
+            },
+            {
               "name": "size",
               "description": "The textarea's size.",
               "value": {
@@ -5575,6 +5796,13 @@
               }
             },
             {
+              "name": "help-tip",
+              "description": "The help tip accompanying the label. Alternatively, you can use the help-tip slot.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
               "name": "placeholder",
               "description": "The textarea's placeholder text.",
               "value": {
@@ -5610,6 +5838,13 @@
               }
             },
             {
+              "name": "restricted",
+              "description": "Replaces the textarea with a plain text string.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
               "name": "minlength",
               "description": "The minimum length of input that will be considered valid.",
               "value": {
@@ -5621,6 +5856,13 @@
               "description": "The maximum length of input that will be considered valid.",
               "value": {
                 "type": "number"
+              }
+            },
+            {
+              "name": "autovalidate",
+              "description": "Use the browsers built constraint validation API in tandem with the `required`, `minlength` and `maxlength` values",
+              "value": {
+                "type": "boolean"
               }
             },
             {
@@ -5687,6 +5929,16 @@
               }
             }
           ]
+        },
+        {
+          "name": "lynk-visually-hidden",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-visually-hidden",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
         },
         {
           "name": "lynk-tooltip",
@@ -5930,16 +6182,6 @@
               }
             }
           ]
-        },
-        {
-          "name": "lynk-visually-hidden",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-visually-hidden",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
         }
       ]
     }
