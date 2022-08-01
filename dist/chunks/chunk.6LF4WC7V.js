@@ -1,6 +1,6 @@
 import {
   stack_styles_default
-} from "./chunk.767RB5EA.js";
+} from "./chunk.KTYEL5R2.js";
 import {
   e,
   n
@@ -19,8 +19,6 @@ var LynkStack = class extends s {
     super(...arguments);
     this.horizontal = false;
     this.reverse = false;
-    this.justify = "start";
-    this.align = "start";
     this.gap = "var(--lynk-spacing-small)";
   }
   render() {

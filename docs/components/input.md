@@ -177,6 +177,17 @@ Use the `prefix` and `suffix` slots to add icons.
 </lynk-input>
 ```
 
+### Using the Default Slot for Custom Controls
+
+Use the default slot to append a button next to the input.
+
+```html preview
+<lynk-input type="search" placeholder="Search" clearable>
+  <lynk-icon slot="prefix" name="search" library="default"></lynk-icon>
+  <lynk-button slot="action" color="primary">Go</lynk-button>
+</lynk-input>
+```
+
 ### Customizing Label Position
 
 Use parts to customize the label's position.

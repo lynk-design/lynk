@@ -1,6 +1,6 @@
 import {
   form_control_styles_default
-} from "./chunk.D4EWPPXQ.js";
+} from "./chunk.5ESGLFHG.js";
 import {
   component_styles_default
 } from "./chunk.XYURGYC6.js";
@@ -15,6 +15,8 @@ var input_styles_default = r`
 
   :host {
     display: block;
+    --width: 100%;
+    width: var(--width);
   }
 
   .lynk-input {
@@ -23,9 +25,9 @@ var input_styles_default = r`
     align-items: stretch;
     justify-content: start;
     position: relative;
-    width: 100%;
     font-family: var(--lynk-input-font-family);
     font-weight: var(--lynk-input-font-weight);
+    text-align: left;
     letter-spacing: var(--lynk-input-letter-spacing);
     vertical-align: middle;
     overflow: hidden;

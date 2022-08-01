@@ -24,10 +24,10 @@ export default class LynkStack extends LitElement {
   @property({ type: Boolean, reflect: true }) reverse = false;
 
   /** How to justify stack items */
-  @property({ reflect: true }) justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' = 'start';
+  @property({ reflect: true }) justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
 
   /** Hot to align stack items to eachother */
-  @property({ reflect: true }) align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline' = 'start';
+  @property({ reflect: true }) align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
 
   /** The space between stack items. Use spacing tokens or any custom size. */
   @property({ type: String, reflect: true }) gap = 'var(--lynk-spacing-small)';

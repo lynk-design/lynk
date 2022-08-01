@@ -8,6 +8,8 @@ export default css`
 
   :host {
     display: block;
+    --width: 100%;
+    width: var(--width);
   }
 
   .lynk-input {
@@ -16,9 +18,9 @@ export default css`
     align-items: stretch;
     justify-content: start;
     position: relative;
-    width: 100%;
     font-family: var(--lynk-input-font-family);
     font-weight: var(--lynk-input-font-weight);
+    text-align: left;
     letter-spacing: var(--lynk-input-letter-spacing);
     vertical-align: middle;
     overflow: hidden;

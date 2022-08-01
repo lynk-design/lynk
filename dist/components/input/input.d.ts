@@ -1,5 +1,6 @@
 import { LitElement } from 'lit';
 import '../../components/icon/icon';
+import '../../components/stack/stack';
 import '../../components/tooltip/tooltip';
 export default class LynkInput extends LitElement {
     static styles: import("lit").CSSResult;

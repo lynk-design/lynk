@@ -1,6 +1,6 @@
 import {
   input_styles_default
-} from "./chunk.56BTUDEQ.js";
+} from "./chunk.F45I7T5K.js";
 import {
   l as l2
 } from "./chunk.6OV4IUTN.js";
@@ -44,7 +44,7 @@ var LynkInput = class extends s {
   constructor() {
     super(...arguments);
     this.formSubmitController = new FormSubmitController(this);
-    this.hasSlotController = new HasSlotController(this, "help-text", "help-tip", "label");
+    this.hasSlotController = new HasSlotController(this, "action", "help-text", "help-tip", "label");
     this.localize = new LocalizeController(this);
     this.hasFocus = false;
     this.isPasswordVisible = false;
@@ -217,7 +217,12 @@ var LynkInput = class extends s {
 
         </label>
 
-        <div part="form-control-input" class="lynk-form-control-input">
+        <lynk-stack
+          part="form-control-input"
+          class="lynk-form-control-input"
+          horizontal
+          gap="var(--lynk-spacing-2x-small)"
+        >
           <div
             part="base"
             class=${o({
@@ -325,7 +330,8 @@ var LynkInput = class extends s {
               <slot name="suffix"></slot>
             </span>
           </div>
-        </div>
+          <slot name="action"></slot>
+        </lynk-stack>
 
         <div
           part="form-control-help-text"

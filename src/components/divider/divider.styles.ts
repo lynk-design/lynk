@@ -5,13 +5,14 @@ export default css`
   ${componentStyles}
 
   :host {
-    --color: var(--lynk-panel-border-color);
+    --color: var(--lynk-divider-color);
     --width: var(--lynk-panel-border-width);
     --spacing: var(--lynk-spacing-medium);
   }
 
   :host(:not([vertical])) {
     display: block;
+    width: 100%;
     border-top: solid var(--width) var(--color);
     margin: var(--spacing) 0;
   }

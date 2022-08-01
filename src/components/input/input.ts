@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import '../../components/icon/icon';
+import '../../components/stack/stack';
 import '../../components/tooltip/tooltip';
 import { emit } from '../../internal/event';
 import { FormSubmitController } from '../../internal/form';
@@ -19,6 +20,7 @@ import styles from './input.styles';
  * @dependency lynk-icon
  * @dependency lynk-tooltip
  *
+ * @slot action - append a custom button to the input.
  * @slot label - The input's label. Alternatively, you can use the label prop.
  * @slot prefix - Used to prepend an icon or similar element to the input.
  * @slot suffix - Used to append an icon or similar element to the input.
@@ -52,7 +54,7 @@ export default class LynkInput extends LitElement {
   @query('.lynk-input__control') input: HTMLInputElement;
 
   private readonly formSubmitController = new FormSubmitController(this);
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'help-tip', 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'action', 'help-text', 'help-tip', 'label');
   private readonly localize = new LocalizeController(this);
 
   @state() private hasFocus = false;
@@ -374,7 +376,12 @@ export default class LynkInput extends LitElement {
 
         </label>
 
-        <div part="form-control-input" class="lynk-form-control-input">
+        <lynk-stack
+          part="form-control-input"
+          class="lynk-form-control-input"
+          horizontal
+          gap="var(--lynk-spacing-2x-small)"
+        >
           <div
             part="base"
             class=${classMap({
@@ -494,7 +501,8 @@ export default class LynkInput extends LitElement {
               <slot name="suffix"></slot>
             </span>
           </div>
-        </div>
+          <slot name="action"></slot>
+        </lynk-stack>
 
         <div
           part="form-control-help-text"

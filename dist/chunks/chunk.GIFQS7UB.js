@@ -16,6 +16,7 @@ var box_styles_default = r`
   }
 
   .lynk-box {
+    display: block;
     background-color: var(--background, transparent);
     border-radius: var(--border-radius, 0);
     border: var(--border, none);

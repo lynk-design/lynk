@@ -11,6 +11,7 @@ export default css`
   }
 
   .lynk-box {
+    display: block;
     background-color: var(--background, transparent);
     border-radius: var(--border-radius, 0);
     border: var(--border, none);

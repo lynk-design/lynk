@@ -4,6 +4,10 @@ import {
 
 // src/styles/form-control.styles.ts
 var form_control_styles_default = r`
+  .lynk-form-control {
+    text-align: left;
+  }
+
   .lynk-form-control .lynk-form-control__label {
     display: none;
   }

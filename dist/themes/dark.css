@@ -461,11 +461,13 @@
   --lynk-overlay-background-color: hsl(0 0% 0% / 43%);
 
   --lynk-panel-background-color: var(--lynk-color-neutral-50);
-  --lynk-panel-border-color: var(--lynk-color-neutral-200);
+  --lynk-panel-border-color: var(--lynk-color-neutral-300);
   --lynk-panel-border-width: 1px;
 
+  --lynk-divider-color: var(--lynk-color-neutral-300);
+
   --lynk-tooltip-border-radius: var(--lynk-border-radius-medium);
-  --lynk-tooltip-background-color: var(--lynk-color-neutral-800);
+  --lynk-tooltip-background-color: var(--lynk-color-neutral-900);
   --lynk-tooltip-color: var(--lynk-color-neutral-0);
   --lynk-tooltip-font-family: var(--lynk-font-sans);
   --lynk-tooltip-font-weight: var(--lynk-font-weight-normal);

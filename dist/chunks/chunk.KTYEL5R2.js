@@ -10,8 +10,8 @@ var stack_styles_default = r`
   ${component_styles_default}
 
   :host {
-    display: contents;
-    --width: auto;
+    display: block;
+    --width: 100%;
     --height: auto;
     --gap: var(--lynk-spacing-small)
   }
@@ -78,22 +78,6 @@ var stack_styles_default = r`
 
   .lynk-stack--align-baseline {
     align-items: baseline;
-  }
-
-  :host {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap, var(--lynk-spacing-small));
-    flex: 1 1 auto;
-    flex-direction: column;
-    align-self: stretch;
-    width: var(--width, 100%);
-  }
-
-  :host([horizontal]) {
-    flex-direction: row;
-    align-items: center;
-    align-self: stretch;
   }
 `;
 

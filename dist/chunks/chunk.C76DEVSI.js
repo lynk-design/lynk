@@ -1,6 +1,6 @@
 import {
   box_styles_default
-} from "./chunk.UAWDZ5I2.js";
+} from "./chunk.GIFQS7UB.js";
 import {
   o
 } from "./chunk.AY3TXN3C.js";

@@ -1,6 +1,10 @@
 import { css } from 'lit';
 
 export default css`
+  .lynk-form-control {
+    text-align: left;
+  }
+
   .lynk-form-control .lynk-form-control__label {
     display: none;
   }
