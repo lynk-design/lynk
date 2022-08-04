@@ -4,6 +4,10 @@ import componentStyles from '../../styles/component.styles';
 export default css`
   ${componentStyles}
 
+  :host {
+    --padding: var(--lynk-spacing-base);
+  }
+
   .lynk-alert {
     position: relative;
     display: flex;
@@ -32,7 +36,7 @@ export default css`
     display: flex;
     align-items: center;
     font-size: var(--lynk-font-size-x-large);
-    padding-inline-start: var(--lynk-spacing-large);
+    padding-inline-start: var(--lynk-spacing-medium);
   }
 
   .lynk-alert--primary {
@@ -82,7 +86,7 @@ export default css`
 
   .lynk-alert__message {
     flex: 1 1 auto;
-    padding: var(--padding, var(--lynk-spacing-base)) var(--lynk-spacing-large);
+    padding: var(--padding) var(--lynk-spacing-medium);
     overflow: hidden;
   }
 
@@ -91,6 +95,13 @@ export default css`
     display: flex;
     align-items: center;
     font-size: var(--lynk-font-size-large);
-    padding-inline-end: var(--lynk-spacing-medium);
+    padding-inline-end: var(--lynk-spacing-base);
+  }
+
+  .lynk-alert__action {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    padding-inline-end: var(--lynk-spacing-base);
   }
 `;

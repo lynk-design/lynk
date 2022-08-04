@@ -42,6 +42,11 @@ export default css`
     --lynk-color-orange-900: hsl(38.9 100% 87.7%);
     --lynk-color-orange-950: hsl(46.2 100% 95%);
 
+    --lynk-color-amber-a10: hsla(43.3 100% 53.4% / 0.1);
+    --lynk-color-amber-a25: hsla(43.3 100% 53.4% / 0.25);
+    --lynk-color-amber-a50: hsla(43.3 100% 53.4% / 0.5);
+    --lynk-color-amber-a75: hsla(43.3 100% 53.4% / 0.75);
+
     --lynk-color-amber-50: hsl(21.9 66.3% 21.1%);
     --lynk-color-amber-100: hsl(21.5 73.6% 29.7%);
     --lynk-color-amber-200: hsl(22.3 77.6% 33.3%);
@@ -89,6 +94,11 @@ export default css`
     --lynk-color-green-800: hsl(141 90.9% 82.1%);
     --lynk-color-green-900: hsl(142 100% 89.1%);
     --lynk-color-green-950: hsl(144 100% 95.5%);
+
+    --lynk-color-emerald-a10: hsl(157.8 66.8% 48.9% / 0.1);
+    --lynk-color-emerald-a25: hsl(157.8 66.8% 48.9% / 0.25);
+    --lynk-color-emerald-a50: hsl(157.8 66.8% 48.9% / 0.5);
+    --lynk-color-emerald-a75: hsl(157.8 66.8% 48.9% / 0.75);
 
     --lynk-color-emerald-50: hsl(164.3 75% 13.5%);
     --lynk-color-emerald-100: hsl(163.5 72.6% 20.1%);
@@ -162,6 +172,11 @@ export default css`
     --lynk-color-indigo-900: hsl(225 100% 90%);
     --lynk-color-indigo-950: hsl(222 100% 95%);
 
+    --lynk-color-violet-a10: hsl(260 100% 65% / 0.1);
+    --lynk-color-violet-a25: hsl(260 100% 65% / 0.25);
+    --lynk-color-violet-a50: hsl(260 100% 65% / 0.5);
+    --lynk-color-violet-a75: hsl(260 100% 65% / 0.75);
+
     --lynk-color-violet-50: hsl(263 55% 24%);
     --lynk-color-violet-100: hsl(262 60% 35%);
     --lynk-color-violet-200: hsl(261 65% 44%);
@@ -210,6 +225,11 @@ export default css`
     --lynk-color-pink-900: hsl(322.1 100% 91.3%);
     --lynk-color-pink-950: hsl(315 100% 95.9%);
 
+    --lynk-color-rose-a10: hsla(350 85% 55% / 0.1);
+    --lynk-color-rose-a25: hsla(350 85% 55% / 0.25);
+    --lynk-color-rose-a50: hsla(350 85% 55% / 0.5);
+    --lynk-color-rose-a75: hsla(350 85% 55% / 0.75);
+
     --lynk-color-rose-50: hsl(342 63% 20%);
     --lynk-color-rose-100: hsl(343 69% 30%);
     --lynk-color-rose-200: hsl(345 70% 38%);
@@ -221,6 +241,11 @@ export default css`
     --lynk-color-rose-800: hsl(352 100% 85%);
     --lynk-color-rose-900: hsl(354.5 100% 90%);
     --lynk-color-rose-950: hsl(353.3 100% 96%);
+
+    --lynk-color-primary-a10: var(--lynk-color-violet-a10);
+    --lynk-color-primary-a25: var(--lynk-color-violet-a25);
+    --lynk-color-primary-a50: var(--lynk-color-violet-a50);
+    --lynk-color-primary-a75: var(--lynk-color-violet-a75);
 
     --lynk-color-primary-50: var(--lynk-color-violet-50);
     --lynk-color-primary-100: var(--lynk-color-violet-100);
@@ -234,7 +259,12 @@ export default css`
     --lynk-color-primary-900: var(--lynk-color-violet-900);
     --lynk-color-primary-950: var(--lynk-color-violet-950);
 
-    --lynk-color-primary: var(--lynk-color-primary-500);
+    --lynk-color-primary: var(--lynk-color-primary-600);
+
+    --lynk-color-success-a10: var(--lynk-color-emerald-a10);
+    --lynk-color-success-a25: var(--lynk-color-emerald-a25);
+    --lynk-color-success-a50: var(--lynk-color-emerald-a50);
+    --lynk-color-success-a75: var(--lynk-color-emerald-a75);
 
     --lynk-color-success-50: var(--lynk-color-emerald-50);
     --lynk-color-success-100: var(--lynk-color-emerald-100);
@@ -248,7 +278,12 @@ export default css`
     --lynk-color-success-900: var(--lynk-color-emerald-900);
     --lynk-color-success-950: var(--lynk-color-emerald-950);
 
-    --lynk-color-success: var(--lynk-color-success-500);
+    --lynk-color-success: var(--lynk-color-success-600);
+
+    --lynk-color-warning-a10: var(--lynk-color-amber-a10);
+    --lynk-color-warning-a25: var(--lynk-color-amber-a25);
+    --lynk-color-warning-a50: var(--lynk-color-amber-a50);
+    --lynk-color-warning-a75: var(--lynk-color-amber-a75);
 
     --lynk-color-warning-50: var(--lynk-color-amber-50);
     --lynk-color-warning-100: var(--lynk-color-amber-100);
@@ -262,7 +297,12 @@ export default css`
     --lynk-color-warning-900: var(--lynk-color-amber-900);
     --lynk-color-warning-950: var(--lynk-color-amber-950);
 
-    --lynk-color-warning: var(--lynk-color-warning-500);
+    --lynk-color-warning: var(--lynk-color-warning-600);
+
+    --lynk-color-danger-a10: var(--lynk-color-rose-a10);
+    --lynk-color-danger-a25: var(--lynk-color-rose-a25);
+    --lynk-color-danger-a50: var(--lynk-color-rose-a50);
+    --lynk-color-danger-a75: var(--lynk-color-rose-a75);
 
     --lynk-color-danger-50: var(--lynk-color-rose-50);
     --lynk-color-danger-100: var(--lynk-color-rose-100);
@@ -276,7 +316,7 @@ export default css`
     --lynk-color-danger-900: var(--lynk-color-rose-900);
     --lynk-color-danger-950: var(--lynk-color-rose-950);
 
-    --lynk-color-danger: var(--lynk-color-danger-500);
+    --lynk-color-danger: var(--lynk-color-danger-600);
 
     --lynk-color-neutral-50: var(--lynk-color-gray-50);
     --lynk-color-neutral-100: var(--lynk-color-gray-100);
@@ -290,7 +330,7 @@ export default css`
     --lynk-color-neutral-900: var(--lynk-color-gray-900);
     --lynk-color-neutral-950: var(--lynk-color-gray-950);
 
-    --lynk-color-neutral: var(--lynk-color-neutral-500);
+    --lynk-color-neutral: var(--lynk-color-neutral-600);
 
     --lynk-color-neutral-0: hsl(240 6% 10%);
     --lynk-color-neutral-1000: hsl(0 0% 95%);

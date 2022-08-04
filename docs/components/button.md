@@ -46,6 +46,18 @@ Use the `outline` attribute to draw outlined buttons with transparent background
 <lynk-button color="danger" outline>Danger</lynk-button>
 ```
 
+### Stealth Buttons
+
+Use the `stealth` attribute to create text buttons that share the same size and color as regular buttons but don't have backgrounds or borders.
+
+```html preview
+<lynk-button color="primary" stealth>Primary</lynk-button>
+<lynk-button color="success" stealth>Success</lynk-button>
+<lynk-button color="neutral" stealth>Neutral</lynk-button>
+<lynk-button color="warning" stealth>Warning</lynk-button>
+<lynk-button color="danger" stealth>Danger</lynk-button>
+```
+
 ### Pill Buttons
 
 Use the `pill` attribute to give buttons rounded edges.

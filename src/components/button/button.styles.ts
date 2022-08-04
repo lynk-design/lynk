@@ -92,21 +92,27 @@ export default css`
     color: var(--lynk-color-primary-700);
   }
 
+  .lynk-button--standard.lynk-button--default.lynk-button--checked:not(.lynk-button--disabled) {
+    background-color: var(--lynk-color-primary-600);
+    border-color: var(--lynk-color-primary-600);
+    color: var(--lynk-color-neutral-0);
+  }
+
   /* Primary */
   .lynk-button--standard.lynk-button--primary {
+    background-color: var(--lynk-color-primary-600);
+    border-color: var(--lynk-color-primary-600);
+    color: var(--lynk-color-neutral-0);
+  }
+
+  .lynk-button--standard.lynk-button--primary:hover:not(.lynk-button--disabled) {
     background-color: var(--lynk-color-primary-500);
     border-color: var(--lynk-color-primary-500);
     color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-button--standard.lynk-button--primary:hover:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-primary-400);
-    border-color: var(--lynk-color-primary-400);
-    color: var(--lynk-color-neutral-0);
-  }
-
   .lynk-button--standard.lynk-button--primary:active:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-primary-300);
+    background-color: var(--lynk-color-primary-400);
     border-color: var(--lynk-color-primary-400);
     color: var(--lynk-color-neutral-0);
   }
@@ -125,27 +131,27 @@ export default css`
   }
 
   .lynk-button--standard.lynk-button--success:active:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-success-600);
-    border-color: var(--lynk-color-success-600);
+    background-color: var(--lynk-color-success-400);
+    border-color: var(--lynk-color-success-400);
     color: var(--lynk-color-neutral-0);
   }
 
   /* Neutral */
   .lynk-button--standard.lynk-button--neutral {
-    background-color: var(--lynk-color-neutral-500);
-    border-color: var(--lynk-color-neutral-500);
+    background-color: var(--lynk-color-neutral-600);
+    border-color: var(--lynk-color-neutral-600);
     color: var(--lynk-color-neutral-0);
   }
 
   .lynk-button--standard.lynk-button--neutral:hover:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-neutral-400);
-    border-color: var(--lynk-color-neutral-400);
+    background-color: var(--lynk-color-neutral-500);
+    border-color: var(--lynk-color-neutral-500);
     color: var(--lynk-color-neutral-0);
   }
 
   .lynk-button--standard.lynk-button--neutral:active:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-neutral-500);
-    border-color: var(--lynk-color-neutral-500);
+    background-color: var(--lynk-color-neutral-400);
+    border-color: var(--lynk-color-neutral-400);
     color: var(--lynk-color-neutral-0);
   }
 
@@ -162,27 +168,27 @@ export default css`
   }
 
   .lynk-button--standard.lynk-button--warning:active:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-warning-600);
-    border-color: var(--lynk-color-warning-600);
+    background-color: var(--lynk-color-warning-400);
+    border-color: var(--lynk-color-warning-400);
     color: var(--lynk-color-neutral-0);
   }
 
   /* Danger */
   .lynk-button--standard.lynk-button--danger {
+    background-color: var(--lynk-color-danger-600);
+    border-color: var(--lynk-color-danger-600);
+    color: var(--lynk-color-neutral-0);
+  }
+
+  .lynk-button--standard.lynk-button--danger:hover:not(.lynk-button--disabled) {
     background-color: var(--lynk-color-danger-500);
     border-color: var(--lynk-color-danger-500);
     color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-button--standard.lynk-button--danger:hover:not(.lynk-button--disabled) {
+  .lynk-button--standard.lynk-button--danger:active:not(.lynk-button--disabled) {
     background-color: var(--lynk-color-danger-400);
     border-color: var(--lynk-color-danger-400);
-    color: var(--lynk-color-neutral-0);
-  }
-
-  .lynk-button--standard.lynk-button--danger:active:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-danger-600);
-    border-color: var(--lynk-color-danger-600);
     color: var(--lynk-color-neutral-0);
   }
 
@@ -227,8 +233,8 @@ export default css`
   }
 
   .lynk-button--outline.lynk-button--primary:active:not(.lynk-button--disabled) {
-    border-color: var(--lynk-color-primary-700);
-    background-color: var(--lynk-color-primary-700);
+    border-color: var(--lynk-color-primary-500);
+    background-color: var(--lynk-color-primary-500);
     color: var(--lynk-color-neutral-0);
   }
 
@@ -245,26 +251,26 @@ export default css`
   }
 
   .lynk-button--outline.lynk-button--success:active:not(.lynk-button--disabled) {
-    border-color: var(--lynk-color-success-700);
-    background-color: var(--lynk-color-success-700);
+    border-color: var(--lynk-color-success-500);
+    background-color: var(--lynk-color-success-500);
     color: var(--lynk-color-neutral-0);
   }
 
   /* Neutral */
   .lynk-button--outline.lynk-button--neutral {
-    border-color: var(--lynk-color-neutral-500);
-    color: var(--lynk-color-neutral-500);
+    border-color: var(--lynk-color-neutral-600);
+    color: var(--lynk-color-neutral-600);
   }
 
   .lynk-button--outline.lynk-button--neutral:hover:not(.lynk-button--disabled),
   .lynk-button--outline.lynk-button--neutral.lynk-button--checked:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-neutral-500);
+    background-color: var(--lynk-color-neutral-600);
     color: var(--lynk-color-neutral-0);
   }
 
   .lynk-button--outline.lynk-button--neutral:active:not(.lynk-button--disabled) {
-    border-color: var(--lynk-color-neutral-700);
-    background-color: var(--lynk-color-neutral-700);
+    border-color: var(--lynk-color-neutral-500);
+    background-color: var(--lynk-color-neutral-500);
     color: var(--lynk-color-neutral-0);
   }
 
@@ -281,56 +287,125 @@ export default css`
   }
 
   .lynk-button--outline.lynk-button--warning:active:not(.lynk-button--disabled) {
-    border-color: var(--lynk-color-warning-700);
-    background-color: var(--lynk-color-warning-700);
+    border-color: var(--lynk-color-warning-500);
+    background-color: var(--lynk-color-warning-500);
     color: var(--lynk-color-neutral-0);
   }
 
   /* Danger */
   .lynk-button--outline.lynk-button--danger {
-    border-color: var(--lynk-color-danger-500);
-    color: var(--lynk-color-danger-500);
+    border-color: var(--lynk-color-danger-600);
+    color: var(--lynk-color-danger-600);
   }
 
   .lynk-button--outline.lynk-button--danger:hover:not(.lynk-button--disabled),
   .lynk-button--outline.lynk-button--danger.lynk-button--checked:not(.lynk-button--disabled) {
-    background-color: var(--lynk-color-danger-500);
+    background-color: var(--lynk-color-danger-600);
     color: var(--lynk-color-neutral-0);
   }
 
   .lynk-button--outline.lynk-button--danger:active:not(.lynk-button--disabled) {
-    border-color: var(--lynk-color-danger-700);
-    background-color: var(--lynk-color-danger-700);
+    border-color: var(--lynk-color-danger-500);
+    background-color: var(--lynk-color-danger-500);
     color: var(--lynk-color-neutral-0);
   }
 
   /*
-   * Text buttons
+   * Stealth buttons
    */
 
-  .lynk-button--text {
-    background-color: transparent;
-    border-color: transparent;
-    color: var(--lynk-color-primary-600);
-  }
+   .lynk-button--stealth {
+     background: none;
+     border-color: transparent;
+   }
 
-  .lynk-button--text:hover:not(.lynk-button--disabled) {
-    background-color: transparent;
-    border-color: transparent;
-    color: var(--lynk-color-primary-500);
-  }
+   /* Default */
+   .lynk-button--stealth.lynk-button--default {
+     color: var(--lynk-color-primary-600);
+   }
 
-  .lynk-button--text:focus-visible:not(.lynk-button--disabled) {
-    background-color: transparent;
-    border-color: transparent;
-    color: var(--lynk-color-primary-500);
-  }
+   .lynk-button--stealth.lynk-button--default:hover:not(.lynk-button--disabled) {
+     color: var(--lynk-color-primary-500);
+   }
 
-  .lynk-button--text:active:not(.lynk-button--disabled) {
-    background-color: transparent;
-    border-color: transparent;
-    color: var(--lynk-color-primary-700);
-  }
+   .lynk-button--stealth.lynk-button--default:active:not(.lynk-button--disabled) {
+     color: var(--lynk-color-neutral-0);
+   }
+
+   /* Primary */
+   .lynk-button--stealth.lynk-button--primary {
+     color: var(--lynk-color-primary-600);
+   }
+
+   .lynk-button--stealth.lynk-button--primary:hover:not(.lynk-button--disabled) {
+     color: var(--lynk-color-primary-600);
+     background-color: var(--lynk-color-primary-a25);
+   }
+
+   .lynk-button--stealth.lynk-button--primary:active:not(.lynk-button--disabled) {
+     color: var(--lynk-color-primary-700);
+     background-color: var(--lynk-color-primary-a50);
+   }
+
+   /* Success */
+   .lynk-button--stealth.lynk-button--success {
+     color: var(--lynk-color-success-600);
+   }
+
+   .lynk-button--stealth.lynk-button--success:hover:not(.lynk-button--disabled) {
+     color: var(--lynk-color-success-600);
+     background-color: var(--lynk-color-success-a10);
+   }
+
+   .lynk-button--stealth.lynk-button--success:active:not(.lynk-button--disabled) {
+     color: var(--lynk-color-success-700);
+     background-color: var(--lynk-color-success-a25);
+   }
+
+   /* Neutral */
+   .lynk-button--stealth.lynk-button--neutral {
+     color: var(--lynk-color-neutral-600);
+   }
+
+   .lynk-button--stealth.lynk-button--neutral:hover:not(.lynk-button--disabled) {
+     color: var(--lynk-color-neutral-600);
+     background-color: var(--lynk-color-neutral-50);
+   }
+
+   .lynk-button--stealth.lynk-button--neutral:active:not(.lynk-button--disabled) {
+     color: var(--lynk-color-neutral-700);
+     background-color: var(--lynk-color-neutral-100);
+   }
+
+   /* Warning */
+   .lynk-button--stealth.lynk-button--warning {
+     color: var(--lynk-color-warning-600);
+   }
+
+   .lynk-button--stealth.lynk-button--warning:hover:not(.lynk-button--disabled) {
+     color: var(--lynk-color-warning-600);
+     background-color: var(--lynk-color-warning-a10);
+   }
+
+   .lynk-button--stealth.lynk-button--warning:active:not(.lynk-button--disabled) {
+     color: var(--lynk-color-warning-700);
+     background-color: var(--lynk-color-warning-a25);
+   }
+
+   /* Danger */
+   .lynk-button--stealth.lynk-button--danger {
+     color: var(--lynk-color-danger-600);
+   }
+
+   .lynk-button--stealth.lynk-button--danger:hover:not(.lynk-button--disabled) {
+     color: var(--lynk-color-danger-600);
+     background-color: var(--lynk-color-danger-a10);
+   }
+
+   .lynk-button--stealth.lynk-button--danger:active:not(.lynk-button--disabled) {
+     color: var(--lynk-color-danger-700);
+     background-color: var(--lynk-color-danger-a25);
+   }
 
   /*
    * Size modifiers

@@ -4,6 +4,256 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "src/components/alert/alert.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkAlert",
+          "cssProperties": [
+            {
+              "description": "The alert's box shadow.",
+              "name": "--box-shadow"
+            },
+            {
+              "description": "The top and bottom padding of the message. Use any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--padding"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "The component's internal block wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The container that wraps the alert icon.",
+              "name": "icon"
+            },
+            {
+              "description": "The alert message.",
+              "name": "message"
+            },
+            {
+              "description": "The close button.",
+              "name": "close-button"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The alert's content.",
+              "name": ""
+            },
+            {
+              "description": "An icon to show in the alert.",
+              "name": "icon"
+            },
+            {
+              "description": "Append custom actions to alert.",
+              "name": "action"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "autoHideTimeout",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "hasSlotController",
+              "privacy": "private",
+              "default": "new HasSlotController(this, 'icon', 'action')"
+            },
+            {
+              "kind": "field",
+              "name": "base",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the alert is open. You can use this in lieu of the show/hide methods.",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "closable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the alert closable.",
+              "attribute": "closable",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'info' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The alert's type (color).",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "default": "Infinity",
+              "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
+              "attribute": "duration"
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the alert."
+            },
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the alert"
+            },
+            {
+              "kind": "method",
+              "name": "toast",
+              "description": "Displays the alert as a toast notification. This will move the alert out of its position in the DOM and, when\ndismissed, it will be removed from the DOM completely. By storing a reference to the alert, you can reuse it by\ncalling this method again. The returned promise will resolve after the alert is hidden."
+            },
+            {
+              "kind": "method",
+              "name": "restartAutoHide"
+            },
+            {
+              "kind": "method",
+              "name": "handleCloseClick"
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseMove"
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenChange"
+            },
+            {
+              "kind": "method",
+              "name": "handleDurationChange"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the alert opens.",
+              "name": "on:show",
+              "reactName": "onOnShow"
+            },
+            {
+              "description": "Emitted after the alert opens and all animations are complete.",
+              "name": "after:show",
+              "reactName": "onAfterShow"
+            },
+            {
+              "description": "Emitted when the alert closes.",
+              "name": "on:hide",
+              "reactName": "onOnHide"
+            },
+            {
+              "description": "Emitted after the alert closes and all animations are complete.",
+              "name": "after:hide",
+              "reactName": "onAfterHide"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the alert is open. You can use this in lieu of the show/hide methods.",
+              "fieldName": "open"
+            },
+            {
+              "name": "closable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the alert closable.",
+              "fieldName": "closable"
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'info' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The alert's type (color).",
+              "fieldName": "type"
+            },
+            {
+              "name": "duration",
+              "default": "Infinity",
+              "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
+              "resolveInitializer": {
+                "module": "src/components/alert/alert.ts"
+              },
+              "fieldName": "duration"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "dependencies": [
+            "lynk-icon-button"
+          ],
+          "animations": [
+            {
+              "name": "alert.show",
+              "description": "The animation to use when showing the alert."
+            },
+            {
+              "name": "alert.hide",
+              "description": "The animation to use when hiding the alert."
+            }
+          ],
+          "tagName": "lynk-alert",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkAlert",
+            "module": "src/components/alert/alert.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-alert",
+          "declaration": {
+            "name": "LynkAlert",
+            "module": "src/components/alert/alert.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/accordion/accordion.ts",
       "declarations": [
         {
@@ -214,252 +464,6 @@
           "declaration": {
             "name": "LynkAccordion",
             "module": "src/components/accordion/accordion.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/alert/alert.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkAlert",
-          "cssProperties": [
-            {
-              "description": "The alert's box shadow.",
-              "name": "--box-shadow"
-            },
-            {
-              "description": "The top and bottom padding of the message. Use any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "-[--padding=--lynk-spacing-large]"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "The component's internal block wrapper.",
-              "name": "base"
-            },
-            {
-              "description": "The container that wraps the alert icon.",
-              "name": "icon"
-            },
-            {
-              "description": "The alert message.",
-              "name": "message"
-            },
-            {
-              "description": "The close button.",
-              "name": "close-button"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The alert's content.",
-              "name": ""
-            },
-            {
-              "description": "An icon to show in the alert.",
-              "name": "icon"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "autoHideTimeout",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "hasSlotController",
-              "privacy": "private",
-              "default": "new HasSlotController(this, 'icon', 'suffix')"
-            },
-            {
-              "kind": "field",
-              "name": "base",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the alert is open. You can use this in lieu of the show/hide methods.",
-              "attribute": "open",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "closable",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the alert closable.",
-              "attribute": "closable",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The alert's type (color).",
-              "attribute": "type",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "duration",
-              "default": "Infinity",
-              "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
-              "attribute": "duration"
-            },
-            {
-              "kind": "method",
-              "name": "show",
-              "description": "Shows the alert."
-            },
-            {
-              "kind": "method",
-              "name": "hide",
-              "description": "Hides the alert"
-            },
-            {
-              "kind": "method",
-              "name": "toast",
-              "description": "Displays the alert as a toast notification. This will move the alert out of its position in the DOM and, when\ndismissed, it will be removed from the DOM completely. By storing a reference to the alert, you can reuse it by\ncalling this method again. The returned promise will resolve after the alert is hidden."
-            },
-            {
-              "kind": "method",
-              "name": "restartAutoHide"
-            },
-            {
-              "kind": "method",
-              "name": "handleCloseClick"
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseMove"
-            },
-            {
-              "kind": "method",
-              "name": "handleOpenChange"
-            },
-            {
-              "kind": "method",
-              "name": "handleDurationChange"
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the alert opens.",
-              "name": "on:show",
-              "reactName": "onOnShow"
-            },
-            {
-              "description": "Emitted after the alert opens and all animations are complete.",
-              "name": "after:show",
-              "reactName": "onAfterShow"
-            },
-            {
-              "description": "Emitted when the alert closes.",
-              "name": "on:hide",
-              "reactName": "onOnHide"
-            },
-            {
-              "description": "Emitted after the alert closes and all animations are complete.",
-              "name": "after:hide",
-              "reactName": "onAfterHide"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the alert is open. You can use this in lieu of the show/hide methods.",
-              "fieldName": "open"
-            },
-            {
-              "name": "closable",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the alert closable.",
-              "fieldName": "closable"
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The alert's type (color).",
-              "fieldName": "type"
-            },
-            {
-              "name": "duration",
-              "default": "Infinity",
-              "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
-              "resolveInitializer": {
-                "module": "src/components/alert/alert.ts"
-              },
-              "fieldName": "duration"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "dependencies": [
-            "lynk-icon-button"
-          ],
-          "animations": [
-            {
-              "name": "alert.show",
-              "description": "The animation to use when showing the alert."
-            },
-            {
-              "name": "alert.hide",
-              "description": "The animation to use when hiding the alert."
-            }
-          ],
-          "tagName": "lynk-alert",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkAlert",
-            "module": "src/components/alert/alert.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-alert",
-          "declaration": {
-            "name": "LynkAlert",
-            "module": "src/components/alert/alert.ts"
           }
         }
       ]
@@ -1073,6 +1077,721 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/button/button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkButton",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The prefix slot's container.",
+              "name": "prefix"
+            },
+            {
+              "description": "The button's label.",
+              "name": "label"
+            },
+            {
+              "description": "The suffix slot's container.",
+              "name": "suffix"
+            },
+            {
+              "description": "The button's caret.",
+              "name": "caret"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The button's label.",
+              "name": ""
+            },
+            {
+              "description": "Used to prepend an icon or similar element to the button.",
+              "name": "prefix"
+            },
+            {
+              "description": "Used to append an icon or similar element to the button.",
+              "name": "suffix"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "button",
+              "type": {
+                "text": "HTMLButtonElement | HTMLLinkElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "formSubmitController",
+              "privacy": "private",
+              "default": "new FormSubmitController(this, {\n    form: (input: HTMLInputElement) => {\n      // Buttons support a form attribute that points to an arbitrary form, so if this attribute it set we need to query\n      // the form from the same root using its id\n      if (input.hasAttribute('form')) {\n        const doc = input.getRootNode() as Document | ShadowRoot;\n        const formId = input.getAttribute('form')!;\n        return doc.getElementById(formId) as HTMLFormElement;\n      }\n\n      // Fall back to the closest containing form\n      return input.closest('form');\n    }\n  })"
+            },
+            {
+              "kind": "field",
+              "name": "hasSlotController",
+              "privacy": "private",
+              "default": "new HasSlotController(this, '[default]', 'prefix', 'suffix')"
+            },
+            {
+              "kind": "field",
+              "name": "localize",
+              "privacy": "private",
+              "default": "new LocalizeController(this)"
+            },
+            {
+              "kind": "field",
+              "name": "hasFocus",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "color",
+              "type": {
+                "text": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'default'",
+              "description": "The button's color.",
+              "attribute": "color",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "'small' | 'medium' | 'large'"
+              },
+              "default": "'medium'",
+              "description": "The button's size.",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Display the button component as a block instead of inline-block.",
+              "attribute": "block",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "caret",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the button with a caret for use with dropdowns, popovers, etc.",
+              "attribute": "caret",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the button.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "thinking",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the button in a thinking state.",
+              "attribute": "thinking",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "outline",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an outlined button.",
+              "attribute": "outline",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "stealth",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an button without borders and background.",
+              "attribute": "stealth",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style button with rounded edges.",
+              "attribute": "pill",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "circle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an icon only circle button.",
+              "attribute": "circle",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "square",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an icon only square button.",
+              "attribute": "square",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'button' | 'submit'"
+              },
+              "default": "'button'",
+              "description": "The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default\nvalue is `button` instead of `submit`, which is opposite of how native `<button>` elements behave.",
+              "attribute": "type"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional name for the button. Ignored when `href` is set.",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional value for the button. Ignored when `href` is set.",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
+              "attribute": "href"
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+              },
+              "description": "Tells the browser where to open the link. Only used when `href` is set.",
+              "attribute": "target"
+            },
+            {
+              "kind": "field",
+              "name": "download",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
+              "attribute": "download"
+            },
+            {
+              "kind": "field",
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "description": "The \"form owner\" to associate the button with. If omitted, the closest containing form will be used instead. The\nvalue of this attribute must be an id of a form in the same document or shadow root as the button.",
+              "attribute": "form"
+            },
+            {
+              "kind": "field",
+              "name": "formAction",
+              "type": {
+                "text": "string"
+              },
+              "description": "Used to override the form owner's `action` attribute.",
+              "attribute": "formaction"
+            },
+            {
+              "kind": "field",
+              "name": "formMethod",
+              "type": {
+                "text": "'post' | 'get'"
+              },
+              "description": "Used to override the form owner's `method` attribute.",
+              "attribute": "formmethod"
+            },
+            {
+              "kind": "field",
+              "name": "formNoValidate",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Used to override the form owner's `novalidate` attribute.",
+              "attribute": "formnovalidate"
+            },
+            {
+              "kind": "field",
+              "name": "formTarget",
+              "type": {
+                "text": "'_self' | '_blank' | '_parent' | '_top' | string"
+              },
+              "description": "Used to override the form owner's `target` attribute.",
+              "attribute": "formtarget"
+            },
+            {
+              "kind": "method",
+              "name": "click",
+              "description": "Simulates a click on the button."
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ],
+              "description": "Sets focus on the button."
+            },
+            {
+              "kind": "method",
+              "name": "blur",
+              "description": "Removes focus from the button."
+            },
+            {
+              "kind": "method",
+              "name": "handleBlur"
+            },
+            {
+              "kind": "method",
+              "name": "handleFocus"
+            },
+            {
+              "kind": "method",
+              "name": "handleClick",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the button loses focus.",
+              "name": "on:blur",
+              "reactName": "onOnBlur"
+            },
+            {
+              "description": "Emitted when the button is clicked.",
+              "name": "on:click",
+              "reactName": "onOnClick"
+            },
+            {
+              "description": "Emitted when the button gains focus.",
+              "name": "on:focus",
+              "reactName": "onOnFocus"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "color",
+              "type": {
+                "text": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'default'",
+              "description": "The button's color.",
+              "fieldName": "color"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "'small' | 'medium' | 'large'"
+              },
+              "default": "'medium'",
+              "description": "The button's size.",
+              "fieldName": "size"
+            },
+            {
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Display the button component as a block instead of inline-block.",
+              "fieldName": "block"
+            },
+            {
+              "name": "caret",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the button with a caret for use with dropdowns, popovers, etc.",
+              "fieldName": "caret"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the button.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "thinking",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the button in a thinking state.",
+              "fieldName": "thinking"
+            },
+            {
+              "name": "outline",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an outlined button.",
+              "fieldName": "outline"
+            },
+            {
+              "name": "stealth",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an button without borders and background.",
+              "fieldName": "stealth"
+            },
+            {
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style button with rounded edges.",
+              "fieldName": "pill"
+            },
+            {
+              "name": "circle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an icon only circle button.",
+              "fieldName": "circle"
+            },
+            {
+              "name": "square",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws an icon only square button.",
+              "fieldName": "square"
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "'button' | 'submit'"
+              },
+              "default": "'button'",
+              "description": "The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default\nvalue is `button` instead of `submit`, which is opposite of how native `<button>` elements behave.",
+              "fieldName": "type"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional name for the button. Ignored when `href` is set.",
+              "fieldName": "name"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional value for the button. Ignored when `href` is set.",
+              "fieldName": "value"
+            },
+            {
+              "name": "href",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
+              "fieldName": "href"
+            },
+            {
+              "name": "target",
+              "type": {
+                "text": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+              },
+              "description": "Tells the browser where to open the link. Only used when `href` is set.",
+              "fieldName": "target"
+            },
+            {
+              "name": "download",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
+              "fieldName": "download"
+            },
+            {
+              "name": "form",
+              "type": {
+                "text": "string"
+              },
+              "description": "The \"form owner\" to associate the button with. If omitted, the closest containing form will be used instead. The\nvalue of this attribute must be an id of a form in the same document or shadow root as the button.",
+              "fieldName": "form"
+            },
+            {
+              "name": "formaction",
+              "type": {
+                "text": "string"
+              },
+              "description": "Used to override the form owner's `action` attribute.",
+              "fieldName": "formAction"
+            },
+            {
+              "name": "formmethod",
+              "type": {
+                "text": "'post' | 'get'"
+              },
+              "description": "Used to override the form owner's `method` attribute.",
+              "fieldName": "formMethod"
+            },
+            {
+              "name": "formnovalidate",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Used to override the form owner's `novalidate` attribute.",
+              "fieldName": "formNoValidate"
+            },
+            {
+              "name": "formtarget",
+              "type": {
+                "text": "'_self' | '_blank' | '_parent' | '_top' | string"
+              },
+              "description": "Used to override the form owner's `target` attribute.",
+              "fieldName": "formTarget"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "dependencies": [
+            "lynk-spinner"
+          ],
+          "tagName": "lynk-button",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkButton",
+            "module": "src/components/button/button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-button",
+          "declaration": {
+            "name": "LynkButton",
+            "module": "src/components/button/button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button-group/button-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkButtonGroup",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "One or more `<lynk-button>` elements to display in the button group.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "defaultSlot",
+              "type": {
+                "text": "HTMLSlotElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "attribute": "label"
+            },
+            {
+              "kind": "method",
+              "name": "handleFocus",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleBlur",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseOver",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseOut",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleSlotChange"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "fieldName": "label"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-button-group",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-button-group",
+          "declaration": {
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/checkbox/checkbox.ts",
       "declarations": [
         {
@@ -1371,137 +2090,6 @@
           "declaration": {
             "name": "LynkCheckbox",
             "module": "src/components/checkbox/checkbox.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/button-group/button-group.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkButtonGroup",
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "One or more `<lynk-button>` elements to display in the button group.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "defaultSlot",
-              "type": {
-                "text": "HTMLSlotElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "attribute": "label"
-            },
-            {
-              "kind": "method",
-              "name": "handleFocus",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleBlur",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseOver",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseOut",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleSlotChange"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "fieldName": "label"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-button-group",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-button-group",
-          "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
           }
         }
       ]
@@ -1821,570 +2409,6 @@
           "declaration": {
             "name": "LynkDialog",
             "module": "src/components/dialog/dialog.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/button/button.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkButton",
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            },
-            {
-              "description": "The prefix slot's container.",
-              "name": "prefix"
-            },
-            {
-              "description": "The button's label.",
-              "name": "label"
-            },
-            {
-              "description": "The suffix slot's container.",
-              "name": "suffix"
-            },
-            {
-              "description": "The button's caret.",
-              "name": "caret"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The button's label.",
-              "name": ""
-            },
-            {
-              "description": "Used to prepend an icon or similar element to the button.",
-              "name": "prefix"
-            },
-            {
-              "description": "Used to append an icon or similar element to the button.",
-              "name": "suffix"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "button",
-              "type": {
-                "text": "HTMLButtonElement | HTMLLinkElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "formSubmitController",
-              "privacy": "private",
-              "default": "new FormSubmitController(this, {\n    form: (input: HTMLInputElement) => {\n      // Buttons support a form attribute that points to an arbitrary form, so if this attribute it set we need to query\n      // the form from the same root using its id\n      if (input.hasAttribute('form')) {\n        const doc = input.getRootNode() as Document | ShadowRoot;\n        const formId = input.getAttribute('form')!;\n        return doc.getElementById(formId) as HTMLFormElement;\n      }\n\n      // Fall back to the closest containing form\n      return input.closest('form');\n    }\n  })"
-            },
-            {
-              "kind": "field",
-              "name": "hasSlotController",
-              "privacy": "private",
-              "default": "new HasSlotController(this, '[default]', 'prefix', 'suffix')"
-            },
-            {
-              "kind": "field",
-              "name": "localize",
-              "privacy": "private",
-              "default": "new LocalizeController(this)"
-            },
-            {
-              "kind": "field",
-              "name": "hasFocus",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "color",
-              "type": {
-                "text": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'"
-              },
-              "default": "'default'",
-              "description": "The button's color.",
-              "attribute": "color",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "'small' | 'medium' | 'large'"
-              },
-              "default": "'medium'",
-              "description": "The button's size.",
-              "attribute": "size",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "block",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Display the button component as a block instead of inline-block.",
-              "attribute": "block",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "caret",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the button with a caret for use with dropdowns, popovers, etc.",
-              "attribute": "caret",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the button.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "thinking",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the button in a thinking state.",
-              "attribute": "thinking",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "outline",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an outlined button.",
-              "attribute": "outline",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style button with rounded edges.",
-              "attribute": "pill",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "circle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an icon only circle button.",
-              "attribute": "circle",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "square",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an icon only square button.",
-              "attribute": "square",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'button' | 'submit'"
-              },
-              "default": "'button'",
-              "description": "The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default\nvalue is `button` instead of `submit`, which is opposite of how native `<button>` elements behave.",
-              "attribute": "type"
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An optional name for the button. Ignored when `href` is set.",
-              "attribute": "name"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An optional value for the button. Ignored when `href` is set.",
-              "attribute": "value"
-            },
-            {
-              "kind": "field",
-              "name": "href",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
-              "attribute": "href"
-            },
-            {
-              "kind": "field",
-              "name": "target",
-              "type": {
-                "text": "'_blank' | '_parent' | '_self' | '_top' | undefined"
-              },
-              "description": "Tells the browser where to open the link. Only used when `href` is set.",
-              "attribute": "target"
-            },
-            {
-              "kind": "field",
-              "name": "download",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
-              "attribute": "download"
-            },
-            {
-              "kind": "field",
-              "name": "form",
-              "type": {
-                "text": "string"
-              },
-              "description": "The \"form owner\" to associate the button with. If omitted, the closest containing form will be used instead. The\nvalue of this attribute must be an id of a form in the same document or shadow root as the button.",
-              "attribute": "form"
-            },
-            {
-              "kind": "field",
-              "name": "formAction",
-              "type": {
-                "text": "string"
-              },
-              "description": "Used to override the form owner's `action` attribute.",
-              "attribute": "formaction"
-            },
-            {
-              "kind": "field",
-              "name": "formMethod",
-              "type": {
-                "text": "'post' | 'get'"
-              },
-              "description": "Used to override the form owner's `method` attribute.",
-              "attribute": "formmethod"
-            },
-            {
-              "kind": "field",
-              "name": "formNoValidate",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Used to override the form owner's `novalidate` attribute.",
-              "attribute": "formnovalidate"
-            },
-            {
-              "kind": "field",
-              "name": "formTarget",
-              "type": {
-                "text": "'_self' | '_blank' | '_parent' | '_top' | string"
-              },
-              "description": "Used to override the form owner's `target` attribute.",
-              "attribute": "formtarget"
-            },
-            {
-              "kind": "method",
-              "name": "click",
-              "description": "Simulates a click on the button."
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ],
-              "description": "Sets focus on the button."
-            },
-            {
-              "kind": "method",
-              "name": "blur",
-              "description": "Removes focus from the button."
-            },
-            {
-              "kind": "method",
-              "name": "handleBlur"
-            },
-            {
-              "kind": "method",
-              "name": "handleFocus"
-            },
-            {
-              "kind": "method",
-              "name": "handleClick",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "MouseEvent"
-                  }
-                }
-              ]
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the button loses focus.",
-              "name": "on:blur",
-              "reactName": "onOnBlur"
-            },
-            {
-              "description": "Emitted when the button is clicked.",
-              "name": "on:click",
-              "reactName": "onOnClick"
-            },
-            {
-              "description": "Emitted when the button gains focus.",
-              "name": "on:focus",
-              "reactName": "onOnFocus"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "color",
-              "type": {
-                "text": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'"
-              },
-              "default": "'default'",
-              "description": "The button's color.",
-              "fieldName": "color"
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "'small' | 'medium' | 'large'"
-              },
-              "default": "'medium'",
-              "description": "The button's size.",
-              "fieldName": "size"
-            },
-            {
-              "name": "block",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Display the button component as a block instead of inline-block.",
-              "fieldName": "block"
-            },
-            {
-              "name": "caret",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the button with a caret for use with dropdowns, popovers, etc.",
-              "fieldName": "caret"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the button.",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "thinking",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the button in a thinking state.",
-              "fieldName": "thinking"
-            },
-            {
-              "name": "outline",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an outlined button.",
-              "fieldName": "outline"
-            },
-            {
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style button with rounded edges.",
-              "fieldName": "pill"
-            },
-            {
-              "name": "circle",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an icon only circle button.",
-              "fieldName": "circle"
-            },
-            {
-              "name": "square",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws an icon only square button.",
-              "fieldName": "square"
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "'button' | 'submit'"
-              },
-              "default": "'button'",
-              "description": "The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default\nvalue is `button` instead of `submit`, which is opposite of how native `<button>` elements behave.",
-              "fieldName": "type"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An optional name for the button. Ignored when `href` is set.",
-              "fieldName": "name"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An optional value for the button. Ignored when `href` is set.",
-              "fieldName": "value"
-            },
-            {
-              "name": "href",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
-              "fieldName": "href"
-            },
-            {
-              "name": "target",
-              "type": {
-                "text": "'_blank' | '_parent' | '_self' | '_top' | undefined"
-              },
-              "description": "Tells the browser where to open the link. Only used when `href` is set.",
-              "fieldName": "target"
-            },
-            {
-              "name": "download",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
-              "fieldName": "download"
-            },
-            {
-              "name": "form",
-              "type": {
-                "text": "string"
-              },
-              "description": "The \"form owner\" to associate the button with. If omitted, the closest containing form will be used instead. The\nvalue of this attribute must be an id of a form in the same document or shadow root as the button.",
-              "fieldName": "form"
-            },
-            {
-              "name": "formaction",
-              "type": {
-                "text": "string"
-              },
-              "description": "Used to override the form owner's `action` attribute.",
-              "fieldName": "formAction"
-            },
-            {
-              "name": "formmethod",
-              "type": {
-                "text": "'post' | 'get'"
-              },
-              "description": "Used to override the form owner's `method` attribute.",
-              "fieldName": "formMethod"
-            },
-            {
-              "name": "formnovalidate",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Used to override the form owner's `novalidate` attribute.",
-              "fieldName": "formNoValidate"
-            },
-            {
-              "name": "formtarget",
-              "type": {
-                "text": "'_self' | '_blank' | '_parent' | '_top' | string"
-              },
-              "description": "Used to override the form owner's `target` attribute.",
-              "fieldName": "formTarget"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "dependencies": [
-            "lynk-spinner"
-          ],
-          "tagName": "lynk-button",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkButton",
-            "module": "src/components/button/button.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-button",
-          "declaration": {
-            "name": "LynkButton",
-            "module": "src/components/button/button.ts"
           }
         }
       ]

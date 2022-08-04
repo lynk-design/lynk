@@ -1,6 +1,6 @@
 # Color Tokens
 
-Color tokens help maintain consistent use of color throughout your app. Lynk provides palettes for theme colors and primitives that you can use as a foundation for your design system.
+Color tokens help maintain consistent use of color throughout your app. Lynk's color language functions around having one primary color that is used for positive actions and major affordances, while themed state colors and neutrals help create a clean minimalist hierarchy. Primitives should only be used to expand the color language hierarchy when necessary.
 
 Color tokens are referenced using the `--lynk-color-{name}-{n}` CSS custom property, where `{name}` is the name of the palette and `{n}` is the numeric value of the desired swatch.
 

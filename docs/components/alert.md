@@ -5,21 +5,20 @@
 Alerts are used to display important messages inline or as toast notifications.
 
 ```html preview
-<lynk-alert open>
-  <lynk-icon slot="icon" name="info-circle"></lynk-icon>
+<lynk-alert type="info" open>
   This is a standard alert. Add the <code>open</code> attribute to make it visible.
 </lynk-alert>
+
 ```
 
 ## Examples
 
 ### Types
 
-Set the `type` attribute to change the alert's color.
+Set the `type` attribute to change the alert's color and default icon.
 
 ```html preview
-<lynk-alert type="primary" open>
-  <lynk-icon slot="icon" name="info-circle"></lynk-icon>
+<lynk-alert type="info" open>
   <strong>This is super informative</strong><br />
   You can tell by how pretty the alert is.
 </lynk-alert>
@@ -27,7 +26,6 @@ Set the `type` attribute to change the alert's color.
 <br />
 
 <lynk-alert type="success" open>
-  <lynk-icon slot="icon" name="check2-circle"></lynk-icon>
   <strong>Your changes have been saved</strong><br />
   You can safely exit the app now.
 </lynk-alert>
@@ -35,7 +33,6 @@ Set the `type` attribute to change the alert's color.
 <br />
 
 <lynk-alert type="neutral" open>
-  <lynk-icon slot="icon" name="gear"></lynk-icon>
   <strong>Your settings have been updated</strong><br />
   Settings will take affect on next login.
 </lynk-alert>
@@ -43,7 +40,6 @@ Set the `type` attribute to change the alert's color.
 <br />
 
 <lynk-alert type="warning" open>
-  <lynk-icon slot="icon" name="exclamation-triangle"></lynk-icon>
   <strong>Your session has ended</strong><br />
   Please login again to continue.
 </lynk-alert>
@@ -51,7 +47,6 @@ Set the `type` attribute to change the alert's color.
 <br />
 
 <lynk-alert type="danger" open>
-  <lynk-icon slot="icon" name="exclamation-octagon"></lynk-icon>
   <strong>Your account has been deleted</strong><br />
   We're very sorry to see you go!
 </lynk-alert>
@@ -75,12 +70,37 @@ Add the `closable` attribute to show a close button that will hide the alert.
 </script>
 ```
 
-### Sans Icon
+### Custom Alert Actions
 
-Icons are optional. Simply omit the `icon` slot if you don't want them.
+Use the `actions` slot to append custom actions to an alert.
 
 ```html preview
-<lynk-alert type="primary" open> Nothing fancy here, just a simple alert. </lynk-alert>
+<lynk-alert type="danger" open>
+  <lynk-button size="small" color="danger" outline slot="action">Revert</lynk-button>
+  You just deleted everything!
+</lynk-alert>
+
+<script>
+  const alert = document.querySelector('.alert-closable');
+  alert.addEventListener('after:hide', () => {
+    setTimeout(() => (alert.open = true), 2000);
+  });
+</script>
+```
+
+### Customizing Icons
+
+Icons can be customized using the `icon` slot, or removed by omitting the `type` property.
+
+```html preview
+<lynk-alert open>
+  <lynk-icon slot="icon" name="gear"></lynk-icon>
+  This alert is using a custom gear icon!
+</lynk-alert>
+<br>
+<lynk-alert open>
+  This alert doesn't have any icon at all!
+</lynk-alert>
 ```
 
 ### Duration

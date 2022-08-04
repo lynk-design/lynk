@@ -19,6 +19,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'ly
  *
  * @slot - The alert's content.
  * @slot icon - An icon to show in the alert.
+ * @slot action - Append custom actions to alert.
  *
  * @event on:show - Emitted when the alert opens.
  * @event after:show - Emitted after the alert opens and all animations are complete.
@@ -31,7 +32,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'ly
  * @csspart close-button - The close button.
  *
  * @cssproperty --box-shadow - The alert's box shadow.
- * @cssproperty -[--padding=--lynk-spacing-large] - The top and bottom padding of the message. Use any spacing token (--lynk-spacing-large) or a custom value.
+ * @cssproperty --padding - The top and bottom padding of the message. Use any spacing token (--lynk-spacing-large) or a custom value.
  *
  * @animation alert.show - The animation to use when showing the alert.
  * @animation alert.hide - The animation to use when hiding the alert.
@@ -42,7 +43,7 @@ export default class LynkAlert extends LitElement {
   static styles = styles;
 
   private autoHideTimeout: number;
-  private readonly hasSlotController = new HasSlotController(this, 'icon', 'suffix');
+  private readonly hasSlotController = new HasSlotController(this, 'icon', 'action');
 
   @query('[part="base"]') base: HTMLElement;
 
@@ -53,7 +54,7 @@ export default class LynkAlert extends LitElement {
   @property({ type: Boolean, reflect: true }) closable = false;
 
   /** The alert's type (color). */
-  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+  @property({ reflect: true }) type: 'primary' | 'info' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
 
   /**
    * The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with
@@ -180,8 +181,14 @@ export default class LynkAlert extends LitElement {
           'lynk-alert': true,
           'lynk-alert--open': this.open,
           'lynk-alert--closable': this.closable,
-          'lynk-alert--has-icon': this.hasSlotController.test('icon'),
-          'lynk-alert--primary': this.type === 'primary',
+          'lynk-alert--has-icon':
+            this.hasSlotController.test('icon')
+            || this.type === 'info'
+            || this.type === 'neutral'
+            || this.type === 'success'
+            || this.type === 'warning'
+            || this.type === 'danger',
+          'lynk-alert--primary': this.type === 'primary' || this.type === 'info',
           'lynk-alert--success': this.type === 'success',
           'lynk-alert--neutral': this.type === 'neutral',
           'lynk-alert--warning': this.type === 'warning',
@@ -194,12 +201,33 @@ export default class LynkAlert extends LitElement {
         @mousemove=${this.handleMouseMove}
       >
         <span part="icon" class="lynk-alert__icon">
-          <slot name="icon"></slot>
+          <slot name="icon">
+            ${this.type
+              ? html`
+                <lynk-icon
+                  name="${
+                    this.type === 'info' ? 'info-circle' :
+                    this.type === 'neutral' ? 'bell' :
+                    this.type === 'success' ? 'check2-circle' :
+                    this.type === 'warning' ? 'exclamation-triangle' :
+                    this.type === 'danger' ? 'exclamation-octagon' :
+                    ''
+                  }"
+                ></lynk-icon>
+              ` : ''}
+          </slot>
         </span>
 
         <span part="message" class="lynk-alert__message">
           <slot></slot>
         </span>
+
+        ${this.hasSlotController.test('action')
+          ? html`
+            <span part="action" class="lynk-alert__action">
+              <slot name="action"></slot>
+            </span>
+          ` : ''}
 
         ${this.closable
           ? html`

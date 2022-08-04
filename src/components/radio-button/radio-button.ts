@@ -141,6 +141,7 @@ export default class LynkRadioButton extends LitElement {
           part="button"
           class=${classMap({
             'lynk-button': true,
+            'lynk-button--standard': true,
             'lynk-button--default': true,
             'lynk-button--small': this.size === 'small',
             'lynk-button--medium': this.size === 'medium',
@@ -148,7 +149,6 @@ export default class LynkRadioButton extends LitElement {
             'lynk-button--checked': this.checked,
             'lynk-button--disabled': this.disabled,
             'lynk-button--focused': this.hasFocus,
-            'lynk-button--outline': true,
             'lynk-button--pill': this.pill,
             'lynk-button--has-label': this.hasSlotController.test('[default]'),
             'lynk-button--has-prefix': this.hasSlotController.test('prefix'),

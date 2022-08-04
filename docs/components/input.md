@@ -177,9 +177,9 @@ Use the `prefix` and `suffix` slots to add icons.
 </lynk-input>
 ```
 
-### Using the Default Slot for Custom Controls
+### Using the Action Slot for Custom Button Controls
 
-Use the default slot to append a button next to the input.
+Use the `action` slot to append a button next to the input. Alternatively, the `prefix` and `suffix` slots can be used to place an icon button inside the input container.
 
 ```html preview
 <lynk-input type="search" placeholder="Search" clearable>

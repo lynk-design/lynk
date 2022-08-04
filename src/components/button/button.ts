@@ -56,8 +56,7 @@ export default class LynkButton extends LitElement {
   @state() private hasFocus = false;
 
   /** The button's color. */
-  @property({ reflect: true }) color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' =
-    'default';
+  @property({ reflect: true }) color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'default';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -76,6 +75,9 @@ export default class LynkButton extends LitElement {
 
   /** Draws an outlined button. */
   @property({ type: Boolean, reflect: true }) outline = false;
+
+  /** Draws an button without borders and background. */
+  @property({ type: Boolean, reflect: true }) stealth = false;
 
   /** Draws a pill-style button with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
@@ -191,8 +193,9 @@ export default class LynkButton extends LitElement {
           'lynk-button--disabled': this.disabled,
           'lynk-button--focused': this.hasFocus,
           'lynk-button--thinking': this.thinking,
-          'lynk-button--standard': !this.outline,
+          'lynk-button--standard': !this.outline && !this.stealth,
           'lynk-button--outline': this.outline,
+          'lynk-button--stealth': this.stealth,
           'lynk-button--pill': this.pill,
           'lynk-button--rtl': this.localize.dir() === 'rtl',
           'lynk-button--has-label': this.hasSlotController.test('[default]'),
