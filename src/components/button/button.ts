@@ -183,7 +183,6 @@ export default class LynkButton extends LitElement {
           'lynk-button--neutral': this.color === 'neutral',
           'lynk-button--warning': this.color === 'warning',
           'lynk-button--danger': this.color === 'danger',
-          'lynk-button--text': this.color === 'text',
           'lynk-button--small': this.size === 'small',
           'lynk-button--medium': this.size === 'medium',
           'lynk-button--large': this.size === 'large',

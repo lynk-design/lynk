@@ -33,8 +33,8 @@ Set the `type` attribute to change the alert's color and default icon.
 <br />
 
 <lynk-alert type="neutral" open>
-  <strong>Your settings have been updated</strong><br />
-  Settings will take affect on next login.
+  <strong>Not sure what this alert means?</strong><br />
+  You can learn more about alerts <a>here</a>.
 </lynk-alert>
 
 <br />
@@ -58,7 +58,7 @@ Add the `closable` attribute to show a close button that will hide the alert.
 
 ```html preview
 <lynk-alert type="primary" open closable class="alert-closable">
-  <lynk-icon slot="icon" name="info-circle"></lynk-icon>
+  <lynk-icon slot="icon" name="bell"></lynk-icon>
   You can close this alert any time!
 </lynk-alert>
 
@@ -76,7 +76,7 @@ Use the `actions` slot to append custom actions to an alert.
 
 ```html preview
 <lynk-alert type="danger" open>
-  <lynk-button size="small" color="danger" outline slot="action">Revert</lynk-button>
+  <lynk-button size="small" color="danger" stealth slot="action">Revert</lynk-button>
   You just deleted everything!
 </lynk-alert>
 
@@ -94,8 +94,8 @@ Icons can be customized using the `icon` slot, or removed by omitting the `type`
 
 ```html preview
 <lynk-alert open>
-  <lynk-icon slot="icon" name="gear"></lynk-icon>
-  This alert is using a custom gear icon!
+  <lynk-icon slot="icon" name="app-indicator"></lynk-icon>
+  This alert is using a different icon!
 </lynk-alert>
 <br>
 <lynk-alert open>
@@ -245,6 +245,6 @@ By default, the toast stack is positioned at the top-right of the viewport. You 
 }
 ```
 
-<lynk-alert open>By design, it is not possible to show toasts in more than one stack simultaneously. Such behavior is confusing and makes for a poor user experience.</lynk-alert>
+<lynk-alert type="warning" open>By design, it is not possible to show toasts in more than one stack simultaneously. Such behavior is confusing and makes for a poor user experience.</lynk-alert>
 
 [component-metadata:lynk-alert]

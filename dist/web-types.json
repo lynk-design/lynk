@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/web-types",
   "name": "@lynk-design/lynk",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description-markup": "markdown",
   "framework-config": {
     "enable-when": {
@@ -164,7 +164,7 @@
                 "name": "type",
                 "description": "The alert's type (color).",
                 "value": {
-                  "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+                  "type": "'primary' | 'info' | 'success' | 'neutral' | 'warning' | 'danger'"
                 }
               },
               {
@@ -246,7 +246,7 @@
               "name": "type",
               "description": "The alert's type (color).",
               "value": {
-                "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+                "type": "'primary' | 'info' | 'success' | 'neutral' | 'warning' | 'danger'"
               }
             },
             {
@@ -621,7 +621,7 @@
                 "name": "color",
                 "description": "The button's color.",
                 "value": {
-                  "type": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'"
+                  "type": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
                 }
               },
               {
@@ -662,6 +662,13 @@
               {
                 "name": "outline",
                 "description": "Draws an outlined button.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "stealth",
+                "description": "Draws an button without borders and background.",
                 "value": {
                   "type": "boolean"
                 }
@@ -812,7 +819,7 @@
               "name": "color",
               "description": "The button's color.",
               "value": {
-                "type": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'"
+                "type": "'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
               }
             },
             {
@@ -853,6 +860,13 @@
             {
               "name": "outline",
               "description": "Draws an outlined button.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "stealth",
+              "description": "Draws an button without borders and background.",
               "value": {
                 "type": "boolean"
               }
@@ -1194,6 +1208,36 @@
           ]
         },
         {
+          "name": "lynk-divider",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-divider",
+          "js": {
+            "properties": [
+              {
+                "name": "vertical",
+                "description": "Draws the divider in a vertical orientation.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleVerticalChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "vertical",
+              "description": "Draws the divider in a vertical orientation.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-dialog",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-dialog",
@@ -1326,36 +1370,6 @@
             {
               "name": "no-header",
               "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-divider",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-divider",
-          "js": {
-            "properties": [
-              {
-                "name": "vertical",
-                "description": "Draws the divider in a vertical orientation.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "handleVerticalChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "vertical",
-              "description": "Draws the divider in a vertical orientation.",
               "value": {
                 "type": "boolean"
               }

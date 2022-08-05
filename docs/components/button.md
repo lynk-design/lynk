@@ -104,16 +104,6 @@ Use the `square` attribute to create square icon buttons.
 </lynk-button>
 ```
 
-### Text Buttons
-
-Use the `text` color to create text buttons that share the same size as regular buttons but don't have backgrounds or borders.
-
-```html preview
-<lynk-button color="text" size="small">Text</lynk-button>
-<lynk-button color="text" size="medium">Text</lynk-button>
-<lynk-button color="text" size="large">Text</lynk-button>
-```
-
 ### Link Buttons
 
 It's often helpful to have a button that works like a link. This is possible by setting the `href` attribute, which will make the component render an `<a>` under the hood. This gives you all the default link behavior the browser provides (e.g. <kbd>CMD/CTRL/SHIFT + CLICK</kbd>) and exposes the `target` and `download` attributes.
@@ -125,7 +115,7 @@ It's often helpful to have a button that works like a link. This is possible by 
 <lynk-button href="https://example.com/" disabled>Disabled</lynk-button>
 ```
 
-<lynk-alert open>When a `target` is set, the link will receive `rel="noreferrer noopener"` for [security reasons](https://mathiasbynens.github.io/rel-noopener/).</lynk-alert>
+<lynk-alert type="info" open>When a `target` is set, the link will receive `rel="noreferrer noopener"` for [security reasons](https://mathiasbynens.github.io/rel-noopener/).</lynk-alert>
 
 ### Setting a Custom Width
 

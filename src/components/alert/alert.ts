@@ -16,6 +16,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'ly
  * @status stable
  *
  * @dependency lynk-icon-button
+ * @dependency lynk-icon
  *
  * @slot - The alert's content.
  * @slot icon - An icon to show in the alert.
@@ -205,10 +206,11 @@ export default class LynkAlert extends LitElement {
             ${this.type
               ? html`
                 <lynk-icon
+                  library="system"
                   name="${
                     this.type === 'info' ? 'info-circle' :
-                    this.type === 'neutral' ? 'bell' :
-                    this.type === 'success' ? 'check2-circle' :
+                    this.type === 'neutral' ? 'question-square' :
+                    this.type === 'success' ? 'check-circle' :
                     this.type === 'warning' ? 'exclamation-triangle' :
                     this.type === 'danger' ? 'exclamation-octagon' :
                     ''
