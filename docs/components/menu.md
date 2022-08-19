@@ -18,6 +18,6 @@ You can use [menu items](/components/menu-item), [menu labels](/components/menu-
 </lynk-menu>
 ```
 
-<lynk-alert open>Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you're building navigation, use `<nav>` and `<a>` elements instead.</lynk-alert>
+<lynk-alert type="warning" open>Menus are intended for system menus (dropdown menus, select menus, context menus, etc.). They should not be mistaken for navigation menus which serve a different purpose and have a different semantic meaning. If you're building navigation, use `<nav>` and `<a>` elements instead.</lynk-alert>
 
 [component-metadata:lynk-menu]

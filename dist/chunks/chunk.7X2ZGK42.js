@@ -43,6 +43,14 @@ var LynkMenuItem = class extends s {
   handleCheckedChange() {
     this.setAttribute("aria-checked", this.checked ? "true" : "false");
   }
+  handleClick(event) {
+    if (this.disabled) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+    emit(this, "on:click");
+  }
   handleDisabledChange() {
     this.setAttribute("aria-disabled", this.disabled ? "true" : "false");
   }
@@ -67,6 +75,7 @@ var LynkMenuItem = class extends s {
       "lynk-menu-item--disabled": this.disabled,
       "lynk-menu-item--has-submenu": false
     })}
+        @click=${this.handleClick}
       >
         <span class="lynk-menu-item__check">
           <lynk-icon name="check-lg" library="system" aria-hidden="true"></lynk-icon>

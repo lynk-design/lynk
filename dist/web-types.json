@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/web-types",
   "name": "@lynk-design/lynk",
-  "version": "1.0.0-beta.14",
+  "version": "1.0.0-beta.15",
   "description-markup": "markdown",
   "framework-config": {
     "enable-when": {
@@ -524,6 +524,16 @@
           "attributes": []
         },
         {
+          "name": "lynk-box",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-box",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
           "name": "lynk-badge",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-badge",
@@ -576,16 +586,6 @@
               }
             }
           ]
-        },
-        {
-          "name": "lynk-box",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-box",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
         },
         {
           "name": "lynk-button",
@@ -972,58 +972,6 @@
           ]
         },
         {
-          "name": "lynk-button-group",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-button-group",
-          "js": {
-            "properties": [
-              {
-                "name": "defaultSlot",
-                "value": {
-                  "type": "HTMLSlotElement"
-                }
-              },
-              {
-                "name": "label",
-                "description": "A label to use for the button group's `aria-label` attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "handleFocus",
-                "value": {}
-              },
-              {
-                "name": "handleBlur",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOver",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOut",
-                "value": {}
-              },
-              {
-                "name": "handleSlotChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "label",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "value": {
-                "type": "string"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-checkbox",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-checkbox",
@@ -1208,36 +1156,6 @@
           ]
         },
         {
-          "name": "lynk-divider",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-divider",
-          "js": {
-            "properties": [
-              {
-                "name": "vertical",
-                "description": "Draws the divider in a vertical orientation.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "handleVerticalChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "vertical",
-              "description": "Draws the divider in a vertical orientation.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-dialog",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-dialog",
@@ -1370,6 +1288,88 @@
             {
               "name": "no-header",
               "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-button-group",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-button-group",
+          "js": {
+            "properties": [
+              {
+                "name": "defaultSlot",
+                "value": {
+                  "type": "HTMLSlotElement"
+                }
+              },
+              {
+                "name": "label",
+                "description": "A label to use for the button group's `aria-label` attribute.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "handleFocus",
+                "value": {}
+              },
+              {
+                "name": "handleBlur",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOver",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOut",
+                "value": {}
+              },
+              {
+                "name": "handleSlotChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "label",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "value": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-divider",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-divider",
+          "js": {
+            "properties": [
+              {
+                "name": "vertical",
+                "description": "Draws the divider in a vertical orientation.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleVerticalChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "vertical",
+              "description": "Draws the divider in a vertical orientation.",
               "value": {
                 "type": "boolean"
               }
@@ -3319,6 +3319,10 @@
                 "value": {}
               },
               {
+                "name": "handleClick",
+                "value": {}
+              },
+              {
                 "name": "handleDisabledChange",
                 "value": {}
               },
@@ -3328,6 +3332,10 @@
               }
             ],
             "events": [
+              {
+                "name": "on:click",
+                "description": "Emitted when a menu item is clicked"
+              },
               {
                 "name": "on:label-change",
                 "description": "Emitted when the menu item's text label changes. For performance reasons, this event is only emitted if the default slot's `slotchange` event is triggered. It will not fire when the label is first set."
@@ -3489,6 +3497,295 @@
             {
               "name": "disabled",
               "description": "Disables the observer.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-popover",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-popover",
+          "js": {
+            "properties": [
+              {
+                "name": "trigger",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "panel",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "positioner",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "arrow",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "positionerCleanup",
+                "value": {
+                  "type": "ReturnType<typeof autoUpdate> | undefined"
+                }
+              },
+              {
+                "name": "hasSlotController",
+                "value": {}
+              },
+              {
+                "name": "localize",
+                "value": {}
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the popover is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "label",
+                "description": "The popover's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "noHeader",
+                "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the popover.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "clickToHide",
+                "description": "Hide the popover by clicking outside the panel.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "placement",
+                "description": "The preferred placement of the popover panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
+                "value": {
+                  "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the popover so the panel will not open.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "containingElement",
+                "description": "The popover will close when the user interacts outside of this element (e.g. clicking).",
+                "value": {
+                  "type": "HTMLElement | undefined"
+                }
+              },
+              {
+                "name": "distance",
+                "description": "The distance in pixels from which to offset the panel away from its trigger.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "skidding",
+                "description": "The distance in pixels from which to offset the panel along its trigger.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "block",
+                "description": "Display the popover component as a block instead of inline-block.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "hoist",
+                "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "focusOnTrigger",
+                "value": {}
+              },
+              {
+                "name": "handleDocumentKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleDocumentMouseDown",
+                "value": {}
+              },
+              {
+                "name": "handlePopoverOptionsChange",
+                "value": {}
+              },
+              {
+                "name": "handleTriggerClick",
+                "value": {}
+              },
+              {
+                "name": "handleTriggerKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleTriggerKeyUp",
+                "value": {}
+              },
+              {
+                "name": "handleTriggerSlotChange",
+                "value": {}
+              },
+              {
+                "name": "updateAccessibleTrigger",
+                "value": {}
+              },
+              {
+                "name": "show",
+                "description": "Shows the popover panel.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the popover panel",
+                "value": {}
+              },
+              {
+                "name": "reposition",
+                "description": "Instructs the popover menu to reposition. Useful when the position or size of the trigger changes when the menu\nis activated.",
+                "value": {}
+              },
+              {
+                "name": "addOpenListeners",
+                "value": {}
+              },
+              {
+                "name": "removeOpenListeners",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              },
+              {
+                "name": "startPositioner",
+                "value": {}
+              },
+              {
+                "name": "updatePositioner",
+                "value": {}
+              },
+              {
+                "name": "stopPositioner",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:show",
+                "description": "Emitted when the popover opens."
+              },
+              {
+                "name": "after:show",
+                "description": "Emitted after the popover opens and all animations are complete."
+              },
+              {
+                "name": "on:hide",
+                "description": "Emitted when the popover closes."
+              },
+              {
+                "name": "after:hide",
+                "description": "Emitted after the popover closes and all animations are complete."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the popover is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "description": "The popover's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "no-header",
+              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the popover.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "click-to-hide",
+              "description": "Hide the popover by clicking outside the panel.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "placement",
+              "description": "The preferred placement of the popover panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
+              "value": {
+                "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables the popover so the panel will not open.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "distance",
+              "description": "The distance in pixels from which to offset the panel away from its trigger.",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "skidding",
+              "description": "The distance in pixels from which to offset the panel along its trigger.",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "block",
+              "description": "Display the popover component as a block instead of inline-block.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "hoist",
+              "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
               "value": {
                 "type": "boolean"
               }

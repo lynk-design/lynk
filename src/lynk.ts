@@ -19,6 +19,7 @@ export { default as LynkMenu } from './components/menu/menu';
 export { default as LynkMenuItem } from './components/menu-item/menu-item';
 export { default as LynkMenuLabel } from './components/menu-label/menu-label';
 export { default as LynkMutationObserver } from './components/mutation-observer/mutation-observer';
+export { default as LynkPopover } from './components/popover/popover';
 export { default as LynkProgressBar } from './components/progress-bar/progress-bar';
 export { default as LynkProgressRing } from './components/progress-ring/progress-ring';
 export { default as LynkRadio } from './components/radio/radio';

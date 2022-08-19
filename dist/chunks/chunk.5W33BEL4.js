@@ -2,11 +2,11 @@ import {
   input_styles_default
 } from "./chunk.F45I7T5K.js";
 import {
-  LocalizeController
-} from "./chunk.E66L43KD.js";
-import {
   l as l2
 } from "./chunk.6OV4IUTN.js";
+import {
+  LocalizeController
+} from "./chunk.E66L43KD.js";
 import {
   FormSubmitController
 } from "./chunk.QRRAQY34.js";

@@ -1,9 +1,9 @@
 import {
-  tab_styles_default
-} from "./chunk.PNEHTRYP.js";
-import {
   autoIncrement
 } from "./chunk.KFR7NC2M.js";
+import {
+  tab_styles_default
+} from "./chunk.PNEHTRYP.js";
 import {
   LocalizeController
 } from "./chunk.E66L43KD.js";

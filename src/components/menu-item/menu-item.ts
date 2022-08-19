@@ -13,6 +13,7 @@ import styles from './menu-item.styles';
  *
  * @dependency lynk-icon
  *
+ * @event on:click - Emitted when a menu item is clicked
  * @event on:label-change - Emitted when the menu item's text label changes. For performance reasons, this event is only
  *   emitted if the default slot's `slotchange` event is triggered. It will not fire when the label is first set.
  *
@@ -57,6 +58,17 @@ export default class LynkMenuItem extends LitElement {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
   }
 
+  handleClick(event: MouseEvent) {
+
+    if (this.disabled) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    emit(this, 'on:click');
+  }
+
   @watch('disabled')
   handleDisabledChange() {
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
@@ -87,6 +99,7 @@ export default class LynkMenuItem extends LitElement {
           'lynk-menu-item--disabled': this.disabled,
           'lynk-menu-item--has-submenu': false // reserved for future use
         })}
+        @click=${this.handleClick}
       >
         <span class="lynk-menu-item__check">
           <lynk-icon name="check-lg" library="system" aria-hidden="true"></lynk-icon>

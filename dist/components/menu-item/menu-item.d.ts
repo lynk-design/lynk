@@ -11,6 +11,7 @@ export default class LynkMenuItem extends LitElement {
     firstUpdated(): void;
     getTextLabel(): string;
     handleCheckedChange(): void;
+    handleClick(event: MouseEvent): void;
     handleDisabledChange(): void;
     handleDefaultSlotChange(): void;
     render(): import("lit-html").TemplateResult<1>;

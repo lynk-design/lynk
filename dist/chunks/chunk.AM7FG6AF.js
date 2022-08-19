@@ -1,16 +1,16 @@
 import {
-  getTabbableBoundary
-} from "./chunk.SCUNOITN.js";
+  dialog_styles_default
+} from "./chunk.Y6JZXC7P.js";
 import {
   lockBodyScrolling,
   unlockBodyScrolling
 } from "./chunk.MZXL76U3.js";
 import {
+  getTabbableBoundary
+} from "./chunk.SCUNOITN.js";
+import {
   LocalizeController
 } from "./chunk.E66L43KD.js";
-import {
-  dialog_styles_default
-} from "./chunk.2U7IJIQV.js";
 import {
   HasSlotController
 } from "./chunk.7DIJ2SI4.js";

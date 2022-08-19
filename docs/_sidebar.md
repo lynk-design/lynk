@@ -22,6 +22,7 @@
 - Content
 
   - [Icons](/components/icon)
+  - [Popover](/components/popover)
   - [Tooltip](/components/tooltip)
 
 - Layout & Organization

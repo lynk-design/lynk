@@ -7,6 +7,7 @@ export default css`
 
   :host {
     display: inline-block;
+    --padding: var(--lynk-spacing-x-small);
   }
 
   .lynk-icon-button {
@@ -18,7 +19,7 @@ export default css`
     border-radius: var(--lynk-border-radius-medium);
     font-size: inherit;
     color: var(--lynk-color-neutral-600);
-    padding: var(--lynk-spacing-x-small);
+    padding: var(--padding);
     cursor: pointer;
     transition: var(--lynk-transition-medium) color;
     -webkit-appearance: none;

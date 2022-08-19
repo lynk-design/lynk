@@ -866,6 +866,105 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/box/box.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkBox",
+          "cssProperties": [
+            {
+              "description": "Custom text align (left, center, right).",
+              "name": "--align",
+              "default": "left"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--background",
+              "default": "transparent"
+            },
+            {
+              "description": "<border-style> <border-width> <border-color>.",
+              "name": "--border"
+            },
+            {
+              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
+              "name": "--border-radius"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--color",
+              "default": "inherit"
+            },
+            {
+              "description": "Any custom px, rem, %, or vh value.",
+              "name": "--height",
+              "default": "auto"
+            },
+            {
+              "description": "Any custom px, rem, %, or vh value.",
+              "name": "--width",
+              "default": "auto"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--margin",
+              "default": "0"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--padding",
+              "default": "0"
+            },
+            {
+              "description": "Any elevation shadow token (--lynk-shadow-large);",
+              "name": "--shadow"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The default slot.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-box",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-box",
+          "declaration": {
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/badge/badge.ts",
       "declarations": [
         {
@@ -973,105 +1072,6 @@
           "declaration": {
             "name": "LynkBadge",
             "module": "src/components/badge/badge.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/box/box.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkBox",
-          "cssProperties": [
-            {
-              "description": "Custom text align (left, center, right).",
-              "name": "--align",
-              "default": "left"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--background",
-              "default": "transparent"
-            },
-            {
-              "description": "<border-style> <border-width> <border-color>.",
-              "name": "--border"
-            },
-            {
-              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
-              "name": "--border-radius"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--color",
-              "default": "inherit"
-            },
-            {
-              "description": "Any custom px, rem, %, or vh value.",
-              "name": "--height",
-              "default": "auto"
-            },
-            {
-              "description": "Any custom px, rem, %, or vh value.",
-              "name": "--width",
-              "default": "auto"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--margin",
-              "default": "0"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--padding",
-              "default": "0"
-            },
-            {
-              "description": "Any elevation shadow token (--lynk-shadow-large);",
-              "name": "--shadow"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The default slot.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-box",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-box",
-          "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
           }
         }
       ]
@@ -1662,137 +1662,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/button-group/button-group.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkButtonGroup",
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "One or more `<lynk-button>` elements to display in the button group.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "defaultSlot",
-              "type": {
-                "text": "HTMLSlotElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "attribute": "label"
-            },
-            {
-              "kind": "method",
-              "name": "handleFocus",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleBlur",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseOver",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseOut",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleSlotChange"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "fieldName": "label"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-button-group",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-button-group",
-          "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/checkbox/checkbox.ts",
       "declarations": [
         {
@@ -2091,85 +1960,6 @@
           "declaration": {
             "name": "LynkCheckbox",
             "module": "src/components/checkbox/checkbox.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/divider/divider.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkDivider",
-          "cssProperties": [
-            {
-              "description": "The color of the divider.",
-              "name": "--color"
-            },
-            {
-              "description": "The width of the divider.",
-              "name": "--width"
-            },
-            {
-              "description": "The spacing of the divider.",
-              "name": "--spacing"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "vertical",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the divider in a vertical orientation.",
-              "attribute": "vertical",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "handleVerticalChange"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "vertical",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the divider in a vertical orientation.",
-              "fieldName": "vertical"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-divider",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkDivider",
-            "module": "src/components/divider/divider.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-divider",
-          "declaration": {
-            "name": "LynkDivider",
-            "module": "src/components/divider/divider.ts"
           }
         }
       ]
@@ -2489,6 +2279,216 @@
           "declaration": {
             "name": "LynkDialog",
             "module": "src/components/dialog/dialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button-group/button-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkButtonGroup",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "One or more `<lynk-button>` elements to display in the button group.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "defaultSlot",
+              "type": {
+                "text": "HTMLSlotElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "attribute": "label"
+            },
+            {
+              "kind": "method",
+              "name": "handleFocus",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleBlur",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseOver",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseOut",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleSlotChange"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "fieldName": "label"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-button-group",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-button-group",
+          "declaration": {
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/divider/divider.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkDivider",
+          "cssProperties": [
+            {
+              "description": "The color of the divider.",
+              "name": "--color"
+            },
+            {
+              "description": "The width of the divider.",
+              "name": "--width"
+            },
+            {
+              "description": "The spacing of the divider.",
+              "name": "--spacing"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "vertical",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the divider in a vertical orientation.",
+              "attribute": "vertical",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "handleVerticalChange"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "vertical",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the divider in a vertical orientation.",
+              "fieldName": "vertical"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-divider",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkDivider",
+            "module": "src/components/divider/divider.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-divider",
+          "declaration": {
+            "name": "LynkDivider",
+            "module": "src/components/divider/divider.ts"
           }
         }
       ]
@@ -5751,6 +5751,18 @@
             },
             {
               "kind": "method",
+              "name": "handleClick",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
               "name": "handleDisabledChange"
             },
             {
@@ -5759,6 +5771,11 @@
             }
           ],
           "events": [
+            {
+              "description": "Emitted when a menu item is clicked",
+              "name": "on:click",
+              "reactName": "onOnClick"
+            },
             {
               "description": "Emitted when the menu item's text label changes. For performance reasons, this event is only emitted if the default slot's `slotchange` event is triggered. It will not fire when the label is first set.",
               "name": "on:label-change",
@@ -6080,6 +6097,474 @@
           "declaration": {
             "name": "LynkMutationObserver",
             "module": "src/components/mutation-observer/mutation-observer.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/popover/popover.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkPopover",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The container that wraps the trigger.",
+              "name": "trigger"
+            },
+            {
+              "description": "The panel that gets shown when the popover is open.",
+              "name": "panel"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The popover's content.",
+              "name": ""
+            },
+            {
+              "description": "The dialog's label. Alternatively, you can use the label prop.",
+              "name": "label"
+            },
+            {
+              "description": "The popover's trigger, usually a `<lynk-button>` element.",
+              "name": "trigger"
+            },
+            {
+              "description": "The dialog's footer, usually one or more buttons representing various options.",
+              "name": "footer"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "trigger",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "panel",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "positioner",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "arrow",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "positionerCleanup",
+              "type": {
+                "text": "ReturnType<typeof autoUpdate> | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "hasSlotController",
+              "privacy": "private",
+              "default": "new HasSlotController(this, 'footer')"
+            },
+            {
+              "kind": "field",
+              "name": "localize",
+              "privacy": "private",
+              "default": "new LocalizeController(this)"
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the popover is open. You can use this in lieu of the show/hide methods.",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The popover's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "attribute": "label",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "noHeader",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the popover.",
+              "attribute": "no-header",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "clickToHide",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Hide the popover by clicking outside the panel.",
+              "attribute": "click-to-hide",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "placement",
+              "type": {
+                "text": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+              },
+              "default": "'right'",
+              "description": "The preferred placement of the popover panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
+              "attribute": "placement",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the popover so the panel will not open.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "containingElement",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "description": "The popover will close when the user interacts outside of this element (e.g. clicking)."
+            },
+            {
+              "kind": "field",
+              "name": "distance",
+              "type": {
+                "text": "number"
+              },
+              "default": "10",
+              "description": "The distance in pixels from which to offset the panel away from its trigger.",
+              "attribute": "distance"
+            },
+            {
+              "kind": "field",
+              "name": "skidding",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The distance in pixels from which to offset the panel along its trigger.",
+              "attribute": "skidding"
+            },
+            {
+              "kind": "field",
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Display the popover component as a block instead of inline-block.",
+              "attribute": "block",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "hoist",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
+              "attribute": "hoist"
+            },
+            {
+              "kind": "method",
+              "name": "focusOnTrigger"
+            },
+            {
+              "kind": "method",
+              "name": "handleDocumentKeyDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleDocumentMouseDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handlePopoverOptionsChange"
+            },
+            {
+              "kind": "method",
+              "name": "handleTriggerClick"
+            },
+            {
+              "kind": "method",
+              "name": "handleTriggerKeyDown",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleTriggerKeyUp",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleTriggerSlotChange"
+            },
+            {
+              "kind": "method",
+              "name": "updateAccessibleTrigger"
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the popover panel."
+            },
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the popover panel"
+            },
+            {
+              "kind": "method",
+              "name": "reposition",
+              "description": "Instructs the popover menu to reposition. Useful when the position or size of the trigger changes when the menu\nis activated."
+            },
+            {
+              "kind": "method",
+              "name": "addOpenListeners"
+            },
+            {
+              "kind": "method",
+              "name": "removeOpenListeners"
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenChange"
+            },
+            {
+              "kind": "method",
+              "name": "startPositioner",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "updatePositioner",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "stopPositioner",
+              "privacy": "private"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the popover opens.",
+              "name": "on:show",
+              "reactName": "onOnShow"
+            },
+            {
+              "description": "Emitted after the popover opens and all animations are complete.",
+              "name": "after:show",
+              "reactName": "onAfterShow"
+            },
+            {
+              "description": "Emitted when the popover closes.",
+              "name": "on:hide",
+              "reactName": "onOnHide"
+            },
+            {
+              "description": "Emitted after the popover closes and all animations are complete.",
+              "name": "after:hide",
+              "reactName": "onAfterHide"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the popover is open. You can use this in lieu of the show/hide methods.",
+              "fieldName": "open"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The popover's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "fieldName": "label"
+            },
+            {
+              "name": "no-header",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the popover.",
+              "fieldName": "noHeader"
+            },
+            {
+              "name": "click-to-hide",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Hide the popover by clicking outside the panel.",
+              "fieldName": "clickToHide"
+            },
+            {
+              "name": "placement",
+              "type": {
+                "text": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+              },
+              "default": "'right'",
+              "description": "The preferred placement of the popover panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
+              "fieldName": "placement"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the popover so the panel will not open.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "distance",
+              "type": {
+                "text": "number"
+              },
+              "default": "10",
+              "description": "The distance in pixels from which to offset the panel away from its trigger.",
+              "fieldName": "distance"
+            },
+            {
+              "name": "skidding",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The distance in pixels from which to offset the panel along its trigger.",
+              "fieldName": "skidding"
+            },
+            {
+              "name": "block",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Display the popover component as a block instead of inline-block.",
+              "fieldName": "block"
+            },
+            {
+              "name": "hoist",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
+              "fieldName": "hoist"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "animations": [
+            {
+              "name": "popover.show",
+              "description": "The animation to use when showing the popover."
+            },
+            {
+              "name": "popover.hide",
+              "description": "The animation to use when hiding the popover."
+            }
+          ],
+          "tagName": "lynk-popover",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkPopover",
+            "module": "src/components/popover/popover.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-popover",
+          "declaration": {
+            "name": "LynkPopover",
+            "module": "src/components/popover/popover.ts"
           }
         }
       ]
@@ -10920,7 +11405,7 @@
   "package": {
     "name": "@lynk-design/lynk",
     "description": "A library of web components and styles for building web applications with the Edgio Streaming design language.",
-    "version": "1.0.0-beta.14",
+    "version": "1.0.0-beta.15",
     "author": "Harley Jessop",
     "homepage": "https://lynk-design.web.app/",
     "license": "MIT"

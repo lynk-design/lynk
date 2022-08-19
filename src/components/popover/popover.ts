@@ -1,53 +1,75 @@
-import { autoUpdate, computePosition, flip, offset, shift, size } from '@floating-ui/dom';
+import { arrow, autoUpdate, computePosition, flip, offset, shift, size } from '@floating-ui/dom';
 import { html, LitElement } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { animateTo, stopAnimations } from '../../internal/animate';
 import { emit, waitForEvent } from '../../internal/event';
-import { scrollIntoView } from '../../internal/scroll';
 import { getTabbableBoundary } from '../../internal/tabbable';
+import { HasSlotController } from '../../internal/slot';
 import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import styles from './dropdown.styles';
+import { LocalizeController } from '../../utilities/localize';
+import styles from './popover.styles';
 import type LynkButton from '../../components/button/button';
 import type LynkIconButton from '../../components/icon-button/icon-button';
-import type LynkMenuItem from '../../components/menu-item/menu-item';
-import type LynkMenu from '../../components/menu/menu';
 
 /**
  * @since 1.0
- * @status stable
+ * @status experimental
  *
- * @slot - The dropdown's content.
- * @slot trigger - The dropdown's trigger, usually a `<lynk-button>` element.
+ * @slot - The popover's content.
+ * @slot label - The dialog's label. Alternatively, you can use the label prop.
+ * @slot trigger - The popover's trigger, usually a `<lynk-button>` element.
+ * @slot footer - The dialog's footer, usually one or more buttons representing various options.
  *
- * @event on:show - Emitted when the dropdown opens.
- * @event after:show - Emitted after the dropdown opens and all animations are complete.
- * @event on:hide - Emitted when the dropdown closes.
- * @event after:hide - Emitted after the dropdown closes and all animations are complete.
+ * @event on:show - Emitted when the popover opens.
+ * @event after:show - Emitted after the popover opens and all animations are complete.
+ * @event on:hide - Emitted when the popover closes.
+ * @event after:hide - Emitted after the popover closes and all animations are complete.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart trigger - The container that wraps the trigger.
- * @csspart panel - The panel that gets shown when the dropdown is open.
+ * @csspart panel - The panel that gets shown when the popover is open.
  *
- * @animation dropdown.show - The animation to use when showing the dropdown.
- * @animation dropdown.hide - The animation to use when hiding the dropdown.
+ * @animation popover.show - The animation to use when showing the popover.
+ * @animation popover.hide - The animation to use when hiding the popover.
  */
-@customElement('lynk-dropdown')
-export default class LynkDropdown extends LitElement {
+@customElement('lynk-popover')
+export default class LynkPopover extends LitElement {
   static styles = styles;
 
-  @query('.lynk-dropdown__trigger') trigger: HTMLElement;
-  @query('.lynk-dropdown__panel') panel: HTMLElement;
-  @query('.lynk-dropdown__positioner') positioner: HTMLElement;
+  @query('.lynk-popover__trigger') trigger: HTMLElement;
+  @query('.lynk-popover__panel') panel: HTMLElement;
+  @query('.lynk-popover__positioner') positioner: HTMLElement;
+  @query('.lynk-popover__arrow') arrow: HTMLElement;
 
   private positionerCleanup: ReturnType<typeof autoUpdate> | undefined;
+  private readonly hasSlotController = new HasSlotController(this, 'footer');
+  private readonly localize = new LocalizeController(this);
 
-  /** Indicates whether or not the dropdown is open. You can use this in lieu of the show/hide methods. */
+  /** Indicates whether or not the popover is open. You can use this in lieu of the show/hide methods. */
   @property({ type: Boolean, reflect: true }) open = false;
 
   /**
-   * The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel
+   * The popover's label as displayed in the header. You should always include a relevant label even when using
+   * `no-header`, as it is required for proper accessibility.
+   */
+  @property({ reflect: true }) label = '';
+
+  /**
+   * Disables the header. This will also remove the default close button, so please ensure you provide an easy,
+   * accessible way for users to dismiss the popover.
+   */
+  @property({ attribute: 'no-header', type: Boolean, reflect: true }) noHeader = false;
+
+  /**
+   * Hide the popover by clicking outside the panel.
+   */
+  @property({ attribute: 'click-to-hide', type: Boolean, reflect: true }) clickToHide = false;
+
+  /**
+   * The preferred placement of the popover panel. Note that the actual placement may vary as needed to keep the panel
    * inside of the viewport.
    */
   @property({ reflect: true }) placement:
@@ -62,39 +84,31 @@ export default class LynkDropdown extends LitElement {
     | 'right-end'
     | 'left'
     | 'left-start'
-    | 'left-end' = 'bottom-start';
+    | 'left-end' = 'right';
 
-  /** Disables the dropdown so the panel will not open. */
+  /** Disables the popover so the panel will not open. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /**
-   * By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for
-   * controls that allow multiple selections.
-   */
-  @property({ attribute: 'stay-open-on-select', type: Boolean, reflect: true }) stayOpenOnSelect = false;
-
-  /** The dropdown will close when the user interacts outside of this element (e.g. clicking). */
+  /** The popover will close when the user interacts outside of this element (e.g. clicking). */
   @property({ attribute: false }) containingElement?: HTMLElement;
 
   /** The distance in pixels from which to offset the panel away from its trigger. */
-  @property({ type: Number }) distance = 0;
+  @property({ type: Number }) distance = 10;
 
   /** The distance in pixels from which to offset the panel along its trigger. */
   @property({ type: Number }) skidding = 0;
 
-  /** Display the dropdown component as a block instead of inline-block. */
+  /** Display the popover component as a block instead of inline-block. */
   @property({ type: Boolean, reflect: true }) block = false;
 
   /**
    * Enable this option to prevent the panel from being clipped when the component is placed inside a container with
    * `overflow: auto|scroll`.
    */
-  @property({ type: Boolean }) hoist = false;
+  @property({ type: Boolean }) hoist = true;
 
   connectedCallback() {
     super.connectedCallback();
-    this.handleMenuItemActivate = this.handleMenuItemActivate.bind(this);
-    this.handlePanelSelect = this.handlePanelSelect.bind(this);
     this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
     this.handleDocumentMouseDown = this.handleDocumentMouseDown.bind(this);
 
@@ -106,7 +120,7 @@ export default class LynkDropdown extends LitElement {
   async firstUpdated() {
     this.panel.hidden = !this.open;
 
-    // If the dropdown is visible on init, update its position
+    // If the popover is visible on init, update its position
     if (this.open) {
       await this.updateComplete;
       this.addOpenListeners();
@@ -129,13 +143,6 @@ export default class LynkDropdown extends LitElement {
     }
   }
 
-  getMenu() {
-    const slot = this.panel.querySelector('slot')!;
-    return slot.assignedElements({ flatten: true }).find(el => el.tagName.toLowerCase() === 'lynk-menu') as
-      | LynkMenu
-      | undefined;
-  }
-
   handleDocumentKeyDown(event: KeyboardEvent) {
     // Close when escape is pressed
     if (event.key === 'Escape') {
@@ -143,57 +150,13 @@ export default class LynkDropdown extends LitElement {
       this.focusOnTrigger();
       return;
     }
-
-    // Handle tabbing
-    if (event.key === 'Tab') {
-      // Tabbing within an open menu should close the dropdown and refocus the trigger
-      if (this.open && document.activeElement?.tagName.toLowerCase() === 'lynk-menu-item') {
-        event.preventDefault();
-        this.hide();
-        this.focusOnTrigger();
-        return;
-      }
-
-      // Tabbing outside of the containing element closes the panel
-      //
-      // If the dropdown is used within a shadow DOM, we need to obtain the activeElement within that shadowRoot,
-      // otherwise `document.activeElement` will only return the name of the parent shadow DOM element.
-      setTimeout(() => {
-        const activeElement =
-          this.containingElement?.getRootNode() instanceof ShadowRoot
-            ? document.activeElement?.shadowRoot?.activeElement
-            : document.activeElement;
-
-        if (
-          !this.containingElement ||
-          activeElement?.closest(this.containingElement.tagName.toLowerCase()) !== this.containingElement
-        ) {
-          this.hide();
-        }
-      });
-    }
   }
 
   handleDocumentMouseDown(event: MouseEvent) {
     // Close when clicking outside of the containing element
     const path = event.composedPath();
-    if (this.containingElement && !path.includes(this.containingElement)) {
+    if (this.clickToHide && this.containingElement && !path.includes(this.containingElement)) {
       this.hide();
-    }
-  }
-
-  handleMenuItemActivate(event: CustomEvent) {
-    const item = event.target as LynkMenuItem;
-    scrollIntoView(item, this.panel);
-  }
-
-  handlePanelSelect(event: CustomEvent) {
-    const target = event.target as HTMLElement;
-
-    // Hide the dropdown when a menu item is selected
-    if (!this.stayOpenOnSelect && target.tagName.toLowerCase() === 'lynk-menu') {
-      this.hide();
-      this.focusOnTrigger();
     }
   }
 
@@ -220,55 +183,6 @@ export default class LynkDropdown extends LitElement {
       this.hide();
       return;
     }
-
-    // When spacebar/enter is pressed, show the panel but don't focus on the menu. This let's the user press the same
-    // key again to hide the menu in case they don't want to make a selection.
-    if ([' ', 'Enter'].includes(event.key)) {
-      event.preventDefault();
-      this.handleTriggerClick();
-      return;
-    }
-
-    const menu = this.getMenu();
-
-    if (menu) {
-      const menuItems = menu.defaultSlot.assignedElements({ flatten: true }) as LynkMenuItem[];
-      const firstMenuItem = menuItems[0];
-      const lastMenuItem = menuItems[menuItems.length - 1];
-
-      // When up/down is pressed, we make the assumption that the user is familiar with the menu and plans to make a
-      // selection. Rather than toggle the panel, we focus on the menu (if one exists) and activate the first item for
-      // faster navigation.
-      if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
-        event.preventDefault();
-
-        // Show the menu if it's not already open
-        if (!this.open) {
-          this.show();
-        }
-
-        if (menuItems.length > 0) {
-          // Focus on the first/last menu item after showing
-          requestAnimationFrame(() => {
-            if (event.key === 'ArrowDown' || event.key === 'Home') {
-              menu.setCurrentItem(firstMenuItem);
-              firstMenuItem.focus();
-            }
-
-            if (event.key === 'ArrowUp' || event.key === 'End') {
-              menu.setCurrentItem(lastMenuItem);
-              lastMenuItem.focus();
-            }
-          });
-        }
-      }
-
-      // Other keys bring focus to the menu and initiate type-to-select behavior
-      const ignoredKeys = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt'];
-      if (this.open && !ignoredKeys.includes(event.key)) {
-        menu.typeToSelect(event);
-      }
-    }
   }
 
   handleTriggerKeyUp(event: KeyboardEvent) {
@@ -283,7 +197,7 @@ export default class LynkDropdown extends LitElement {
   }
 
   //
-  // Slotted triggers can be arbitrary content, but we need to link them to the dropdown panel with `aria-haspopup` and
+  // Slotted triggers can be arbitrary content, but we need to link them to the popover panel with `aria-haspopup` and
   // `aria-expanded`. These must be applied to the "accessible trigger" (the tabbable portion of the trigger element
   // that gets slotted in) so screen readers will understand them. The accessible trigger could be the slotted element,
   // a child of the slotted element, or an element in the slotted element's shadow root.
@@ -315,7 +229,7 @@ export default class LynkDropdown extends LitElement {
     }
   }
 
-  /** Shows the dropdown panel. */
+  /** Shows the popover panel. */
   async show() {
     if (this.open) {
       return undefined;
@@ -325,7 +239,7 @@ export default class LynkDropdown extends LitElement {
     return waitForEvent(this, 'after:show');
   }
 
-  /** Hides the dropdown panel */
+  /** Hides the popover panel */
   async hide() {
     if (!this.open) {
       return undefined;
@@ -336,7 +250,7 @@ export default class LynkDropdown extends LitElement {
   }
 
   /**
-   * Instructs the dropdown menu to reposition. Useful when the position or size of the trigger changes when the menu
+   * Instructs the popover menu to reposition. Useful when the position or size of the trigger changes when the menu
    * is activated.
    */
   reposition() {
@@ -344,15 +258,11 @@ export default class LynkDropdown extends LitElement {
   }
 
   addOpenListeners() {
-    this.panel.addEventListener('on:activate', this.handleMenuItemActivate);
-    this.panel.addEventListener('on:select', this.handlePanelSelect);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
   }
 
   removeOpenListeners() {
-    this.panel.removeEventListener('on:activate', this.handleMenuItemActivate);
-    this.panel.removeEventListener('on:select', this.handlePanelSelect);
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
   }
@@ -374,7 +284,7 @@ export default class LynkDropdown extends LitElement {
       await stopAnimations(this);
       this.startPositioner();
       this.panel.hidden = false;
-      const { keyframes, options } = getAnimation(this, 'dropdown.show');
+      const { keyframes, options } = getAnimation(this, 'popover.show');
       await animateTo(this.panel, keyframes, options);
 
       emit(this, 'after:show');
@@ -384,7 +294,7 @@ export default class LynkDropdown extends LitElement {
       this.removeOpenListeners();
 
       await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, 'dropdown.hide');
+      const { keyframes, options } = getAnimation(this, 'popover.hide');
       await animateTo(this.panel, keyframes, options);
       this.panel.hidden = true;
       this.stopPositioner();
@@ -418,16 +328,32 @@ export default class LynkDropdown extends LitElement {
               maxHeight: `${availableHeight}px`
             });
           }
+        }),
+        arrow({
+          element: this.arrow,
+          padding: 10 // min distance from the edge
         })
       ],
       strategy: this.hoist ? 'fixed' : 'absolute'
-    }).then(({ x, y, placement }) => {
+    }).then(({ x, y, middlewareData, placement }) => {
+      const arrowX = middlewareData.arrow!.x;
+      const arrowY = middlewareData.arrow!.y;
+      const staticSide = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }[placement.split('-')[0]]!;
+
       this.positioner.setAttribute('data-placement', placement);
 
       Object.assign(this.positioner.style, {
         position: this.hoist ? 'fixed' : 'absolute',
         left: `${x}px`,
         top: `${y}px`
+      });
+
+      Object.assign(this.arrow.style, {
+        left: typeof arrowX === 'number' ? `${arrowX}px` : '',
+        top: typeof arrowY === 'number' ? `${arrowY}px` : '',
+        right: '',
+        bottom: '',
+        [staticSide]: 'calc(var(--lynk-tooltip-arrow-size) * -1)'
       });
     });
   }
@@ -444,15 +370,16 @@ export default class LynkDropdown extends LitElement {
     return html`
       <div
         part="base"
-        id="dropdown"
+        id="popover"
         class=${classMap({
-          'lynk-dropdown': true,
-          'lynk-dropdown--open': this.open
+          'lynk-popover': true,
+          'lynk-popover--open': this.open,
+          'lynk-popover--has-footer': this.hasSlotController.test('footer')
         })}
       >
         <span
           part="trigger"
-          class="lynk-dropdown__trigger"
+          class="lynk-popover__trigger"
           @click=${this.handleTriggerClick}
           @keydown=${this.handleTriggerKeyDown}
           @keyup=${this.handleTriggerKeyUp}
@@ -462,14 +389,45 @@ export default class LynkDropdown extends LitElement {
 
         <!-- Position the panel with a wrapper since the popover makes use of translate. This let's us add animations
         on the panel without interfering with the position. -->
-        <div class="lynk-dropdown__positioner">
+        <div class="lynk-popover__positioner">
           <div
             part="panel"
-            class="lynk-dropdown__panel"
+            class="lynk-popover__panel"
+            role="popover"
+            aria-popover="true"
             aria-hidden=${this.open ? 'false' : 'true'}
-            aria-labelledby="dropdown"
+            aria-label=${ifDefined(this.noHeader ? this.label : undefined)}
+            aria-labelledby=${ifDefined(!this.noHeader ? 'title' : undefined)}
+            tabindex="0"
           >
-            <slot></slot>
+            <div class="lynk-popover__arrow"></div>
+            ${!this.noHeader
+              ? html`
+                  <header part="header" class="lynk-popover__header">
+                    <h2 part="title" class="lynk-popover__title" id="title">
+                      <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
+                    </h2>
+                    <lynk-icon-button
+                      part="close-button"
+                      exportparts="base:close-button__base"
+                      class="lynk-popover__close"
+                      style="--padding: 0;"
+                      name="x"
+                      label=${this.localize.term('close')}
+                      library="system"
+                      @click="${() => this.hide()}"
+                    ></lynk-icon-button>
+                  </header>
+                `
+              : ''}
+
+            <div part="body" class="lynk-popover__body">
+              <slot></slot>
+            </div>
+
+            <footer part="footer" class="lynk-popover__footer">
+              <slot name="footer"></slot>
+            </footer>
           </div>
         </div>
       </div>
@@ -477,7 +435,7 @@ export default class LynkDropdown extends LitElement {
   }
 }
 
-setDefaultAnimation('dropdown.show', {
+setDefaultAnimation('popover.show', {
   keyframes: [
     { opacity: 0, transform: 'scale(0.9)' },
     { opacity: 1, transform: 'scale(1)' }
@@ -485,7 +443,7 @@ setDefaultAnimation('dropdown.show', {
   options: { duration: 100, easing: 'ease' }
 });
 
-setDefaultAnimation('dropdown.hide', {
+setDefaultAnimation('popover.hide', {
   keyframes: [
     { opacity: 1, transform: 'scale(1)' },
     { opacity: 0, transform: 'scale(0.9)' }
@@ -495,6 +453,6 @@ setDefaultAnimation('dropdown.hide', {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'lynk-dropdown': LynkDropdown;
+    'lynk-popover': LynkPopover;
   }
 }

@@ -89,7 +89,7 @@ export default css`
     padding: var(--footer-spacing);
   }
 
-  .lynk-dialog__footer ::slotted(l-button:not(:first-of-type)) {
+  .lynk-dialog__footer ::slotted(lynk-button:not(:first-of-type)) {
     margin-inline-start: var(--lynk-spacing-x-small);
   }
 
