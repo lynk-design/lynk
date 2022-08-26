@@ -10,7 +10,7 @@ var dropdown_styles_default = r`
   ${component_styles_default}
 
   :host {
-    display: inline-block;
+    display: contents;
   }
 
   :host([block]) {

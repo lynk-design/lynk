@@ -440,10 +440,10 @@ export default css`
     --lynk-input-height-medium: 2.5rem;
     --lynk-input-height-large: 3.125rem;
 
-    --lynk-input-background-color: transparent;
-    --lynk-input-background-color-hover: transparent;
-    --lynk-input-background-color-focus: transparent;
-    --lynk-input-background-color-disabled: transparent;
+    --lynk-input-background-color: var(--lynk-color-neutral-0);
+    --lynk-input-background-color-hover: var(--lynk-input-background-color);
+    --lynk-input-background-color-focus: var(--lynk-input-background-color);
+    --lynk-input-background-color-disabled: var(--lynk-color-neutral-100);
     --lynk-input-border-color: var(--lynk-color-neutral-300);
     --lynk-input-border-color-hover: var(--lynk-color-neutral-400);
     --lynk-input-border-color-focus: var(--lynk-color-primary-500);

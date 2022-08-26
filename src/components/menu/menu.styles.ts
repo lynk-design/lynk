@@ -16,7 +16,7 @@ export default css`
     padding: var(--lynk-spacing-x-small) 0;
   }
 
-  ::slotted(l-divider) {
+  ::slotted(lynk-divider) {
     --spacing: var(--lynk-spacing-x-small);
   }
 `;

@@ -1,24 +1,20 @@
 import {
-  popover_styles_default
-} from "./chunk.JURZQ7ET.js";
-import {
   D,
   N,
   T,
   b,
   k,
-  m,
   z
 } from "./chunk.TRXKCZM4.js";
+import {
+  scrollIntoView
+} from "./chunk.MZXL76U3.js";
 import {
   getTabbableBoundary
 } from "./chunk.SCUNOITN.js";
 import {
-  LocalizeController
-} from "./chunk.E66L43KD.js";
-import {
-  HasSlotController
-} from "./chunk.7DIJ2SI4.js";
+  dropdown_styles_default
+} from "./chunk.VST5DOP6.js";
 import {
   animateTo,
   stopAnimations
@@ -28,18 +24,15 @@ import {
   setDefaultAnimation
 } from "./chunk.5FIVCLSV.js";
 import {
+  o
+} from "./chunk.AY3TXN3C.js";
+import {
   watch
 } from "./chunk.EYJTTIDT.js";
-import {
-  l
-} from "./chunk.CRMBCBPN.js";
 import {
   emit,
   waitForEvent
 } from "./chunk.TOL7LDIN.js";
-import {
-  o
-} from "./chunk.AY3TXN3C.js";
 import {
   e,
   i,
@@ -53,25 +46,23 @@ import {
   __decorateClass
 } from "./chunk.LKA3TPUC.js";
 
-// src/components/popover/popover.ts
-var LynkPopover = class extends s {
+// src/components/dropdown/dropdown.ts
+var LynkDropdown = class extends s {
   constructor() {
     super(...arguments);
-    this.hasSlotController = new HasSlotController(this, "footer");
-    this.localize = new LocalizeController(this);
     this.open = false;
-    this.label = "";
-    this.noHeader = false;
-    this.clickToHide = false;
-    this.placement = "right";
+    this.placement = "bottom-start";
     this.disabled = false;
-    this.distance = 10;
+    this.stayOpenOnSelect = false;
+    this.distance = 0;
     this.skidding = 0;
     this.block = false;
-    this.hoist = true;
+    this.hoist = false;
   }
   connectedCallback() {
     super.connectedCallback();
+    this.handleMenuItemActivate = this.handleMenuItemActivate.bind(this);
+    this.handlePanelSelect = this.handlePanelSelect.bind(this);
     this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
     this.handleDocumentMouseDown = this.handleDocumentMouseDown.bind(this);
     if (!this.containingElement) {
@@ -99,17 +90,48 @@ var LynkPopover = class extends s {
       trigger.focus();
     }
   }
+  getMenu() {
+    const slot = this.panel.querySelector("slot");
+    return slot.assignedElements({ flatten: true }).find((el) => el.tagName.toLowerCase() === "lynk-menu");
+  }
   handleDocumentKeyDown(event) {
+    var _a;
     if (event.key === "Escape") {
       this.hide();
       this.focusOnTrigger();
       return;
     }
+    if (event.key === "Tab") {
+      if (this.open && ((_a = document.activeElement) == null ? void 0 : _a.tagName.toLowerCase()) === "lynk-menu-item") {
+        event.preventDefault();
+        this.hide();
+        this.focusOnTrigger();
+        return;
+      }
+      setTimeout(() => {
+        var _a2, _b, _c;
+        const activeElement = ((_a2 = this.containingElement) == null ? void 0 : _a2.getRootNode()) instanceof ShadowRoot ? (_c = (_b = document.activeElement) == null ? void 0 : _b.shadowRoot) == null ? void 0 : _c.activeElement : document.activeElement;
+        if (!this.containingElement || (activeElement == null ? void 0 : activeElement.closest(this.containingElement.tagName.toLowerCase())) !== this.containingElement) {
+          this.hide();
+        }
+      });
+    }
   }
   handleDocumentMouseDown(event) {
     const path = event.composedPath();
-    if (this.clickToHide && this.containingElement && !path.includes(this.containingElement)) {
+    if (this.containingElement && !path.includes(this.containingElement)) {
       this.hide();
+    }
+  }
+  handleMenuItemActivate(event) {
+    const item = event.target;
+    scrollIntoView(item, this.panel);
+  }
+  handlePanelSelect(event) {
+    const target = event.target;
+    if (!this.stayOpenOnSelect && target.tagName.toLowerCase() === "lynk-menu") {
+      this.hide();
+      this.focusOnTrigger();
     }
   }
   handlePopoverOptionsChange() {
@@ -127,6 +149,39 @@ var LynkPopover = class extends s {
       this.focusOnTrigger();
       this.hide();
       return;
+    }
+    if ([" ", "Enter"].includes(event.key)) {
+      event.preventDefault();
+      this.handleTriggerClick();
+      return;
+    }
+    const menu = this.getMenu();
+    if (menu) {
+      const menuItems = menu.defaultSlot.assignedElements({ flatten: true });
+      const firstMenuItem = menuItems[0];
+      const lastMenuItem = menuItems[menuItems.length - 1];
+      if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
+        event.preventDefault();
+        if (!this.open) {
+          this.show();
+        }
+        if (menuItems.length > 0) {
+          requestAnimationFrame(() => {
+            if (event.key === "ArrowDown" || event.key === "Home") {
+              menu.setCurrentItem(firstMenuItem);
+              firstMenuItem.focus();
+            }
+            if (event.key === "ArrowUp" || event.key === "End") {
+              menu.setCurrentItem(lastMenuItem);
+              lastMenuItem.focus();
+            }
+          });
+        }
+      }
+      const ignoredKeys = ["Tab", "Shift", "Meta", "Ctrl", "Alt"];
+      if (this.open && !ignoredKeys.includes(event.key)) {
+        menu.typeToSelect(event);
+      }
     }
   }
   handleTriggerKeyUp(event) {
@@ -173,10 +228,14 @@ var LynkPopover = class extends s {
     this.updatePositioner();
   }
   addOpenListeners() {
+    this.panel.addEventListener("on:activate", this.handleMenuItemActivate);
+    this.panel.addEventListener("on:select", this.handlePanelSelect);
     document.addEventListener("keydown", this.handleDocumentKeyDown);
     document.addEventListener("mousedown", this.handleDocumentMouseDown);
   }
   removeOpenListeners() {
+    this.panel.removeEventListener("on:activate", this.handleMenuItemActivate);
+    this.panel.removeEventListener("on:select", this.handlePanelSelect);
     document.removeEventListener("keydown", this.handleDocumentKeyDown);
     document.removeEventListener("mousedown", this.handleDocumentMouseDown);
   }
@@ -192,14 +251,14 @@ var LynkPopover = class extends s {
       await stopAnimations(this);
       this.startPositioner();
       this.panel.hidden = false;
-      const { keyframes, options } = getAnimation(this, "popover.show");
+      const { keyframes, options } = getAnimation(this, "dropdown.show");
       await animateTo(this.panel, keyframes, options);
       emit(this, "after:show");
     } else {
       emit(this, "on:hide");
       this.removeOpenListeners();
       await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, "popover.hide");
+      const { keyframes, options } = getAnimation(this, "dropdown.hide");
       await animateTo(this.panel, keyframes, options);
       this.panel.hidden = true;
       this.stopPositioner();
@@ -228,29 +287,15 @@ var LynkPopover = class extends s {
               maxHeight: `${availableHeight}px`
             });
           }
-        }),
-        m({
-          element: this.arrow,
-          padding: 10
         })
       ],
       strategy: this.hoist ? "fixed" : "absolute"
-    }).then(({ x, y, middlewareData, placement }) => {
-      const arrowX = middlewareData.arrow.x;
-      const arrowY = middlewareData.arrow.y;
-      const staticSide = { top: "bottom", right: "left", bottom: "top", left: "right" }[placement.split("-")[0]];
+    }).then(({ x, y, placement }) => {
       this.positioner.setAttribute("data-placement", placement);
       Object.assign(this.positioner.style, {
         position: this.hoist ? "fixed" : "absolute",
         left: `${x}px`,
         top: `${y}px`
-      });
-      Object.assign(this.arrow.style, {
-        left: typeof arrowX === "number" ? `${arrowX}px` : "",
-        top: typeof arrowY === "number" ? `${arrowY}px` : "",
-        right: "",
-        bottom: "",
-        [staticSide]: "calc(var(--lynk-tooltip-arrow-size) * -1)"
       });
     });
   }
@@ -265,16 +310,15 @@ var LynkPopover = class extends s {
     return $`
       <div
         part="base"
-        id="popover"
+        id="dropdown"
         class=${o({
-      "lynk-popover": true,
-      "lynk-popover--open": this.open,
-      "lynk-popover--has-footer": this.hasSlotController.test("footer")
+      "lynk-dropdown": true,
+      "lynk-dropdown--open": this.open
     })}
       >
         <span
           part="trigger"
-          class="lynk-popover__trigger"
+          class="lynk-dropdown__trigger"
           @click=${this.handleTriggerClick}
           @keydown=${this.handleTriggerKeyDown}
           @keyup=${this.handleTriggerKeyUp}
@@ -284,115 +328,77 @@ var LynkPopover = class extends s {
 
         <!-- Position the panel with a wrapper since the popover makes use of translate. This let's us add animations
         on the panel without interfering with the position. -->
-        <div class="lynk-popover__positioner">
+        <div class="lynk-dropdown__positioner">
           <div
             part="panel"
-            class="lynk-popover__panel"
-            role="popover"
-            aria-popover="true"
+            class="lynk-dropdown__panel"
             aria-hidden=${this.open ? "false" : "true"}
-            aria-label=${l(this.noHeader ? this.label : void 0)}
-            aria-labelledby=${l(!this.noHeader ? "title" : void 0)}
-            tabindex="0"
+            aria-labelledby="dropdown"
           >
-            <div class="lynk-popover__arrow"></div>
-            ${!this.noHeader ? $`
-                  <header part="header" class="lynk-popover__header">
-                    <h2 part="title" class="lynk-popover__title" id="title">
-                      <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
-                    </h2>
-                    <lynk-icon-button
-                      part="close-button"
-                      exportparts="base:close-button__base"
-                      class="lynk-popover__close"
-                      style="--padding: 0;"
-                      name="x"
-                      label=${this.localize.term("close")}
-                      library="system"
-                      @click="${() => this.hide()}"
-                    ></lynk-icon-button>
-                  </header>
-                ` : ""}
-
-            <div part="body" class="lynk-popover__body">
-              <slot></slot>
-            </div>
-
-            <footer part="footer" class="lynk-popover__footer">
-              <slot name="footer"></slot>
-            </footer>
+            <slot></slot>
           </div>
         </div>
       </div>
     `;
   }
 };
-LynkPopover.styles = popover_styles_default;
+LynkDropdown.styles = dropdown_styles_default;
 __decorateClass([
-  i(".lynk-popover__trigger")
-], LynkPopover.prototype, "trigger", 2);
+  i(".lynk-dropdown__trigger")
+], LynkDropdown.prototype, "trigger", 2);
 __decorateClass([
-  i(".lynk-popover__panel")
-], LynkPopover.prototype, "panel", 2);
+  i(".lynk-dropdown__panel")
+], LynkDropdown.prototype, "panel", 2);
 __decorateClass([
-  i(".lynk-popover__positioner")
-], LynkPopover.prototype, "positioner", 2);
-__decorateClass([
-  i(".lynk-popover__arrow")
-], LynkPopover.prototype, "arrow", 2);
+  i(".lynk-dropdown__positioner")
+], LynkDropdown.prototype, "positioner", 2);
 __decorateClass([
   e({ type: Boolean, reflect: true })
-], LynkPopover.prototype, "open", 2);
+], LynkDropdown.prototype, "open", 2);
 __decorateClass([
   e({ reflect: true })
-], LynkPopover.prototype, "label", 2);
-__decorateClass([
-  e({ attribute: "no-header", type: Boolean, reflect: true })
-], LynkPopover.prototype, "noHeader", 2);
-__decorateClass([
-  e({ attribute: "click-to-hide", type: Boolean, reflect: true })
-], LynkPopover.prototype, "clickToHide", 2);
-__decorateClass([
-  e({ reflect: true })
-], LynkPopover.prototype, "placement", 2);
+], LynkDropdown.prototype, "placement", 2);
 __decorateClass([
   e({ type: Boolean, reflect: true })
-], LynkPopover.prototype, "disabled", 2);
+], LynkDropdown.prototype, "disabled", 2);
+__decorateClass([
+  e({ attribute: "stay-open-on-select", type: Boolean, reflect: true })
+], LynkDropdown.prototype, "stayOpenOnSelect", 2);
 __decorateClass([
   e({ attribute: false })
-], LynkPopover.prototype, "containingElement", 2);
+], LynkDropdown.prototype, "containingElement", 2);
 __decorateClass([
   e({ type: Number })
-], LynkPopover.prototype, "distance", 2);
+], LynkDropdown.prototype, "distance", 2);
 __decorateClass([
   e({ type: Number })
-], LynkPopover.prototype, "skidding", 2);
+], LynkDropdown.prototype, "skidding", 2);
 __decorateClass([
   e({ type: Boolean, reflect: true })
-], LynkPopover.prototype, "block", 2);
+], LynkDropdown.prototype, "block", 2);
 __decorateClass([
   e({ type: Boolean })
-], LynkPopover.prototype, "hoist", 2);
+], LynkDropdown.prototype, "hoist", 2);
 __decorateClass([
   watch("distance"),
   watch("hoist"),
   watch("placement"),
   watch("skidding")
-], LynkPopover.prototype, "handlePopoverOptionsChange", 1);
+], LynkDropdown.prototype, "handlePopoverOptionsChange", 1);
 __decorateClass([
   watch("open", { waitUntilFirstUpdate: true })
-], LynkPopover.prototype, "handleOpenChange", 1);
-LynkPopover = __decorateClass([
-  n("lynk-popover")
-], LynkPopover);
-setDefaultAnimation("popover.show", {
+], LynkDropdown.prototype, "handleOpenChange", 1);
+LynkDropdown = __decorateClass([
+  n("lynk-dropdown")
+], LynkDropdown);
+setDefaultAnimation("dropdown.show", {
   keyframes: [
     { opacity: 0, transform: "scale(0.9)" },
     { opacity: 1, transform: "scale(1)" }
   ],
   options: { duration: 100, easing: "ease" }
 });
-setDefaultAnimation("popover.hide", {
+setDefaultAnimation("dropdown.hide", {
   keyframes: [
     { opacity: 1, transform: "scale(1)" },
     { opacity: 0, transform: "scale(0.9)" }
@@ -401,5 +407,5 @@ setDefaultAnimation("popover.hide", {
 });
 
 export {
-  LynkPopover
+  LynkDropdown
 };

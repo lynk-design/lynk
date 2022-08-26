@@ -21,6 +21,10 @@ var popover_styles_default = r`
     display: contents;
   }
 
+  :host([no-arrow]) .lynk-popover__arrow {
+    visibility: hidden;
+  }
+
   .lynk-popover {
     position: relative;
   }
@@ -34,8 +38,12 @@ var popover_styles_default = r`
     z-index: var(--lynk-z-index-dropdown);
   }
 
-  .lynk-popover__panel {
+  .lynk-popover--open .lynk-popover__panel {
     display: flex;
+  }
+
+  .lynk-popover__panel {
+    display: none;
     flex-direction: column;
     z-index: 2;
     width: var(--width);

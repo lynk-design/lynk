@@ -64,6 +64,12 @@ export default class LynkPopover extends LitElement {
   @property({ attribute: 'no-header', type: Boolean, reflect: true }) noHeader = false;
 
   /**
+   * Hides the arrow.
+   */
+  @property({ attribute: 'no-arrow', type: Boolean, reflect: true }) noArrow = false;
+
+
+  /**
    * Hide the popover by clicking outside the panel.
    */
   @property({ attribute: 'click-to-hide', type: Boolean, reflect: true }) clickToHide = false;
@@ -281,11 +287,26 @@ export default class LynkPopover extends LitElement {
       emit(this, 'on:show');
       this.addOpenListeners();
 
+      // When the dialog is shown, Safari will attempt to set focus on whatever element has autofocus. This can cause
+      // the dialogs's animation to jitter (if it starts offscreen), so we'll temporarily remove the attribute, call
+      // `focus({ preventScroll: true })` ourselves, and add the attribute back afterwards.
+      //
+      const autoFocusTarget = this.querySelector('[autofocus]');
+      if (autoFocusTarget) {
+        autoFocusTarget.removeAttribute('autofocus');
+      }
+
       await stopAnimations(this);
       this.startPositioner();
       this.panel.hidden = false;
       const { keyframes, options } = getAnimation(this, 'popover.show');
       await animateTo(this.panel, keyframes, options);
+
+      // Set focus to the autofocus target and restore the attribute
+      if (autoFocusTarget) {
+        (autoFocusTarget as HTMLInputElement).focus({ preventScroll: true });
+        autoFocusTarget.setAttribute('autofocus', '');
+      }
 
       emit(this, 'after:show');
     } else {
@@ -400,7 +421,9 @@ export default class LynkPopover extends LitElement {
             aria-labelledby=${ifDefined(!this.noHeader ? 'title' : undefined)}
             tabindex="0"
           >
+
             <div class="lynk-popover__arrow"></div>
+
             ${!this.noHeader
               ? html`
                   <header part="header" class="lynk-popover__header">
@@ -425,9 +448,13 @@ export default class LynkPopover extends LitElement {
               <slot></slot>
             </div>
 
-            <footer part="footer" class="lynk-popover__footer">
-              <slot name="footer"></slot>
-            </footer>
+            ${this.hasSlotController.test('footer')
+              ? html`
+                <footer part="footer" class="lynk-popover__footer">
+                  <slot name="footer"></slot>
+                </footer>
+              `
+            : ''}
           </div>
         </div>
       </div>

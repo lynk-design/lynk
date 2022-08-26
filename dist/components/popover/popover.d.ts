@@ -11,6 +11,7 @@ export default class LynkPopover extends LitElement {
     open: boolean;
     label: string;
     noHeader: boolean;
+    noArrow: boolean;
     clickToHide: boolean;
     placement: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'right' | 'right-start' | 'right-end' | 'left' | 'left-start' | 'left-end';
     disabled: boolean;

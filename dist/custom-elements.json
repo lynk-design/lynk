@@ -471,6 +471,119 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/badge/badge.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkBadge",
+          "cssParts": [
+            {
+              "description": "| .lynk-badge - The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The badge's content.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "attribute": "pill",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "attribute": "pulse",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "fieldName": "type"
+            },
+            {
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "fieldName": "pill"
+            },
+            {
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "fieldName": "pulse"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-badge",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-badge",
+          "declaration": {
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/animation/animation.ts",
       "declarations": [
         {
@@ -959,119 +1072,6 @@
           "declaration": {
             "name": "LynkBox",
             "module": "src/components/box/box.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/badge/badge.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkBadge",
-          "cssParts": [
-            {
-              "description": "| .lynk-badge - The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The badge's content.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "attribute": "type",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "attribute": "pill",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "attribute": "pulse",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "fieldName": "type"
-            },
-            {
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "fieldName": "pill"
-            },
-            {
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "fieldName": "pulse"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-badge",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-badge",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
           }
         }
       ]
@@ -1662,277 +1662,104 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/checkbox/checkbox.ts",
+      "path": "src/components/button-group/button-group.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "LynkCheckbox",
+          "name": "LynkButtonGroup",
           "cssParts": [
             {
               "description": "The component's internal wrapper.",
               "name": "base"
-            },
-            {
-              "description": "The checkbox control.",
-              "name": "control"
-            },
-            {
-              "description": "The container the wraps the checked icon.",
-              "name": "checked-icon"
-            },
-            {
-              "description": "The container that wraps the indeterminate icon.",
-              "name": "indeterminate-icon"
-            },
-            {
-              "description": "The checkbox label.",
-              "name": "label"
             }
           ],
           "slots": [
             {
-              "description": "The checkbox's label.",
+              "description": "One or more `<lynk-button>` elements to display in the button group.",
               "name": ""
             }
           ],
           "members": [
             {
               "kind": "field",
-              "name": "input",
+              "name": "defaultSlot",
               "type": {
-                "text": "HTMLInputElement"
+                "text": "HTMLSlotElement"
               }
             },
             {
               "kind": "field",
-              "name": "formSubmitController",
-              "privacy": "private",
-              "default": "new FormSubmitController(this, {\n    value: (control: LynkCheckbox) => (control.checked ? control.value || 'on' : undefined)\n  })"
-            },
-            {
-              "kind": "field",
-              "name": "hasFocus",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "name",
+              "name": "label",
               "type": {
                 "text": "string"
               },
-              "description": "The checkbox's name attribute.",
-              "attribute": "name"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "description": "The checkbox's value attribute.",
-              "attribute": "value"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the checkbox.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the checkbox a required field.",
-              "attribute": "required",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the checkbox in a checked state.",
-              "attribute": "checked",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the checkbox in an indeterminate state.",
-              "attribute": "indeterminate",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "invalid",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
-              "attribute": "invalid",
-              "reflects": true
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "attribute": "label"
             },
             {
               "kind": "method",
-              "name": "click",
-              "description": "Simulates a click on the checkbox."
-            },
-            {
-              "kind": "method",
-              "name": "focus",
+              "name": "handleFocus",
               "parameters": [
                 {
-                  "name": "options",
-                  "optional": true,
+                  "name": "event",
                   "type": {
-                    "text": "FocusOptions"
+                    "text": "CustomEvent"
                   }
                 }
-              ],
-              "description": "Sets focus on the checkbox."
+              ]
             },
             {
               "kind": "method",
-              "name": "blur",
-              "description": "Removes focus from the checkbox."
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity",
-              "description": "Checks for validity and shows the browser's validation message if the control is invalid."
-            },
-            {
-              "kind": "method",
-              "name": "setCustomValidity",
+              "name": "handleBlur",
               "parameters": [
                 {
-                  "name": "message",
+                  "name": "event",
                   "type": {
-                    "text": "string"
+                    "text": "CustomEvent"
                   }
                 }
-              ],
-              "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid."
+              ]
             },
             {
               "kind": "method",
-              "name": "handleClick"
+              "name": "handleMouseOver",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
             },
             {
               "kind": "method",
-              "name": "handleBlur"
+              "name": "handleMouseOut",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
             },
             {
               "kind": "method",
-              "name": "handleDisabledChange"
-            },
-            {
-              "kind": "method",
-              "name": "handleFocus"
-            },
-            {
-              "kind": "method",
-              "name": "handleStateChange"
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the control loses focus.",
-              "name": "on:blur",
-              "reactName": "onOnBlur"
-            },
-            {
-              "description": "Emitted when the control's checked state changes.",
-              "name": "on:change",
-              "reactName": "onOnChange"
-            },
-            {
-              "description": "Emitted when the control gains focus.",
-              "name": "on:focus",
-              "reactName": "onOnFocus"
+              "name": "handleSlotChange"
             }
           ],
           "attributes": [
             {
-              "name": "name",
+              "name": "label",
               "type": {
                 "text": "string"
               },
-              "description": "The checkbox's name attribute.",
-              "fieldName": "name"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "description": "The checkbox's value attribute.",
-              "fieldName": "value"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the checkbox.",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the checkbox a required field.",
-              "fieldName": "required"
-            },
-            {
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the checkbox in a checked state.",
-              "fieldName": "checked"
-            },
-            {
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the checkbox in an indeterminate state.",
-              "fieldName": "indeterminate"
-            },
-            {
-              "name": "invalid",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
-              "fieldName": "invalid"
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "fieldName": "label"
             }
           ],
           "superclass": {
@@ -1941,7 +1768,7 @@
           },
           "since": "1.0",
           "status": "stable",
-          "tagName": "lynk-checkbox",
+          "tagName": "lynk-button-group",
           "customElement": true
         }
       ],
@@ -1950,16 +1777,16 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "LynkCheckbox",
-            "module": "src/components/checkbox/checkbox.ts"
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "lynk-checkbox",
+          "name": "lynk-button-group",
           "declaration": {
-            "name": "LynkCheckbox",
-            "module": "src/components/checkbox/checkbox.ts"
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
           }
         }
       ]
@@ -2285,104 +2112,277 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/button-group/button-group.ts",
+      "path": "src/components/checkbox/checkbox.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "LynkButtonGroup",
+          "name": "LynkCheckbox",
           "cssParts": [
             {
               "description": "The component's internal wrapper.",
               "name": "base"
+            },
+            {
+              "description": "The checkbox control.",
+              "name": "control"
+            },
+            {
+              "description": "The container the wraps the checked icon.",
+              "name": "checked-icon"
+            },
+            {
+              "description": "The container that wraps the indeterminate icon.",
+              "name": "indeterminate-icon"
+            },
+            {
+              "description": "The checkbox label.",
+              "name": "label"
             }
           ],
           "slots": [
             {
-              "description": "One or more `<lynk-button>` elements to display in the button group.",
+              "description": "The checkbox's label.",
               "name": ""
             }
           ],
           "members": [
             {
               "kind": "field",
-              "name": "defaultSlot",
+              "name": "input",
               "type": {
-                "text": "HTMLSlotElement"
+                "text": "HTMLInputElement"
               }
             },
             {
               "kind": "field",
-              "name": "label",
+              "name": "formSubmitController",
+              "privacy": "private",
+              "default": "new FormSubmitController(this, {\n    value: (control: LynkCheckbox) => (control.checked ? control.value || 'on' : undefined)\n  })"
+            },
+            {
+              "kind": "field",
+              "name": "hasFocus",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "name",
               "type": {
                 "text": "string"
               },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "attribute": "label"
+              "description": "The checkbox's name attribute.",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "The checkbox's value attribute.",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the checkbox.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the checkbox a required field.",
+              "attribute": "required",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the checkbox in a checked state.",
+              "attribute": "checked",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the checkbox in an indeterminate state.",
+              "attribute": "indeterminate",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "invalid",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
+              "attribute": "invalid",
+              "reflects": true
             },
             {
               "kind": "method",
-              "name": "handleFocus",
+              "name": "click",
+              "description": "Simulates a click on the checkbox."
+            },
+            {
+              "kind": "method",
+              "name": "focus",
               "parameters": [
                 {
-                  "name": "event",
+                  "name": "options",
+                  "optional": true,
                   "type": {
-                    "text": "CustomEvent"
+                    "text": "FocusOptions"
                   }
                 }
-              ]
+              ],
+              "description": "Sets focus on the checkbox."
             },
             {
               "kind": "method",
-              "name": "handleBlur",
+              "name": "blur",
+              "description": "Removes focus from the checkbox."
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "description": "Checks for validity and shows the browser's validation message if the control is invalid."
+            },
+            {
+              "kind": "method",
+              "name": "setCustomValidity",
               "parameters": [
                 {
-                  "name": "event",
+                  "name": "message",
                   "type": {
-                    "text": "CustomEvent"
+                    "text": "string"
                   }
                 }
-              ]
+              ],
+              "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid."
             },
             {
               "kind": "method",
-              "name": "handleMouseOver",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
+              "name": "handleClick"
             },
             {
               "kind": "method",
-              "name": "handleMouseOut",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
+              "name": "handleBlur"
             },
             {
               "kind": "method",
-              "name": "handleSlotChange"
+              "name": "handleDisabledChange"
+            },
+            {
+              "kind": "method",
+              "name": "handleFocus"
+            },
+            {
+              "kind": "method",
+              "name": "handleStateChange"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the control loses focus.",
+              "name": "on:blur",
+              "reactName": "onOnBlur"
+            },
+            {
+              "description": "Emitted when the control's checked state changes.",
+              "name": "on:change",
+              "reactName": "onOnChange"
+            },
+            {
+              "description": "Emitted when the control gains focus.",
+              "name": "on:focus",
+              "reactName": "onOnFocus"
             }
           ],
           "attributes": [
             {
-              "name": "label",
+              "name": "name",
               "type": {
                 "text": "string"
               },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "fieldName": "label"
+              "description": "The checkbox's name attribute.",
+              "fieldName": "name"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "description": "The checkbox's value attribute.",
+              "fieldName": "value"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the checkbox.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the checkbox a required field.",
+              "fieldName": "required"
+            },
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the checkbox in a checked state.",
+              "fieldName": "checked"
+            },
+            {
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the checkbox in an indeterminate state.",
+              "fieldName": "indeterminate"
+            },
+            {
+              "name": "invalid",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
+              "fieldName": "invalid"
             }
           ],
           "superclass": {
@@ -2391,7 +2391,7 @@
           },
           "since": "1.0",
           "status": "stable",
-          "tagName": "lynk-button-group",
+          "tagName": "lynk-checkbox",
           "customElement": true
         }
       ],
@@ -2400,16 +2400,16 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
+            "name": "LynkCheckbox",
+            "module": "src/components/checkbox/checkbox.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "lynk-button-group",
+          "name": "lynk-checkbox",
           "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
+            "name": "LynkCheckbox",
+            "module": "src/components/checkbox/checkbox.ts"
           }
         }
       ]
@@ -6225,6 +6225,17 @@
             },
             {
               "kind": "field",
+              "name": "noArrow",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Hides the arrow.",
+              "attribute": "no-arrow",
+              "reflects": true
+            },
+            {
+              "kind": "field",
               "name": "clickToHide",
               "type": {
                 "text": "boolean"
@@ -6465,6 +6476,15 @@
               "default": "false",
               "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the popover.",
               "fieldName": "noHeader"
+            },
+            {
+              "name": "no-arrow",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Hides the arrow.",
+              "fieldName": "noArrow"
             },
             {
               "name": "click-to-hide",
@@ -11405,7 +11425,7 @@
   "package": {
     "name": "@lynk-design/lynk",
     "description": "A library of web components and styles for building web applications with the Edgio Streaming design language.",
-    "version": "1.0.0-beta.15",
+    "version": "1.0.0-beta.16",
     "author": "Harley Jessop",
     "homepage": "https://lynk-design.web.app/",
     "license": "MIT"
