@@ -6,6 +6,7 @@ export default css`
 
   :host {
     display: block;
+    --margin: 0;
     --width: 100%;
     --height: auto;
     --gap: var(--lynk-spacing-small)
@@ -17,6 +18,7 @@ export default css`
     gap: var(--gap);
     width: var(--width);
     height: var(--height);
+    margin: var(--margin);
   }
 
   .lynk-stack--reverse {

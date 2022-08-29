@@ -11,6 +11,7 @@ var stack_styles_default = r`
 
   :host {
     display: block;
+    --margin: 0;
     --width: 100%;
     --height: auto;
     --gap: var(--lynk-spacing-small)
@@ -22,6 +23,7 @@ var stack_styles_default = r`
     gap: var(--gap);
     width: var(--width);
     height: var(--height);
+    margin: var(--margin);
   }
 
   .lynk-stack--reverse {

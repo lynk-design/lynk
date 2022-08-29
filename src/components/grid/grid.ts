@@ -10,7 +10,7 @@ import styles from './grid.styles';
  *
  * @csspart base - The component's internal wrapper.
  *
- * @cssproperty --container-width - Set a custom width for the grid container element. Defaults to 100%.
+ * @cssproperty --width - Set a custom width for the grid container element. Defaults to 100%.
  */
 @customElement('lynk-grid')
 export default class LynkGrid extends LitElement {

@@ -1,7 +1,4 @@
 import {
-  accordion_styles_default
-} from "./chunk.Z7QVD4S3.js";
-import {
   animateTo,
   shimKeyframesHeightAuto,
   stopAnimations
@@ -25,6 +22,9 @@ import {
   i,
   n
 } from "./chunk.ML4GKG4X.js";
+import {
+  accordion_styles_default
+} from "./chunk.Z7QVD4S3.js";
 import {
   $,
   s

@@ -154,6 +154,7 @@ var LynkInput = class extends s {
       setTimeout(() => {
         if (!event.defaultPrevented) {
           this.formSubmitController.submit();
+          emit(this, "on:enter");
         }
       });
     }

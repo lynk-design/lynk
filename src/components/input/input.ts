@@ -35,6 +35,7 @@ import styles from './input.styles';
  * @event on:input - Emitted when the control receives input and its value changes.
  * @event on:focus - Emitted when the control gains focus.
  * @event on:blur - Emitted when the control loses focus.
+ * @event on:enter - Emitted when the return key is pressed while the input has focus.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -304,6 +305,7 @@ export default class LynkInput extends LitElement {
       setTimeout(() => {
         if (!event.defaultPrevented) {
           this.formSubmitController.submit();
+          emit(this, 'on:enter');
         }
       });
     }
