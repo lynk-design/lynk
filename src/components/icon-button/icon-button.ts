@@ -31,7 +31,7 @@ export default class LynkIconButton extends LitElement {
   private readonly hasSlotController = new HasSlotController(this, 'prefix', 'suffix');
 
   /** The button's color. */
-  @property({ reflect: true }) color?: 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
+  @property({ reflect: true }) color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'default';
 
   /** The name of the icon to draw. */
   @property() name?: string;

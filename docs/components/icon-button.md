@@ -24,27 +24,31 @@ Icon buttons inherit their parent element's `font-size`.
 
 ### Colors
 
-Icon buttons are designed to have a uniform appearance, so their color is not inherited. However, you can still customize them by styling the `base` part.
+Use the `color` attribute to set the icon button's color. You can also customize the color by styling the `base` part.
 
 ```html preview
-<div class="icon-button-color">
-  <lynk-icon-button name="type-bold" label="Bold"></lynk-icon-button>
-  <lynk-icon-button name="type-italic" label="Italic"></lynk-icon-button>
-  <lynk-icon-button name="type-underline" label="Underline"></lynk-icon-button>
-</div>
+<lynk-icon-button name="question-circle-fill"></lynk-icon-button>
+<lynk-icon-button color="primary" name="info-circle-fill"></lynk-icon-button>
+<lynk-icon-button color="success" name="check-square-fill"></lynk-icon-button>
+<lynk-icon-button color="warning" name="exclamation-triangle-fill"></lynk-icon-button>
+<lynk-icon-button color="danger" name="exclamation-diamond-fill"></lynk-icon-button>
+
+<lynk-icon-button class="icon-button-color" name="type-bold" label="Bold"></lynk-icon-button>
+<lynk-icon-button class="icon-button-color" name="type-italic" label="Italic"></lynk-icon-button>
+<lynk-icon-button class="icon-button-color" name="type-underline" label="Underline"></lynk-icon-button>
 
 <style>
-  .icon-button-color lynk-icon-button::part(base) {
-    color: #b00091;
+  lynk-icon-button.icon-button-color::part(base) {
+    color: turquoise;
   }
 
-  .icon-button-color lynk-icon-button::part(base):hover,
-  .icon-button-color lynk-icon-button::part(base):focus {
-    color: #c913aa;
+  lynk-icon-button.icon-button-color::part(base):hover,
+  lynk-icon-button.icon-button-color::part(base):focus {
+    color: turquoise;
   }
 
-  .icon-button-color lynk-icon-button::part(base):active {
-    color: #960077;
+  lynk-icon-button.icon-button-color::part(base):active {
+    color: turquoise;
   }
 </style>
 ```
