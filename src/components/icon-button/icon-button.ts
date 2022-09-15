@@ -3,6 +3,7 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { html, literal } from 'lit/static-html.js';
+import { HasSlotController } from '../../internal/slot';
 import '../../components/icon/icon';
 import { emit } from '../../internal/event';
 import styles from './icon-button.styles';
@@ -14,6 +15,7 @@ import styles from './icon-button.styles';
  * @dependency lynk-icon
  *
  * @event on:blur - Emitted when the icon button loses focus.
+ * @event on:click - Emitted when the button is clicked.
  * @event on:focus - Emitted when the icon button gains focus.
  *
  * @csspart base - The component's internal wrapper.
@@ -25,6 +27,11 @@ export default class LynkIconButton extends LitElement {
   @state() private hasFocus = false;
 
   @query('.lynk-icon-button') button: HTMLButtonElement | HTMLLinkElement;
+
+  private readonly hasSlotController = new HasSlotController(this, 'prefix', 'suffix');
+
+  /** The button's color. */
+  @property({ reflect: true }) color?: 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
 
   /** The name of the icon to draw. */
   @property() name?: string;
@@ -82,7 +89,10 @@ export default class LynkIconButton extends LitElement {
     if (this.disabled) {
       event.preventDefault();
       event.stopPropagation();
+      return;
     }
+
+    emit(this, 'on:click');
   }
 
   render() {
@@ -95,8 +105,16 @@ export default class LynkIconButton extends LitElement {
         part="base"
         class=${classMap({
           'lynk-icon-button': true,
+          'lynk-icon-button--default': this.color === 'default',
+          'lynk-icon-button--primary': this.color === 'primary',
+          'lynk-icon-button--success': this.color === 'success',
+          'lynk-icon-button--neutral': this.color === 'neutral',
+          'lynk-icon-button--warning': this.color === 'warning',
+          'lynk-icon-button--danger': this.color === 'danger',
           'lynk-icon-button--disabled': !isLink && this.disabled,
-          'lynk-icon-button--focused': this.hasFocus
+          'lynk-icon-button--focused': this.hasFocus,
+          'lynk-icon-button--has-prefix': this.hasSlotController.test('prefix'),
+          'lynk-icon-button--has-suffix': this.hasSlotController.test('suffix')
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : 'button')}
@@ -112,6 +130,9 @@ export default class LynkIconButton extends LitElement {
         @focus=${this.handleFocus}
         @click=${this.handleClick}
       >
+        <span part="prefix" class="lynk-icon-button__prefix">
+          <slot name="prefix"></slot>
+        </span>
         <lynk-icon
           class="lynk-icon-button__icon"
           name=${ifDefined(this.name)}
@@ -119,6 +140,9 @@ export default class LynkIconButton extends LitElement {
           src=${ifDefined(this.src)}
           aria-hidden="true"
         ></lynk-icon>
+        <span part="suffix" class="lynk-icon-button__suffix">
+          <slot name="suffix"></slot>
+        </span>
       </${tag}>
     `;
   }

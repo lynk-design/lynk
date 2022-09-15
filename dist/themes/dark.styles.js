@@ -6,6 +6,7 @@ export default css`
   .lynk-theme-dark {
     color-scheme: dark;
 
+    --lynk-color-gray-25: hsl(240 4% 10%);
     --lynk-color-gray-50: hsl(240 4% 13%);
     --lynk-color-gray-100: hsl(240 4% 17%);
     --lynk-color-gray-200: hsl(240 4% 22%);
@@ -318,6 +319,7 @@ export default css`
 
     --lynk-color-danger: var(--lynk-color-danger-600);
 
+    --lynk-color-neutral-25: var(--lynk-color-gray-25);
     --lynk-color-neutral-50: var(--lynk-color-gray-50);
     --lynk-color-neutral-100: var(--lynk-color-gray-100);
     --lynk-color-neutral-200: var(--lynk-color-gray-200);
@@ -332,10 +334,20 @@ export default css`
 
     --lynk-color-neutral: var(--lynk-color-neutral-600);
 
-    --lynk-color-neutral-0: hsl(240 6% 10%);
+    --lynk-color-neutral-0: hsl(240 4% 7%);
     --lynk-color-neutral-1000: hsl(0 0% 95%);
-    --lynk-color-black: hsl(240 6% 10%);
+
+    --lynk-color-black: hsl(240 4% 7%);
+    --lynk-color-black-a10: hsla(240 4% 7% / 0.1);
+    --lynk-color-black-a25: hsla(240 4% 7% / 0.25);
+    --lynk-color-black-a50: hsla(240 4% 7% / 0.5);
+    --lynk-color-black-a75: hsla(240 4% 7% / 0.75);
+
     --lynk-color-white: hsl(0 0% 95%);
+    --lynk-color-white-a10: hsla(0 0% 95% / 0.1);
+    --lynk-color-white-a25: hsla(0 0% 95% / 0.25);
+    --lynk-color-white-a50: hsla(0 0% 95% / 0.5);
+    --lynk-color-white-a75: hsla(0 0% 95% / 0.75);
 
     --lynk-breakpoint-sm: 600px;
     --lynk-breakpoint-phone: var(--lynk-breakpoint-sm);

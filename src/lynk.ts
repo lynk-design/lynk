@@ -8,6 +8,7 @@ export { default as LynkButtonGroup } from './components/button-group/button-gro
 export { default as LynkCheckbox } from './components/checkbox/checkbox';
 export { default as LynkDialog } from './components/dialog/dialog';
 export { default as LynkDivider } from './components/divider/divider';
+export { default as LynkDrawer } from './components/drawer/drawer';
 export { default as LynkDropdown } from './components/dropdown/dropdown';
 export { default as LynkFormatBytes } from './components/format-bytes/format-bytes';
 export { default as LynkFormatDate } from './components/format-date/format-date';

@@ -14,6 +14,117 @@
     "html": {
       "elements": [
         {
+          "name": "lynk-accordion",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-accordion",
+          "js": {
+            "properties": [
+              {
+                "name": "accordion",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "header",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "body",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "summary",
+                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the accordion so it can't be toggled.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the accordion.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the accordion",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryClick",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:show",
+                "description": "Emitted when the accordion opens."
+              },
+              {
+                "name": "after:show",
+                "description": "Emitted after the accordion opens and all animations are complete."
+              },
+              {
+                "name": "on:hide",
+                "description": "Emitted when the accordion closes."
+              },
+              {
+                "name": "after:hide",
+                "description": "Emitted after the accordion closes and all animations are complete."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "summary",
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables the accordion so it can't be toggled.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-alert",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-alert",
@@ -142,117 +253,6 @@
               "name": "duration",
               "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
               "value": {}
-            }
-          ]
-        },
-        {
-          "name": "lynk-accordion",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-accordion",
-          "js": {
-            "properties": [
-              {
-                "name": "accordion",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "header",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "body",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "open",
-                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "summary",
-                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Disables the accordion so it can't be toggled.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "show",
-                "description": "Shows the accordion.",
-                "value": {}
-              },
-              {
-                "name": "hide",
-                "description": "Hides the accordion",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryClick",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleOpenChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:show",
-                "description": "Emitted when the accordion opens."
-              },
-              {
-                "name": "after:show",
-                "description": "Emitted after the accordion opens and all animations are complete."
-              },
-              {
-                "name": "on:hide",
-                "description": "Emitted when the accordion closes."
-              },
-              {
-                "name": "after:hide",
-                "description": "Emitted after the accordion closes and all animations are complete."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "summary",
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "disabled",
-              "description": "Disables the accordion so it can't be toggled.",
-              "value": {
-                "type": "boolean"
-              }
             }
           ]
         },
@@ -578,188 +578,14 @@
           ]
         },
         {
-          "name": "lynk-checkbox",
+          "name": "lynk-box",
           "description": "",
-          "doc-url": "https://lynk.design/components/lynk-checkbox",
+          "doc-url": "https://lynk.design/components/lynk-box",
           "js": {
-            "properties": [
-              {
-                "name": "input",
-                "value": {
-                  "type": "HTMLInputElement"
-                }
-              },
-              {
-                "name": "formSubmitController",
-                "value": {}
-              },
-              {
-                "name": "hasFocus",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "name",
-                "description": "The checkbox's name attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "value",
-                "description": "The checkbox's value attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Disables the checkbox.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "required",
-                "description": "Makes the checkbox a required field.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "checked",
-                "description": "Draws the checkbox in a checked state.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "indeterminate",
-                "description": "Draws the checkbox in an indeterminate state.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "invalid",
-                "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "click",
-                "description": "Simulates a click on the checkbox.",
-                "value": {}
-              },
-              {
-                "name": "focus",
-                "description": "Sets focus on the checkbox.",
-                "value": {}
-              },
-              {
-                "name": "blur",
-                "description": "Removes focus from the checkbox.",
-                "value": {}
-              },
-              {
-                "name": "reportValidity",
-                "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
-                "value": {}
-              },
-              {
-                "name": "setCustomValidity",
-                "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
-                "value": {}
-              },
-              {
-                "name": "handleClick",
-                "value": {}
-              },
-              {
-                "name": "handleBlur",
-                "value": {}
-              },
-              {
-                "name": "handleDisabledChange",
-                "value": {}
-              },
-              {
-                "name": "handleFocus",
-                "value": {}
-              },
-              {
-                "name": "handleStateChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:blur",
-                "description": "Emitted when the control loses focus."
-              },
-              {
-                "name": "on:change",
-                "description": "Emitted when the control's checked state changes."
-              },
-              {
-                "name": "on:focus",
-                "description": "Emitted when the control gains focus."
-              }
-            ]
+            "properties": [],
+            "events": []
           },
-          "attributes": [
-            {
-              "name": "name",
-              "description": "The checkbox's name attribute.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "value",
-              "description": "The checkbox's value attribute.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "disabled",
-              "description": "Disables the checkbox.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "required",
-              "description": "Makes the checkbox a required field.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "checked",
-              "description": "Draws the checkbox in a checked state.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "indeterminate",
-              "description": "Draws the checkbox in an indeterminate state.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "invalid",
-              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
+          "attributes": []
         },
         {
           "name": "lynk-button",
@@ -1198,6 +1024,526 @@
           ]
         },
         {
+          "name": "lynk-checkbox",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-checkbox",
+          "js": {
+            "properties": [
+              {
+                "name": "input",
+                "value": {
+                  "type": "HTMLInputElement"
+                }
+              },
+              {
+                "name": "formSubmitController",
+                "value": {}
+              },
+              {
+                "name": "hasFocus",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "name",
+                "description": "The checkbox's name attribute.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "value",
+                "description": "The checkbox's value attribute.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the checkbox.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "required",
+                "description": "Makes the checkbox a required field.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "checked",
+                "description": "Draws the checkbox in a checked state.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "indeterminate",
+                "description": "Draws the checkbox in an indeterminate state.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "invalid",
+                "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "click",
+                "description": "Simulates a click on the checkbox.",
+                "value": {}
+              },
+              {
+                "name": "focus",
+                "description": "Sets focus on the checkbox.",
+                "value": {}
+              },
+              {
+                "name": "blur",
+                "description": "Removes focus from the checkbox.",
+                "value": {}
+              },
+              {
+                "name": "reportValidity",
+                "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
+                "value": {}
+              },
+              {
+                "name": "setCustomValidity",
+                "description": "Sets a custom validation message. If `message` is not empty, the field will be considered invalid.",
+                "value": {}
+              },
+              {
+                "name": "handleClick",
+                "value": {}
+              },
+              {
+                "name": "handleBlur",
+                "value": {}
+              },
+              {
+                "name": "handleDisabledChange",
+                "value": {}
+              },
+              {
+                "name": "handleFocus",
+                "value": {}
+              },
+              {
+                "name": "handleStateChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:blur",
+                "description": "Emitted when the control loses focus."
+              },
+              {
+                "name": "on:change",
+                "description": "Emitted when the control's checked state changes."
+              },
+              {
+                "name": "on:focus",
+                "description": "Emitted when the control gains focus."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "name",
+              "description": "The checkbox's name attribute.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "value",
+              "description": "The checkbox's value attribute.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables the checkbox.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "required",
+              "description": "Makes the checkbox a required field.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "checked",
+              "description": "Draws the checkbox in a checked state.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "indeterminate",
+              "description": "Draws the checkbox in an indeterminate state.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "invalid",
+              "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-divider",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-divider",
+          "js": {
+            "properties": [
+              {
+                "name": "vertical",
+                "description": "Draws the divider in a vertical orientation.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleVerticalChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "vertical",
+              "description": "Draws the divider in a vertical orientation.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-drawer",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-drawer",
+          "js": {
+            "properties": [
+              {
+                "name": "drawer",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "panel",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "overlay",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "hasSlotController",
+                "value": {}
+              },
+              {
+                "name": "localize",
+                "value": {}
+              },
+              {
+                "name": "modal",
+                "value": {
+                  "type": "Modal"
+                }
+              },
+              {
+                "name": "originalTrigger",
+                "value": {
+                  "type": "HTMLElement | null"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the drawer is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "label",
+                "description": "The drawer's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "placement",
+                "description": "The direction from which the drawer will open.",
+                "value": {
+                  "type": "'top' | 'end' | 'bottom' | 'start'"
+                }
+              },
+              {
+                "name": "contained",
+                "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this prop and add `position: relative` to the parent.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "noHeader",
+                "description": "Removes the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the drawer.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the drawer.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the drawer",
+                "value": {}
+              },
+              {
+                "name": "requestClose",
+                "value": {}
+              },
+              {
+                "name": "handleKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:show",
+                "description": "Emitted when the drawer opens."
+              },
+              {
+                "name": "after:show",
+                "description": "Emitted after the drawer opens and all animations are complete."
+              },
+              {
+                "name": "on:hide",
+                "description": "Emitted when the drawer closes."
+              },
+              {
+                "name": "after:hide",
+                "description": "Emitted after the drawer closes and all animations are complete."
+              },
+              {
+                "name": "on:initial-focus",
+                "description": "Emitted when the drawer opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input."
+              },
+              {
+                "name": "on:request-close",
+                "description": "Emitted when the user attempts to close the drawer by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the drawer open. Avoid using this unless closing the drawer will result in destructive behavior such as data loss."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the drawer is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "description": "The drawer's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "placement",
+              "description": "The direction from which the drawer will open.",
+              "value": {
+                "type": "'top' | 'end' | 'bottom' | 'start'"
+              }
+            },
+            {
+              "name": "contained",
+              "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this prop and add `position: relative` to the parent.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "no-header",
+              "description": "Removes the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the drawer.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-dialog",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-dialog",
+          "js": {
+            "properties": [
+              {
+                "name": "dialog",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "panel",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "overlay",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "hasSlotController",
+                "value": {}
+              },
+              {
+                "name": "localize",
+                "value": {}
+              },
+              {
+                "name": "modal",
+                "value": {
+                  "type": "Modal"
+                }
+              },
+              {
+                "name": "originalTrigger",
+                "value": {
+                  "type": "HTMLElement | null"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "label",
+                "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "noHeader",
+                "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the dialog.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the dialog",
+                "value": {}
+              },
+              {
+                "name": "requestClose",
+                "value": {}
+              },
+              {
+                "name": "handleKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:show",
+                "description": "Emitted when the dialog opens."
+              },
+              {
+                "name": "after:show",
+                "description": "Emitted after the dialog opens and all animations are complete."
+              },
+              {
+                "name": "on:hide",
+                "description": "Emitted when the dialog closes."
+              },
+              {
+                "name": "after:hide",
+                "description": "Emitted after the dialog closes and all animations are complete."
+              },
+              {
+                "name": "on:initial-focus",
+                "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input."
+              },
+              {
+                "name": "on:request-close",
+                "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "no-header",
+              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-dropdown",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-dropdown",
@@ -1455,185 +1801,6 @@
               }
             }
           ]
-        },
-        {
-          "name": "lynk-divider",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-divider",
-          "js": {
-            "properties": [
-              {
-                "name": "vertical",
-                "description": "Draws the divider in a vertical orientation.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "handleVerticalChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "vertical",
-              "description": "Draws the divider in a vertical orientation.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-dialog",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-dialog",
-          "js": {
-            "properties": [
-              {
-                "name": "dialog",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "panel",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "overlay",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "hasSlotController",
-                "value": {}
-              },
-              {
-                "name": "localize",
-                "value": {}
-              },
-              {
-                "name": "modal",
-                "value": {
-                  "type": "Modal"
-                }
-              },
-              {
-                "name": "originalTrigger",
-                "value": {
-                  "type": "HTMLElement | null"
-                }
-              },
-              {
-                "name": "open",
-                "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "label",
-                "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "noHeader",
-                "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "show",
-                "description": "Shows the dialog.",
-                "value": {}
-              },
-              {
-                "name": "hide",
-                "description": "Hides the dialog",
-                "value": {}
-              },
-              {
-                "name": "requestClose",
-                "value": {}
-              },
-              {
-                "name": "handleKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleOpenChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:show",
-                "description": "Emitted when the dialog opens."
-              },
-              {
-                "name": "after:show",
-                "description": "Emitted after the dialog opens and all animations are complete."
-              },
-              {
-                "name": "on:hide",
-                "description": "Emitted when the dialog closes."
-              },
-              {
-                "name": "after:hide",
-                "description": "Emitted after the dialog closes and all animations are complete."
-              },
-              {
-                "name": "on:initial-focus",
-                "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input."
-              },
-              {
-                "name": "on:request-close",
-                "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "label",
-              "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "no-header",
-              "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-box",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-box",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
         },
         {
           "name": "lynk-format-bytes",
@@ -2076,6 +2243,120 @@
           ]
         },
         {
+          "name": "lynk-grid",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-grid",
+          "js": {
+            "properties": [
+              {
+                "name": "container",
+                "description": "A container of grid items",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "item",
+                "description": "A singular grid item",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "direction",
+                "description": "The flow direction of grid items, requries container property being set",
+                "value": {
+                  "type": "'row' | 'row-reverse' | 'column' | 'column-revers' | undefined"
+                }
+              },
+              {
+                "name": "justify",
+                "description": "How to justify grid items, requires container property",
+                "value": {
+                  "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
+                }
+              },
+              {
+                "name": "align",
+                "description": "Hot to align grid items to eachother, requires container property",
+                "value": {
+                  "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
+                }
+              },
+              {
+                "name": "span",
+                "description": "The width of a grid item. Requires item property  being set. This can be a single string or an array.",
+                "value": {
+                  "type": "string | undefined"
+                }
+              },
+              {
+                "name": "gap",
+                "description": "The space between grid items. Uses spacing token sizes.",
+                "value": {
+                  "type": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
+                }
+              },
+              {
+                "name": "getBreakpointClasses",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "container",
+              "description": "A container of grid items",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "item",
+              "description": "A singular grid item",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "direction",
+              "description": "The flow direction of grid items, requries container property being set",
+              "value": {
+                "type": "'row' | 'row-reverse' | 'column' | 'column-revers' | undefined"
+              }
+            },
+            {
+              "name": "justify",
+              "description": "How to justify grid items, requires container property",
+              "value": {
+                "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
+              }
+            },
+            {
+              "name": "align",
+              "description": "Hot to align grid items to eachother, requires container property",
+              "value": {
+                "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
+              }
+            },
+            {
+              "name": "span",
+              "description": "The width of a grid item. Requires item property  being set. This can be a single string or an array.",
+              "value": {
+                "type": "string | undefined"
+              }
+            },
+            {
+              "name": "gap",
+              "description": "The space between grid items. Uses spacing token sizes.",
+              "value": {
+                "type": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-icon",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-icon",
@@ -2235,199 +2516,6 @@
           "attributes": []
         },
         {
-          "name": "lynk-include",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-include",
-          "js": {
-            "properties": [
-              {
-                "name": "src",
-                "description": "The location of the HTML file to include.\n\nWARNING: Be sure you trust the content you are including as it will be executed as code and can result in XSS attacks.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "mode",
-                "description": "The fetch mode to use.",
-                "value": {
-                  "type": "'cors' | 'no-cors' | 'same-origin'"
-                }
-              },
-              {
-                "name": "allowScripts",
-                "description": "Allows included scripts to be executed. You must ensure the content you're including is trusted, otherwise this\noption can lead to XSS vulnerabilities in your app!",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "executeScript",
-                "value": {}
-              },
-              {
-                "name": "handleSrcChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:load",
-                "description": "Emitted when the included file is loaded."
-              },
-              {
-                "name": "on:error",
-                "description": "Emitted when the included file fails to load due to an error."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "src",
-              "description": "The location of the HTML file to include.\n\nWARNING: Be sure you trust the content you are including as it will be executed as code and can result in XSS attacks.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "mode",
-              "description": "The fetch mode to use.",
-              "value": {
-                "type": "'cors' | 'no-cors' | 'same-origin'"
-              }
-            },
-            {
-              "name": "allow-scripts",
-              "description": "Allows included scripts to be executed. You must ensure the content you're including is trusted, otherwise this\noption can lead to XSS vulnerabilities in your app!",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "doc-url": "https://lynk.design/components/",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
-        },
-        {
-          "name": "lynk-grid",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-grid",
-          "js": {
-            "properties": [
-              {
-                "name": "container",
-                "description": "A container of grid items",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "item",
-                "description": "A singular grid item",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "direction",
-                "description": "The flow direction of grid items, requries container property being set",
-                "value": {
-                  "type": "'row' | 'row-reverse' | 'column' | 'column-revers' | undefined"
-                }
-              },
-              {
-                "name": "justify",
-                "description": "How to justify grid items, requires container property",
-                "value": {
-                  "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
-                }
-              },
-              {
-                "name": "align",
-                "description": "Hot to align grid items to eachother, requires container property",
-                "value": {
-                  "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
-                }
-              },
-              {
-                "name": "span",
-                "description": "The width of a grid item. Requires item property  being set. This can be a single string or an array.",
-                "value": {
-                  "type": "string | undefined"
-                }
-              },
-              {
-                "name": "gap",
-                "description": "The space between grid items. Uses spacing token sizes.",
-                "value": {
-                  "type": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
-                }
-              },
-              {
-                "name": "getBreakpointClasses",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "container",
-              "description": "A container of grid items",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "item",
-              "description": "A singular grid item",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "direction",
-              "description": "The flow direction of grid items, requries container property being set",
-              "value": {
-                "type": "'row' | 'row-reverse' | 'column' | 'column-revers' | undefined"
-              }
-            },
-            {
-              "name": "justify",
-              "description": "How to justify grid items, requires container property",
-              "value": {
-                "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
-              }
-            },
-            {
-              "name": "align",
-              "description": "Hot to align grid items to eachother, requires container property",
-              "value": {
-                "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
-              }
-            },
-            {
-              "name": "span",
-              "description": "The width of a grid item. Requires item property  being set. This can be a single string or an array.",
-              "value": {
-                "type": "string | undefined"
-              }
-            },
-            {
-              "name": "gap",
-              "description": "The space between grid items. Uses spacing token sizes.",
-              "value": {
-                "type": "'0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large'"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-icon-button",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-icon-button",
@@ -2443,6 +2531,17 @@
                 "name": "button",
                 "value": {
                   "type": "HTMLButtonElement | HTMLLinkElement"
+                }
+              },
+              {
+                "name": "hasSlotController",
+                "value": {}
+              },
+              {
+                "name": "color",
+                "description": "The button's color.",
+                "value": {
+                  "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger' | undefined"
                 }
               },
               {
@@ -2535,12 +2634,23 @@
                 "description": "Emitted when the icon button loses focus."
               },
               {
+                "name": "on:click",
+                "description": "Emitted when the button is clicked."
+              },
+              {
                 "name": "on:focus",
                 "description": "Emitted when the icon button gains focus."
               }
             ]
           },
           "attributes": [
+            {
+              "name": "color",
+              "description": "The button's color.",
+              "value": {
+                "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger' | undefined"
+              }
+            },
             {
               "name": "name",
               "description": "The name of the icon to draw.",
@@ -2598,6 +2708,85 @@
               }
             }
           ]
+        },
+        {
+          "name": "lynk-include",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-include",
+          "js": {
+            "properties": [
+              {
+                "name": "src",
+                "description": "The location of the HTML file to include.\n\nWARNING: Be sure you trust the content you are including as it will be executed as code and can result in XSS attacks.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "mode",
+                "description": "The fetch mode to use.",
+                "value": {
+                  "type": "'cors' | 'no-cors' | 'same-origin'"
+                }
+              },
+              {
+                "name": "allowScripts",
+                "description": "Allows included scripts to be executed. You must ensure the content you're including is trusted, otherwise this\noption can lead to XSS vulnerabilities in your app!",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "executeScript",
+                "value": {}
+              },
+              {
+                "name": "handleSrcChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:load",
+                "description": "Emitted when the included file is loaded."
+              },
+              {
+                "name": "on:error",
+                "description": "Emitted when the included file fails to load due to an error."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "src",
+              "description": "The location of the HTML file to include.\n\nWARNING: Be sure you trust the content you are including as it will be executed as code and can result in XSS attacks.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "mode",
+              "description": "The fetch mode to use.",
+              "value": {
+                "type": "'cors' | 'no-cors' | 'same-origin'"
+              }
+            },
+            {
+              "name": "allow-scripts",
+              "description": "Allows included scripts to be executed. You must ensure the content you're including is trusted, otherwise this\noption can lead to XSS vulnerabilities in your app!",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "doc-url": "https://lynk.design/components/",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
         },
         {
           "name": "lynk-input",
@@ -3200,6 +3389,75 @@
           ]
         },
         {
+          "name": "lynk-menu",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-menu",
+          "js": {
+            "properties": [
+              {
+                "name": "menu",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "defaultSlot",
+                "value": {
+                  "type": "HTMLSlotElement"
+                }
+              },
+              {
+                "name": "typeToSelectString",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "typeToSelectTimeout",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "getAllItems",
+                "value": {}
+              },
+              {
+                "name": "typeToSelect",
+                "description": "Initiates type-to-select logic, which automatically selects an option based on what the user is currently typing.\nThe event passed will be used to append the appropriate characters to the internal query and the selection will be\nupdated. After a brief period, the internal query is cleared automatically. This is useful for enabling\ntype-to-select behavior when the menu doesn't have focus.",
+                "value": {}
+              },
+              {
+                "name": "handleClick",
+                "value": {}
+              },
+              {
+                "name": "handleKeyUp",
+                "value": {}
+              },
+              {
+                "name": "handleKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleMouseDown",
+                "value": {}
+              },
+              {
+                "name": "handleSlotChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:select",
+                "description": "Emitted when a menu item is selected."
+              }
+            ]
+          },
+          "attributes": []
+        },
+        {
           "name": "lynk-menu-item",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-menu-item",
@@ -3300,75 +3558,6 @@
               }
             }
           ]
-        },
-        {
-          "name": "lynk-menu",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-menu",
-          "js": {
-            "properties": [
-              {
-                "name": "menu",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "defaultSlot",
-                "value": {
-                  "type": "HTMLSlotElement"
-                }
-              },
-              {
-                "name": "typeToSelectString",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "typeToSelectTimeout",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "getAllItems",
-                "value": {}
-              },
-              {
-                "name": "typeToSelect",
-                "description": "Initiates type-to-select logic, which automatically selects an option based on what the user is currently typing.\nThe event passed will be used to append the appropriate characters to the internal query and the selection will be\nupdated. After a brief period, the internal query is cleared automatically. This is useful for enabling\ntype-to-select behavior when the menu doesn't have focus.",
-                "value": {}
-              },
-              {
-                "name": "handleClick",
-                "value": {}
-              },
-              {
-                "name": "handleKeyUp",
-                "value": {}
-              },
-              {
-                "name": "handleKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleMouseDown",
-                "value": {}
-              },
-              {
-                "name": "handleSlotChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:select",
-                "description": "Emitted when a menu item is selected."
-              }
-            ]
-          },
-          "attributes": []
         },
         {
           "name": "lynk-menu-label",
@@ -5063,118 +5252,81 @@
           "attributes": []
         },
         {
-          "name": "lynk-tab",
+          "name": "lynk-stack",
           "description": "",
-          "doc-url": "https://lynk.design/components/lynk-tab",
+          "doc-url": "https://lynk.design/components/lynk-stack",
           "js": {
             "properties": [
               {
-                "name": "localize",
-                "value": {}
-              },
-              {
-                "name": "tab",
+                "name": "horizontal",
+                "description": "Stack items horizontaly",
                 "value": {
-                  "type": "HTMLElement"
+                  "type": "boolean"
                 }
               },
               {
-                "name": "attrId",
-                "value": {}
+                "name": "reverse",
+                "description": "Reverse the order of stack items",
+                "value": {
+                  "type": "boolean"
+                }
               },
               {
-                "name": "componentId",
-                "value": {}
+                "name": "justify",
+                "description": "How to justify stack items",
+                "value": {
+                  "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
+                }
               },
               {
-                "name": "panel",
-                "description": "The name of the tab panel the tab will control. The panel must be located in the same tab group.",
+                "name": "align",
+                "description": "Hot to align stack items to eachother",
+                "value": {
+                  "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
+                }
+              },
+              {
+                "name": "gap",
+                "description": "The space between stack items. Use spacing tokens or any custom size.",
                 "value": {
                   "type": "string"
                 }
-              },
-              {
-                "name": "active",
-                "description": "Draws the tab in an active state.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "closable",
-                "description": "Makes the tab closable and shows a close icon.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Draws the tab in a disabled state.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "lang",
-                "description": "The locale to render the component in.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "focus",
-                "description": "Sets focus to the tab.",
-                "value": {}
-              },
-              {
-                "name": "blur",
-                "description": "Removes focus from the tab.",
-                "value": {}
-              },
-              {
-                "name": "handleCloseClick",
-                "value": {}
               }
             ],
-            "events": [
-              {
-                "name": "on:close",
-                "description": "Emitted when the tab is closable and the close button is activated."
-              }
-            ]
+            "events": []
           },
           "attributes": [
             {
-              "name": "panel",
-              "description": "The name of the tab panel the tab will control. The panel must be located in the same tab group.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "active",
-              "description": "Draws the tab in an active state.",
+              "name": "horizontal",
+              "description": "Stack items horizontaly",
               "value": {
                 "type": "boolean"
               }
             },
             {
-              "name": "closable",
-              "description": "Makes the tab closable and shows a close icon.",
+              "name": "reverse",
+              "description": "Reverse the order of stack items",
               "value": {
                 "type": "boolean"
               }
             },
             {
-              "name": "disabled",
-              "description": "Draws the tab in a disabled state.",
+              "name": "justify",
+              "description": "How to justify stack items",
               "value": {
-                "type": "boolean"
+                "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
               }
             },
             {
-              "name": "lang",
-              "description": "The locale to render the component in.",
+              "name": "align",
+              "description": "Hot to align stack items to eachother",
+              "value": {
+                "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
+              }
+            },
+            {
+              "name": "gap",
+              "description": "The space between stack items. Use spacing tokens or any custom size.",
               "value": {
                 "type": "string"
               }
@@ -5351,6 +5503,125 @@
               "description": "This will be true when the control is in an invalid state. Validity is determined by the `required` prop.",
               "value": {
                 "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-tab",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-tab",
+          "js": {
+            "properties": [
+              {
+                "name": "localize",
+                "value": {}
+              },
+              {
+                "name": "tab",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "attrId",
+                "value": {}
+              },
+              {
+                "name": "componentId",
+                "value": {}
+              },
+              {
+                "name": "panel",
+                "description": "The name of the tab panel the tab will control. The panel must be located in the same tab group.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "active",
+                "description": "Draws the tab in an active state.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "closable",
+                "description": "Makes the tab closable and shows a close icon.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Draws the tab in a disabled state.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "lang",
+                "description": "The locale to render the component in.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "focus",
+                "description": "Sets focus to the tab.",
+                "value": {}
+              },
+              {
+                "name": "blur",
+                "description": "Removes focus from the tab.",
+                "value": {}
+              },
+              {
+                "name": "handleCloseClick",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:close",
+                "description": "Emitted when the tab is closable and the close button is activated."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "panel",
+              "description": "The name of the tab panel the tab will control. The panel must be located in the same tab group.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "active",
+              "description": "Draws the tab in an active state.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "closable",
+              "description": "Makes the tab closable and shows a close icon.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Draws the tab in a disabled state.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "lang",
+              "description": "The locale to render the component in.",
+              "value": {
+                "type": "string"
               }
             }
           ]
@@ -6262,6 +6533,13 @@
                 }
               },
               {
+                "name": "noArrow",
+                "description": "Hides the arrow.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
                 "name": "trigger",
                 "description": "Controls how the tooltip is activated. Possible options include `click`, `hover`, `focus`, and `manual`. Multiple\noptions can be passed by separating them with a space. When manual is used, the tooltip must be activated\nprogrammatically.",
                 "value": {
@@ -6405,6 +6683,13 @@
               }
             },
             {
+              "name": "no-arrow",
+              "description": "Hides the arrow.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
               "name": "trigger",
               "description": "Controls how the tooltip is activated. Possible options include `click`, `hover`, `focus`, and `manual`. Multiple\noptions can be passed by separating them with a space. When manual is used, the tooltip must be activated\nprogrammatically.",
               "value": {
@@ -6416,88 +6701,6 @@
               "description": "Enable this option to prevent the tooltip from being clipped when the component is placed inside a container with\n`overflow: auto|hidden|scroll`.",
               "value": {
                 "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-stack",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-stack",
-          "js": {
-            "properties": [
-              {
-                "name": "horizontal",
-                "description": "Stack items horizontaly",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "reverse",
-                "description": "Reverse the order of stack items",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "justify",
-                "description": "How to justify stack items",
-                "value": {
-                  "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
-                }
-              },
-              {
-                "name": "align",
-                "description": "Hot to align stack items to eachother",
-                "value": {
-                  "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
-                }
-              },
-              {
-                "name": "gap",
-                "description": "The space between stack items. Use spacing tokens or any custom size.",
-                "value": {
-                  "type": "string"
-                }
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "horizontal",
-              "description": "Stack items horizontaly",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "reverse",
-              "description": "Reverse the order of stack items",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "justify",
-              "description": "How to justify stack items",
-              "value": {
-                "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly' | undefined"
-              }
-            },
-            {
-              "name": "align",
-              "description": "Hot to align stack items to eachother",
-              "value": {
-                "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline' | undefined"
-              }
-            },
-            {
-              "name": "gap",
-              "description": "The space between stack items. Use spacing tokens or any custom size.",
-              "value": {
-                "type": "string"
               }
             }
           ]

@@ -19,19 +19,17 @@
   - [Transition](/foundations/transition)
   - [Typography](/foundations/typography)
 
-- Content
+- Content & Layout
 
-  - [Icons](/components/icon)
-  - [Popover](/components/popover)
-  - [Tooltip](/components/tooltip)
-
-- Layout & Organization
-
-  - [Accordian](/components/accordion)
+  - [Accordion](/components/accordion)
   - [Box](/components/box)
   - [Divider](/components/divider)
+  - [Drawer](/components/drawer)
   - [Grid](/components/grid)
+  - [Icons](/components/icon)
+  - [Popover](/components/popover)
   - [Stack](/components/stack)
+  - [Tooltip](/components/tooltip)
 
 - Action & Input
 

@@ -12,6 +12,10 @@ export default css`
     display: contents;
   }
 
+  :host([no-arrow]) .lynk-tooltip__arrow {
+    visibility: hidden;
+  }
+
   .lynk-tooltip-target {
     display: contents;
   }

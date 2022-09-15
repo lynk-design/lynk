@@ -7,6 +7,8 @@ export default css`
 
   :host {
     display: block;
+    --color: var(--lynk-color-neutral-700);
+    --hover-color: var(--lynk-color-primary-600);
   }
 
   .lynk-menu-item {
@@ -18,7 +20,7 @@ export default css`
     font-weight: var(--lynk-font-weight-normal);
     line-height: var(--lynk-line-height-normal);
     letter-spacing: var(--lynk-letter-spacing-normal);
-    color: var(--lynk-color-neutral-700);
+    color: var(--color);
     padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-2x-small);
     transition: var(--lynk-transition-fast) fill;
     user-select: none;
@@ -63,7 +65,7 @@ export default css`
   :host(:hover:not([aria-disabled='true'])) .lynk-menu-item,
   :host(${focusVisibleSelector}:not(.lynk-focus-invisible):not([aria-disabled='true'])) .lynk-menu-item {
     outline: none;
-    background-color: var(--lynk-color-primary-600);
+    background-color: var(--hover-color);
     color: var(--lynk-color-neutral-0);
   }
 

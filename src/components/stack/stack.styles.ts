@@ -12,9 +12,13 @@ export default css`
     --gap: var(--lynk-spacing-small)
   }
 
+  :host([no-wrap]) .lynk-stack {
+    flex-wrap: nowrap;
+  }
+
   .lynk-stack {
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
     gap: var(--gap);
     width: var(--width);
     height: var(--height);
@@ -22,15 +26,15 @@ export default css`
   }
 
   .lynk-stack--reverse {
-    flex-flow: column-reverse nowrap;
+    flex-direction: column-reverse;
   }
 
   .lynk-stack--horizontal {
-    flex-flow: row wrap;
+    flex-direction: row;
   }
 
   .lynk-stack--horizontal.lynk-stack--reverse {
-    flex-flow: row-reverse wrap;
+    flex-direction: row-reverse;
   }
 
   .lynk-stack--justify-start {
