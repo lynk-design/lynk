@@ -59,7 +59,7 @@ export default class LynkButton extends LitElement {
   @property({ reflect: true }) color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'default';
 
   /** The button's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+  @property({ reflect: true }) size: 'tiny' | 'small' | 'medium' | 'large' = 'medium';
 
   /** Display the button component as a block instead of inline-block. */
   @property({ type: Boolean, reflect: true }) block = false;
@@ -183,6 +183,7 @@ export default class LynkButton extends LitElement {
           'lynk-button--neutral': this.color === 'neutral',
           'lynk-button--warning': this.color === 'warning',
           'lynk-button--danger': this.color === 'danger',
+          'lynk-button--tiny': this.size === 'tiny',
           'lynk-button--small': this.size === 'small',
           'lynk-button--medium': this.size === 'medium',
           'lynk-button--large': this.size === 'large',

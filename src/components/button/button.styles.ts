@@ -9,6 +9,7 @@ export default css`
     position: relative;
     width: auto;
     cursor: pointer;
+    line-height: initial;
   }
 
   :host([block]) {
@@ -411,6 +412,13 @@ export default css`
    * Size modifiers
    */
 
+   .lynk-button--tiny {
+     font-size: var(--lynk-button-font-size-small);
+     height: var(--lynk-button-height-tiny);
+     line-height: calc(var(--lynk-button-height-tiny) - var(--lynk-button-border-width) * 2);
+     border-radius: var(--lynk-button-border-radius-small);
+   }
+
   .lynk-button--small {
     font-size: var(--lynk-button-font-size-small);
     height: var(--lynk-button-height-small);
@@ -436,6 +444,10 @@ export default css`
    * Pill modifier
    */
 
+   .lynk-button--pill.lynk-button--tiny {
+     border-radius: var(--lynk-button-height-tiny);
+   }
+
   .lynk-button--pill.lynk-button--small {
     border-radius: var(--lynk-button-height-small);
   }
@@ -456,6 +468,11 @@ export default css`
     padding-left: 0;
     padding-right: 0;
     padding-top: 2px;
+  }
+
+  .lynk-button--circle.lynk-button--tiny {
+    width: var(--lynk-button-height-tiny);
+    border-radius: 50%;
   }
 
   .lynk-button--circle.lynk-button--small {
@@ -486,7 +503,12 @@ export default css`
   .lynk-button--square {
     padding-left: 0;
     padding-right: 0;
-    padding-top: 2px;
+    padding-top: 3px;
+  }
+
+  .lynk-button--square.lynk-button--tiny {
+    width: var(--lynk-button-height-tiny);
+    border-radius: var(--lynk-button-border-radius-small);
   }
 
   .lynk-button--square.lynk-button--small {
@@ -576,6 +598,10 @@ export default css`
    * Button spacing
    */
 
+   .lynk-button--has-label.lynk-button--tiny .lynk-button__label {
+     padding: 0 var(--lynk-spacing-x-small);
+   }
+
   .lynk-button--has-label.lynk-button--small .lynk-button__label {
     padding: 0 var(--lynk-spacing-small);
   }
@@ -586,6 +612,14 @@ export default css`
 
   .lynk-button--has-label.lynk-button--large .lynk-button__label {
     padding: 0 var(--lynk-spacing-large);
+  }
+
+  .lynk-button--has-prefix.lynk-button--tiny {
+    padding-inline-start: var(--lynk-spacing-2x-small);
+  }
+
+  .lynk-button--has-prefix.lynk-button--tiny .lynk-button__label {
+    padding-inline-start: var(--lynk-spacing-2x-small);
   }
 
   .lynk-button--has-prefix.lynk-button--small {
@@ -610,6 +644,16 @@ export default css`
 
   .lynk-button--has-prefix.lynk-button--large .lynk-button__label {
     padding-inline-start: var(--lynk-spacing-small);
+  }
+
+  .lynk-button--has-suffix.lynk-button--tiny,
+  .lynk-button--caret.lynk-button--tiny {
+    padding-inline-end: var(--lynk-spacing-2x-small);
+  }
+
+  .lynk-button--has-suffix.lynk-button--tiny .lynk-button__label,
+  .lynk-button--caret.lynk-button--tiny .lynk-button__label {
+    padding-inline-end: var(--lynk-spacing-2x-small);
   }
 
   .lynk-button--has-suffix.lynk-button--small,

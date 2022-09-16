@@ -1,7 +1,4 @@
 import {
-  dialog_styles_default
-} from "./chunk.Y6JZXC7P.js";
-import {
   Modal
 } from "./chunk.BQLXYG6H.js";
 import {
@@ -11,6 +8,9 @@ import {
 import {
   LocalizeController
 } from "./chunk.E66L43KD.js";
+import {
+  dialog_styles_default
+} from "./chunk.Y6JZXC7P.js";
 import {
   HasSlotController
 } from "./chunk.7DIJ2SI4.js";
@@ -23,18 +23,18 @@ import {
   setDefaultAnimation
 } from "./chunk.5FIVCLSV.js";
 import {
-  l
-} from "./chunk.CRMBCBPN.js";
-import {
-  o
-} from "./chunk.AY3TXN3C.js";
-import {
   watch
 } from "./chunk.EYJTTIDT.js";
+import {
+  l
+} from "./chunk.CRMBCBPN.js";
 import {
   emit,
   waitForEvent
 } from "./chunk.TOL7LDIN.js";
+import {
+  o
+} from "./chunk.AY3TXN3C.js";
 import {
   e,
   i,

@@ -5,11 +5,11 @@
 Tags are used as labels to organize things or to indicate a selection.
 
 ```html preview
-<lynk-tag color="primary">Primary</lynk-tag>
-<lynk-tag color="success">Success</lynk-tag>
-<lynk-tag color="neutral">Neutral</lynk-tag>
-<lynk-tag color="warning">Warning</lynk-tag>
-<lynk-tag color="danger">Danger</lynk-tag>
+<lynk-tag type="primary">Primary</lynk-tag>
+<lynk-tag type="success">Success</lynk-tag>
+<lynk-tag type="neutral">Neutral</lynk-tag>
+<lynk-tag type="warning">Warning</lynk-tag>
+<lynk-tag type="danger">Danger</lynk-tag>
 ```
 
 ## Examples

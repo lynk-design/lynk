@@ -1,12 +1,12 @@
 import {
+  FormSubmitController
+} from "./chunk.QRRAQY34.js";
+import {
   button_styles_default
-} from "./chunk.2IXKMPZ3.js";
+} from "./chunk.L2MX7TKS.js";
 import {
   LocalizeController
 } from "./chunk.E66L43KD.js";
-import {
-  FormSubmitController
-} from "./chunk.QRRAQY34.js";
 import {
   l as l2,
   n as n2
@@ -18,11 +18,11 @@ import {
   l
 } from "./chunk.CRMBCBPN.js";
 import {
-  o
-} from "./chunk.AY3TXN3C.js";
-import {
   emit
 } from "./chunk.TOL7LDIN.js";
+import {
+  o
+} from "./chunk.AY3TXN3C.js";
 import {
   e,
   i,
@@ -108,6 +108,7 @@ var LynkButton = class extends s {
       "lynk-button--neutral": this.color === "neutral",
       "lynk-button--warning": this.color === "warning",
       "lynk-button--danger": this.color === "danger",
+      "lynk-button--tiny": this.size === "tiny",
       "lynk-button--small": this.size === "small",
       "lynk-button--medium": this.size === "medium",
       "lynk-button--large": this.size === "large",

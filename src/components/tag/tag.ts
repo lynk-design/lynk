@@ -27,7 +27,7 @@ export default class LynkTag extends LitElement {
   private readonly localize = new LocalizeController(this);
 
   /** The tag's variant. */
-  @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' = 'neutral';
+  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' = 'neutral';
 
   /** The tag's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -50,12 +50,12 @@ export default class LynkTag extends LitElement {
           'lynk-tag': true,
 
           // Types
-          'lynk-tag--primary': this.variant === 'primary',
-          'lynk-tag--success': this.variant === 'success',
-          'lynk-tag--neutral': this.variant === 'neutral',
-          'lynk-tag--warning': this.variant === 'warning',
-          'lynk-tag--danger': this.variant === 'danger',
-          'lynk-tag--text': this.variant === 'text',
+          'lynk-tag--primary': this.type === 'primary',
+          'lynk-tag--success': this.type === 'success',
+          'lynk-tag--neutral': this.type === 'neutral',
+          'lynk-tag--warning': this.type === 'warning',
+          'lynk-tag--danger': this.type === 'danger',
+          'lynk-tag--text': this.type === 'text',
 
           // Sizes
           'lynk-tag--small': this.size === 'small',

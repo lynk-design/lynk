@@ -8,7 +8,7 @@ export default class LynkButton extends LitElement {
     private readonly localize;
     private hasFocus;
     color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
-    size: 'small' | 'medium' | 'large';
+    size: 'tiny' | 'small' | 'medium' | 'large';
     block: boolean;
     caret: boolean;
     disabled: boolean;

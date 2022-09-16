@@ -29,6 +29,7 @@
   - [Icons](/components/icon)
   - [Popover](/components/popover)
   - [Stack](/components/stack)
+  - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)
 
 - Action & Input

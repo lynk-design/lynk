@@ -28,6 +28,7 @@ Use the `color` attribute to set the button's color.
 Use the `size` attribute to change a button's size.
 
 ```html preview
+<lynk-button size="tiny">Tiny</lynk-button>
 <lynk-button size="small">Small</lynk-button>
 <lynk-button size="medium">Medium</lynk-button>
 <lynk-button size="large">Large</lynk-button>
@@ -73,6 +74,10 @@ Use the `pill` attribute to give buttons rounded edges.
 Use the `circle` attribute to create circular icon buttons.
 
 ```html preview
+<lynk-button color="default" size="tiny" circle>
+  <lynk-icon name="gear" label="Settings"></lynk-icon>
+</lynk-button>
+
 <lynk-button color="default" size="small" circle>
   <lynk-icon name="gear" label="Settings"></lynk-icon>
 </lynk-button>
@@ -91,6 +96,10 @@ Use the `circle` attribute to create circular icon buttons.
 Use the `square` attribute to create square icon buttons.
 
 ```html preview
+<lynk-button color="default" size="tiny" square>
+  <lynk-icon name="gear" label="Settings"></lynk-icon>
+</lynk-button>
+
 <lynk-button color="default" size="small" square>
   <lynk-icon name="gear" label="Settings"></lynk-icon>
 </lynk-button>

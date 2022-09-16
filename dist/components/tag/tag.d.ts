@@ -3,7 +3,7 @@ import '../../components/icon-button/icon-button';
 export default class LynkTag extends LitElement {
     static styles: import("lit").CSSResult;
     private readonly localize;
-    variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text';
+    type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text';
     size: 'small' | 'medium' | 'large';
     pill: boolean;
     removable: boolean;

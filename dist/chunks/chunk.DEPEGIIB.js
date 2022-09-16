@@ -5,11 +5,11 @@ import {
   LocalizeController
 } from "./chunk.E66L43KD.js";
 import {
-  o
-} from "./chunk.AY3TXN3C.js";
-import {
   emit
 } from "./chunk.TOL7LDIN.js";
+import {
+  o
+} from "./chunk.AY3TXN3C.js";
 import {
   e,
   n
@@ -27,7 +27,7 @@ var LynkTag = class extends s {
   constructor() {
     super(...arguments);
     this.localize = new LocalizeController(this);
-    this.variant = "neutral";
+    this.type = "neutral";
     this.size = "medium";
     this.pill = false;
     this.removable = false;
@@ -41,12 +41,12 @@ var LynkTag = class extends s {
         part="base"
         class=${o({
       "lynk-tag": true,
-      "lynk-tag--primary": this.variant === "primary",
-      "lynk-tag--success": this.variant === "success",
-      "lynk-tag--neutral": this.variant === "neutral",
-      "lynk-tag--warning": this.variant === "warning",
-      "lynk-tag--danger": this.variant === "danger",
-      "lynk-tag--text": this.variant === "text",
+      "lynk-tag--primary": this.type === "primary",
+      "lynk-tag--success": this.type === "success",
+      "lynk-tag--neutral": this.type === "neutral",
+      "lynk-tag--warning": this.type === "warning",
+      "lynk-tag--danger": this.type === "danger",
+      "lynk-tag--text": this.type === "text",
       "lynk-tag--small": this.size === "small",
       "lynk-tag--medium": this.size === "medium",
       "lynk-tag--large": this.size === "large",
@@ -76,7 +76,7 @@ var LynkTag = class extends s {
 LynkTag.styles = tag_styles_default;
 __decorateClass([
   e({ reflect: true })
-], LynkTag.prototype, "variant", 2);
+], LynkTag.prototype, "type", 2);
 __decorateClass([
   e({ reflect: true })
 ], LynkTag.prototype, "size", 2);

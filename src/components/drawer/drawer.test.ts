@@ -1,11 +1,11 @@
 // cspell:dictionaries lorem-ipsum
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
-import type SlDrawer from './drawer';
+import type LynkDrawer from './drawer';
 
 describe('<lynk-drawer>', () => {
   it('should be visible with the open attribute', async () => {
-    const el = await fixture<SlDrawer>(html`
+    const el = await fixture<LynkDrawer>(html`
       <lynk-drawer open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-drawer>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
@@ -14,7 +14,7 @@ describe('<lynk-drawer>', () => {
   });
 
   it('should not be visible without the open attribute', async () => {
-    const el = await fixture<SlDrawer>(
+    const el = await fixture<LynkDrawer>(
       html` <lynk-drawer>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-drawer> `
     );
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
@@ -22,16 +22,16 @@ describe('<lynk-drawer>', () => {
     expect(base.hidden).to.be.true;
   });
 
-  it('should emit lynk-show and lynk-after-show when calling show()', async () => {
-    const el = await fixture<SlDrawer>(html`
+  it('should emit on:show and after:show when calling show()', async () => {
+    const el = await fixture<LynkDrawer>(html`
       <lynk-drawer>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-drawer>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('lynk-show', showHandler);
-    el.addEventListener('lynk-after-show', afterShowHandler);
+    el.addEventListener('on:show', showHandler);
+    el.addEventListener('after:show', afterShowHandler);
     el.show();
 
     await waitUntil(() => showHandler.calledOnce);
@@ -42,16 +42,16 @@ describe('<lynk-drawer>', () => {
     expect(base.hidden).to.be.false;
   });
 
-  it('should emit lynk-hide and lynk-after-hide when calling hide()', async () => {
-    const el = await fixture<SlDrawer>(html`
+  it('should emit on:hide and after:hide when calling hide()', async () => {
+    const el = await fixture<LynkDrawer>(html`
       <lynk-drawer open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-drawer>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('lynk-hide', hideHandler);
-    el.addEventListener('lynk-after-hide', afterHideHandler);
+    el.addEventListener('on:hide', hideHandler);
+    el.addEventListener('after:hide', afterHideHandler);
     el.hide();
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -62,16 +62,16 @@ describe('<lynk-drawer>', () => {
     expect(base.hidden).to.be.true;
   });
 
-  it('should emit lynk-show and lynk-after-show when setting open = true', async () => {
-    const el = await fixture<SlDrawer>(html`
+  it('should emit on:show and after:show when setting open = true', async () => {
+    const el = await fixture<LynkDrawer>(html`
       <lynk-drawer>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-drawer>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
-    el.addEventListener('lynk-show', showHandler);
-    el.addEventListener('lynk-after-show', afterShowHandler);
+    el.addEventListener('on:show', showHandler);
+    el.addEventListener('after:show', afterShowHandler);
     el.open = true;
 
     await waitUntil(() => showHandler.calledOnce);
@@ -82,16 +82,16 @@ describe('<lynk-drawer>', () => {
     expect(base.hidden).to.be.false;
   });
 
-  it('should emit lynk-hide and lynk-after-hide when setting open = false', async () => {
-    const el = await fixture<SlDrawer>(html`
+  it('should emit on:hide and after:hide when setting open = false', async () => {
+    const el = await fixture<LynkDrawer>(html`
       <lynk-drawer open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-drawer>
     `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
-    el.addEventListener('lynk-hide', hideHandler);
-    el.addEventListener('lynk-after-hide', afterHideHandler);
+    el.addEventListener('on:hide', hideHandler);
+    el.addEventListener('after:hide', afterHideHandler);
     el.open = false;
 
     await waitUntil(() => hideHandler.calledOnce);
@@ -102,13 +102,13 @@ describe('<lynk-drawer>', () => {
     expect(base.hidden).to.be.true;
   });
 
-  it('should not close when lynk-request-close is prevented', async () => {
-    const el = await fixture<SlDrawer>(html`
+  it('should not close when on:request-close is prevented', async () => {
+    const el = await fixture<LynkDrawer>(html`
       <lynk-drawer open>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-drawer>
     `);
     const overlay = el.shadowRoot!.querySelector<HTMLElement>('[part="overlay"]')!;
 
-    el.addEventListener('lynk-request-close', event => {
+    el.addEventListener('on:request-close', event => {
       event.preventDefault();
     });
     overlay.click();
@@ -117,14 +117,14 @@ describe('<lynk-drawer>', () => {
   });
 
   it('should allow initial focus to be set', async () => {
-    const el = await fixture<SlDrawer>(html` <lynk-drawer><input /></lynk-drawer> `);
+    const el = await fixture<LynkDrawer>(html` <lynk-drawer><input /></lynk-drawer> `);
     const input = el.querySelector<HTMLInputElement>('input')!;
     const initialFocusHandler = sinon.spy((event: InputEvent) => {
       event.preventDefault();
       input.focus();
     });
 
-    el.addEventListener('lynk-initial-focus', initialFocusHandler);
+    el.addEventListener('on:initial-focus', initialFocusHandler);
     el.show();
 
     await waitUntil(() => initialFocusHandler.calledOnce);

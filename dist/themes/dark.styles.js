@@ -444,6 +444,7 @@ export default css`
     --lynk-button-font-size-small: var(--lynk-font-size-small);
     --lynk-button-font-size-medium: var(--lynk-font-size-medium);
     --lynk-button-font-size-large: var(--lynk-font-size-base);
+    --lynk-button-height-tiny: 1.5rem;
     --lynk-button-height-small: 1.875rem;
     --lynk-button-height-medium: 2.5rem;
     --lynk-button-height-large: 3.125rem;
@@ -483,8 +484,8 @@ export default css`
     --lynk-input-placeholder-color: var(--lynk-color-neutral-600);
     --lynk-input-placeholder-color-disabled: var(--lynk-color-neutral-600);
     --lynk-input-spacing-small: var(--lynk-spacing-small);
-    --lynk-input-spacing-medium: var(--lynk-spacing-medium);
-    --lynk-input-spacing-large: var(--lynk-spacing-large);
+    --lynk-input-spacing-medium: var(--lynk-spacing-base);
+    --lynk-input-spacing-large: var(--lynk-spacing-medium);
 
     --lynk-input-filled-background-color: var(--lynk-color-neutral-100);
     --lynk-input-filled-background-color-hover: var(--lynk-color-neutral-100);
