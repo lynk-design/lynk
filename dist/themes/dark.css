@@ -366,11 +366,11 @@
   --lynk-border-radius-circle: 50%;
   --lynk-border-radius-pill: 9999px;
 
-  --lynk-shadow-x-small: 0 1px 2px rgb(0 0 0 / 25%);
-  --lynk-shadow-small: 0 2px 4px rgb(0 0 0 / 25%);
-  --lynk-shadow-medium: 0 4px 8px rgb(0 0 0 / 25%);
-  --lynk-shadow-large: 0 6px 16px rgb(0 0 0 / 25%);
-  --lynk-shadow-x-large: 0 8px 24px rgb(0 0 0 / 25%);
+  --lynk-shadow-x-small: 0 1px 2px rgb(0 0 0 / 35%);
+  --lynk-shadow-small: 0 2px 4px rgb(0 0 0 / 35%);
+  --lynk-shadow-medium: 0 4px 8px rgb(0 0 0 / 35%);
+  --lynk-shadow-large: 0 6px 16px rgb(0 0 0 / 35%);
+  --lynk-shadow-x-large: 0 8px 24px rgb(0 0 0 / 35%);
 
   --lynk-spacing-tiny: 0.125rem;
   --lynk-spacing-2x-small: 0.25rem;

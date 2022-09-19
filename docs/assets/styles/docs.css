@@ -604,11 +604,19 @@ body[data-page^='/tokens/'] .table-wrapper td:first-child code {
 
 /* Elevation demo */
 .elevation-demo {
-  background: var(--lynk-color-neutral-50);
-  border-radius: 3px;
-  width: 4rem;
-  height: 4rem;
-  margin: 1rem;
+  background: var(--lynk-color-neutral-900);
+  width: 6rem;
+  height: 6rem;
+  margin: 0;
+  padding: 2rem;
+}
+
+.elevation-demo span {
+  background: var(--lynk-color-neutral-900);
+  border-radius: var(--lynk-border-radius-small);
+  width: 2rem;
+  height: 2rem;
+  display: block;
 }
 
 /* Color palettes */

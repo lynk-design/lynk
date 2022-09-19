@@ -28,7 +28,7 @@ Use the `disable` attribute to prevent the Accordion from expanding.
 
 ### Grouping Accordions
 
-Accordions are designed to function independently, but you can group multiple Accordion components where only one is shown at a time by listening for the `lynk-show` event.
+Accordions are designed to function independently, but you can group multiple Accordion components where only one is shown at a time by listening for the `on:show` event.
 
 ```html preview
 <div class="accordion-group-example">
@@ -52,7 +52,7 @@ Accordions are designed to function independently, but you can group multiple Ac
   const container = document.querySelector('.accordion-group-example');
 
   // Close all other details when one is shown
-  container.addEventListener('lynk-show', event => {
+  container.addEventListener('on:show', event => {
     [...container.querySelectorAll('lynk-accordion')].map(accordion => (accordion.open = event.target === accordion));
   });
 </script>
