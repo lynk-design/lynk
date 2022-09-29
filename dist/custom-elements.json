@@ -220,6 +220,257 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/alert/alert.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkAlert",
+          "cssProperties": [
+            {
+              "description": "The alert's box shadow.",
+              "name": "--box-shadow"
+            },
+            {
+              "description": "The top and bottom padding of the message. Use any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--padding"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "The component's internal block wrapper.",
+              "name": "base"
+            },
+            {
+              "description": "The container that wraps the alert icon.",
+              "name": "icon"
+            },
+            {
+              "description": "The alert message.",
+              "name": "message"
+            },
+            {
+              "description": "The close button.",
+              "name": "close-button"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The alert's content.",
+              "name": ""
+            },
+            {
+              "description": "An icon to show in the alert.",
+              "name": "icon"
+            },
+            {
+              "description": "Append custom actions to alert.",
+              "name": "action"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "autoHideTimeout",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "hasSlotController",
+              "privacy": "private",
+              "default": "new HasSlotController(this, 'icon', 'action')"
+            },
+            {
+              "kind": "field",
+              "name": "base",
+              "type": {
+                "text": "HTMLElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the alert is open. You can use this in lieu of the show/hide methods.",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "closable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the alert closable.",
+              "attribute": "closable",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'info' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The alert's type (color).",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "default": "Infinity",
+              "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
+              "attribute": "duration"
+            },
+            {
+              "kind": "method",
+              "name": "show",
+              "description": "Shows the alert."
+            },
+            {
+              "kind": "method",
+              "name": "hide",
+              "description": "Hides the alert"
+            },
+            {
+              "kind": "method",
+              "name": "toast",
+              "description": "Displays the alert as a toast notification. This will move the alert out of its position in the DOM and, when\ndismissed, it will be removed from the DOM completely. By storing a reference to the alert, you can reuse it by\ncalling this method again. The returned promise will resolve after the alert is hidden."
+            },
+            {
+              "kind": "method",
+              "name": "restartAutoHide"
+            },
+            {
+              "kind": "method",
+              "name": "handleCloseClick"
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseMove"
+            },
+            {
+              "kind": "method",
+              "name": "handleOpenChange"
+            },
+            {
+              "kind": "method",
+              "name": "handleDurationChange"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when the alert opens.",
+              "name": "on:show",
+              "reactName": "onOnShow"
+            },
+            {
+              "description": "Emitted after the alert opens and all animations are complete.",
+              "name": "after:show",
+              "reactName": "onAfterShow"
+            },
+            {
+              "description": "Emitted when the alert closes.",
+              "name": "on:hide",
+              "reactName": "onOnHide"
+            },
+            {
+              "description": "Emitted after the alert closes and all animations are complete.",
+              "name": "after:hide",
+              "reactName": "onAfterHide"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether or not the alert is open. You can use this in lieu of the show/hide methods.",
+              "fieldName": "open"
+            },
+            {
+              "name": "closable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the alert closable.",
+              "fieldName": "closable"
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "'primary' | 'info' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The alert's type (color).",
+              "fieldName": "type"
+            },
+            {
+              "name": "duration",
+              "default": "Infinity",
+              "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
+              "resolveInitializer": {
+                "module": "src/components/alert/alert.ts"
+              },
+              "fieldName": "duration"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "dependencies": [
+            "lynk-icon-button",
+            "lynk-icon"
+          ],
+          "animations": [
+            {
+              "name": "alert.show",
+              "description": "The animation to use when showing the alert."
+            },
+            {
+              "name": "alert.hide",
+              "description": "The animation to use when hiding the alert."
+            }
+          ],
+          "tagName": "lynk-alert",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkAlert",
+            "module": "src/components/alert/alert.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-alert",
+          "declaration": {
+            "name": "LynkAlert",
+            "module": "src/components/alert/alert.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/animation/animation.ts",
       "declarations": [
         {
@@ -1840,257 +2091,6 @@
           "declaration": {
             "name": "LynkCheckbox",
             "module": "src/components/checkbox/checkbox.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/alert/alert.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkAlert",
-          "cssProperties": [
-            {
-              "description": "The alert's box shadow.",
-              "name": "--box-shadow"
-            },
-            {
-              "description": "The top and bottom padding of the message. Use any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--padding"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "The component's internal block wrapper.",
-              "name": "base"
-            },
-            {
-              "description": "The container that wraps the alert icon.",
-              "name": "icon"
-            },
-            {
-              "description": "The alert message.",
-              "name": "message"
-            },
-            {
-              "description": "The close button.",
-              "name": "close-button"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The alert's content.",
-              "name": ""
-            },
-            {
-              "description": "An icon to show in the alert.",
-              "name": "icon"
-            },
-            {
-              "description": "Append custom actions to alert.",
-              "name": "action"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "autoHideTimeout",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "hasSlotController",
-              "privacy": "private",
-              "default": "new HasSlotController(this, 'icon', 'action')"
-            },
-            {
-              "kind": "field",
-              "name": "base",
-              "type": {
-                "text": "HTMLElement"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the alert is open. You can use this in lieu of the show/hide methods.",
-              "attribute": "open",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "closable",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the alert closable.",
-              "attribute": "closable",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'info' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The alert's type (color).",
-              "attribute": "type",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "duration",
-              "default": "Infinity",
-              "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
-              "attribute": "duration"
-            },
-            {
-              "kind": "method",
-              "name": "show",
-              "description": "Shows the alert."
-            },
-            {
-              "kind": "method",
-              "name": "hide",
-              "description": "Hides the alert"
-            },
-            {
-              "kind": "method",
-              "name": "toast",
-              "description": "Displays the alert as a toast notification. This will move the alert out of its position in the DOM and, when\ndismissed, it will be removed from the DOM completely. By storing a reference to the alert, you can reuse it by\ncalling this method again. The returned promise will resolve after the alert is hidden."
-            },
-            {
-              "kind": "method",
-              "name": "restartAutoHide"
-            },
-            {
-              "kind": "method",
-              "name": "handleCloseClick"
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseMove"
-            },
-            {
-              "kind": "method",
-              "name": "handleOpenChange"
-            },
-            {
-              "kind": "method",
-              "name": "handleDurationChange"
-            }
-          ],
-          "events": [
-            {
-              "description": "Emitted when the alert opens.",
-              "name": "on:show",
-              "reactName": "onOnShow"
-            },
-            {
-              "description": "Emitted after the alert opens and all animations are complete.",
-              "name": "after:show",
-              "reactName": "onAfterShow"
-            },
-            {
-              "description": "Emitted when the alert closes.",
-              "name": "on:hide",
-              "reactName": "onOnHide"
-            },
-            {
-              "description": "Emitted after the alert closes and all animations are complete.",
-              "name": "after:hide",
-              "reactName": "onAfterHide"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether or not the alert is open. You can use this in lieu of the show/hide methods.",
-              "fieldName": "open"
-            },
-            {
-              "name": "closable",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the alert closable.",
-              "fieldName": "closable"
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'info' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The alert's type (color).",
-              "fieldName": "type"
-            },
-            {
-              "name": "duration",
-              "default": "Infinity",
-              "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
-              "resolveInitializer": {
-                "module": "src/components/alert/alert.ts"
-              },
-              "fieldName": "duration"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "dependencies": [
-            "lynk-icon-button",
-            "lynk-icon"
-          ],
-          "animations": [
-            {
-              "name": "alert.show",
-              "description": "The animation to use when showing the alert."
-            },
-            {
-              "name": "alert.hide",
-              "description": "The animation to use when hiding the alert."
-            }
-          ],
-          "tagName": "lynk-alert",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkAlert",
-            "module": "src/components/alert/alert.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-alert",
-          "declaration": {
-            "name": "LynkAlert",
-            "module": "src/components/alert/alert.ts"
           }
         }
       ]
@@ -11411,50 +11411,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/visually-hidden/visually-hidden.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkVisuallyHidden",
-          "slots": [
-            {
-              "description": "The content you'd like to be visually hidden.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-visually-hidden",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkVisuallyHidden",
-            "module": "src/components/visually-hidden/visually-hidden.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-visually-hidden",
-          "declaration": {
-            "name": "LynkVisuallyHidden",
-            "module": "src/components/visually-hidden/visually-hidden.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/tooltip/tooltip.ts",
       "declarations": [
         {
@@ -11859,12 +11815,56 @@
           }
         }
       ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/visually-hidden/visually-hidden.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkVisuallyHidden",
+          "slots": [
+            {
+              "description": "The content you'd like to be visually hidden.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-visually-hidden",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkVisuallyHidden",
+            "module": "src/components/visually-hidden/visually-hidden.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-visually-hidden",
+          "declaration": {
+            "name": "LynkVisuallyHidden",
+            "module": "src/components/visually-hidden/visually-hidden.ts"
+          }
+        }
+      ]
     }
   ],
   "package": {
     "name": "@lynk-design/lynk",
     "description": "A library of web components and styles for building web applications with the Edgio Streaming design language.",
-    "version": "1.0.0-beta.19",
+    "version": "1.0.0",
     "author": "Harley Jessop",
     "homepage": "https://lynk-design.web.app/",
     "license": "MIT"
