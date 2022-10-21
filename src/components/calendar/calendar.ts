@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import { html, LitElement } from 'lit';
 import {
   customElement,
@@ -7,13 +5,12 @@ import {
   // query,
   // state,
 } from 'lit/decorators.js';
-
+import moment from 'moment';
 // import { range } from 'lit/directives/range.js';
 // import { map } from 'lit/directives/map.js';
 // import { classMap } from 'lit/directives/class-map.js';
 // import { ifDefined } from 'lit/directives/if-defined.js';
 // import { live } from 'lit/directives/live.js';
-
 // import { emit } from '../../internal/event';
 // import { FormSubmitController } from '../../internal/form';
 // import { watch } from '../../internal/watch';
@@ -28,7 +25,7 @@ export enum CalendarMode {
 interface IDay {
   name: string;
   date: moment.Moment;
-  day: number;
+  day: string;
   isSelectedMonth: boolean;
   isToday: boolean;
   isPast: boolean;
@@ -38,17 +35,12 @@ interface IDay {
 @customElement('lynk-calendar')
 export default class LynkCalendar extends LitElement {
   static styles = styles;
-  @property()
-  month: number;
-
-  @property()
-  year: number;
 
   @property()
   date: moment.Moment;
 
   @property()
-  dayNameFormat = 'dddd';
+  dayNameFormat = 'ddd';
 
   @property()
   use24Hour = false;
@@ -66,15 +58,21 @@ export default class LynkCalendar extends LitElement {
 
     return html`
       <div role="grid">
-        <div role="presentation" class="lynk-calendar__header">
-          ${this.getHeader(week)}
-        </div>
-        <div role="presentation" class="lynk-calendar__content">
-          <div>
-            <div class="lynk-calendar__content-sidebar">
-              ${this.getSidebar()}
-            </div>
-            <div class="lynk-calendar__content-body">
+        <div>
+          <div role="presentation" class="lynk-calendar__header">
+            ${this.getHeader(week)}
+          </div>
+          <div role="presentation" class="lynk-calendar__content">
+            <div>
+              <div class="lynk-calendar__sidebar">
+                ${this.getSidebar()}
+              </div>
+              <div class="lynk-calendar__row">
+                ${week.map(() => html`
+                  <div class="lynk-calendar__row-item">
+                  </div>
+                `)}
+              </div>
             </div>
           </div>
         </div>
@@ -83,20 +81,17 @@ export default class LynkCalendar extends LitElement {
   }
 
   connectedCallback() {
+    console.log('#connectedCallback');
     super.connectedCallback();
+
+    console.log('date: ', this.date)
 
     this.today = moment().startOf('day');
 
-    if (!this.month) {
-      this.month = this.today.month();
-    }
-
-    if (!this.year) {
-      this.year = this.today.year();
-    }
-
     if (!this.date) {
       this.date = this.today;
+    } else {
+      this.date = moment(this.date);
     }
   }
 
@@ -111,16 +106,20 @@ export default class LynkCalendar extends LitElement {
 
   private getHeader(week: IDay[]) {
     return html`
+      <div class="lynk-calendar__left-spacer">
+      </div>
+      <div class="lynk-calendar__weekdays">
       ${week.map(day => html`
         <div class="lynk-calendar__weekday">
           <div class="lynk-calendar__weekday-name">
             ${day.name}
           </div>
           <div class="lynk-calendar__weekday-date">
-            ${day.date}
+            ${day.day}
           </div>
         </div>
       `)}
+      </div>
     `;
   }
 
@@ -154,7 +153,7 @@ export default class LynkCalendar extends LitElement {
       week.push({
         name:            day.format(this.dayNameFormat),
         date:            day.clone(),
-        day:             day.day(),
+        day:             day.format('D'),
         isSelectedMonth: day.month() === selectedMonth,
         isToday:         day.isSame(this.today),
         isPast:          day.isBefore(this.today),

@@ -2495,6 +2495,170 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/calendar/calendar.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkCalendar",
+          "members": [
+            {
+              "kind": "field",
+              "name": "date",
+              "type": {
+                "text": "moment.Moment"
+              },
+              "attribute": "date"
+            },
+            {
+              "kind": "field",
+              "name": "dayNameFormat",
+              "type": {
+                "text": "string"
+              },
+              "default": "'ddd'",
+              "attribute": "dayNameFormat"
+            },
+            {
+              "kind": "field",
+              "name": "use24Hour",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "use24Hour"
+            },
+            {
+              "kind": "field",
+              "name": "interval",
+              "type": {
+                "text": "number"
+              },
+              "default": "60",
+              "attribute": "interval"
+            },
+            {
+              "kind": "field",
+              "name": "mode",
+              "type": {
+                "text": "CalendarMode"
+              },
+              "attribute": "mode"
+            },
+            {
+              "kind": "field",
+              "name": "today",
+              "type": {
+                "text": "moment.Moment"
+              },
+              "privacy": "public"
+            },
+            {
+              "kind": "method",
+              "name": "getHeader",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "week",
+                  "type": {
+                    "text": "IDay[]"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getSidebar",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "getWeek",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "IDay[]"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "date",
+                  "type": {
+                    "text": "moment.Moment"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "date",
+              "type": {
+                "text": "moment.Moment"
+              },
+              "fieldName": "date"
+            },
+            {
+              "name": "dayNameFormat",
+              "type": {
+                "text": "string"
+              },
+              "default": "'ddd'",
+              "fieldName": "dayNameFormat"
+            },
+            {
+              "name": "use24Hour",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "use24Hour"
+            },
+            {
+              "name": "interval",
+              "type": {
+                "text": "number"
+              },
+              "default": "60",
+              "fieldName": "interval"
+            },
+            {
+              "name": "mode",
+              "type": {
+                "text": "CalendarMode"
+              },
+              "fieldName": "mode"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "lynk-calendar",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkCalendar",
+            "module": "src/components/calendar/calendar.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-calendar",
+          "declaration": {
+            "name": "LynkCalendar",
+            "module": "src/components/calendar/calendar.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/drawer/drawer.ts",
       "declarations": [
         {

@@ -36,6 +36,7 @@
 
   - [Buttons](/components/button)
   - [Button Group](/components/button-group)
+  - [Calendar](/components/calendar)
   - [Checkbox](/components/checkbox)
   - [Dropdown](/components/dropdown)
   - [Dialog](/components/dialog)

@@ -1377,6 +1377,120 @@
           ]
         },
         {
+          "name": "lynk-calendar",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-calendar",
+          "js": {
+            "properties": [
+              {
+                "name": "month",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "year",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "date",
+                "value": {
+                  "type": "moment.Moment"
+                }
+              },
+              {
+                "name": "dayNameFormat",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "use24Hour",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "interval",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "mode",
+                "value": {
+                  "type": "CalendarMode"
+                }
+              },
+              {
+                "name": "today",
+                "value": {
+                  "type": "moment.Moment"
+                }
+              },
+              {
+                "name": "getHeader",
+                "value": {}
+              },
+              {
+                "name": "getSidebar",
+                "value": {}
+              },
+              {
+                "name": "getWeek",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "month",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "year",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "date",
+              "value": {
+                "type": "moment.Moment"
+              }
+            },
+            {
+              "name": "dayNameFormat",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "use24Hour",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "interval",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "mode",
+              "value": {
+                "type": "CalendarMode"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-drawer",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-drawer",

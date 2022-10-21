@@ -8,7 +8,7 @@ import {
   term,
   update
 } from "../chunks/chunk.E66L43KD.js";
-import "../chunks/chunk.LKA3TPUC.js";
+import "../chunks/chunk.SEZCJCPZ.js";
 export {
   LocalizeController,
   date,

@@ -5,6 +5,7 @@ export { default as LynkAnimation } from './components/animation/animation';
 export { default as LynkBadge } from './components/badge/badge';
 export { default as LynkButton } from './components/button/button';
 export { default as LynkButtonGroup } from './components/button-group/button-group';
+export { default as LynkCalendar } from './components/calendar/calendar';
 export { default as LynkCheckbox } from './components/checkbox/checkbox';
 export { default as LynkDialog } from './components/dialog/dialog';
 export { default as LynkDivider } from './components/divider/divider';
