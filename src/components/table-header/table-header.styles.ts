@@ -6,6 +6,6 @@ export default css`
 
   :host {
     display: table-cell;
-    border: solid 1px var(--lynk-color-neutral-200);
+    border: solid 1px var(--lynk-color-neutral-300);
   }
 `;

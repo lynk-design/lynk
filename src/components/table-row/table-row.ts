@@ -11,7 +11,7 @@ export default class LynkTableRow extends LitElement {
   static styles = styles;
 
   /** A visual state for this row of data to indicate */
-  @property({reflect: true}) state: 'danger' | 'neutral' | 'primary' | 'success' | 'warning' = 'neutral';
+  @property({reflect: true}) state: 'danger' | 'primary' | 'success' | 'warning';
 
   render() {
     return html` <slot></slot> `;

@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import styles from './table-cell.styles';
 
 /**
@@ -10,7 +10,10 @@ import styles from './table-cell.styles';
 export default class LynkTableCell extends LitElement {
   static styles = styles;
 
-  render() {
+  /** A visual state for this row of data to indicate */
+  @property({reflect: true}) state: 'danger' | 'primary' | 'success' | 'warning';
+
+render() {
     return html` <slot></slot> `;
   }
 }

@@ -16,6 +16,8 @@ export default css`
     background: var(--lynk-color-neutral-200);
   }
 
+  /* States */
+
   ::slotted(lynk-tr[state='danger']) {
     background: var(--lynk-color-danger-50);
   }

@@ -7,4 +7,8 @@ export default css`
   :host {
     display: table-header-group;
   }
+
+  ::slotted(lynk-tr) {
+    background: var(--lynk-color-black);
+  }
 `;

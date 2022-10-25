@@ -21,26 +21,22 @@ These elements are intended to behave like `<tr>` HTML elements.
 ```html preview
 <lynk-table>
     <lynk-tbody>
-        <lynk-tr state="danger"><lynk-td>Danger 1</lynk-td></lynk-tr>
-        <lynk-tr state="danger"><lynk-td>Danger 2</lynk-td></lynk-tr>
-        <lynk-tr state="danger"><lynk-td>Danger 3</lynk-td></lynk-tr>
-        <lynk-tr state="danger"><lynk-td>Danger 4</lynk-td></lynk-tr>
-        <lynk-tr state="neutral"><lynk-td>Neutral 1</lynk-td></lynk-tr>
-        <lynk-tr state="neutral"><lynk-td>Neutral 2</lynk-td></lynk-tr>
-        <lynk-tr state="neutral"><lynk-td>Neutral 3</lynk-td></lynk-tr>
-        <lynk-tr state="neutral"><lynk-td>Neutral 4</lynk-td></lynk-tr>
-        <lynk-tr state="primary"><lynk-td>Primary 1</lynk-td></lynk-tr>
-        <lynk-tr state="primary"><lynk-td>Primary 2</lynk-td></lynk-tr>
-        <lynk-tr state="primary"><lynk-td>Primary 3</lynk-td></lynk-tr>
-        <lynk-tr state="primary"><lynk-td>Primary 4</lynk-td></lynk-tr>
-        <lynk-tr state="success"><lynk-td>Success 1</lynk-td></lynk-tr>
-        <lynk-tr state="success"><lynk-td>Success 2</lynk-td></lynk-tr>
-        <lynk-tr state="success"><lynk-td>Success 3</lynk-td></lynk-tr>
-        <lynk-tr state="success"><lynk-td>Success 4</lynk-td></lynk-tr>
-        <lynk-tr state="warning"><lynk-td>Warning 1</lynk-td></lynk-tr>
-        <lynk-tr state="warning"><lynk-td>Warning 2</lynk-td></lynk-tr>
-        <lynk-tr state="warning"><lynk-td>Warning 3</lynk-td></lynk-tr>
-        <lynk-tr state="warning"><lynk-td>Warning 4</lynk-td></lynk-tr>
+        <lynk-tr state="danger"><lynk-td>danger</lynk-td><lynk-td>danger</lynk-td></lynk-tr>
+        <lynk-tr state="danger"><lynk-td>danger</lynk-td><lynk-td>danger</lynk-td></lynk-tr>
+        <lynk-tr state="danger"><lynk-td>danger</lynk-td><lynk-td>danger</lynk-td></lynk-tr>
+        <lynk-tr state="danger"><lynk-td>danger</lynk-td><lynk-td>danger</lynk-td></lynk-tr>
+        <lynk-tr state="primary"><lynk-td>primary</lynk-td><lynk-td>primary</lynk-td></lynk-tr>
+        <lynk-tr state="primary"><lynk-td>primary</lynk-td><lynk-td>primary</lynk-td></lynk-tr>
+        <lynk-tr state="primary"><lynk-td>primary</lynk-td><lynk-td>primary</lynk-td></lynk-tr>
+        <lynk-tr state="primary"><lynk-td>primary</lynk-td><lynk-td>primary</lynk-td></lynk-tr>
+        <lynk-tr state="success"><lynk-td>success</lynk-td><lynk-td>success</lynk-td></lynk-tr>
+        <lynk-tr state="success"><lynk-td>success</lynk-td><lynk-td>success</lynk-td></lynk-tr>
+        <lynk-tr state="success"><lynk-td>success</lynk-td><lynk-td>success</lynk-td></lynk-tr>
+        <lynk-tr state="success"><lynk-td>success</lynk-td><lynk-td>success</lynk-td></lynk-tr>
+        <lynk-tr state="warning"><lynk-td>warning</lynk-td><lynk-td>warning</lynk-td></lynk-tr>
+        <lynk-tr state="warning"><lynk-td>warning</lynk-td><lynk-td>warning</lynk-td></lynk-tr>
+        <lynk-tr state="warning"><lynk-td>warning</lynk-td><lynk-td>warning</lynk-td></lynk-tr>
+        <lynk-tr state="warning"><lynk-td>warning</lynk-td><lynk-td>warning</lynk-td></lynk-tr>
     </lynk-tbody>
 </lynk-table>
 ```
