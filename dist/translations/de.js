@@ -2,7 +2,7 @@
 import {
   registerTranslation
 } from "../chunks/chunk.E66L43KD.js";
-import "../chunks/chunk.SEZCJCPZ.js";
+import "../chunks/chunk.LKA3TPUC.js";
 
 // src/translations/de.ts
 var translation = {

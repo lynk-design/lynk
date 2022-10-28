@@ -14,117 +14,6 @@
     "html": {
       "elements": [
         {
-          "name": "lynk-accordion",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-accordion",
-          "js": {
-            "properties": [
-              {
-                "name": "accordion",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "header",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "body",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "open",
-                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "summary",
-                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Disables the accordion so it can't be toggled.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "show",
-                "description": "Shows the accordion.",
-                "value": {}
-              },
-              {
-                "name": "hide",
-                "description": "Hides the accordion",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryClick",
-                "value": {}
-              },
-              {
-                "name": "handleSummaryKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleOpenChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:show",
-                "description": "Emitted when the accordion opens."
-              },
-              {
-                "name": "after:show",
-                "description": "Emitted after the accordion opens and all animations are complete."
-              },
-              {
-                "name": "on:hide",
-                "description": "Emitted when the accordion closes."
-              },
-              {
-                "name": "after:hide",
-                "description": "Emitted after the accordion closes and all animations are complete."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "summary",
-              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "disabled",
-              "description": "Disables the accordion so it can't be toggled.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-alert",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-alert",
@@ -255,6 +144,127 @@
               "value": {}
             }
           ]
+        },
+        {
+          "name": "lynk-accordion",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-accordion",
+          "js": {
+            "properties": [
+              {
+                "name": "accordion",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "header",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "body",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "summary",
+                "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the accordion so it can't be toggled.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the accordion.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the accordion",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryClick",
+                "value": {}
+              },
+              {
+                "name": "handleSummaryKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:show",
+                "description": "Emitted when the accordion opens."
+              },
+              {
+                "name": "after:show",
+                "description": "Emitted after the accordion opens and all animations are complete."
+              },
+              {
+                "name": "on:hide",
+                "description": "Emitted when the accordion closes."
+              },
+              {
+                "name": "after:hide",
+                "description": "Emitted after the accordion closes and all animations are complete."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "summary",
+              "description": "The summary to show in the accordion header. If you need to display HTML, use the `summary` slot instead.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables the accordion so it can't be toggled.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-box",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-box",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
         },
         {
           "name": "lynk-animation",
@@ -524,68 +534,56 @@
           "attributes": []
         },
         {
-          "name": "lynk-badge",
+          "name": "lynk-button-group",
           "description": "",
-          "doc-url": "https://lynk.design/components/lynk-badge",
+          "doc-url": "https://lynk.design/components/lynk-button-group",
           "js": {
             "properties": [
               {
-                "name": "type",
-                "description": "The badge's variant.",
+                "name": "defaultSlot",
                 "value": {
-                  "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+                  "type": "HTMLSlotElement"
                 }
               },
               {
-                "name": "pill",
-                "description": "Draws a pill-style badge with rounded edges.",
+                "name": "label",
+                "description": "A label to use for the button group's `aria-label` attribute.",
                 "value": {
-                  "type": "boolean"
+                  "type": "string"
                 }
               },
               {
-                "name": "pulse",
-                "description": "Makes the badge pulsate to draw attention.",
-                "value": {
-                  "type": "boolean"
-                }
+                "name": "handleFocus",
+                "value": {}
+              },
+              {
+                "name": "handleBlur",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOver",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOut",
+                "value": {}
+              },
+              {
+                "name": "handleSlotChange",
+                "value": {}
               }
             ],
             "events": []
           },
           "attributes": [
             {
-              "name": "type",
-              "description": "The badge's variant.",
+              "name": "label",
+              "description": "A label to use for the button group's `aria-label` attribute.",
               "value": {
-                "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              }
-            },
-            {
-              "name": "pill",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "pulse",
-              "description": "Makes the badge pulsate to draw attention.",
-              "value": {
-                "type": "boolean"
+                "type": "string"
               }
             }
           ]
-        },
-        {
-          "name": "lynk-box",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-box",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
         },
         {
           "name": "lynk-button",
@@ -972,58 +970,6 @@
           ]
         },
         {
-          "name": "lynk-button-group",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-button-group",
-          "js": {
-            "properties": [
-              {
-                "name": "defaultSlot",
-                "value": {
-                  "type": "HTMLSlotElement"
-                }
-              },
-              {
-                "name": "label",
-                "description": "A label to use for the button group's `aria-label` attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "handleFocus",
-                "value": {}
-              },
-              {
-                "name": "handleBlur",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOver",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOut",
-                "value": {}
-              },
-              {
-                "name": "handleSlotChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "label",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "value": {
-                "type": "string"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-checkbox",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-checkbox",
@@ -1377,115 +1323,55 @@
           ]
         },
         {
-          "name": "lynk-calendar",
+          "name": "lynk-badge",
           "description": "",
-          "doc-url": "https://lynk.design/components/lynk-calendar",
+          "doc-url": "https://lynk.design/components/lynk-badge",
           "js": {
             "properties": [
               {
-                "name": "month",
+                "name": "type",
+                "description": "The badge's variant.",
                 "value": {
-                  "type": "number"
+                  "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
                 }
               },
               {
-                "name": "year",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "date",
-                "value": {
-                  "type": "moment.Moment"
-                }
-              },
-              {
-                "name": "dayNameFormat",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "use24Hour",
+                "name": "pill",
+                "description": "Draws a pill-style badge with rounded edges.",
                 "value": {
                   "type": "boolean"
                 }
               },
               {
-                "name": "interval",
+                "name": "pulse",
+                "description": "Makes the badge pulsate to draw attention.",
                 "value": {
-                  "type": "number"
+                  "type": "boolean"
                 }
-              },
-              {
-                "name": "mode",
-                "value": {
-                  "type": "CalendarMode"
-                }
-              },
-              {
-                "name": "today",
-                "value": {
-                  "type": "moment.Moment"
-                }
-              },
-              {
-                "name": "getHeader",
-                "value": {}
-              },
-              {
-                "name": "getSidebar",
-                "value": {}
-              },
-              {
-                "name": "getWeek",
-                "value": {}
               }
             ],
             "events": []
           },
           "attributes": [
             {
-              "name": "month",
+              "name": "type",
+              "description": "The badge's variant.",
               "value": {
-                "type": "number"
+                "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
               }
             },
             {
-              "name": "year",
-              "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "date",
-              "value": {
-                "type": "moment.Moment"
-              }
-            },
-            {
-              "name": "dayNameFormat",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "use24Hour",
+              "name": "pill",
+              "description": "Draws a pill-style badge with rounded edges.",
               "value": {
                 "type": "boolean"
               }
             },
             {
-              "name": "interval",
+              "name": "pulse",
+              "description": "Makes the badge pulsate to draw attention.",
               "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "mode",
-              "value": {
-                "type": "CalendarMode"
+                "type": "boolean"
               }
             }
           ]
@@ -6558,6 +6444,110 @@
               "description": "The textarea's inputmode attribute.",
               "value": {
                 "type": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-timeline",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-timeline",
+          "js": {
+            "properties": [
+              {
+                "name": "timelineRow",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "date",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "dayNameFormat",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "use24Hour",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "intervals",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "mode",
+                "value": {
+                  "type": "TimelineMode"
+                }
+              },
+              {
+                "name": "today",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "drop",
+                "value": {}
+              },
+              {
+                "name": "getHeader",
+                "value": {}
+              },
+              {
+                "name": "getSidebar",
+                "value": {}
+              },
+              {
+                "name": "getWeek",
+                "value": {}
+              },
+              {
+                "name": "columnClick",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "date",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "dayNameFormat",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "use24Hour",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "intervals",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "mode",
+              "value": {
+                "type": "TimelineMode"
               }
             }
           ]

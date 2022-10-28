@@ -36,7 +36,6 @@
 
   - [Buttons](/components/button)
   - [Button Group](/components/button-group)
-  - [Calendar](/components/calendar)
   - [Checkbox](/components/checkbox)
   - [Dropdown](/components/dropdown)
   - [Dialog](/components/dialog)
@@ -47,6 +46,7 @@
   - [Menu Label](/components/menu-label)
   - [Select](/components/select)
   - [Textarea](/components/textarea)
+  - [Timeline](/components/timeline)
   - [Radio](/components/radio)
   - [Radio Button](/components/radio-button)
   - [Radio Group](/components/radio-group)
