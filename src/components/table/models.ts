@@ -1,5 +1,4 @@
 export interface ILynkTableCol {
-    footer: string;
     key: string;
     sort: LynkTableSortDirection;
     title: string;

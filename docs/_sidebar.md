@@ -60,11 +60,9 @@
     <!-- - [Progress Ring](/components/progress-ring) -->
 - Tables
   - [Table](/components/table)
-  - [Table Caption](/components/table-caption)
   - [Table Cell](/components/table-cell)
   - [Table Column](/components/table-column)
   - [Table Column Group](/components/table-column-group)
-  - [Table Footer Group](/components/table-footer-group)
   - [Table Header](/components/table-header)
   - [Table Header Group](/components/table-header-group)
   - [Table Row](/components/table-row)

@@ -1,7 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, queryAssignedElements } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
-import LynkTableFooterGroup from '../table-footer-group/table-footer-group';
 import LynkTableHeaderGroup from '../table-header-group/table-header-group';
 import LynkTableRowGroup from '../table-row-group/table-row-group';
 import { ILynkTableCol, ILynkTableRow, LynkTableSortDirection, LynkTableSortEvent } from './models';
@@ -15,20 +14,11 @@ import styles from './table.styles';
 export default class LynkTable extends LitElement {
   static styles = styles;
 
-  /** An optional caption to display for automatically constructed tables */
-  @property() caption: string;
-
   /** todo */
   @property() cols: ILynkTableCol[] = [];
 
   /** todo */
   @property() rows: ILynkTableRow[] = [];
-
-  /** Enables slotted children, and disables automatic table element construction */
-  @property({ type: Boolean, reflect: true }) custom = false;
-
-  @queryAssignedElements({selector: 'lynk-tfoot', flatten: true})
-  assignedFooterGroup: NodeListOf<LynkTableFooterGroup>;
 
   @queryAssignedElements({selector: 'lynk-thead', flatten: true})
   assignedHeaderGroup: NodeListOf<LynkTableHeaderGroup>;
@@ -92,8 +82,7 @@ export default class LynkTable extends LitElement {
   }
 
   render() {
-    return this.custom ? html` <slot></slot> ` : html`<slot>
-      ${this.caption ? html`<lynk-caption>${this.caption}</lynk-caption>` : ``}
+    return html`<slot>
       <lynk-colgroup>
         ${repeat(this.cols, col => html`<lynk-col class="${col.key}"></lynk-col>`)}
       </lynk-colgroup>
@@ -111,11 +100,6 @@ export default class LynkTable extends LitElement {
           ${repeat(this.cols, col => html`<lynk-td>${row[col.key]}</lynk-td>`)}
         </lynk-tr>`)}
       </lynk-tbody>
-      <lynk-tfoot>
-        <lynk-tr>
-          ${repeat(this.cols, col => html`<lynk-td>${col.footer}</lynk-td>`)}
-        </lynk-tr>
-      </lynk-tfoot>
     </slot>`;
   }
 }
