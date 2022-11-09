@@ -6,7 +6,8 @@ export default css`
 
   :host {
     display: table-cell;
-    border: solid 1px var(--lynk-color-neutral-300);
+    border-bottom: solid 1px var(--lynk-color-neutral-300);
+    border-right: solid 1px var(--lynk-color-neutral-300);
     padding: var(--lynk-spacing-x-small) var(--lynk-spacing-small);
   }
 

@@ -2,7 +2,7 @@
 
 [component-header:lynk-table]
 
-These elements are intended to behave like HTML `<table>` elements.
+These elements are intended to behave like HTML `<table>` elements. However they extend their capabilities with features such as automatic construction from data.
 
 ```html preview
 <lynk-table id="exampleAutomatic"></lynk-table>

@@ -7,4 +7,9 @@ export default css`
   :host {
     display: table-row;
   }
+
+  ::slotted(lynk-td:first-child),
+  ::slotted(lynk-th:first-child) {
+    border-left: solid 1px var(--lynk-color-neutral-300);
+  }
 `;

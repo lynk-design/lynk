@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, queryAssignedElements } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { repeat } from 'lit/directives/repeat.js';
 import LynkTableHeaderGroup from '../table-header-group/table-header-group';
 import LynkTableRowGroup from '../table-row-group/table-row-group';
@@ -17,7 +18,7 @@ export default class LynkTable extends LitElement {
   /** todo */
   @property() cols: ILynkTableCol[] = [];
 
-  /** todo */
+   /** todo */
   @property() rows: ILynkTableRow[] = [];
 
   @queryAssignedElements({selector: 'lynk-thead', flatten: true})
@@ -42,17 +43,17 @@ export default class LynkTable extends LitElement {
       headerGroup.querySelectorAll('lynk-tr').forEach(row => {
         row.querySelectorAll('lynk-th').forEach(header => {
           if(header.key === event.key) {
-            switch(header.sort) {
+            switch(header.sortDirection) {
               case LynkTableSortDirection.DESC:
-                header.sort = LynkTableSortDirection.ASC;
+                header.sortDirection = LynkTableSortDirection.ASC;
                 break;
               default:
-                header.sort = LynkTableSortDirection.DESC;
+                header.sortDirection = LynkTableSortDirection.DESC;
                 break;
             }
-            direction = header.sort;
+            direction = header.sortDirection;
           } else {
-            header.sort = LynkTableSortDirection.NONE;
+            header.sortDirection = LynkTableSortDirection.NONE;
           }
         });
       });
@@ -91,6 +92,7 @@ export default class LynkTable extends LitElement {
           ${repeat(this.cols, col => html`
             <lynk-th
               key="${col.key}"
+              ?sort-enabled=${ifDefined(col.sortEnabled ? col.sortEnabled : undefined)}
             >${col.title}</lynk-th>
           `)}
         </lynk-tr>

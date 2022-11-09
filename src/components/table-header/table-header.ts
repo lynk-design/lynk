@@ -17,7 +17,10 @@ export default class LynkTableHeader extends LitElement {
   @property() key: string;
 
   /** The sorting direction currently applied to the rows with the corresponding column key */
-  @property({reflect: true}) sort = LynkTableSortDirection.NONE;
+  @property({ attribute: 'sort-direction', reflect: true}) sortDirection = LynkTableSortDirection.NONE;
+
+  /** Toggles sort events and the display of sorting related icons with the corresponding column key */
+  @property({ attribute: 'sort-enabled', type: Boolean, reflect: true }) sortEnabled = false;
 
   connectedCallback() {
     super.connectedCallback();
@@ -30,25 +33,20 @@ export default class LynkTableHeader extends LitElement {
   }
 
   handleClick() {
-    const event = new LynkTableSortEvent(this.key);
-    this.dispatchEvent(event);
+    if(this.sortEnabled) {
+      const event = new LynkTableSortEvent(this.key);
+      this.dispatchEvent(event);
+    }
   }
 
   render() {
     return html`
-      <lynk-button
-        block
-        color="neutral"
-        stealth
-      >
-        ${this.sort === LynkTableSortDirection.ASC || this.sort === LynkTableSortDirection.DESC
-        ? html`<lynk-icon
-          name="${this.sort === LynkTableSortDirection.ASC ? 'sort-up' : this.sort === LynkTableSortDirection.DESC ? 'sort-down' : ''}"
-          slot="suffix"
-        ></lynk-icon>`
-        : ``}
-        <slot></slot>
-      </lynk-button>
+      <slot></slot>
+      ${this.sortEnabled
+      ? html`<lynk-icon
+        name="${this.sortDirection === LynkTableSortDirection.ASC ? 'sort-up' : this.sortDirection === LynkTableSortDirection.DESC ? 'sort-down' : ''}"
+      ></lynk-icon>`
+      : ``}
     `;
   }
 }

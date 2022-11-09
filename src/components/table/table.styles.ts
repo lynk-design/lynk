@@ -6,7 +6,7 @@ export default css`
 
   :host {
     display: table;
-    border-collapse: collapse;
+    border-collapse: separate;
     border-spacing: 0;
     font-size: var(--lynk-font-size-medium);
     margin-bottom: 0rem;

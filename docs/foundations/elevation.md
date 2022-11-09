@@ -14,6 +14,7 @@ Z-index tokens are used to stack components in a logical manner. In most instanc
 
 | Token                        | Value |
 | ---------------------------- | ----- |
+| `--lynk-z-index-sticky`      | 100   |
 | `--lynk-z-index-drawer`      | 700   |
 | `--lynk-z-index-dialog`      | 800   |
 | `--lynk-z-index-dropdown`    | 900   |
