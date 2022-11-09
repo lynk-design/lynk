@@ -8,11 +8,11 @@ export default css`
     display: table-row-group;
   }
 
-  ::slotted(lynk-tr) {
+  ::slotted(lynk-tr:not([transparent])) {
     background: var(--lynk-color-neutral-50);
   }
 
-  ::slotted(lynk-tr:nth-child(even)) {
+  ::slotted(lynk-tr:nth-child(even):not(:host([transparent]))) {
     background: var(--lynk-color-neutral-200);
   }
 

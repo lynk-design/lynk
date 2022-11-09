@@ -24,6 +24,9 @@ export default class LynkTable extends LitElement {
    **/
   @property() cols: ILynkTableCol[] = [];
 
+  /** todo */
+   @property({ reflect: true }) layout: 'auto' | 'fixed' = 'auto';
+
    /**
     * Objects used for mapping row data.
     * Required for data-driven tables.

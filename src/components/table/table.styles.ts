@@ -12,4 +12,12 @@ export default css`
     margin-bottom: 0rem;
     width: 100%;
   }
+
+  :host([layout='auto']) {
+    table-layout: auto;
+  }
+
+  :host([layout='fixed']) {
+    table-layout: fixed;
+  }
 `;

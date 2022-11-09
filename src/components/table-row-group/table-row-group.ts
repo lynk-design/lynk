@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import styles from './table-row-group.styles';
 
 /**
@@ -9,6 +9,10 @@ import styles from './table-row-group.styles';
 @customElement('lynk-tbody')
 export default class LynkTableRowGroup extends LitElement {
   static styles = styles;
+
+  /** Disables the background colors applied to rows in their default state. 
+   * This attribute is required to apply a background with a lynk-col element. */
+  @property({ type: Boolean, reflect: true }) transparent = false;
 
   render() {
     return html` <slot></slot> `;
