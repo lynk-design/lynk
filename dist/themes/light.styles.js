@@ -455,6 +455,7 @@ export default css`
       var(--lynk-spacing-x-small);
     --lynk-tooltip-arrow-size: 4px;
 
+    --lynk-z-index-sticky: 100;
     --lynk-z-index-drawer: 700;
     --lynk-z-index-dialog: 800;
     --lynk-z-index-dropdown: 900;

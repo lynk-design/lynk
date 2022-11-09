@@ -1377,173 +1377,6 @@
           ]
         },
         {
-          "name": "lynk-drawer",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-drawer",
-          "js": {
-            "properties": [
-              {
-                "name": "drawer",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "panel",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "overlay",
-                "value": {
-                  "type": "HTMLElement"
-                }
-              },
-              {
-                "name": "hasSlotController",
-                "value": {}
-              },
-              {
-                "name": "localize",
-                "value": {}
-              },
-              {
-                "name": "modal",
-                "value": {
-                  "type": "Modal"
-                }
-              },
-              {
-                "name": "originalTrigger",
-                "value": {
-                  "type": "HTMLElement | null"
-                }
-              },
-              {
-                "name": "open",
-                "description": "Indicates whether or not the drawer is open. You can use this in lieu of the show/hide methods.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "label",
-                "description": "The drawer's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "placement",
-                "description": "The direction from which the drawer will open.",
-                "value": {
-                  "type": "'top' | 'end' | 'bottom' | 'start'"
-                }
-              },
-              {
-                "name": "contained",
-                "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this prop and add `position: relative` to the parent.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "noHeader",
-                "description": "Removes the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the drawer.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "show",
-                "description": "Shows the drawer.",
-                "value": {}
-              },
-              {
-                "name": "hide",
-                "description": "Hides the drawer",
-                "value": {}
-              },
-              {
-                "name": "requestClose",
-                "value": {}
-              },
-              {
-                "name": "handleKeyDown",
-                "value": {}
-              },
-              {
-                "name": "handleOpenChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "on:show",
-                "description": "Emitted when the drawer opens."
-              },
-              {
-                "name": "after:show",
-                "description": "Emitted after the drawer opens and all animations are complete."
-              },
-              {
-                "name": "on:hide",
-                "description": "Emitted when the drawer closes."
-              },
-              {
-                "name": "after:hide",
-                "description": "Emitted after the drawer closes and all animations are complete."
-              },
-              {
-                "name": "on:initial-focus",
-                "description": "Emitted when the drawer opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input."
-              },
-              {
-                "name": "on:request-close",
-                "description": "Emitted when the user attempts to close the drawer by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the drawer open. Avoid using this unless closing the drawer will result in destructive behavior such as data loss."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "open",
-              "description": "Indicates whether or not the drawer is open. You can use this in lieu of the show/hide methods.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "label",
-              "description": "The drawer's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "placement",
-              "description": "The direction from which the drawer will open.",
-              "value": {
-                "type": "'top' | 'end' | 'bottom' | 'start'"
-              }
-            },
-            {
-              "name": "contained",
-              "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this prop and add `position: relative` to the parent.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "no-header",
-              "description": "Removes the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the drawer.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-dropdown",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-dropdown",
@@ -1796,6 +1629,173 @@
             {
               "name": "hoist",
               "description": "Enable this option to prevent the panel from being clipped when the component is placed inside a container with\n`overflow: auto|scroll`.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-drawer",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-drawer",
+          "js": {
+            "properties": [
+              {
+                "name": "drawer",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "panel",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "overlay",
+                "value": {
+                  "type": "HTMLElement"
+                }
+              },
+              {
+                "name": "hasSlotController",
+                "value": {}
+              },
+              {
+                "name": "localize",
+                "value": {}
+              },
+              {
+                "name": "modal",
+                "value": {
+                  "type": "Modal"
+                }
+              },
+              {
+                "name": "originalTrigger",
+                "value": {
+                  "type": "HTMLElement | null"
+                }
+              },
+              {
+                "name": "open",
+                "description": "Indicates whether or not the drawer is open. You can use this in lieu of the show/hide methods.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "label",
+                "description": "The drawer's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "placement",
+                "description": "The direction from which the drawer will open.",
+                "value": {
+                  "type": "'top' | 'end' | 'bottom' | 'start'"
+                }
+              },
+              {
+                "name": "contained",
+                "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this prop and add `position: relative` to the parent.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "noHeader",
+                "description": "Removes the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the drawer.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "show",
+                "description": "Shows the drawer.",
+                "value": {}
+              },
+              {
+                "name": "hide",
+                "description": "Hides the drawer",
+                "value": {}
+              },
+              {
+                "name": "requestClose",
+                "value": {}
+              },
+              {
+                "name": "handleKeyDown",
+                "value": {}
+              },
+              {
+                "name": "handleOpenChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "on:show",
+                "description": "Emitted when the drawer opens."
+              },
+              {
+                "name": "after:show",
+                "description": "Emitted after the drawer opens and all animations are complete."
+              },
+              {
+                "name": "on:hide",
+                "description": "Emitted when the drawer closes."
+              },
+              {
+                "name": "after:hide",
+                "description": "Emitted after the drawer closes and all animations are complete."
+              },
+              {
+                "name": "on:initial-focus",
+                "description": "Emitted when the drawer opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input."
+              },
+              {
+                "name": "on:request-close",
+                "description": "Emitted when the user attempts to close the drawer by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the drawer open. Avoid using this unless closing the drawer will result in destructive behavior such as data loss."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "open",
+              "description": "Indicates whether or not the drawer is open. You can use this in lieu of the show/hide methods.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "description": "The drawer's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "placement",
+              "description": "The direction from which the drawer will open.",
+              "value": {
+                "type": "'top' | 'end' | 'bottom' | 'start'"
+              }
+            },
+            {
+              "name": "contained",
+              "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this prop and add `position: relative` to the parent.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "no-header",
+              "description": "Removes the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the drawer.",
               "value": {
                 "type": "boolean"
               }
@@ -5875,6 +5875,249 @@
               }
             }
           ]
+        },
+        {
+          "description": "",
+          "doc-url": "https://lynk.design/components/",
+          "js": {
+            "properties": [
+              {
+                "name": "TYPE",
+                "value": {
+                  "type": "string"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "name": "lynk-table",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-table",
+          "js": {
+            "properties": [
+              {
+                "name": "cols",
+                "description": "todo",
+                "value": {
+                  "type": "ILynkTableCol[]"
+                }
+              },
+              {
+                "name": "rows",
+                "description": "todo",
+                "value": {
+                  "type": "ILynkTableRow[]"
+                }
+              },
+              {
+                "name": "assignedHeaderGroup",
+                "value": {
+                  "type": "NodeListOf<LynkTableHeaderGroup>"
+                }
+              },
+              {
+                "name": "assignedRowGroup",
+                "value": {
+                  "type": "NodeListOf<LynkTableRowGroup>"
+                }
+              },
+              {
+                "name": "handleSort",
+                "value": {}
+              },
+              {
+                "name": "isNumeric",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "cols",
+              "description": "todo",
+              "value": {
+                "type": "ILynkTableCol[]"
+              }
+            },
+            {
+              "name": "rows",
+              "description": "todo",
+              "value": {
+                "type": "ILynkTableRow[]"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-td",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-td",
+          "js": {
+            "properties": [
+              {
+                "name": "state",
+                "description": "A visual state for this row of data to indicate",
+                "value": {
+                  "type": "'danger' | 'primary' | 'success' | 'warning'"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "state",
+              "description": "A visual state for this row of data to indicate",
+              "value": {
+                "type": "'danger' | 'primary' | 'success' | 'warning'"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-col",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-col",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "name": "lynk-colgroup",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-colgroup",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "name": "lynk-th",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-th",
+          "js": {
+            "properties": [
+              {
+                "name": "key",
+                "description": "The column key associated with this table header",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sortDirection",
+                "description": "The sorting direction currently applied to the rows with the corresponding column key",
+                "value": {}
+              },
+              {
+                "name": "sortEnabled",
+                "description": "Toggles sort events and the display of sorting related icons with the corresponding column key",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleClick",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "lynk-table-event-sort",
+                "description": "Emitted when a sortable table header is clicked on."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "key",
+              "description": "The column key associated with this table header",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort-direction",
+              "description": "The sorting direction currently applied to the rows with the corresponding column key",
+              "value": {}
+            },
+            {
+              "name": "sort-enabled",
+              "description": "Toggles sort events and the display of sorting related icons with the corresponding column key",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-thead",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-thead",
+          "js": {
+            "properties": [
+              {
+                "name": "sticky",
+                "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+                "value": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "sticky",
+              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-tr",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-tr",
+          "js": {
+            "properties": [
+              {
+                "name": "state",
+                "description": "A visual state for this row of data to indicate",
+                "value": {
+                  "type": "'danger' | 'primary' | 'success' | 'warning'"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "state",
+              "description": "A visual state for this row of data to indicate",
+              "value": {
+                "type": "'danger' | 'primary' | 'success' | 'warning'"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-tbody",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-tbody",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
         },
         {
           "name": "lynk-tag",
