@@ -6,13 +6,12 @@ var LynkTableSortDirection = /* @__PURE__ */ ((LynkTableSortDirection2) => {
   return LynkTableSortDirection2;
 })(LynkTableSortDirection || {});
 var _LynkTableSortEvent = class extends Event {
-  constructor(key) {
+  constructor() {
     super(_LynkTableSortEvent.TYPE, {
       bubbles: true,
       cancelable: false,
       composed: true
     });
-    this.key = key;
   }
 };
 var LynkTableSortEvent = _LynkTableSortEvent;

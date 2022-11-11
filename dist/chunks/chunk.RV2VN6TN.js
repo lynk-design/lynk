@@ -3,7 +3,7 @@ import {
 } from "./chunk.RTDQTRDN.js";
 import {
   LynkTableSortEvent
-} from "./chunk.IKUYWLCG.js";
+} from "./chunk.FMIHG2HV.js";
 import {
   e,
   n
@@ -33,7 +33,8 @@ var LynkTableHeader = class extends s {
   }
   handleClick() {
     if (this.sortEnabled) {
-      const event = new LynkTableSortEvent(this.key);
+      const event = new LynkTableSortEvent();
+      event.key = this.key;
       this.dispatchEvent(event);
     }
   }

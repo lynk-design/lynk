@@ -2,7 +2,7 @@
 import {
   LynkTableSortDirection,
   LynkTableSortEvent
-} from "../../chunks/chunk.IKUYWLCG.js";
+} from "../../chunks/chunk.FMIHG2HV.js";
 import "../../chunks/chunk.LKA3TPUC.js";
 export {
   LynkTableSortDirection,

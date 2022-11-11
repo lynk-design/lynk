@@ -1,6 +1,7 @@
 import {
+  LynkTableSortDirection,
   LynkTableSortEvent
-} from "./chunk.IKUYWLCG.js";
+} from "./chunk.FMIHG2HV.js";
 import {
   table_styles_default
 } from "./chunk.CLIQDKUF.js";
@@ -108,6 +109,7 @@ var LynkTable = class extends s {
     super(...arguments);
     this.cols = [];
     this.rows = [];
+    this.custom = false;
   }
   connectedCallback() {
     super.connectedCallback();
@@ -123,11 +125,12 @@ var LynkTable = class extends s {
       headerGroup.querySelectorAll("lynk-tr").forEach((row) => {
         row.querySelectorAll("lynk-th").forEach((header) => {
           if (header.key === event.key) {
-            switch (header.sortDirection) {
-              case 1 /* DESC */:
+            switch (LynkTableSortDirection[header.sortDirection]) {
+              case LynkTableSortDirection[1 /* DESC */]:
                 header.sortDirection = -1 /* ASC */;
                 break;
-              default:
+              case LynkTableSortDirection[-1 /* ASC */]:
+              case LynkTableSortDirection[0 /* NONE */]:
                 header.sortDirection = 1 /* DESC */;
                 break;
             }
@@ -145,20 +148,21 @@ var LynkTable = class extends s {
         val1 = "";
       if (val2 === null || val2 === void 0)
         val2 = "";
-      if (this.isNumeric(val1) && this.isNumeric(val2)) {
+      if (!isNaN(parseFloat(val1)) && !isNaN(parseFloat(val2))) {
         return (Number(val1) - Number(val2)) * direction;
       }
-      let str1 = val1.toString();
-      let str2 = val2.toString();
+      const str1 = val1.toString();
+      const str2 = val2.toString();
       return str1.localeCompare(str2) * direction;
     });
     this.requestUpdate();
   }
-  isNumeric(toCheck) {
-    return !isNaN(parseFloat(toCheck)) && isFinite(toCheck);
-  }
   render() {
-    return $`<slot>
+    if (this.custom) {
+      return $`<slot></slot>`;
+    }
+    return $`
+    <slot>
       <lynk-colgroup>
         ${c2(this.cols, (col) => $`<lynk-col class="${col.key}"></lynk-col>`)}
       </lynk-colgroup>
@@ -167,13 +171,15 @@ var LynkTable = class extends s {
           ${c2(this.cols, (col) => $`
             <lynk-th
               key="${col.key}"
+              sort-direction=${l2(col.sortDirection ? col.sortDirection : void 0)}
               ?sort-enabled=${l2(col.sortEnabled ? col.sortEnabled : void 0)}
             >${col.title}</lynk-th>
           `)}
         </lynk-tr>
       </lynk-thead>
       <lynk-tbody>
-        ${c2(this.rows, (row) => $`<lynk-tr>
+        ${c2(this.rows, (row) => $`
+        <lynk-tr>
           ${c2(this.cols, (col) => $`<lynk-td>${row[col.key]}</lynk-td>`)}
         </lynk-tr>`)}
       </lynk-tbody>
@@ -187,6 +193,9 @@ __decorateClass([
 __decorateClass([
   e()
 ], LynkTable.prototype, "rows", 2);
+__decorateClass([
+  e({ type: Boolean, reflect: true })
+], LynkTable.prototype, "custom", 2);
 __decorateClass([
   l({ selector: "lynk-thead", flatten: true })
 ], LynkTable.prototype, "assignedHeaderGroup", 2);
