@@ -51,9 +51,7 @@ Similar to the `<table>` HTML element, `<lynk-table>` elements are designed to c
 
 - zero or more `<lynk-colgroup>` elements
 - zero or one `<lynk-thead>` element
-- either one of the following:
-  <br>zero or more `<lynk-tbody>` elements
-  <br>one or more `<lynk-tr>` elements
+- zero or more `<lynk-tbody>` elements
 
 ```html preview
 <lynk-table>

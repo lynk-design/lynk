@@ -1,12 +1,12 @@
 export interface ILynkTableCol {
     key: string;
-    sortDirection: LynkTableSortDirection;
-    sortEnabled: boolean;
+    sortDirection?: LynkTableSortDirection;
+    sortEnabled?: boolean;
     title: string;
 }
 
 export interface ILynkTableRow {
-    [key: string]: any;
+    [key: string]: string;
 }
 
 export enum LynkTableSortDirection {
@@ -17,10 +17,9 @@ export enum LynkTableSortDirection {
 
 export class LynkTableSortEvent extends Event {
     static TYPE = 'lynk-table-event-sort';
+    public key: string;
 
-    constructor(
-        public key: any,
-    ) {
+    constructor() {
         super(LynkTableSortEvent.TYPE, {
             bubbles: true,
             cancelable: false,
