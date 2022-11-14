@@ -43,6 +43,14 @@ export { default as LynkVisuallyHidden } from './components/visually-hidden/visu
 export { default as LynkGrid } from './components/grid/grid';
 export { default as LynkBox } from './components/box/box';
 export { default as LynkStack } from './components/stack/stack';
+export { default as LynkTable } from './components/table/table';
+export { default as LynkTableCell } from './components/table-cell/table-cell';
+export { default as LynkTableColumn } from './components/table-column/table-column';
+export { default as LynkTableColumnGroup } from './components/table-column-group/table-column-group';
+export { default as LynkTableHeader } from './components/table-header/table-header';
+export { default as LynkTableHeaderGroup } from './components/table-header-group/table-header-group';
+export { default as LynkTableRow } from './components/table-row/table-row';
+export { default as LynkTableRowGroup } from './components/table-row-group/table-row-group';
 /* plop:component */
 
 // Utilities

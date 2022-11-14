@@ -866,6 +866,105 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/box/box.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkBox",
+          "cssProperties": [
+            {
+              "description": "Custom text align (left, center, right).",
+              "name": "--align",
+              "default": "left"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--background",
+              "default": "transparent"
+            },
+            {
+              "description": "<border-style> <border-width> <border-color>.",
+              "name": "--border"
+            },
+            {
+              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
+              "name": "--border-radius"
+            },
+            {
+              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
+              "name": "--color",
+              "default": "inherit"
+            },
+            {
+              "description": "Any custom px, rem, %, or vh value.",
+              "name": "--height",
+              "default": "auto"
+            },
+            {
+              "description": "Any custom px, rem, %, or vh value.",
+              "name": "--width",
+              "default": "auto"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--margin",
+              "default": "0"
+            },
+            {
+              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
+              "name": "--padding",
+              "default": "0"
+            },
+            {
+              "description": "Any elevation shadow token (--lynk-shadow-large);",
+              "name": "--shadow"
+            }
+          ],
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "The default slot.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-box",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-box",
+          "declaration": {
+            "name": "LynkBox",
+            "module": "src/components/box/box.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/badge/badge.ts",
       "declarations": [
         {
@@ -973,105 +1072,6 @@
           "declaration": {
             "name": "LynkBadge",
             "module": "src/components/badge/badge.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/box/box.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkBox",
-          "cssProperties": [
-            {
-              "description": "Custom text align (left, center, right).",
-              "name": "--align",
-              "default": "left"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--background",
-              "default": "transparent"
-            },
-            {
-              "description": "<border-style> <border-width> <border-color>.",
-              "name": "--border"
-            },
-            {
-              "description": "Any Border Radius token (--lynk-border-radius-medium) or a custom value.",
-              "name": "--border-radius"
-            },
-            {
-              "description": "Any color token (--lynk-color-neutral-100) or a custom value.",
-              "name": "--color",
-              "default": "inherit"
-            },
-            {
-              "description": "Any custom px, rem, %, or vh value.",
-              "name": "--height",
-              "default": "auto"
-            },
-            {
-              "description": "Any custom px, rem, %, or vh value.",
-              "name": "--width",
-              "default": "auto"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--margin",
-              "default": "0"
-            },
-            {
-              "description": "Any spacing token (--lynk-spacing-large) or a custom value.",
-              "name": "--padding",
-              "default": "0"
-            },
-            {
-              "description": "Any elevation shadow token (--lynk-shadow-large);",
-              "name": "--shadow"
-            }
-          ],
-          "cssParts": [
-            {
-              "description": "The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The default slot.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-box",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-box",
-          "declaration": {
-            "name": "LynkBox",
-            "module": "src/components/box/box.ts"
           }
         }
       ]
@@ -10468,6 +10468,569 @@
           "declaration": {
             "name": "LynkTabPanel",
             "module": "src/components/tab-panel/tab-panel.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/models.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableSortEvent",
+          "members": [
+            {
+              "kind": "field",
+              "name": "TYPE",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'lynk-table-event-sort'"
+            },
+            {
+              "kind": "field",
+              "name": "key",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "public"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "src/components/table/models.ts"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LynkTableSortEvent",
+          "declaration": {
+            "name": "LynkTableSortEvent",
+            "module": "src/components/table/models.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table/table.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTable",
+          "members": [
+            {
+              "kind": "field",
+              "name": "cols",
+              "type": {
+                "text": "ILynkTableCol[]"
+              },
+              "default": "[]",
+              "description": "Objects used for mapping column data, headers, and sorting.\nRequired for data-driven tables. \nOptional for custom tables, except if you want to use the built-in sorting.\nEach object is expected to have a \"key\" corresponding a property in each row object.",
+              "attribute": "cols"
+            },
+            {
+              "kind": "field",
+              "name": "rows",
+              "type": {
+                "text": "ILynkTableRow[]"
+              },
+              "default": "[]",
+              "description": "Objects used for mapping row data.\nRequired for data-driven tables.\nOptional for custom tables, except if you want to use the built-in sorting.\nEach object is expected to have a string property corresponding to a \"key\" in one of the cols.",
+              "attribute": "rows"
+            },
+            {
+              "kind": "field",
+              "name": "custom",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enables slotted children, and disables automatic table element construction",
+              "attribute": "custom",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "assignedHeaderGroup",
+              "type": {
+                "text": "NodeListOf<LynkTableHeaderGroup>"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "assignedRowGroup",
+              "type": {
+                "text": "NodeListOf<LynkTableRowGroup>"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "handleSort",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "LynkTableSortEvent"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "cols",
+              "type": {
+                "text": "ILynkTableCol[]"
+              },
+              "default": "[]",
+              "description": "Objects used for mapping column data, headers, and sorting.\nRequired for data-driven tables. \nOptional for custom tables, except if you want to use the built-in sorting.\nEach object is expected to have a \"key\" corresponding a property in each row object.",
+              "fieldName": "cols"
+            },
+            {
+              "name": "rows",
+              "type": {
+                "text": "ILynkTableRow[]"
+              },
+              "default": "[]",
+              "description": "Objects used for mapping row data.\nRequired for data-driven tables.\nOptional for custom tables, except if you want to use the built-in sorting.\nEach object is expected to have a string property corresponding to a \"key\" in one of the cols.",
+              "fieldName": "rows"
+            },
+            {
+              "name": "custom",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enables slotted children, and disables automatic table element construction",
+              "fieldName": "custom"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-table",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTable",
+            "module": "src/components/table/table.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-table",
+          "declaration": {
+            "name": "LynkTable",
+            "module": "src/components/table/table.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table-cell/table-cell.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableCell",
+          "members": [
+            {
+              "kind": "field",
+              "name": "state",
+              "type": {
+                "text": "'danger' | 'primary' | 'success' | 'warning'"
+              },
+              "description": "A visual state for this row of data to indicate",
+              "attribute": "state",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "state",
+              "type": {
+                "text": "'danger' | 'primary' | 'success' | 'warning'"
+              },
+              "description": "A visual state for this row of data to indicate",
+              "fieldName": "state"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-td",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableCell",
+            "module": "src/components/table-cell/table-cell.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-td",
+          "declaration": {
+            "name": "LynkTableCell",
+            "module": "src/components/table-cell/table-cell.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table-column/table-column.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableColumn",
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-col",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableColumn",
+            "module": "src/components/table-column/table-column.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-col",
+          "declaration": {
+            "name": "LynkTableColumn",
+            "module": "src/components/table-column/table-column.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table-column-group/table-column-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableColumnGroup",
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-colgroup",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableColumnGroup",
+            "module": "src/components/table-column-group/table-column-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-colgroup",
+          "declaration": {
+            "name": "LynkTableColumnGroup",
+            "module": "src/components/table-column-group/table-column-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table-header/table-header.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableHeader",
+          "members": [
+            {
+              "kind": "field",
+              "name": "key",
+              "type": {
+                "text": "string"
+              },
+              "description": "The column key associated with this table header",
+              "attribute": "key"
+            },
+            {
+              "kind": "field",
+              "name": "sortDirection",
+              "description": "The sorting direction currently applied to the rows with the corresponding column key",
+              "attribute": "sort-direction",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "sortEnabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Toggles sort events and the display of sorting related icons with the corresponding column key",
+              "attribute": "sort-enabled",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "handleClick"
+            }
+          ],
+          "events": [
+            {
+              "description": "Emitted when a sortable table header is clicked on.",
+              "name": "lynk-table-event-sort",
+              "reactName": "onLynkTableEventSort"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "key",
+              "type": {
+                "text": "string"
+              },
+              "description": "The column key associated with this table header",
+              "fieldName": "key"
+            },
+            {
+              "name": "sort-direction",
+              "description": "The sorting direction currently applied to the rows with the corresponding column key",
+              "fieldName": "sortDirection"
+            },
+            {
+              "name": "sort-enabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Toggles sort events and the display of sorting related icons with the corresponding column key",
+              "fieldName": "sortEnabled"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-th",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableHeader",
+            "module": "src/components/table-header/table-header.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-th",
+          "declaration": {
+            "name": "LynkTableHeader",
+            "module": "src/components/table-header/table-header.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table-header-group/table-header-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableHeaderGroup",
+          "members": [
+            {
+              "kind": "field",
+              "name": "sticky",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+              "attribute": "sticky",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "sticky",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+              "fieldName": "sticky"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-thead",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableHeaderGroup",
+            "module": "src/components/table-header-group/table-header-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-thead",
+          "declaration": {
+            "name": "LynkTableHeaderGroup",
+            "module": "src/components/table-header-group/table-header-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table-row/table-row.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableRow",
+          "members": [
+            {
+              "kind": "field",
+              "name": "state",
+              "type": {
+                "text": "'danger' | 'primary' | 'success' | 'warning'"
+              },
+              "description": "A visual state for this row of data to indicate",
+              "attribute": "state",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "state",
+              "type": {
+                "text": "'danger' | 'primary' | 'success' | 'warning'"
+              },
+              "description": "A visual state for this row of data to indicate",
+              "fieldName": "state"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-tr",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableRow",
+            "module": "src/components/table-row/table-row.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-tr",
+          "declaration": {
+            "name": "LynkTableRow",
+            "module": "src/components/table-row/table-row.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table-row-group/table-row-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableRowGroup",
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-tbody",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableRowGroup",
+            "module": "src/components/table-row-group/table-row-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-tbody",
+          "declaration": {
+            "name": "LynkTableRowGroup",
+            "module": "src/components/table-row-group/table-row-group.ts"
           }
         }
       ]

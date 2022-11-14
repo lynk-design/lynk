@@ -524,6 +524,16 @@
           "attributes": []
         },
         {
+          "name": "lynk-box",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-box",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
           "name": "lynk-badge",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-badge",
@@ -576,16 +586,6 @@
               }
             }
           ]
-        },
-        {
-          "name": "lynk-box",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-box",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
         },
         {
           "name": "lynk-button",
@@ -5875,6 +5875,265 @@
               }
             }
           ]
+        },
+        {
+          "description": "",
+          "doc-url": "https://lynk.design/components/",
+          "js": {
+            "properties": [
+              {
+                "name": "TYPE",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "key",
+                "value": {
+                  "type": "string"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "name": "lynk-table",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-table",
+          "js": {
+            "properties": [
+              {
+                "name": "cols",
+                "description": "Objects used for mapping column data, headers, and sorting.\nRequired for data-driven tables. \nOptional for custom tables, except if you want to use the built-in sorting.\nEach object is expected to have a \"key\" corresponding a property in each row object.",
+                "value": {
+                  "type": "ILynkTableCol[]"
+                }
+              },
+              {
+                "name": "rows",
+                "description": "Objects used for mapping row data.\nRequired for data-driven tables.\nOptional for custom tables, except if you want to use the built-in sorting.\nEach object is expected to have a string property corresponding to a \"key\" in one of the cols.",
+                "value": {
+                  "type": "ILynkTableRow[]"
+                }
+              },
+              {
+                "name": "custom",
+                "description": "Enables slotted children, and disables automatic table element construction",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "assignedHeaderGroup",
+                "value": {
+                  "type": "NodeListOf<LynkTableHeaderGroup>"
+                }
+              },
+              {
+                "name": "assignedRowGroup",
+                "value": {
+                  "type": "NodeListOf<LynkTableRowGroup>"
+                }
+              },
+              {
+                "name": "handleSort",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "cols",
+              "description": "Objects used for mapping column data, headers, and sorting.\nRequired for data-driven tables. \nOptional for custom tables, except if you want to use the built-in sorting.\nEach object is expected to have a \"key\" corresponding a property in each row object.",
+              "value": {
+                "type": "ILynkTableCol[]"
+              }
+            },
+            {
+              "name": "rows",
+              "description": "Objects used for mapping row data.\nRequired for data-driven tables.\nOptional for custom tables, except if you want to use the built-in sorting.\nEach object is expected to have a string property corresponding to a \"key\" in one of the cols.",
+              "value": {
+                "type": "ILynkTableRow[]"
+              }
+            },
+            {
+              "name": "custom",
+              "description": "Enables slotted children, and disables automatic table element construction",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-td",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-td",
+          "js": {
+            "properties": [
+              {
+                "name": "state",
+                "description": "A visual state for this row of data to indicate",
+                "value": {
+                  "type": "'danger' | 'primary' | 'success' | 'warning'"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "state",
+              "description": "A visual state for this row of data to indicate",
+              "value": {
+                "type": "'danger' | 'primary' | 'success' | 'warning'"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-col",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-col",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "name": "lynk-colgroup",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-colgroup",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "name": "lynk-th",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-th",
+          "js": {
+            "properties": [
+              {
+                "name": "key",
+                "description": "The column key associated with this table header",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sortDirection",
+                "description": "The sorting direction currently applied to the rows with the corresponding column key",
+                "value": {}
+              },
+              {
+                "name": "sortEnabled",
+                "description": "Toggles sort events and the display of sorting related icons with the corresponding column key",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleClick",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "lynk-table-event-sort",
+                "description": "Emitted when a sortable table header is clicked on."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "key",
+              "description": "The column key associated with this table header",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort-direction",
+              "description": "The sorting direction currently applied to the rows with the corresponding column key",
+              "value": {}
+            },
+            {
+              "name": "sort-enabled",
+              "description": "Toggles sort events and the display of sorting related icons with the corresponding column key",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-thead",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-thead",
+          "js": {
+            "properties": [
+              {
+                "name": "sticky",
+                "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+                "value": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "sticky",
+              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-tr",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-tr",
+          "js": {
+            "properties": [
+              {
+                "name": "state",
+                "description": "A visual state for this row of data to indicate",
+                "value": {
+                  "type": "'danger' | 'primary' | 'success' | 'warning'"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "state",
+              "description": "A visual state for this row of data to indicate",
+              "value": {
+                "type": "'danger' | 'primary' | 'success' | 'warning'"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-tbody",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-tbody",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
         },
         {
           "name": "lynk-tag",
