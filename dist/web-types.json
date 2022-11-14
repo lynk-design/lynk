@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/web-types",
   "name": "@lynk-design/lynk",
-  "version": "1.0.0-b.20",
+  "version": "1.0.0-b.21",
   "description-markup": "markdown",
   "framework-config": {
     "enable-when": {
@@ -253,6 +253,60 @@
               "name": "duration",
               "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`.",
               "value": {}
+            }
+          ]
+        },
+        {
+          "name": "lynk-badge",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-badge",
+          "js": {
+            "properties": [
+              {
+                "name": "type",
+                "description": "The badge's variant.",
+                "value": {
+                  "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+                }
+              },
+              {
+                "name": "pill",
+                "description": "Draws a pill-style badge with rounded edges.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "pulse",
+                "description": "Makes the badge pulsate to draw attention.",
+                "value": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "type",
+              "description": "The badge's variant.",
+              "value": {
+                "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              }
+            },
+            {
+              "name": "pill",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "value": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "pulse",
+              "description": "Makes the badge pulsate to draw attention.",
+              "value": {
+                "type": "boolean"
+              }
             }
           ]
         },
@@ -534,55 +588,53 @@
           "attributes": []
         },
         {
-          "name": "lynk-badge",
+          "name": "lynk-button-group",
           "description": "",
-          "doc-url": "https://lynk.design/components/lynk-badge",
+          "doc-url": "https://lynk.design/components/lynk-button-group",
           "js": {
             "properties": [
               {
-                "name": "type",
-                "description": "The badge's variant.",
+                "name": "defaultSlot",
                 "value": {
-                  "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+                  "type": "HTMLSlotElement"
                 }
               },
               {
-                "name": "pill",
-                "description": "Draws a pill-style badge with rounded edges.",
+                "name": "label",
+                "description": "A label to use for the button group's `aria-label` attribute.",
                 "value": {
-                  "type": "boolean"
+                  "type": "string"
                 }
               },
               {
-                "name": "pulse",
-                "description": "Makes the badge pulsate to draw attention.",
-                "value": {
-                  "type": "boolean"
-                }
+                "name": "handleFocus",
+                "value": {}
+              },
+              {
+                "name": "handleBlur",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOver",
+                "value": {}
+              },
+              {
+                "name": "handleMouseOut",
+                "value": {}
+              },
+              {
+                "name": "handleSlotChange",
+                "value": {}
               }
             ],
             "events": []
           },
           "attributes": [
             {
-              "name": "type",
-              "description": "The badge's variant.",
+              "name": "label",
+              "description": "A label to use for the button group's `aria-label` attribute.",
               "value": {
-                "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              }
-            },
-            {
-              "name": "pill",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "pulse",
-              "description": "Makes the badge pulsate to draw attention.",
-              "value": {
-                "type": "boolean"
+                "type": "string"
               }
             }
           ]
@@ -972,58 +1024,6 @@
           ]
         },
         {
-          "name": "lynk-button-group",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-button-group",
-          "js": {
-            "properties": [
-              {
-                "name": "defaultSlot",
-                "value": {
-                  "type": "HTMLSlotElement"
-                }
-              },
-              {
-                "name": "label",
-                "description": "A label to use for the button group's `aria-label` attribute.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "handleFocus",
-                "value": {}
-              },
-              {
-                "name": "handleBlur",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOver",
-                "value": {}
-              },
-              {
-                "name": "handleMouseOut",
-                "value": {}
-              },
-              {
-                "name": "handleSlotChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "label",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "value": {
-                "type": "string"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-checkbox",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-checkbox",
@@ -1347,36 +1347,6 @@
           ]
         },
         {
-          "name": "lynk-divider",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-divider",
-          "js": {
-            "properties": [
-              {
-                "name": "vertical",
-                "description": "Draws the divider in a vertical orientation.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "handleVerticalChange",
-                "value": {}
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "vertical",
-              "description": "Draws the divider in a vertical orientation.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
           "name": "lynk-drawer",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-drawer",
@@ -1537,6 +1507,36 @@
             {
               "name": "no-header",
               "description": "Removes the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the drawer.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "name": "lynk-divider",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-divider",
+          "js": {
+            "properties": [
+              {
+                "name": "vertical",
+                "description": "Draws the divider in a vertical orientation.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleVerticalChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "vertical",
+              "description": "Draws the divider in a vertical orientation.",
               "value": {
                 "type": "boolean"
               }
@@ -6015,6 +6015,32 @@
           "attributes": []
         },
         {
+          "name": "lynk-thead",
+          "description": "",
+          "doc-url": "https://lynk.design/components/lynk-thead",
+          "js": {
+            "properties": [
+              {
+                "name": "sticky",
+                "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+                "value": {
+                  "type": "boolean"
+                }
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "sticky",
+              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "lynk-th",
           "description": "",
           "doc-url": "https://lynk.design/components/lynk-th",
@@ -6067,32 +6093,6 @@
             {
               "name": "sort-enabled",
               "description": "Toggles sort events and the display of sorting related icons with the corresponding column key",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "lynk-thead",
-          "description": "",
-          "doc-url": "https://lynk.design/components/lynk-thead",
-          "js": {
-            "properties": [
-              {
-                "name": "sticky",
-                "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
-                "value": {
-                  "type": "boolean"
-                }
-              }
-            ],
-            "events": []
-          },
-          "attributes": [
-            {
-              "name": "sticky",
-              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
               "value": {
                 "type": "boolean"
               }
