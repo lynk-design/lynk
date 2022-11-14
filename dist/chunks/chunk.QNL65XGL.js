@@ -19,15 +19,15 @@ import {
   setDefaultAnimation
 } from "./chunk.5FIVCLSV.js";
 import {
-  o
-} from "./chunk.AY3TXN3C.js";
-import {
   watch
 } from "./chunk.EYJTTIDT.js";
 import {
   emit,
   waitForEvent
 } from "./chunk.TOL7LDIN.js";
+import {
+  o
+} from "./chunk.AY3TXN3C.js";
 import {
   e,
   i,

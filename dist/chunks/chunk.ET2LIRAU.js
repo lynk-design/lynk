@@ -1,13 +1,13 @@
 import {
-  badge_styles_default
-} from "./chunk.BHACNR7A.js";
-import {
   o
 } from "./chunk.AY3TXN3C.js";
 import {
   e,
   n
 } from "./chunk.X6SWQQ2B.js";
+import {
+  badge_styles_default
+} from "./chunk.BHACNR7A.js";
 import {
   $,
   s
