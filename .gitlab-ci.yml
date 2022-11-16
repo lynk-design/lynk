@@ -1,10 +1,3 @@
-include:
-  - project: uplynk/deploy-tools/docker_sysops
-    ref: v0.0.34
-    file:
-      - /pipelines/components/semver.yml
-      - /pipelines/components/push_git_tag.yml
-
 workflow:
   rules:
     - if: $CI_MERGE_REQUEST_IID
@@ -19,18 +12,18 @@ stages:
 
 default:
   image: node:14.18
-  before_script:
-    - export BUILD_ID=${CI_MERGE_REQUEST_IID:-$CI_COMMIT_REF_SLUG}
-    - export BUILD_UUID=${CI_MERGE_REQUEST_IID:-$CI_COMMIT_REF_SLUG}
+  cache:
+    paths:
+      - node_modules/
+      - .yarn
 
 build-package:
   stage: build
-  variables:
-    GIT_DEPTH: 0
-    GIT_FETCH_EXTRA_FLAGS: --tags
+  before_script:
+    - yarn config set cache-folder .yarn
+    - yarn
   script:
     - echo "Building the code..."
-    - yarn
     - yarn build
   artifacts:
     paths:
@@ -41,11 +34,11 @@ build-package:
 
 run-tests:
   stage: test
-  needs:
-    - build-package
+  before_script:
+    - yarn config set cache-folder .yarn
+    - yarn install --frozen-lockfile
   script:
-    - yarn
-    - yarn test
+    - yarn test --puppeteer
 
 deploy-docs:
   stage: deploy
