@@ -471,119 +471,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/badge/badge.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkBadge",
-          "cssParts": [
-            {
-              "description": "| .lynk-badge - The component's internal wrapper.",
-              "name": "base"
-            }
-          ],
-          "slots": [
-            {
-              "description": "The badge's content.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "attribute": "type",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "attribute": "pill",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "attribute": "pulse",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "type",
-              "type": {
-                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-              },
-              "default": "'primary'",
-              "description": "The badge's variant.",
-              "fieldName": "type"
-            },
-            {
-              "name": "pill",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a pill-style badge with rounded edges.",
-              "fieldName": "pill"
-            },
-            {
-              "name": "pulse",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the badge pulsate to draw attention.",
-              "fieldName": "pulse"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-badge",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-badge",
-          "declaration": {
-            "name": "LynkBadge",
-            "module": "src/components/badge/badge.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/animation/animation.ts",
       "declarations": [
         {
@@ -1078,104 +965,86 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/button-group/button-group.ts",
+      "path": "src/components/badge/badge.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "LynkButtonGroup",
+          "name": "LynkBadge",
           "cssParts": [
             {
-              "description": "The component's internal wrapper.",
+              "description": "| .lynk-badge - The component's internal wrapper.",
               "name": "base"
             }
           ],
           "slots": [
             {
-              "description": "One or more `<lynk-button>` elements to display in the button group.",
+              "description": "The badge's content.",
               "name": ""
             }
           ],
           "members": [
             {
               "kind": "field",
-              "name": "defaultSlot",
+              "name": "type",
               "type": {
-                "text": "HTMLSlotElement"
-              }
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+              },
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "attribute": "type",
+              "reflects": true
             },
             {
               "kind": "field",
-              "name": "label",
+              "name": "pill",
               "type": {
-                "text": "string"
+                "text": "boolean"
               },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "attribute": "label"
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "attribute": "pill",
+              "reflects": true
             },
             {
-              "kind": "method",
-              "name": "handleFocus",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleBlur",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseOver",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleMouseOut",
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleSlotChange"
+              "kind": "field",
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "attribute": "pulse",
+              "reflects": true
             }
           ],
           "attributes": [
             {
-              "name": "label",
+              "name": "type",
               "type": {
-                "text": "string"
+                "text": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
               },
-              "default": "''",
-              "description": "A label to use for the button group's `aria-label` attribute.",
-              "fieldName": "label"
+              "default": "'primary'",
+              "description": "The badge's variant.",
+              "fieldName": "type"
+            },
+            {
+              "name": "pill",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a pill-style badge with rounded edges.",
+              "fieldName": "pill"
+            },
+            {
+              "name": "pulse",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the badge pulsate to draw attention.",
+              "fieldName": "pulse"
             }
           ],
           "superclass": {
@@ -1184,7 +1053,7 @@
           },
           "since": "1.0",
           "status": "stable",
-          "tagName": "lynk-button-group",
+          "tagName": "lynk-badge",
           "customElement": true
         }
       ],
@@ -1193,16 +1062,16 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "lynk-button-group",
+          "name": "lynk-badge",
           "declaration": {
-            "name": "LynkButtonGroup",
-            "module": "src/components/button-group/button-group.ts"
+            "name": "LynkBadge",
+            "module": "src/components/badge/badge.ts"
           }
         }
       ]
@@ -1787,6 +1656,137 @@
           "declaration": {
             "name": "LynkButton",
             "module": "src/components/button/button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button-group/button-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkButtonGroup",
+          "cssParts": [
+            {
+              "description": "The component's internal wrapper.",
+              "name": "base"
+            }
+          ],
+          "slots": [
+            {
+              "description": "One or more `<lynk-button>` elements to display in the button group.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "defaultSlot",
+              "type": {
+                "text": "HTMLSlotElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "attribute": "label"
+            },
+            {
+              "kind": "method",
+              "name": "handleFocus",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleBlur",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseOver",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleMouseOut",
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleSlotChange"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "A label to use for the button group's `aria-label` attribute.",
+              "fieldName": "label"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-button-group",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-button-group",
+          "declaration": {
+            "name": "LynkButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
           }
         }
       ]
@@ -2416,6 +2416,85 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/divider/divider.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkDivider",
+          "cssProperties": [
+            {
+              "description": "The color of the divider.",
+              "name": "--color"
+            },
+            {
+              "description": "The width of the divider.",
+              "name": "--width"
+            },
+            {
+              "description": "The spacing of the divider.",
+              "name": "--spacing"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "vertical",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the divider in a vertical orientation.",
+              "attribute": "vertical",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "handleVerticalChange"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "vertical",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws the divider in a vertical orientation.",
+              "fieldName": "vertical"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "stable",
+          "tagName": "lynk-divider",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkDivider",
+            "module": "src/components/divider/divider.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-divider",
+          "declaration": {
+            "name": "LynkDivider",
+            "module": "src/components/divider/divider.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/drawer/drawer.ts",
       "declarations": [
         {
@@ -2793,85 +2872,6 @@
           "declaration": {
             "name": "LynkDrawer",
             "module": "src/components/drawer/drawer.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/divider/divider.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkDivider",
-          "cssProperties": [
-            {
-              "description": "The color of the divider.",
-              "name": "--color"
-            },
-            {
-              "description": "The width of the divider.",
-              "name": "--width"
-            },
-            {
-              "description": "The spacing of the divider.",
-              "name": "--spacing"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "vertical",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the divider in a vertical orientation.",
-              "attribute": "vertical",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "handleVerticalChange"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "vertical",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws the divider in a vertical orientation.",
-              "fieldName": "vertical"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "stable",
-          "tagName": "lynk-divider",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkDivider",
-            "module": "src/components/divider/divider.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-divider",
-          "declaration": {
-            "name": "LynkDivider",
-            "module": "src/components/divider/divider.ts"
           }
         }
       ]
@@ -10474,6 +10474,65 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/table-cell/table-cell.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableCell",
+          "members": [
+            {
+              "kind": "field",
+              "name": "state",
+              "type": {
+                "text": "'danger' | 'primary' | 'success' | 'warning'"
+              },
+              "description": "A visual state for this row of data to indicate",
+              "attribute": "state",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "state",
+              "type": {
+                "text": "'danger' | 'primary' | 'success' | 'warning'"
+              },
+              "description": "A visual state for this row of data to indicate",
+              "fieldName": "state"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-td",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableCell",
+            "module": "src/components/table-cell/table-cell.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-td",
+          "declaration": {
+            "name": "LynkTableCell",
+            "module": "src/components/table-cell/table-cell.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/table/models.ts",
       "declarations": [
         {
@@ -10643,65 +10702,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/table-cell/table-cell.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkTableCell",
-          "members": [
-            {
-              "kind": "field",
-              "name": "state",
-              "type": {
-                "text": "'danger' | 'primary' | 'success' | 'warning'"
-              },
-              "description": "A visual state for this row of data to indicate",
-              "attribute": "state",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "state",
-              "type": {
-                "text": "'danger' | 'primary' | 'success' | 'warning'"
-              },
-              "description": "A visual state for this row of data to indicate",
-              "fieldName": "state"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "experimental",
-          "tagName": "lynk-td",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkTableCell",
-            "module": "src/components/table-cell/table-cell.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-td",
-          "declaration": {
-            "name": "LynkTableCell",
-            "module": "src/components/table-cell/table-cell.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/table-column/table-column.ts",
       "declarations": [
         {
@@ -10772,67 +10772,6 @@
           "declaration": {
             "name": "LynkTableColumnGroup",
             "module": "src/components/table-column-group/table-column-group.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/table-header-group/table-header-group.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkTableHeaderGroup",
-          "members": [
-            {
-              "kind": "field",
-              "name": "sticky",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
-              "attribute": "sticky",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "sticky",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
-              "fieldName": "sticky"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "experimental",
-          "tagName": "lynk-thead",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkTableHeaderGroup",
-            "module": "src/components/table-header-group/table-header-group.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-thead",
-          "declaration": {
-            "name": "LynkTableHeaderGroup",
-            "module": "src/components/table-header-group/table-header-group.ts"
           }
         }
       ]
@@ -10940,6 +10879,105 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/table-header-group/table-header-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableHeaderGroup",
+          "members": [
+            {
+              "kind": "field",
+              "name": "sticky",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+              "attribute": "sticky",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "sticky",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the header stick to the top of the table while its overflow is scrolling vertically",
+              "fieldName": "sticky"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-thead",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableHeaderGroup",
+            "module": "src/components/table-header-group/table-header-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-thead",
+          "declaration": {
+            "name": "LynkTableHeaderGroup",
+            "module": "src/components/table-header-group/table-header-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/table-row-group/table-row-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LynkTableRowGroup",
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "since": "1.0",
+          "status": "experimental",
+          "tagName": "lynk-tbody",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "LynkTableRowGroup",
+            "module": "src/components/table-row-group/table-row-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "lynk-tbody",
+          "declaration": {
+            "name": "LynkTableRowGroup",
+            "module": "src/components/table-row-group/table-row-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/table-row/table-row.ts",
       "declarations": [
         {
@@ -10993,44 +11031,6 @@
           "declaration": {
             "name": "LynkTableRow",
             "module": "src/components/table-row/table-row.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/table-row-group/table-row-group.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "LynkTableRowGroup",
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "since": "1.0",
-          "status": "experimental",
-          "tagName": "lynk-tbody",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "LynkTableRowGroup",
-            "module": "src/components/table-row-group/table-row-group.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "lynk-tbody",
-          "declaration": {
-            "name": "LynkTableRowGroup",
-            "module": "src/components/table-row-group/table-row-group.ts"
           }
         }
       ]
