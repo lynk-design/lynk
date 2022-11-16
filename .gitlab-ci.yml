@@ -1,16 +1,59 @@
-image: node:14.18
+include:
+  - project: uplynk/deploy-tools/docker_sysops
+    ref: v0.0.34
+    file:
+      - /pipelines/components/semver.yml
+      - /pipelines/components/push_git_tag.yml
+
+workflow:
+  rules:
+    - if: $CI_MERGE_REQUEST_IID
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "external_pull_request_event"
 
 stages:
+  - build
+  - test
+  - package
   - deploy
+
+default:
+  image: node:14.18
+  before_script:
+    - export BUILD_ID=${CI_MERGE_REQUEST_IID:-$CI_COMMIT_REF_SLUG}
+    - export BUILD_UUID=${CI_MERGE_REQUEST_IID:-$CI_COMMIT_REF_SLUG}
+
+build-package:
+  stage: build
+  variables:
+    GIT_DEPTH: 0
+    GIT_FETCH_EXTRA_FLAGS: --tags
+  script:
+    - echo "Building the code..."
+    - yarn
+    - yarn build
+  artifacts:
+    paths:
+      - dist/
+      - src/
+      - docs/
+      - node_modules/
+
+run-tests:
+  stage: test
+  needs:
+    - build-package
+  script:
+    - yarn test
 
 deploy-docs:
   stage: deploy
+  needs:
+    - build-package
   before_script:
     - npm i -g firebase-tools
   script:
-    - echo "Compiling the code..."
-    - yarn
-    - yarn build
     - echo "Deploying the docs"
     - cp -r dist/. docs/dist
     - firebase deploy --token $FIREBASE_TOKEN
