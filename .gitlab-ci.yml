@@ -15,7 +15,6 @@ workflow:
 stages:
   - build
   - test
-  - package
   - deploy
 
 default:
@@ -45,6 +44,7 @@ run-tests:
   needs:
     - build-package
   script:
+    - yarn
     - yarn test
 
 deploy-docs:
