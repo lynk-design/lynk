@@ -35,12 +35,10 @@ build-package:
 run-tests:
   stage: test
   image: mcr.microsoft.com/playwright:v1.28.0-focal
-  needs:
-  - job: build-package
-    artifacts: true
   before_script:
+    - yarn
     - npm install -D @playwright/test
-    - npx playwright install --with-deps
+    - npx playwright install
   script:
     - yarn test
 
