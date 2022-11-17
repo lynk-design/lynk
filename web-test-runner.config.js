@@ -5,8 +5,10 @@ import { globbySync } from 'globby';
 export default {
   rootDir: '.',
   files: 'src/**/*.test.ts',
-  concurrentBrowsers: 3,
+  concurrency: 1,
+  concurrentBrowsers: 1,
   nodeResolve: true,
+  testsFinishTimeout: 20000,
   plugins: [
     esbuildPlugin({
       ts: true,
