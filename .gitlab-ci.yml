@@ -40,7 +40,7 @@ run-tests:
     artifacts: true
   before_script:
     - npm install -D @playwright/test
-    - npx playwright install
+    - npx playwright install --with-deps
   script:
     - yarn test
 
