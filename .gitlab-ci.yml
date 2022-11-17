@@ -40,6 +40,7 @@ run-tests:
   before_script:
     - yarn
     - yarn build
+    - npm install -D @playwright/test
   script:
     - npx playwright test --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
 
