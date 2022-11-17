@@ -16,7 +16,6 @@ default:
   cache:
     paths:
       - node_modules/
-      - .yarn
 
 build-package:
   stage: build
@@ -35,15 +34,12 @@ build-package:
 
 run-tests:
   stage: test
-  needs:
-  - job: build-package
-    artifacts: true
-  # image: mcr.microsoft.com/playwright:v1.28.0-focal
+  image: mcr.microsoft.com/playwright:v1.28.0-focal
   before_script:
     - yarn
     - yarn build
     - npm install -D @playwright/test
-    - npx playwright install --with-deps
+    - npx playwright install
   script:
     - yarn test
 
