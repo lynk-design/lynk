@@ -35,13 +35,13 @@ build-package:
 
 run-tests:
   stage: test
-  needs:
-  - job: build-package
-    artifacts: true
+  image: mcr.microsoft.com/playwright:v1.28.0-focal
+  parallel: 7
   before_script:
-    - npx playwright install-deps
+    - yarn
+    - yarn build
   script:
-    - yarn test
+    - npx playwright test --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
 
 # create-release:
 #   stage: release
