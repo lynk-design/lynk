@@ -4,18 +4,22 @@ LYNK works great with all modern app frameworks, including Aurelia, with full in
 
 ## Installation
 
-To add LYNK to your Aurelia app, install the package using npm or yarn.
-
-```bash
-npm install --save git+ssh://git@gitlab.edgecastcdn.net:uplynk/ucc-team/lynk-design.git
-yarn add git+ssh://git@gitlab.edgecastcdn.net:uplynk/ucc-team/lynk-design.git
+To add LYNK to your Aurelia app, first authenticate to the Uplynk project package registry
+```shell
+npm config set -- //gitlab.edgecastcdn.net/api/v4/projects/6611/packages/npm/:_authToken=YOUR_ACCESS_TOKEN
+echo @uplynk:registry=https://gitlab.edgecastcdn.net/api/v4/projects/6611/packages/npm/ >> .npmrc
+```
+Then install just like any other npm package
+```shell
+npm i @uplynk/lynk-ui
+yarn install @uplynk/lynk-ui
 ```
 
 Next, open your `srr/main.ts` file and add the following code to import the [default theme](/getting-started/themes) set the default [icon library](/components/icon#icon-libraries) and register the component library.
 
 ```jsx
-import '@lynk-design/lynk/dist/themes/dark.css';
-import {registerIconLibrary} from '@lynk-design/lynk/dist/utilities/icon-library';
+import '@uplynk/lynk-ui/dist/themes/dark.css';
+import {registerIconLibrary} from '@uplynk/lynk-ui/dist/utilities/icon-library';
 
 registerIconLibrary('default', {
     resolver: name => `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/icons/${name}.svg`,
@@ -24,7 +28,7 @@ registerIconLibrary('default', {
 aurelia.use
     .standardConfiguration()
     ...
-    .plugin(PLATFORM.moduleName('@lynk-design/lynk'))
+    .plugin(PLATFORM.moduleName('@uplynk/lynk-ui'))
 ```
 
 That's it! Now you can start using LYNK components in your app!
