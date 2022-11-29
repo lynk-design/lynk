@@ -13,8 +13,17 @@
 </div>
 </div>
 
-```console
-yarn add git+ssh://git@gitlab.edgecastcdn.net:uplynk/ucc-team/lynk-design.git
+## Installing Lynk
+
+Authenticate to the Uplynk project package registry
+```shell
+npm config set -- //gitlab.edgecastcdn.net/api/v4/projects/6611/packages/npm/:_authToken=YOUR_ACCESS_TOKEN
+echo @uplynk:registry=https://gitlab.edgecastcdn.net/api/v4/projects/6611/packages/npm/ >> .npmrc
+```
+Install just like any other npm package
+```shell
+npm i @uplynk/lynk-ui
+yarn install @uplynk/lynk-ui
 ```
 
 ## Browser Support
