@@ -6,3 +6,4 @@ docs/search.json
 examples
 node_modules
 src/react
+dist
