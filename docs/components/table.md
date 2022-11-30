@@ -54,11 +54,11 @@ Similar to the `<table>` HTML element, `<lynk-table>` elements are designed to c
 - zero or more `<lynk-tbody>` elements
 
 ```html preview
-<lynk-table>
+<lynk-table custom>
     <lynk-colgroup>
-        <lynk-col></lynk-col>
-        <lynk-col></lynk-col>
-        <lynk-col></lynk-col>
+        <lynk-col key="a"></lynk-col>
+        <lynk-col key="b"></lynk-col>
+        <lynk-col key="c"></lynk-col>
     </lynk-colgroup>
     <lynk-thead>
         <lynk-tr>

@@ -7,9 +7,9 @@ These elements are intended to behave like `<colgroup>` HTML elements.
 ```html preview
 <lynk-table layout="fixed">
     <lynk-colgroup>
-        <lynk-col style="background: red; width: 100px;"></lynk-col>
-        <lynk-col></lynk-col>
-        <lynk-col></lynk-col>
+        <lynk-col key="a" style="background: red; width: 100px;"></lynk-col>
+        <lynk-col key="b"></lynk-col>
+        <lynk-col key="c"></lynk-col>
     </lynk-colgroup>
     <lynk-thead>
         <lynk-tr>

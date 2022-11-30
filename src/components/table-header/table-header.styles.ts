@@ -15,6 +15,7 @@ export default css`
     padding: var(--lynk-spacing-x-small) var(--lynk-spacing-small);
     user-select: none;
     vertical-align: middle;
+    position: relative;
   }
 
   :host([sort-enabled]) {
@@ -30,4 +31,16 @@ export default css`
     padding-inline-start: var(--lynk-spacing-2x-small);
     vertical-align: -2px;
   }
+
+  .resizeHandle {
+    cursor: col-resize;
+    display: block;
+    font-size: 20px;
+    top: 0;
+    height: 100%;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+  } 
 `;

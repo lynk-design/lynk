@@ -5,7 +5,7 @@
 These elements are intended to behave like `<th>` HTML elements.
 
 ```html preview
-<lynk-table>
+<lynk-table custom>
     <lynk-thead>
         <lynk-tr>
             <lynk-th key="colA" sort-enabled>Column A</lynk-th>
@@ -27,13 +27,80 @@ These elements are intended to behave like `<th>` HTML elements.
 
 ## Examples
 
-### Sorting
+### Resize Enabled
 
 ```html preview
-<lynk-table id="exampleSorting"></lynk-table>
+<lynk-table id="resizeTable"></lynk-table>
+
+<lynk-grid container id="resizeTableOptions">
+    <lynk-grid item>
+        <lynk-radio-group label="Table Layout" fieldset>
+        <lynk-radio name="layout" value="auto" checked>Auto</lynk-radio>
+        <lynk-radio name="layout" value="fixed">Fixed</lynk-radio>
+        </lynk-radio-group>
+    </lynk-grid>
+</lynk-grid>
+
+<script>
+    const resizeTable = document.getElementById('resizeTable');
+    resizeTable.cols = [
+        {
+            'key': 'a',
+            'maxWidth': 200,
+            'minWidth': 140,
+            'width': 150,
+            'resizeEnabled': true,
+            'title': 'Column A',
+        },
+        {
+            'key': 'b',
+            'minWidth': 140,
+            'resizeEnabled': true,
+            'title': 'Column B',
+        },
+        {
+            'key': 'c',
+            'minWidth': 140,
+            'resizeEnabled': false,
+            'title': 'Column C',
+        },
+    ];
+    resizeTable.rows = [
+        {
+            'a': 'Row 1 Column A',
+            'b': 'Row 1 Column B',
+            'c': 'Row 1 Column C',
+        },
+        {
+            'a': 'Row 2 Column A',
+            'b': 'Row 2 Column B',
+            'c': 'Row 2 Column C',
+        },
+        {
+            'a': 'Row 3 Column A',
+            'b': 'Row 3 Column B',
+            'c': 'Row 3 Column C',
+        },
+    ];
+
+    const resizeTableOptions = document.querySelectorAll('#resizeTableOptions lynk-radio');
+    resizeTableOptions.forEach(function (option) {
+        option.addEventListener('on:change', event => {
+            if (event.target.checked) {
+                resizeTable.setAttribute(event.target.name, event.target.value);
+            }
+        });
+    });
+</script>
+```
+
+### Sort Enabled
+
+```html preview
+<lynk-table id="exampleSortEnabled"></lynk-table>
 <script>
     // note: this script would usually be replaced with data bindings provided by your web framework
-    const table = document.getElementById('exampleSorting');
+    const table = document.getElementById('exampleSortEnabled');
     table.cols = [
         {
             'key': 'a',

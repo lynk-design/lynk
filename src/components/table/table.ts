@@ -2,8 +2,10 @@ import { LitElement, html } from 'lit';
 import { customElement, property, queryAssignedElements } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { repeat } from 'lit/directives/repeat.js';
-import { LynkTableSortDirection, LynkTableSortEvent } from './models';
+import { LynkTableResizeEvent, LynkTableSortDirection, LynkTableSortEvent } from './models';
 import styles from './table.styles';
+import type LynkTableColumnGroup from '../table-column-group/table-column-group';
+import type LynkTableColumn from '../table-column/table-column';
 import type LynkTableHeaderGroup from '../table-header-group/table-header-group';
 import type LynkTableRowGroup from '../table-row-group/table-row-group';
 import type { ILynkTableCol, ILynkTableRow } from './models';
@@ -38,6 +40,10 @@ export default class LynkTable extends LitElement {
   /** Enables slotted children, and disables automatic table element construction */
   @property({ type: Boolean, reflect: true }) custom = false;
 
+  @queryAssignedElements({selector: 'lynk-colgroup', flatten: true})
+  assignedColumnGroup: NodeListOf<LynkTableColumnGroup>;
+  columns: { [key: string]: LynkTableColumn } = {};
+
   @queryAssignedElements({selector: 'lynk-thead', flatten: true})
   assignedHeaderGroup: NodeListOf<LynkTableHeaderGroup>;
 
@@ -47,15 +53,41 @@ export default class LynkTable extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener(LynkTableSortEvent.TYPE, this.handleSort);
+    this.addEventListener(LynkTableResizeEvent.TYPE, this.handleResize);
+  }
+
+  updated(changedProps: Map<string, unknown>) {
+    super.updated(changedProps);
+    this.assignedColumnGroup.forEach((columnGroup: LynkTableColumnGroup) => {
+      columnGroup.querySelectorAll('lynk-col').forEach((column: LynkTableColumn) => {
+        const key = column.getAttribute('key');
+        if(key) this.columns[key] = column;
+      });
+    });
   }
   
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener(LynkTableSortEvent.TYPE, this.handleSort);
+    this.removeEventListener(LynkTableResizeEvent.TYPE, this.handleResize);
+  }
+
+  handleResize(event: LynkTableResizeEvent) {
+    if(this.columns[event.key]) {
+      this.columns[event.key].requestWidth(event.requestedWidth);
+    }
   }
 
   handleSort(event: LynkTableSortEvent) {
     let direction: LynkTableSortDirection;
+    this.assignedColumnGroup.forEach((columnGroup: LynkTableColumnGroup) => {
+      console.log(columnGroup);
+      columnGroup.querySelectorAll('lynk-col').forEach((column: LynkTableColumn) => {
+        console.log('found column', column);
+        const key = column.getAttribute('key');
+        if(key) this.columns[key] = column;
+      });
+    });
     this.assignedHeaderGroup.forEach(headerGroup => {
       headerGroup.querySelectorAll('lynk-tr').forEach(row => {
         row.querySelectorAll('lynk-th').forEach(header => {
@@ -103,15 +135,27 @@ export default class LynkTable extends LitElement {
     return html`
     <slot>
       <lynk-colgroup>
-        ${repeat(this.cols, col => html`<lynk-col class="${col.key}"></lynk-col>`)}
+        ${repeat(this.cols, col => html`
+          <lynk-col
+            class="${col.key}"
+            key="${col.key}"
+            max-width="${ifDefined(col.maxWidth ? col.maxWidth : undefined)}"
+            min-width="${ifDefined(col.minWidth ? col.minWidth : undefined)}"
+            width="${ifDefined(col.width ? col.width : undefined)}"
+          ></lynk-col>
+        `)}
       </lynk-colgroup>
       <lynk-thead>
         <lynk-tr>
           ${repeat(this.cols, col => html`
             <lynk-th
               key="${col.key}"
+              ?resize-enabled=${ifDefined(col.resizeEnabled ? col.resizeEnabled : undefined)}
+              max-width="${ifDefined(col.maxWidth ? col.maxWidth : undefined)}"
+              min-width="${ifDefined(col.minWidth ? col.minWidth : undefined)}"
               sort-direction=${ifDefined(col.sortDirection ? col.sortDirection : undefined)}
               ?sort-enabled=${ifDefined(col.sortEnabled ? col.sortEnabled : undefined)}
+              width="${ifDefined(col.width ? col.width : undefined)}"
             >${col.title}</lynk-th>
           `)}
         </lynk-tr>
