@@ -1,8 +1,8 @@
 {
-  "name": "@uplynk/lynk-ui",
+  "name": "@uplynk/lynk-design",
   "description": "A library of web components and styles for building web applications with the Edgio Streaming design language.",
-  "version": "0.0.3",
-  "homepage": "https://lynk-ui.web.app/",
+  "version": "0.0.4",
+  "homepage": "https://lynk-design.web.app/",
   "author": "Harley Jessop",
   "license": "MIT",
   "main": "dist/lynk.js",

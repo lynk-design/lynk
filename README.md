@@ -10,7 +10,7 @@ Lynk is a WIP, but it's primary goals are:
 
 ---
 
-Documentation: [lynk-design.web.app](https://lynk-ui.web.app/)
+Documentation: [lynk-design.web.app](https://lynk-design.web.app/)
 
 ---
 
