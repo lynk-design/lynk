@@ -6,7 +6,7 @@ Dropdowns expose additional content that "drops down" in a panel.
 
 Dropdowns consist of a trigger and a panel. By default, activating the trigger will expose the panel and interacting outside of the panel will close it.
 
-Dropdowns are designed to work well with [menus](/components/menu) to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. [color picker](/components/color-picker) and [select](/components/select)). The API gives you complete control over showing, hiding, and positioning the panel.
+Dropdowns are designed to work well with [menus](/components/menu) to provide a list of options the user can select from. However, dropdowns can also be used in lower-level applications (e.g. [select](/components/select)). The API gives you complete control over showing, hiding, and positioning the panel.
 
 ```html preview
 <lynk-dropdown>
@@ -185,6 +185,7 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
 
 <style>
   .dropdown-hoist {
+    position: relative;
     border: solid 2px var(--lynk-panel-border-color);
     padding: var(--lynk-spacing-medium);
     overflow: hidden;

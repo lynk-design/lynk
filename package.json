@@ -30,8 +30,7 @@
     "lint:fix": "eslint src --max-warnings 0 --fix",
     "ts-check": "tsc --noEmit --project ./tsconfig.json",
     "create": "plop --plopfile scripts/plop/plopfile.js",
-    "test": "web-test-runner --coverage --concurrency 3 --concurrent-browsers 3",
-    "test:cicd": "web-test-runner",
+    "test": "web-test-runner --coverage",
     "test:component": "npm run test -- --group",
     "test:watch": "web-test-runner --watch",
     "spellcheck": "cspell \"**/*.{js,ts,json,html,css,md}\" --no-progress",
@@ -43,10 +42,8 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.0.7",
-    "@lit-labs/react": "^1.0.4",
     "@shoelace-style/animations": "^1.1.0",
     "@shoelace-style/localize": "^3.0.3",
-    "color": "4.2",
     "lit": "^2.4.1"
   },
   "devDependencies": {

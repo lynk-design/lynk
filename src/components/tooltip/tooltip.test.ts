@@ -1,5 +1,6 @@
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
+import type LynkPopup from '../popup/popup';
 import type LynkTooltip from './tooltip';
 
 describe('<lynk-tooltip>', () => {
@@ -9,9 +10,9 @@ describe('<lynk-tooltip>', () => {
         <lynk-button>Hover Me</lynk-button>
       </lynk-tooltip>
     `);
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('[part="body"]')!;
 
-    expect(base.hidden).to.be.false;
+    expect(body.hidden).to.be.false;
   });
 
   it('should not be visible without the open attribute', async () => {
@@ -20,9 +21,9 @@ describe('<lynk-tooltip>', () => {
         <lynk-button>Hover Me</lynk-button>
       </lynk-tooltip>
     `);
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('[part="body"]')!;
 
-    expect(base.hidden).to.be.true;
+    expect(body.hidden).to.be.true;
   });
 
   it('should emit on:show and after:show when calling show()', async () => {
@@ -31,7 +32,7 @@ describe('<lynk-tooltip>', () => {
         <lynk-button>Hover Me</lynk-button>
       </lynk-tooltip>
     `);
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('[part="body"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
@@ -44,7 +45,7 @@ describe('<lynk-tooltip>', () => {
 
     expect(showHandler).to.have.been.calledOnce;
     expect(afterShowHandler).to.have.been.calledOnce;
-    expect(base.hidden).to.be.false;
+    expect(body.hidden).to.be.false;
   });
 
   it('should emit on:hide and after:hide when calling hide()', async () => {
@@ -53,7 +54,7 @@ describe('<lynk-tooltip>', () => {
         <lynk-button>Hover Me</lynk-button>
       </lynk-tooltip>
     `);
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('[part="body"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
@@ -66,7 +67,7 @@ describe('<lynk-tooltip>', () => {
 
     expect(hideHandler).to.have.been.calledOnce;
     expect(afterHideHandler).to.have.been.calledOnce;
-    expect(base.hidden).to.be.true;
+    expect(body.hidden).to.be.true;
   });
 
   it('should emit on:show and after:show when setting open = true', async () => {
@@ -75,7 +76,7 @@ describe('<lynk-tooltip>', () => {
         <lynk-button>Hover Me</lynk-button>
       </lynk-tooltip>
     `);
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('[part="body"]')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
@@ -88,7 +89,7 @@ describe('<lynk-tooltip>', () => {
 
     expect(showHandler).to.have.been.calledOnce;
     expect(afterShowHandler).to.have.been.calledOnce;
-    expect(base.hidden).to.be.false;
+    expect(body.hidden).to.be.false;
   });
 
   it('should emit on:hide and after:hide when setting open = false', async () => {
@@ -97,7 +98,7 @@ describe('<lynk-tooltip>', () => {
         <lynk-button>Hover Me</lynk-button>
       </lynk-tooltip>
     `);
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('[part="body"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
@@ -110,7 +111,7 @@ describe('<lynk-tooltip>', () => {
 
     expect(hideHandler).to.have.been.calledOnce;
     expect(afterHideHandler).to.have.been.calledOnce;
-    expect(base.hidden).to.be.true;
+    expect(body.hidden).to.be.true;
   });
 
   it('should hide the tooltip when tooltip is visible and disabled becomes true', async () => {
@@ -119,7 +120,7 @@ describe('<lynk-tooltip>', () => {
         <lynk-button>Hover Me</lynk-button>
       </lynk-tooltip>
     `);
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('[part="body"]')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
@@ -132,6 +133,30 @@ describe('<lynk-tooltip>', () => {
 
     expect(hideHandler).to.have.been.calledOnce;
     expect(afterHideHandler).to.have.been.calledOnce;
-    expect(base.hidden).to.be.true;
+    expect(body.hidden).to.be.true;
+  });
+
+
+  it('should show when open initially', async () => {
+    const el = await fixture<LynkTooltip>(html`
+      <lynk-tooltip content="This is a tooltip" open>
+        <lynk-button>Hover Me</lynk-button>
+      </lynk-tooltip>
+    `);
+    const body = el.shadowRoot!.querySelector<HTMLElement>('[part~="body"]')!;
+    await el.updateComplete;
+
+    expect(body.hidden).to.be.false;
+  });
+
+  it('should not accept pointer events on the tooltip', async () => {
+    const el = await fixture<LynkTooltip>(html`
+      <lynk-tooltip content="This is a tooltip" open>
+        <lynk-button>Hover Me</lynk-button>
+      </lynk-tooltip>
+    `);
+    const popup = el.shadowRoot!.querySelector<SlPopup>('lynk-popup')!;
+
+    expect(getComputedStyle(popup.popup).pointerEvents).to.equal('none');
   });
 });

@@ -12,37 +12,35 @@ export default css`
     display: contents;
   }
 
-  :host([no-arrow]) .lynk-tooltip__arrow {
-    visibility: hidden;
+  .lynk-tooltip {
+    --arrow-size: var(--lynk-tooltip-arrow-size);
+    --arrow-color: var(--lynk-tooltip-background-color);
   }
 
-  .lynk-tooltip-target {
-    display: contents;
-  }
-
-  .lynk-tooltip-positioner {
-    position: absolute;
-    z-index: var(--lynk-z-index-tooltip);
+  .lynk-tooltip::part(popup) {
     pointer-events: none;
+    z-index: var(--lynk-z-index-tooltip);
   }
 
-  .lynk-tooltip-positioner[data-placement^='top'] .lynk-tooltip {
+  .lynk-tooltip[placement^='top']::part(popup) {
     transform-origin: bottom;
   }
 
-  .lynk-tooltip-positioner[data-placement^='bottom'] .lynk-tooltip {
+  .lynk-tooltip[placement^='bottom']::part(popup) {
     transform-origin: top;
   }
 
-  .lynk-tooltip-positioner[data-placement^='left'] .lynk-tooltip {
+  .lynk-tooltip[placement^='left']::part(popup) {
     transform-origin: right;
   }
 
-  .lynk-tooltip-positioner[data-placement^='right'] .lynk-tooltip {
+  .lynk-tooltip[placement^='right']::part(popup) {
     transform-origin: left;
   }
 
-  .lynk-tooltip__content {
+  .lynk-tooltip__body {
+    display: block;
+    width: max-content;
     max-width: var(--max-width);
     border-radius: var(--lynk-tooltip-border-radius);
     background-color: var(--lynk-tooltip-background-color);
@@ -52,14 +50,6 @@ export default css`
     line-height: var(--lynk-tooltip-line-height);
     color: var(--lynk-tooltip-color);
     padding: var(--lynk-tooltip-padding);
-  }
-
-  .lynk-tooltip__arrow {
-    position: absolute;
-    background: var(--lynk-tooltip-background-color);
-    width: calc(var(--lynk-tooltip-arrow-size) * 2);
-    height: calc(var(--lynk-tooltip-arrow-size) * 2);
-    transform: rotate(45deg);
-    z-index: -1;
+    pointer-events: none;
   }
 `;

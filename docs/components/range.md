@@ -17,7 +17,7 @@ Ranges allow the user to select a single value within a given range using a slid
 Use the `label` attribute to give the range an accessible label. For labels that contain HTML, use the `label` slot instead.
 
 ```html preview
-<lynk-range label="Volume" min="0" max="100"></lynk-input>
+<lynk-range label="Volume" min="0" max="100"></lynk-range>
 ```
 
 ### Help Text
@@ -30,7 +30,7 @@ Add descriptive help text to a range with the `help-text` attribute. For help te
   help-text="Controls the volume of the current song."
   min="0"
   max="100"
-></lynk-input>
+></lynk-range>
 ```
 
 ### Min, Max, and Step

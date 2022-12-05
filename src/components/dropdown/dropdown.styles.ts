@@ -5,24 +5,35 @@ export default css`
   ${componentStyles}
 
   :host {
-    display: contents;
+    display: inline-block;
   }
 
   :host([block]) {
     display: block;
   }
 
-  .lynk-dropdown {
-    position: relative;
+  .lynk-dropdown::part(popup) {
+    z-index: var(--lynk-z-index-dropdown);
+  }
+
+  .lynk-dropdown[data-current-placement^='top']::part(popup) {
+    transform-origin: bottom;
+  }
+
+  .lynk-dropdown[data-current-placement^='bottom']::part(popup) {
+    transform-origin: top;
+  }
+
+  .lynk-dropdown[data-current-placement^='left']::part(popup) {
+    transform-origin: right;
+  }
+
+  .lynk-dropdown[data-current-placement^='right']::part(popup) {
+    transform-origin: left;
   }
 
   .lynk-dropdown__trigger {
     display: block;
-  }
-
-  .lynk-dropdown__positioner {
-    position: absolute;
-    z-index: var(--lynk-z-index-dropdown);
   }
 
   .lynk-dropdown__panel {
@@ -31,28 +42,17 @@ export default css`
     font-weight: var(--lynk-font-weight-normal);
     color: var(--color);
     box-shadow: var(--lynk-shadow-large);
-    overflow: auto;
-    overscroll-behavior: none;
     pointer-events: none;
   }
 
   .lynk-dropdown--open .lynk-dropdown__panel {
+    display: block;
     pointer-events: all;
   }
 
-  .lynk-dropdown__positioner[data-placement^='top'] .lynk-dropdown__panel {
-    transform-origin: bottom;
-  }
-
-  .lynk-dropdown__positioner[data-placement^='bottom'] .lynk-dropdown__panel {
-    transform-origin: top;
-  }
-
-  .lynk-dropdown__positioner[data-placement^='left'] .lynk-dropdown__panel {
-    transform-origin: right;
-  }
-
-  .lynk-dropdown__positioner[data-placement^='right'] .lynk-dropdown__panel {
-    transform-origin: left;
+  /* When users slot a menu, make sure it conforms to the popup's auto-size */
+  ::slotted(lynk-menu) {
+    max-width: var(--auto-size-available-width) !important;
+    max-height: var(--auto-size-available-height) !important;
   }
 `;

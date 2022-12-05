@@ -1,28 +1,31 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import '../../components/dropdown/dropdown';
-import '../../components/icon-button/icon-button';
-import '../../components/icon/icon';
-import '../../components/menu/menu';
-import '../../components/tag/tag';
-import '../../components/tooltip/tooltip';
-import { emit } from '../../internal/event';
+import { defaultValue } from '../../internal/default-value';
 import { FormSubmitController } from '../../internal/form';
+import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
 import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
+import '../dropdown/dropdown';
+import '../icon-button/icon-button';
+import '../icon/icon';
+import '../menu/menu';
+import '../tag/tag';
 import styles from './select.styles';
-import type LynkDropdown from '../../components/dropdown/dropdown';
-import type LynkIconButton from '../../components/icon-button/icon-button';
-import type LynkMenuItem from '../../components/menu-item/menu-item';
-import type { MenuSelectEventDetail } from '../../components/menu/menu';
-import type LynkMenu from '../../components/menu/menu';
-import type { TemplateResult } from 'lit';
+import type { LynkFormControl } from '../../internal/shoelace-element';
+import type LynkDropdown from '../dropdown/dropdown';
+import type LynkIconButton from '../icon-button/icon-button';
+import type LynkMenuItem from '../menu-item/menu-item';
+import type { MenuSelectEventDetail } from '../menu/menu';
+import type LynkMenu from '../menu/menu';
+import type { TemplateResult, CSSResultGroup } from 'lit';
 
 /**
+ * @summary Selects allow you to choose one or more items from a dropdown menu.
+ *
  * @since 1.0
- * @status experimental
+ * @status stable
  *
  * @dependency lynk-dropdown
  * @dependency lynk-icon
@@ -41,6 +44,7 @@ import type { TemplateResult } from 'lit';
  *
  * @event on:clear - Emitted when the clear button is activated.
  * @event on:change - Emitted when the control's value changes.
+ * @event on:input - Emitted when the control receives input.
  * @event on:focus - Emitted when the control gains focus.
  * @event on:blur - Emitted when the control loses focus.
  *
@@ -63,8 +67,8 @@ import type { TemplateResult } from 'lit';
  * @csspart tags - The container in which multi select options are rendered.
  */
 @customElement('lynk-select')
-export default class LynkSelect extends LitElement {
-  static styles = styles;
+export default class LynkSelect extends LynkElement implements LynkFormControl {
+  static styles: CSSResultGroup = styles;
 
   @query('.lynk-select') dropdown: LynkDropdown;
   @query('.lynk-select__control') control: LynkDropdown;
@@ -82,6 +86,7 @@ export default class LynkSelect extends LitElement {
   @state() private isOpen = false;
   @state() private displayLabel = '';
   @state() private displayTags: TemplateResult[] = [];
+  @state() invalid = false;
 
   /** Enables multi select. With this enabled, value will be an array. */
   @property({ type: Boolean, reflect: true }) multiple = false;
@@ -152,6 +157,9 @@ export default class LynkSelect extends LitElement {
   /** Use the browsers built constraint validation API  in tandem with the `required` property` */
   @property({ type: Boolean, reflect: true }) autovalidate = false;
 
+  /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
+  @defaultValue() defaultValue = '';
+
   connectedCallback() {
     super.connectedCallback();
     this.resizeObserver = new ResizeObserver(() => this.resizeMenu());
@@ -171,6 +179,11 @@ export default class LynkSelect extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.resizeObserver.unobserve(this);
+  }
+
+  /** Checks for validity but does not show the browser's validation message. */
+  checkValidity() {
+    return this.input.checkValidity();
   }
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
@@ -207,14 +220,14 @@ export default class LynkSelect extends LitElement {
     // Don't blur if the control is open. We'll move focus back once it closes.
     if (!this.isOpen) {
       this.hasFocus = false;
-      emit(this, 'on:blur');
+      this.emit('on:blur');
     }
   }
 
   handleClearClick(event: MouseEvent) {
     event.stopPropagation();
     this.value = this.multiple ? [] : '';
-    emit(this, 'on:clear');
+    this.emit('on:clear');
     this.syncItemsFromValue();
   }
 
@@ -235,7 +248,7 @@ export default class LynkSelect extends LitElement {
   handleFocus() {
     if (!this.hasFocus) {
       this.hasFocus = true;
-      emit(this, 'on:focus');
+      this.emit('on:focus');
     }
   }
 
@@ -384,12 +397,14 @@ export default class LynkSelect extends LitElement {
     if (this.autovalidate) {
       this.invalid = !this.input.checkValidity();
     }
-    emit(this, 'on:change');
+
+    this.emit('on:change');
+    this.emit('on:input');
   }
 
   resizeMenu() {
     this.menu.style.width = `${this.control.clientWidth}px`;
-    this.dropdown.reposition();
+    requestAnimationFrame(() => this.dropdown.reposition());
   }
 
   syncItemsFromValue() {
@@ -603,9 +618,7 @@ export default class LynkSelect extends LitElement {
                   `
                 : ''}
 
-              <span part="suffix" class="lynk-select__suffix">
-                <slot name="suffix"></slot>
-              </span>
+              <slot name="suffix" part="suffix" class="lynk-select__suffix"></slot>
 
               <span part="icon" class="lynk-select__icon" aria-hidden="true">
                 <lynk-icon name="chevron-down" library="system"></lynk-icon>
@@ -631,14 +644,15 @@ export default class LynkSelect extends LitElement {
 
         </div>
 
-        <div
+        <slot
+          name="help-text"
           part="form-control-help-text"
           id="help-text"
           class="lynk-form-control__help-text"
           aria-hidden=${hasHelpText ? 'false' : 'true'}
         >
-          <slot name="help-text">${this.helpText}</slot>
-        </div>
+          ${this.helpText}
+        </slot>
       </div>
     `;
   }

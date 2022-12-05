@@ -1,23 +1,28 @@
-import { autoUpdate, computePosition, flip, offset, shift, size } from '@floating-ui/dom';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { animateTo, stopAnimations } from '../../internal/animate';
-import { emit, waitForEvent } from '../../internal/event';
+import { waitForEvent } from '../../internal/event';
 import { scrollIntoView } from '../../internal/scroll';
+import LynkElement from '../../internal/lynk-element';
 import { getTabbableBoundary } from '../../internal/tabbable';
 import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { LocalizeController } from '../../utilities/localize';
+import '../popup/popup';
 import styles from './dropdown.styles';
-import type LynkButton from '../../components/button/button';
-import type LynkIconButton from '../../components/icon-button/icon-button';
-import type LynkMenuItem from '../../components/menu-item/menu-item';
-import type LynkMenu from '../../components/menu/menu';
-
+import type LynkButton from '../button/button';
+import type LynkIconButton from '../icon-button/icon-button';
+import type LynkMenuItem from '../menu-item/menu-item';
+import type LynkMenu from '../menu/menu';
+import type LynkPopup from '../popup/popup';
+import type { CSSResultGroup } from 'lit';
 
 /**
  * @since 1.0
  * @status stable
+ *
+ * @dependency lynk-popup
  *
  * @slot - The dropdown's content.
  * @slot trigger - The dropdown's trigger, usually a `<lynk-button>` element.
@@ -35,14 +40,14 @@ import type LynkMenu from '../../components/menu/menu';
  * @animation dropdown.hide - The animation to use when hiding the dropdown.
  */
 @customElement('lynk-dropdown')
-export default class LynkDropdown extends LitElement {
-  static styles = styles;
+export default class LynkDropdown extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
-  @query('.lynk-dropdown__trigger') trigger: HTMLElement;
-  @query('.lynk-dropdown__panel') panel: HTMLElement;
-  @query('.lynk-dropdown__positioner') positioner: HTMLElement;
+  @query('.lynk-dropdown') popup: SlPopup;
+  @query('.lynk-dropdown__trigger') trigger: HTMLSlotElement;
+  @query('.lynk-dropdown__panel') panel: HTMLSlotElement;
 
-  private positionerCleanup: ReturnType<typeof autoUpdate> | undefined;
+  private readonly localize = new LocalizeController(this);
 
   /** Indicates whether or not the dropdown is open. You can use this in lieu of the show/hide methods. */
   @property({ type: Boolean, reflect: true }) open = false;
@@ -96,6 +101,7 @@ export default class LynkDropdown extends LitElement {
     super.connectedCallback();
     this.handleMenuItemActivate = this.handleMenuItemActivate.bind(this);
     this.handlePanelSelect = this.handlePanelSelect.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
     this.handleDocumentMouseDown = this.handleDocumentMouseDown.bind(this);
 
@@ -104,14 +110,13 @@ export default class LynkDropdown extends LitElement {
     }
   }
 
-  async firstUpdated() {
+  firstUpdated() {
     this.panel.hidden = !this.open;
 
     // If the dropdown is visible on init, update its position
     if (this.open) {
-      await this.updateComplete;
       this.addOpenListeners();
-      this.startPositioner();
+      this.popup.active = true;
     }
   }
 
@@ -119,32 +124,32 @@ export default class LynkDropdown extends LitElement {
     super.disconnectedCallback();
     this.removeOpenListeners();
     this.hide();
-    this.stopPositioner();
   }
 
   focusOnTrigger() {
-    const slot = this.trigger.querySelector('slot')!;
-    const trigger = slot.assignedElements({ flatten: true })[0] as HTMLElement | undefined;
+    const trigger = this.trigger.assignedElements({ flatten: true })[0] as HTMLElement | undefined;
     if (typeof trigger?.focus === 'function') {
       trigger.focus();
     }
   }
 
   getMenu() {
-    const slot = this.panel.querySelector('slot')!;
-    return slot.assignedElements({ flatten: true }).find(el => el.tagName.toLowerCase() === 'lynk-menu') as
+    return this.panel.assignedElements({ flatten: true }).find(el => el.tagName.toLowerCase() === 'sl-menu') as
       | LynkMenu
       | undefined;
   }
 
-  handleDocumentKeyDown(event: KeyboardEvent) {
-    // Close when escape is pressed
-    if (event.key === 'Escape') {
+  handleKeyDown(event: KeyboardEvent) {
+    // Close when escape is pressed inside an open dropdown. We need to listen on the panel itself and stop propagation
+    // in case any ancestors are also listening for this key.
+    if (this.open && event.key === 'Escape') {
+      event.stopPropagation();
       this.hide();
       this.focusOnTrigger();
-      return;
     }
+  }
 
+  handleDocumentKeyDown(event: KeyboardEvent) {
     // Handle tabbing
     if (event.key === 'Tab') {
       // Tabbing within an open menu should close the dropdown and refocus the trigger
@@ -198,14 +203,6 @@ export default class LynkDropdown extends LitElement {
     }
   }
 
-  @watch('distance')
-  @watch('hoist')
-  @watch('placement')
-  @watch('skidding')
-  handlePopoverOptionsChange() {
-    this.updatePositioner();
-  }
-
   handleTriggerClick() {
     if (this.open) {
       this.hide();
@@ -216,7 +213,8 @@ export default class LynkDropdown extends LitElement {
 
   handleTriggerKeyDown(event: KeyboardEvent) {
     // Close when escape or tab is pressed
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' && this.open) {
+      event.stopPropagation();
       this.focusOnTrigger();
       this.hide();
       return;
@@ -294,14 +292,13 @@ export default class LynkDropdown extends LitElement {
   // To determine this, we assume the first tabbable element in the trigger slot is the "accessible trigger."
   //
   updateAccessibleTrigger() {
-    const slot = this.trigger.querySelector('slot')!;
-    const assignedElements = slot.assignedElements({ flatten: true }) as HTMLElement[];
+    const assignedElements = this.trigger.assignedElements({ flatten: true }) as HTMLElement[];
     const accessibleTrigger = assignedElements.find(el => getTabbableBoundary(el).start);
     let target: HTMLElement;
 
     if (accessibleTrigger) {
       switch (accessibleTrigger.tagName.toLowerCase()) {
-        // Lynk buttons have to update the internal button so it's announced correctly by screen readers
+        // Shoelace buttons have to update the internal button so it's announced correctly by screen readers
         case 'lynk-button':
         case 'lynk-icon-button':
           target = (accessibleTrigger as LynkButton | LynkIconButton).button;
@@ -341,19 +338,23 @@ export default class LynkDropdown extends LitElement {
    * is activated.
    */
   reposition() {
-    this.updatePositioner();
+    this.popup.reposition();
   }
 
   addOpenListeners() {
     this.panel.addEventListener('on:activate', this.handleMenuItemActivate);
     this.panel.addEventListener('on:select', this.handlePanelSelect);
+    this.panel.addEventListener('keydown', this.handleKeyDown);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
   }
 
   removeOpenListeners() {
-    this.panel.removeEventListener('on:activate', this.handleMenuItemActivate);
-    this.panel.removeEventListener('on:select', this.handlePanelSelect);
+    if (this.panel) {
+      this.panel.removeEventListener('on:activate', this.handleMenuItemActivate);
+      this.panel.removeEventListener('on:select', this.handlePanelSelect);
+      this.panel.removeEventListener('keydown', this.handleKeyDown);
+    }
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
   }
@@ -369,127 +370,83 @@ export default class LynkDropdown extends LitElement {
 
     if (this.open) {
       // Show
-      emit(this, 'on:show');
+      this.emit('on:show');
       this.addOpenListeners();
 
       await stopAnimations(this);
-      this.startPositioner();
       this.panel.hidden = false;
-      const { keyframes, options } = getAnimation(this, 'dropdown.show');
-      await animateTo(this.panel, keyframes, options);
+      this.popup.active = true;
+      const { keyframes, options } = getAnimation(this, 'dropdown.show', { dir: this.localize.dir() });
+      await animateTo(this.popup.popup, keyframes, options);
 
-      emit(this, 'after:show');
+      this.emit('after:show');
     } else {
       // Hide
-      emit(this, 'on:hide');
+      this.emit('on:hide');
       this.removeOpenListeners();
 
       await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, 'dropdown.hide');
-      await animateTo(this.panel, keyframes, options);
+      const { keyframes, options } = getAnimation(this, 'dropdown.hide', { dir: this.localize.dir() });
+      await animateTo(this.popup.popup, keyframes, options);
       this.panel.hidden = true;
-      this.stopPositioner();
+      this.popup.active = false;
 
-      emit(this, 'after:hide');
-    }
-  }
-
-  private startPositioner() {
-    this.stopPositioner();
-    this.updatePositioner();
-    this.positionerCleanup = autoUpdate(this.trigger, this.positioner, this.updatePositioner.bind(this));
-  }
-
-  private updatePositioner() {
-    if (!this.open || !this.trigger || !this.positioner) {
-      return;
-    }
-
-    computePosition(this.trigger, this.positioner, {
-      placement: this.placement,
-      middleware: [
-        offset({ mainAxis: this.distance, crossAxis: this.skidding }),
-        flip(),
-        shift(),
-        size({
-          apply: ({ availableWidth, availableHeight }) => {
-            // Ensure the panel stays within the viewport when we have lots of menu items
-            Object.assign(this.panel.style, {
-              maxWidth: `${availableWidth}px`,
-              maxHeight: `${availableHeight}px`
-            });
-          }
-        })
-      ],
-      strategy: this.hoist ? 'fixed' : 'absolute'
-    }).then(({ x, y, placement }) => {
-      this.positioner.setAttribute('data-placement', placement);
-
-      Object.assign(this.positioner.style, {
-        position: this.hoist ? 'fixed' : 'absolute',
-        left: `${x}px`,
-        top: `${y}px`
-      });
-    });
-  }
-
-  private stopPositioner() {
-    if (this.positionerCleanup) {
-      this.positionerCleanup();
-      this.positionerCleanup = undefined;
-      this.positioner.removeAttribute('data-placement');
+      this.emit('after:hide');
     }
   }
 
   render() {
     return html`
-      <div
+      <lynk-popup
         part="base"
         id="dropdown"
+        placement=${this.placement}
+        distance=${this.distance}
+        skidding=${this.skidding}
+        strategy=${this.hoist ? 'fixed' : 'absolute'}
+        flip
+        shift
+        auto-size="vertical"
+        auto-size-padding="10"
         class=${classMap({
           'lynk-dropdown': true,
           'lynk-dropdown--open': this.open
         })}
       >
-        <span
+        <slot
+          name="trigger"
+          slot="anchor"
           part="trigger"
           class="lynk-dropdown__trigger"
           @click=${this.handleTriggerClick}
           @keydown=${this.handleTriggerKeyDown}
           @keyup=${this.handleTriggerKeyUp}
-        >
-          <slot name="trigger" @slotchange=${this.handleTriggerSlotChange}></slot>
-        </span>
+          @slotchange=${this.handleTriggerSlotChange}
+        ></slot>
 
-        <!-- Position the panel with a wrapper since the popover makes use of translate. This let's us add animations
-        on the panel without interfering with the position. -->
-        <div class="lynk-dropdown__positioner">
-          <div
-            part="panel"
-            class="lynk-dropdown__panel"
-            aria-hidden=${this.open ? 'false' : 'true'}
-            aria-labelledby="dropdown"
-          >
-            <slot></slot>
-          </div>
-        </div>
-      </div>
+        <slot
+          part="panel"
+          class="lynk-dropdown__panel"
+          aria-hidden=${this.open ? 'false' : 'true'}
+          aria-labelledby="dropdown"
+        ></slot>
+      </lynk-popup>
     `;
   }
 }
 
 setDefaultAnimation('dropdown.show', {
   keyframes: [
-    { opacity: 0, transform: 'scale(0.9)' },
-    { opacity: 1, transform: 'scale(1)' }
+    { opacity: 0, scale: 0.9 },
+    { opacity: 1, scale: 1 }
   ],
   options: { duration: 100, easing: 'ease' }
 });
 
 setDefaultAnimation('dropdown.hide', {
   keyframes: [
-    { opacity: 1, transform: 'scale(1)' },
-    { opacity: 0, transform: 'scale(0.9)' }
+    { opacity: 1, scale: 1 },
+    { opacity: 0, scale: 0.9 }
   ],
   options: { duration: 100, easing: 'ease' }
 });
