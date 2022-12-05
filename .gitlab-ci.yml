@@ -37,7 +37,7 @@ run-tests:
     - npm install -D @playwright/test
     - npx playwright install
   script:
-    - yarn test
+    - npm web-test-runner --concurrency 1 --concurrent-browsers 1
 
 
 publish-release:
