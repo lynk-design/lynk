@@ -2,8 +2,8 @@ import { registerTranslation } from '../utilities/localize';
 import type { Translation } from '../utilities/localize';
 
 const translation: Translation = {
-  $code: 'de',
-  $name: 'Deutsch',
+  $code: 'de-AT',
+  $name: 'Deutsch (Österreich)',
   $dir: 'ltr',
 
   clearEntry: 'Eingabe löschen',

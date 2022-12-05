@@ -13,7 +13,7 @@
 </div>
 </div>
 
-## Installing Lynk
+## Quick Start
 
 Authenticate to the Uplynk project package registry
 ```shell

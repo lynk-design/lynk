@@ -2,8 +2,8 @@ import { registerTranslation } from '../utilities/localize';
 import type { Translation } from '../utilities/localize';
 
 const translation: Translation = {
-  $code: 'en',
-  $name: 'English',
+  $code: 'en-GB',
+  $name: 'English (United Kingdom)',
   $dir: 'ltr',
 
   clearEntry: 'Clear entry',
@@ -17,9 +17,9 @@ const translation: Translation = {
   resize: 'Resize',
   scrollToEnd: 'Scroll to end',
   scrollToStart: 'Scroll to start',
-  selectAColorFromTheScreen: 'Select a color from the screen',
+  selectAColorFromTheScreen: 'Select a colour from the screen',
   showPassword: 'Show password',
-  toggleColorFormat: 'Toggle color format'
+  toggleColorFormat: 'Toggle colour format'
 };
 
 registerTranslation(translation);
