@@ -1,9 +1,13 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import LynkElement from '../../internal/lynk-element';
 import styles from './badge.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Badges are used to draw attention and display statuses or counts.
+ *
  * @since 1.0
  * @status stable
  *
@@ -12,8 +16,8 @@ import styles from './badge.styles';
  * @csspart base | .lynk-badge - The component's internal wrapper.
  */
 @customElement('lynk-badge')
-export default class LynkBadge extends LitElement {
-  static styles = styles;
+export default class LynkBadge extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   /** The badge's variant. */
   @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
@@ -26,7 +30,7 @@ export default class LynkBadge extends LitElement {
 
   render() {
     return html`
-      <span
+      <slot
         part="base"
         class=${classMap({
           'lynk-badge': true,
@@ -39,9 +43,7 @@ export default class LynkBadge extends LitElement {
           'lynk-badge--pulse': this.pulse
         })}
         role="status"
-      >
-        <slot></slot>
-      </span>
+      ></slot>
     `;
   }
 }

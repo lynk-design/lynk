@@ -1,22 +1,26 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import '../../components/icon-button/icon-button';
 import { animateTo, stopAnimations } from '../../internal/animate';
-import { emit, waitForEvent } from '../../internal/event';
+import { waitForEvent } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
 import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { LocalizeController } from '../../utilities/localize';
+import '../icon-button/icon-button';
 import styles from './alert.styles';
+import type { CSSResultGroup } from 'lit';
 
 const toastStack = Object.assign(document.createElement('div'), { className: 'lynk-toast-stack' });
 
 /**
+ * @summary Alerts are used to display important messages inline or as toast notifications.
+ *
  * @since 1.0
  * @status stable
  *
  * @dependency lynk-icon-button
- * @dependency lynk-icon
  *
  * @slot - The alert's content.
  * @slot icon - An icon to show in the alert.
@@ -31,6 +35,7 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'ly
  * @csspart icon - The container that wraps the alert icon.
  * @csspart message - The alert message.
  * @csspart close-button - The close button.
+ * @csspart close-button__base - The close button's `base` part.
  *
  * @cssproperty --box-shadow - The alert's box shadow.
  * @cssproperty --padding - The top and bottom padding of the message. Use any spacing token (--lynk-spacing-large) or a custom value.
@@ -40,11 +45,12 @@ const toastStack = Object.assign(document.createElement('div'), { className: 'ly
  */
 
 @customElement('lynk-alert')
-export default class LynkAlert extends LitElement {
-  static styles = styles;
+export default class LynkAlert extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   private autoHideTimeout: number;
   private readonly hasSlotController = new HasSlotController(this, 'icon', 'action');
+  private readonly localize = new LocalizeController(this);
 
   @query('[part="base"]') base: HTMLElement;
 
@@ -142,7 +148,7 @@ export default class LynkAlert extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'on:show');
+      this.emit('on:show');
 
       if (this.duration < Infinity) {
         this.restartAutoHide();
@@ -150,22 +156,22 @@ export default class LynkAlert extends LitElement {
 
       await stopAnimations(this.base);
       this.base.hidden = false;
-      const { keyframes, options } = getAnimation(this, 'alert.show');
+      const { keyframes, options } = getAnimation(this, 'alert.show', { dir: this.localize.dir() });
       await animateTo(this.base, keyframes, options);
 
-      emit(this, 'after:show');
+      this.emit('after:show');
     } else {
       // Hide
-      emit(this, 'on:hide');
+      this.emit('on:hide');
 
       clearTimeout(this.autoHideTimeout);
 
       await stopAnimations(this.base);
-      const { keyframes, options } = getAnimation(this, 'alert.hide');
+      const { keyframes, options } = getAnimation(this, 'alert.hide', { dir: this.localize.dir() });
       await animateTo(this.base, keyframes, options);
       this.base.hidden = true;
 
-      emit(this, 'after:hide');
+      this.emit('after:hide');
     }
   }
 
@@ -201,28 +207,24 @@ export default class LynkAlert extends LitElement {
         aria-hidden=${this.open ? 'false' : 'true'}
         @mousemove=${this.handleMouseMove}
       >
-        <span part="icon" class="lynk-alert__icon">
-          <slot name="icon">
-            ${this.type
-              ? html`
-                <lynk-icon
-                  library="system"
-                  name="${
-                    this.type === 'info' ? 'info-circle' :
-                    this.type === 'neutral' ? 'question-square' :
-                    this.type === 'success' ? 'check-circle' :
-                    this.type === 'warning' ? 'exclamation-triangle' :
-                    this.type === 'danger' ? 'exclamation-octagon' :
-                    ''
-                  }"
-                ></lynk-icon>
-              ` : ''}
-          </slot>
-        </span>
+        <slot name="icon" part="icon" class="lynk-alert__icon">
+          ${this.type
+            ? html`
+              <lynk-icon
+                library="system"
+                name="${
+                  this.type === 'info' ? 'info-circle' :
+                  this.type === 'neutral' ? 'question-square' :
+                  this.type === 'success' ? 'check-circle' :
+                  this.type === 'warning' ? 'exclamation-triangle' :
+                  this.type === 'danger' ? 'exclamation-octagon' :
+                  ''
+                }"
+              ></lynk-icon>
+            ` : ''}
+        </slot>
 
-        <span part="message" class="lynk-alert__message">
-          <slot></slot>
-        </span>
+        <slot part="message" class="lynk-alert__message" aria-live="polite"></slot>
 
         ${this.hasSlotController.test('action')
           ? html`
@@ -239,6 +241,7 @@ export default class LynkAlert extends LitElement {
                 class="lynk-alert__close-button"
                 name="x"
                 library="system"
+                label=${this.localize.term('close')}
                 @click=${this.handleCloseClick}
               ></lynk-icon-button>
             `
@@ -250,16 +253,16 @@ export default class LynkAlert extends LitElement {
 
 setDefaultAnimation('alert.show', {
   keyframes: [
-    { opacity: 0, transform: 'scale(0.8)' },
-    { opacity: 1, transform: 'scale(1)' }
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1 }
   ],
   options: { duration: 250, easing: 'ease' }
 });
 
 setDefaultAnimation('alert.hide', {
   keyframes: [
-    { opacity: 1, transform: 'scale(1)' },
-    { opacity: 0, transform: 'scale(0.8)' }
+    { opacity: 1, scale: 1 },
+    { opacity: 0, scale: 0.8 }
   ],
   options: { duration: 250, easing: 'ease' }
 });

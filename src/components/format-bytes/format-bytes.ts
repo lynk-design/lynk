@@ -1,14 +1,15 @@
-import { LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
 
 /**
-
+ * @summary Formats a number as a human readable bytes value.
+ *
  * @since 2.0
  * @status stable
  */
 @customElement('lynk-format-bytes')
-export default class LynkFormatBytes extends LitElement {
+export default class LynkFormatBytes extends LynkElement {
   private readonly localize = new LocalizeController(this);
 
   /** The number to format in bytes. */
@@ -19,9 +20,6 @@ export default class LynkFormatBytes extends LitElement {
 
   /** Determines how to display the result, e.g. "100 bytes", "100 b", or "100b". */
   @property() display: 'long' | 'short' | 'narrow' = 'short';
-
-  /** The locale to use when formatting the number. */
-  @property() lang: string;
 
   render() {
     if (isNaN(this.value)) {

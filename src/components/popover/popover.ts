@@ -1,22 +1,28 @@
-import { arrow, autoUpdate, computePosition, flip, offset, shift, size } from '@floating-ui/dom';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { animateTo, stopAnimations } from '../../internal/animate';
-import { emit, waitForEvent } from '../../internal/event';
+import { waitForEvent } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { getTabbableBoundary } from '../../internal/tabbable';
 import { HasSlotController } from '../../internal/slot';
 import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import '../popup/popup';
 import { LocalizeController } from '../../utilities/localize';
 import styles from './popover.styles';
 import type LynkButton from '../../components/button/button';
 import type LynkIconButton from '../../components/icon-button/icon-button';
+import type LynkPopup from '../popup/popup';
+import type { CSSResultGroup } from 'lit';
+
 
 /**
  * @since 1.0
  * @status experimental
+ *
+ * @dependency lynk-popup
  *
  * @slot - The popover's content.
  * @slot label - The dialog's label. Alternatively, you can use the label prop.
@@ -36,15 +42,13 @@ import type LynkIconButton from '../../components/icon-button/icon-button';
  * @animation popover.hide - The animation to use when hiding the popover.
  */
 @customElement('lynk-popover')
-export default class LynkPopover extends LitElement {
-  static styles = styles;
+export default class LynkPopover extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
-  @query('.lynk-popover__trigger') trigger: HTMLElement;
+  @query('.lynk-popover') popup: LynkPopup;
+  @query('.lynk-popover__trigger') trigger: HTMLSlotElement;
   @query('.lynk-popover__panel') panel: HTMLElement;
-  @query('.lynk-popover__positioner') positioner: HTMLElement;
-  @query('.lynk-popover__arrow') arrow: HTMLElement;
 
-  private positionerCleanup: ReturnType<typeof autoUpdate> | undefined;
   private readonly hasSlotController = new HasSlotController(this, 'footer');
   private readonly localize = new LocalizeController(this);
 
@@ -115,6 +119,7 @@ export default class LynkPopover extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
     this.handleDocumentMouseDown = this.handleDocumentMouseDown.bind(this);
 
@@ -128,9 +133,8 @@ export default class LynkPopover extends LitElement {
 
     // If the popover is visible on init, update its position
     if (this.open) {
-      await this.updateComplete;
       this.addOpenListeners();
-      this.startPositioner();
+      this.popup.active = true;
     }
   }
 
@@ -138,23 +142,45 @@ export default class LynkPopover extends LitElement {
     super.disconnectedCallback();
     this.removeOpenListeners();
     this.hide();
-    this.stopPositioner();
   }
 
   focusOnTrigger() {
-    const slot = this.trigger.querySelector('slot')!;
-    const trigger = slot.assignedElements({ flatten: true })[0] as HTMLElement | undefined;
+    const trigger = this.trigger.assignedElements({ flatten: true })[0] as HTMLElement | undefined;
     if (typeof trigger?.focus === 'function') {
       trigger.focus();
     }
   }
 
-  handleDocumentKeyDown(event: KeyboardEvent) {
-    // Close when escape is pressed
-    if (event.key === 'Escape') {
+  handleKeyDown(event: KeyboardEvent) {
+    // Close when escape is pressed inside an open popover. We need to listen on the panel itself and stop propagation
+    // in case any ancestors are also listening for this key.
+    if (this.open && event.key === 'Escape') {
+      event.stopPropagation();
       this.hide();
       this.focusOnTrigger();
-      return;
+    }
+  }
+
+  handleDocumentKeyDown(event: KeyboardEvent) {
+    // Handle tabbing
+    if (event.key === 'Tab') {
+      // Tabbing outside of the containing element closes the panel
+      //
+      // If the popover is used within a shadow DOM, we need to obtain the activeElement within that shadowRoot,
+      // otherwise `document.activeElement` will only return the name of the parent shadow DOM element.
+      setTimeout(() => {
+        const activeElement =
+          this.containingElement?.getRootNode() instanceof ShadowRoot
+            ? document.activeElement?.shadowRoot?.activeElement
+            : document.activeElement;
+
+        if (
+          !this.containingElement ||
+          activeElement?.closest(this.containingElement.tagName.toLowerCase()) !== this.containingElement
+        ) {
+          this.hide();
+        }
+      });
     }
   }
 
@@ -164,14 +190,6 @@ export default class LynkPopover extends LitElement {
     if (this.clickToHide && this.containingElement && !path.includes(this.containingElement)) {
       this.hide();
     }
-  }
-
-  @watch('distance')
-  @watch('hoist')
-  @watch('placement')
-  @watch('skidding')
-  handlePopoverOptionsChange() {
-    this.updatePositioner();
   }
 
   handleTriggerClick() {
@@ -184,9 +202,18 @@ export default class LynkPopover extends LitElement {
 
   handleTriggerKeyDown(event: KeyboardEvent) {
     // Close when escape or tab is pressed
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' && this.open) {
+      event.stopPropagation();
       this.focusOnTrigger();
       this.hide();
+      return;
+    }
+
+    // When spacebar/enter is pressed, show the panel but don't focus on the contents. This let's the user press the same
+    // key again to hide the menu in case they don't want to make a selection.
+    if ([' ', 'Enter'].includes(event.key)) {
+      event.preventDefault();
+      this.handleTriggerClick();
       return;
     }
   }
@@ -213,8 +240,7 @@ export default class LynkPopover extends LitElement {
   // To determine this, we assume the first tabbable element in the trigger slot is the "accessible trigger."
   //
   updateAccessibleTrigger() {
-    const slot = this.trigger.querySelector('slot')!;
-    const assignedElements = slot.assignedElements({ flatten: true }) as HTMLElement[];
+    const assignedElements = this.trigger.assignedElements({ flatten: true }) as HTMLElement[];
     const accessibleTrigger = assignedElements.find(el => getTabbableBoundary(el).start);
     let target: HTMLElement;
 
@@ -260,15 +286,19 @@ export default class LynkPopover extends LitElement {
    * is activated.
    */
   reposition() {
-    this.updatePositioner();
+    this.popup.reposition();
   }
 
   addOpenListeners() {
+    this.panel.addEventListener('keydown', this.handleKeyDown);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
   }
 
   removeOpenListeners() {
+    if (this.panel) {
+      this.panel.removeEventListener('keydown', this.handleKeyDown);
+    }
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
   }
@@ -284,7 +314,7 @@ export default class LynkPopover extends LitElement {
 
     if (this.open) {
       // Show
-      emit(this, 'on:show');
+      this.emit('on:show');
       this.addOpenListeners();
 
       // When the dialog is shown, Safari will attempt to set focus on whatever element has autofocus. This can cause
@@ -297,10 +327,10 @@ export default class LynkPopover extends LitElement {
       }
 
       await stopAnimations(this);
-      this.startPositioner();
       this.panel.hidden = false;
-      const { keyframes, options } = getAnimation(this, 'popover.show');
-      await animateTo(this.panel, keyframes, options);
+      this.popup.active = true;
+      const { keyframes, options } = getAnimation(this, 'popover.show', { dir: this.localize.dir() });
+      await animateTo(this.popup.popup, keyframes, options);
 
       // Set focus to the autofocus target and restore the attribute
       if (autoFocusTarget) {
@@ -308,172 +338,111 @@ export default class LynkPopover extends LitElement {
         autoFocusTarget.setAttribute('autofocus', '');
       }
 
-      emit(this, 'after:show');
+      this.emit('after:show');
     } else {
       // Hide
-      emit(this, 'on:hide');
+      this.emit('on:hide');
       this.removeOpenListeners();
 
       await stopAnimations(this);
-      const { keyframes, options } = getAnimation(this, 'popover.hide');
-      await animateTo(this.panel, keyframes, options);
+      const { keyframes, options } = getAnimation(this, 'popover.hide', { dir: this.localize.dir() });
+      await animateTo(this.popup.popup, keyframes, options);
       this.panel.hidden = true;
-      this.stopPositioner();
+      this.popup.active = false;
 
-      emit(this, 'after:hide');
-    }
-  }
-
-  private startPositioner() {
-    this.stopPositioner();
-    requestAnimationFrame(() => this.updatePositioner());
-    this.positionerCleanup = autoUpdate(this.trigger, this.positioner, this.updatePositioner.bind(this));
-  }
-
-  private updatePositioner() {
-    if (!this.open || !this.trigger || !this.positioner) {
-      return;
-    }
-
-    computePosition(this.trigger, this.positioner, {
-      placement: this.placement,
-      middleware: [
-        offset({ mainAxis: this.distance, crossAxis: this.skidding }),
-        flip(),
-        shift(),
-        size({
-          apply: ({ availableWidth, availableHeight }) => {
-            // Ensure the panel stays within the viewport when we have lots of menu items
-            Object.assign(this.panel.style, {
-              maxWidth: `${availableWidth}px`,
-              maxHeight: `${availableHeight}px`
-            });
-          }
-        }),
-        arrow({
-          element: this.arrow,
-          padding: 10 // min distance from the edge
-        })
-      ],
-      strategy: this.hoist ? 'fixed' : 'absolute'
-    }).then(({ x, y, middlewareData, placement }) => {
-      const arrowX = middlewareData.arrow!.x;
-      const arrowY = middlewareData.arrow!.y;
-      const staticSide = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }[placement.split('-')[0]]!;
-
-      this.positioner.setAttribute('data-placement', placement);
-
-      Object.assign(this.positioner.style, {
-        position: this.hoist ? 'fixed' : 'absolute',
-        left: `${x}px`,
-        top: `${y}px`
-      });
-
-      Object.assign(this.arrow.style, {
-        left: typeof arrowX === 'number' ? `${arrowX}px` : '',
-        top: typeof arrowY === 'number' ? `${arrowY}px` : '',
-        right: '',
-        bottom: '',
-        [staticSide]: 'calc(var(--lynk-tooltip-arrow-size) * -1)'
-      });
-    });
-  }
-
-  private stopPositioner() {
-    if (this.positionerCleanup) {
-      this.positionerCleanup();
-      this.positionerCleanup = undefined;
-      this.positioner.removeAttribute('data-placement');
+      this.emit('after:hide');
     }
   }
 
   render() {
     return html`
-      <div
+      <lynk-popup
         part="base"
         id="popover"
+        placement=${this.placement}
+        distance=${this.distance}
+        skidding=${this.skidding}
+        strategy=${this.hoist ? 'fixed' : 'absolute'}
+        flip
+        shift
+        ?arrow=${!this.noArrow}
+        auto-size="vertical"
+        auto-size-padding="10"
         class=${classMap({
           'lynk-popover': true,
           'lynk-popover--open': this.open,
           'lynk-popover--has-footer': this.hasSlotController.test('footer')
         })}
       >
-        <span
+        <slot
+          name="trigger"
+          slot="anchor"
           part="trigger"
           class="lynk-popover__trigger"
           @click=${this.handleTriggerClick}
           @keydown=${this.handleTriggerKeyDown}
           @keyup=${this.handleTriggerKeyUp}
+          @slotchange=${this.handleTriggerSlotChange}
+        ></slot>
+
+        <div
+          part="panel"
+          class="lynk-popover__panel"
+          role="popover"
+          aria-popover="true"
+          aria-hidden=${this.open ? 'false' : 'true'}
+          aria-label=${ifDefined(this.noHeader ? this.label : undefined)}
+          aria-labelledby=${ifDefined(!this.noHeader ? 'title' : undefined)}
+          tabindex="0"
         >
-          <slot name="trigger" @slotchange=${this.handleTriggerSlotChange}></slot>
-        </span>
 
-        <!-- Position the panel with a wrapper since the popover makes use of translate. This let's us add animations
-        on the panel without interfering with the position. -->
-        <div class="lynk-popover__positioner">
-          <div
-            part="panel"
-            class="lynk-popover__panel"
-            role="popover"
-            aria-popover="true"
-            aria-hidden=${this.open ? 'false' : 'true'}
-            aria-label=${ifDefined(this.noHeader ? this.label : undefined)}
-            aria-labelledby=${ifDefined(!this.noHeader ? 'title' : undefined)}
-            tabindex="0"
-          >
-
-            <div class="lynk-popover__arrow"></div>
-
-            ${!this.noHeader
-              ? html`
-                  <header part="header" class="lynk-popover__header">
-                    <h2 part="title" class="lynk-popover__title" id="title">
-                      <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
-                    </h2>
-                    <lynk-icon-button
-                      part="close-button"
-                      exportparts="base:close-button__base"
-                      class="lynk-popover__close"
-                      style="--padding: 0;"
-                      name="x"
-                      label=${this.localize.term('close')}
-                      library="system"
-                      @click="${() => this.hide()}"
-                    ></lynk-icon-button>
-                  </header>
-                `
-              : ''}
-
-            <div part="body" class="lynk-popover__body">
-              <slot></slot>
-            </div>
-
-            ${this.hasSlotController.test('footer')
-              ? html`
-                <footer part="footer" class="lynk-popover__footer">
-                  <slot name="footer"></slot>
-                </footer>
+          ${!this.noHeader
+            ? html`
+                <header part="header" class="lynk-popover__header">
+                  <h2 part="title" class="lynk-popover__title" id="title">
+                    <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
+                  </h2>
+                  <lynk-icon-button
+                    part="close-button"
+                    exportparts="base:close-button__base"
+                    class="lynk-popover__close"
+                    style="--padding: 0;"
+                    name="x"
+                    label=${this.localize.term('close')}
+                    library="system"
+                    @click="${() => this.hide()}"
+                  ></lynk-icon-button>
+                </header>
               `
             : ''}
-          </div>
+
+          <slot part="body" class="lynk-popover__body"></slot>
+
+          ${this.hasSlotController.test('footer')
+            ? html`
+              <footer part="footer" class="lynk-popover__footer">
+                <slot name="footer"></slot>
+              </footer>
+            `
+          : ''}
         </div>
-      </div>
+      </lynk-popup>
     `;
   }
 }
 
 setDefaultAnimation('popover.show', {
   keyframes: [
-    { opacity: 0, transform: 'scale(0.9)' },
-    { opacity: 1, transform: 'scale(1)' }
+    { opacity: 0, scale: 0.9 },
+    { opacity: 1, scale: 1 }
   ],
   options: { duration: 100, easing: 'ease' }
 });
 
 setDefaultAnimation('popover.hide', {
   keyframes: [
-    { opacity: 1, transform: 'scale(1)' },
-    { opacity: 0, transform: 'scale(0.9)' }
+    { opacity: 1, scale: 1 },
+    { opacity: 0, scale: 0.9 }
   ],
   options: { duration: 100, easing: 'ease' }
 });

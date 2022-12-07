@@ -60,7 +60,16 @@ export default css`
   }
 
   .lynk-accordion--open .lynk-accordion__summary-icon {
-    transform: rotate(90deg);
+    rotate: 90deg;
+  }
+
+  .lynk-accordion--open.lynk-accordion--rtl .lynk-accordion__summary-icon {
+    rotate: -90deg;
+  }
+
+  .lynk-accordion--open slot[name='expand-icon'],
+  .lynk-accordion:not(.lynk-accordion--open) slot[name='collapse-icon'] {
+    display: none;
   }
 
   .lynk-accordion__body {
@@ -68,6 +77,7 @@ export default css`
   }
 
   .lynk-accordion__content {
+    display: block;
     padding: var(--lynk-spacing-medium);
   }
 `;

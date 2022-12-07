@@ -12,12 +12,28 @@ export default css`
     --footer-spacing: var(--lynk-spacing-base);
     --hide-delay: 0ms;
     --show-delay: 150ms;
-
     display: contents;
   }
 
-  :host([no-arrow]) .lynk-popover__arrow {
-    visibility: hidden;
+  .lynk-popover::part(popup) {
+    z-index: var(--lynk-z-index-dropdown);
+    --arrow-color: var(--lynk-panel-border-color);
+  }
+
+  .lynk-popover[data-current-placement^='top']::part(popup) {
+    transform-origin: bottom;
+  }
+
+  .lynk-popover[data-current-placement^='bottom']::part(popup) {
+    transform-origin: top;
+  }
+
+  .lynk-popover[data-current-placement^='left']::part(popup) {
+    transform-origin: right;
+  }
+
+  .lynk-popover[data-current-placement^='right']::part(popup) {
+    transform-origin: left;
   }
 
   .lynk-popover {
@@ -28,17 +44,15 @@ export default css`
     display: contents;
   }
 
-  .lynk-popover__positioner {
-    position: absolute;
-    z-index: var(--lynk-z-index-dropdown);
-  }
 
   .lynk-popover--open .lynk-popover__panel {
     display: flex;
+    pointer-events: all;
   }
 
   .lynk-popover__panel {
     display: none;
+    pointer-events: none;
     flex-direction: column;
     z-index: 2;
     width: var(--width);
@@ -58,36 +72,12 @@ export default css`
     outline: none;
   }
 
-  .lynk-popover__positioner[data-placement^='top'] .lynk-popover {
-    transform-origin: bottom;
-  }
-  .lynk-popover__positioner[data-placement^='top'] .lynk-popover__arrow {
-    border-width: 0 1px 1px 0;
-  }
-
-  .lynk-popover__positioner[data-placement^='bottom'] .lynk-popover {
-    transform-origin: top;
-  }
-  .lynk-popover__positioner[data-placement^='bottom'] .lynk-popover__arrow {
-    border-width: 1px 0 0 1px;
-  }
-
-  .lynk-popover__positioner[data-placement^='left'] .lynk-popover {
-    transform-origin: right;
-  }
-  .lynk-popover__positioner[data-placement^='left'] .lynk-popover__arrow {
-    border-width: 1px 1px 0 0;
-  }
-
-  .lynk-popover__positioner[data-placement^='right'] .lynk-popover {
-    transform-origin: left;
-  }
-  .lynk-popover__positioner[data-placement^='right'] .lynk-popover__arrow {
-    border-width: 0 0 1px 1px;
-  }
 
   .lynk-popover__body {
     flex: 1 1 auto;
+    display: block;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
     padding: var(--body-spacing);
   }
 
@@ -121,15 +111,5 @@ export default css`
 
   .lynk-popover__footer ::slotted(lynk-button:not(:first-of-type)) {
     margin-inline-end: var(--lynk-spacing-x-small);
-  }
-
-  .lynk-popover__arrow {
-    position: absolute;
-    border: 1px solid var(--lynk-panel-border-color);
-    background: var(--lynk-panel-background-color);
-    width: calc(var(--lynk-tooltip-arrow-size) * 2);
-    height: calc(var(--lynk-tooltip-arrow-size) * 2);
-    transform: rotate(45deg);
-    z-index: 1;
   }
 `;

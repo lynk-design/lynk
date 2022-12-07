@@ -1,11 +1,14 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, queryAsync } from 'lit/decorators.js';
-import { emit } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
 import styles from './animation.styles';
 import { animations } from './animations';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Animate elements declaratively with nearly 100 baked-in presets, or roll your own with custom keyframes. Powered by the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).
+ *
  * @since 1.0
  * @status stable
  *
@@ -17,8 +20,8 @@ import { animations } from './animations';
  * multiple animation elements.
  */
 @customElement('lynk-animation')
-export default class LynkAnimation extends LitElement {
-  static styles = styles;
+export default class LynkAnimation extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   private animation?: Animation;
   private hasStarted = false;
@@ -29,8 +32,8 @@ export default class LynkAnimation extends LitElement {
   @property() name = 'none';
 
   /**
-   * Plays the animation. When omitted, the animation will be paused. This prop will be automatically removed when the
-   * animation finishes or gets canceled.
+   * Plays the animation. When omitted, the animation will be paused. This attribute will be automatically removed when
+   * the animation finishes or gets canceled.
    */
   @property({ type: Boolean, reflect: true }) play = false;
 
@@ -44,7 +47,7 @@ export default class LynkAnimation extends LitElement {
   @property({ type: Number }) duration = 1000;
 
   /**
-   * The easing function to use for the animation. This can be a Lynk easing function or a custom easing function
+   * The easing function to use for the animation. This can be a Lynk's easing function or a custom easing function
    * such as `cubic-bezier(0, 1, .76, 1.14)`.
    */
   @property() easing = 'linear';
@@ -115,13 +118,13 @@ export default class LynkAnimation extends LitElement {
   handleAnimationFinish() {
     this.play = false;
     this.hasStarted = false;
-    emit(this, 'on:finish');
+    this.emit('on:finish');
   }
 
   handleAnimationCancel() {
     this.play = false;
     this.hasStarted = false;
-    emit(this, 'on:cancel');
+    this.emit('on:cancel');
   }
 
   @watch('play')
@@ -129,7 +132,7 @@ export default class LynkAnimation extends LitElement {
     if (this.animation) {
       if (this.play && !this.hasStarted) {
         this.hasStarted = true;
-        emit(this, 'on:start');
+        this.emit('on:start');
       }
 
       if (this.play) {
@@ -182,7 +185,7 @@ export default class LynkAnimation extends LitElement {
 
     if (this.play) {
       this.hasStarted = true;
-      emit(this, 'on:start');
+      this.emit('on:start');
     } else {
       this.animation.pause();
     }
@@ -216,6 +219,6 @@ export default class LynkAnimation extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'lynk-animation': LynkAnimation;
+    'lynk-animation': SlAnimation;
   }
 }

@@ -13,7 +13,7 @@ import '../icon/icon';
 import '../menu/menu';
 import '../tag/tag';
 import styles from './select.styles';
-import type { LynkFormControl } from '../../internal/shoelace-element';
+import type { LynkFormControl } from '../../internal/lynk-element';
 import type LynkDropdown from '../dropdown/dropdown';
 import type LynkIconButton from '../icon-button/icon-button';
 import type LynkMenuItem from '../menu-item/menu-item';
@@ -150,9 +150,6 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
   /** Adds a clear button when the select is populated. */
   @property({ type: Boolean }) clearable = false;
-
-  /** This will be true when the control is in an invalid state. Validity is determined by the `required` prop. */
-  @property({ type: Boolean, reflect: true }) invalid = false;
 
   /** Use the browsers built constraint validation API  in tandem with the `required` property` */
   @property({ type: Boolean, reflect: true }) autovalidate = false;

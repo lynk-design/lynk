@@ -1,19 +1,23 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import '../../components/icon-button/icon-button';
 import { animateTo, stopAnimations } from '../../internal/animate';
-import { emit, waitForEvent } from '../../internal/event';
+import { waitForEvent } from '../../internal/event';
 import Modal from '../../internal/modal';
 import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll';
+import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
 import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import { LocalizeController } from '../../utilities/localize';
+import '../icon-button/icon-button';
 import styles from './dialog.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
+ *
  * @since 1.0
  * @status experimental
  *
@@ -38,6 +42,7 @@ import styles from './dialog.styles';
  * @csspart overlay - The overlay.
  * @csspart panel - The dialog panel (where the dialog and its content is rendered).
  * @csspart header - The dialog header.
+ * @csspart header-actions - Optional actions to add to the header. Works best with `<sl-icon-button>`.
  * @csspart title - The dialog title.
  * @csspart close-button - The close button.
  * @csspart close-button__base - The close button's `base` part.
@@ -56,8 +61,8 @@ import styles from './dialog.styles';
  * @animation dialog.overlay.hide - The animation to use when hiding the dialog's overlay.
  */
 @customElement('lynk-dialog')
-export default class LynkDialog extends LitElement {
-  static styles = styles;
+export default class LynkDialog extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   @query('.lynk-dialog') dialog: HTMLElement;
   @query('.lynk-dialog__panel') panel: HTMLElement;
@@ -73,7 +78,8 @@ export default class LynkDialog extends LitElement {
 
   /**
    * The dialog's label as displayed in the header. You should always include a relevant label even when using
-   * `no-header`, as it is required for proper accessibility.
+   * `no-header`, as it is required for proper accessibility. If you need to display HTML, you can use the `label` slot
+   * instead.
    */
   @property({ reflect: true }) label = '';
 
@@ -85,6 +91,7 @@ export default class LynkDialog extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
     this.modal = new Modal(this);
   }
 
@@ -92,6 +99,7 @@ export default class LynkDialog extends LitElement {
     this.dialog.hidden = !this.open;
 
     if (this.open) {
+      this.addOpenListeners();
       this.modal.activate();
       lockBodyScrolling(this);
     }
@@ -123,13 +131,13 @@ export default class LynkDialog extends LitElement {
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
-    const requestClose = emit(this, 'on:request-close', {
+    const requestClose = this.emit('on:request-close', {
       cancelable: true,
       detail: { source }
     });
 
     if (requestClose.defaultPrevented) {
-      const animation = getAnimation(this, 'dialog.denyClose');
+      const animation = getAnimation(this, 'dialog.denyClose', { dir: this.localize.dir() });
       animateTo(this.panel, animation.keyframes, animation.options);
       return;
     }
@@ -137,8 +145,16 @@ export default class LynkDialog extends LitElement {
     this.hide();
   }
 
-  handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
+  addOpenListeners() {
+    document.addEventListener('keydown', this.handleDocumentKeyDown);
+  }
+
+  removeOpenListeners() {
+    document.removeEventListener('keydown', this.handleDocumentKeyDown);
+  }
+
+  handleDocumentKeyDown(event: KeyboardEvent) {
+    if (this.open && event.key === 'Escape') {
       event.stopPropagation();
       this.requestClose('keyboard');
     }
@@ -148,7 +164,8 @@ export default class LynkDialog extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'on:show');
+      this.emit('on:show');
+      this.addOpenListeners();
       this.originalTrigger = document.activeElement as HTMLElement;
       this.modal.activate();
 
@@ -157,6 +174,8 @@ export default class LynkDialog extends LitElement {
       // When the dialog is shown, Safari will attempt to set focus on whatever element has autofocus. This can cause
       // the dialogs's animation to jitter (if it starts offscreen), so we'll temporarily remove the attribute, call
       // `focus({ preventScroll: true })` ourselves, and add the attribute back afterwards.
+      //
+      // Related: https://github.com/shoelace-style/shoelace/issues/693
       //
       const autoFocusTarget = this.querySelector('[autofocus]');
       if (autoFocusTarget) {
@@ -168,7 +187,7 @@ export default class LynkDialog extends LitElement {
 
       // Set initial focus
       requestAnimationFrame(() => {
-        const initialFocus = emit(this, 'on:initial-focus', { cancelable: true });
+        const initialFocus = this.emit('on:initial-focus', { cancelable: true });
 
         if (!initialFocus.defaultPrevented) {
           // Set focus to the autofocus target and restore the attribute
@@ -185,27 +204,41 @@ export default class LynkDialog extends LitElement {
         }
       });
 
-      const panelAnimation = getAnimation(this, 'dialog.show');
-      const overlayAnimation = getAnimation(this, 'dialog.overlay.show');
+      const panelAnimation = getAnimation(this, 'dialog.show', { dir: this.localize.dir() });
+      const overlayAnimation = getAnimation(this, 'dialog.overlay.show', { dir: this.localize.dir() });
       await Promise.all([
         animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options),
         animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
       ]);
 
-      emit(this, 'after:show');
+      this.emit('after:show');
     } else {
       // Hide
-      emit(this, 'on:hide');
+      this.emit('on:hide');
+      this.removeOpenListeners();
       this.modal.deactivate();
 
       await Promise.all([stopAnimations(this.dialog), stopAnimations(this.overlay)]);
-      const panelAnimation = getAnimation(this, 'dialog.hide');
-      const overlayAnimation = getAnimation(this, 'dialog.overlay.hide');
+      const panelAnimation = getAnimation(this, 'dialog.hide', { dir: this.localize.dir() });
+      const overlayAnimation = getAnimation(this, 'dialog.overlay.hide', { dir: this.localize.dir() });
+
+      // Animate the overlay and the panel at the same time. Because animation durations might be different, we need to
+      // hide each one individually when the animation finishes, otherwise the first one that finishes will reappear
+      // unexpectedly. We'll unhide them after all animations have completed.
       await Promise.all([
-        animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options),
-        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
+        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options).then(() => {
+          this.overlay.hidden = true;
+        }),
+        animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options).then(() => {
+          this.panel.hidden = true;
+        })
       ]);
+
       this.dialog.hidden = true;
+
+      // Now that the dialog is hidden, restore the overlay and panel for next time
+      this.overlay.hidden = false;
+      this.panel.hidden = false;
 
       unlockBodyScrolling(this);
 
@@ -215,12 +248,11 @@ export default class LynkDialog extends LitElement {
         setTimeout(() => trigger.focus());
       }
 
-      emit(this, 'after:hide');
+      this.emit('after:hide');
     }
   }
 
   render() {
-    /* eslint-disable lit-a11y/click-events-have-key-events */
     return html`
       <div
         part="base"
@@ -229,7 +261,6 @@ export default class LynkDialog extends LitElement {
           'lynk-dialog--open': this.open,
           'lynk-dialog--has-footer': this.hasSlotController.test('footer')
         })}
-        @keydown=${this.handleKeyDown}
       >
         <div
           part="overlay"
@@ -254,22 +285,23 @@ export default class LynkDialog extends LitElement {
                   <h2 part="title" class="lynk-dialog__title" id="title">
                     <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
                   </h2>
-                  <lynk-icon-button
-                    part="close-button"
-                    exportparts="base:close-button__base"
-                    class="lynk-dialog__close"
-                    name="x"
-                    label=${this.localize.term('close')}
-                    library="system"
-                    @click="${() => this.requestClose('close-button')}"
-                  ></lynk-icon-button>
+                  <div part="header-actions" class="lynk-dialog__header-actions">
+                    <slot name="header-actions"></slot>
+                    <lynk-icon-button
+                      part="close-button"
+                      exportparts="base:close-button__base"
+                      class="lynk-dialog__close"
+                      name="x-lg"
+                      label=${this.localize.term('close')}
+                      library="system"
+                      @click="${() => this.requestClose('close-button')}"
+                    ></lynk-icon-button>
+                  </div>
                 </header>
               `
             : ''}
 
-          <div part="body" class="lynk-dialog__body">
-            <slot></slot>
-          </div>
+          <slot part="body" class="lynk-dialog__body"></slot>
 
           <footer part="footer" class="lynk-dialog__footer">
             <slot name="footer"></slot>
@@ -277,28 +309,27 @@ export default class LynkDialog extends LitElement {
         </div>
       </div>
     `;
-    /* eslint-enable lit-a11y/click-events-have-key-events */
   }
 }
 
 setDefaultAnimation('dialog.show', {
   keyframes: [
-    { opacity: 0, transform: 'scale(0.8)' },
-    { opacity: 1, transform: 'scale(1)' }
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1 }
   ],
   options: { duration: 250, easing: 'ease' }
 });
 
 setDefaultAnimation('dialog.hide', {
   keyframes: [
-    { opacity: 1, transform: 'scale(1)' },
-    { opacity: 0, transform: 'scale(0.8)' }
+    { opacity: 1, scale: 1 },
+    { opacity: 0, scale: 0.8 }
   ],
   options: { duration: 250, easing: 'ease' }
 });
 
 setDefaultAnimation('dialog.denyClose', {
-  keyframes: [{ transform: 'scale(1)' }, { transform: 'scale(1.02)' }, { transform: 'scale(1)' }],
+  keyframes: [{ scale: 1 }, { scale: 1.02 }, { scale: 1 }],
   options: { duration: 250 }
 });
 

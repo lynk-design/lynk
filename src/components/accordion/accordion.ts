@@ -1,21 +1,29 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import '../../components/icon/icon';
 import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate';
-import { emit, waitForEvent } from '../../internal/event';
+import { waitForEvent } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { LocalizeController } from '../../utilities/localize';
+import '../icon/icon';
 import styles from './accordion.styles';
+import type { CSSResultGroup } from 'lit';
+
 
 /**
+ * @summary Details show a brief summary and expand to show additional content.
+ *
  * @since 1.0
  * @status stable
  *
  * @dependency lynk-icon
  *
- * @slot - The accordions content.
- * @slot summary - The accordions summary. Alternatively, you can use the summary prop.
+ * @slot - The accordions' content.
+ * @slot summary - The accordions' summary. Alternatively, you can use the `summary` attribute.
+ * @slot expand-icon - The expand icon's `<slot>`.
+ * @slot collapse-icon - The collapse icon's `<slot>`.
  *
  * @event on:show - Emitted when the accordion opens.
  * @event after:show - Emitted after the accordion opens and all animations are complete.
@@ -32,12 +40,15 @@ import styles from './accordion.styles';
  * @animation accordion.hide - The animation to use when hiding accordion. You can use `height: auto` with this animation.
  */
 @customElement('lynk-accordion')
-export default class LynkAccordion extends LitElement {
-  static styles = styles;
+export default class LynkAccordion extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   @query('.lynk-accordion') accordion: HTMLElement;
   @query('.lynk-accordion__header') header: HTMLElement;
   @query('.lynk-accordion__body') body: HTMLElement;
+  @query('.lynk-accordion__expand-icon-slot') expandIconSlot: HTMLSlotElement;
+
+  private readonly localize = new LocalizeController(this);
 
   /** Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods. */
   @property({ type: Boolean, reflect: true }) open = false;
@@ -111,39 +122,50 @@ export default class LynkAccordion extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'on:show');
+      const lShow = this.emit('on:show', { cancelable: true });
+      if (lShow.defaultPrevented) {
+        this.open = false;
+        return;
+      }
 
       await stopAnimations(this.body);
       this.body.hidden = false;
 
-      const { keyframes, options } = getAnimation(this, 'accordion.show');
+      const { keyframes, options } = getAnimation(this, 'accordion.show', { dir: this.localize.dir() });
       await animateTo(this.body, shimKeyframesHeightAuto(keyframes, this.body.scrollHeight), options);
       this.body.style.height = 'auto';
 
-      emit(this, 'after:show');
+      this.emit('after:show');
     } else {
       // Hide
-      emit(this, 'on:hide');
+      const lHide = this.emit('on:hide', { cancelable: true });
+      if (lHide.defaultPrevented) {
+        this.open = true;
+        return;
+      }
 
       await stopAnimations(this.body);
 
-      const { keyframes, options } = getAnimation(this, 'accordion.hide');
+      const { keyframes, options } = getAnimation(this, 'accordion.hide', { dir: this.localize.dir() });
       await animateTo(this.body, shimKeyframesHeightAuto(keyframes, this.body.scrollHeight), options);
       this.body.hidden = true;
       this.body.style.height = 'auto';
 
-      emit(this, 'after:hide');
+      this.emit('after:hide');
     }
   }
 
   render() {
+    const isRtl = this.localize.dir() === 'rtl';
+
     return html`
       <div
         part="base"
         class=${classMap({
           'lynk-accordion': true,
           'lynk-accordion--open': this.open,
-          'lynk-accordion--disabled': this.disabled
+          'lynk-accordion--disabled': this.disabled,
+          'lynk-accordion--rtl': isRtl
         })}
       >
         <header
@@ -158,26 +180,27 @@ export default class LynkAccordion extends LitElement {
           @click=${this.handleSummaryClick}
           @keydown=${this.handleSummaryKeyDown}
         >
-          <div part="summary" class="lynk-accordion__summary">
-            <slot name="summary">${this.summary}</slot>
-          </div>
+          <slot name="summary" part="summary" class="lynk-accordion__summary">${this.summary}</slot>
 
           <span part="summary-icon" class="lynk-accordion__summary-icon">
-            <lynk-icon name="chevron-right" library="system"></lynk-icon>
+            <slot name="expand-icon">
+              <lynk-icon library="system" name=${isRtl ? 'chevron-left' : 'chevron-right'}></lynk-icon>
+            </slot>
+            <slot name="collapse-icon">
+              <lynk-icon library="system" name=${isRtl ? 'chevron-left' : 'chevron-right'}></lynk-icon>
+            </slot>
           </span>
         </header>
 
         <div class="lynk-accordion__body">
-          <div part="content" id="content" class="lynk-accordion__content" role="region" aria-labelledby="header">
-            <slot></slot>
-          </div>
+          <slot part="content" id="content" class="lynk-accordion__content" role="region" aria-labelledby="header"></slot>
         </div>
       </div>
     `;
   }
 }
 
-setDefaultAnimation('accordion.show', {
+setDefaultAnimation('details.show', {
   keyframes: [
     { height: '0', opacity: '0' },
     { height: 'auto', opacity: '1' }
@@ -185,7 +208,7 @@ setDefaultAnimation('accordion.show', {
   options: { duration: 250, easing: 'linear' }
 });
 
-setDefaultAnimation('accordion.hide', {
+setDefaultAnimation('details.hide', {
   keyframes: [
     { height: 'auto', opacity: '1' },
     { height: '0', opacity: '0' }

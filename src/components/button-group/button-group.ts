@@ -1,10 +1,12 @@
-import { LitElement, html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { html } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import styles from './button-group.styles';
-
-const BUTTON_CHILDREN = ['lynk-button', 'lynk-radio-button'];
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Button groups can be used to group related buttons into sections.
+ *
  * @since 1.0
  * @status stable
  *
@@ -13,10 +15,12 @@ const BUTTON_CHILDREN = ['lynk-button', 'lynk-radio-button'];
  * @csspart base - The component's internal wrapper.
  */
 @customElement('lynk-button-group')
-export default class LynkButtonGroup extends LitElement {
-  static styles = styles;
+export default class LynkButtonGroup extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   @query('slot') defaultSlot: HTMLSlotElement;
+
+  @state() disableRole = false;
 
   /** A label to use for the button group's `aria-label` attribute. */
   @property() label = '';
@@ -53,31 +57,34 @@ export default class LynkButtonGroup extends LitElement {
         button.classList.toggle('lynk-button-group__button--first', index === 0);
         button.classList.toggle('lynk-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
         button.classList.toggle('lynk-button-group__button--last', index === slottedElements.length - 1);
+        button.classList.toggle('lynk-button-group__button--radio', button.tagName.toLowerCase() === 'sl-radio-button');
       }
     });
   }
 
   render() {
-    // eslint-disable-next-line lit-a11y/mouse-events-have-key-events -- focusout & focusin support bubbling whereas focus & blur do not which is necessary here
+    // eslint-disable-next-line lit-a11y/mouse-events-have-key-events
     return html`
-      <div
+      <slot
         part="base"
         class="lynk-button-group"
-        role="group"
+        role="${this.disableRole ? 'presentation' : 'group'}"
         aria-label=${this.label}
         @focusout=${this.handleBlur}
         @focusin=${this.handleFocus}
         @mouseover=${this.handleMouseOver}
         @mouseout=${this.handleMouseOut}
-      >
-        <slot @slotchange=${this.handleSlotChange}></slot>
-      </div>
+        @slotchange=${this.handleSlotChange}
+      ></slot>
     `;
   }
 }
 
 function findButton(el: HTMLElement) {
-  return BUTTON_CHILDREN.includes(el.tagName.toLowerCase()) ? el : el.querySelector(BUTTON_CHILDREN.join(','));
+  const selector = 'lynk-button, lynk-radio-button';
+
+  // The button could be the target element or a child of it (e.g. a dropdown or tooltip anchor)
+  return el.closest(selector) ?? el.querySelector(selector);
 }
 
 declare global {

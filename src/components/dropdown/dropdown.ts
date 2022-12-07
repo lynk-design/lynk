@@ -43,7 +43,7 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkDropdown extends LynkElement {
   static styles: CSSResultGroup = styles;
 
-  @query('.lynk-dropdown') popup: SlPopup;
+  @query('.lynk-dropdown') popup: LynkPopup;
   @query('.lynk-dropdown__trigger') trigger: HTMLSlotElement;
   @query('.lynk-dropdown__panel') panel: HTMLSlotElement;
 

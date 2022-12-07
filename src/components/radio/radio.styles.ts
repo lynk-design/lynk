@@ -1,17 +1,20 @@
 import { css } from 'lit';
-import { focusVisibleSelector } from '../../internal/focus-visible';
 import componentStyles from '../../styles/component.styles';
 
 export default css`
   ${componentStyles}
 
   :host {
-    display: inline-block;
+    display: block;
+  }
+
+  :host(:focus-visible) {
+    outline: 0px;
   }
 
   .lynk-radio {
     display: inline-flex;
-    align-items: center;
+    align-items: top;
     font-family: var(--lynk-input-font-family);
     font-size: var(--lynk-input-font-size-medium);
     font-weight: var(--lynk-input-font-weight);
@@ -61,14 +64,6 @@ export default css`
     background-color: var(--lynk-input-background-color-hover);
   }
 
-  /* Focus */
-  .lynk-radio:not(.lynk-radio--checked):not(.lynk-radio--disabled)
-    .lynk-radio__input${focusVisibleSelector}
-    ~ .lynk-radio__control {
-    outline: var(--lynk-focus-ring);
-    outline-offset: var(--lynk-focus-ring-offset);
-  }
-
   /* Checked */
   .lynk-radio--checked .lynk-radio__control {
     color: var(--lynk-color-neutral-0);
@@ -83,9 +78,7 @@ export default css`
   }
 
   /* Checked + focus */
-  .lynk-radio.lynk-radio--checked:not(.lynk-radio--disabled)
-    .lynk-radio__input${focusVisibleSelector}
-    ~ .lynk-radio__control {
+  :host(:focus-visible) .radio__control {
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
   }
@@ -102,6 +95,8 @@ export default css`
   }
 
   .lynk-radio__label {
+    display: inline-block;
+    color: var(--lynk-input-label-color);
     line-height: var(--lynk-toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;

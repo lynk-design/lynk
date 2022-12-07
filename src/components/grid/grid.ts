@@ -1,6 +1,8 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import styles from './grid.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
  * @since 1.0
@@ -13,8 +15,8 @@ import styles from './grid.styles';
  * @cssproperty --width - Set a custom width for the grid container element. Defaults to 100%.
  */
 @customElement('lynk-grid')
-export default class LynkGrid extends LitElement {
-  static styles = styles;
+export default class LynkGrid extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   /** A container of grid items */
   @property({ type: Boolean, reflect: true }) container = false;
