@@ -17,10 +17,9 @@ import type LynkIconButton from '../../components/icon-button/icon-button';
 import type LynkPopup from '../popup/popup';
 import type { CSSResultGroup } from 'lit';
 
-
 /**
  * @since 1.0
- * @status experimental
+ * @status stable
  *
  * @dependency lynk-popup
  *
@@ -33,6 +32,12 @@ import type { CSSResultGroup } from 'lit';
  * @event after:show - Emitted after the popover opens and all animations are complete.
  * @event on:hide - Emitted when the popover closes.
  * @event after:hide - Emitted after the popover closes and all animations are complete.
+ *
+ * @cssproperty --width - The preferred width of the popover. Defaults to 320px or 20rem.
+ * @cssproperty --max-width - The max width of the popover as determined by its contents. Defaults to 480px or 30rem.
+ * @cssproperty --header-spacing - The amount of padding to use for the header.
+ * @cssproperty --body-spacing - The amount of padding to use for the body.
+ * @cssproperty --footer-spacing - The amount of padding to use for the footer.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart trigger - The container that wraps the trigger.
@@ -115,7 +120,7 @@ export default class LynkPopover extends LynkElement {
    * Enable this option to prevent the panel from being clipped when the component is placed inside a container with
    * `overflow: auto|scroll`.
    */
-  @property({ type: Boolean }) hoist = true;
+  @property({ type: Boolean }) hoist = false;
 
   connectedCallback() {
     super.connectedCallback();
