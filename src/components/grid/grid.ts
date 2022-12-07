@@ -5,6 +5,8 @@ import styles from './grid.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary The Grid component helps create visual consistency and structure between layouts while allowing flexibility across a wide variety of designs. It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
+ *
  * @since 1.0
  * @status experimental
  *

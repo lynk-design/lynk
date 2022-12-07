@@ -18,7 +18,7 @@ import type { CSSResultGroup } from 'lit';
  * @summary Textareas collect data from the user and allow multiple lines of text.
  *
  * @since 1.0
- * @status experimental
+ * @status stable
  *
  * @dependency lynk-icon
  * @dependency lynk-tooltip

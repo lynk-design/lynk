@@ -97,8 +97,7 @@ Popup doesn't provide any styles — just positioning! The popup's preferred pla
 </style>
 ```
 
-
-?> A popup's anchor should not be styled with `display: contents` since the coordinates will not be eligible for calculation. However, if the anchor is a `<slot>` element, popup will use the first assigned element as the anchor. This behavior allows other components to pass anchors through more easily via composition.
+<lynk-alert open>A popup's anchor should not be styled with `display: contents` since the coordinates will not be eligible for calculation. However, if the anchor is a `<slot>` element, popup will use the first assigned element as the anchor. This behavior allows other components to pass anchors through more easily via composition.</lynk-alert>
 
 ## Examples
 

@@ -5,6 +5,8 @@ import styles from './stack.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Stacks are a fundamental building block for laying out and aligning small bits of content or simple components in a vertical or horizontal space.
+ *
  * @since 1.0
  * @status stable
  *

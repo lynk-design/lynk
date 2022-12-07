@@ -2,8 +2,6 @@
 
 [component-header:lynk-grid]
 
-The Grid component helps create visual consistency and structure between layouts while allowing flexibility across a wide variety of designs. It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
-
 There are two required parts to a grid layout: `<lynk-grid container>` and `<lynk-grid item>`.
 
 ```html preview

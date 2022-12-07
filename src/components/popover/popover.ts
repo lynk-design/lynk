@@ -18,6 +18,8 @@ import type LynkPopup from '../popup/popup';
 import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Popover's display rich content in a "pop over" panel to add additional information or functionality when a user interacts with a triggering element.
+ *
  * @since 1.0
  * @status stable
  *

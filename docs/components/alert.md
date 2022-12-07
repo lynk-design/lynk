@@ -2,8 +2,6 @@
 
 [component-header:lynk-alert]
 
-Alerts are used to display important messages inline or as toast notifications.
-
 ```html preview
 <lynk-alert type="info" open>
   This is a standard alert. Add the <code>open</code> attribute to make it visible.

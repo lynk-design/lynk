@@ -2,13 +2,11 @@
 
 [component-header:lynk-range]
 
-Ranges allow the user to select a single value within a given range using a slider.
-
 ```html preview
 <lynk-range></lynk-range>
 ```
 
-?> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
+<lynk-alert open> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.</lynk-alert>
 
 ## Examples
 

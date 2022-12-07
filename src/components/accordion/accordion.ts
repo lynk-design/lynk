@@ -13,7 +13,7 @@ import type { CSSResultGroup } from 'lit';
 
 
 /**
- * @summary Details show a brief summary and expand to show additional content.
+ * @summary Accordions show a brief summary and expand to show additional content.
  *
  * @since 1.0
  * @status stable

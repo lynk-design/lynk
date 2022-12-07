@@ -2,8 +2,6 @@
 
 [component-header:lynk-button-group]
 
-Button groups can be used to group related buttons into sections.
-
 ```html preview
 <lynk-button-group>
   <lynk-button>Left</lynk-button>

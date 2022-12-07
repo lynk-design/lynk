@@ -2,8 +2,6 @@
 
 [component-header:lynk-badge]
 
-Badges are used to draw attention and display statuses or counts.
-
 ```html preview
 <lynk-badge>Badge</lynk-badge>
 ```

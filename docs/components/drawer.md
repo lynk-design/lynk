@@ -4,8 +4,6 @@
 
 [component-header:lynk-drawer]
 
-Drawers slide in from a container to expose additional options and information.
-
 ```html preview
 <lynk-drawer label="Drawer" class="drawer-overview">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -2,8 +2,6 @@
 
 [component-header:lynk-radio-group]
 
-Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
-
 ```html preview
 <lynk-radio-group label="Select an option" name="a" value="1">
   <lynk-radio value="1">Option 1</lynk-radio>

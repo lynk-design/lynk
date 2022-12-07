@@ -2,8 +2,6 @@
 
 [component-header:lynk-divider]
 
-Dividers are used to visually separate or group elements.
-
 ```html preview
 <lynk-divider></lynk-divider>
 ```

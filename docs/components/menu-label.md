@@ -2,8 +2,6 @@
 
 [component-header:lynk-menu-label]
 
-Menu labels are used to describe a group of menu items.
-
 ```html preview
 <lynk-menu style="max-width: 200px;">
   <lynk-menu-label>Fruits</lynk-menu-label>

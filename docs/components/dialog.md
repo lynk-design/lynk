@@ -4,8 +4,6 @@
 
 [component-header:lynk-dialog]
 
-Dialogs or "modals" are elevated workflows above the page and require the user's immediate attention.
-
 ```html preview
 <lynk-dialog label="Dialog" class="dialog-overview">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.

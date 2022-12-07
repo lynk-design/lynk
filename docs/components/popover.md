@@ -2,8 +2,6 @@
 
 [component-header:lynk-popover]
 
-Popover's display rich content in a "pop over" panel to add additional information or functionality when a user interacts with a triggering element.
-
 Unlike a tooltip, users can interact with popover content. However, popover's should be used sparingly and only to expose a small amount of information or functionality that is immediately relevant but temporary to the current workflow.
 
 <strong>Always save work when automatically closing a popover.</strong> Users may unintentionally dismiss a popover by clicking or tapping another part of the screen. Discard work only when people click or tap an explicit Cancel button.

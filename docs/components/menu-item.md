@@ -2,8 +2,6 @@
 
 [component-header:lynk-menu-item]
 
-Menu items provide options for the user to pick from in a menu.
-
 ```html preview
 <lynk-menu style="max-width: 200px;">
   <lynk-menu-item>Option 1</lynk-menu-item>

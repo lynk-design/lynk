@@ -2,8 +2,6 @@
 
 [component-header:lynk-select]
 
-Selects allow you to choose one or more items from a dropdown menu.
-
 ```html preview
 <lynk-select>
   <lynk-menu-item value="option-1">Option 1</lynk-menu-item>

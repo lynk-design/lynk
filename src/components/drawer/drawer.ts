@@ -20,7 +20,7 @@ import type { CSSResultGroup } from 'lit';
  * @summary Drawers slide in from a container to expose additional options and information.
  *
  * @since 1.0
- * @status experimental
+ * @status stable
  *
  * @dependency lynk-icon-button
  *
