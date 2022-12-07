@@ -1,24 +1,26 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property, queryAssignedElements } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { repeat } from 'lit/directives/repeat.js';
+import LynkElement from '../../internal/lynk-element';
 import { LynkTableSortDirection, LynkTableSortEvent } from './models';
 import styles from './table.styles';
 import type LynkTableHeaderGroup from '../table-header-group/table-header-group';
 import type LynkTableRowGroup from '../table-row-group/table-row-group';
 import type { ILynkTableCol, ILynkTableRow } from './models';
+import type { CSSResultGroup } from 'lit';
 
 /**
  * @since 1.0
  * @status experimental
  */
 @customElement('lynk-table')
-export default class LynkTable extends LitElement {
-  static styles = styles;
+export default class LynkTable extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   /**
    * Objects used for mapping column data, headers, and sorting.
-   * Required for data-driven tables. 
+   * Required for data-driven tables.
    * Optional for custom tables, except if you want to use the built-in sorting.
    * Each object is expected to have a "key" corresponding a property in each row object.
    **/
@@ -45,7 +47,7 @@ export default class LynkTable extends LitElement {
     super.connectedCallback();
     this.addEventListener(LynkTableSortEvent.TYPE, this.handleSort);
   }
-  
+
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener(LynkTableSortEvent.TYPE, this.handleSort);

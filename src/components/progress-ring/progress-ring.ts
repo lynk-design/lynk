@@ -1,9 +1,13 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
 import styles from './progress-ring.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.
+ *
  * @since 1.0
  * @status stable
  *
@@ -15,11 +19,13 @@ import styles from './progress-ring.styles';
  * @cssproperty --size - The diameter of the progress ring (cannot be a percentage).
  * @cssproperty --track-width - The width of the track.
  * @cssproperty --track-color - The color of the track.
+ * @cssproperty --indicator-width - The width of the indicator. Defaults to the track width.
  * @cssproperty --indicator-color - The indicator color.
+ * @cssproperty --indicator-transition-duration - The duration of the indicator's transition when the value changes.
  */
 @customElement('lynk-progress-ring')
-export default class LynkProgressRing extends LitElement {
-  static styles = styles;
+export default class LynkProgressRing extends LynkElement {
+  static styles: CSSResultGroup = styles;
   private readonly localize = new LocalizeController(this);
 
   @query('.lynk-progress-ring__indicator') indicator: SVGCircleElement;
@@ -32,9 +38,6 @@ export default class LynkProgressRing extends LitElement {
   /** A custom label for the progress ring's aria label. */
   @property() label = '';
 
-  /** The locale to render the component in. */
-  @property() lang: string;
-
   updated(changedProps: Map<string, unknown>) {
     super.updated(changedProps);
 
@@ -43,7 +46,7 @@ export default class LynkProgressRing extends LitElement {
     // change, possibly because of a mix of pixel + unit-less values in the calc() function. It seems like a Safari bug,
     // but I couldn't pinpoint it so this works around the problem.
     //
-    if (changedProps.has('percentage')) {
+    if (changedProps.has('value')) {
       const radius = parseFloat(getComputedStyle(this.indicator).getPropertyValue('r'));
       const circumference = 2 * Math.PI * radius;
       const offset = circumference - (this.value / 100) * circumference;
@@ -69,9 +72,7 @@ export default class LynkProgressRing extends LitElement {
           <circle class="lynk-progress-ring__indicator" style="stroke-dashoffset: ${this.indicatorOffset}"></circle>
         </svg>
 
-        <span part="label" class="lynk-progress-ring__label">
-          <slot></slot>
-        </span>
+        <slot part="label" class="lynk-progress-ring__label"></slot>
       </div>
     `;
   }

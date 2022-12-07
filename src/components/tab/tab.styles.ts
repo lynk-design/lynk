@@ -1,5 +1,4 @@
 import { css } from 'lit';
-import { focusVisibleSelector } from '../../internal/focus-visible';
 import componentStyles from '../../styles/component.styles';
 
 export default css`
@@ -32,8 +31,11 @@ export default css`
     outline: none;
   }
 
-  .lynk-tab${focusVisibleSelector}:not(.lynk-tab--disabled) {
+  .lynk-tab:focus-visible:not(.lynk-tab--disabled) {
     color: var(--lynk-color-primary-600);
+  }
+
+  .lynk-tab:focus-visible {
     outline: var(--lynk-focus-ring);
     outline-offset: calc(-1 * var(--lynk-focus-ring-width) - var(--lynk-focus-ring-offset));
   }
@@ -52,11 +54,18 @@ export default css`
   }
 
   .lynk-tab__close-button {
-    font-size: var(--lynk-font-size-large);
-    margin-inline-start: var(--lynk-spacing-2x-small);
+    font-size: var(--lynk-font-size-small);
+    margin-inline-start: var(--lynk-spacing-small);
   }
 
   .lynk-tab__close-button::part(base) {
-    padding: var(--lynk-spacing-tiny);
+    padding: var(--lynk-spacing-3x-small);
+  }
+
+  @media (forced-colors: active) {
+    .lynk-tab.lynk-tab--active:not(.lynk-tab--disabled) {
+      outline: solid 1px transparent;
+      outline-offset: -3px;
+    }
   }
 `;

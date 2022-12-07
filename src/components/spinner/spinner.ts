@@ -1,8 +1,13 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
+import { LocalizeController } from '../../utilities/localize';
 import styles from './spinner.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Spinners are used to show the progress of an indeterminate operation.
+ *
  * @since 1.0
  * @status stable
  *
@@ -14,12 +19,14 @@ import styles from './spinner.styles';
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
  */
 @customElement('lynk-spinner')
-export default class LynkSpinner extends LitElement {
-  static styles = styles;
+export default class LynkSpinner extends LynkElement {
+  static styles: CSSResultGroup = styles;
+
+  private readonly localize = new LocalizeController(this);
 
   render() {
     return html`
-      <svg part="base" class="lynk-spinner" role="status">
+      <svg part="base" class="lynk-spinner" role="progressbar" aria-valuetext=${this.localize.term('loading')}>
         <circle class="lynk-spinner__track"></circle>
         <circle class="lynk-spinner__indicator"></circle>
       </svg>

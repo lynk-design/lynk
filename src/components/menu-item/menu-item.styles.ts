@@ -1,5 +1,4 @@
 import { css } from 'lit';
-import { focusVisibleSelector } from '../../internal/focus-visible';
 import componentStyles from '../../styles/component.styles';
 
 export default css`
@@ -30,12 +29,13 @@ export default css`
 
   .lynk-menu-item.lynk-menu-item--disabled {
     outline: none;
-    color: var(--lynk-color-neutral-400);
+    opacity: 0.5;
     cursor: not-allowed;
   }
 
   .lynk-menu-item .lynk-menu-item__label {
     flex: 1 1 auto;
+    display: inline-block;
   }
 
   .lynk-menu-item .lynk-menu-item__prefix {
@@ -44,7 +44,7 @@ export default css`
     align-items: center;
   }
 
-  .lynk-menu-item .lynk-menu-item__prefix ::slotted(*) {
+  .lynk-menu-item .lynk-menu-item__prefix::slotted(*) {
     margin-inline-end: var(--lynk-spacing-x-small);
   }
 
@@ -54,7 +54,7 @@ export default css`
     align-items: center;
   }
 
-  .lynk-menu-item .lynk-menu-item__suffix ::slotted(*) {
+  .lynk-menu-item .lynk-menu-item__suffix::slotted(*) {
     margin-inline-start: var(--lynk-spacing-x-small);
   }
 
@@ -63,7 +63,7 @@ export default css`
   }
 
   :host(:hover:not([aria-disabled='true'])) .lynk-menu-item,
-  :host(${focusVisibleSelector}:not(.lynk-focus-invisible):not([aria-disabled='true'])) .lynk-menu-item {
+  :host(:focus-visible:not(.lynk-focus-invisible):not([aria-disabled='true'])) .lynk-menu-item {
     outline: none;
     background-color: var(--hover-color);
     color: var(--lynk-color-neutral-0);
@@ -71,6 +71,7 @@ export default css`
 
   .lynk-menu-item .lynk-menu-item__check,
   .lynk-menu-item .lynk-menu-item__chevron {
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,5 +82,13 @@ export default css`
   .lynk-menu-item--checked .lynk-menu-item__check,
   .lynk-menu-item--has-submenu .lynk-menu-item__chevron {
     visibility: visible;
+  }
+
+  @media (forced-colors: active) {
+    :host(:hover:not([aria-disabled='true'])) .lynk-menu-item,
+    :host(:focus-visible:not(.lynk-focus-invisible):not([aria-disabled='true'])) .lynk-menu-item {
+      outline: dashed 1px SelectedItem;
+      outline-offset: -1px;
+    }
   }
 `;

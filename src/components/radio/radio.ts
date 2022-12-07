@@ -13,7 +13,7 @@ import type { CSSResultGroup } from 'lit';
  * @since 1.0
  * @status stable
  *
- * @dependency sl-icon
+ * @dependency lynk-icon
  *
  * @slot - The radio's label.
  *

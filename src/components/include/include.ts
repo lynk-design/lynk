@@ -1,11 +1,14 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { emit } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
 import styles from './include.styles';
 import { requestInclude } from './request';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Includes give you the power to embed external HTML files into the page.
+ *
  * @since 1.0
  * @status stable
  *
@@ -13,8 +16,8 @@ import { requestInclude } from './request';
  * @event {{ status: number }} on:error - Emitted when the included file fails to load due to an error.
  */
 @customElement('lynk-include')
-export default class LynkInclude extends LitElement {
-  static styles = styles;
+export default class LynkInclude extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   /**
    * The location of the HTML file to include.
@@ -52,7 +55,7 @@ export default class LynkInclude extends LitElement {
       }
 
       if (!file.ok) {
-        emit(this, 'on:error', { detail: { status: file.status } });
+        this.emit('on:error', { detail: { status: file.status } });
         return;
       }
 
@@ -62,9 +65,9 @@ export default class LynkInclude extends LitElement {
         [...this.querySelectorAll('script')].forEach(script => this.executeScript(script));
       }
 
-      emit(this, 'on:load');
+      this.emit('on:load');
     } catch {
-      emit(this, 'on:error', { detail: { status: -1 } });
+      this.emit('on:error', { detail: { status: -1 } });
     }
   }
 

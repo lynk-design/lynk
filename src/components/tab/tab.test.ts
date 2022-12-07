@@ -3,15 +3,24 @@ import sinon from 'sinon';
 import type LynkTab from './tab';
 
 describe('<lynk-tab>', () => {
+  it('passes accessibility test', async () => {
+    const el = await fixture<LynkTab>(html`
+      <lynk-tab-group>
+        <lynk-tab slot="nav">Test</lynk-tab>
+      </lynk-tab-group>
+    `);
+    await expect(el).to.be.accessible();
+  });
+
   it('should render default tab', async () => {
     const el = await fixture<LynkTab>(html` <lynk-tab>Test</lynk-tab> `);
 
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
-    expect(base.getAttribute('role')).to.equal('tab');
-    expect(base.getAttribute('aria-disabled')).to.equal('false');
-    expect(base.getAttribute('aria-selected')).to.equal('false');
-    expect(base.getAttribute('tabindex')).to.equal('-1');
+    expect(el.getAttribute('role')).to.equal('tab');
+    expect(el.getAttribute('aria-disabled')).to.equal('false');
+    expect(el.getAttribute('aria-selected')).to.equal('false');
+    expect(base.getAttribute('tabindex')).to.equal('0');
     expect(base.getAttribute('class')).to.equal(' lynk-tab ');
     expect(el.active).to.equal(false);
     expect(el.closable).to.equal(false);
@@ -21,10 +30,10 @@ describe('<lynk-tab>', () => {
   it('should disable tab by attribute', async () => {
     const el = await fixture<LynkTab>(html` <lynk-tab disabled>Test</lynk-tab> `);
 
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
     expect(el.disabled).to.equal(true);
-    expect(base.getAttribute('aria-disabled')).to.equal('true');
+    expect(el.getAttribute('aria-disabled')).to.equal('true');
     expect(base.getAttribute('class')).to.equal(' lynk-tab lynk-tab--disabled ');
     expect(base.getAttribute('tabindex')).to.equal('-1');
   });
@@ -32,10 +41,10 @@ describe('<lynk-tab>', () => {
   it('should set active tab by attribute', async () => {
     const el = await fixture<LynkTab>(html` <lynk-tab active>Test</lynk-tab> `);
 
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+    const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
     expect(el.active).to.equal(true);
-    expect(base.getAttribute('aria-selected')).to.equal('true');
+    expect(el.getAttribute('aria-selected')).to.equal('true');
     expect(base.getAttribute('class')).to.equal(' lynk-tab lynk-tab--active ');
     expect(base.getAttribute('tabindex')).to.equal('0');
   });
@@ -43,20 +52,19 @@ describe('<lynk-tab>', () => {
   it('should set closable by attribute', async () => {
     const el = await fixture<LynkTab>(html` <lynk-tab closable>Test</lynk-tab> `);
 
-    const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
-    const closeButton = el.shadowRoot!.querySelector('[part="close-button"]');
+    const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+    const closeButton = el.shadowRoot!.querySelector('[part~="close-button"]');
 
     expect(el.closable).to.equal(true);
     expect(base.getAttribute('class')).to.equal(' lynk-tab lynk-tab--closable ');
     expect(closeButton).not.to.be.null;
-    expect(base.getAttribute('tabindex')).to.equal('-1');
   });
 
   describe('focus', () => {
     it('should focus inner div', async () => {
       const el = await fixture<LynkTab>(html` <lynk-tab>Test</lynk-tab> `);
 
-      const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
+      const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
       el.focus();
       await el.updateComplete;
@@ -66,7 +74,7 @@ describe('<lynk-tab>', () => {
   });
 
   describe('blur', () => {
-    it('shoud blur inner div', async () => {
+    it('should blur inner div', async () => {
       const el = await fixture<LynkTab>(html` <lynk-tab>Test</lynk-tab> `);
 
       el.focus();
@@ -83,7 +91,7 @@ describe('<lynk-tab>', () => {
     it('should emit close event when close button clicked', async () => {
       const el = await fixture<LynkTab>(html` <lynk-tab closable>Test</lynk-tab> `);
 
-      const closeButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part="close-button"]')!;
+      const closeButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part~="close-button"]')!;
       const spy = sinon.spy();
 
       el.addEventListener('on:close', spy, { once: true });

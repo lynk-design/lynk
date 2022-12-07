@@ -1,17 +1,22 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import '../../components/icon/icon';
-import '../../components/tooltip/tooltip';
-import { emit } from '../../internal/event';
+import { defaultValue } from '../../internal/default-value';
 import { FormSubmitController } from '../../internal/form';
+import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
 import { watch } from '../../internal/watch';
+import '../../components/icon/icon';
+import '../../components/tooltip/tooltip';
 import styles from './textarea.styles';
+import type { LynkFormControl } from '../../internal/lynk-element';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Textareas collect data from the user and allow multiple lines of text.
+ *
  * @since 1.0
  * @status experimental
  *
@@ -35,8 +40,8 @@ import styles from './textarea.styles';
  * @csspart textarea - The textarea control.
  */
 @customElement('lynk-textarea')
-export default class LynkTextarea extends LitElement {
-  static styles = styles;
+export default class LynkTextarea extends LynkElement implements LynkFormControl {
+  static styles: CSSResultGroup = styles;
 
   @query('.lynk-textarea__control') input: HTMLTextAreaElement;
 
@@ -46,6 +51,8 @@ export default class LynkTextarea extends LitElement {
   private resizeObserver: ResizeObserver;
 
   @state() private hasFocus = false;
+  @state() invalid = false;
+  @property() title = ''; // make reactive to pass through
 
   /** The textareas feedback status using manual validation. Alternatively, you can use the invalid attribute */
   @property({ reflect: true }) state: 'error' | 'warning' | 'success';
@@ -54,7 +61,7 @@ export default class LynkTextarea extends LitElement {
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** The textarea's name attribute. */
-  @property() name: string;
+  @property() name = '';
 
   /** The textarea's value attribute. */
   @property() value = '';
@@ -101,12 +108,6 @@ export default class LynkTextarea extends LitElement {
   /** Makes the textarea a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
 
-  /**
-   * This will be true when the control is in an invalid state. Validity is determined by props such as `type`,
-   * `required`, `minlength`, and `maxlength` using the browser's constraint validation API.
-   */
-  @property({ type: Boolean, reflect: true }) invalid = false;
-
   /** The textarea's autocapitalize attribute. */
   @property() autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
 
@@ -130,6 +131,9 @@ export default class LynkTextarea extends LitElement {
 
   /** The textarea's inputmode attribute. */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+
+  /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
+  @defaultValue() defaultValue = '';
 
   connectedCallback() {
     super.connectedCallback();
@@ -172,10 +176,9 @@ export default class LynkTextarea extends LitElement {
     if (position) {
       if (typeof position.top === 'number') this.input.scrollTop = position.top;
       if (typeof position.left === 'number') this.input.scrollLeft = position.left;
-      return;
+      return undefined;
     }
 
-    // eslint-disable-next-line consistent-return
     return {
       top: this.input.scrollTop,
       left: this.input.scrollTop
@@ -202,15 +205,20 @@ export default class LynkTextarea extends LitElement {
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      emit(this, 'on:input');
+      this.emit('on:input');
     }
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;
       this.setTextareaHeight();
-      emit(this, 'on:input');
-      emit(this, 'on:change');
+      this.emit('on:input');
+      this.emit('on:change');
     }
+  }
+
+  /** Checks for validity but does not show the browser's validation message. */
+  checkValidity() {
+    return this.input.checkValidity();
   }
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
@@ -226,13 +234,13 @@ export default class LynkTextarea extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'on:blur');
+    this.emit('on:blur');
   }
 
   handleChange() {
     this.value = this.input.value;
     this.setTextareaHeight();
-    emit(this, 'on:change');
+    this.emit('on:change');
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -247,13 +255,13 @@ export default class LynkTextarea extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'on:focus');
+    this.emit('on:focus');
   }
 
   handleInput() {
     this.value = this.input.value;
     this.setTextareaHeight();
-    emit(this, 'on:input');
+    this.emit('on:input');
   }
 
   @watch('rows', { waitUntilFirstUpdate: true })
@@ -263,9 +271,11 @@ export default class LynkTextarea extends LitElement {
 
   @watch('value', { waitUntilFirstUpdate: true })
   handleValueChange() {
+    this.input.value = this.value; // force a sync update
     if (this.autovalidate) {
       this.invalid = !this.input.checkValidity();
     }
+    this.updateComplete.then(() => this.setTextareaHeight());
   }
 
   setTextareaHeight() {
@@ -367,6 +377,7 @@ export default class LynkTextarea extends LitElement {
                 part="textarea"
                 id="input"
                 class="lynk-textarea__control"
+                title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
                 name=${ifDefined(this.name)}
                 .value=${live(this.value)}
                 ?disabled=${this.disabled}
@@ -389,19 +400,18 @@ export default class LynkTextarea extends LitElement {
                 @blur=${this.handleBlur}
               ></textarea>
           `}
-
-
           </div>
         </div>
 
-        <div
+        <slot
+          name="help-text"
           part="form-control-help-text"
           id="help-text"
           class="lynk-form-control__help-text"
           aria-hidden=${hasHelpText ? 'false' : 'true'}
         >
-          <slot name="help-text">${this.helpText}</slot>
-        </div>
+          ${this.helpText}
+        </slot>
       </div>
     `;
   }

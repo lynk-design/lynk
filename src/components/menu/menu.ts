@@ -1,35 +1,35 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, query } from 'lit/decorators.js';
-import { emit } from '../../internal/event';
-import { hasFocusVisible } from '../../internal/focus-visible';
+import LynkElement from '../../internal/lynk-element';
 import { getTextContent } from '../../internal/slot';
 import styles from './menu.styles';
 import type LynkMenuItem from '../../components/menu-item/menu-item';
+import type { CSSResultGroup } from 'lit';
 export interface MenuSelectEventDetail {
   item: LynkMenuItem;
 }
 
 /**
+ * @summary Menus provide a list of options for the user to choose from.
+ *
  * @since 1.0
  * @status stable
  *
  * @slot - The menu's content, including menu items, menu labels, and dividers.
  *
  * @event {{ item: LynkMenuItem }} on:select - Emitted when a menu item is selected.
- *
- * @csspart base - The component's internal wrapper.
  */
 @customElement('lynk-menu')
-export default class LynkMenu extends LitElement {
-  static styles = styles;
+export default class LynkMenu extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
-  @query('.lynk-menu') menu: HTMLElement;
   @query('slot') defaultSlot: HTMLSlotElement;
 
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
 
-  firstUpdated() {
+  connectedCallback() {
+    super.connectedCallback();
     this.setAttribute('role', 'menu');
   }
 
@@ -90,11 +90,6 @@ export default class LynkMenu extends LitElement {
       this.typeToSelectString += event.key.toLowerCase();
     }
 
-    // Restore focus in browsers that don't support :focus-visible when using the keyboard
-    if (!hasFocusVisible) {
-      items.forEach(item => item.classList.remove('lynk-focus-invisible'));
-    }
-
     for (const item of items) {
       const slot = item.shadowRoot?.querySelector<HTMLSlotElement>('slot:not([name])');
       const label = getTextContent(slot).toLowerCase().trim();
@@ -113,17 +108,7 @@ export default class LynkMenu extends LitElement {
     const item = target.closest('lynk-menu-item');
 
     if (item?.disabled === false) {
-      emit(this, 'on:select', { detail: { item } });
-    }
-  }
-
-  handleKeyUp() {
-    // Restore focus in browsers that don't support :focus-visible when using the keyboard
-    if (!hasFocusVisible) {
-      const items = this.getAllItems();
-      items.forEach(item => {
-        item.classList.remove('lynk-focus-invisible');
-      });
+      this.emit('on:select', { detail: { item } });
     }
   }
 
@@ -183,11 +168,6 @@ export default class LynkMenu extends LitElement {
 
     if (target.getAttribute('role') === 'menuitem') {
       this.setCurrentItem(target as LynkMenuItem);
-
-      // Hide focus in browsers that don't support :focus-visible when using the mouse
-      if (!hasFocusVisible) {
-        target.classList.add('lynk-focus-invisible');
-      }
     }
   }
 
@@ -202,16 +182,12 @@ export default class LynkMenu extends LitElement {
 
   render() {
     return html`
-      <div
-        part="base"
-        class="lynk-menu"
+      <slot
+        @slotchange=${this.handleSlotChange}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
-        @keyup=${this.handleKeyUp}
         @mousedown=${this.handleMouseDown}
-      >
-        <slot @slotchange=${this.handleSlotChange}></slot>
-      </div>
+      ></slot>
     `;
   }
 }

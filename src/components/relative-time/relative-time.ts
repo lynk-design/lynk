@@ -1,5 +1,6 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
 
 interface UnitConfig {
@@ -18,11 +19,13 @@ const availableUnits: UnitConfig[] = [
 ];
 
 /**
- * @since 2.0
+ * @summary Outputs a localized time phrase relative to the current date and time.
+ *
+ * @since 1.0
  * @status stable
  */
 @customElement('lynk-relative-time')
-export default class LynkRelativeTime extends LitElement {
+export default class LynkRelativeTime extends LynkElement {
   private readonly localize = new LocalizeController(this);
   private updateTimeout: number;
 
@@ -32,9 +35,6 @@ export default class LynkRelativeTime extends LitElement {
 
   /** The date from which to calculate time from. */
   @property() date: Date | string;
-
-  /** The locale to use when formatting the number. */
-  @property() lang: string;
 
   /** The formatting style to use. */
   @property() format: 'long' | 'short' | 'narrow' = 'long';

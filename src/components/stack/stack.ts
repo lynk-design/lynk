@@ -1,6 +1,8 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import styles from './stack.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
  * @since 1.0
@@ -14,8 +16,8 @@ import styles from './stack.styles';
  * @cssproperty --height - Customize the width of the stack group, defaults to `auto`.
  */
 @customElement('lynk-stack')
-export default class LynkStack extends LitElement {
-  static styles = styles;
+export default class LynkStack extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   /** Stack items horizontaly */
   @property({ type: Boolean, reflect: true }) horizontal = false;
@@ -41,9 +43,11 @@ export default class LynkStack extends LitElement {
     const classList = [horizontalClass, reverseClass, justifyClass, alignClass];
 
     return html`
-      <div part="base" class="lynk-stack ${classList.join(' ')}" style="--gap: ${this.gap};">
-        <slot></slot>
-      </div>
+      <slot
+        part="base"
+        class="lynk-stack ${classList.join(' ')}"
+        style="--gap: ${this.gap};"
+      ></slot>
     `;
   }
 }

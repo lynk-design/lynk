@@ -11,7 +11,11 @@ export default css`
   }
 
   .lynk-tab-panel {
-    border: solid 1px transparent;
+    display: block;
     padding: var(--padding);
+  }
+
+  .lynk-tab-panel:not(.lynk-tab-panel--active) {
+    display: none;
   }
 `;

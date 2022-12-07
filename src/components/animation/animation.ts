@@ -219,6 +219,6 @@ export default class LynkAnimation extends LynkElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'lynk-animation': SlAnimation;
+    'lynk-animation': LynkAnimation;
   }
 }

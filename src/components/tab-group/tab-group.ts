@@ -1,17 +1,20 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import '../../components/icon-button/icon-button';
-import { emit } from '../../internal/event';
 import { scrollIntoView } from '../../internal/scroll';
+import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
+import '../icon-button/icon-button';
 import styles from './tab-group.styles';
-import type LynkTabPanel from '../../components/tab-panel/tab-panel';
-import type LynkTab from '../../components/tab/tab';
+import type LynkTabPanel from '../tab-panel/tab-panel';
+import type LynkTab from '../tab/tab';
+import type { CSSResultGroup } from 'lit';
 
 /**
- * @since 2.0
+ * @summary Tab groups organize content into a container that shows one section at a time.
+ *
+ * @since 1.0
  * @status stable
  *
  * @dependency lynk-icon-button
@@ -19,8 +22,8 @@ import type LynkTab from '../../components/tab/tab';
  * @slot - Used for grouping tab panels in the tab group.
  * @slot nav - Used for grouping tabs in the tab group.
  *
- * @event {{ name: String }} on:tab-show - Emitted when a tab is shown.
- * @event {{ name: String }} on:tab-hide - Emitted when a tab is hidden.
+ * @event {{ name: String }} lynk-tab-show - Emitted when a tab is shown.
+ * @event {{ name: String }} lynk-tab-hide - Emitted when a tab is hidden.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart nav - The tab group navigation container.
@@ -37,12 +40,12 @@ import type LynkTab from '../../components/tab/tab';
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
  */
 @customElement('lynk-tab-group')
-export default class LynkTabGroup extends LitElement {
-  static styles = styles;
+export default class LynkTabGroup extends LynkElement {
+  static styles: CSSResultGroup = styles;
   private readonly localize = new LocalizeController(this);
 
   @query('.lynk-tab-group') tabGroup: HTMLElement;
-  @query('.lynk-tab-group__body') body: HTMLElement;
+  @query('.lynk-tab-group__body') body: HTMLSlotElement;
   @query('.lynk-tab-group__nav') nav: HTMLElement;
   @query('.lynk-tab-group__indicator') indicator: HTMLElement;
 
@@ -66,14 +69,10 @@ export default class LynkTabGroup extends LitElement {
   /** Disables the scroll arrows that appear when tabs overflow. */
   @property({ attribute: 'no-scroll-controls', type: Boolean }) noScrollControls = false;
 
-  /** The locale to render the component in. */
-  @property() lang: string;
-
   connectedCallback() {
     super.connectedCallback();
 
     this.resizeObserver = new ResizeObserver(() => {
-      this.preventIndicatorTransition();
       this.repositionIndicator();
       this.updateScrollControls();
     });
@@ -121,19 +120,18 @@ export default class LynkTabGroup extends LitElement {
     }
   }
 
-  getAllTabs(includeDisabled = false) {
+  getAllTabs(options: { includeDisabled: boolean } = { includeDisabled: true }) {
     const slot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="nav"]')!;
 
     return [...(slot.assignedElements() as LynkTab[])].filter(el => {
-      return includeDisabled
+      return options.includeDisabled
         ? el.tagName.toLowerCase() === 'lynk-tab'
         : el.tagName.toLowerCase() === 'lynk-tab' && !el.disabled;
     });
   }
 
   getAllPanels() {
-    const slot = this.body.querySelector('slot')!;
-    return [...slot.assignedElements()].filter(el => el.tagName.toLowerCase() === 'lynk-tab-panel') as [LynkTabPanel];
+    return [...this.body.assignedElements()].filter(el => el.tagName.toLowerCase() === 'lynk-tab-panel') as [LynkTabPanel];
   }
 
   getActiveTab() {
@@ -175,22 +173,23 @@ export default class LynkTabGroup extends LitElement {
 
     // Move focus left or right
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
-      const activeEl = document.activeElement;
+      const activeEl = this.tabs.find(t => t.matches(':focus'));
+      const isRtl = this.localize.dir() === 'rtl';
 
       if (activeEl?.tagName.toLowerCase() === 'lynk-tab') {
-        let index = this.tabs.indexOf(activeEl as LynkTab);
+        let index = this.tabs.indexOf(activeEl);
 
         if (event.key === 'Home') {
           index = 0;
         } else if (event.key === 'End') {
           index = this.tabs.length - 1;
         } else if (
-          (['top', 'bottom'].includes(this.placement) && event.key === 'ArrowLeft') ||
+          (['top', 'bottom'].includes(this.placement) && event.key === (isRtl ? 'ArrowRight' : 'ArrowLeft')) ||
           (['start', 'end'].includes(this.placement) && event.key === 'ArrowUp')
         ) {
           index--;
         } else if (
-          (['top', 'bottom'].includes(this.placement) && event.key === 'ArrowRight') ||
+          (['top', 'bottom'].includes(this.placement) && event.key === (isRtl ? 'ArrowLeft' : 'ArrowRight')) ||
           (['start', 'end'].includes(this.placement) && event.key === 'ArrowDown')
         ) {
           index++;
@@ -221,14 +220,20 @@ export default class LynkTabGroup extends LitElement {
 
   handleScrollToStart() {
     this.nav.scroll({
-      left: this.nav.scrollLeft - this.nav.clientWidth,
+      left:
+        this.localize.dir() === 'rtl'
+          ? this.nav.scrollLeft + this.nav.clientWidth
+          : this.nav.scrollLeft - this.nav.clientWidth,
       behavior: 'smooth'
     });
   }
 
   handleScrollToEnd() {
     this.nav.scroll({
-      left: this.nav.scrollLeft + this.nav.clientWidth,
+      left:
+        this.localize.dir() === 'rtl'
+          ? this.nav.scrollLeft - this.nav.clientWidth
+          : this.nav.scrollLeft + this.nav.clientWidth,
       behavior: 'smooth'
     });
   }
@@ -266,10 +271,10 @@ export default class LynkTabGroup extends LitElement {
       // Emit events
       if (options.emitEvents) {
         if (previousTab) {
-          emit(this, 'on:tab-hide', { detail: { name: previousTab.panel } });
+          this.emit('on:hide', { detail: { name: previousTab.panel } });
         }
 
-        emit(this, 'on:tab-show', { detail: { name: this.activeTab.panel } });
+        this.emit('on:show', { detail: { name: this.activeTab.panel } });
       }
     }
   }
@@ -310,7 +315,7 @@ export default class LynkTabGroup extends LitElement {
 
     // We can't used offsetLeft/offsetTop here due to a shadow parent issue where neither can getBoundingClientRect
     // because it provides invalid values for animating elements: https://bugs.chromium.org/p/chromium/issues/detail?id=920069
-    const allTabs = this.getAllTabs(true);
+    const allTabs = this.getAllTabs();
     const precedingTabs = allTabs.slice(0, allTabs.indexOf(currentTab));
     const offset = precedingTabs.reduce(
       (previous, current) => ({
@@ -325,37 +330,28 @@ export default class LynkTabGroup extends LitElement {
       case 'bottom':
         this.indicator.style.width = `${width}px`;
         this.indicator.style.height = 'auto';
-        this.indicator.style.transform = isRtl ? `translateX(${-1 * offset.left}px)` : `translateX(${offset.left}px)`;
+        this.indicator.style.translate = isRtl ? `${-1 * offset.left}px` : `${offset.left}px`;
         break;
 
       case 'start':
       case 'end':
         this.indicator.style.width = 'auto';
         this.indicator.style.height = `${height}px`;
-        this.indicator.style.transform = `translateY(${offset.top}px)`;
+        this.indicator.style.translate = `${offset.top}px`;
         break;
     }
   }
 
-  // In some orientations, when the component is resized, the indicator's position will change causing it to animate
-  // while you resize. Calling this method will prevent the transition from running on resize, which feels more natural.
-  preventIndicatorTransition() {
-    const transitionValue = this.indicator.style.transition;
-    this.indicator.style.transition = 'none';
-
-    requestAnimationFrame(() => {
-      this.indicator.style.transition = transitionValue;
-    });
-  }
-
   // This stores tabs and panels so we can refer to a cache instead of calling querySelectorAll() multiple times.
   syncTabsAndPanels() {
-    this.tabs = this.getAllTabs();
+    this.tabs = this.getAllTabs({ includeDisabled: false });
     this.panels = this.getAllPanels();
     this.syncIndicator();
   }
 
   render() {
+    const isRtl = this.localize.dir() === 'rtl';
+
     return html`
       <div
         part="base"
@@ -371,14 +367,14 @@ export default class LynkTabGroup extends LitElement {
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
       >
-        <div class="tab-group__nav-container" part="nav">
+        <div class="lynk-tab-group__nav-container" part="nav">
           ${this.hasScrollControls
             ? html`
                 <lynk-icon-button
                   part="scroll-button scroll-button--start"
                   exportparts="base:scroll-button__base"
                   class="lynk-tab-group__scroll-button lynk-tab-group__scroll-button--start"
-                  name="chevron-left"
+                  name=${isRtl ? 'chevron-right' : 'chevron-left'}
                   library="system"
                   label=${this.localize.term('scrollToStart')}
                   @click=${this.handleScrollToStart}
@@ -399,7 +395,7 @@ export default class LynkTabGroup extends LitElement {
                   part="scroll-button scroll-button--end"
                   exportparts="base:scroll-button__base"
                   class="lynk-tab-group__scroll-button lynk-tab-group__scroll-button--end"
-                  name="chevron-right"
+                  name=${isRtl ? 'chevron-left' : 'chevron-right'}
                   library="system"
                   label=${this.localize.term('scrollToEnd')}
                   @click=${this.handleScrollToEnd}
@@ -408,9 +404,7 @@ export default class LynkTabGroup extends LitElement {
             : ''}
         </div>
 
-        <div part="body" class="lynk-tab-group__body">
-          <slot @slotchange=${this.syncTabsAndPanels}></slot>
-        </div>
+        <slot part="body" class="lynk-tab-group__body" @slotchange=${this.syncTabsAndPanels}></slot>
       </div>
     `;
   }

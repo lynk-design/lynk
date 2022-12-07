@@ -14,23 +14,27 @@ export default css`
 
   .lynk-tab-group {
     display: flex;
-    border: solid 1px transparent;
     border-radius: 0;
   }
 
-  .lynk-tab-group .lynk-tab-group__tabs {
+  .lynk-tab-group__tabs {
     display: flex;
     position: relative;
   }
 
-  .lynk-tab-group .lynk-tab-group__indicator {
+  .lynk-tab-group__indicator {
     position: absolute;
-    transition: var(--lynk-transition-fast) transform ease, var(--lynk-transition-fast) width ease;
+    transition: var(--lynk-transition-fast) translate ease, var(--lynk-transition-fast) width ease;
   }
 
   .lynk-tab-group--has-scroll-controls .lynk-tab-group__nav-container {
     position: relative;
     padding: 0 var(--lynk-spacing-x-large);
+  }
+
+  .lynk-tab-group__body {
+    display: block;
+    overflow: auto;
   }
 
   .lynk-tab-group__scroll-button {
@@ -49,6 +53,16 @@ export default css`
 
   .lynk-tab-group__scroll-button--end {
     right: 0;
+  }
+
+  .lynk-tab-group--rtl .lynk-tab-group__scroll-button--start {
+    left: auto;
+    right: 0;
+  }
+
+  .lynk-tab-group--rtl .lynk-tab-group__scroll-button--end {
+    left: 0;
+    right: auto;
   }
 
   /*
@@ -93,7 +107,7 @@ export default css`
     order: 2;
   }
 
-  .lynk-tab-group--top ::slotted(lynk-tab-panel) {
+  .lynk-tab-group--top ::slotted(sl-tab-panel) {
     --padding: var(--lynk-spacing-medium) 0;
   }
 
@@ -139,7 +153,7 @@ export default css`
     order: 1;
   }
 
-  .lynk-tab-group--bottom ::slotted(lynk-tab-panel) {
+  .lynk-tab-group--bottom ::slotted(sl-tab-panel) {
     --padding: var(--lynk-spacing-medium) 0;
   }
 
@@ -176,7 +190,7 @@ export default css`
     order: 2;
   }
 
-  .lynk-tab-group--start ::slotted(lynk-tab-panel) {
+  .lynk-tab-group--start ::slotted(sl-tab-panel) {
     --padding: 0 var(--lynk-spacing-medium);
   }
 
@@ -195,7 +209,7 @@ export default css`
   .lynk-tab-group--end .lynk-tab-group__tabs {
     flex: 0 0 auto;
     flex-direction: column;
-    border-right: solid var(--track-width) var(--track-color);
+    border-left: solid var(--track-width) var(--track-color);
   }
 
   .lynk-tab-group--end .lynk-tab-group__indicator {
@@ -213,7 +227,7 @@ export default css`
     order: 1;
   }
 
-  .lynk-tab-group--end ::slotted(lynk-tab-panel) {
+  .lynk-tab-group--end ::slotted(sl-tab-panel) {
     --padding: 0 var(--lynk-spacing-medium);
   }
 `;
