@@ -1,5 +1,5 @@
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
-import { sendKeys } from '@web/test-runner-commands';
+import { sendKeys, sendMouse } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import type LynkPopover from './popover';
 
@@ -120,19 +120,42 @@ describe('<lynk-popover>', () => {
     expect(panel.hidden).to.be.true;
   });
 
-  it('should close on escape key', async () => {
+  it('should hide when clicked outside container', async () => {
     const el = await fixture<LynkPopover>(html`
-      <lynk-popover>
-        <lynk-button slot="trigger">Click Me</lynk-button>
-        This is a popover.
+      <lynk-popover click-to-hide>
+        <lynk-button slot="trigger">Toggle</lynk-button>
       </lynk-popover>
     `);
     const trigger = el.querySelector('lynk-button')!;
 
     trigger.click();
+    await el.updateComplete;
+    await sendMouse({ type: 'click', position: [0, 0] });
+    await el.updateComplete;
+
+    expect(el.open).to.be.false;
+  });
+
+  it('should close and stop propagating the keydown event when Escape is pressed and the popover is open ', async () => {
+    const el = await fixture<LynkPopover>(html`
+      <lynk-popover open>
+        <lynk-button slot="trigger">Toggle</lynk-button>
+        <lynk-menu>
+          <lynk-menu-item>Dropdown Item 1</lynk-menu-item>
+          <lynk-menu-item>Dropdown Item 2</lynk-menu-item>
+          <lynk-menu-item>Dropdown Item 3</lynk-menu-item>
+        </lynk-menu>
+      </lynk-popover>
+    `);
+    const firstMenuItem = el.querySelector('lynk-menu-item')!;
+    const hideHandler = sinon.spy();
+
+    document.body.addEventListener('keydown', hideHandler);
+    firstMenuItem.focus();
     await sendKeys({ press: 'Escape' });
     await el.updateComplete;
 
     expect(el.open).to.be.false;
+    expect(hideHandler).to.not.have.been.called;
   });
 });

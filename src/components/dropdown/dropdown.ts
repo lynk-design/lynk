@@ -19,6 +19,8 @@ import type LynkPopup from '../popup/popup';
 import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Dropdowns expose additional content that "drops down" in a panel.
+ *
  * @since 1.0
  * @status stable
  *
@@ -134,7 +136,7 @@ export default class LynkDropdown extends LynkElement {
   }
 
   getMenu() {
-    return this.panel.assignedElements({ flatten: true }).find(el => el.tagName.toLowerCase() === 'sl-menu') as
+    return this.panel.assignedElements({ flatten: true }).find(el => el.tagName.toLowerCase() === 'lynk-menu') as
       | LynkMenu
       | undefined;
   }

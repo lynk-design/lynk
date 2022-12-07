@@ -64,7 +64,8 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
   @property() title = ''; // make reactive to pass through
 
   /** The button's color. */
-  @property({ reflect: true }) color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'default';
+  @property({ reflect: true }) color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' =
+    'default';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'tiny' | 'small' | 'medium' | 'large' = 'medium';

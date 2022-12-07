@@ -62,35 +62,33 @@ Use the `justify`, and `align` properties to arrange your vertical stack.
 
 <lynk-grid container class="v-stack-options">
   <lynk-grid item>
-    <lynk-radio-group label="Justify" fieldset>
-      <lynk-radio name="justify" value="start">Start</lynk-radio>
-      <lynk-radio name="justify" value="center">Center</lynk-radio>
-      <lynk-radio name="justify" value="end">End</lynk-radio>
-      <lynk-radio name="justify" value="between">Between</lynk-radio>
-      <lynk-radio name="justify" value="around">Around</lynk-radio>
-      <lynk-radio name="justify" value="evenly">Evenly</lynk-radio>
+    <lynk-radio-group label="Justify" name="justify" value="start">
+      <lynk-radio value="start">Start</lynk-radio>
+      <lynk-radio value="center">Center</lynk-radio>
+      <lynk-radio value="end">End</lynk-radio>
+      <lynk-radio value="between">Between</lynk-radio>
+      <lynk-radio value="around">Around</lynk-radio>
+      <lynk-radio value="evenly">Evenly</lynk-radio>
     </lynk-radio-group>
   </lynk-grid>
   <lynk-grid item>
-    <lynk-radio-group label="Align" fieldset>
-      <lynk-radio name="align" value="start">Start</lynk-radio>
-      <lynk-radio name="align" value="center">Center</lynk-radio>
-      <lynk-radio name="align" value="end">End</lynk-radio>
-      <lynk-radio name="align" value="stretch">Stretch</lynk-radio>
-      <lynk-radio name="align" value="baseline">Baseline</lynk-radio>
+    <lynk-radio-group label="Align" name="align" value="start">
+      <lynk-radio value="start">Start</lynk-radio>
+      <lynk-radio value="center">Center</lynk-radio>
+      <lynk-radio value="end">End</lynk-radio>
+      <lynk-radio value="stretch">Stretch</lynk-radio>
+      <lynk-radio value="baseline">Baseline</lynk-radio>
     </lynk-radio-group>
   </lynk-grid>
 </lynk-grid>
 
 <script>
   const stack = document.querySelector('.test-v-stack');
-  const options = document.querySelectorAll('.v-stack-options lynk-radio');
+  const options = document.querySelectorAll('.v-stack-options lynk-radio-group');
 
   options.forEach(function (option) {
     option.addEventListener('on:change', event => {
-      if (event.target.checked) {
-        stack.setAttribute(event.target.name, event.target.value);
-      }
+      stack.setAttribute(event.target.name, event.target.value);
     });
   });
 </script>
@@ -127,35 +125,33 @@ Use the `justify`, and `align` properties to arrange your horizontal stack.
 
 <lynk-grid container class="h-stack-options">
   <lynk-grid item>
-    <lynk-radio-group label="Justify" fieldset>
-      <lynk-radio name="justify" value="start">Start</lynk-radio>
-      <lynk-radio name="justify" value="center">Center</lynk-radio>
-      <lynk-radio name="justify" value="end">End</lynk-radio>
-      <lynk-radio name="justify" value="between">Between</lynk-radio>
-      <lynk-radio name="justify" value="around">Around</lynk-radio>
-      <lynk-radio name="justify" value="evenly">Evenly</lynk-radio>
+    <lynk-radio-group label="Justify" name="justify" value="start">
+      <lynk-radio value="start">Start</lynk-radio>
+      <lynk-radio value="center">Center</lynk-radio>
+      <lynk-radio value="end">End</lynk-radio>
+      <lynk-radio value="between">Between</lynk-radio>
+      <lynk-radio value="around">Around</lynk-radio>
+      <lynk-radio value="evenly">Evenly</lynk-radio>
     </lynk-radio-group>
   </lynk-grid>
   <lynk-grid item>
-    <lynk-radio-group label="Align" fieldset>
-      <lynk-radio name="align" value="start">Start</lynk-radio>
-      <lynk-radio name="align" value="center">Center</lynk-radio>
-      <lynk-radio name="align" value="end">End</lynk-radio>
-      <lynk-radio name="align" value="stretch">Stretch</lynk-radio>
-      <lynk-radio name="align" value="baseline">Baseline</lynk-radio>
+    <lynk-radio-group label="Align" name="align" value="start">
+      <lynk-radio value="start">Start</lynk-radio>
+      <lynk-radio value="center">Center</lynk-radio>
+      <lynk-radio value="end">End</lynk-radio>
+      <lynk-radio value="stretch">Stretch</lynk-radio>
+      <lynk-radio value="baseline">Baseline</lynk-radio>
     </lynk-radio-group>
   </lynk-grid>
 </lynk-grid>
 
 <script>
   const stack = document.querySelector('.test-h-stack');
-  const options = document.querySelectorAll('.h-stack-options lynk-radio');
+  const options = document.querySelectorAll('.h-stack-options lynk-radio-group');
 
   options.forEach(function (option) {
     option.addEventListener('on:change', event => {
-      if (event.target.checked) {
-        stack.setAttribute(event.target.name, event.target.value);
-      }
+      stack.setAttribute(event.target.name, event.target.value);
     });
   });
 </script>

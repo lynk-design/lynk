@@ -89,6 +89,9 @@ export default class LynkDialog extends LynkElement {
    */
   @property({ attribute: 'no-header', type: Boolean, reflect: true }) noHeader = false;
 
+  /** The dialog's size. */
+  @property({ reflect: true }) size: 'fitted' | 'full' | 'auto' = 'auto';
+
   connectedCallback() {
     super.connectedCallback();
     this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
@@ -259,6 +262,8 @@ export default class LynkDialog extends LynkElement {
         class=${classMap({
           'lynk-dialog': true,
           'lynk-dialog--open': this.open,
+          'lynk-dialog--fitted': this.size === 'fitted',
+          'lynk-dialog--full': this.size === 'full',
           'lynk-dialog--has-footer': this.hasSlotController.test('footer')
         })}
       >

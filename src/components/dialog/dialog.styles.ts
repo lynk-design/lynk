@@ -120,4 +120,19 @@ export default css`
       border: solid 1px var(--lynk-color-neutral-0);
     }
   }
+
+
+  /*
+  * Size modifiers
+  */
+
+  .lynk-dialog--fitted .lynk-dialog__panel {
+    width: 80vw;
+    height: 80vh;
+  }
+
+  .lynk-dialog--full .lynk-dialog__panel {
+    width: 100vw;
+    height: 100vh;
+  }
 `;

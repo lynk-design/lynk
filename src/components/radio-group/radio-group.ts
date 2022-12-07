@@ -70,7 +70,7 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
   @watch('value')
   handleValueChange() {
     if (this.hasUpdated) {
-      this.emit('sl-change');
+      this.emit('on:change');
       this.updateCheckedRadio();
     }
   }

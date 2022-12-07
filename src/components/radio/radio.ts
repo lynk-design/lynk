@@ -18,7 +18,6 @@ import type { CSSResultGroup } from 'lit';
  * @slot - The radio's label.
  *
  * @event on:blur - Emitted when the control loses focus.
- * @event on:change - Emitted when the control's checked state changes.
  * @event on:focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
@@ -51,7 +50,6 @@ import type { CSSResultGroup } from 'lit';
    handleCheckedChange() {
      this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
      this.setAttribute('tabindex', this.checked ? '0' : '-1');
-     this.emit('on:change');
    }
 
    @watch('disabled', { waitUntilFirstUpdate: true })

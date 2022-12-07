@@ -285,7 +285,6 @@ describe('<lynk-dropdown>', () => {
     expect(el.open).to.be.false;
   });
 
-
   it('should close and stop propagating the keydown event when Escape is pressed and the dropdown is open ', async () => {
     const el = await fixture<LynkDropdown>(html`
       <lynk-dropdown open>
