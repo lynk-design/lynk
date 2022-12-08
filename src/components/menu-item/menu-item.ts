@@ -1,13 +1,16 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import '../../components/icon/icon';
-import { emit } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { getTextContent } from '../../internal/slot';
 import { watch } from '../../internal/watch';
+import '../icon/icon';
 import styles from './menu-item.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Menu items provide options for the user to pick from in a menu.
+ *
  * @since 1.0
  * @status stable
  *
@@ -22,13 +25,14 @@ import styles from './menu-item.styles';
  * @slot suffix - Used to append an icon or similar element to the menu item.
  *
  * @csspart base - The component's internal wrapper.
+ * @csspart checked-icon - The checked icon, which is only visible when the menu item is checked.
  * @csspart prefix - The prefix container.
  * @csspart label - The menu item label.
  * @csspart suffix - The suffix container.
  */
 @customElement('lynk-menu-item')
-export default class LynkMenuItem extends LitElement {
-  static styles = styles;
+export default class LynkMenuItem extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   private cachedTextLabel: string;
 
@@ -58,21 +62,21 @@ export default class LynkMenuItem extends LitElement {
     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
   }
 
-  handleClick(event: MouseEvent) {
+  @watch('disabled')
+  handleDisabledChange() {
+    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+  }
 
+  handleClick(event: MouseEvent) {
     if (this.disabled) {
       event.preventDefault();
       event.stopPropagation();
       return;
     }
 
-    emit(this, 'on:click');
+    this.emit('on:click');
   }
 
-  @watch('disabled')
-  handleDisabledChange() {
-    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
-  }
 
   handleDefaultSlotChange() {
     const textLabel = this.getTextLabel();
@@ -85,7 +89,7 @@ export default class LynkMenuItem extends LitElement {
 
     if (textLabel !== this.cachedTextLabel) {
       this.cachedTextLabel = textLabel;
-      emit(this, 'on:label-change');
+      this.emit('on:label-change');
     }
   }
 
@@ -101,24 +105,18 @@ export default class LynkMenuItem extends LitElement {
         })}
         @click=${this.handleClick}
       >
-        <span class="lynk-menu-item__check">
-          <lynk-icon name="check-lg" library="system" aria-hidden="true"></lynk-icon>
+        <span part="checked-icon" class="lynk-menu-item__check">
+          <sl-icon name="check" library="system" aria-hidden="true"></sl-icon>
         </span>
 
-        <span part="prefix" class="lynk-menu-item__prefix">
-          <slot name="prefix"></slot>
-        </span>
+        <slot name="prefix" part="prefix" class="lynk-menu-item__prefix"></slot>
 
-        <span part="label" class="lynk-menu-item__label">
-          <slot @slotchange=${this.handleDefaultSlotChange}></slot>
-        </span>
+        <slot part="label" class="lynk-menu-item__label" @slotchange=${this.handleDefaultSlotChange}></slot>
 
-        <span part="suffix" class="lynk-menu-item__suffix">
-          <slot name="suffix"></slot>
-        </span>
+        <slot name="suffix" part="suffix" class="lynk-menu-item__suffix"></slot>
 
         <span class="lynk-menu-item__chevron">
-          <lynk-icon name="chevron-right" library="system" aria-hidden="true"></lynk-icon>
+          <sl-icon name="chevron-right" library="system" aria-hidden="true"></sl-icon>
         </span>
       </div>
     `;

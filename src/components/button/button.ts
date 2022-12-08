@@ -1,19 +1,25 @@
-import { LitElement } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { html, literal } from 'lit/static-html.js';
-import '../../components/spinner/spinner';
-import { emit } from '../../internal/event';
 import { FormSubmitController } from '../../internal/form';
+import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
+import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
+import '../icon/icon';
+import '../spinner/spinner';
 import styles from './button.styles';
+import type { LynkFormControl } from '../../internal/lynk-element';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Buttons represent actions that are available to the user.
+ *
  * @since 1.0
  * @status stable
  *
+ * @dependency lynk-icon
  * @dependency lynk-spinner
  *
  * @event on:blur - Emitted when the button loses focus.
@@ -31,13 +37,13 @@ import styles from './button.styles';
  * @csspart caret - The button's caret.
  */
 @customElement('lynk-button')
-export default class LynkButton extends LitElement {
-  static styles = styles;
+export default class LynkButton extends LynkElement implements LynkFormControl {
+  static styles: CSSResultGroup = styles;
 
   @query('.lynk-button') button: HTMLButtonElement | HTMLLinkElement;
 
   private readonly formSubmitController = new FormSubmitController(this, {
-    form: (input: HTMLInputElement) => {
+    form: input => {
       // Buttons support a form attribute that points to an arbitrary form, so if this attribute it set we need to query
       // the form from the same root using its id
       if (input.hasAttribute('form')) {
@@ -54,9 +60,12 @@ export default class LynkButton extends LitElement {
   private readonly localize = new LocalizeController(this);
 
   @state() private hasFocus = false;
+  @state() invalid = false;
+  @property() title = ''; // make reactive to pass through
 
   /** The button's color. */
-  @property({ reflect: true }) color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'default';
+  @property({ reflect: true }) color: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' =
+    'default';
 
   /** The button's size. */
   @property({ reflect: true }) size: 'tiny' | 'small' | 'medium' | 'large' = 'medium';
@@ -92,16 +101,16 @@ export default class LynkButton extends LitElement {
    * The type of button. When the type is `submit`, the button will submit the surrounding form. Note that the default
    * value is `button` instead of `submit`, which is opposite of how native `<button>` elements behave.
    */
-  @property() type: 'button' | 'submit' = 'button';
+  @property() type: 'button' | 'submit' | 'reset' = 'button';
 
   /** An optional name for the button. Ignored when `href` is set. */
-  @property() name?: string;
+  @property() name = '';
 
   /** An optional value for the button. Ignored when `href` is set. */
-  @property() value?: string;
+  @property() value = '';
 
   /** When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`. */
-  @property() href?: string;
+  @property() href = '';
 
   /** Tells the browser where to open the link. Only used when `href` is set. */
   @property() target?: '_blank' | '_parent' | '_self' | '_top';
@@ -118,6 +127,10 @@ export default class LynkButton extends LitElement {
   /** Used to override the form owner's `action` attribute. */
   @property({ attribute: 'formaction' }) formAction: string;
 
+  /** Used to override the form owner's `enctype` attribute.  */
+  @property({ attribute: 'formenctype' })
+  formEnctype: 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain';
+
   /** Used to override the form owner's `method` attribute.  */
   @property({ attribute: 'formmethod' }) formMethod: 'post' | 'get';
 
@@ -126,6 +139,12 @@ export default class LynkButton extends LitElement {
 
   /** Used to override the form owner's `target` attribute. */
   @property({ attribute: 'formtarget' }) formTarget: '_self' | '_blank' | '_parent' | '_top' | string;
+
+  firstUpdated() {
+    if (this.isButton()) {
+      this.invalid = !(this.button as HTMLButtonElement).checkValidity();
+    }
+  }
 
   /** Simulates a click on the button. */
   click() {
@@ -142,18 +161,43 @@ export default class LynkButton extends LitElement {
     this.button.blur();
   }
 
+  /** Checks for validity but does not show the browser's validation message. */
+  checkValidity() {
+    if (this.isButton()) {
+      return (this.button as HTMLButtonElement).checkValidity();
+    }
+
+    return true;
+  }
+
+  /** Checks for validity and shows the browser's validation message if the control is invalid. */
+  reportValidity() {
+    if (this.isButton()) {
+      return (this.button as HTMLButtonElement).reportValidity();
+    }
+
+    return true;
+  }
+
+  /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
+  setCustomValidity(message: string) {
+    if (this.isButton()) {
+      (this.button as HTMLButtonElement).setCustomValidity(message);
+      this.invalid = !(this.button as HTMLButtonElement).checkValidity();
+    }
+  }
+
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'on:blur');
+    this.emit('on:blur');
   }
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'on:focus');
+    this.emit('on:focus');
   }
 
   handleClick(event: MouseEvent) {
-
     if (this.disabled || this.thinking) {
       event.preventDefault();
       event.stopPropagation();
@@ -164,14 +208,36 @@ export default class LynkButton extends LitElement {
       this.formSubmitController.submit(this);
     }
 
-    emit(this, 'on:click');
+    if (this.type === 'reset') {
+      this.formSubmitController.reset(this);
+    }
+
+    this.emit('on:click');
+  }
+
+  @watch('disabled', { waitUntilFirstUpdate: true })
+  handleDisabledChange() {
+    // Disabled form controls are always valid, so we need to recheck validity when the state changes
+    if (this.isButton()) {
+      this.button.disabled = this.disabled;
+      this.invalid = !(this.button as HTMLButtonElement).checkValidity();
+    }
+  }
+
+  private isButton() {
+    return this.href ? false : true;
+  }
+
+  private isLink() {
+    return this.href ? true : false;
   }
 
   render() {
-    const isLink = this.href ? true : false;
+    const isLink = this.isLink();
     const tag = isLink ? literal`a` : literal`button`;
 
-    /* eslint-disable lit/binding-positions, lit/no-invalid-html */
+    /* eslint-disable lit/no-invalid-html */
+    /* eslint-disable lit/binding-positions */
     return html`
       <${tag}
         part="base"
@@ -204,6 +270,7 @@ export default class LynkButton extends LitElement {
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
+        title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
         name=${ifDefined(isLink ? undefined : this.name)}
         value=${ifDefined(isLink ? undefined : this.value)}
         href=${ifDefined(isLink ? this.href : undefined)}
@@ -217,37 +284,17 @@ export default class LynkButton extends LitElement {
         @focus=${this.handleFocus}
         @click=${this.handleClick}
       >
-        <span part="prefix" class="lynk-button__prefix">
-          <slot name="prefix"></slot>
-        </span>
-        <span part="label" class="lynk-button__label">
-          <slot></slot>
-        </span>
-        <span part="suffix" class="lynk-button__suffix">
-          <slot name="suffix"></slot>
-        </span>
-        ${
-          this.caret
-            ? html`
-                <span part="caret" class="lynk-button__caret">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </span>
-              `
-            : ''
-        }
+      <slot name="prefix" part="prefix" class="lynk-button__prefix"></slot>
+      <slot part="label" class="lynk-button__label"></slot>
+      <slot name="suffix" part="suffix" class="lynk-button__suffix"></slot>
+      ${
+        this.caret ? html` <lynk-icon part="caret" class="lynk-button__caret" library="system" name="caret"></lynk-icon> ` : ''
+      }
         ${this.thinking ? html`<lynk-spinner></lynk-spinner>` : ''}
       </${tag}>
     `;
-    /* eslint-enable lit/binding-positions, lit/no-invalid-html */
+    /* eslint-enable lit/no-invalid-html */
+    /* eslint-enable lit/binding-positions */
   }
 }
 

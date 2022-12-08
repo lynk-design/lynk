@@ -1,10 +1,13 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { emit } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
 import styles from './resize-observer.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary The Resize Observer component offers a thin, declarative interface to the [`ResizeObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver).
+ *
  * @since 1.0
  * @status stable
  *
@@ -13,8 +16,8 @@ import styles from './resize-observer.styles';
  * @event {{ entries: ResizeObserverEntry[] }} on:resize - Emitted when the element is resized.
  */
 @customElement('lynk-resize-observer')
-export default class LynkResizeObserver extends LitElement {
-  static styles = styles;
+export default class LynkResizeObserver extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   private resizeObserver: ResizeObserver;
   private observedElements: HTMLElement[] = [];
@@ -25,7 +28,7 @@ export default class LynkResizeObserver extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-      emit(this, 'on:resize', { detail: { entries } });
+      this.emit('on:resize', { detail: { entries } });
     });
 
     if (!this.disabled) {

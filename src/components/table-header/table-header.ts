@@ -1,7 +1,9 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import { LynkTableSortEvent, LynkTableSortDirection } from '../table/models';
 import styles from './table-header.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
  * @since 1.0
@@ -10,8 +12,8 @@ import styles from './table-header.styles';
  * @event lynk-table-event-sort - Emitted when a sortable table header is clicked on.
  */
 @customElement('lynk-th')
-export default class LynkTableHeader extends LitElement {
-  static styles = styles;
+export default class LynkTableHeader extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   /** The column key associated with this table header */
   @property() key: string;
@@ -26,7 +28,7 @@ export default class LynkTableHeader extends LitElement {
     super.connectedCallback();
     this.addEventListener('click', this.handleClick);
   }
-  
+
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('click', this.handleClick);

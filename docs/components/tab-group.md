@@ -2,8 +2,6 @@
 
 [component-header:lynk-tab-group]
 
-Tab groups organize content into a container that shows one section at a time.
-
 Tab groups make use of [tabs](/components/tab) and [tab panels](/components/tab-panel). Each tab must be slotted into the `nav` slot and its `panel` must refer to a tab panel of the same name.
 
 ```html preview
@@ -96,9 +94,9 @@ Add the `closable` attribute to a tab to show a close button. This example shows
 <script>
   const tabGroup = document.querySelector('.tabs-closable');
 
-  tabGroup.addEventListener('lynk-close', async event => {
+  tabGroup.addEventListener('on:close', async event => {
     const tab = event.target;
-    const panel = tabGroup.querySelector(`l-tab-panel[name="${tab.panel}"]`);
+    const panel = tabGroup.querySelector(`lynk-tab-panel[name="${tab.panel}"]`);
 
     // Show the previous tab if the tab is currently active
     if (tab.active) {

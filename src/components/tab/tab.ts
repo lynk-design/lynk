@@ -1,15 +1,19 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import '../../components/icon-button/icon-button';
 import { autoIncrement } from '../../internal/auto-increment';
-import { emit } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
+import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
+import '../icon-button/icon-button';
 import styles from './tab.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
- * @since 2.0
- * @status stable
+ * @summary Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
+ *
+ * @since 1.0
+ * @status experimental
  *
  * @dependency lynk-icon-button
  *
@@ -20,10 +24,12 @@ import styles from './tab.styles';
  * @csspart base - The component's internal wrapper.
  * @csspart close-button - The close button.
  * @csspart close-button__base - The close button's `base` part.
+ *
+ * @cssproperty --padding - The padding around each tab item.
  */
 @customElement('lynk-tab')
-export default class LynkTab extends LitElement {
-  static styles = styles;
+export default class LynkTab extends LynkElement {
+  static styles: CSSResultGroup = styles;
   private readonly localize = new LocalizeController(this);
 
   @query('.lynk-tab') tab: HTMLElement;
@@ -43,8 +49,10 @@ export default class LynkTab extends LitElement {
   /** Draws the tab in a disabled state. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /** The locale to render the component in. */
-  @property() lang: string;
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute('role', 'tab');
+  }
 
   /** Sets focus to the tab. */
   focus(options?: FocusOptions) {
@@ -57,7 +65,17 @@ export default class LynkTab extends LitElement {
   }
 
   handleCloseClick() {
-    emit(this, 'on:close');
+    this.emit('on:close');
+  }
+
+  @watch('active')
+  handleActiveChange() {
+    this.setAttribute('aria-selected', this.active ? 'true' : 'false');
+  }
+
+  @watch('disabled')
+  handleDisabledChange() {
+    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
   }
 
   render() {
@@ -73,10 +91,7 @@ export default class LynkTab extends LitElement {
           'lynk-tab--closable': this.closable,
           'lynk-tab--disabled': this.disabled
         })}
-        role="tab"
-        aria-disabled=${this.disabled ? 'true' : 'false'}
-        aria-selected=${this.active ? 'true' : 'false'}
-        tabindex=${this.disabled || !this.active ? '-1' : '0'}
+        tabindex=${this.disabled ? '-1' : '0'}
       >
         <slot></slot>
         ${this.closable
@@ -84,7 +99,7 @@ export default class LynkTab extends LitElement {
               <lynk-icon-button
                 part="close-button"
                 exportparts="base:close-button__base"
-                name="x"
+                name="x-lg"
                 library="system"
                 label=${this.localize.term('close')}
                 class="lynk-tab__close-button"

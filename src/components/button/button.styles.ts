@@ -66,7 +66,11 @@ export default css`
     pointer-events: none;
   }
 
-  .lynk-button__label ::slotted(l-icon) {
+  .lynk-button__label {
+    display: inline-block;
+  }
+
+  .lynk-button__label::slotted(lynk-icon) {
     vertical-align: -2px;
   }
 
@@ -467,7 +471,6 @@ export default css`
   .lynk-button--circle {
     padding-left: 0;
     padding-right: 0;
-    padding-top: 2px;
   }
 
   .lynk-button--circle.lynk-button--tiny {
@@ -503,7 +506,6 @@ export default css`
   .lynk-button--square {
     padding-left: 0;
     padding-right: 0;
-    padding-top: 3px;
   }
 
   .lynk-button--square.lynk-button--tiny {
@@ -541,13 +543,7 @@ export default css`
   }
 
   .lynk-button--caret .lynk-button__caret {
-    display: flex;
-    align-items: center;
-  }
-
-  .lynk-button--caret .lynk-button__caret svg {
-    width: 1em;
-    height: 1em;
+    height: auto;
   }
 
   /*
@@ -729,6 +725,7 @@ export default css`
     z-index: 1;
   }
 
+  /* Focus and checked are always on top */
   :host(.lynk-button-group__button--focus),
   :host(.lynk-button-group__button[checked]) {
     z-index: 2;

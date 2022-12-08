@@ -1,22 +1,26 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import '../../components/icon-button/icon-button';
 import { animateTo, stopAnimations } from '../../internal/animate';
-import { emit, waitForEvent } from '../../internal/event';
+import { waitForEvent } from '../../internal/event';
 import Modal from '../../internal/modal';
 import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll';
+import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
 import { uppercaseFirstLetter } from '../../internal/string';
 import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import { LocalizeController } from '../../utilities/localize';
+import '../icon-button/icon-button';
 import styles from './drawer.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Drawers slide in from a container to expose additional options and information.
+ *
  * @since 1.0
- * @status experimental
+ * @status stable
  *
  * @dependency lynk-icon-button
  *
@@ -39,6 +43,7 @@ import styles from './drawer.styles';
  * @csspart overlay - The overlay.
  * @csspart panel - The drawer panel (where the drawer and its content is rendered).
  * @csspart header - The drawer header.
+ * @csspart header-actions - Optional actions to add to the header. Works best with `<sl-icon-button>`.
  * @csspart title - The drawer title.
  * @csspart close-button - The close button.
  * @csspart close-button__base - The close button's `base` part.
@@ -64,8 +69,8 @@ import styles from './drawer.styles';
  * @animation drawer.overlay.hide - The animation to use when hiding the drawer's overlay.
  */
 @customElement('lynk-drawer')
-export default class LynkDrawer extends LitElement {
-  static styles = styles;
+export default class LynkDrawer extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   @query('.lynk-drawer') drawer: HTMLElement;
   @query('.lynk-drawer__panel') panel: HTMLElement;
@@ -81,7 +86,8 @@ export default class LynkDrawer extends LitElement {
 
   /**
    * The drawer's label as displayed in the header. You should always include a relevant label even when using
-   * `no-header`, as it is required for proper accessibility.
+   * `no-header`, as it is required for proper accessibility. If you need to display HTML, you can use the `label` slot
+   * instead.
    */
   @property({ reflect: true }) label = '';
 
@@ -102,6 +108,7 @@ export default class LynkDrawer extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
     this.modal = new Modal(this);
   }
 
@@ -109,6 +116,7 @@ export default class LynkDrawer extends LitElement {
     this.drawer.hidden = !this.open;
 
     if (this.open && !this.contained) {
+      this.addOpenListeners();
       this.modal.activate();
       lockBodyScrolling(this);
     }
@@ -140,13 +148,13 @@ export default class LynkDrawer extends LitElement {
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
-    const onRequestClose = emit(this, 'on:request-close', {
+    const onRequestClose = this.emit('on:request-close', {
       cancelable: true,
       detail: { source }
     });
 
     if (onRequestClose.defaultPrevented) {
-      const animation = getAnimation(this, 'drawer.denyClose');
+      const animation = getAnimation(this, 'drawer.denyClose', { dir: this.localize.dir() });
       animateTo(this.panel, animation.keyframes, animation.options);
       return;
     }
@@ -154,8 +162,16 @@ export default class LynkDrawer extends LitElement {
     this.hide();
   }
 
-  handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
+  addOpenListeners() {
+    document.addEventListener('keydown', this.handleDocumentKeyDown);
+  }
+
+  removeOpenListeners() {
+    document.removeEventListener('keydown', this.handleDocumentKeyDown);
+  }
+
+  handleDocumentKeyDown(event: KeyboardEvent) {
+    if (this.open && event.key === 'Escape') {
       event.stopPropagation();
       this.requestClose('keyboard');
     }
@@ -165,7 +181,8 @@ export default class LynkDrawer extends LitElement {
   async handleOpenChange() {
     if (this.open) {
       // Show
-      emit(this, 'on:show');
+      this.emit('on:show');
+      this.addOpenListeners();
       this.originalTrigger = document.activeElement as HTMLElement;
 
       // Lock body scrolling only if the drawer isn't contained
@@ -190,9 +207,9 @@ export default class LynkDrawer extends LitElement {
 
       // Set initial focus
       requestAnimationFrame(() => {
-        const slInitialFocus = emit(this, 'on:initial-focus', { cancelable: true });
+        const onInitialFocus = this.emit('on:initial-focus', { cancelable: true });
 
-        if (!slInitialFocus.defaultPrevented) {
+        if (!onInitialFocus.defaultPrevented) {
           // Set focus to the autofocus target and restore the attribute
           if (autoFocusTarget) {
             (autoFocusTarget as HTMLInputElement).focus({ preventScroll: true });
@@ -207,29 +224,46 @@ export default class LynkDrawer extends LitElement {
         }
       });
 
-      const panelAnimation = getAnimation(this, `drawer.show${uppercaseFirstLetter(this.placement)}`);
-      const overlayAnimation = getAnimation(this, 'drawer.overlay.show');
+      const panelAnimation = getAnimation(this, `drawer.show${uppercaseFirstLetter(this.placement)}`, {
+        dir: this.localize.dir()
+      });
+      const overlayAnimation = getAnimation(this, 'drawer.overlay.show', { dir: this.localize.dir() });
       await Promise.all([
         animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options),
         animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
       ]);
 
-      emit(this, 'after:show');
+      this.emit('after:show');
     } else {
       // Hide
-      emit(this, 'on:hide');
+      this.emit('on:hide');
+      this.removeOpenListeners();
       this.modal.deactivate();
       unlockBodyScrolling(this);
 
       await Promise.all([stopAnimations(this.drawer), stopAnimations(this.overlay)]);
-      const panelAnimation = getAnimation(this, `drawer.hide${uppercaseFirstLetter(this.placement)}`);
-      const overlayAnimation = getAnimation(this, 'drawer.overlay.hide');
+      const panelAnimation = getAnimation(this, `drawer.hide${uppercaseFirstLetter(this.placement)}`, {
+        dir: this.localize.dir()
+      });
+      const overlayAnimation = getAnimation(this, 'drawer.overlay.hide', { dir: this.localize.dir() });
+
+      // Animate the overlay and the panel at the same time. Because animation durations might be different, we need to
+      // hide each one individually when the animation finishes, otherwise the first one that finishes will reappear
+      // unexpectedly. We'll unhide them after all animations have completed.
       await Promise.all([
-        animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options),
-        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
+        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options).then(() => {
+          this.overlay.hidden = true;
+        }),
+        animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options).then(() => {
+          this.panel.hidden = true;
+        })
       ]);
 
       this.drawer.hidden = true;
+
+      // Now that the dialog is hidden, restore the overlay and panel for next time
+      this.overlay.hidden = false;
+      this.panel.hidden = false;
 
       // Restore focus to the original trigger
       const trigger = this.originalTrigger;
@@ -237,12 +271,11 @@ export default class LynkDrawer extends LitElement {
         setTimeout(() => trigger.focus());
       }
 
-      emit(this, 'after:hide');
+      this.emit('after:hide');
     }
   }
 
   render() {
-    /* eslint-disable lit-a11y/click-events-have-key-events */
     return html`
       <div
         part="base"
@@ -255,9 +288,9 @@ export default class LynkDrawer extends LitElement {
           'lynk-drawer--start': this.placement === 'start',
           'lynk-drawer--contained': this.contained,
           'lynk-drawer--fixed': !this.contained,
+          'lynk-drawer--rtl': this.localize.dir() === 'rtl',
           'lynk-drawer--has-footer': this.hasSlotController.test('footer')
         })}
-        @keydown=${this.handleKeyDown}
       >
         <div part="overlay" class="lynk-drawer__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
 
@@ -278,22 +311,23 @@ export default class LynkDrawer extends LitElement {
                     <!-- If there's no label, use an invisible character to prevent the header from collapsing -->
                     <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
                   </h2>
-                  <lynk-icon-button
-                    part="close-button"
-                    exportparts="base:close-button__base"
-                    class="lynk-drawer__close"
-                    name="x"
-                    label=${this.localize.term('close')}
-                    library="system"
-                    @click=${() => this.requestClose('close-button')}
-                  ></lynk-icon-button>
+                  <div part="header-actions" class="lynk-drawer__header-actions">
+                    <slot name="header-actions"></slot>
+                    <lynk-icon-button
+                      part="close-button"
+                      exportparts="base:close-button__base"
+                      class="lynk-drawer__close"
+                      name="x-lg"
+                      label=${this.localize.term('close')}
+                      library="system"
+                      @click=${() => this.requestClose('close-button')}
+                    ></lynk-icon-button>
+                  </div>
                 </header>
               `
             : ''}
 
-          <div part="body" class="lynk-drawer__body">
-            <slot></slot>
-          </div>
+          <slot part="body" class="lynk-drawer__body"></slot>
 
           <footer part="footer" class="lynk-drawer__footer">
             <slot name="footer"></slot>
@@ -301,23 +335,22 @@ export default class LynkDrawer extends LitElement {
         </div>
       </div>
     `;
-    /* eslint-enable lit-a11y/click-events-have-key-events */
   }
 }
 
 // Top
 setDefaultAnimation('drawer.showTop', {
   keyframes: [
-    { opacity: 0, transform: 'translateY(-100%)' },
-    { opacity: 1, transform: 'translateY(0)' }
+    { opacity: 0, translate: '0 -100%' },
+    { opacity: 1, translate: '0 0' }
   ],
   options: { duration: 250, easing: 'ease' }
 });
 
 setDefaultAnimation('drawer.hideTop', {
   keyframes: [
-    { opacity: 1, transform: 'translateY(0)' },
-    { opacity: 0, transform: 'translateY(-100%)' }
+    { opacity: 1, translate: '0 0' },
+    { opacity: 0, translate: '0 -100%' }
   ],
   options: { duration: 250, easing: 'ease' }
 });
@@ -325,16 +358,24 @@ setDefaultAnimation('drawer.hideTop', {
 // End
 setDefaultAnimation('drawer.showEnd', {
   keyframes: [
-    { opacity: 0, transform: 'translateX(100%)' },
-    { opacity: 1, transform: 'translateX(0)' }
+    { opacity: 0, translate: '100%' },
+    { opacity: 1, translate: '0' }
+  ],
+  rtlKeyframes: [
+    { opacity: 0, translate: '-100%' },
+    { opacity: 1, translate: '0' }
   ],
   options: { duration: 250, easing: 'ease' }
 });
 
 setDefaultAnimation('drawer.hideEnd', {
   keyframes: [
-    { opacity: 1, transform: 'translateX(0)' },
-    { opacity: 0, transform: 'translateX(100%)' }
+    { opacity: 1, translate: '0' },
+    { opacity: 0, translate: '100%' }
+  ],
+  rtlKeyframes: [
+    { opacity: 1, translate: '0' },
+    { opacity: 0, translate: '-100%' }
   ],
   options: { duration: 250, easing: 'ease' }
 });
@@ -342,16 +383,16 @@ setDefaultAnimation('drawer.hideEnd', {
 // Bottom
 setDefaultAnimation('drawer.showBottom', {
   keyframes: [
-    { opacity: 0, transform: 'translateY(100%)' },
-    { opacity: 1, transform: 'translateY(0)' }
+    { opacity: 0, translate: '0 100%' },
+    { opacity: 1, translate: '0 0' }
   ],
   options: { duration: 250, easing: 'ease' }
 });
 
 setDefaultAnimation('drawer.hideBottom', {
   keyframes: [
-    { opacity: 1, transform: 'translateY(0)' },
-    { opacity: 0, transform: 'translateY(100%)' }
+    { opacity: 1, translate: '0 0' },
+    { opacity: 0, translate: '0 100%' }
   ],
   options: { duration: 250, easing: 'ease' }
 });
@@ -359,23 +400,31 @@ setDefaultAnimation('drawer.hideBottom', {
 // Start
 setDefaultAnimation('drawer.showStart', {
   keyframes: [
-    { opacity: 0, transform: 'translateX(-100%)' },
-    { opacity: 1, transform: 'translateX(0)' }
+    { opacity: 0, translate: '-100%' },
+    { opacity: 1, translate: '0' }
+  ],
+  rtlKeyframes: [
+    { opacity: 0, translate: '100%' },
+    { opacity: 1, translate: '0' }
   ],
   options: { duration: 250, easing: 'ease' }
 });
 
 setDefaultAnimation('drawer.hideStart', {
   keyframes: [
-    { opacity: 1, transform: 'translateX(0)' },
-    { opacity: 0, transform: 'translateX(-100%)' }
+    { opacity: 1, translate: '0' },
+    { opacity: 0, translate: '-100%' }
+  ],
+  rtlKeyframes: [
+    { opacity: 1, translate: '0' },
+    { opacity: 0, translate: '100%' }
   ],
   options: { duration: 250, easing: 'ease' }
 });
 
 // Deny close
 setDefaultAnimation('drawer.denyClose', {
-  keyframes: [{ transform: 'scale(1)' }, { transform: 'scale(1.01)' }, { transform: 'scale(1)' }],
+  keyframes: [{ scale: 1 }, { scale: 1.01 }, { scale: 1 }],
   options: { duration: 250 }
 });
 

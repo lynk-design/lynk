@@ -5,7 +5,12 @@ export default css`
   ${componentStyles}
 
   :host {
+    display: contents;
+
     --padding: var(--lynk-spacing-base);
+
+    /* For better DX, we'll reset the margin here so the base part can inherit it */
+    margin: 0;
   }
 
   .lynk-alert {
@@ -23,7 +28,7 @@ export default css`
     font-weight: var(--lynk-font-weight-normal);
     line-height: 1.6;
     color: var(--lynk-color-neutral-900);
-    margin: 0;
+    margin: inherit;
   }
 
   .lynk-alert:not(.lynk-alert--has-icon) .lynk-alert__icon,
@@ -86,6 +91,7 @@ export default css`
 
   .lynk-alert__message {
     flex: 1 1 auto;
+    display: block;
     padding: var(--padding) var(--lynk-spacing-medium);
     overflow: hidden;
   }

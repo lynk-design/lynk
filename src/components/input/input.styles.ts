@@ -156,8 +156,8 @@ export default css`
     cursor: default;
   }
 
-  .lynk-input__prefix ::slotted(lynk-icon),
-  .lynk-input__suffix ::slotted(lynk-icon) {
+  .lynk-input__prefix::slotted(lynk-icon),
+  .lynk-input__suffix::slotted(lynk-icon) {
     color: var(--lynk-input-icon-color);
   }
 
@@ -181,11 +181,11 @@ export default css`
     width: calc(1em + var(--lynk-input-spacing-small) * 2);
   }
 
-  .lynk-input--small .lynk-input__prefix ::slotted(*) {
+  .lynk-input--small .lynk-input__prefix::slotted(*) {
     padding-inline-start: var(--lynk-input-spacing-small);
   }
 
-  .lynk-input--small .lynk-input__suffix ::slotted(*) {
+  .lynk-input--small .lynk-input__suffix::slotted(*) {
     padding-inline-end: var(--lynk-input-spacing-small);
   }
 
@@ -205,11 +205,11 @@ export default css`
     width: calc(1em + var(--lynk-input-spacing-medium) * 2);
   }
 
-  .lynk-input--medium .lynk-input__prefix ::slotted(*) {
+  .lynk-input--medium .lynk-input__prefix::slotted(*) {
     padding-inline-start: var(--lynk-input-spacing-medium);
   }
 
-  .lynk-input--medium .lynk-input__suffix ::slotted(*) {
+  .lynk-input--medium .lynk-input__suffix::slotted(*) {
     padding-inline-end: var(--lynk-input-spacing-medium);
   }
 
@@ -229,11 +229,11 @@ export default css`
     width: calc(1em + var(--lynk-input-spacing-large) * 2);
   }
 
-  .lynk-input--large .lynk-input__prefix ::slotted(*) {
+  .lynk-input--large .lynk-input__prefix::slotted(*) {
     padding-inline-start: var(--lynk-input-spacing-large);
   }
 
-  .lynk-input--large .lynk-input__suffix ::slotted(*) {
+  .lynk-input--large .lynk-input__suffix::slotted(*) {
     padding-inline-end: var(--lynk-input-spacing-large);
   }
 
@@ -251,6 +251,45 @@ export default css`
 
   .lynk-input--pill.lynk-input--large {
     border-radius: var(--lynk-input-height-large);
+  }
+
+  /*
+   * Error & Warning States
+   */
+
+  .lynk-input--has-error,
+  .lynk-input--has-error:hover:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-danger-500);
+  }
+
+  .lynk-input--has-error.lynk-input--focused:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-danger-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-danger-400);
+  }
+
+  .lynk-input--has-warning,
+  .lynk-input--has-warning:hover:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-warning-500);
+  }
+
+  .lynk-input--has-warning.lynk-input--focused:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-warning-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-warning-400);
+  }
+
+  .lynk-input--has-success,
+  .lynk-input--has-success:hover:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-success-500);
+  }
+
+  .lynk-input--has-success.lynk-input--focused:not(.lynk-input--disabled) {
+    border-color: var(--lynk-color-success-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-success-400);
+  }
+
+  /* Restricted */
+  .lynk-input__control.lynk-input__control--restricted {
+    padding: 0;
   }
 
   /*
@@ -290,40 +329,20 @@ export default css`
     display: none;
   }
 
-  /* Error/Warning States */
-  .lynk-input--has-error,
-  .lynk-input--has-error:hover:not(.lynk-input--disabled) {
-    border-color: var(--lynk-color-danger-500);
+  /* Hide Firefox's clear button on date and time inputs */
+  .lynk-input--is-firefox input[type='date'],
+  .lynk-input--is-firefox input[type='time'] {
+    clip-path: inset(0 2em 0 0);
   }
 
-  .lynk-input--has-error.lynk-input--focused:not(.lynk-input--disabled) {
-    border-color: var(--lynk-color-danger-500);
-    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-danger-400);
+  /* Hide the built-in number spinner */
+  .lynk-input--no-spin-buttons input[type='number']::-webkit-outer-spin-button,
+  .lynk-input--no-spin-buttons input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
   }
 
-  .lynk-input--has-warning,
-  .lynk-input--has-warning:hover:not(.lynk-input--disabled) {
-    border-color: var(--lynk-color-warning-500);
+  .lynk-input--no-spin-buttons input[type='number'] {
+    -moz-appearance: textfield;
   }
-
-  .lynk-input--has-warning.lynk-input--focused:not(.lynk-input--disabled) {
-    border-color: var(--lynk-color-warning-500);
-    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-warning-400);
-  }
-
-  .lynk-input--has-success,
-  .lynk-input--has-success:hover:not(.lynk-input--disabled) {
-    border-color: var(--lynk-color-success-500);
-  }
-
-  .lynk-input--has-success.lynk-input--focused:not(.lynk-input--disabled) {
-    border-color: var(--lynk-color-success-500);
-    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-success-400);
-  }
-
-  /* Restricted */
-  .lynk-input__control.lynk-input__control--restricted {
-    padding: 0;
-  }
-
 `;

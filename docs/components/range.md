@@ -2,13 +2,11 @@
 
 [component-header:lynk-range]
 
-Ranges allow the user to select a single value within a given range using a slider.
-
 ```html preview
 <lynk-range></lynk-range>
 ```
 
-?> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
+<lynk-alert open> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.</lynk-alert>
 
 ## Examples
 
@@ -17,7 +15,7 @@ Ranges allow the user to select a single value within a given range using a slid
 Use the `label` attribute to give the range an accessible label. For labels that contain HTML, use the `label` slot instead.
 
 ```html preview
-<lynk-range label="Volume" min="0" max="100"></lynk-input>
+<lynk-range label="Volume" min="0" max="100"></lynk-range>
 ```
 
 ### Help Text
@@ -30,7 +28,7 @@ Add descriptive help text to a range with the `help-text` attribute. For help te
   help-text="Controls the volume of the current song."
   min="0"
   max="100"
-></lynk-input>
+></lynk-range>
 ```
 
 ### Min, Max, and Step

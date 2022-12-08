@@ -6,14 +6,13 @@ export default css`
 
   :host {
     display: block;
-  }
-
-  .lynk-menu {
+    position: relative;
     background: var(--lynk-panel-background-color);
     border: solid var(--lynk-panel-border-width) var(--lynk-panel-border-color);
     border-radius: var(--lynk-border-radius-medium);
-    background: var(--lynk-panel-background-color);
     padding: var(--lynk-spacing-x-small) 0;
+    overflow: auto;
+    overscroll-behavior: none;
   }
 
   ::slotted(lynk-divider) {

@@ -29,6 +29,9 @@
   - [Icons](/components/icon)
   - [Popover](/components/popover)
   - [Stack](/components/stack)
+  - [Tab](/components/tab)
+  - [Tab Group](/components/tab-group)
+  - [Tab Panel](/components/tab-panel)
   - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)
 
@@ -44,12 +47,13 @@
   - [Menu](/components/menu)
   - [Menu Item](/components/menu-item)
   - [Menu Label](/components/menu-label)
-  - [Select](/components/select)
-  - [Textarea](/components/textarea)
   - [Radio](/components/radio)
   - [Radio Button](/components/radio-button)
   - [Radio Group](/components/radio-group)
+  - [Range](/components/range)
+  - [Select](/components/select)
   - [Switch](/components/switch)
+  - [Textarea](/components/textarea)
 
 - Feedback & Status
 
@@ -70,15 +74,16 @@
 
 - Utilities
 
-  - [Animation](/components/animation)
-  - [Format Bytes](/components/format-bytes)
-  - [Format Date](/components/format-date)
-  - [Format Number](/components/format-number)
-  - [Include](/components/include)
-  - [Mutation Observer](/components/mutation-observer)
-  - [Relative Time](/components/relative-time)
-  - [Resize Observer](/components/resize-observer)
-  - [Responsive Media](/components/responsive-media)
-  - [Visually Hidden](/components/visually-hidden)
+  - [Animation](/utilities/animation)
+  - [Format Bytes](/utilities/format-bytes)
+  - [Format Date](/utilities/format-date)
+  - [Format Number](/utilities/format-number)
+  - [Include](/utilities/include)
+  - [Mutation Observer](/utilities/mutation-observer)
+  - [Popup](/utilities/popup)
+  - [Relative Time](/utilities/relative-time)
+  - [Resize Observer](/utilities/resize-observer)
+  - [Responsive Media](/utilities/responsive-media)
+  - [Visually Hidden](/utilities/visually-hidden)
 
   <!--plop:component-->

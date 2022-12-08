@@ -2,8 +2,6 @@
 
 [component-header:lynk-spinner]
 
-Spinners are used to show the progress of an indeterminate operation.
-
 ```html preview
 <lynk-spinner></lynk-spinner>
 ```

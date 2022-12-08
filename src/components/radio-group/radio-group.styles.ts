@@ -1,47 +1,38 @@
 import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
+import formControlStyles from '../../styles/form-control.styles';
 
 export default css`
   ${componentStyles}
+  ${formControlStyles}
 
   :host {
     display: block;
   }
 
-  .lynk-radio-group {
-    border: solid var(--lynk-panel-border-width) var(--lynk-panel-border-color);
-    border-radius: var(--lynk-border-radius-medium);
-    padding: var(--lynk-spacing-large);
-    padding-top: var(--lynk-spacing-x-small);
-  }
-
-  .lynk-radio-group .lynk-radio-group__label {
-    font-family: var(--lynk-input-font-family);
-    font-size: var(--lynk-input-font-size-medium);
-    font-weight: var(--lynk-input-font-weight);
-    color: var(--lynk-input-color);
-    padding: 0 var(--lynk-spacing-2x-small);
-  }
-
-  ::slotted(lynk-radio:not(:last-of-type)) {
-    display: block;
-    margin-bottom: var(--lynk-spacing-2x-small);
-  }
-
-  .lynk-radio-group:not(.lynk-radio-group--has-fieldset) {
+  .lynk-form-control {
     border: none;
     padding: 0;
-    margin: 0;
-    min-width: 0;
   }
 
-  .lynk-radio-group:not(.lynk-radio-group--has-fieldset) .lynk-radio-group__label {
+  .lynk-form-control__label {
+    padding: 0;
+  }
+
+  .lynk-radio-group--required .lynk-radio-group__label::after {
+    content: var(--lynk-input-required-content);
+    margin-inline-start: var(--lynk-input-required-content-offset);
+  }
+
+  .visually-hidden {
     position: absolute;
-    width: 0;
-    height: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
     overflow: hidden;
+    clip: rect(0, 0, 0, 0);
     white-space: nowrap;
+    border: 0;
   }
 `;

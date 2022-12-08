@@ -1,20 +1,19 @@
-import { LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
 
 /**
+ * @summary Formats a number using the specified locale and options.
+ *
  * @since 1.0
  * @status stable
  */
 @customElement('lynk-format-number')
-export default class LynkFormatNumber extends LitElement {
+export default class LynkFormatNumber extends LynkElement {
   private readonly localize = new LocalizeController(this);
 
   /** The number to format. */
   @property({ type: Number }) value = 0;
-
-  /** The locale to use when formatting the number. */
-  @property() lang: string;
 
   /** The formatting style to use. */
   @property() type: 'currency' | 'decimal' | 'percent' = 'decimal';

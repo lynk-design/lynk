@@ -1,14 +1,16 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import styles from './table-column.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
  * @since 1.0
  * @status experimental
  */
 @customElement('lynk-col')
-export default class LynkTableColumn extends LitElement {
-  static styles = styles;
+export default class LynkTableColumn extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   render() {
     return html` <slot></slot> `;

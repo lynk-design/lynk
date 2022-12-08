@@ -1,8 +1,12 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import styles from './grid.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary The Grid component helps create visual consistency and structure between layouts while allowing flexibility across a wide variety of designs. It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
+ *
  * @since 1.0
  * @status experimental
  *
@@ -13,8 +17,8 @@ import styles from './grid.styles';
  * @cssproperty --width - Set a custom width for the grid container element. Defaults to 100%.
  */
 @customElement('lynk-grid')
-export default class LynkGrid extends LitElement {
-  static styles = styles;
+export default class LynkGrid extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   /** A container of grid items */
   @property({ type: Boolean, reflect: true }) container = false;

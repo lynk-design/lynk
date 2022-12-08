@@ -1,16 +1,24 @@
-import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { animateTo, parseDuration, stopAnimations } from '../../internal/animate';
-import { emit, waitForEvent } from '../../internal/event';
+import { waitForEvent } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { LocalizeController } from '../../utilities/localize';
+import '../popup/popup';
 import styles from './tooltip.styles';
+import type LynkPopup from '../popup/popup';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Tooltips display additional information based on a specific action.
+ *
  * @since 1.0
  * @status stable
+ *
+ * @dependency lynk-popup
  *
  * @slot - The tooltip's target element. Only the first element will be used as the target.
  * @slot content - The tooltip's content. Alternatively, you can use the content prop.
@@ -20,7 +28,10 @@ import styles from './tooltip.styles';
  * @event on:hide - Emitted when the tooltip begins to hide.
  * @event after:hide - Emitted after the tooltip has hidden and all animations are complete.
  *
- * @csspart base - The component's internal wrapper.
+ * @csspart base - The component's base wrapper, an `<lynk-popup>` element.
+ * @csspart base__popup - The popup's `popup` part. Use this to target the tooltip's popup container.
+ * @csspart base__arrow - The popup's `arrow` part. Use this to target the tooltip's arrow.
+ * @csspart body - The tooltip's body.
  *
  * @cssproperty --max-width - The maximum width of the tooltip.
  * @cssproperty --hide-delay - The amount of time to wait before hiding the tooltip when hovering.
@@ -30,18 +41,17 @@ import styles from './tooltip.styles';
  * @animation tooltip.hide - The animation to use when hiding the tooltip.
  */
 @customElement('lynk-tooltip')
-export default class LynkTooltip extends LitElement {
-  static styles = styles;
+export default class LynkTooltip extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
-  @query('.lynk-tooltip-positioner') positioner: HTMLElement;
-  @query('.lynk-tooltip') tooltip: HTMLElement;
-  @query('.lynk-tooltip__arrow') arrow: HTMLElement;
+  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+  @query('.lynk-tooltip__body') body: HTMLElement;
+  @query('lynk-popup') popup: LynkPopup;
 
-  private target: HTMLElement;
   private hoverTimeout: number;
-  private positionerCleanup: ReturnType<typeof autoUpdate> | undefined;
+  private readonly localize = new LocalizeController(this);
 
-  /** The tooltip's content. Alternatively, you can use the content slot. */
+  /** The tooltip's content. If you need to display HTML, you can use the `content` slot instead. */
   @property() content = '';
 
   /**
@@ -108,17 +118,16 @@ export default class LynkTooltip extends LitElement {
       this.addEventListener('keydown', this.handleKeyDown);
       this.addEventListener('mouseover', this.handleMouseOver);
       this.addEventListener('mouseout', this.handleMouseOut);
-      this.target = this.getTarget();
     });
   }
 
   async firstUpdated() {
-    this.tooltip.hidden = !this.open;
+    this.body.hidden = !this.open;
 
     // If the tooltip is visible on init, update its position
     if (this.open) {
-      await this.updateComplete;
-      this.updatePositioner();
+      this.popup.active = true;
+      this.popup.reposition();
     }
   }
 
@@ -130,7 +139,6 @@ export default class LynkTooltip extends LitElement {
     this.removeEventListener('keydown', this.handleKeyDown);
     this.removeEventListener('mouseover', this.handleMouseOver);
     this.removeEventListener('mouseout', this.handleMouseOut);
-    this.stopPositioner();
   }
 
   /** Shows the tooltip. */
@@ -220,26 +228,26 @@ export default class LynkTooltip extends LitElement {
       }
 
       // Show
-      emit(this, 'on:show');
+      this.emit('on:show');
 
-      await stopAnimations(this.tooltip);
-      this.startPositioner();
-      this.tooltip.hidden = false;
-      const { keyframes, options } = getAnimation(this, 'tooltip.show');
-      await animateTo(this.tooltip, keyframes, options);
+      await stopAnimations(this.body);
+      this.body.hidden = false;
+      this.popup.active = true;
+      const { keyframes, options } = getAnimation(this, 'tooltip.show', { dir: this.localize.dir() });
+      await animateTo(this.popup.popup, keyframes, options);
 
-      emit(this, 'after:show');
+      this.emit('after:show');
     } else {
       // Hide
-      emit(this, 'on:hide');
+      this.emit('on:hide');
 
-      await stopAnimations(this.tooltip);
-      const { keyframes, options } = getAnimation(this, 'tooltip.hide');
-      await animateTo(this.tooltip, keyframes, options);
-      this.tooltip.hidden = true;
-      this.stopPositioner();
+      await stopAnimations(this.body);
+      const { keyframes, options } = getAnimation(this, 'tooltip.hide', { dir: this.localize.dir() });
+      await animateTo(this.popup.popup, keyframes, options);
+      this.popup.active = false;
+      this.body.hidden = true;
 
-      emit(this, 'after:hide');
+      this.emit('after:hide');
     }
   }
 
@@ -248,8 +256,11 @@ export default class LynkTooltip extends LitElement {
   @watch('hoist')
   @watch('placement')
   @watch('skidding')
-  handleOptionsChange() {
-    this.updatePositioner();
+  async handleOptionsChange() {
+    if (this.hasUpdated) {
+      await this.updateComplete;
+      this.popup.reposition();
+    }
   }
 
   @watch('disabled')
@@ -264,99 +275,55 @@ export default class LynkTooltip extends LitElement {
     return triggers.includes(triggerType);
   }
 
-  private startPositioner() {
-    this.stopPositioner();
-    this.updatePositioner();
-    this.positionerCleanup = autoUpdate(this.target, this.positioner, this.updatePositioner.bind(this));
-  }
-
-  private updatePositioner() {
-    if (!this.open || !this.target || !this.positioner) {
-      return;
-    }
-
-    computePosition(this.target, this.positioner, {
-      placement: this.placement,
-      middleware: [
-        offset({ mainAxis: this.distance, crossAxis: this.skidding }),
-        flip(),
-        shift(),
-        arrow({
-          element: this.arrow,
-          padding: 10 // min distance from the edge
-        })
-      ],
-      strategy: this.hoist ? 'fixed' : 'absolute'
-    }).then(({ x, y, middlewareData, placement }) => {
-      const arrowX = middlewareData.arrow!.x;
-      const arrowY = middlewareData.arrow!.y;
-      const staticSide = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }[placement.split('-')[0]]!;
-
-      this.positioner.setAttribute('data-placement', placement);
-
-      Object.assign(this.positioner.style, {
-        position: this.hoist ? 'fixed' : 'absolute',
-        left: `${x}px`,
-        top: `${y}px`
-      });
-
-      Object.assign(this.arrow.style, {
-        left: typeof arrowX === 'number' ? `${arrowX}px` : '',
-        top: typeof arrowY === 'number' ? `${arrowY}px` : '',
-        right: '',
-        bottom: '',
-        [staticSide]: 'calc(var(--lynk-tooltip-arrow-size) * -1)'
-      });
-    });
-  }
-
-  private stopPositioner() {
-    if (this.positionerCleanup) {
-      this.positionerCleanup();
-      this.positionerCleanup = undefined;
-      this.positioner.removeAttribute('data-placement');
-    }
-  }
-
   render() {
     return html`
-      <div class="lynk-tooltip-target" aria-describedby="tooltip">
-        <slot></slot>
-      </div>
+      <lynk-popup
+        part="base"
+        exportparts="
+          popup:base__popup,
+          arrow:base__arrow
+        "
+        class=${classMap({
+          'lynk-tooltip': true,
+          'lynk-tooltip--open': this.open
+        })}
+        placement=${this.placement}
+        distance=${this.distance}
+        skidding=${this.skidding}
+        strategy=${this.hoist ? 'fixed' : 'absolute'}
+        flip
+        shift
+        ?arrow=${!this.noArrow}
+      >
+        <slot slot="anchor" aria-describedby="tooltip"></slot>
 
-      <div class="lynk-tooltip-positioner">
-        <div
-          part="base"
+        <slot
+          name="content"
+          part="body"
           id="tooltip"
-          class=${classMap({
-            'lynk-tooltip': true,
-            'lynk-tooltip--open': this.open
-          })}
+          class="lynk-tooltip__body"
           role="tooltip"
-          aria-hidden=${this.open ? 'false' : 'true'}
+          aria-live=${this.open ? 'polite' : 'off'}
         >
-          <div class="lynk-tooltip__arrow"></div>
-          <div class="lynk-tooltip__content" aria-live=${this.open ? 'polite' : 'off'}>
-            <slot name="content"> ${this.content} </slot>
-          </div>
-        </div>
-      </div>
+          ${this.content}
+        </slot>
+      </lynk-popup>
     `;
   }
 }
 
 setDefaultAnimation('tooltip.show', {
   keyframes: [
-    { opacity: 0, transform: 'scale(0.8)' },
-    { opacity: 1, transform: 'scale(1)' }
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1 }
   ],
   options: { duration: 150, easing: 'ease' }
 });
 
 setDefaultAnimation('tooltip.hide', {
   keyframes: [
-    { opacity: 1, transform: 'scale(1)' },
-    { opacity: 0, transform: 'scale(0.8)' }
+    { opacity: 1, scale: 1 },
+    { opacity: 0, scale: 0.8 }
   ],
   options: { duration: 150, easing: 'ease' }
 });

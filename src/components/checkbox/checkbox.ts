@@ -1,16 +1,24 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { emit } from '../../internal/event';
+import { defaultValue } from '../../internal/default-value';
 import { FormSubmitController } from '../../internal/form';
+import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
+import '../icon/icon';
 import styles from './checkbox.styles';
+import type { LynkFormControl } from '../../internal/lynk-element';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Checkboxes allow the user to toggle an option on or off.
+ *
  * @since 1.0
  * @status stable
+ *
+ * @dependency sl-icon
  *
  * @slot - The checkbox's label.
  *
@@ -25,25 +33,29 @@ import styles from './checkbox.styles';
  * @csspart label - The checkbox label.
  */
 @customElement('lynk-checkbox')
-export default class LynkCheckbox extends LitElement {
-  static styles = styles;
+export default class LynkCheckbox extends LynkElement implements LynkFormControl {
+  static styles: CSSResultGroup = styles;
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
 
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this, {
-    value: (control: LynkCheckbox) => (control.checked ? control.value || 'on' : undefined)
+    value: (control: LynkCheckbox) => (control.checked ? control.value || 'on' : undefined),
+    defaultValue: (control: LynkCheckbox) => control.defaultChecked,
+    setValue: (control: LynkCheckbox, checked: boolean) => (control.checked = checked)
   });
 
   @state() private hasFocus = false;
+  @state() invalid = false;
+  @property() title = ''; // make reactive to pass through
 
-  /** The checkbox's name attribute. */
-  @property() name: string;
+  /** Name of the HTML form control. Submitted with the form as part of a name/value pair. */
+  @property() name = '';
 
-  /** The checkbox's value attribute. */
+  /** Value of the HTML form control. Primarily used to differentiate a list of related checkboxes that have the same name. */
   @property() value: string;
 
-  /** Disables the checkbox. */
+  /** Disables the checkbox (so the user can't check / uncheck it). */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** Makes the checkbox a required field. */
@@ -52,11 +64,11 @@ export default class LynkCheckbox extends LitElement {
   /** Draws the checkbox in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;
 
-  /** Draws the checkbox in an indeterminate state. */
+  /** Draws the checkbox in an indeterminate state. Usually applies to a checkbox that represents "select all" or "select none" when the items to which it applies are a mix of selected and unselected. */
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
-  /** This will be true when the control is in an invalid state. Validity is determined by the `required` prop. */
-  @property({ type: Boolean, reflect: true }) invalid = false;
+  /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
+  @defaultValue('checked') defaultChecked = false;
 
   firstUpdated() {
     this.invalid = !this.input.checkValidity();
@@ -77,6 +89,11 @@ export default class LynkCheckbox extends LitElement {
     this.input.blur();
   }
 
+  /** Checks for validity but does not show the browser's validation message. */
+  checkValidity() {
+    return this.input.checkValidity();
+  }
+
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
     return this.input.reportValidity();
@@ -91,12 +108,12 @@ export default class LynkCheckbox extends LitElement {
   handleClick() {
     this.checked = !this.checked;
     this.indeterminate = false;
-    emit(this, 'on:change');
+    this.emit('on:change');
   }
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'on:blur');
+    this.emit('on:blur');
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -108,12 +125,14 @@ export default class LynkCheckbox extends LitElement {
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'on:focus');
+    this.emit('on:focus');
   }
 
   @watch('checked', { waitUntilFirstUpdate: true })
   @watch('indeterminate', { waitUntilFirstUpdate: true })
   handleStateChange() {
+    this.input.checked = this.checked; // force a sync update
+    this.input.indeterminate = this.indeterminate; // force a sync update
     this.invalid = !this.input.checkValidity();
   }
 
@@ -132,7 +151,8 @@ export default class LynkCheckbox extends LitElement {
         <input
           class="lynk-checkbox__input"
           type="checkbox"
-          name=${ifDefined(this.name)}
+          title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
+          name=${this.name}
           value=${ifDefined(this.value)}
           .indeterminate=${live(this.indeterminate)}
           .checked=${live(this.checked)}
@@ -145,42 +165,13 @@ export default class LynkCheckbox extends LitElement {
         />
 
         <span part="control" class="lynk-checkbox__control">
-          ${this.checked
-            ? html`
-                <span part="checked-icon" class="lynk-checkbox__icon">
-                  <svg viewBox="0 0 16 16">
-                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-                      <g stroke="currentColor" stroke-width="2">
-                        <g transform="translate(3.428571, 3.428571)">
-                          <path d="M0,5.71428571 L3.42857143,9.14285714"></path>
-                          <path d="M9.14285714,0 L3.42857143,9.14285714"></path>
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                </span>
-              `
-            : ''}
+          ${this.checked ? html` <lynk-icon part="checked-icon" library="system" name="check"></lynk-icon> ` : ''}
           ${!this.checked && this.indeterminate
-            ? html`
-                <span part="indeterminate-icon" class="lynk-checkbox__icon">
-                  <svg viewBox="0 0 16 16">
-                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-                      <g stroke="currentColor" stroke-width="2">
-                        <g transform="translate(2.285714, 6.857143)">
-                          <path d="M10.2857143,1.14285714 L1.14285714,1.14285714"></path>
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                </span>
-              `
+            ? html` <lynk-icon part="indeterminate-icon" library="system" name="indeterminate"></lynk-icon> `
             : ''}
         </span>
 
-        <span part="label" class="lynk-checkbox__label">
-          <slot></slot>
-        </span>
+        <slot part="label" class="lynk-checkbox__label"></slot>
       </label>
     `;
   }

@@ -1,20 +1,20 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
 
 /**
+ * @summary Formats a date/time using the specified locale and options.
+ *
  * @since 1.0
  * @status stable
  */
 @customElement('lynk-format-date')
-export default class LynkFormatDate extends LitElement {
+export default class LynkFormatDate extends LynkElement {
   private readonly localize = new LocalizeController(this);
 
   /** The date/time to format. If not set, the current date and time will be used. */
   @property() date: Date | string = new Date();
-
-  /** The locale to use when formatting the date/time. */
-  @property() lang: string;
 
   /** The format for displaying the weekday. */
   @property() weekday: 'narrow' | 'short' | 'long';

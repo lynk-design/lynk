@@ -1,14 +1,17 @@
-import { LitElement } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { html, literal } from 'lit/static-html.js';
+import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
-import '../../components/icon/icon';
-import { emit } from '../../internal/event';
+import '../icon/icon';
 import styles from './icon-button.styles';
+import type { CSSResultGroup } from 'lit';
+
 
 /**
+ * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
+ *
  * @since 1.0
  * @status stable
  *
@@ -21,8 +24,8 @@ import styles from './icon-button.styles';
  * @csspart base - The component's internal wrapper.
  */
 @customElement('lynk-icon-button')
-export default class LynkIconButton extends LitElement {
-  static styles = styles;
+export default class LynkIconButton extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   @state() private hasFocus = false;
 
@@ -77,12 +80,12 @@ export default class LynkIconButton extends LitElement {
 
   handleBlur() {
     this.hasFocus = false;
-    emit(this, 'on:blur');
+    this.emit('on:blur');
   }
 
   handleFocus() {
     this.hasFocus = true;
-    emit(this, 'on:focus');
+    this.emit('on:focus');
   }
 
   handleClick(event: MouseEvent) {
@@ -92,7 +95,7 @@ export default class LynkIconButton extends LitElement {
       return;
     }
 
-    emit(this, 'on:click');
+    this.emit('on:click');
   }
 
   render() {

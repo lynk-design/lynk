@@ -2,8 +2,6 @@
 
 [component-header:lynk-switch]
 
-Switches allow the user to toggle an option on or off.
-
 ```html preview
 <lynk-switch>Switch</lynk-switch>
 ```

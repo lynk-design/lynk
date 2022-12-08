@@ -4,8 +4,6 @@
 
 [component-header:lynk-dialog]
 
-Dialogs or "modals" are elevated workflows above the page and require the user's immediate attention.
-
 ```html preview
 <lynk-dialog label="Dialog" class="dialog-overview">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -32,9 +30,49 @@ Dialogs or "modals" are elevated workflows above the page and require the user's
 
 ## Examples
 
-### Custom Width
+### Dialog Sizes
 
-Use the `--width` custom property to set the dialog's width.
+By default, a dialog will auto size itself to the content within at a default width of `480px` and a maximum height of `80vh` or 80% of the viewport's height. To force the dialog to fit to `80%` of the viewport width and height regardless of content, use the `size="fitted"` attribute.
+
+```html preview
+<lynk-dialog label="Fitted Dialog" class="dialog-fitted" size="fitted">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  <lynk-button slot="footer" color="primary">Close</lynk-button>
+</lynk-dialog>
+
+<lynk-button>Open Fitted Dialog</lynk-button>
+
+<script>
+  const dialog = document.querySelector('.dialog-fitted');
+  const openButton = dialog.nextElementSibling;
+  const closeButton = dialog.querySelector('lynk-button[slot="footer"]');
+
+  openButton.addEventListener('click', () => dialog.show());
+  closeButton.addEventListener('click', () => dialog.hide());
+</script>
+```
+
+In very select cases, you can open a dialog at the full width and height of the viewport by using the `size="full"` attribute, making the dialog appear like a new screen as opposed to a modal.
+
+```html preview
+<lynk-dialog label="Full Screen Dialog" class="dialog-full" size="full">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  <lynk-button slot="footer" color="primary">Close</lynk-button>
+</lynk-dialog>
+
+<lynk-button>Open Full Screen Dialog</lynk-button>
+
+<script>
+  const dialog = document.querySelector('.dialog-full');
+  const openButton = dialog.nextElementSibling;
+  const closeButton = dialog.querySelector('lynk-button[slot="footer"]');
+
+  openButton.addEventListener('click', () => dialog.show());
+  closeButton.addEventListener('click', () => dialog.hide());
+</script>
+```
+
+When using the default size attribute of `auto`, you can use the `--width` custom property to set the dialog's width.
 
 ```html preview
 <lynk-dialog label="Dialog" class="dialog-width" style="--width: 50vw;">
@@ -42,7 +80,7 @@ Use the `--width` custom property to set the dialog's width.
   <lynk-button slot="footer" color="primary">Close</lynk-button>
 </lynk-dialog>
 
-<lynk-button>Open Dialog</lynk-button>
+<lynk-button>Open Custom Width Dialog</lynk-button>
 
 <script>
   const dialog = document.querySelector('.dialog-width');

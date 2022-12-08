@@ -2,7 +2,7 @@ import browserSync from 'browser-sync';
 import chalk from 'chalk';
 import { execSync } from 'child_process';
 import commandLineArgs from 'command-line-args';
-import del from 'del';
+import { deleteSync } from 'del';
 import esbuild from 'esbuild';
 import fs from 'fs';
 import getPort, { portNumbers } from 'get-port';
@@ -20,7 +20,7 @@ const { bundle, copydir, dir, serve, types } = commandLineArgs([
 
 const outdir = dir;
 
-del.sync(outdir);
+deleteSync(outdir);
 fs.mkdirSync(outdir, { recursive: true });
 
 (async () => {
@@ -45,6 +45,9 @@ fs.mkdirSync(outdir, { recursive: true });
       format: 'esm',
       target: 'es2017',
       entryPoints: [
+        //
+        // NOTE: Entry points must be mapped in package.json > exports, otherwise users won't be able to import them!
+        //
         // The whole shebang
         './src/lynk.ts',
         // Components
@@ -70,7 +73,8 @@ fs.mkdirSync(outdir, { recursive: true });
       external: bundle
         ? alwaysExternal
         : [...alwaysExternal, '@floating-ui/dom', '@shoelace-style/animations', 'lit', 'qr-creator'],
-      splitting: true
+      splitting: true,
+      plugins: []
     })
     .catch(err => {
       console.error(chalk.red(err));
@@ -79,7 +83,7 @@ fs.mkdirSync(outdir, { recursive: true });
 
   // Copy the build output to an additional directory
   if (copydir) {
-    del.sync(copydir);
+    deleteSync(copydir);
     copy(outdir, copydir);
   }
 
@@ -93,7 +97,7 @@ fs.mkdirSync(outdir, { recursive: true });
     });
 
     // Make sure docs/dist is empty since we're serving it virtually
-    del.sync('docs/dist');
+    deleteSync('docs/dist');
 
     const browserSyncConfig = {
       open: false,
@@ -110,36 +114,14 @@ fs.mkdirSync(outdir, { recursive: true });
         routes: {
           '/dist': './dist'
         }
-      },
-      socket: {
-        socketIoClientConfig: {
-          // Configure socketIO to retry forever when disconnected to enable the auto-reattach timeout below to work
-          reconnectionAttempts: Infinity,
-          reconnectionDelay: 500,
-          reconnectionDelayMax: 500,
-          timeout: 1000
-        }
       }
     };
 
     // Launch browser sync
     bs.init(browserSyncConfig, () => {
-      // This init callback gets executed after the server has started
-      const socketIoConfig = browserSyncConfig.socket.socketIoClientConfig;
-
-      // Wait enough time for any open, detached clients to have a chance to reconnect. This will be used to determine
-      // if we reload an existing tab or open a new one.
-      const tabReattachDelay = socketIoConfig.reconnectionDelayMax * 2 + socketIoConfig.timeout;
-
-      setTimeout(() => {
-        const url = `http://localhost:${port}`;
-        console.log(chalk.cyan(`Launched the LYNK dev server at ${url} 🥾\n`));
-        if (Object.keys(bs.sockets.sockets).length === 0) {
-          open(url);
-        } else {
-          bs.reload();
-        }
-      }, tabReattachDelay);
+      const url = `http://localhost:${port}`;
+      console.log(chalk.cyan(`Launched the Shoelace dev server at ${url} 🥾\n`));
+      open(url);
     });
 
     // Rebuild and reload when source files change

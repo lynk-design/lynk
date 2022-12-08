@@ -1,5 +1,4 @@
 import { css } from 'lit';
-import { focusVisibleSelector } from '../../internal/focus-visible';
 import componentStyles from '../../styles/component.styles';
 
 export default css`
@@ -69,17 +68,12 @@ export default css`
   }
 
   /* Focus */
-  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled)
-    .lynk-switch__input${focusVisibleSelector}
-    ~ .lynk-switch__control {
+  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
     background-color: var(--lynk-color-neutral-400);
     border-color: var(--lynk-color-neutral-400);
   }
 
-  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled)
-    .lynk-switch__input${focusVisibleSelector}
-    ~ .lynk-switch__control
-    .lynk-switch__thumb {
+  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
     background-color: var(--lynk-color-neutral-0);
     border-color: var(--lynk-color-primary-600);
     outline: var(--lynk-focus-ring);
@@ -110,17 +104,12 @@ export default css`
   }
 
   /* Checked + focus */
-  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled)
-    .lynk-switch__input${focusVisibleSelector}
-    ~ .lynk-switch__control {
+  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
     background-color: var(--lynk-color-primary-600);
     border-color: var(--lynk-color-primary-600);
   }
 
-  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled)
-    .lynk-switch__input${focusVisibleSelector}
-    ~ .lynk-switch__control
-    .lynk-switch__thumb {
+  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
     background-color: var(--lynk-color-neutral-0);
     border-color: var(--lynk-color-primary-600);
     outline: var(--lynk-focus-ring);
@@ -134,8 +123,14 @@ export default css`
   }
 
   .lynk-switch__label {
+    display: inline-block;
     line-height: var(--height);
     margin-inline-start: 0.5em;
     user-select: none;
+  }
+
+  :host([required]) .lynk-switch__label::after {
+    content: var(--lynk-input-required-content);
+    margin-inline-start: var(--lynk-input-required-content-offset);
   }
 `;

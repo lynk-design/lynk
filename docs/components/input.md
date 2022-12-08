@@ -2,8 +2,6 @@
 
 [component-header:lynk-input]
 
-Inputs collect data from the user.
-
 ```html preview
 <lynk-input></lynk-input>
 ```

@@ -2,8 +2,6 @@
 
 [component-header:lynk-tab]
 
-Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
-
 ```html preview
 <lynk-tab>Tab</lynk-tab>
 <lynk-tab active>Active</lynk-tab>

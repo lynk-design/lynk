@@ -1,9 +1,12 @@
-import { LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './divider.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Dividers are used to visually separate or group elements.
+ *
  * @since 1.0
  * @status stable
  *
@@ -12,13 +15,14 @@ import styles from './divider.styles';
  * @cssproperty --spacing - The spacing of the divider.
  */
 @customElement('lynk-divider')
-export default class LynkDivider extends LitElement {
-  static styles = styles;
+export default class LynkDivider extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   /** Draws the divider in a vertical orientation. */
   @property({ type: Boolean, reflect: true }) vertical = false;
 
   firstUpdated() {
+    super.connectedCallback();
     this.setAttribute('role', 'separator');
   }
 

@@ -9,6 +9,7 @@ export default css`
   }
 
   .lynk-menu-label {
+    display: inline-block;
     font-family: var(--lynk-font-sans);
     font-size: var(--lynk-font-size-small);
     font-weight: var(--lynk-font-weight-semibold);

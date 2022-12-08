@@ -1,5 +1,4 @@
 import { css } from 'lit';
-import { focusVisibleSelector } from '../../internal/focus-visible';
 import componentStyles from '../../styles/component.styles';
 
 export default css`
@@ -11,7 +10,7 @@ export default css`
 
   .lynk-checkbox {
     display: inline-flex;
-    align-items: center;
+    align-items: top;
     font-family: var(--lynk-input-font-family);
     font-size: var(--lynk-input-font-size-medium);
     font-weight: var(--lynk-input-font-weight);
@@ -50,11 +49,6 @@ export default css`
     height: var(--lynk-toggle-size);
   }
 
-  .lynk-checkbox__control .lynk-checkbox__icon svg {
-    width: 100%;
-    height: 100%;
-  }
-
   /* Hover */
   .lynk-checkbox:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled) .lynk-checkbox__control:hover {
     border-color: var(--lynk-input-border-color-hover);
@@ -62,9 +56,7 @@ export default css`
   }
 
   /* Focus */
-  .lynk-checkbox:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled)
-    .lynk-checkbox__input${focusVisibleSelector}
-    ~ .lynk-checkbox__control {
+  .lynk-checkbox:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled) .lynk-checkbox__input:focus-visible ~ .lynk-checkbox__control {
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
   }
@@ -84,12 +76,8 @@ export default css`
   }
 
   /* Checked/indeterminate + focus */
-  .lynk-checkbox.lynk-checkbox--checked:not(.lynk-checkbox--disabled)
-    .lynk-checkbox__input${focusVisibleSelector}
-    ~ .lynk-checkbox__control,
-  .lynk-checkbox.lynk-checkbox--indeterminate:not(.lynk-checkbox--disabled)
-    .lynk-checkbox__input${focusVisibleSelector}
-    ~ .lynk-checkbox__control {
+  .lynk-checkbox.lynk-checkbox--checked:not(.lynk-checkbox--disabled) .lynk-checkbox__input:focus-visible ~ .lynk-checkbox__control,
+  .lynk-checkbox.lynk-checkbox--indeterminate:not(.lynk-checkbox--disabled) .lynk-checkbox__input:focus-visible ~ .lynk-checkbox__control {
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
   }
@@ -101,8 +89,15 @@ export default css`
   }
 
   .lynk-checkbox__label {
+    display: inline-block;
+    color: var(--lynk-input-label-color);
     line-height: var(--lynk-toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;
+  }
+
+  :host([required]) .lynk-checkbox__label::after {
+    content: var(--lynk-input-required-content);
+    margin-inline-start: var(--lynk-input-required-content-offset);
   }
 `;

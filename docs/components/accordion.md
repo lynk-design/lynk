@@ -4,8 +4,6 @@
 
 [component-header:lynk-accordion]
 
-The Accordion single shows a brief summary and expands on click to show additional content.
-
 ```html preview
 <lynk-accordion summary="Toggle Me">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna

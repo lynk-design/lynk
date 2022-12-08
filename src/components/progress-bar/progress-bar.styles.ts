@@ -43,14 +43,42 @@ export default css`
     animation: indeterminate 2.5s infinite cubic-bezier(0.37, 0, 0.63, 1);
   }
 
+  .lynk-progress-bar--indeterminate.lynk-progress-bar--rtl .lynk-progress-bar__indicator {
+    animation-name: indeterminate-rtl;
+  }
+
+  @media (forced-colors: active) {
+    .lynk-progress-bar {
+      outline: solid 1px SelectedItem;
+      background-color: var(--lynk-color-neutral-0);
+    }
+
+    .lynk-progress-bar__indicator {
+      outline: solid 1px SelectedItem;
+      background-color: SelectedItem;
+    }
+  }
+
   @keyframes indeterminate {
     0% {
-      inset-inline-start: -50%;
+      left: -50%;
       width: 50%;
     }
     75%,
     100% {
-      inset-inline-start: 100%;
+      left: 100%;
+      width: 50%;
+    }
+  }
+
+  @keyframes indeterminate-rtl {
+    0% {
+      right: -50%;
+      width: 50%;
+    }
+    75%,
+    100% {
+      right: 100%;
       width: 50%;
     }
   }

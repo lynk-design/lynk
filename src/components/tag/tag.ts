@@ -1,12 +1,15 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import '../../components/icon-button/icon-button';
-import { emit } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
+import '../icon-button/icon-button';
 import styles from './tag.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Tags are used as labels to organize things or to indicate a selection.
+ *
  * @since 1.0
  * @status experimental
  *
@@ -22,8 +25,8 @@ import styles from './tag.styles';
  * @csspart remove-button__base - The remove button's `base` part.
  */
 @customElement('lynk-tag')
-export default class LynkTag extends LitElement {
-  static styles = styles;
+export default class LynkTag extends LynkElement {
+  static styles: CSSResultGroup = styles;
   private readonly localize = new LocalizeController(this);
 
   /** The tag's variant. */
@@ -39,7 +42,7 @@ export default class LynkTag extends LitElement {
   @property({ type: Boolean }) removable = false;
 
   handleRemoveClick() {
-    emit(this, 'on:remove');
+    this.emit('on:remove');
   }
 
   render() {
@@ -67,9 +70,7 @@ export default class LynkTag extends LitElement {
           'lynk-tag--removable': this.removable
         })}
       >
-        <span part="content" class="lynk-tag__content">
-          <slot></slot>
-        </span>
+        <slot part="content" class="lynk-tag__content"></slot>
 
         ${this.removable
           ? html`

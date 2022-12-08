@@ -1,11 +1,14 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { emit } from '../../internal/event';
+import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
 import styles from './mutation-observer.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
- * @since 2.0
+ * @summary The Mutation Observer component offers a thin, declarative interface to the [`MutationObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver).
+ *
+ * @since 1.0
  * @status stable
  *
  * @event on:mutation - Emitted when a mutation occurs.
@@ -13,8 +16,8 @@ import styles from './mutation-observer.styles';
  * @slot - The content to watch for mutations.
  */
 @customElement('lynk-mutation-observer')
-export default class LynkMutationObserver extends LitElement {
-  static styles = styles;
+export default class LynkMutationObserver extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
   private mutationObserver: MutationObserver;
 
@@ -74,7 +77,7 @@ export default class LynkMutationObserver extends LitElement {
   }
 
   handleMutation(mutationList: MutationRecord[]) {
-    emit(this, 'on:mutation', {
+    this.emit('on:mutation', {
       detail: { mutationList }
     });
   }

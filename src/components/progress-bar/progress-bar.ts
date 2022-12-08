@@ -1,12 +1,16 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
 import styles from './progress-bar.styles';
+import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Progress bars are used to show the status of an ongoing operation.
+ *
  * @since 1.0
  * @status stable
  *
@@ -22,8 +26,8 @@ import styles from './progress-bar.styles';
  * @cssproperty --label-color - The label color.
  */
 @customElement('lynk-progress-bar')
-export default class LynkProgressBar extends LitElement {
-  static styles = styles;
+export default class LynkProgressBar extends LynkElement {
+  static styles: CSSResultGroup = styles;
   private readonly localize = new LocalizeController(this);
 
   /** The current progress, 0 to 100. */
@@ -35,16 +39,14 @@ export default class LynkProgressBar extends LitElement {
   /** A custom label for the progress bar's aria label. */
   @property() label = '';
 
-  /** The locale to render the component in. */
-  @property() lang: string;
-
   render() {
     return html`
       <div
         part="base"
         class=${classMap({
           'lynk-progress-bar': true,
-          'lynk-progress-bar--indeterminate': this.indeterminate
+          'lynk-progress-bar--indeterminate': this.indeterminate,
+          'progress-bar--rtl': this.localize.dir() === 'rtl'
         })}
         role="progressbar"
         title=${ifDefined(this.title)}
@@ -54,13 +56,7 @@ export default class LynkProgressBar extends LitElement {
         aria-valuenow=${this.indeterminate ? 0 : this.value}
       >
         <div part="indicator" class="lynk-progress-bar__indicator" style=${styleMap({ width: `${this.value}%` })}>
-          ${!this.indeterminate
-            ? html`
-                <span part="label" class="lynk-progress-bar__label">
-                  <slot></slot>
-                </span>
-              `
-            : ''}
+          ${!this.indeterminate ? html` <slot part="label" class="lynk-progress-bar__label"></slot> ` : ''}
         </div>
       </div>
     `;

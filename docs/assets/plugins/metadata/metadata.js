@@ -116,7 +116,7 @@
                     method.parameters?.length
                       ? `
                         <code>${escapeHtml(
-                          method.parameters.map(param => `${param.name}: ${param.type.text}`).join(', ')
+                          method.parameters.map(param => `${param.name}: ${param.type?.text || ''}`).join(', ')
                         )}</code>
                       `
                       : '-'
@@ -319,7 +319,7 @@
       // Add version
       const version = document.createElement('div');
       version.classList.add('sidebar-version');
-      version.textContent = isDev ? 'Dev' : metadata.package.version;
+      version.textContent = isDev ? 'Development' : metadata.package.version;
       target.appendChild(version);
 
       // Store version for reuse
@@ -359,7 +359,7 @@
         result += `
           <div class="component-header">
             <div class="component-header__tag">
-              <code>&lt;${component.tagName}&gt; | ${component.name}</code>
+              <code>&lt;${component.tagName}&gt; | ${component.title ?? component.name}</code>
             </div>
 
             <div class="component-header__info">
@@ -370,6 +370,10 @@
               <lynk-badge type="${badgeType}" pill style="text-transform: capitalize;">
                 ${component.status}
               </lynk-badge>
+            </div>
+
+            <div class="component-header__summary">
+              ${component.summary ? `<p>${marked(component.summary)}</p>` : ''}
             </div>
           </div>
         `;
@@ -476,9 +480,9 @@
 
         // Strip whitespace so markdown doesn't process things as code blocks
         return result.replace(/^ +| +$/gm, '');
-      });
+        });
 
-      next(content);
+        next(content);
     });
 
     // Wrap tables so we can scroll them horizontally when needed

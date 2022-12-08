@@ -51,7 +51,6 @@ export default css`
   .lynk-dialog--open .lynk-dialog__panel {
     display: flex;
     opacity: 1;
-    transform: none;
   }
 
   .lynk-dialog__header {
@@ -68,16 +67,26 @@ export default css`
     margin: 0;
   }
 
-  .lynk-dialog__close {
+  .lynk-dialog__header-actions {
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: var(--lynk-spacing-2x-small);
+    padding: 0 var(--header-spacing);
+  }
+
+  .lynk-dialog__header-actions lynk-icon-button,
+  .lynk-dialog__header-actions ::slotted(lynk-icon-button) {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    font-size: var(--lynk-font-size-x-large);
-    padding: 0 var(--header-spacing);
+    font-size: var(--lynk-font-size-medium);
   }
 
   .lynk-dialog__body {
     flex: 1 1 auto;
+    display: block;
     padding: var(--body-spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -104,5 +113,26 @@ export default css`
     bottom: 0;
     left: 0;
     background-color: var(--lynk-overlay-background-color);
+  }
+
+  @media (forced-colors: active) {
+    .lynk-dialog__panel {
+      border: solid 1px var(--lynk-color-neutral-0);
+    }
+  }
+
+
+  /*
+  * Size modifiers
+  */
+
+  .lynk-dialog--fitted .lynk-dialog__panel {
+    width: 80vw;
+    height: 80vh;
+  }
+
+  .lynk-dialog--full .lynk-dialog__panel {
+    width: 100vw;
+    height: 100vh;
   }
 `;

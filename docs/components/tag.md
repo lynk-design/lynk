@@ -2,8 +2,6 @@
 
 [component-header:lynk-tag]
 
-Tags are used as labels to organize things or to indicate a selection.
-
 ```html preview
 <lynk-tag type="primary">Primary</lynk-tag>
 <lynk-tag type="success">Success</lynk-tag>

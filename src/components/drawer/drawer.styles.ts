@@ -15,12 +15,11 @@ export default css`
 
   .lynk-drawer {
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
     overflow: hidden;
-    text-align: left;
   }
 
   .lynk-drawer--contained {
@@ -53,36 +52,36 @@ export default css`
 
   .lynk-drawer--top .lynk-drawer__panel {
     top: 0;
-    right: auto;
+    inset-inline-end: auto;
     bottom: auto;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     height: var(--size);
   }
 
   .lynk-drawer--end .lynk-drawer__panel {
     top: 0;
-    right: 0;
+    inset-inline-end: 0;
     bottom: auto;
-    left: auto;
+    inset-inline-start: auto;
     width: var(--size);
     height: 100%;
   }
 
   .lynk-drawer--bottom .lynk-drawer__panel {
     top: auto;
-    right: auto;
+    inset-inline-end: auto;
     bottom: 0;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     height: var(--size);
   }
 
   .lynk-drawer--start .lynk-drawer__panel {
     top: 0;
-    right: auto;
+    inset-inline-end: auto;
     bottom: auto;
-    left: 0;
+    inset-inline-start: 0;
     width: var(--size);
     height: 100%;
   }
@@ -100,16 +99,26 @@ export default css`
     margin: 0;
   }
 
-  .lynk-drawer__close {
+  .lynk-drawer__header-actions {
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: var(--lynk-spacing-2x-small);
+    padding: 0 var(--header-spacing);
+  }
+
+  .lynk-drawer__header-actions lynk-icon-button,
+  .lynk-drawer__header-actions ::slotted(lynk-icon-button) {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    font-size: var(--lynk-font-size-x-large);
-    padding: 0 var(--header-spacing);
+    font-size: var(--lynk-font-size-medium);
   }
 
   .lynk-drawer__body {
     flex: 1 1 auto;
+    display: block;
     padding: var(--body-spacing);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -120,7 +129,7 @@ export default css`
     padding: var(--footer-spacing);
   }
 
-  .lynk-drawer__footer ::slotted(l-button:not(:last-of-type)) {
+  .lynk-drawer__footer ::slotted(lynk-button:not(:last-of-type)) {
     margin-inline-end: var(--lynk-spacing-x-small);
   }
 
@@ -141,5 +150,11 @@ export default css`
 
   .lynk-drawer--contained .lynk-drawer__overlay {
     position: absolute;
+  }
+
+  @media (forced-colors: active) {
+    .lynk-drawer__panel {
+      border: solid 1px var(--lynk-color-neutral-0);
+    }
   }
 `;

@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import type SlSpinner from './spinner';
+import type LynkSpinner from './spinner';
 
 describe('<lynk-spinner>', () => {
-  let el: SlSpinner;
+  let el: LynkSpinner;
 
   describe('when provided no parameters', () => {
     before(async () => {
-      el = await fixture<SlSpinner>(html` <lynk-spinner></lynk-spinner> `);
+      el = await fixture<LynkSpinner>(html` <lynk-spinner></lynk-spinner> `);
     });
 
     it('should pass accessibility tests', async () => {
@@ -15,8 +15,8 @@ describe('<lynk-spinner>', () => {
 
     it('should have a role of "status".', () => {
       // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions
-      const base = el.shadowRoot!.querySelector('[part="base"]')!;
-      expect(base).have.attribute('role', 'status');
+      const base = el.shadowRoot!.querySelector('[part~="base"]')!;
+      expect(base).have.attribute('role', 'progressbar');
     });
   });
 });
