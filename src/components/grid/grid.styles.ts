@@ -6,6 +6,7 @@ export default css`
 
   :host {
     display: contents;
+    text-align: unset;
     --width: 100%;
     --height: auto;
   }
