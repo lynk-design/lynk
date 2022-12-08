@@ -12,8 +12,8 @@ import type { CSSResultGroup } from 'lit';
 /**
  * @summary Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
  *
- * @since 2.0
- * @status stable
+ * @since 1.0
+ * @status experimental
  *
  * @dependency lynk-icon-button
  *
@@ -24,6 +24,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The component's internal wrapper.
  * @csspart close-button - The close button.
  * @csspart close-button__base - The close button's `base` part.
+ *
+ * @cssproperty --padding - The padding around each tab item.
  */
 @customElement('lynk-tab')
 export default class LynkTab extends LynkElement {

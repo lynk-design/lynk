@@ -2,8 +2,6 @@
 
 [component-header:lynk-tab-panel]
 
-Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.
-
 ```html preview
 <lynk-tab-group>
   <lynk-tab slot="nav" panel="general">General</lynk-tab>
@@ -18,6 +16,6 @@ Tab panels are used inside [tab groups](/components/tab-group) to display tabbed
 </lynk-tab-group>
 ```
 
-?> Additional demonstrations can be found in the [tab group examples](/components/tab-group).
+<lynk-alert open>Additional demonstrations can be found in the [tab group examples](/components/tab-group).</lynk-alert>
 
 [component-metadata:lynk-tab-panel]

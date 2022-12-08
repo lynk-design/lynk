@@ -83,11 +83,11 @@ Popup doesn't provide any styles — just positioning! The popup's preferred pla
     gap: 1rem;
   }
 
-  .popup-overview-options sl-select {
+  .popup-overview-options lynk-select {
     width: 160px;
   }
 
-  .popup-overview-options sl-input {
+  .popup-overview-options lynk-input {
     width: 100px;
   }
 
@@ -218,7 +218,7 @@ Since placement is preferred when using `flip`, you can observe the popup's curr
     border-radius: var(--lynk-border-radius-medium);
   }
 
-  .popup-placement sl-select {
+  .popup-placement lynk-select {
     max-width: 280px;
   }
 </style>
@@ -263,7 +263,7 @@ Use the `distance` attribute to change the distance between the popup and its an
     border-radius: var(--lynk-border-radius-medium);
   }
 
-  .popup-distance sl-range {
+  .popup-distance lynk-range {
     max-width: 260px;
   }
 </style>
@@ -308,7 +308,7 @@ The `skidding` attribute is similar to `distance`, but instead allows you to off
     border-radius: var(--lynk-border-radius-medium);
   }
 
-  .popup-skidding sl-range {
+  .popup-skidding lynk-range {
     max-width: 260px;
   }
 </style>
@@ -390,7 +390,7 @@ By default, the arrow will be aligned as close to the center of the _anchor_ as 
       gap: 1rem;
     }
 
-    .popup-arrow-options sl-select {
+    .popup-arrow-options lynk-select {
       width: 160px;
     }
 
@@ -451,7 +451,7 @@ Use the `sync` attribute to make the popup the same width or height as the ancho
     border-radius: var(--lynk-border-radius-medium);
   }
 
-  .popup-sync sl-select {
+  .popup-sync lynk-select {
     width: 160px;
   }
 </style>
@@ -512,7 +512,7 @@ Toggle the switch and scroll the container to see the difference.
     border-radius: var(--lynk-border-radius-medium);
   }
 
-  .popup-strategy sl-switch {
+  .popup-strategy lynk-switch {
     margin-top: 1rem;
   }
 </style>
@@ -673,57 +673,6 @@ Toggle the switch to see the difference.
 </script>
 ```
 
-```jsx react
-import { useState } from 'react';
-import { SlPopup, SlSwitch } from '@shoelace-style/shoelace/dist/react';
-
-const css = `
-  .popup-shift .overflow {
-    position: relative;
-    border: solid 2px var(--lynk-color-neutral-200);
-    overflow: auto;
-  }
-
-  .popup-shift span[slot='anchor'] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--lynk-color-neutral-600);
-    margin: 60px 0 0 10px;
-  }
-
-  .popup-shift .box {
-    width: 300px;
-    height: 50px;
-    background: var(--lynk-color-primary-600);
-    border-radius: var(--lynk-border-radius-medium);
-  }
-`;
-
-const App = () => {
-  const [shift, setShift] = useState(true);
-
-  return (
-    <>
-      <div className="popup-shift">
-        <div className="overflow">
-          <SlPopup placement="top" shift={shift} shift-padding="10" active>
-            <span slot="anchor" />
-            <div className="box" />
-          </SlPopup>
-        </div>
-
-        <SlSwitch checked={shift} onSlChange={event => setShift(event.target.checked)}>
-          Shift
-        </SlSwitch>
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
-```
-
 ### Auto-size
 
 Use the `auto-size` attribute to tell the popup to resize when necessary to prevent it from getting clipped. Possible values are `horizontal`, `vertical`, and `both`. You can use `autoSizeBoundary` and `auto-size-padding` to customize the behavior of this option. Auto-size works well with `flip`, but if you're using `auto-size-padding` make sure `flip-padding` is the same value.
@@ -783,66 +732,6 @@ Scroll the container to see the popup resize as its available space changes.
 
   autoSize.addEventListener('on:change', () => (popup.autoSize = autoSize.checked ? 'both' : ''));
 </script>
-```
-
-```jsx react
-import { useState } from 'react';
-import { SlPopup, SlSwitch } from '@shoelace-style/shoelace/dist/react';
-
-const css = `
-  .popup-auto-size .overflow {
-    position: relative;
-    height: 300px;
-    border: solid 2px var(--lynk-color-neutral-200);
-    overflow: auto;
-  }
-
-  .popup-auto-size span[slot='anchor'] {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    border: dashed 2px var(--lynk-color-neutral-600);
-    margin: 250px 50px 100px 50px;
-  }
-
-  .popup-auto-size .box {
-    background: var(--lynk-color-primary-600);
-    border-radius: var(--lynk-border-radius-medium);
-
-    /* This sets the preferred size of the popup's content */
-    width: 100px;
-    height: 200px;
-
-    /* This sets the maximum dimensions and allows scrolling when auto-size kicks in */
-    max-width: var(--auto-size-available-width);
-    max-height: var(--auto-size-available-height);
-    overflow: auto;
-  }
-`;
-
-const App = () => {
-  const [autoSize, setAutoSize] = useState(true);
-
-  return (
-    <>
-      <div className="popup-auto-size">
-        <div className="overflow">
-          <SlPopup placement="top" auto-size={autoSize ? 'both' || null} auto-size-padding="10" active>
-            <span slot="anchor" />
-            <div className="box" />
-          </SlPopup>
-        </div>
-
-        <br />
-        <SlSwitch checked={autoSize} onSlChange={event => setAutoSize(event.target.checked)}>
-          Auto-size
-        </SlSwitch>
-      </div>
-
-      <style>{css}</style>
-    </>
-  );
-};
 ```
 
 [component-metadata:lynk-popup]

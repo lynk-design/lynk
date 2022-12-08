@@ -29,6 +29,9 @@
   - [Icons](/components/icon)
   - [Popover](/components/popover)
   - [Stack](/components/stack)
+  - [Tab](/components/tab)
+  - [Tab Group](/components/tab-group)
+  - [Tab Panel](/components/tab-panel)
   - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)
 

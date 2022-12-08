@@ -11,7 +11,7 @@ import type { CSSResultGroup } from 'lit';
  * @summary Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.
  *
  * @since 1.0
- * @status stable
+ * @status experimental
  *
  * @slot - The tab panel's content.
  *

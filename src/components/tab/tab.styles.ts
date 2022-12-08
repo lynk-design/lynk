@@ -6,17 +6,18 @@ export default css`
 
   :host {
     display: inline-block;
+    --padding: var(--lynk-spacing-small) var(--lynk-spacing-medium);
   }
 
   .lynk-tab {
     display: inline-flex;
     align-items: center;
     font-family: var(--lynk-font-sans);
-    font-size: var(--lynk-font-size-small);
+    font-size: var(--lynk-font-size-medium);
     font-weight: var(--lynk-font-weight-semibold);
     border-radius: var(--lynk-border-radius-medium);
     color: var(--lynk-color-neutral-600);
-    padding: var(--lynk-spacing-medium) var(--lynk-spacing-large);
+    padding: var(--padding);
     white-space: nowrap;
     user-select: none;
     cursor: pointer;

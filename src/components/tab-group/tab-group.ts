@@ -15,7 +15,7 @@ import type { CSSResultGroup } from 'lit';
  * @summary Tab groups organize content into a container that shows one section at a time.
  *
  * @since 1.0
- * @status stable
+ * @status experimental
  *
  * @dependency lynk-icon-button
  *
@@ -337,7 +337,7 @@ export default class LynkTabGroup extends LynkElement {
       case 'end':
         this.indicator.style.width = 'auto';
         this.indicator.style.height = `${height}px`;
-        this.indicator.style.translate = `${offset.top}px`;
+        this.indicator.style.translate = `0px ${offset.top}px`;
         break;
     }
   }

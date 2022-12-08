@@ -107,7 +107,7 @@ export default css`
     order: 2;
   }
 
-  .lynk-tab-group--top ::slotted(sl-tab-panel) {
+  .lynk-tab-group--top ::slotted(lynk-tab-panel) {
     --padding: var(--lynk-spacing-medium) 0;
   }
 
@@ -153,7 +153,7 @@ export default css`
     order: 1;
   }
 
-  .lynk-tab-group--bottom ::slotted(sl-tab-panel) {
+  .lynk-tab-group--bottom ::slotted(lynk-tab-panel) {
     --padding: var(--lynk-spacing-medium) 0;
   }
 
@@ -190,7 +190,7 @@ export default css`
     order: 2;
   }
 
-  .lynk-tab-group--start ::slotted(sl-tab-panel) {
+  .lynk-tab-group--start ::slotted(lynk-tab-panel) {
     --padding: 0 var(--lynk-spacing-medium);
   }
 
@@ -227,7 +227,7 @@ export default css`
     order: 1;
   }
 
-  .lynk-tab-group--end ::slotted(sl-tab-panel) {
+  .lynk-tab-group--end ::slotted(lynk-tab-panel) {
     --padding: 0 var(--lynk-spacing-medium);
   }
 `;
