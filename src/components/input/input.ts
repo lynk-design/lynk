@@ -279,8 +279,8 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     this.input.stepUp();
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      this.emit('sl-input');
-      this.emit('sl-change');
+      this.emit('on:input');
+      this.emit('on:change');
     }
   }
 
@@ -289,8 +289,8 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     this.input.stepDown();
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      this.emit('sl-input');
-      this.emit('sl-change');
+      this.emit('on:input');
+      this.emit('on:change');
     }
   }
 

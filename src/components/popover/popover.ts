@@ -219,7 +219,11 @@ export default class LynkPopover extends LynkElement {
     // When spacebar/enter is pressed, show the panel but don't focus on the contents. This let's the user press the same
     // key again to hide the menu in case they don't want to make a selection.
     if ([' ', 'Enter'].includes(event.key)) {
-      event.preventDefault();
+      const isInputTrigger = (event.target.tagName.toLowerCase() === 'lynk-input');
+      // Unless the enter key event is coming from an input, in which case preventDefault will cause the on:enter event to not fire.
+      if (!isInputTrigger || (isInputTrigger && event.key === ' ')) {
+        event.preventDefault();
+      }
       this.handleTriggerClick();
       return;
     }
