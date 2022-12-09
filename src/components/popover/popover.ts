@@ -222,7 +222,7 @@ export default class LynkPopover extends LynkElement {
       const target = event.target as HTMLElement;
       const isInputTrigger = (target.tagName.toLowerCase() === 'lynk-input');
       // Unless the enter key event is coming from an input, in which case preventDefault will cause the on:enter event to not fire.
-      if (!isInputTrigger || (isInputTrigger && event.key === ' ')) {
+      if (!isInputTrigger) {
         event.preventDefault();
       }
       this.handleTriggerClick();
