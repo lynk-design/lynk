@@ -57,6 +57,14 @@ export default css`
     color: var(--lynk-color-danger-800);
   }
 
+  .lynk-tag.lynk-tag--text {
+    background-color: var(--lynk-color-neutral-0);
+    border-color: var(--lynk-color-neutral-100);
+    color: var(--lynk-color-neutral-800);
+    cursor: text;
+    user-select: all;
+  }
+
   /*
    * Size modifiers
    */

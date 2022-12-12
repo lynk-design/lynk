@@ -424,7 +424,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
               content:lynk-tag__content,
               remove-button:lynk-tag__remove-button
             "
-            variant="neutral"
+            type="neutral"
             size=${this.size}
             ?pill=${this.pill}
             ?removable=${!this.restricted}
@@ -455,7 +455,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
               content:lynk-tag__content,
               remove-button:lynk-tag__remove-button
             "
-            variant="neutral"
+            type="neutral"
             size=${this.size}
           >
             +${total - this.maxTagsVisible}

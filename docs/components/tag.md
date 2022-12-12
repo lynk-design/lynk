@@ -8,6 +8,7 @@
 <lynk-tag type="neutral">Neutral</lynk-tag>
 <lynk-tag type="warning">Warning</lynk-tag>
 <lynk-tag type="danger">Danger</lynk-tag>
+<lynk-tag type="text">Text</lynk-tag>
 ```
 
 ## Examples
