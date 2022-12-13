@@ -422,12 +422,19 @@ export default css`
      line-height: calc(var(--lynk-button-height-tiny) - var(--lynk-button-border-width) * 2);
      border-radius: var(--lynk-button-border-radius-small);
    }
+   .lynk-button--tiny .lynk-button__label::slotted(lynk-icon) {
+     font-size: var(--lynk-font-size-small);
+   }
 
   .lynk-button--small {
     font-size: var(--lynk-button-font-size-small);
     height: var(--lynk-button-height-small);
     line-height: calc(var(--lynk-button-height-small) - var(--lynk-button-border-width) * 2);
     border-radius: var(--lynk-button-border-radius-small);
+  }
+  .lynk-button--small .lynk-button__label::slotted(lynk-icon) {
+    font-size: var(--lynk-font-size-medium);
+    vertical-align: -3px;
   }
 
   .lynk-button--medium {
@@ -436,6 +443,10 @@ export default css`
     line-height: calc(var(--lynk-button-height-medium) - var(--lynk-button-border-width) * 2);
     border-radius: var(--lynk-button-border-radius-medium);
   }
+  .lynk-button--medium .lynk-button__label::slotted(lynk-icon) {
+    font-size: var(--lynk-font-size-base);
+    vertical-align: -3px;
+  }
 
   .lynk-button--large {
     font-size: var(--lynk-button-font-size-large);
@@ -443,6 +454,11 @@ export default css`
     line-height: calc(var(--lynk-button-height-large) - var(--lynk-button-border-width) * 2);
     border-radius: var(--lynk-button-border-radius-large);
   }
+  .lynk-button--large .lynk-button__label::slotted(lynk-icon) {
+    font-size: var(--lynk-font-size-large);
+    vertical-align: -4px;
+  }
+
 
   /*
    * Pill modifier

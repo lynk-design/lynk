@@ -72,7 +72,6 @@ export default css`
     outline: none;
   }
 
-
   .lynk-popover__body {
     flex: 1 1 auto;
     display: block;
@@ -99,8 +98,11 @@ export default css`
   .lynk-popover__close {
     flex: 0 0 auto;
     align-self: end;
-    font-size: var(--lynk-font-size-large);
+    font-size: var(--lynk-font-size-base);
     padding-left: var(--header-spacing);
+    position: relative;
+    top: -4px;
+    right: -4px;
   }
 
   .lynk-popover__footer {
