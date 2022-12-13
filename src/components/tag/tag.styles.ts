@@ -14,7 +14,7 @@ export default css`
     border: solid 1px;
     line-height: 1;
     white-space: nowrap;
-    user-select: none;
+    user-select: text;
     cursor: default;
   }
 
@@ -62,7 +62,6 @@ export default css`
     border-color: var(--lynk-color-neutral-100);
     color: var(--lynk-color-neutral-800);
     cursor: text;
-    user-select: all;
   }
 
   /*

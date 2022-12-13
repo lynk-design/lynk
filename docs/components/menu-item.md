@@ -76,7 +76,7 @@ Add content to the start and end of menu items using the `prefix` and `suffix` s
 
 ### Value & Selection
 
-The `value` attribute can be used to assign a hidden value, such as a unique identifier, to a menu item. When an item is selected, the `l-select` event will be emitted and a reference to the item will be available at `event.detail.item`. You can use this reference to access the selected item's value, its checked state, and more.
+The `value` attribute can be used to assign a hidden value, such as a unique identifier, to a menu item. When an item is selected, the `on:select` event will be emitted and a reference to the item will be available at `event.detail.item`. You can use this reference to access the selected item's value, its checked state, and more.
 
 ```html preview
 <lynk-menu class="menu-value" style="max-width: 200px;">
