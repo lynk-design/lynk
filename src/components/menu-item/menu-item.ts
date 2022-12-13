@@ -106,7 +106,7 @@ export default class LynkMenuItem extends LynkElement {
         @click=${this.handleClick}
       >
         <span part="checked-icon" class="lynk-menu-item__check">
-          <sl-icon name="check" library="system" aria-hidden="true"></sl-icon>
+          <lynk-icon name="check" library="system" aria-hidden="true"></lynk-icon>
         </span>
 
         <slot name="prefix" part="prefix" class="lynk-menu-item__prefix"></slot>
@@ -116,7 +116,7 @@ export default class LynkMenuItem extends LynkElement {
         <slot name="suffix" part="suffix" class="lynk-menu-item__suffix"></slot>
 
         <span class="lynk-menu-item__chevron">
-          <sl-icon name="chevron-right" library="system" aria-hidden="true"></sl-icon>
+          <lynk-icon name="chevron-right" library="system" aria-hidden="true"></lynk-icon>
         </span>
       </div>
     `;

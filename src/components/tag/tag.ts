@@ -11,7 +11,7 @@ import type { CSSResultGroup } from 'lit';
  * @summary Tags are used as labels to organize things or to indicate a selection.
  *
  * @since 1.0
- * @status experimental
+ * @status stable
  *
  * @dependency lynk-icon-button
  *
