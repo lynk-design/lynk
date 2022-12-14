@@ -37,6 +37,9 @@ import type { CSSResultGroup } from 'lit';
    /** The radio's value attribute. */
    @property() value: string;
 
+   /** The radio's size. */
+   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
    /** Disables the radio. */
    @property({ type: Boolean, reflect: true }) disabled = false;
 
@@ -93,11 +96,16 @@ import type { CSSResultGroup } from 'lit';
            'lynk-radio': true,
            'lynk-radio--checked': this.checked,
            'lynk-radio--disabled': this.disabled,
-           'lynk-radio--focused': this.hasFocus
+           'lynk-radio--focused': this.hasFocus,
+           'lynk-radio--small': this.size === 'small',
+           'lynk-radio--medium': this.size === 'medium',
+           'lynk-radio--large': this.size === 'large'
          })}
        >
          <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="lynk-radio__control">
-           ${this.checked ? html` <lynk-icon part="checked-icon" library="system" name="radio"></lynk-icon> ` : ''}
+           ${this.checked
+             ? html` <lynk-icon part="checked-icon" class="lynk-radio__checked-icon" library="system" name="radio"></lynk-icon> `
+             : ''}
          </span>
 
          <slot part="label" class="lynk-radio__label"></slot>

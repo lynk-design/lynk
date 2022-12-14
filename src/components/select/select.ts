@@ -151,9 +151,6 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   /** Adds a clear button when the select is populated. */
   @property({ type: Boolean }) clearable = false;
 
-  /** Use the browsers built constraint validation API  in tandem with the `required` property` */
-  @property({ type: Boolean, reflect: true }) autovalidate = false;
-
   /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
   @defaultValue() defaultValue = '';
 
@@ -168,9 +165,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   }
 
   firstUpdated() {
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }
+    this.invalid = !this.input.checkValidity();
   }
 
   disconnectedCallback() {
@@ -185,7 +180,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
-    return this.autovalidate ? this.input.reportValidity() : false;
+    return this.input.reportValidity();
   }
 
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
@@ -222,9 +217,17 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   }
 
   handleClearClick(event: MouseEvent) {
+    const oldValue = this.value;
+
     event.stopPropagation();
     this.value = this.multiple ? [] : '';
-    this.emit('on:clear');
+
+    if (this.value !== oldValue) {
+      this.emit('on:clear');
+      this.emit('on:input');
+      this.emit('on:change');
+    }
+
     this.syncItemsFromValue();
   }
 
@@ -237,9 +240,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     // Disabled form controls are always valid, so we need to recheck validity when the state changes
     this.input.disabled = this.disabled;
 
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }
+    this.invalid = !this.input.checkValidity();
   }
 
   handleFocus() {
@@ -312,6 +313,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
   handleMenuSelect(event: CustomEvent<MenuSelectEventDetail>) {
     const item = event.detail.item;
+    const oldValue = this.value;
 
     if (this.multiple) {
       this.value = this.value.includes(item.value)
@@ -319,6 +321,11 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
         : [...this.value, item.value];
     } else {
       this.value = item.value;
+    }
+
+    if (this.value !== oldValue) {
+      this.emit('on:change');
+      this.emit('on:input');
     }
 
     this.syncItemsFromValue();
@@ -391,12 +398,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     this.syncItemsFromValue();
     await this.updateComplete;
 
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }
-
-    this.emit('on:change');
-    this.emit('on:input');
+    this.invalid = !this.input.checkValidity();
   }
 
   resizeMenu() {
@@ -473,11 +475,17 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   syncValueFromItems() {
     const checkedItems = this.menuItems.filter(item => item.checked);
     const checkedValues = checkedItems.map(item => item.value);
+    const oldValue = this.value;
 
     if (this.multiple) {
       this.value = (this.value as []).filter(val => checkedValues.includes(val));
     } else {
       this.value = checkedValues.length > 0 ? checkedValues[0] : '';
+    }
+
+    if (this.value !== oldValue) {
+      this.emit('on:change');
+      this.emit('on:input');
     }
   }
 

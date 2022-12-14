@@ -44,6 +44,14 @@ Use the `size` attribute to change a radio button's size.
 
 ```html preview
 <lynk-radio-group label="Select an option" name="a" value="1">
+  <lynk-radio-button size="tiny" value="1">Option 1</lynk-radio-button>
+  <lynk-radio-button size="tiny" value="2">Option 2</lynk-radio-button>
+  <lynk-radio-button size="tiny" value="3">Option 3</lynk-radio-button>
+</lynk-radio-group>
+
+<br />
+
+<lynk-radio-group label="Select an option" name="a" value="1">
   <lynk-radio-button size="small" value="1">Option 1</lynk-radio-button>
   <lynk-radio-button size="small" value="2">Option 2</lynk-radio-button>
   <lynk-radio-button size="small" value="3">Option 3</lynk-radio-button>

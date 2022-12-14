@@ -26,6 +26,7 @@ import type { CSSResultGroup } from 'lit';
 //
 const isChromium = navigator.userAgentData?.brands.some(b => b.brand.includes('Chromium'));
 const isFirefox = isChromium ? false : navigator.userAgent.includes('Firefox');
+
 /**
  * @summary Inputs collect data from the user.
  *
@@ -45,12 +46,12 @@ const isFirefox = isChromium ? false : navigator.userAgent.includes('Firefox');
  * @slot help-text - Help text that describes how to use the input. Alternatively, you can use the help-text prop.
  * @slot help-tip - Help tooltip next to the label that can be used in place of help-text to give additional information about how to use the input. Alternatively, you can use the help-tip prop.
  *
+ * @event on:blur - Emitted when the control loses focus.
  * @event on:change - Emitted when an alteration to the control's value is committed by the user.
  * @event on:clear - Emitted when the clear button is activated.
- * @event on:input - Emitted when the control receives input and its value changes.
- * @event on:focus - Emitted when the control gains focus.
- * @event on:blur - Emitted when the control loses focus.
  * @event on:enter - Emitted when the return key is pressed while the input has focus.
+ * @event on:focus - Emitted when the control gains focus.
+ * @event on:input - Emitted when the control receives input.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -77,7 +78,10 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   @state() invalid = false;
   @property() title = ''; // make reactive to pass through
 
-  /** The input's type. */
+  /**
+   * The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults
+   * to `text`.
+   */
   @property({ reflect: true }) type:
     | 'date'
     | 'datetime-local'
@@ -123,16 +127,16 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   /** Adds a clear button when the input is populated. */
   @property({ type: Boolean }) clearable = false;
 
-  /** Adds a password toggle button to password inputs. */
-  @property({ attribute: 'toggle-password', type: Boolean }) togglePassword = false;
+  /** Adds a button to toggle the password's visibility. Only applies to password types. */
+  @property({ attribute: 'password-toggle', type: Boolean }) passwordToggle = false;
 
-  /** Determines whether or not the password is currently visible. Only applies to password inputs. */
+  /** Determines whether or not the password is currently visible. Only applies to password input types. */
   @property({ attribute: 'password-visible', type: Boolean }) passwordVisible = false;
 
   /** Hides the browser's built-in increment/decrement spin buttons for number inputs. */
   @property({ attribute: 'no-spin-buttons', type: Boolean }) noSpinButtons = false;
 
-  /** The input's placeholder text. */
+  /** Placeholder text to show as a hint when the input is empty. */
   @property() placeholder = '';
 
   /** Disables the input. */
@@ -171,31 +175,39 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   /** The input's autocapitalize attribute. */
   @property() autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
 
-  /** Use the browsers built constraint validation API in tandem with `required`, `pattern`, `minlength` and `maxlength` values */
-  @property({ type: Boolean, reflect: true }) autovalidate = false;
+  /** Indicates whether the browser's autocorrect feature is on or off. */
+  @property() autocorrect: 'off' | 'on';
 
-  /** The input's autocorrect attribute. */
-  @property() autocorrect: string;
-
-  /** The input's autocomplete attribute. */
+  /**
+   * Specifies what permission the browser has to provide assistance in filling out form field values. Refer to
+   * [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.
+   */
   @property() autocomplete: string;
 
   /** The input's autofocus attribute. */
   @property({ type: Boolean }) autofocus: boolean;
 
-  /**
-   * The input's enterkeyhint attribute. This can be used to customize the label or icon of the Enter key on virtual
-   * keyboards.
-   */
+  /** Used to customize the label or icon of the Enter key on virtual keyboards. */
   @property() enterkeyhint: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
 
   /** Enables spell checking on the input. */
-  @property({ type: Boolean }) spellcheck: boolean;
+  @property({
+    type: Boolean,
+    converter: {
+      // Allow "true|false" attribute values but keep the property boolean
+      fromAttribute: value => (!value || value === 'false' ? false : true),
+      toAttribute: value => (value ? 'true' : 'false')
+    }
+  })
+  spellcheck = true;
 
-  /** The input's inputmode attribute. */
+  /**
+   * Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
+   * keyboard on supportive devices.
+   */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
-  /** Gets or sets the current value as a `Date` object. Only valid when `type` is `date`. */
+  /** Gets or sets the current value as a `Date` object. Returns `null` if the value can't be converted. */
   get valueAsDate() {
     return this.input?.valueAsDate ?? null;
   }
@@ -208,7 +220,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     this.value = input.value;
   }
 
-  /** Gets or sets the current value as a number. */
+  /** Gets or sets the current value as a number. Returns `NaN` if the value can't be converted. */
   get valueAsNumber() {
     return this.input?.valueAsNumber ?? parseFloat(this.value);
   }
@@ -222,9 +234,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   }
 
   firstUpdated() {
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }
+    this.invalid = !this.input.checkValidity();
   }
 
   /** Sets focus on the input. */
@@ -254,16 +264,15 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   /** Replaces a range of text with a new string. */
   setRangeText(
     replacement: string,
-    start: number,
-    end: number,
-    selectMode: 'select' | 'start' | 'end' | 'preserve' = 'preserve'
+    start?: number,
+    end?: number,
+    selectMode?: 'select' | 'start' | 'end' | 'preserve'
   ) {
+    // @ts-expect-error - start, end, and selectMode are optional
     this.input.setRangeText(replacement, start, end, selectMode);
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      this.emit('on:input');
-      this.emit('on:change');
     }
   }
 
@@ -279,8 +288,6 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     this.input.stepUp();
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      this.emit('on:input');
-      this.emit('on:change');
     }
   }
 
@@ -289,8 +296,6 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     this.input.stepDown();
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      this.emit('on:input');
-      this.emit('on:change');
     }
   }
 
@@ -301,7 +306,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
-    return this.autovalidate ? this.input.reportValidity() : false;
+    return this.input.reportValidity();
   }
 
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
@@ -334,10 +339,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   handleDisabledChange() {
     // Disabled form controls are always valid, so we need to recheck validity when the state changes
     this.input.disabled = this.disabled;
-
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }
+    this.invalid = !this.input.checkValidity();
   }
 
   @watch('step', { waitUntilFirstUpdate: true })
@@ -346,9 +348,8 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     // imperatively so we don't have to wait for the next render to report the updated validity.
     this.input.step = String(this.step);
 
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }  }
+    this.invalid = !this.input.checkValidity();
+  }
 
   handleFocus() {
     this.hasFocus = true;
@@ -361,9 +362,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   }
 
   handleInvalid() {
-    if (this.autovalidate) {
-      this.invalid = true;
-    }
+    this.invalid = true;
   }
 
   handleKeyDown(event: KeyboardEvent) {
@@ -394,9 +393,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   @watch('value', { waitUntilFirstUpdate: true })
   handleValueChange() {
     this.input.value = this.value; // force a sync update
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }
+    this.invalid = !this.input.checkValidity();
   }
 
   render() {
@@ -553,7 +550,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                   </button>
                 `
               : ''}
-            ${this.togglePassword && !this.disabled
+            ${this.passwordToggle && !this.disabled
               ? html`
                   <button
                     part="password-toggle-button"

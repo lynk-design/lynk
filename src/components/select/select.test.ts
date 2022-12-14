@@ -1,6 +1,8 @@
-import { expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
+import { aTimeout, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
+import { clickOnElement } from '../../internal/test';
+import type LynkMenuItem from '../menu-item/menu-item';
 import type LynkSelect from './select';
 
 describe('<lynk-select>', () => {
@@ -45,21 +47,78 @@ describe('<lynk-select>', () => {
     expect(submitHandler).to.have.been.calledOnce;
   });
 
-  it('should emit on:change when the value changes', async () => {
-    const el = await fixture<LynkSelect>(html`
-      <lynk-select>
-        <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-        <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-        <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
-      </lynk-select>
-    `);
-    const changeHandler = sinon.spy();
+  describe('when the value changes', () => {
+    it('should emit on:change when the value is changed with the mouse', async () => {
+      const el = await fixture<LynkSelect>(html`
+        <lynk-select value="option-1">
+          <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+          <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+          <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+        </lynk-select>
+      `);
+      const trigger = el.shadowRoot!.querySelector<HTMLElement>('[part~="control"]')!;
+      const secondOption = el.querySelectorAll<LynkMenuItem>('lynk-menu-item')[1];
+      const changeHandler = sinon.spy();
+      const inputHandler = sinon.spy();
 
-    el.addEventListener('on:change', changeHandler);
-    el.value = 'option-2';
-    await waitUntil(() => changeHandler.calledOnce);
+      el.addEventListener('on:change', changeHandler);
+      el.addEventListener('on:input', inputHandler);
 
-    expect(changeHandler).to.have.been.calledOnce;
+      await clickOnElement(trigger);
+      await el.updateComplete;
+      await clickOnElement(secondOption);
+      await el.updateComplete;
+
+      expect(changeHandler).to.have.been.calledOnce;
+      expect(inputHandler).to.have.been.calledOnce;
+      expect(el.value).to.equal('option-2');
+    });
+
+    it('should emit on:change and on:input when the value is changed with the keyboard', async () => {
+      const el = await fixture<LynkSelect>(html`
+        <lynk-select value="option-1">
+          <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+          <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+          <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+        </lynk-select>
+      `);
+      const changeHandler = sinon.spy();
+      const inputHandler = sinon.spy();
+
+      el.addEventListener('on:change', changeHandler);
+      el.addEventListener('on:input', inputHandler);
+
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: ' ' }); // open the dropdown
+      await aTimeout(500); // wait for the dropdown to open
+      await sendKeys({ press: 'ArrowDown' }); // select the first option
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // select the second option
+      await el.updateComplete;
+      await sendKeys({ press: 'Enter' }); // commit the selection
+      await el.updateComplete;
+
+      expect(changeHandler).to.have.been.calledOnce;
+      expect(inputHandler).to.have.been.calledOnce;
+      expect(el.value).to.equal('option-2');
+    });
+
+    it('should not emit on:change or on:input when the value is changed programmatically', async () => {
+      const el = await fixture<LynkSelect>(html`
+        <lynk-select value="option-1">
+          <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+          <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+          <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+        </lynk-select>
+      `);
+
+      el.addEventListener('on:change', () => expect.fail('on:change should not be emitted'));
+      el.addEventListener('on:input', () => expect.fail('on:input should not be emitted'));
+      el.value = 'option-2';
+
+      await el.updateComplete;
+    });
   });
 
   it('should open the menu when any letter key is pressed with lynk-select is on focus', async () => {
@@ -98,7 +157,7 @@ describe('<lynk-select>', () => {
   it('should focus on the custom control when constraint validation occurs', async () => {
     const el = await fixture<HTMLFormElement>(html`
       <form>
-        <lynk-select autovalidate required>
+        <lynk-select required>
           <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
           <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
           <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
@@ -129,5 +188,34 @@ describe('<lynk-select>', () => {
     await el.updateComplete;
 
     expect(displayLabel.textContent?.trim()).to.equal('updated');
+  });
+
+  describe('when resetting a form', () => {
+    it('should reset the element to its initial value', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <lynk-select value="option-1">
+            <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
+            <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
+            <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+          </lynk-select>
+          <lynk-button type="reset">Reset</lynk-button>
+        </form>
+      `);
+      const button = form.querySelector('lynk-button')!;
+      const select = form.querySelector('lynk-select')!;
+      const option2 = form.querySelectorAll('lynk-menu-item')![1];
+
+      option2.click();
+      await option2.updateComplete;
+
+      expect(select.value).to.equal('option-2');
+
+      setTimeout(() => button.click());
+      await oneEvent(form, 'reset');
+      await select.updateComplete;
+
+      expect(select.value).to.equal('option-1');
+    });
   });
 });

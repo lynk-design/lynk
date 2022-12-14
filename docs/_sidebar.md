@@ -4,6 +4,7 @@
   <!-- - [Installation](/getting-started/installation) -->
   - [Usage](/getting-started/usage)
   - [Themes](/getting-started/themes)
+  - [Form Controls](/getting-started/form-controls)
   - [Customizing](/getting-started/customizing)
   <!-- - [Localization](/getting-started/localization) -->
 

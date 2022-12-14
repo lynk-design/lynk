@@ -1,7 +1,7 @@
 import { expect, fixture, html, oneEvent } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
+import sinon from 'sinon';
 import type LynkSwitch from './switch';
-
 
 describe('<lynk-switch>', () => {
   it('should pass accessibility tests', async () => {
@@ -41,44 +41,72 @@ describe('<lynk-switch>', () => {
     expect(el.invalid).to.be.false;
   });
 
-  it('should fire on:change when clicked', async () => {
+  it('should emit on:change and on:input when clicked', async () => {
     const el = await fixture<LynkSwitch>(html` <lynk-switch></lynk-switch> `);
-    setTimeout(() => el.shadowRoot!.querySelector('input')!.click());
-    const event = (await oneEvent(el, 'on:change')) as CustomEvent;
-    expect(event.target).to.equal(el);
+    const changeHandler = sinon.spy();
+    const inputHandler = sinon.spy();
+
+    el.addEventListener('on:change', changeHandler);
+    el.addEventListener('on:input', inputHandler);
+    el.click();
+    await el.updateComplete;
+
+    expect(changeHandler).to.have.been.calledOnce;
+    expect(inputHandler).to.have.been.calledOnce;
     expect(el.checked).to.be.true;
   });
 
-  it('should fire on:change when toggled with spacebar', async () => {
+  it('should emit on:change when toggled with spacebar', async () => {
     const el = await fixture<LynkSwitch>(html` <lynk-switch></lynk-switch> `);
+    const changeHandler = sinon.spy();
+    const inputHandler = sinon.spy();
+
+    el.addEventListener('on:change', changeHandler);
+    el.addEventListener('on:input', inputHandler);
     el.focus();
-    setTimeout(() => sendKeys({ press: ' ' }));
-    const event = (await oneEvent(el, 'on:change')) as CustomEvent;
-    expect(event.target).to.equal(el);
+    await sendKeys({ press: ' ' });
+
+    expect(changeHandler).to.have.been.calledOnce;
+    expect(inputHandler).to.have.been.calledOnce;
     expect(el.checked).to.be.true;
   });
 
-  it('should fire on:change when toggled with the right arrow', async () => {
+  it('should emit on:change and on:input when toggled with the right arrow', async () => {
     const el = await fixture<LynkSwitch>(html` <lynk-switch></lynk-switch> `);
+    const changeHandler = sinon.spy();
+    const inputHandler = sinon.spy();
+
+    el.addEventListener('on:change', changeHandler);
+    el.addEventListener('on:input', inputHandler);
     el.focus();
-    setTimeout(() => sendKeys({ press: 'ArrowRight' }));
-    const event = (await oneEvent(el, 'on:change')) as CustomEvent;
-    expect(event.target).to.equal(el);
+    await sendKeys({ press: 'ArrowRight' });
+    await el.updateComplete;
+
+    expect(changeHandler).to.have.been.calledOnce;
+    expect(inputHandler).to.have.been.calledOnce;
     expect(el.checked).to.be.true;
   });
 
-  it('should fire on:change when toggled with the left arrow', async () => {
+  it('should emit on:change and on:input when toggled with the left arrow', async () => {
     const el = await fixture<LynkSwitch>(html` <lynk-switch checked></lynk-switch> `);
+    const changeHandler = sinon.spy();
+    const inputHandler = sinon.spy();
+
+    el.addEventListener('on:change', changeHandler);
+    el.addEventListener('on:input', inputHandler);
     el.focus();
-    setTimeout(() => sendKeys({ press: 'ArrowLeft' }));
-    const event = (await oneEvent(el, 'on:change')) as CustomEvent;
-    expect(event.target).to.equal(el);
+    await sendKeys({ press: 'ArrowLeft' });
+    await el.updateComplete;
+
+    expect(changeHandler).to.have.been.calledOnce;
+    expect(inputHandler).to.have.been.calledOnce;
     expect(el.checked).to.be.false;
   });
 
-  it('should not fire on:change when checked is set by javascript', async () => {
+  it('should not emit on:change or on:input when checked is set by javascript', async () => {
     const el = await fixture<LynkSwitch>(html` <lynk-switch></lynk-switch> `);
-    el.addEventListener('on:change', () => expect.fail('event fired'));
+    el.addEventListener('on:change', () => expect.fail('on:change incorrectly emitted'));
+    el.addEventListener('on:input', () => expect.fail('on:change incorrectly emitted'));
     el.checked = true;
     await el.updateComplete;
     el.checked = false;

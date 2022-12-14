@@ -22,9 +22,10 @@ import type { CSSResultGroup } from 'lit';
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Help text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
  *
- * @event on:change - Emitted when the control's value changes.
  * @event on:blur - Emitted when the control loses focus.
+ * @event on:change - Emitted when an alteration to the control's value is committed by the user.
  * @event on:focus - Emitted when the control gains focus.
+ * @event on:input - Emitted when the control receives input.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -59,13 +60,13 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
   @state() invalid = false;
   @property() title = ''; // make reactive to pass through
 
-  /** The range's name attribute. */
+  /** The name of the range, submitted as a name/value pair with form data. */
   @property() name = '';
 
-  /** The range's value attribute. */
+  /** The current value of the range, submitted as a name/value pair with form data. */
   @property({ type: Number }) value = 0;
 
-  /** The range's label. If you need to display HTML, you can use the `label` slot instead. */
+  /** The range's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
 
   /** The range's help text. If you need to display HTML, you can use the help-text slot instead. */
@@ -86,10 +87,13 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
   /** The preferred placement of the tooltip. */
   @property() tooltip: 'top' | 'bottom' | 'none' = 'top';
 
-  /** A function used to format the tooltip's value. */
+  /**
+   * A function used to format the tooltip's value. The range's value is passed as the first and only argument. The
+   * function should return a string to display in the tooltip.
+   */
   @property({ attribute: false }) tooltipFormatter: (value: number) => string = (value: number) => value.toString();
 
-  /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
+  /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue() defaultValue = 0;
 
   connectedCallback() {
@@ -129,7 +133,6 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     this.input.stepUp();
     if (this.value !== Number(this.input.value)) {
       this.value = Number(this.input.value);
-      this.emit('on:change');
     }
   }
 
@@ -138,7 +141,6 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     this.input.stepDown();
     if (this.value !== Number(this.input.value)) {
       this.value = Number(this.input.value);
-      this.emit('on:change');
     }
   }
 
@@ -158,10 +160,13 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     this.invalid = !this.input.checkValidity();
   }
 
+  handleChange() {
+    this.emit('on:change');
+  }
+
   handleInput() {
     this.value = parseFloat(this.input.value);
-    this.emit('on:change');
-
+    this.emit('on:input');
     this.syncRange();
   }
 
@@ -296,6 +301,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
               step=${ifDefined(this.step)}
               .value=${live(this.value.toString())}
               aria-describedby="help-text"
+              @change=${this.handleChange}
               @input=${this.handleInput}
               @focus=${this.handleFocus}
               @blur=${this.handleBlur}

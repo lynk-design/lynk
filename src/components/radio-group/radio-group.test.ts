@@ -162,24 +162,30 @@ describe('when submitting a form', () => {
   });
 });
 
-describe('when emitting "lynk-change" event', () => {
-  it('should fire lynk-change when toggled via keyboard - arrow key', async () => {
+describe('when the value changes', () => {
+  it('should emit on:change when toggled with the arrow keys', async () => {
     const radioGroup = await fixture<LynkRadioGroup>(html`
       <lynk-radio-group>
         <lynk-radio id="radio-1" value="1"></lynk-radio>
         <lynk-radio id="radio-2" value="2"></lynk-radio>
       </lynk-radio-group>
     `);
-    const radio1 = radioGroup.querySelector<LynkRadio>('#radio-1')!;
+    const firstRadio = radioGroup.querySelector<LynkRadio>('#radio-1')!;
+    const changeHandler = sinon.spy();
+    const inputHandler = sinon.spy();
 
-    radio1.focus();
-    setTimeout(() => sendKeys({ press: 'ArrowRight' }));
-    await oneEvent(radioGroup, 'on:change');
+    radioGroup.addEventListener('on:change', changeHandler);
+    radioGroup.addEventListener('on:input', inputHandler);
+    firstRadio.focus();
+    await sendKeys({ press: 'ArrowRight' });
+    await radioGroup.updateComplete;
 
+    expect(changeHandler).to.have.been.calledOnce;
+    expect(inputHandler).to.have.been.calledOnce;
     expect(radioGroup.value).to.equal('2');
   });
 
-  it('should fire lynk-change when clicked', async () => {
+  it('should emit on:change and on:input when clicked', async () => {
     const radioGroup = await fixture<LynkRadioGroup>(html`
       <lynk-radio-group>
         <lynk-radio id="radio-1" value="1"></lynk-radio>
@@ -193,7 +199,7 @@ describe('when emitting "lynk-change" event', () => {
     expect(radioGroup.value).to.equal('1');
   });
 
-  it('should fire lynk-change when toggled via keyboard - space', async () => {
+  it('should emit on:change and on:input when toggled with spacebar', async () => {
     const radioGroup = await fixture<LynkRadioGroup>(html`
       <lynk-radio-group>
         <lynk-radio id="radio-1" value="1"></lynk-radio>
@@ -206,5 +212,19 @@ describe('when emitting "lynk-change" event', () => {
     const event = (await oneEvent(radioGroup, 'on:change')) as CustomEvent;
     expect(event.target).to.equal(radioGroup);
     expect(radioGroup.value).to.equal('1');
+  });
+
+  it('should not emit on:change or on:input when the value is changed programmatically', async () => {
+    const radioGroup = await fixture<LynkRadioGroup>(html`
+      <lynk-radio-group value="1">
+        <lynk-radio id="radio-1" value="1"></lynk-radio>
+        <lynk-radio id="radio-2" value="2"></lynk-radio>
+      </lynk-radio-group>
+    `);
+
+    radioGroup.addEventListener('on:change', () => expect.fail('on:change should not be emitted'));
+    radioGroup.addEventListener('on:input', () => expect.fail('on:input should not be emitted'));
+    radioGroup.value = '2';
+    await radioGroup.updateComplete;
   });
 });
