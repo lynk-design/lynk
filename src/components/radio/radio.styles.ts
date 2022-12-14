@@ -23,15 +23,25 @@ export default css`
     cursor: pointer;
   }
 
-  .lynk-radio__icon {
-    display: inline-flex;
-    width: var(--lynk-toggle-size);
-    height: var(--lynk-toggle-size);
+  .lynk-radio--small {
+    --toggle-size: var(--lynk-toggle-size-small);
+    font-size: var(--lynk-input-font-size-small);
   }
 
-  .lynk-radio__icon svg {
-    width: 100%;
-    height: 100%;
+  .lynk-radio--medium {
+    --toggle-size: var(--lynk-toggle-size-medium);
+    font-size: var(--lynk-input-font-size-medium);
+  }
+
+  .lynk-radio--large {
+    --toggle-size: var(--lynk-toggle-size-large);
+    font-size: var(--lynk-input-font-size-large);
+  }
+
+  .lynk-radio__checked-icon {
+    display: inline-flex;
+    width: var(--toggle-size);
+    height: var(--toggle-size);
   }
 
   .lynk-radio__control {
@@ -40,8 +50,8 @@ export default css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--lynk-toggle-size);
-    height: var(--lynk-toggle-size);
+    width: var(--toggle-size);
+    height: var(--toggle-size);
     border: solid var(--lynk-input-border-width) var(--lynk-input-border-color);
     border-radius: 50%;
     background-color: var(--lynk-input-background-color);
@@ -97,7 +107,7 @@ export default css`
   .lynk-radio__label {
     display: inline-block;
     color: var(--lynk-input-label-color);
-    line-height: var(--lynk-toggle-size);
+    line-height: var(--toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;
   }

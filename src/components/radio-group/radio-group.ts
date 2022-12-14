@@ -20,10 +20,11 @@ import type { CSSResultGroup } from 'lit';
  *
  * @dependency lynk-button-group
  *
- * @slot - The default slot where radio controls are placed.
- * @slot label - The radio group label. Required for proper accessibility. Alternatively, you can use the label prop.
+ * @slot - The default slot where `<lynk-radio>` or `<lynk-radio-button>` elements are placed.
+ * @slot label - The radio group label. Required for proper accessibility. Alternatively, you can use the label attribute.
  *
  * @event on:change - Emitted when the radio group's selected value changes.
+ * @event on:input - Emitted when the radio group receives user input.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -49,8 +50,9 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
   @state() private customErrorMessage = '';
   @state() defaultValue = '';
   @state() invalid = false;
+
   /**
-   * The radio group label. Required for proper accessibility. If you need to display HTML, you can use the `label` slot
+   * The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot
    * instead.
    */
   @property() label = '';
@@ -58,11 +60,11 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
   /** The input's help text. If you need to display HTML, you can use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
 
-  /** The selected value of the control. */
-  @property({ reflect: true }) value = '';
-
-  /** The name assigned to the radio controls. */
+  /** The name of the radio group, submitted as a name/value pair with form data. */
   @property() name = 'option';
+
+  /** The current value of the radio group, submitted as a name/value pair with form data. */
+  @property({ reflect: true }) value = '';
 
   /** Ensures a child radio is checked before allowing the containing form to submit. */
   @property({ type: Boolean, reflect: true }) required = false;
@@ -70,7 +72,6 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
   @watch('value')
   handleValueChange() {
     if (this.hasUpdated) {
-      this.emit('on:change');
       this.updateCheckedRadio();
     }
   }
@@ -141,14 +142,20 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
 
   handleRadioClick(event: MouseEvent) {
     const target = event.target as LynkRadio | LynkRadioButton;
+    const radios = this.getAllRadios();
+    const oldValue = this.value;
 
     if (target.disabled) {
       return;
     }
 
     this.value = target.value;
-    const radios = this.getAllRadios();
     radios.forEach(radio => (radio.checked = radio === target));
+
+    if (this.value !== oldValue) {
+      this.emit('on:change');
+      this.emit('on:input');
+    }
   }
 
   handleKeyDown(event: KeyboardEvent) {
@@ -159,10 +166,13 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
     const radios = this.getAllRadios().filter(radio => !radio.disabled);
     const checkedRadio = radios.find(radio => radio.checked) ?? radios[0];
     const incr = event.key === ' ' ? 0 : ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
+    const oldValue = this.value;
     let index = radios.indexOf(checkedRadio) + incr;
+
     if (index < 0) {
       index = radios.length - 1;
     }
+
     if (index > radios.length - 1) {
       index = 0;
     }
@@ -183,6 +193,11 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
       radios[index].focus();
     } else {
       radios[index].shadowRoot!.querySelector('button')!.focus();
+    }
+
+    if (this.value !== oldValue) {
+      this.emit('on:change');
+      this.emit('on:input');
     }
 
     event.preventDefault();

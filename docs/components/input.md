@@ -34,7 +34,7 @@ Add descriptive help tooltip to an input's label with the `help-tip` attribute. 
 
 ### Required Indicator
 
-Use the `required` attribute to visually indicate a required field. For native browser HTML5 validation, use the `autovalidate` and `pattern` attributes.
+Use the `required` attribute to visually indicate a required field.
 
 ```html preview
 <lynk-input label="Name" required></lynk-input>

@@ -18,13 +18,14 @@ import type { CSSResultGroup } from 'lit';
  * @since 1.0
  * @status stable
  *
- * @dependency sl-icon
+ * @dependency lynk-icon
  *
  * @slot - The checkbox's label.
  *
  * @event on:blur - Emitted when the control loses focus.
  * @event on:change - Emitted when the control's checked state changes.
  * @event on:focus - Emitted when the control gains focus.
+ * @event on:input - Emitted when the checkbox receives input.
  *
  * @csspart base - The component's internal wrapper.
  * @csspart control - The checkbox control.
@@ -116,6 +117,10 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
     this.emit('on:blur');
   }
 
+  handleInput() {
+    this.emit('on:input');
+  }
+
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     // Disabled form controls are always valid, so we need to recheck validity when the state changes
@@ -160,6 +165,7 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
           .required=${this.required}
           aria-checked=${this.checked ? 'true' : 'false'}
           @click=${this.handleClick}
+          @input=${this.handleInput}
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}
         />

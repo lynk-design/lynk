@@ -78,8 +78,8 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
   /** The help tip accompanying the label. Alternatively, you can use the help-tip slot. */
   @property({ attribute: 'help-tip' }) helpTip = '';
 
-  /** The textarea's placeholder text. */
-  @property() placeholder: string;
+  /** Placeholder text to show as a hint when the input is empty. */
+  @property() placeholder = '';
 
   /** The number of rows to display by default. */
   @property({ type: Number }) rows = 4;
@@ -102,9 +102,6 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
   /** The maximum length of input that will be considered valid. */
   @property({ type: Number }) maxlength: number;
 
-  /** Use the browsers built constraint validation API in tandem with the `required`, `minlength` and `maxlength` values */
-  @property({ type: Boolean, reflect: true }) autovalidate = false;
-
   /** Makes the textarea a required field. */
   @property({ type: Boolean, reflect: true }) required = false;
 
@@ -114,22 +111,33 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
   /** The textarea's autocorrect attribute. */
   @property() autocorrect: string;
 
-  /** The textarea's autocomplete attribute. */
+  /**
+   * Specifies what permission the browser has to provide assistance in filling out form field values. Refer to
+   * [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.
+   */
   @property() autocomplete: string;
 
-  /** The textarea's autofocus attribute. */
+  /** Indicates that the input should receive focus on page load. */
   @property({ type: Boolean }) autofocus: boolean;
 
-  /**
-   * The input's enterkeyhint attribute. This can be used to customize the label or icon of the Enter key on virtual
-   * keyboards.
-   */
+  /** Used to customize the label or icon of the Enter key on virtual keyboards. */
   @property() enterkeyhint: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
 
   /** Enables spell checking on the textarea. */
-  @property({ type: Boolean }) spellcheck: boolean;
+  @property({
+    type: Boolean,
+    converter: {
+      // Allow "true|false" attribute values but keep the property boolean
+      fromAttribute: value => (!value || value === 'false' ? false : true),
+      toAttribute: value => (value ? 'true' : 'false')
+    }
+  })
+  spellcheck = true;
 
-  /** The textarea's inputmode attribute. */
+  /**
+   * Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
+   * keyboard on supportive devices.
+   */
   @property() inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
   /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
@@ -146,9 +154,7 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
   }
 
   firstUpdated() {
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }
+    this.invalid = !this.input.checkValidity();
   }
 
   disconnectedCallback() {
@@ -197,22 +203,20 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
   /** Replaces a range of text with a new string. */
   setRangeText(
     replacement: string,
-    start: number,
-    end: number,
-    selectMode: 'select' | 'start' | 'end' | 'preserve' = 'preserve'
+    start?: number,
+    end?: number,
+    selectMode?: 'select' | 'start' | 'end' | 'preserve'
   ) {
+    // @ts-expect-error - start, end, and selectMode are optional
     this.input.setRangeText(replacement, start, end, selectMode);
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;
-      this.emit('on:input');
     }
 
     if (this.value !== this.input.value) {
       this.value = this.input.value;
       this.setTextareaHeight();
-      this.emit('on:input');
-      this.emit('on:change');
     }
   }
 
@@ -223,7 +227,7 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
-    return this.autovalidate ? this.input.reportValidity() : false;
+    return this.input.reportValidity();
   }
 
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
@@ -247,10 +251,7 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
   handleDisabledChange() {
     // Disabled form controls are always valid, so we need to recheck validity when the state changes
     this.input.disabled = this.disabled;
-
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }
+    this.invalid = !this.input.checkValidity();
   }
 
   handleFocus() {
@@ -260,7 +261,6 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
 
   handleInput() {
     this.value = this.input.value;
-    this.setTextareaHeight();
     this.emit('on:input');
   }
 
@@ -272,9 +272,7 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
   @watch('value', { waitUntilFirstUpdate: true })
   handleValueChange() {
     this.input.value = this.value; // force a sync update
-    if (this.autovalidate) {
-      this.invalid = !this.input.checkValidity();
-    }
+    this.invalid = !this.input.checkValidity();
     this.updateComplete.then(() => this.setTextareaHeight());
   }
 

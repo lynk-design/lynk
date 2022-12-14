@@ -19,7 +19,6 @@ import type { CSSResultGroup } from 'lit';
  * @slot suffix - Used to append an icon or similar element to the button.
  *
  * @event on:blur - Emitted when the button loses focus.
- * @event on:change - Emitted when the button's checked state changes.
  * @event on:focus - Emitted when the button gains focus.
  *
  * @csspart base - The component's internal wrapper.
@@ -41,10 +40,7 @@ export default class LynkRadioButton extends LynkElement {
   @state() protected hasFocus = false;
   @state() checked = false;
 
-  /** The radio's name attribute. */
-  @property() name: string;
-
-  /** The radio's value attribute. */
+  /** The radio's value. When selected, the radio group will receive this value. */
   @property() value: string;
 
   /** Disables the radio. */
@@ -58,10 +54,10 @@ export default class LynkRadioButton extends LynkElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.setAttribute('role', 'radio');
+    this.setAttribute('role', 'presentation');
   }
 
-  /** Sets focus on the button. */
+  /** Sets focus on the radio button. */
   focus(options?: FocusOptions) {
     this.input.focus(options);
   }
@@ -96,13 +92,6 @@ export default class LynkRadioButton extends LynkElement {
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
   }
 
-  @watch('checked')
-  handleCheckedChange() {
-    this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
-    this.emit('on:change');
-  }
-
-
   render() {
     return html`
       <div part="base" role="presentation">
@@ -128,7 +117,6 @@ export default class LynkRadioButton extends LynkElement {
           })}
           aria-disabled=${this.disabled}
           type="button"
-          name=${ifDefined(this.name)}
           value=${ifDefined(this.value)}
           tabindex="${this.checked ? '0' : '-1'}"
           @blur=${this.handleBlur}

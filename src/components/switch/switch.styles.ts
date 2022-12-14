@@ -5,18 +5,38 @@ export default css`
   ${componentStyles}
 
   :host {
-    --height: var(--lynk-toggle-size);
-    --thumb-size: calc(var(--lynk-toggle-size) + 4px);
+    display: inline-block;
+  }
+
+  :host([size='small']) {
+    --height: var(--lynk-toggle-size-small);
+    --thumb-size: calc(var(--lynk-toggle-size-small) + 4px);
     --width: calc(var(--height) * 2);
 
-    display: inline-block;
+    font-size: var(--lynk-input-font-size-small);
+  }
+
+  :host([size='medium']) {
+    --height: var(--lynk-toggle-size-medium);
+    --thumb-size: calc(var(--lynk-toggle-size-medium) + 4px);
+    --width: calc(var(--height) * 2);
+
+    font-size: var(--lynk-input-font-size-medium);
+  }
+
+  :host([size='large']) {
+    --height: var(--lynk-toggle-size-large);
+    --thumb-size: calc(var(--lynk-toggle-size-large) + 4px);
+    --width: calc(var(--height) * 2);
+
+    font-size: var(--lynk-input-font-size-large);
   }
 
   .lynk-switch {
     display: inline-flex;
     align-items: center;
     font-family: var(--lynk-input-font-family);
-    font-size: var(--lynk-input-font-size-medium);
+    font-size: inherit;
     font-weight: var(--lynk-input-font-weight);
     color: var(--lynk-input-color);
     vertical-align: middle;
@@ -43,8 +63,8 @@ export default css`
     background-color: var(--lynk-color-neutral-0);
     border-radius: 50%;
     border: solid var(--lynk-input-border-width) var(--lynk-color-neutral-400);
-    transform: translateX(calc((var(--width) - var(--height)) / -2));
-    transition: var(--lynk-transition-fast) transform ease, var(--lynk-transition-fast) background-color,
+    translate: calc((var(--width) - var(--height)) / -2);
+    transition: var(--lynk-transition-fast) translate ease, var(--lynk-transition-fast) background-color,
       var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) box-shadow;
   }
 
@@ -89,7 +109,7 @@ export default css`
   .lynk-switch--checked .lynk-switch__control .lynk-switch__thumb {
     background-color: var(--lynk-color-neutral-0);
     border-color: var(--lynk-color-primary-600);
-    transform: translateX(calc((var(--width) - var(--height)) / 2));
+    translate: calc((var(--width) - var(--height)) / 2);
   }
 
   /* Checked + hover */

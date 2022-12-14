@@ -529,6 +529,9 @@
   --lynk-input-border-color-focus: var(--lynk-color-primary-500);
   --lynk-input-border-color-disabled: var(--lynk-color-neutral-300);
   --lynk-input-border-width: 1px;
+  --lynk-input-required-content: '*';
+  --lynk-input-required-content-offset: -2px;
+  --lynk-input-required-content-color: var(--lynk-input-label-color);
 
   --lynk-input-border-radius-small: var(--lynk-border-radius-medium);
   --lynk-input-border-radius-medium: var(--lynk-border-radius-medium);
@@ -582,7 +585,9 @@
   --lynk-input-help-text-color: var(--lynk-color-neutral-500);
 
   /* Toggles (checkboxes, radios, switches) */
-  --lynk-toggle-size: 1rem;
+  --lynk-toggle-size-small: 0.875rem; /* 14px @ 16px base  */
+  --lynk-toggle-size-medium: 1.125rem; /* 18px @ 16px base */
+  --lynk-toggle-size-large: 1.375rem; /* 22px @ 16px base */
 
   /*
    * Overlays

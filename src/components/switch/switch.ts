@@ -21,6 +21,7 @@ import type { CSSResultGroup } from 'lit';
  *
  * @event on:blur - Emitted when the control loses focus.
  * @event on:change - Emitted when the control's checked state changes.
+ * @event on:input - Emitted when the control receives input.
  * @event on:focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
@@ -55,6 +56,9 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
   /** The switch's value attribute. */
   @property() value: string;
 
+  /** The switch's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
   /** Disables the switch. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
@@ -64,7 +68,7 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
   /** Draws the switch in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;
 
-  /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
+  /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue('checked') defaultChecked = false;
 
   firstUpdated() {
@@ -107,6 +111,10 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
     this.emit('on:blur');
   }
 
+  handleInput() {
+    this.emit('on:input');
+  }
+
   @watch('checked', { waitUntilFirstUpdate: true })
   handleCheckedChange() {
     this.input.checked = this.checked; // force a sync update
@@ -135,12 +143,14 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
       event.preventDefault();
       this.checked = false;
       this.emit('on:change');
+      this.emit('on:input');
     }
 
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       this.checked = true;
       this.emit('on:change');
+      this.emit('on:input');
     }
   }
 
@@ -152,7 +162,10 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
           'lynk-switch': true,
           'lynk-switch--checked': this.checked,
           'lynk-switch--disabled': this.disabled,
-          'lynk-switch--focused': this.hasFocus
+          'lynk-switch--focused': this.hasFocus,
+          'lynk-switch--small': this.size === 'small',
+          'lynk-switch--medium': this.size === 'medium',
+          'lynk-switch--large': this.size === 'large'
         })}
       >
         <input
@@ -167,6 +180,7 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
           role="switch"
           aria-checked=${this.checked ? 'true' : 'false'}
           @click=${this.handleClick}
+          @input=${this.handleInput}
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}
           @keydown=${this.handleKeyDown}

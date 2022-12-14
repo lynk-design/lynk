@@ -1,4 +1,4 @@
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import { serialize } from '../../utilities/form';
@@ -10,9 +10,54 @@ describe('<lynk-input>', () => {
     await expect(el).to.be.accessible();
   });
 
+  it('default properties', async () => {
+    const el = await fixture<LynkInput>(html` <lynk-input></lynk-input> `);
+
+    expect(el.type).to.equal('text');
+    expect(el.size).to.equal('medium');
+    expect(el.name).to.equal('');
+    expect(el.value).to.equal('');
+    expect(el.defaultValue).to.equal('');
+    expect(el.title).to.equal('');
+    expect(el.filled).to.be.false;
+    expect(el.pill).to.be.false;
+    expect(el.label).to.equal('');
+    expect(el.helpText).to.equal('');
+    expect(el.clearable).to.be.false;
+    expect(el.passwordToggle).to.be.false;
+    expect(el.passwordVisible).to.be.false;
+    expect(el.noSpinButtons).to.be.false;
+    expect(el.placeholder).to.equal('');
+    expect(el.disabled).to.be.false;
+    expect(el.readonly).to.be.false;
+    expect(el.minlength).to.be.undefined;
+    expect(el.maxlength).to.be.undefined;
+    expect(el.min).to.be.undefined;
+    expect(el.max).to.be.undefined;
+    expect(el.step).to.be.undefined;
+    expect(el.pattern).to.be.undefined;
+    expect(el.required).to.be.false;
+    expect(el.autocapitalize).to.be.undefined;
+    expect(el.autocorrect).to.be.undefined;
+    expect(el.autocomplete).to.be.undefined;
+    expect(el.autofocus).to.be.undefined;
+    expect(el.enterkeyhint).to.be.undefined;
+    expect(el.spellcheck).to.be.true;
+    expect(el.inputmode).to.be.undefined;
+    expect(el.valueAsDate).to.be.null;
+    expect(isNaN(el.valueAsNumber)).to.be.true;
+  });
+
+  it('should have title if title attribute is set', async () => {
+    const el = await fixture<LynkInput>(html` <lynk-input title="Test"></lynk-input> `);
+    const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
+
+    expect(input.title).to.equal('Test');
+  });
+
   it('should be disabled with the disabled attribute', async () => {
     const el = await fixture<LynkInput>(html` <lynk-input disabled></lynk-input> `);
-    const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part="input"]')!;
+    const input = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="input"]')!;
 
     expect(input.disabled).to.be.true;
   });
@@ -39,7 +84,7 @@ describe('<lynk-input>', () => {
 
   it('should focus the input when clicking on the label', async () => {
     const el = await fixture<LynkInput>(html` <lynk-input label="Name"></lynk-input> `);
-    const label = el.shadowRoot!.querySelector('[part="form-control-label"]')!;
+    const label = el.shadowRoot!.querySelector('[part~="form-control-label"]')!;
     const submitHandler = sinon.spy();
 
     el.addEventListener('on:focus', submitHandler);
@@ -51,24 +96,24 @@ describe('<lynk-input>', () => {
 
   describe('when using constraint validation', () => {
     it('should be valid by default', async () => {
-      const el = await fixture<LynkInput>(html` <lynk-input autovalidate></lynk-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input></lynk-input> `);
       expect(el.invalid).to.be.false;
     });
 
     it('should be invalid when required and empty', async () => {
-      const el = await fixture<LynkInput>(html` <lynk-input autovalidate required></lynk-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input required></lynk-input> `);
       expect(el.reportValidity()).to.be.false;
       expect(el.invalid).to.be.true;
     });
 
     it('should be invalid when the pattern does not match', async () => {
-      const el = await fixture<LynkInput>(html` <lynk-input autovalidate pattern="^test" value="fail"></lynk-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input pattern="^test" value="fail"></lynk-input> `);
       expect(el.invalid).to.be.true;
       expect(el.reportValidity()).to.be.false;
     });
 
     it('should be invalid when required and disabled is removed', async () => {
-      const el = await fixture<LynkInput>(html` <lynk-input disabled autovalidate required></lynk-input> `);
+      const el = await fixture<LynkInput>(html` <lynk-input disabled required></lynk-input> `);
       el.disabled = false;
       await el.updateComplete;
       expect(el.invalid).to.be.true;
@@ -91,7 +136,7 @@ describe('<lynk-input>', () => {
 
   describe('when submitting a form', () => {
     it('should submit the form when pressing enter in a form without a submit button', async () => {
-      const form = await fixture<HTMLFormElement>(html` <form><lynk-input autovalidate></lynk-input></form> `);
+      const form = await fixture<HTMLFormElement>(html` <form><lynk-input></lynk-input></form> `);
       const input = form.querySelector('lynk-input')!;
       const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
 
@@ -124,11 +169,41 @@ describe('<lynk-input>', () => {
     });
   });
 
+  describe('when resetting a form', () => {
+    it('should reset the element to its initial value', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <lynk-input name="a" value="test"></lynk-input>
+          <lynk-button type="reset">Reset</lynk-button>
+        </form>
+      `);
+      const button = form.querySelector('lynk-button')!;
+      const input = form.querySelector('lynk-input')!;
+      input.value = '1234';
+
+      await input.updateComplete;
+
+      setTimeout(() => button.click());
+      await oneEvent(form, 'reset');
+      await input.updateComplete;
+
+      expect(input.value).to.equal('test');
+
+      input.defaultValue = '';
+
+      setTimeout(() => button.click());
+      await oneEvent(form, 'reset');
+      await input.updateComplete;
+
+      expect(input.value).to.equal('');
+    });
+  });
+
   describe('when calling HTMLFormElement.reportValidity()', () => {
     it('should be invalid when the input is empty and form.reportValidity() is called', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <lynk-input required autovalidate value=""></lynk-input>
+          <lynk-input required value=""></lynk-input>
           <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
@@ -139,7 +214,7 @@ describe('<lynk-input>', () => {
     it('should be valid when the input is empty, reportValidity() is called, and the form has novalidate', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form novalidate>
-          <lynk-input required autovalidate value=""></lynk-input>
+          <lynk-input required value=""></lynk-input>
           <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
@@ -150,12 +225,132 @@ describe('<lynk-input>', () => {
     it('should be invalid when a native input is empty and form.reportValidity() is called', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <input required autovalidate value=""></input>
+          <input required value=""></input>
           <lynk-button type="submit">Submit</lynk-button>
         </form>
       `);
 
       expect(form.reportValidity()).to.be.false;
+    });
+  });
+
+  describe('when the value changes', () => {
+    it('should emit on:change and lynk-input when the user types in the input', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input></lynk-input> `);
+      const inputHandler = sinon.spy();
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('on:input', inputHandler);
+      el.addEventListener('on:change', changeHandler);
+      el.focus();
+      await sendKeys({ type: 'abc' });
+      el.blur();
+      await el.updateComplete;
+
+      expect(changeHandler).to.have.been.calledOnce;
+      expect(inputHandler).to.have.been.calledThrice;
+    });
+
+    it('should not emit on:change or lynk-input when the value is set programmatically', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input></lynk-input> `);
+
+      el.addEventListener('on:change', () => expect.fail('on:change should not be emitted'));
+      el.addEventListener('on:input', () => expect.fail('on:input should not be emitted'));
+      el.value = 'abc';
+
+      await el.updateComplete;
+    });
+
+    it('should not emit on:change or lynk-input when calling setRangeText()', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input value="hi there"></lynk-input> `);
+
+      el.addEventListener('on:change', () => expect.fail('on:change should not be emitted'));
+      el.addEventListener('on:input', () => expect.fail('on:input should not be emitted'));
+      el.focus();
+      el.setSelectionRange(0, 2);
+      el.setRangeText('hello');
+
+      await el.updateComplete;
+    });
+  });
+
+  describe('when type="number"', () => {
+    it('should be valid when the value is within the boundary of a step', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input type="number" step=".5" value="1.5"></lynk-input> `);
+      expect(el.invalid).to.be.false;
+    });
+
+    it('should be invalid when the value is not within the boundary of a step', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input type="number" step=".5" value="1.25"></lynk-input> `);
+      expect(el.invalid).to.be.true;
+    });
+
+    it('should update validity when step changes', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input type="number" step=".5" value="1.5"></lynk-input> `);
+      expect(el.invalid).to.be.false;
+
+      el.step = 1;
+      await el.updateComplete;
+      expect(el.invalid).to.be.true;
+    });
+
+    it('should increment by step when stepUp() is called', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input type="number" step="2" value="2"></lynk-input> `);
+
+      el.stepUp();
+      await el.updateComplete;
+      expect(el.value).to.equal('4');
+    });
+
+    it('should decrement by step when stepDown() is called', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input type="number" step="2" value="2"></lynk-input> `);
+
+      el.stepDown();
+      await el.updateComplete;
+      expect(el.value).to.equal('0');
+    });
+
+    it('should not emit on:input or on:change when stepUp() is called programmatically', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input type="number" step="2" value="2"></lynk-input> `);
+
+      el.addEventListener('on:change', () => expect.fail('on:change should not be emitted'));
+      el.addEventListener('on:input', () => expect.fail('on:input should not be emitted'));
+      el.stepUp();
+
+      await el.updateComplete;
+    });
+
+    it('should not emit on:input and on:change when stepDown() is called programmatically', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input type="number" step="2" value="2"></lynk-input> `);
+
+      el.addEventListener('on:change', () => expect.fail('on:change should not be emitted'));
+      el.addEventListener('on:input', () => expect.fail('on:input should not be emitted'));
+      el.stepDown();
+
+      await el.updateComplete;
+    });
+  });
+
+  describe('when using spellcheck', () => {
+    it('should enable spellcheck when no attribute is present', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input></lynk-input> `);
+      const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+      expect(input.getAttribute('spellcheck')).to.equal('true');
+      expect(input.spellcheck).to.be.true;
+    });
+
+    it('should enable spellcheck when set to "true"', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input spellcheck="true"></lynk-input> `);
+      const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+      expect(input.getAttribute('spellcheck')).to.equal('true');
+      expect(input.spellcheck).to.be.true;
+    });
+
+    it('should disable spellcheck when set to "false"', async () => {
+      const el = await fixture<LynkInput>(html` <lynk-input spellcheck="false"></lynk-input> `);
+      const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+      expect(input.getAttribute('spellcheck')).to.equal('false');
+      expect(input.spellcheck).to.be.false;
     });
   });
 });

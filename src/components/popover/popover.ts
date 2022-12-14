@@ -418,8 +418,7 @@ export default class LynkPopover extends LynkElement {
                     part="close-button"
                     exportparts="base:close-button__base"
                     class="lynk-popover__close"
-                    style="--padding: 0;"
-                    name="x"
+                    name="x-lg"
                     label=${this.localize.term('close')}
                     library="system"
                     @click="${() => this.hide()}"
