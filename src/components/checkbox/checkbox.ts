@@ -27,11 +27,13 @@ import type { CSSResultGroup } from 'lit';
  * @event on:focus - Emitted when the control gains focus.
  * @event on:input - Emitted when the checkbox receives input.
  *
- * @csspart base - The component's internal wrapper.
- * @csspart control - The checkbox control.
- * @csspart checked-icon - The container the wraps the checked icon.
- * @csspart indeterminate-icon - The container that wraps the indeterminate icon.
- * @csspart label - The checkbox label.
+ * @csspart base - The component's base wrapper.
+ * @csspart control - The square container that wraps the checkbox's checked state.
+ * @csspart control--checked - Matches the control part when the checkbox is checked.
+ * @csspart control--indeterminate - Matches the control part when the checkbox is indeterminate.
+ * @csspart checked-icon - The checked icon, an `<lynk-icon>` element.
+ * @csspart indeterminate-icon - The indeterminate icon, an `<lynk-icon>` element.
+ * @csspart label - The container that wraps the checkbox's label.
  */
 @customElement('lynk-checkbox')
 export default class LynkCheckbox extends LynkElement implements LynkFormControl {
@@ -53,10 +55,13 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
   /** Name of the HTML form control. Submitted with the form as part of a name/value pair. */
   @property() name = '';
 
-  /** Value of the HTML form control. Primarily used to differentiate a list of related checkboxes that have the same name. */
+  /** The current value of the checkbox, submitted as a name/value pair with form data. */
   @property() value: string;
 
-  /** Disables the checkbox (so the user can't check / uncheck it). */
+  /** The checkbox's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
+  /** Disables the checkbox. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** Makes the checkbox a required field. */
@@ -68,7 +73,7 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
   /** Draws the checkbox in an indeterminate state. Usually applies to a checkbox that represents "select all" or "select none" when the items to which it applies are a mix of selected and unselected. */
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
-  /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
+  /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue('checked') defaultChecked = false;
 
   firstUpdated() {
@@ -90,17 +95,20 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
     this.input.blur();
   }
 
-  /** Checks for validity but does not show the browser's validation message. */
+  /** Checks for validity but does not show a validation message. Returns true when valid and false when invalid. */
   checkValidity() {
     return this.input.checkValidity();
   }
 
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
+
+  /** Checks for validity and shows a validation message if the control is invalid. */
   reportValidity() {
     return this.input.reportValidity();
   }
 
-  /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
+  /**
+   * Sets a custom validation message. The value provided will be shown to the user when the form is submitted. To clear the custom validation message, call this method with an empty string.
+   */
   setCustomValidity(message: string) {
     this.input.setCustomValidity(message);
     this.invalid = !this.input.checkValidity();
@@ -150,7 +158,10 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
           'lynk-checkbox--checked': this.checked,
           'lynk-checkbox--disabled': this.disabled,
           'lynk-checkbox--focused': this.hasFocus,
-          'lynk-checkbox--indeterminate': this.indeterminate
+          'lynk-checkbox--indeterminate': this.indeterminate,
+          'lynk-checkbox--small': this.size === 'small',
+          'lynk-checkbox--medium': this.size === 'medium',
+          'lynk-checkbox--large': this.size === 'large'
         })}
       >
         <input
@@ -171,10 +182,21 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
         />
 
         <span part="control" class="lynk-checkbox__control">
-          ${this.checked ? html` <lynk-icon part="checked-icon" library="system" name="check"></lynk-icon> ` : ''}
-          ${!this.checked && this.indeterminate
-            ? html` <lynk-icon part="indeterminate-icon" library="system" name="indeterminate"></lynk-icon> `
-            : ''}
+        ${this.checked
+          ? html`
+              <lynk-icon part="checked-icon" class="lynk-checkbox__checked-icon" library="system" name="check"></lynk-icon>
+            `
+          : ''}
+        ${!this.checked && this.indeterminate
+          ? html`
+              <lynk-icon
+                part="indeterminate-icon"
+                class="lynk-checkbox__indeterminate-icon"
+                library="system"
+                name="indeterminate"
+              ></lynk-icon>
+            `
+          : ''}
         </span>
 
         <slot part="label" class="lynk-checkbox__label"></slot>

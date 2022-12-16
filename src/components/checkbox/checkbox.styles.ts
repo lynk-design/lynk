@@ -12,11 +12,25 @@ export default css`
     display: inline-flex;
     align-items: top;
     font-family: var(--lynk-input-font-family);
-    font-size: var(--lynk-input-font-size-medium);
     font-weight: var(--lynk-input-font-weight);
     color: var(--lynk-input-color);
     vertical-align: middle;
     cursor: pointer;
+  }
+
+  .lynk-checkbox--small {
+    --toggle-size: var(--lynk-toggle-size-small);
+    font-size: var(--lynk-input-font-size-small);
+  }
+
+  .lynk-checkbox--medium {
+    --toggle-size: var(--lynk-toggle-size-medium);
+    font-size: var(--lynk-input-font-size-medium);
+  }
+
+  .lynk-checkbox--large {
+    --toggle-size: var(--lynk-toggle-size-large);
+    font-size: var(--lynk-input-font-size-large);
   }
 
   .lynk-checkbox__control {
@@ -25,8 +39,8 @@ export default css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--lynk-toggle-size);
-    height: var(--lynk-toggle-size);
+    width: var(--toggle-size);
+    height: var(--toggle-size);
     border: solid var(--lynk-input-border-width) var(--lynk-input-border-color);
     border-radius: 2px;
     background-color: var(--lynk-input-background-color);
@@ -43,10 +57,11 @@ export default css`
     pointer-events: none;
   }
 
-  .lynk-checkbox__control .lynk-checkbox__icon {
+  .lynk-checkbox__checked-icon,
+  .lynk-checkbox__indeterminate-icon {
     display: inline-flex;
-    width: var(--lynk-toggle-size);
-    height: var(--lynk-toggle-size);
+    width: var(--toggle-size);
+    height: var(--toggle-size);
   }
 
   /* Hover */
@@ -91,7 +106,7 @@ export default css`
   .lynk-checkbox__label {
     display: inline-block;
     color: var(--lynk-input-label-color);
-    line-height: var(--lynk-toggle-size);
+    line-height: var(--toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;
   }
