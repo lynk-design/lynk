@@ -20,17 +20,17 @@ export default css`
 
   .lynk-checkbox--small {
     --toggle-size: var(--lynk-toggle-size-small);
-    font-size: var(--lynk-input-font-size-small);
+    font-size: var(--lynk-input-label-font-size-small);
   }
 
   .lynk-checkbox--medium {
     --toggle-size: var(--lynk-toggle-size-medium);
-    font-size: var(--lynk-input-font-size-medium);
+    font-size: var(--lynk-input-label-font-size-medium);
   }
 
   .lynk-checkbox--large {
     --toggle-size: var(--lynk-toggle-size-large);
-    font-size: var(--lynk-input-font-size-large);
+    font-size: var(--lynk-input-label-font-size-large);
   }
 
   .lynk-checkbox__control {
@@ -106,6 +106,7 @@ export default css`
   .lynk-checkbox__label {
     display: inline-block;
     color: var(--lynk-input-label-color);
+    font-size: inherit;
     line-height: var(--toggle-size);
     margin-inline-start: 0.5em;
     user-select: none;
