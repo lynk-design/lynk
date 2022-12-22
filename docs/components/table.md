@@ -86,4 +86,52 @@ Tables can be manually constructed like a native `<table>` HTML element by using
 </lynk-table>
 ````
 
+### The Full Monty
+
+A typical example of how a table is used within Uplynk
+
+```html preview
+<lynk-table>
+    <lynk-colgroup>
+        <lynk-col style="width: 48px;"></lynk-col>
+        <lynk-col></lynk-col>
+        <lynk-col></lynk-col>
+    </lynk-colgroup>
+    <lynk-thead>
+        <lynk-tr>
+            <lynk-th><lynk-checkbox indeterminate></lynk-checkbox></lynk-th>
+            <lynk-th key="a" sortable>Title</lynk-th>
+            <lynk-th key="b" sortable>Duration</lynk-th>
+            <lynk-th>Status</lynk-th>
+        </lynk-tr>
+    </lynk-thead>
+    <lynk-tbody>
+        <lynk-tr hoverable>
+            <lynk-td><lynk-checkbox checked></lynk-checkbox></lynk-td>
+            <lynk-td>Dumb & Dumber</lynk-td>
+            <lynk-td>01:45:00</lynk-td>
+            <lynk-td state="primary" barberpole>Slicing</lynk-td>
+        </lynk-tr>
+        <lynk-tr hoverable>
+            <lynk-td><lynk-checkbox></lynk-checkbox></lynk-td>
+            <lynk-td>Legends of the Fall</lynk-td>
+            <lynk-td>02:10:25</lynk-td>
+            <lynk-td>Complete</lynk-td>
+        </lynk-tr>
+        <lynk-tr hoverable>
+            <lynk-td><lynk-checkbox></lynk-checkbox></lynk-td>
+            <lynk-td>Die Hard</lynk-td>
+            <lynk-td>01:39:15</lynk-td>
+            <lynk-td>Complete</lynk-td>
+        </lynk-tr>
+        <lynk-tr state="danger" hoverable pulse>
+            <lynk-td><lynk-checkbox checked></lynk-checkbox></lynk-td>
+            <lynk-td>Apollo 13</lynk-td>
+            <lynk-td>02:05:40</lynk-td>
+            <lynk-td state="danger">Critical</lynk-td>
+        </lynk-tr>
+    </lynk-tbody>
+</lynk-table>
+````
+
 [component-metadata:lynk-table]

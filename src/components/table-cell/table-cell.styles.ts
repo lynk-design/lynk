@@ -8,6 +8,7 @@ export default css`
     display: table-cell;
     --state-color: transparent;
     --state-color-b: transparent;
+    background: transparent;
     padding: var(--lynk-spacing-small) var(--lynk-spacing-base);
   }
 
@@ -41,7 +42,7 @@ export default css`
   }
 
   :host([barberpole]) {
-    background-image: linear-gradient( -45deg, var(--state-color) 25%, var(--state-color-b) 25%, var(--state-color-b) 50%, var(--state-color) 50%, var(--state-color) 75%, var(--state-color-b) 75%, var(--state-color-b));
+    background: linear-gradient( -45deg, var(--state-color) 25%, var(--state-color-b) 25%, var(--state-color-b) 50%, var(--state-color) 50%, var(--state-color) 75%, var(--state-color-b) 75%, var(--state-color-b)) var(--state-color);
     background-size: 40px 40px;
     animation: barberpole 1.5s linear infinite;
   }

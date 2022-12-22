@@ -17,7 +17,7 @@ export default css`
     transition: var(--lynk-transition-fast) box-shadow, var(--lynk-transition-fast) color;
   }
 
-  :host([sort-enabled]) {
+  :host([sortable]) {
     cursor: pointer;
   }
 
@@ -27,7 +27,7 @@ export default css`
   }
 
 
-  :host([sort-enabled]:hover) {
+  :host([sortable]:hover) {
     color: var(--lynk-color-primary-600);
     background-color: var(--lynk-color-primary-50);
     border: 1px solid var(--lynk-color-primary);

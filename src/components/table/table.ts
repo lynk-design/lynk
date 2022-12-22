@@ -113,7 +113,7 @@ export default class LynkTable extends LynkElement {
               <lynk-th
                 key="${col.key}"
                 sort-direction=${ifDefined(col.sortDirection ? col.sortDirection : undefined)}
-                ?sort-enabled=${ifDefined(col.sortEnabled ? col.sortEnabled : undefined)}
+                ?sortable=${ifDefined(col.sortable ? col.sortable : undefined)}
               >${col.title}</lynk-th>
             `)}
           </lynk-tr>

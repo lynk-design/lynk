@@ -35,7 +35,7 @@ Use the `state` attribute and value to style a row with corresponding status col
 
 ### Hover States
 
-Add the `hover` attribute to add hover pseudo styles on the entire table row.
+Add the `hoverable` attribute to add hover pseudo styles on the entire table row.
 
 ```html preview
 <lynk-table>
@@ -46,18 +46,40 @@ Add the `hover` attribute to add hover pseudo styles on the entire table row.
         </lynk-tr>
     </lynk-thead>
     <lynk-tbody>
-        <lynk-tr  hover><lynk-td>1</lynk-td><lynk-td>-</lynk-td></lynk-tr>
-        <lynk-tr state="primary" hover><lynk-td>2</lynk-td><lynk-td>primary</lynk-td></lynk-tr>
-        <lynk-tr state="danger" hover><lynk-td>3</lynk-td><lynk-td>danger</lynk-td></lynk-tr>
-        <lynk-tr state="success" hover><lynk-td>4</lynk-td><lynk-td>success</lynk-td></lynk-tr>
-        <lynk-tr state="warning" hover><lynk-td>5</lynk-td><lynk-td>warning</lynk-td></lynk-tr>
-        <lynk-tr state="neutral" hover><lynk-td>6</lynk-td><lynk-td>neutral</lynk-td></lynk-tr>
-        <lynk-tr state="custom" style="--color: var(--lynk-color-pink-500);" hover><lynk-td>7</lynk-td><lynk-td>custom</lynk-td></lynk-tr>
+        <lynk-tr  hoverable><lynk-td>1</lynk-td><lynk-td>-</lynk-td></lynk-tr>
+        <lynk-tr state="primary" hoverable><lynk-td>2</lynk-td><lynk-td>primary</lynk-td></lynk-tr>
+        <lynk-tr state="danger" hoverable><lynk-td>3</lynk-td><lynk-td>danger</lynk-td></lynk-tr>
+        <lynk-tr state="success" hoverable><lynk-td>4</lynk-td><lynk-td>success</lynk-td></lynk-tr>
+        <lynk-tr state="warning" hoverable><lynk-td>5</lynk-td><lynk-td>warning</lynk-td></lynk-tr>
+        <lynk-tr state="neutral" hoverable><lynk-td>6</lynk-td><lynk-td>neutral</lynk-td></lynk-tr>
+        <lynk-tr state="custom" style="--color: var(--lynk-color-pink-500);" hoverable><lynk-td>7</lynk-td><lynk-td>custom</lynk-td></lynk-tr>
     </lynk-tbody>
 </lynk-table>
 ```
 
+### Selected States
 
+Add the `selected` attribute to draw a row in an active state. Can be used to indicate one or more selected rows when checkbox columns are not being used.
+
+```html preview
+<lynk-table>
+    <lynk-thead>
+        <lynk-tr>
+            <lynk-th>Item</lynk-th>
+            <lynk-th>Status</lynk-th>
+        </lynk-tr>
+    </lynk-thead>
+    <lynk-tbody>
+        <lynk-tr selected><lynk-td>1</lynk-td><lynk-td>-</lynk-td></lynk-tr>
+        <lynk-tr selected state="primary"><lynk-td>2</lynk-td><lynk-td>primary</lynk-td></lynk-tr>
+        <lynk-tr selected state="danger"><lynk-td>3</lynk-td><lynk-td>danger</lynk-td></lynk-tr>
+        <lynk-tr selected state="success"><lynk-td>4</lynk-td><lynk-td>success</lynk-td></lynk-tr>
+        <lynk-tr selected state="warning"><lynk-td>5</lynk-td><lynk-td>warning</lynk-td></lynk-tr>
+        <lynk-tr selected state="neutral"><lynk-td>6</lynk-td><lynk-td>neutral</lynk-td></lynk-tr>
+        <lynk-tr selected state="custom" style="--color: var(--lynk-color-pink-500);"><lynk-td>7</lynk-td><lynk-td>custom</lynk-td></lynk-tr>
+    </lynk-tbody>
+</lynk-table>
+```
 
 ### Pulse
 
@@ -75,13 +97,9 @@ Add the `pulse` attribute to flash the status color when a specific row needs im
         <lynk-tr><lynk-td>1</lynk-td><lynk-td>Nominal</lynk-td></lynk-tr>
         <lynk-tr><lynk-td>2</lynk-td><lynk-td>Nominal</lynk-td></lynk-tr>
         <lynk-tr state="danger"><lynk-td>3</lynk-td><lynk-td>Danger</lynk-td></lynk-tr>
-        <lynk-tr state="danger" pulse hover><lynk-td>3</lynk-td><lynk-td>Critical</lynk-td></lynk-tr>
+        <lynk-tr state="danger" pulse hoverable><lynk-td>3</lynk-td><lynk-td>Critical</lynk-td></lynk-tr>
     </lynk-tbody>
 </lynk-table>
 ```
 
 [component-metadata:lynk-tr]
-
-## Slots
-
-Similar to the `<tr>` HTML element, `<lynk-tr>` elements are designed to contain zero or more `<lynk-td>` and/or `<lynk-th>` elements.

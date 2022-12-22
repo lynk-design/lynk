@@ -6,9 +6,13 @@ import styles from './table-header.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Defines a header cell in a table.
+ * 
  * @since 1.0
  * @status experimental
  *
+ * @slot - The table column header label
+ * 
  * @event lynk-table-event-sort - Emitted when a sortable table header is clicked on.
  */
 @customElement('lynk-th')
@@ -22,7 +26,7 @@ export default class LynkTableHeader extends LynkElement {
   @property({ attribute: 'sort-direction', reflect: true}) sortDirection = LynkTableSortDirection.NONE;
 
   /** Toggles sort events and the display of sorting related icons with the corresponding column key */
-  @property({ attribute: 'sort-enabled', type: Boolean, reflect: true }) sortEnabled = false;
+  @property({ attribute: 'sortable', type: Boolean, reflect: true }) sortable = false;
 
   connectedCallback() {
     super.connectedCallback();
@@ -35,7 +39,7 @@ export default class LynkTableHeader extends LynkElement {
   }
 
   handleClick() {
-    if(this.sortEnabled) {
+    if(this.sortable) {
       const event = new LynkTableSortEvent();
       event.key = this.key;
       this.dispatchEvent(event);
@@ -44,9 +48,10 @@ export default class LynkTableHeader extends LynkElement {
 
   render() {
     return html`
-      <slot></slot>
-      ${this.sortEnabled
+      <slot part="base" class="lynk-th__label"></slot>
+      ${this.sortable
       ? html`<lynk-icon
+        library="system"
         name="${this.sortDirection === LynkTableSortDirection.ASC ? 'arrow-up-short' : this.sortDirection === LynkTableSortDirection.DESC ? 'arrow-down-short' : ''}"
       ></lynk-icon>`
       : ``}

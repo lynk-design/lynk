@@ -27,6 +27,8 @@
 
 ### State
 
+Use the `state` attribute to color individual cell backgrounds with status color tokens.
+
 ```html preview
 <lynk-table>
     <lynk-thead>
@@ -66,7 +68,9 @@
 </lynk-table>
 ```
 
-### Barberpole
+### Barberpole Animation
+
+Add the `barberpole` attribute to animate the `state` background color. For custom states, you need to define both the `state-color` and `state-color-b` style properties.
 
 ```html preview
 <lynk-table>

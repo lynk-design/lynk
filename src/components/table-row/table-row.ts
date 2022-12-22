@@ -24,7 +24,10 @@ export default class LynkTableRow extends LynkElement {
   @property({reflect: true}) state: 'primary' | 'danger' | 'success' | 'warning' | 'neutral' | 'custom';
 
   /** Highlight the table row on hover */
-  @property({ type: Boolean, reflect: true }) hover = false;
+  @property({ type: Boolean, reflect: true }) hoverable = false;
+
+  /** Highlight the table row */
+  @property({ type: Boolean, reflect: true }) selected = false;
 
   /** Pulse the status colors for increased visibility */
   @property({ type: Boolean, reflect: true }) pulse = false;
