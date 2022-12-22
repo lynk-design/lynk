@@ -610,6 +610,16 @@
   --lynk-divider-color: var(--lynk-color-neutral-300);
 
   /*
+   * Tables
+   */
+
+  --lynk-table-header-background-color:  var(--lynk-color-neutral-25);
+  --lynk-table-border-color: var(--lynk-color-neutral-50);
+  --lynk-table-border-radius: var(--lynk-border-radius-medium);
+  --lynk-table-cell-background-color: var(--lynk-color-neutral-50);
+
+
+  /*
    * Tooltips
    */
 

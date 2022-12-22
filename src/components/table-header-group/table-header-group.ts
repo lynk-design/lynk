@@ -5,9 +5,12 @@ import styles from './table-header-group.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Table Header Groups behave like the native `<thead>` HTML element.
+ *
  * @since 1.0
  * @status experimental
  */
+
 @customElement('lynk-thead')
 export default class LynkTableHeaderGroup extends LynkElement {
   static styles: CSSResultGroup = styles;

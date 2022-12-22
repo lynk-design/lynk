@@ -47,7 +47,7 @@ export default class LynkTableHeader extends LynkElement {
       <slot></slot>
       ${this.sortEnabled
       ? html`<lynk-icon
-        name="${this.sortDirection === LynkTableSortDirection.ASC ? 'sort-up' : this.sortDirection === LynkTableSortDirection.DESC ? 'sort-down' : ''}"
+        name="${this.sortDirection === LynkTableSortDirection.ASC ? 'arrow-up-short' : this.sortDirection === LynkTableSortDirection.DESC ? 'arrow-down-short' : ''}"
       ></lynk-icon>`
       : ``}
     `;

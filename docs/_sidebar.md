@@ -61,8 +61,9 @@
   - [Alert](/components/alert)
   - [Badge](/components/badge)
   - [Spinner](/components/spinner)
-    <!-- - [Progress Bar](/components/progress-bar) -->
-    <!-- - [Progress Ring](/components/progress-ring) -->
+  <!-- - [Progress Bar](/components/progress-bar) -->
+  <!-- - [Progress Ring](/components/progress-ring) -->
+
 - Tables
   - [Table](/components/table)
   - [Table Cell](/components/table-cell)

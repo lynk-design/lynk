@@ -2,11 +2,11 @@
 
 [component-header:lynk-thead]
 
-These elements are intended to behave like `<thead>` HTML elements.
-
 ## Examples
 
 ### Sticky
+
+Add the `sticky` attribute to apply the native [`position: sticky`](https://developer.mozilla.org/en-US/docs/Web/CSS/position) property on the table header group.
 
 ```html preview
 <lynk-table>

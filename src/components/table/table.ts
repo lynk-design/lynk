@@ -11,8 +11,14 @@ import type { ILynkTableCol, ILynkTableRow } from './models';
 import type { CSSResultGroup } from 'lit';
 
 /**
+ * @summary Tables display tabular data in a basic grid composed of cells, columns, and rows. This format makes it easy for users to scan and compare large amounts of data. Lynk based tables are intended to bahave like native html `<table>` elements. 
+ * 
  * @since 1.0
  * @status experimental
+  *
+ * @slot - The tables content. If constructing manually, should contain 1 or more `<lynk-thead>` and `<lynk-tbody>` components. Should be unused for automatically constructed tables that use the `cols` and `rows` properties. 
+ *
+ * @csspart base - The component's internal wrapper.
  */
 @customElement('lynk-table')
 export default class LynkTable extends LynkElement {
@@ -96,32 +102,30 @@ export default class LynkTable extends LynkElement {
   }
 
   render() {
-    if(this.custom) {
-      return html`<slot></slot>`;
-    }
     return html`
-    <slot>
-      <lynk-colgroup>
-        ${repeat(this.cols, col => html`<lynk-col class="${col.key}"></lynk-col>`)}
-      </lynk-colgroup>
-      <lynk-thead>
-        <lynk-tr>
-          ${repeat(this.cols, col => html`
-            <lynk-th
-              key="${col.key}"
-              sort-direction=${ifDefined(col.sortDirection ? col.sortDirection : undefined)}
-              ?sort-enabled=${ifDefined(col.sortEnabled ? col.sortEnabled : undefined)}
-            >${col.title}</lynk-th>
-          `)}
-        </lynk-tr>
-      </lynk-thead>
-      <lynk-tbody>
-        ${repeat(this.rows, row => html`
-        <lynk-tr>
-          ${repeat(this.cols, col => html`<lynk-td>${row[col.key]}</lynk-td>`)}
-        </lynk-tr>`)}
-      </lynk-tbody>
-    </slot>`;
+      <slot part="base" class="lynk-table">
+        <lynk-colgroup>
+          ${repeat(this.cols, col => html`<lynk-col class="${col.key}"></lynk-col>`)}
+        </lynk-colgroup>
+        <lynk-thead>
+          <lynk-tr>
+            ${repeat(this.cols, col => html`
+              <lynk-th
+                key="${col.key}"
+                sort-direction=${ifDefined(col.sortDirection ? col.sortDirection : undefined)}
+                ?sort-enabled=${ifDefined(col.sortEnabled ? col.sortEnabled : undefined)}
+              >${col.title}</lynk-th>
+            `)}
+          </lynk-tr>
+        </lynk-thead>
+        <lynk-tbody>
+          ${repeat(this.rows, row => html`
+          <lynk-tr>
+            ${repeat(this.cols, col => html`<lynk-td>${row[col.key]}</lynk-td>`)}
+          </lynk-tr>`)}
+        </lynk-tbody>
+      </slot>
+    `;
   }
 }
 

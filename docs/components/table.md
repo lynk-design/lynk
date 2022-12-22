@@ -2,7 +2,12 @@
 
 [component-header:lynk-table]
 
-These elements are intended to behave like HTML `<table>` elements. However they extend their capabilities with features such as automatic construction from data.
+
+## Examples
+
+### Automatic construction
+
+Tables can be automatically construction from data that can be passed into the `rows` and `cols` properties.
 
 ```html preview
 <lynk-table id="exampleAutomatic"></lynk-table>
@@ -43,15 +48,9 @@ These elements are intended to behave like HTML `<table>` elements. However they
 </script>
 ```
 
-[component-metadata:lynk-table]
+### Manual construction
 
-## Slots
-
-Similar to the `<table>` HTML element, `<lynk-table>` elements are designed to contain only the following types of elements:
-
-- zero or more `<lynk-colgroup>` elements
-- zero or one `<lynk-thead>` element
-- zero or more `<lynk-tbody>` elements
+Tables can be manually constructed like a native `<table>` HTML element by using [`<lynk-colgroup>`](/components/table-column-group), [`<lynk-thead>`](/components/table-header-group), [`<lynk-th>`](/components/table-header), [`<lynk-tbody>`](/components/table-row-group), [`<lynk-tr>`](/components/table-row), and [`<lynk-td>`](/components/table-cell) components.
 
 ```html preview
 <lynk-table>
@@ -86,3 +85,5 @@ Similar to the `<table>` HTML element, `<lynk-table>` elements are designed to c
     </lynk-tbody>
 </lynk-table>
 ````
+
+[component-metadata:lynk-table]
