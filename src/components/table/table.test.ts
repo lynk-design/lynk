@@ -74,7 +74,7 @@ describe('<lynk-table>', () => {
       ></lynk-table>
     `);
     expect(el).shadowDom.to.equal(`
-      <slot>
+      <slot part="base" class="lynk-table">
         <lynk-colgroup>
           <lynk-col class="${cols[0].key}"></lynk-col>
           <lynk-col class="${cols[1].key}"></lynk-col>
@@ -119,7 +119,7 @@ describe('<lynk-table>', () => {
       await elementUpdated(el);
       
       expect(el).shadowDom.to.equal(`
-        <slot>
+        <slot part="base" class="lynk-table">
           <lynk-colgroup>
             <lynk-col class="${cols[0].key}"></lynk-col>
             <lynk-col class="${cols[1].key}"></lynk-col>
@@ -172,7 +172,7 @@ describe('<lynk-table>', () => {
       await elementUpdated(el);
       
       expect(el).shadowDom.to.equal(`
-        <slot>
+        <slot part="base" class="lynk-table">
           <lynk-colgroup>
             <lynk-col class="${cols[0].key}"></lynk-col>
             <lynk-col class="${cols[1].key}"></lynk-col>
@@ -225,7 +225,7 @@ describe('<lynk-table>', () => {
       await elementUpdated(el);
       
       expect(el).shadowDom.to.equal(`
-        <slot>
+        <slot part="base" class="lynk-table">
           <lynk-colgroup>
             <lynk-col class="${cols[0].key}"></lynk-col>
             <lynk-col class="${cols[1].key}"></lynk-col>
@@ -278,7 +278,7 @@ describe('<lynk-table>', () => {
       await elementUpdated(el);
       
       expect(el).shadowDom.to.equal(`
-        <slot>
+        <slot part="base" class="lynk-table">
           <lynk-colgroup>
             <lynk-col class="${cols[0].key}"></lynk-col>
             <lynk-col class="${cols[1].key}"></lynk-col>
@@ -331,7 +331,7 @@ describe('<lynk-table>', () => {
       await elementUpdated(el);
       
       expect(el).shadowDom.to.equal(`
-        <slot>
+        <slot part="base" class="lynk-table">
           <lynk-colgroup>
             <lynk-col class="${cols[0].key}"></lynk-col>
             <lynk-col class="${cols[1].key}"></lynk-col>
@@ -385,7 +385,7 @@ describe('<lynk-table>', () => {
       await elementUpdated(el);
       
       expect(el).shadowDom.to.equal(`
-        <slot>
+        <slot part="base" class="lynk-table">
           <lynk-colgroup>
             <lynk-col class="${cols[0].key}"></lynk-col>
             <lynk-col class="${cols[1].key}"></lynk-col>

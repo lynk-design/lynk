@@ -4,9 +4,9 @@
 
 The `<lynk-colgroup>` tag is useful for applying styles to entire columns, instead of repeating the styles for each cell, or for each row.
 
-To define different properties to a column within a `<lynk-colgroup>`, use the `<lynk-col>` tag within the `<colgroup>` tag.
+To define different properties to a column within a `<lynk-colgroup>`, use the `<lynk-col>` tag within the `<lynk-colgroup>` tag.
 
-<lynk-alert type="warning" open>The `<colgroup>` tag must be a child of a `<lynk-table>` element, after any `<lynk-caption>` elements and before any `<lynk-thead>`, `<lynk-tbody>`, `<lynk-tfoot>`, and `<lynk-tr>` elements.</lynk-alert>
+<lynk-alert type="warning" open>The `<lynk-colgroup>` tag must be a child of a `<lynk-table>` element, after any `<lynk-caption>` elements and before any `<lynk-thead>`, `<lynk-tbody>`, `<lynk-tfoot>`, and `<lynk-tr>` elements.</lynk-alert>
 
 ```html preview
 <lynk-table>
