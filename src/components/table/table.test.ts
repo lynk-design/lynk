@@ -103,8 +103,8 @@ describe('<lynk-table>', () => {
     it('change same sorting column from descending to ascending', async () => {
       cols[0].sortDirection = LynkTableSortDirection.DESC;
       cols[1].sortDirection = LynkTableSortDirection.NONE;
-      cols[0].sortEnabled = true;
-      cols[1].sortEnabled = true;
+      cols[0].sortable = true;
+      cols[1].sortable = true;
 
       const el = await fixture<LynkTable>(html`
         <lynk-table
@@ -128,12 +128,12 @@ describe('<lynk-table>', () => {
             <lynk-tr>
               <lynk-th
                 key="${cols[0].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.ASC}"
               >${cols[0].title}</lynk-th>
               <lynk-th
                 key="${cols[1].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.NONE}"
               >${cols[1].title}</lynk-th>
             </lynk-tr>
@@ -155,8 +155,8 @@ describe('<lynk-table>', () => {
     it('change same sorting column from ascending to descending', async () => {
       cols[0].sortDirection = LynkTableSortDirection.ASC;
       cols[1].sortDirection = LynkTableSortDirection.NONE;
-      cols[0].sortEnabled = true;
-      cols[1].sortEnabled = true;
+      cols[0].sortable = true;
+      cols[1].sortable = true;
       rows.reverse();
 
       const el = await fixture<LynkTable>(html`
@@ -181,12 +181,12 @@ describe('<lynk-table>', () => {
             <lynk-tr>
               <lynk-th
                 key="${cols[0].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.DESC}"
               >${cols[0].title}</lynk-th>
               <lynk-th
                 key="${cols[1].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.NONE}"
               >${cols[1].title}</lynk-th>
             </lynk-tr>
@@ -208,8 +208,8 @@ describe('<lynk-table>', () => {
     it('reset previous sorting columns and set requested column to to descending', async () => {
       cols[0].sortDirection = LynkTableSortDirection.ASC;
       cols[1].sortDirection = LynkTableSortDirection.NONE;
-      cols[0].sortEnabled = true;
-      cols[1].sortEnabled = true;
+      cols[0].sortable = true;
+      cols[1].sortable = true;
       rows.reverse();
 
       const el = await fixture<LynkTable>(html`
@@ -234,12 +234,12 @@ describe('<lynk-table>', () => {
             <lynk-tr>
               <lynk-th
                 key="${cols[0].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.NONE}"
               >${cols[0].title}</lynk-th>
               <lynk-th
                 key="${cols[1].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.DESC}"
               >${cols[1].title}</lynk-th>
             </lynk-tr>
@@ -261,8 +261,8 @@ describe('<lynk-table>', () => {
     it('be able to sort strings with an undefined right value', async () => {
       cols[0].sortDirection = LynkTableSortDirection.NONE;
       cols[1].sortDirection = LynkTableSortDirection.ASC;
-      cols[0].sortEnabled = true;
-      cols[1].sortEnabled = true;
+      cols[0].sortable = true;
+      cols[1].sortable = true;
       rows[0] = { keyA: 'a1' };
 
       const el = await fixture<LynkTable>(html`
@@ -287,12 +287,12 @@ describe('<lynk-table>', () => {
             <lynk-tr>
               <lynk-th
                 key="${cols[0].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.NONE}"
               >${cols[0].title}</lynk-th>
               <lynk-th
                 key="${cols[1].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.DESC}"
               >${cols[1].title}</lynk-th>
             </lynk-tr>
@@ -314,8 +314,8 @@ describe('<lynk-table>', () => {
     it('be able to sort strings with an undefined left value', async () => {
       cols[0].sortDirection = LynkTableSortDirection.NONE;
       cols[1].sortDirection = LynkTableSortDirection.ASC;
-      cols[0].sortEnabled = true;
-      cols[1].sortEnabled = true;
+      cols[0].sortable = true;
+      cols[1].sortable = true;
       rows[1] = { keyA: 'a2' };
 
       const el = await fixture<LynkTable>(html`
@@ -340,12 +340,12 @@ describe('<lynk-table>', () => {
             <lynk-tr>
               <lynk-th
                 key="${cols[0].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.NONE}"
               >${cols[0].title}</lynk-th>
               <lynk-th
                 key="${cols[1].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.DESC}"
               >${cols[1].title}</lynk-th>
             </lynk-tr>
@@ -367,8 +367,8 @@ describe('<lynk-table>', () => {
     it('be able to sort numbers', async () => {
       cols[0].sortDirection = LynkTableSortDirection.DESC;
       cols[1].sortDirection = LynkTableSortDirection.NONE;
-      cols[0].sortEnabled = true;
-      cols[1].sortEnabled = true;
+      cols[0].sortable = true;
+      cols[1].sortable = true;
       rows[0] = { keyA: 1 };
       rows[1] = { keyA: 2 };
 
@@ -394,12 +394,12 @@ describe('<lynk-table>', () => {
             <lynk-tr>
               <lynk-th
                 key="${cols[0].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.ASC}"
               >${cols[0].title}</lynk-th>
               <lynk-th
                 key="${cols[1].key}"
-                sort-enabled=""
+                sortable=""
                 sort-direction="${LynkTableSortDirection.NONE}"
               >${cols[1].title}</lynk-th>
             </lynk-tr>
