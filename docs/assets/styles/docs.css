@@ -15,6 +15,7 @@ body {
   font-weight: var(--lynk-font-weight-normal);
   letter-spacing: var(--lynk-letter-spacing-normal);
   background-color: var(--lynk-color-neutral-0);
+  /* background-color: #313131; */
   color: var(--lynk-color-neutral-900);
   line-height: var(--lynk-line-height-normal);
 }

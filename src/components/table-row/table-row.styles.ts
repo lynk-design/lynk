@@ -9,13 +9,14 @@ export default css`
     padding: 1px;
     position: relative;
     border-radius: 5px;
+    background: var(--lynk-table-cell-background-color);
     --color: transparent;
     transition: var(--lynk-transition-fast) background-color, var(--lynk-transition-fast) color,
       var(--lynk-transition-fast) border, var(--lynk-transition-fast) box-shadow;
   }
 
   :host(:nth-of-type(even)) {
-    background: var(--lynk-color-neutral-25);
+    background: var(--lynk-table-striped-cell-background-color);
   }
 
   :host([pulse]) {
