@@ -38,12 +38,12 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkPopup extends LynkElement {
   static styles: CSSResultGroup = styles;
 
+  private anchorEl: HTMLElement | null;
+  private cleanup: ReturnType<typeof autoUpdate> | undefined;
+
   /** A reference to the internal popup container. Useful for animating and styling the popup with JavaScript. */
   @query('.lynk-popup') public popup: HTMLElement;
   @query('.lynk-popup__arrow') private arrowEl: HTMLElement;
-
-  private anchorEl: HTMLElement | null;
-  private cleanup: ReturnType<typeof autoUpdate> | undefined;
 
   /**
    * The element the popup will be anchored to. If the anchor lives outside of the popup, you can provide its `id` or a
@@ -192,7 +192,31 @@ export default class LynkPopup extends LynkElement {
     this.stop();
   }
 
-  async handleAnchorChange() {
+  async updated(changedProps: Map<string, unknown>) {
+    super.updated(changedProps);
+
+    // Start or stop the positioner when active changes
+    if (changedProps.has('active')) {
+      if (this.active) {
+        this.start();
+      } else {
+        this.stop();
+      }
+    }
+
+    // Update the anchor when anchor changes
+    if (changedProps.has('anchor')) {
+      this.handleAnchorChange();
+    }
+
+    // All other properties will trigger a reposition when active
+    if (this.active) {
+      await this.updateComplete;
+      this.reposition();
+    }
+  }
+
+  private async handleAnchorChange() {
     await this.stop();
 
     if (this.anchor && typeof this.anchor === 'string') {
@@ -246,30 +270,6 @@ export default class LynkPopup extends LynkElement {
         resolve();
       }
     });
-  }
-
-  async updated(changedProps: Map<string, unknown>) {
-    super.updated(changedProps);
-
-    // Start or stop the positioner when active changes
-    if (changedProps.has('active')) {
-      if (this.active) {
-        this.start();
-      } else {
-        this.stop();
-      }
-    }
-
-    // Update the anchor when anchor changes
-    if (changedProps.has('anchor')) {
-      this.handleAnchorChange();
-    }
-
-    // All other properties will trigger a reposition when active
-    if (this.active) {
-      await this.updateComplete;
-      this.reposition();
-    }
   }
 
   /** Recalculate and repositions the popup. */

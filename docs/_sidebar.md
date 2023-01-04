@@ -28,6 +28,8 @@
   - [Drawer](/components/drawer)
   - [Grid](/components/grid)
   - [Icons](/components/icon)
+  - [Nav](/components/nav)
+  - [Nav Item](/components/nav-item)
   - [Popover](/components/popover)
   - [Stack](/components/stack)
   - [Tab](/components/tab)
@@ -88,4 +90,5 @@
   - [Responsive Media](/utilities/responsive-media)
   - [Visually Hidden](/utilities/visually-hidden)
 
+  - [Option](/components/option)
   <!--plop:component-->

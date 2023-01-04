@@ -4,15 +4,18 @@
 
 ```html preview
 <lynk-select>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
   <lynk-divider></lynk-divider>
-  <lynk-menu-item value="option-4">Option 4</lynk-menu-item>
-  <lynk-menu-item value="option-5">Option 5</lynk-menu-item>
-  <lynk-menu-item value="option-6">Option 6</lynk-menu-item>
+  <lynk-option value="option-4">Option 4</lynk-option>
+  <lynk-option value="option-5">Option 5</lynk-option>
+  <lynk-option value="option-6">Option 6</lynk-option>
 </lynk-select>
 ```
+
+
+<lynk-alert type="info" open>This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.</lynk-alert>
 
 ## Examples
 
@@ -22,9 +25,9 @@ Use the `label` attribute to give the select an accessible label. For labels tha
 
 ```html preview
 <lynk-select label="Select one">
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 ```
 
@@ -36,9 +39,9 @@ Use the `help-text` value to provide realtime validation and status feedback or 
 
 ```html preview
 <lynk-select label="Experience" help-text="Please tell us your skill level.">
-  <lynk-menu-item value="1">Novice</lynk-menu-item>
-  <lynk-menu-item value="2">Intermediate</lynk-menu-item>
-  <lynk-menu-item value="3">Advanced</lynk-menu-item>
+  <lynk-option value="1">Novice</lynk-option>
+  <lynk-option value="2">Intermediate</lynk-option>
+  <lynk-option value="3">Advanced</lynk-option>
 </lynk-select>
 ```
 
@@ -50,9 +53,43 @@ Use the `help-tip` value to share informative content that will help the user un
 
 ```html preview
 <lynk-select label="Experience" help-tip="Additional form-fields will be customized based on your selected experience level.">
-  <lynk-menu-item value="1">Novice</lynk-menu-item>
-  <lynk-menu-item value="2">Intermediate</lynk-menu-item>
-  <lynk-menu-item value="3">Advanced</lynk-menu-item>
+  <lynk-option value="1">Novice</lynk-option>
+  <lynk-option value="2">Intermediate</lynk-option>
+  <lynk-option value="3">Advanced</lynk-option>
+</lynk-select>
+```
+
+### Required Indicator
+
+Use the `required` attribute to visually indicate a required field.
+
+```html preview
+<lynk-select label="Experience" placeholder="Select One" help-text="Please tell us your skill level." required >
+  <lynk-option value="1">Novice</lynk-option>
+  <lynk-option value="2">Intermediate</lynk-option>
+  <lynk-option value="3">Advanced</lynk-option>
+</lynk-select>
+```
+
+### Custom Validation States
+
+Use the `state` attribute to manually add an error, warning, or success state.
+
+```html preview
+<lynk-select label="Experience" value="1" state="error" help-text="This level is not preferable." required >
+  <lynk-option value="1">Novice</lynk-option>
+  <lynk-option value="2">Intermediate</lynk-option>
+  <lynk-option value="3">Advanced</lynk-option>
+</lynk-select>
+<lynk-select label="Experience" value="2" state="warning" help-text="This level is acceptable." required >
+  <lynk-option value="1">Novice</lynk-option>
+  <lynk-option value="2">Intermediate</lynk-option>
+  <lynk-option value="3">Advanced</lynk-option>
+</lynk-select>
+<lynk-select label="Experience" value="3" state="success" help-text="Congratulations Chad!" required >
+  <lynk-option value="1">Novice</lynk-option>
+  <lynk-option value="2">Intermediate</lynk-option>
+  <lynk-option value="3">Advanced</lynk-option>
 </lynk-select>
 ```
 
@@ -62,9 +99,9 @@ Use the `placeholder` attribute to add a placeholder.
 
 ```html preview
 <lynk-select placeholder="Select one">
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 ```
 
@@ -73,10 +110,10 @@ Use the `placeholder` attribute to add a placeholder.
 Use the `clearable` attribute to make the control clearable.
 
 ```html preview
-<lynk-select placeholder="Clearable" clearable>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+<lynk-select placeholder="Clearable" clearable value="option-1">
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 ```
 
@@ -86,9 +123,9 @@ Add the `filled` attribute to draw a filled select.
 
 ```html preview
 <lynk-select filled>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 ```
 
@@ -98,9 +135,9 @@ Use the `pill` attribute to give selects rounded edges.
 
 ```html preview
 <lynk-select pill>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 ```
 
@@ -110,9 +147,9 @@ Use the `disabled` attribute to disable a select.
 
 ```html preview
 <lynk-select placeholder="Disabled" disabled>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 ```
 
@@ -122,15 +159,15 @@ Use the `restricted` attribute to replace the select field with a plaintext valu
 
 ```html preview
 <lynk-select label="Restricted" value="option-2" restricted>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 <lynk-divider style="--spacing: var(--lynk-spacing-small);"></lynk-divider>
 <lynk-select id="multiple-restricted-example" label="Restricted w/ Multiple" multiple restricted>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 
 <script>
@@ -139,83 +176,51 @@ Use the `restricted` attribute to replace the select field with a plaintext valu
 </script>
 ```
 
-### Setting the Selection
-
-Use the `value` attribute to set the current selection. When users interact with the control, its `value` will update to reflect the newly selected menu item's value. Note that the value must be an array when using the [`multiple`](#multiple) option.
-
-```html preview
-<lynk-select value="option-2">
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
-</lynk-select>
-```
-
-### Setting the Selection Imperatively
-
-To programmatically set the selection, update the `value` property as shown below. Note that the value must be an array when using the [`multiple`](#multiple) option.
-
-```html preview
-<div class="selecting-example">
-  <lynk-select>
-    <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-    <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-    <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
-  </lynk-select>
-
-  <br />
-
-  <lynk-button data-option="option-1">Set 1</lynk-button>
-  <lynk-button data-option="option-2">Set 2</lynk-button>
-  <lynk-button data-option="option-3">Set 3</lynk-button>
-</div>
-
-<script>
-  const container = document.querySelector('.selecting-example');
-  const select = container.querySelector('lynk-select');
-
-  [...container.querySelectorAll('lynk-button')].map(button => {
-    button.addEventListener('click', () => {
-      select.value = button.dataset.option;
-    });
-  });
-</script>
-```
-
 ### Multiple
 
 To allow multiple options to be selected, use the `multiple` attribute. With this option, `value` will be an array of strings instead of a string. It's a good practice to use `clearable` when this option is enabled.
 
 ```html preview
-<lynk-select placeholder="Select a few" multiple clearable>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
-  <lynk-divider></lynk-divider>
-  <lynk-menu-item value="option-4">Option 4</lynk-menu-item>
-  <lynk-menu-item value="option-5">Option 5</lynk-menu-item>
-  <lynk-menu-item value="option-6">Option 6</lynk-menu-item>
+<lynk-select placeholder="Select a few" value="option-1 option-2 option-3" multiple clearable>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
+  <lynk-option value="option-4">Option 4</lynk-option>
+  <lynk-option value="option-5">Option 5</lynk-option>
+  <lynk-option value="option-6">Option 6</lynk-option>
 </lynk-select>
 ```
 
+<lynk-alert open>Note that multi-select options may wrap, causing the control to expand vertically. You can use the `max-options-visible` attribute to control the maximum number of selected options to show at once.</lynk-alert>
 
-<lynk-alert open>When using the `multiple` option, the value will be an array instead of a string. You may need to [set the selection imperatively](#setting-the-selection-imperatively) unless you're using a framework that supports binding properties declaratively.</lynk-alert>
+### Setting Initial Values
+
+Use the `value` attribute to set the initial selection. When using `multiple`, use space-delimited values to select more than one option.
+
+```html preview
+<lynk-select value="option-1 option-2" multiple clearable>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
+  <lynk-option value="option-4">Option 4</lynk-option>
+</lynk-select>
+```
 
 ### Grouping Options
 
-Options can be grouped visually using menu labels and dividers.
+Use `<lynk-divider>` to group listbox items visually. You can also use `<small>` to provide labels, but they won't be announced by most assistive devices.
 
 ```html preview
-<lynk-select placeholder="Select one">
-  <lynk-menu-label>Group 1</lynk-menu-label>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+<lynk-select>
+  <small>Section 1</small>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
   <lynk-divider></lynk-divider>
-  <lynk-menu-label>Group 2</lynk-menu-label>
-  <lynk-menu-item value="option-4">Option 4</lynk-menu-item>
-  <lynk-menu-item value="option-5">Option 5</lynk-menu-item>
-  <lynk-menu-item value="option-6">Option 6</lynk-menu-item>
+  <small>Section 2</small>
+  <lynk-option value="option-4">Option 4</lynk-option>
+  <lynk-option value="option-5">Option 5</lynk-option>
+  <lynk-option value="option-6">Option 6</lynk-option>
 </lynk-select>
 ```
 
@@ -225,67 +230,64 @@ Use the `size` attribute to change a select's size.
 
 ```html preview
 <lynk-select placeholder="Small" size="small" multiple>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 
 <br />
 
 <lynk-select placeholder="Medium" size="medium" multiple>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 
 <br />
 
 <lynk-select placeholder="Large" size="large" multiple>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 ```
 
 ### Placement
 
-The preferred placement of the select's menu can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport. Valid placements are `top` and `bottom`.
+The preferred placement of the select's listbox can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport. Valid placements are `top` and `bottom`.
 
 ```html preview
 <lynk-select placement="top">
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 ```
 
 ### Prefix & Suffix Icons
 
-Use the `prefix` and `suffix` slots to add icons.
+Use the `prefix` slot to prepend an icon to the control.
 
 ```html preview
-<lynk-select placeholder="Small" size="small">
+<lynk-select placeholder="Small" size="small" clearable>
   <lynk-icon name="house" slot="prefix"></lynk-icon>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
-  <lynk-icon name="chat" slot="suffix"></lynk-icon>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 <br />
-<lynk-select placeholder="Medium" size="medium">
+<lynk-select placeholder="Medium" size="medium" clearable>
   <lynk-icon name="house" slot="prefix"></lynk-icon>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
-  <lynk-icon name="chat" slot="suffix"></lynk-icon>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 <br />
-<lynk-select placeholder="Large" size="large">
+<lynk-select placeholder="Large" size="large" clearable>
   <lynk-icon name="house" slot="prefix"></lynk-icon>
-  <lynk-menu-item value="option-1">Option 1</lynk-menu-item>
-  <lynk-menu-item value="option-2">Option 2</lynk-menu-item>
-  <lynk-menu-item value="option-3">Option 3</lynk-menu-item>
-  <lynk-icon name="chat" slot="suffix"></lynk-icon>
+  <lynk-option value="option-1">Option 1</lynk-option>
+  <lynk-option value="option-2">Option 2</lynk-option>
+  <lynk-option value="option-3">Option 3</lynk-option>
 </lynk-select>
 ```
 
