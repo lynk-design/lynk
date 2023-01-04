@@ -5,19 +5,19 @@
     .catch(err => console.error(err));
 
   function createPropsTable(props) {
-    const table = document.createElement('table');
+    const table = document.createElement('lynk-table');
     table.classList.add('metadata-table');
     table.innerHTML = `
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Reflects</th>
-          <th>Type</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
+      <lynk-thead>
+        <lynk-tr>
+          <lynk-th>Name</lynk-th>
+          <lynk-th>Description</lynk-th>
+          <lynk-th>Reflects</lynk-th>
+          <lynk-th>Type</lynk-th>
+          <lynk-th>Default</lynk-th>
+        </lynk-tr>
+      </lynk-thead>
+      <lynk-tbody>
         ${props
           .map(prop => {
             const hasAttribute = !!prop.attribute;
@@ -39,79 +39,79 @@
             }
 
             return `
-              <tr>
-                <td>
+              <lynk-tr>
+                <lynk-td>
                   <code class="nowrap">${escapeHtml(prop.name)}</code>
                   ${attributeInfo}
-                </td>
-                <td>
+                </lynk-td>
+                <lynk-td>
                   ${escapeHtml(prop.description)}
-                </td>
-                <td style="text-align: center;">${
+                </lynk-td>
+                <lynk-td style="text-align: center;">${
                   prop.reflects ? '<lynk-icon label="yes" name="check"></lynk-icon>' : ''
-                }</td>
-                <td>${prop.type?.text ? `<code>${escapeHtml(prop.type?.text || '')}</code>` : '-'}</td>
-                <td>${prop.default ? `<code>${escapeHtml(prop.default)}</code>` : '-'}</td>
-              </tr>
+                }</lynk-td>
+                <lynk-td>${prop.type?.text ? `<code>${escapeHtml(prop.type?.text || '')}</code>` : '-'}</lynk-td>
+                <lynk-td>${prop.default ? `<code>${escapeHtml(prop.default)}</code>` : '-'}</lynk-td>
+              </lynk-tr>
             `;
           })
           .join('')}
-      </tbody>
+      </lynk-tbody>
     `;
 
     return table.outerHTML;
   }
 
   function createEventsTable(events) {
-    const table = document.createElement('table');
+    const table = document.createElement('lynk-table');
     table.classList.add('metadata-table');
     table.innerHTML = `
-      <thead>
-        <tr>
-          <th data-flavor="html">Name</th>
-          <th data-flavor="react">React Event</th>
-          <th>Description</th>
-          <th>Event Detail</th>
-        </tr>
-      </thead>
-      <tbody>
+      <lynk-thead>
+        <lynk-tr>
+          <lynk-th data-flavor="html">Name</lynk-th>
+          <lynk-th data-flavor="react">React Event</lynk-th>
+          <lynk-th>Description</lynk-th>
+          <lynk-th>Event Detail</lynk-th>
+        </lynk-tr>
+      </lynk-thead>
+      <lynk-tbody>
         ${events
           .map(
             event => `
-              <tr>
-                <td data-flavor="html"><code class="nowrap">${escapeHtml(event.name)}</code></td>
-                <td data-flavor="react"><code class="nowrap">${escapeHtml(event.reactName)}</code></td>
-                <td>${escapeHtml(event.description)}</td>
-                <td>${event.type?.text ? `<code>${escapeHtml(event.type?.text)}` : '-'}</td>
-              </tr>
+              <lynk-tr>
+                <lynk-td data-flavor="html"><code class="nowrap">${escapeHtml(event.name)}</code></lynk-td>
+                <lynk-td data-flavor="react"><code class="nowrap">${escapeHtml(event.reactName)}</code></lynk-td>
+                <lynk-td>${escapeHtml(event.description)}</lynk-td>
+                <lynk-td>${event.type?.text ? `<code>${escapeHtml(event.type?.text)}` : '-'}</lynk-td>
+              </lynk-tr>
             `
           )
           .join('')}
-      </tbody>
+      </lynk-tbody>
     `;
 
     return table.outerHTML;
   }
 
   function createMethodsTable(methods) {
-    const table = document.createElement('table');
+    const table = document.createElement('lynk-table');
     table.classList.add('metadata-table');
     table.innerHTML = `
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Arguments</th>
-        </tr>
-      </thead>
-      <tbody>
+      <lynk-thead>
+        <lynk-tr>
+          <lynk-th>Name</lynk-th>
+          <lynk-th>Description</lynk-th>
+          <lynk-th>Arguments</lynk-th>
+        </lynk-tr>
+      </lynk-thead>
+      <lynk-tbody>
         ${methods
           .map(
             method => `
-              <tr>
-                <td class="nowrap"><code>${escapeHtml(method.name)}</code></td>
-                <td>${escapeHtml(method.description)}</td>
-                <td>
+              <lynk-tr>
+                <lynk-td class="nowrap"><code>${escapeHtml(method.name)}</code></lynk-td>
+                <lynk-td>${escapeHtml(method.description)}</lynk-td>
+                <lynk-td>
                   ${
                     method.parameters?.length
                       ? `
@@ -121,124 +121,124 @@
                       `
                       : '-'
                   }
-                </td>
-              </tr>
+                </lynk-td>
+              </lynk-tr>
            `
           )
           .join('')}
-      </tbody>
+      </lynk-tbody>
     `;
 
     return table.outerHTML;
   }
 
   function createSlotsTable(slots) {
-    const table = document.createElement('table');
+    const table = document.createElement('lynk-table');
     table.classList.add('metadata-table');
     table.innerHTML = `
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
+      <lynk-thead>
+        <lynk-tr>
+          <lynk-th>Name</lynk-th>
+          <lynk-th>Description</lynk-th>
+        </lynk-tr>
+      </lynk-thead>
+      <lynk-tbody>
         ${slots
           .map(
             slot => `
-              <tr>
-                <td class="nowrap">${slot.name ? `<code>${escapeHtml(slot.name)}</code>` : '(default)'}</td>
-                <td>${escapeHtml(slot.description)}</td>
-              </tr>
+              <lynk-tr>
+                <lynk-td class="nowrap">${slot.name ? `<code>${escapeHtml(slot.name)}</code>` : '(default)'}</lynk-td>
+                <lynk-td>${escapeHtml(slot.description)}</lynk-td>
+              </lynk-tr>
             `
           )
           .join('')}
-      </tbody>
+      </lynk-tbody>
     `;
 
     return table.outerHTML;
   }
 
   function createCustomPropertiesTable(styles) {
-    const table = document.createElement('table');
+    const table = document.createElement('lynk-table');
     table.classList.add('metadata-table');
     table.innerHTML = `
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
+      <lynk-thead>
+        <lynk-tr>
+          <lynk-th>Name</lynk-th>
+          <lynk-th>Description</lynk-th>
+          <lynk-th>Default</lynk-th>
+        </lynk-tr>
+      </lynk-thead>
+      <lynk-tbody>
         ${styles
           .map(
             style => `
-              <tr>
-                <td class="nowrap"><code>${escapeHtml(style.name)}</code></td>
-                <td>${escapeHtml(style.description)}</td>
-                <td>${style.default ? `<code>${escapeHtml(style.default)}</code>` : ''}</td>
-              </tr>
+              <lynk-tr>
+                <lynk-td class="nowrap"><code>${escapeHtml(style.name)}</code></lynk-td>
+                <lynk-td>${escapeHtml(style.description)}</lynk-td>
+                <lynk-td>${style.default ? `<code>${escapeHtml(style.default)}</code>` : ''}</lynk-td>
+              </lynk-tr>
             `
           )
           .join('')}
-      </tbody>
+      </lynk-tbody>
     `;
 
-    // <td>${style.type?.text ? `${escapeHtml(style.type?.text)}` : '-'}</td>
+    // <lynk-td>${style.type?.text ? `${escapeHtml(style.type?.text)}` : '-'}</lynk-td>
 
     return table.outerHTML;
   }
 
   function createPartsTable(parts) {
-    const table = document.createElement('table');
+    const table = document.createElement('lynk-table');
     table.classList.add('metadata-table');
     table.innerHTML = `
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
+      <lynk-thead>
+        <lynk-tr>
+          <lynk-th>Name</lynk-th>
+          <lynk-th>Description</lynk-th>
+        </lynk-tr>
+      </lynk-thead>
+      <lynk-tbody>
         ${parts
           .map(
             part => `
-              <tr>
-                <td class="nowrap"><code>${escapeHtml(part.name)}</code></td>
-                <td>${escapeHtml(part.description)}</td>
-              </tr>
+              <lynk-tr>
+                <lynk-td class="nowrap"><code>${escapeHtml(part.name)}</code></lynk-td>
+                <lynk-td>${escapeHtml(part.description)}</lynk-td>
+              </lynk-tr>
            `
           )
           .join('')}
-      </tbody>
+      </lynk-tbody>
     `;
 
     return table.outerHTML;
   }
 
   function createAnimationsTable(animations) {
-    const table = document.createElement('table');
+    const table = document.createElement('lynk-table');
     table.classList.add('metadata-table');
     table.innerHTML = `
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
+      <lynk-thead>
+        <lynk-tr>
+          <lynk-th>Name</lynk-th>
+          <lynk-th>Description</lynk-th>
+        </lynk-tr>
+      </lynk-thead>
+      <lynk-tbody>
         ${animations
           .map(
             animation => `
-              <tr>
-                <td class="nowrap"><code>${escapeHtml(animation.name)}</code></td>
-                <td>${escapeHtml(animation.description)}</td>
-              </tr>
+              <lynk-tr>
+                <lynk-td class="nowrap"><code>${escapeHtml(animation.name)}</code></lynk-td>
+                <lynk-td>${escapeHtml(animation.description)}</lynk-td>
+              </lynk-tr>
             `
           )
           .join('')}
-      </tbody>
+      </lynk-tbody>
     `;
 
     return table.outerHTML;

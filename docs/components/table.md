@@ -2,7 +2,12 @@
 
 [component-header:lynk-table]
 
-These elements are intended to behave like HTML `<table>` elements. However they extend their capabilities with features such as automatic construction from data.
+
+## Examples
+
+### Automatic construction
+
+Tables can be automatically construction from data that can be passed into the `rows` and `cols` properties.
 
 ```html preview
 <lynk-table id="exampleAutomatic"></lynk-table>
@@ -43,15 +48,9 @@ These elements are intended to behave like HTML `<table>` elements. However they
 </script>
 ```
 
-[component-metadata:lynk-table]
+### Manual construction
 
-## Slots
-
-Similar to the `<table>` HTML element, `<lynk-table>` elements are designed to contain only the following types of elements:
-
-- zero or more `<lynk-colgroup>` elements
-- zero or one `<lynk-thead>` element
-- zero or more `<lynk-tbody>` elements
+Tables can be manually constructed like a native `<table>` HTML element by using [`<lynk-colgroup>`](/components/table-column-group), [`<lynk-thead>`](/components/table-header-group), [`<lynk-th>`](/components/table-header), [`<lynk-tbody>`](/components/table-row-group), [`<lynk-tr>`](/components/table-row), and [`<lynk-td>`](/components/table-cell) components.
 
 ```html preview
 <lynk-table>
@@ -86,3 +85,53 @@ Similar to the `<table>` HTML element, `<lynk-table>` elements are designed to c
     </lynk-tbody>
 </lynk-table>
 ````
+
+### The Full Monty
+
+A typical example of how a table is used within Uplynk
+
+```html preview
+<lynk-table>
+    <lynk-colgroup>
+        <lynk-col style="width: 48px;"></lynk-col>
+        <lynk-col></lynk-col>
+        <lynk-col></lynk-col>
+    </lynk-colgroup>
+    <lynk-thead>
+        <lynk-tr>
+            <lynk-th><lynk-checkbox indeterminate></lynk-checkbox></lynk-th>
+            <lynk-th key="a" sortable>Title</lynk-th>
+            <lynk-th key="b" sortable>Duration</lynk-th>
+            <lynk-th>Status</lynk-th>
+        </lynk-tr>
+    </lynk-thead>
+    <lynk-tbody>
+        <lynk-tr hoverable>
+            <lynk-td><lynk-checkbox checked></lynk-checkbox></lynk-td>
+            <lynk-td>Dumb & Dumber</lynk-td>
+            <lynk-td>01:45:00</lynk-td>
+            <lynk-td state="primary" barberpole>Slicing</lynk-td>
+        </lynk-tr>
+        <lynk-tr hoverable>
+            <lynk-td><lynk-checkbox></lynk-checkbox></lynk-td>
+            <lynk-td>Legends of the Fall</lynk-td>
+            <lynk-td>02:10:25</lynk-td>
+            <lynk-td>Complete</lynk-td>
+        </lynk-tr>
+        <lynk-tr hoverable>
+            <lynk-td><lynk-checkbox></lynk-checkbox></lynk-td>
+            <lynk-td>Die Hard</lynk-td>
+            <lynk-td>01:39:15</lynk-td>
+            <lynk-td>Complete</lynk-td>
+        </lynk-tr>
+        <lynk-tr state="danger" hoverable pulse>
+            <lynk-td><lynk-checkbox checked></lynk-checkbox></lynk-td>
+            <lynk-td>Apollo 13</lynk-td>
+            <lynk-td>02:05:40</lynk-td>
+            <lynk-td state="danger">Critical</lynk-td>
+        </lynk-tr>
+    </lynk-tbody>
+</lynk-table>
+````
+
+[component-metadata:lynk-table]

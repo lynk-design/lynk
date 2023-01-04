@@ -8,8 +8,8 @@ These elements are intended to behave like `<th>` HTML elements.
 <lynk-table>
     <lynk-thead>
         <lynk-tr>
-            <lynk-th key="colA" sort-enabled>Column A</lynk-th>
-            <lynk-th key="colB" sort-enabled>Column B</lynk-th>
+            <lynk-th key="colA" sortable>Column A</lynk-th>
+            <lynk-th key="colB" sortable>Column B</lynk-th>
         </lynk-tr>
     </lynk-thead>
     <lynk-tbody>
@@ -37,12 +37,12 @@ These elements are intended to behave like `<th>` HTML elements.
     table.cols = [
         {
             'key': 'a',
-            'sortEnabled': true,
+            'sortable': true,
             'title': 'Column A',
         },
         {
             'key': 'b',
-            'sortEnabled': true,
+            'sortable': true,
             'title': 'Column B',
         }
     ];

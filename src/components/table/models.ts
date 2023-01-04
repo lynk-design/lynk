@@ -1,7 +1,7 @@
 export interface ILynkTableCol {
     key: string;
     sortDirection?: LynkTableSortDirection;
-    sortEnabled?: boolean;
+    sortable?: boolean;
     title: string;
 }
 
