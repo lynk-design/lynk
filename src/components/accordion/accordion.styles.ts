@@ -56,7 +56,7 @@ export default css`
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    transition: var(--lynk-transition-medium) transform ease;
+    transition: var(--lynk-transition-medium) rotate ease;
   }
 
   .lynk-accordion--open .lynk-accordion__summary-icon {

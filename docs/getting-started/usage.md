@@ -4,9 +4,9 @@ Lynk's components are just regular HTML elements, or [custom elements](https://d
 
 If you're new to custom elements, often referred to as "web components," this section will familiarize you with how to use them.
 
-## Properties
+## Attributes & Properties
 
-Most components have properties that can be set using attributes. For example, buttons accept a `size` attribute that maps to the `size` property which dictates the button's size.
+Many components have properties that can be set using attributes. For example, buttons accept a `size` attribute that maps to the `size` property which dictates the button's size.
 
 ```html
 <lynk-button size="small">Click me</lynk-button>
@@ -124,10 +124,44 @@ A clever way to use this method is to hide the `<body>` with `opacity: 0` and ad
 </style>
 
 <script type="module">
-  await Promise.allSettled([customElements.whenDefined('lynk-button'), customElements.whenDefined('lynk-alert')]);
+  await Promise.allSettled([
+    customElements.whenDefined('lynk-button'),
+    customElements.whenDefined('lynk-switch'),
+    customElements.whenDefined('lynk-select')
+  ]);
 
   // Button, card, and rating are registered now! Add
   // the `ready` class so the UI fades in.
   document.body.classList.add('ready');
 </script>
 ```
+
+## Component Rendering and Updating
+
+Lynk components are built with [Lit](https://lit.dev/), a tiny library that makes authoring custom elements easier, more maintainable, and a lot of fun! As a Lynk user, here is some helpful information about rendering and updating you should probably be aware of.
+
+To optimize performance and reduce re-renders, Lit batches component updates. This means changing multiple attributes or properties at the same time will result in just a single re-render. In most cases, this isn't an issue, but there may be times you'll need to wait for the component to update before continuing.
+
+Consider this example. We're going to change the `checked` property of the checkbox and observe its corresponding `checked` attribute, which happens to reflect.
+
+```js
+const checkbox = document.querySelector('lynk-checkbox');
+checkbox.checked = true;
+
+console.log(checkbox.hasAttribute('checked')); // false
+```
+
+Most devs will expect this to be `true` instead of `false`, but the component hasn't had a chance to re-render yet so the attribute doesn't exist when `hasAttribute()` is called. Since changes are batched, we need to wait for the update before proceeding. This can be done using the `updateComplete` property, which is available on all Lit-based components.
+
+```js
+const checkbox = document.querySelector('lynk-checkbox');
+checkbox.checked = true;
+
+checkbox.updateComplete.then(() => {
+  console.log(checkbox.hasAttribute('checked')); // true
+});
+```
+
+This time we see an empty string, which means the boolean attribute is now present!
+
+<lynk-alert type="warning" open>Avoid using `setTimeout()` or `requestAnimationFrame()` in situations like this. They might work, but it's far more reliable to use `updateComplete` instead.</lynk-alert>

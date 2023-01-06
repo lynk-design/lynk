@@ -57,6 +57,18 @@
           })
           .join('')}
       </lynk-tbody>
+      <lynk-tbody>
+        <lynk-tr>
+          <lynk-td class="nowrap"><code>updateComplete</code></lynk-td>
+          <lynk-td>
+            A promise that resolves when the component has
+            <a href="/getting-started/usage?id=component-rendering-and-updating">finished updating</a>.
+          </lynk-td>
+          <lynk-td></lynk-td>
+          <lynk-td></lynk-td>
+          <lynk-td></lynk-td>
+        </lynk-tr>
+      </lynk-tbody>
     `;
 
     return table.outerHTML;

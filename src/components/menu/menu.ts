@@ -1,7 +1,6 @@
 import { html } from 'lit';
 import { customElement, query } from 'lit/decorators.js';
 import LynkElement from '../../internal/lynk-element';
-import { getTextContent } from '../../internal/slot';
 import styles from './menu.styles';
 import type LynkMenuItem from '../../components/menu-item/menu-item';
 import type { CSSResultGroup } from 'lit';
@@ -25,15 +24,12 @@ export default class LynkMenu extends LynkElement {
 
   @query('slot') defaultSlot: HTMLSlotElement;
 
-  private typeToSelectString = '';
-  private typeToSelectTimeout: number;
-
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'menu');
   }
 
-  getAllItems(options: { includeDisabled: boolean } = { includeDisabled: true }) {
+  private getAllItems(options: { includeDisabled: boolean } = { includeDisabled: true }) {
     return [...this.defaultSlot.assignedElements({ flatten: true })].filter((el: HTMLElement) => {
       if (el.getAttribute('role') !== 'menuitem') {
         return false;
@@ -47,63 +43,7 @@ export default class LynkMenu extends LynkElement {
     }) as LynkMenuItem[];
   }
 
-  /**
-   * @internal Gets the current menu item, which is the menu item that has `tabindex="0"` within the roving tab index.
-   * The menu item may or may not have focus, but for keyboard interaction purposes it's considered the "active" item.
-   */
-  getCurrentItem() {
-    return this.getAllItems({ includeDisabled: false }).find(i => i.getAttribute('tabindex') === '0');
-  }
-
-  /**
-   * @internal Sets the current menu item to the specified element. This sets `tabindex="0"` on the target element and
-   * `tabindex="-1"` to all other items. This method must be called prior to setting focus on a menu item.
-   */
-  setCurrentItem(item: LynkMenuItem) {
-    const items = this.getAllItems({ includeDisabled: false });
-    const activeItem = item.disabled ? items[0] : item;
-
-    // Update tab indexes
-    items.forEach(i => {
-      i.setAttribute('tabindex', i === activeItem ? '0' : '-1');
-    });
-  }
-
-  /**
-   * Initiates type-to-select logic, which automatically selects an option based on what the user is currently typing.
-   * The event passed will be used to append the appropriate characters to the internal query and the selection will be
-   * updated. After a brief period, the internal query is cleared automatically. This is useful for enabling
-   * type-to-select behavior when the menu doesn't have focus.
-   */
-  typeToSelect(event: KeyboardEvent) {
-    const items = this.getAllItems({ includeDisabled: false });
-    clearTimeout(this.typeToSelectTimeout);
-    this.typeToSelectTimeout = window.setTimeout(() => (this.typeToSelectString = ''), 1000);
-
-    if (event.key === 'Backspace') {
-      if (event.metaKey || event.ctrlKey) {
-        this.typeToSelectString = '';
-      } else {
-        this.typeToSelectString = this.typeToSelectString.slice(0, -1);
-      }
-    } else {
-      this.typeToSelectString += event.key.toLowerCase();
-    }
-
-    for (const item of items) {
-      const slot = item.shadowRoot?.querySelector<HTMLSlotElement>('slot:not([name])');
-      const label = getTextContent(slot).toLowerCase().trim();
-      if (label.startsWith(this.typeToSelectString)) {
-        this.setCurrentItem(item);
-
-        // Set focus here to force the browser to show :focus-visible styles
-        item.focus();
-        break;
-      }
-    }
-  }
-
-  handleClick(event: MouseEvent) {
+  private handleClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const item = target.closest('lynk-menu-item');
 
@@ -112,7 +52,7 @@ export default class LynkMenu extends LynkElement {
     }
   }
 
-  handleKeyDown(event: KeyboardEvent) {
+  private handleKeyDown(event: KeyboardEvent) {
     // Make a selection when pressing enter
     if (event.key === 'Enter') {
       const item = this.getCurrentItem();
@@ -155,15 +95,11 @@ export default class LynkMenu extends LynkElement {
 
         this.setCurrentItem(items[index]);
         items[index].focus();
-
-        return;
       }
     }
-
-    this.typeToSelect(event);
   }
 
-  handleMouseDown(event: MouseEvent) {
+  private handleMouseDown(event: MouseEvent) {
     const target = event.target as HTMLElement;
 
     if (target.getAttribute('role') === 'menuitem') {
@@ -171,13 +107,35 @@ export default class LynkMenu extends LynkElement {
     }
   }
 
-  handleSlotChange() {
+  private handleSlotChange() {
     const items = this.getAllItems({ includeDisabled: false });
 
     // Reset the roving tab index when the slotted items change
     if (items.length > 0) {
       this.setCurrentItem(items[0]);
     }
+  }
+
+  /**
+   * @internal Gets the current menu item, which is the menu item that has `tabindex="0"` within the roving tab index.
+   * The menu item may or may not have focus, but for keyboard interaction purposes it's considered the "active" item.
+   */
+  getCurrentItem() {
+    return this.getAllItems({ includeDisabled: false }).find(i => i.getAttribute('tabindex') === '0');
+  }
+
+  /**
+   * @internal Sets the current menu item to the specified element. This sets `tabindex="0"` on the target element and
+   * `tabindex="-1"` to all other items. This method must be called prior to setting focus on a menu item.
+   */
+  setCurrentItem(item: SlMenuItem) {
+    const items = this.getAllItems({ includeDisabled: false });
+    const activeItem = item.disabled ? items[0] : item;
+
+    // Update tab indexes
+    items.forEach(i => {
+      i.setAttribute('tabindex', i === activeItem ? '0' : '-1');
+    });
   }
 
   render() {

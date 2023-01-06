@@ -586,6 +586,12 @@
   --lynk-overlay-background-color: hsl(0 0% 0% / 43%);
 
   /*
+   * Navs
+   */
+
+  --lynk-nav-item-color: var(--lynk-color-neutral-800);
+
+  /*
    * Panels
    */
 

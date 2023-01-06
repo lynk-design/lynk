@@ -6,6 +6,7 @@
   - [Themes](/getting-started/themes)
   - [Form Controls](/getting-started/form-controls)
   - [Customizing](/getting-started/customizing)
+  - [Contributing](/getting-started/contributing)
   <!-- - [Localization](/getting-started/localization) -->
 
 - Integrations
@@ -91,4 +92,5 @@
   - [Visually Hidden](/utilities/visually-hidden)
 
   - [Option](/components/option)
+  - [Nav Heading](/components/nav-heading)
   <!--plop:component-->
