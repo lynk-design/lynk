@@ -94,7 +94,7 @@
                 <lynk-td data-flavor="html"><code class="nowrap">${escapeHtml(event.name)}</code></lynk-td>
                 <lynk-td data-flavor="react"><code class="nowrap">${escapeHtml(event.reactName)}</code></lynk-td>
                 <lynk-td>${escapeHtml(event.description)}</lynk-td>
-                <lynk-td>${event.type?.text ? `<code>${escapeHtml(event.type?.text)}` : '-'}</lynk-td>
+                <lynk-td>${event.type?.text ? `<code>${escapeHtml(event.type?.text)}</code>` : '-'}</lynk-td>
               </lynk-tr>
             `
           )

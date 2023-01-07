@@ -16,6 +16,10 @@ export default css`
     pointer-events: none;
   }
 
+  :host(:focus) {
+    outline: none;
+  }
+
   .lynk-nav-item {
     align-items: stretch;
     justify-content: start;
@@ -27,6 +31,12 @@ export default css`
     padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-base);
     position: relative;
     text-decoration: none;
+    border: none;
+    background: none;
+    font-family: var(--lynk-font-sans);
+    font-size: var(--lynk-font-size-medium);
+    font-weight: var(--lynk-font-weight-normal);
+    text-align: unset;
     width: 100%;
     word-break: break-word;
     line-height: var(--lynk-line-height-dense);
@@ -36,10 +46,19 @@ export default css`
   .lynk-nav-item::before {
     position: absolute;
     height: 100%;
-    width: 2px;
+    width: 100%;
     top: 0;
     left: 0;
     content: "";
+    pointer-events: none;
+    border-inline-start: solid 3px transparent;
+  }
+
+  :host(:focus-visible) .lynk-nav-item {
+    box-shadow: 0 0 0 var(--lynk-focus-ring-width) var(--lynk-input-focus-ring-color);
+    background-color: var(--hover-bg-color);
+    outline: 1px solid var(--lynk-color-primary);
+    z-index: 2;
   }
 
   .lynk-nav-item:hover {
@@ -57,7 +76,7 @@ export default css`
   }
 
   .lynk-nav-item.lynk-nav-item--selected::before {
-    background-color: var(--lynk-color-primary);
+    border-inline-start-color: var(--lynk-color-primary);
     display: block;
   }
 
@@ -66,20 +85,16 @@ export default css`
     display: inline-block;
   }
 
-  .lynk-nav-item .lynk-nav-item__prefix {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-  }
-
-  .lynk-nav-item .lynk-nav-item__prefix::slotted(*) {
-    margin-inline-end: var(--lynk-spacing-base);
-  }
-
+  .lynk-nav-item .lynk-nav-item__prefix,
   .lynk-nav-item .lynk-nav-item__suffix {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
+    font-size: 1.25em;
+  }
+
+  .lynk-nav-item .lynk-nav-item__prefix::slotted(*) {
+    margin-inline-end: var(--lynk-spacing-base);
   }
 
   .lynk-nav-item .lynk-nav-item__suffix::slotted(*) {
@@ -95,6 +110,10 @@ export default css`
 
   .lynk-nav-item--expanded .lynk-nav-item__chevron {
     rotate: 90deg;
+  }
+
+  .lynk-nav-item__children {
+    display: block;
   }
 
   :host(:focus) {

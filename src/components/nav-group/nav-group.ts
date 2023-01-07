@@ -13,15 +13,11 @@ import type { CSSResultGroup } from 'lit';
  * @since 2.0
  * @status experimental
  *
- * @dependency lynk-example
+ * @slot - the Nav Items to display in association with the heading
+ * @slot heading - The nav groups heading. Alternatively, you can use the heading prop.
  *
- * @event on:event-name - Emitted as an example.
- *
- * @slot - The default slot.
- * @slot label - The nav groups heading label. Alternatively, you can use the label prop.
-
- *
- * @csspart base - The component's base wrapper.
+ * @csspart base - The nav groups heading wrapper.
+ * @csspart children - The nav groups children wrapper.
  *
  * @cssproperty --example - An example CSS custom property.
  */
@@ -29,26 +25,28 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkNavGroup extends LynkElement {
   static styles: CSSResultGroup = styles;
 
-  private readonly hasSlotController = new HasSlotController(this, 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'heading');
 
   /** The nav groups heading label. Alternatively, you can use the label slot. */
-  @property() label = '';
+  @property({ reflect: true })
+  public heading= '';
 
   render() {
-    const hasLabelSlot = this.hasSlotController.test('label');
-    const hasLabel = this.label ? true : !!hasLabelSlot;
+    const hasHeadingSlot = this.hasSlotController.test('heading');
+    const hasHeading = this.heading ? true : !!hasHeadingSlot;
 
     return html`
-      <label
-        part="nav-label"
+      <h2
+        id="heading"
+        part="base"
         class=${classMap({
           'lynk-nav__heading': true,
         })}
-        aria-hidden=${hasLabel ? 'false' : 'true'}
+        aria-hidden=${hasHeading ? 'false' : 'true'}
       >
-        <slot name="label">${this.label}</slot>
-      </label>
-      <slot class="lynk-nav-group"></slot>
+        <slot name="heading">${this.heading}</slot>
+      </h2>
+      <slot part="children" class="lynk-nav-group"></slot>
     `;
   }
 }

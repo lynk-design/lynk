@@ -5,7 +5,8 @@ export default css`
   ${componentStyles}
 
   :host {
-    display: contents;
+    display: block;
+    isolation: isolate;
     --max-width: 288px;
     --background: transparent;
     --border: none;
@@ -17,7 +18,5 @@ export default css`
     border: var(--border);
     border-radius: var(--lynk-border-radius-medium);
     padding: var(--lynk-spacing-x-small) 0;
-    overflow: auto;
-    overscroll-behavior: none;
   }
 `;
