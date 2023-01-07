@@ -163,10 +163,10 @@ export default class LynkNav extends LynkElement {
           toggleExpand(false);
         }
       } else if (event.key === 'Home') {
-        // Moves focus to the first node in the tree without opening or closing a node.
+        // Moves focus to the first node in the nav without opening or closing a node.
         focusItemAt(0);
       } else if (event.key === 'End') {
-        // Moves focus to the last node in the tree that is focusable without opening the node.
+        // Moves focus to the last node in the nav that is focusable without opening the node.
         focusItemAt(items.length - 1);
       } else if (event.key === 'Enter' || event.key === ' ') {
         // Fire a click event on the item

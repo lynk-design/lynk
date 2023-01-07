@@ -11,7 +11,7 @@ import type { CSSResultGroup } from 'lit';
 /**
  * @summary Options define the selectable items within various form controls such as [select](/components/select).
  *
- * @since 2.0
+ * @since 1.0
  * @status stable
  *
  * @dependency lynk-icon

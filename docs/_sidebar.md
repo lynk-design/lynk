@@ -31,6 +31,7 @@
   - [Icons](/components/icon)
   - [Nav](/components/nav)
   - [Nav Item](/components/nav-item)
+  - [Nav Heading](/components/nav-heading)
   - [Popover](/components/popover)
   - [Stack](/components/stack)
   - [Tab](/components/tab)
@@ -56,6 +57,7 @@
   - [Radio Group](/components/radio-group)
   - [Range](/components/range)
   - [Select](/components/select)
+  - [Option](/components/option)
   - [Switch](/components/switch)
   - [Textarea](/components/textarea)
 
@@ -91,6 +93,5 @@
   - [Responsive Media](/utilities/responsive-media)
   - [Visually Hidden](/utilities/visually-hidden)
 
-  - [Option](/components/option)
-  - [Nav Heading](/components/nav-heading)
+
   <!--plop:component-->
