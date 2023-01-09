@@ -41,17 +41,17 @@
       // Generate the theme picker dropdown
       const dropdown = document.createElement('lynk-dropdown');
       dropdown.classList.add('theme-picker');
-      dropdown.style.display = 'none';
+      // dropdown.style.display = 'none';
       dropdown.innerHTML = `
         <lynk-button size="small" pill slot="trigger" caret>
           <lynk-icon name="sun" label="Select Theme"></lynk-icon>
         </lynk-button>
         <lynk-menu>
           <lynk-menu-label>Toggle <kbd>\\</kbd></lynk-menu-label>
-          <lynk-menu-item value="light">Light</lynk-menu-item>
-          <lynk-menu-item value="dark">Dark</lynk-menu-item>
+          <lynk-menu-item type="checkbox" value="light">Light</lynk-menu-item>
+          <lynk-menu-item type="checkbox" value="dark">Dark</lynk-menu-item>
           <lynk-divider></lynk-divider>
-          <lynk-menu-item value="auto">Auto</lynk-menu-item>
+          <lynk-menu-item type="checkbox" value="auto">Auto</lynk-menu-item>
         </lynk-menu>
       `;
       document.querySelector('.sidebar-toggle').insertAdjacentElement('afterend', dropdown);

@@ -7,7 +7,14 @@
   <lynk-nav-item>Getting Started</lynk-nav-item>
   <lynk-nav-item>Usage</lynk-nav-item>
   <lynk-nav-item>Contributing</lynk-nav-item>
-  <lynk-nav-item selected>Components</lynk-nav-item>
+  <lynk-nav-item>
+    Components
+    <lynk-nav-item>Button</lynk-nav-item>
+    <lynk-nav-item>Checkbox</lynk-nav-item>
+    <lynk-nav-item selected>Navs</lynk-nav-item>
+    <lynk-nav-item>Switch</lynk-nav-item>
+  </lynk-nav-item>
+  <lynk-nav-item>Utilities</lynk-nav-item>
 </lynk-nav>
 ```
 

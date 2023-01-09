@@ -1,5 +1,5 @@
 import { html, literal } from 'lit/static-html.js';
-import { customElement, property, query, state } from 'lit/decorators.js';
+import { customElement, property, query, state} from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate';
@@ -10,7 +10,6 @@ import { getAnimation, setDefaultAnimation } from '../../utilities/animation-reg
 import { LocalizeController } from '../../utilities/localize';
 import '../icon/icon';
 import type LynkNav from '../nav/nav';
-import type LynkNavGroup from '../nav-group/nav-group';
 import styles from './nav-item.styles';
 import type { CSSResultGroup, PropertyValueMap } from 'lit';
 
@@ -50,6 +49,8 @@ export default class LynkNavItem extends LynkElement {
 
   private readonly localize = new LocalizeController(this);
   private cachedTextLabel: string;
+
+  @state() isParent = false;
 
   @property() title = ''; // make reactive to pass through
 
@@ -105,6 +106,8 @@ export default class LynkNavItem extends LynkElement {
   firstUpdated() {
 
     this.childrenContainer.hidden = !this.expanded;
+
+    this.isParent = this.hasChildren;
     this.handleExpandedChange();
   }
 
@@ -187,11 +190,6 @@ export default class LynkNavItem extends LynkElement {
     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
   }
 
-  @watch('selected')
-  handleSelectedChange() {
-    this.setAttribute('aria-selected', this.selected ? 'true' : 'false');
-  }
-
   @watch('expanded', { waitUntilFirstUpdate: true })
   handleExpandedChange() {
     if (!this.hasChildren) {
@@ -211,15 +209,18 @@ export default class LynkNavItem extends LynkElement {
   }
 
   protected handleClick(event?: Event): void {
-    if (!this.href && event) {
+
+    if (this.disabled && event) {
       event.preventDefault();
       event.stopPropagation();
+      return
     }
-    if (!this.disabled) {
-      if (this.hasChildren) {
-        this.expanded = !this.expanded;
-      }
 
+    if (this.hasChildren) {
+      this.expanded = !this.expanded;
+      this.emit('on:click', { bubbles: false });
+      event.stopPropagation();
+    } else {
       this.emit('on:click');
     }
   }
@@ -239,34 +240,6 @@ export default class LynkNavItem extends LynkElement {
     }
   }
 
-  protected willUpdate(changedProperties: PropertyValueMap<LynkNavItem> | Map<PropertyKey, unknown>) {
-    if (this.hasChildren && this.expanded && !this.selected) {
-      this.setAttribute('tabindex', '-1');
-    }
-  }
-
-  private async startTrackingSelection(): Promise<void> {
-    const parentNav = this.parentNav;
-    if (parentNav) {
-      await parentNav.updateComplete;
-      parentNav.startTrackingSelectionForItem(this);
-      this.selected =
-        this.value != null && this.value === parentNav.value;
-    }
-  }
-
-  private stopTrackingSelection(): void {
-    const parentNav = this.parentNav;
-    if (parentNav) {
-      parentNav.stopTrackingSelectionForItem(this);
-    }
-    this._parentNav = undefined;
-  }
-
-  private isButton() {
-    return this.href ? false : true;
-  }
-
   private isLink() {
     return this.href ? true : false;
   }
@@ -282,7 +255,7 @@ export default class LynkNavItem extends LynkElement {
           'lynk-nav-item': true,
           'lynk-nav-item--disabled': this.disabled,
           'lynk-nav-item--selected': this.selected,
-          'lynk-nav-item--has-children': this.hasChildren,
+          'lynk-nav-item--has-children': this.isParent,
           'lynk-nav-item--expanded': this.expanded,
           'lynk-nav-item--rtl': isRtl,
         })}
@@ -294,7 +267,7 @@ export default class LynkNavItem extends LynkElement {
         target=${ifDefined(isLink ? this.target : undefined)}
         download=${ifDefined(isLink ? this.download : undefined)}
         rel=${ifDefined(isLink && this.target ? 'noreferrer noopener' : undefined)}
-        role=${ifDefined(isLink ? undefined : 'button')}
+        role=${ifDefined(isLink ? undefined : 'menuitem')}
         data-level=${this.depth}
         aria-disabled=${this.disabled ? 'true' : 'false'}
         @click=${this.handleClick}
@@ -306,7 +279,7 @@ export default class LynkNavItem extends LynkElement {
 
         <slot name="suffix" part="suffix" class="lynk-nav-item__suffix"></slot>
 
-        ${this.hasChildren
+        ${this.isParent
           ? html`
             <span class="lynk-nav-item__chevron">
               <lynk-icon library="system" aria-hidden="true" name=${isRtl ? 'chevron-left' : 'chevron-right'}></lynk-icon>
@@ -320,7 +293,6 @@ export default class LynkNavItem extends LynkElement {
         class="lynk-nav-item__children"
         part="children"
         role="group"
-        @slotchange="${this.handleChildrenSlotChange}"
       ></slot>
 
     `;

@@ -29,13 +29,9 @@ export default class LynkMenu extends LynkElement {
     this.setAttribute('role', 'menu');
   }
 
-  private getAllItems(options: { includeDisabled: boolean } = { includeDisabled: true }) {
+  private getAllItems() {
     return [...this.defaultSlot.assignedElements({ flatten: true })].filter((el: HTMLElement) => {
-      if (el.getAttribute('role') !== 'menuitem') {
-        return false;
-      }
-
-      if (!options.includeDisabled && (el as LynkMenuItem).disabled) {
+      if (el.inert || !this.isMenuItem(el)) {
         return false;
       }
 
@@ -47,9 +43,15 @@ export default class LynkMenu extends LynkElement {
     const target = event.target as HTMLElement;
     const item = target.closest('lynk-menu-item');
 
-    if (item?.disabled === false) {
-      this.emit('on:select', { detail: { item } });
+    if (!item || item.disabled || item.inert) {
+      return;
     }
+
+    if (item.type === 'checkbox') {
+      item.checked = !item.checked;
+    }
+
+    this.emit('on:select', { detail: { item } });
   }
 
   private handleKeyDown(event: KeyboardEvent) {
@@ -69,7 +71,7 @@ export default class LynkMenu extends LynkElement {
 
     // Move the selection when pressing down or up
     if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
-      const items = this.getAllItems({ includeDisabled: false });
+      const items = this.getAllItems();
       const activeItem = this.getCurrentItem();
       let index = activeItem ? items.indexOf(activeItem) : 0;
 
@@ -102,13 +104,13 @@ export default class LynkMenu extends LynkElement {
   private handleMouseDown(event: MouseEvent) {
     const target = event.target as HTMLElement;
 
-    if (target.getAttribute('role') === 'menuitem') {
+    if (this.isMenuItem(target)) {
       this.setCurrentItem(target as LynkMenuItem);
     }
   }
 
   private handleSlotChange() {
-    const items = this.getAllItems({ includeDisabled: false });
+    const items = this.getAllItems();
 
     // Reset the roving tab index when the slotted items change
     if (items.length > 0) {
@@ -116,25 +118,31 @@ export default class LynkMenu extends LynkElement {
     }
   }
 
+  private isMenuItem(item: HTMLElement) {
+    return (
+      item.tagName.toLowerCase() === 'lynk-menu-item' ||
+      ['menuitem', 'menuitemcheckbox', 'menuitemradio'].includes(item.getAttribute('role') ?? '')
+    );
+  }
+
   /**
    * @internal Gets the current menu item, which is the menu item that has `tabindex="0"` within the roving tab index.
    * The menu item may or may not have focus, but for keyboard interaction purposes it's considered the "active" item.
    */
   getCurrentItem() {
-    return this.getAllItems({ includeDisabled: false }).find(i => i.getAttribute('tabindex') === '0');
+    return this.getAllItems().find(i => i.getAttribute('tabindex') === '0');
   }
 
   /**
    * @internal Sets the current menu item to the specified element. This sets `tabindex="0"` on the target element and
    * `tabindex="-1"` to all other items. This method must be called prior to setting focus on a menu item.
    */
-  setCurrentItem(item: SlMenuItem) {
-    const items = this.getAllItems({ includeDisabled: false });
-    const activeItem = item.disabled ? items[0] : item;
+  setCurrentItem(item: LynkMenuItem) {
+    const items = this.getAllItems();
 
     // Update tab indexes
     items.forEach(i => {
-      i.setAttribute('tabindex', i === activeItem ? '0' : '-1');
+      i.setAttribute('tabindex', i === item ? '0' : '-1');
     });
   }
 

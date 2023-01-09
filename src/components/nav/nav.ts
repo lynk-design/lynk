@@ -3,9 +3,7 @@ import { customElement, property, query } from 'lit/decorators.js';
 import { clamp } from '../../internal/math';
 import { classMap } from 'lit/directives/class-map.js';
 import LynkElement from '../../internal/lynk-element';
-import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
-// import { RovingTabindexController } from '../../internal/roving-tab-index';
 import LynkNavItem from '../nav-item/nav-item';
 import styles from './nav.styles';
 import type { CSSResultGroup } from 'lit';
@@ -67,9 +65,10 @@ export default class LynkNav extends LynkElement {
 
   private handleNavChanged(mutations: MutationRecord[]) {
     for (const mutation of mutations) {
-      const addedNodes: LynkNavItem[] = [...mutation.addedNodes].filter(LynkNavItem.isNavItem) as LynkNavItem[];
+      // const addedNodes: LynkNavItem[] = [...mutation.addedNodes].filter(LynkNavItem.isNavItem) as LynkNavItem[];
       const removedNodes = [...mutation.removedNodes].filter(LynkNavItem.isNavItem) as LynkNavItem[];
 
+      // addedNodes.forEach(this.initNavItem);
       // If the focused item has been removed from the DOM, move the focus to the first focusable item
       if (removedNodes.includes(this.lastFocusedItem)) {
         this.focusItem(this.getFocusableItems()[0]);
@@ -91,7 +90,7 @@ export default class LynkNav extends LynkElement {
 
       // Exclude those whose parent is collapsed or loading
       const parent: LynkNavItem | null | undefined = item.parentElement?.closest('[role=menuitem]');
-      if (parent && (!parent.expanded || parent.loading || collapsedItems.has(parent))) {
+      if (parent && (!parent.expanded || collapsedItems.has(parent))) {
         collapsedItems.add(item);
       }
 
@@ -126,52 +125,56 @@ export default class LynkNav extends LynkElement {
       };
 
       // Allow tabbing to contine on to the next dom element outside the nav as expected
-      if ((event.key === 'Tab' &! event.shiftKey) && activeItemIndex === items.length - 1 ) {
+      if ((event.key === 'Tab' && !event.shiftKey) && activeItemIndex === items.length - 1 ) {
         this.tabIndex = 0;
         activeItem.tabIndex = 0;
         return;
-      }
+      } else if ((event.key === 'Tab' && event.shiftKey) && activeItemIndex === 0 ){
+        this.tabIndex = -1;
+        activeItem.tabIndex = -1;
+      } else {
 
-      event.preventDefault();
+        event.preventDefault();
 
-      if (event.key === 'ArrowDown' || (event.key === 'Tab' &! event.shiftKey)) {
-        // Moves focus to the next node that is focusable without opening or closing a node.
-        focusItemAt(activeItemIndex + 1);
-      } else if ((event.key === 'ArrowUp') || (event.key === 'Tab' && event.shiftKey)) {
-        // Moves focus to the next node that is focusable without opening or closing a node.
-        focusItemAt(activeItemIndex - 1);
-      } else if ((isLtr && event.key === 'ArrowRight') || (isRtl && event.key === 'ArrowLeft')) {
-        //
-        // When focus is on an nav item with collapsed children, opens the submenu; focus does not move.
-        // When focus is on an expanded item with children, moves focus to the first child node.
-        // When focus is on an childless nav item, does nothing.
-        //
-        if (!activeItem || activeItem.disabled || activeItem.expanded || (activeItem.isLeaf && !activeItem.lazy)) {
+        if (event.key === 'ArrowDown' || (event.key === 'Tab' && !event.shiftKey)) {
+          // Moves focus to the next node that is focusable without opening or closing a node.
           focusItemAt(activeItemIndex + 1);
-        } else {
-          toggleExpand(true);
-        }
-      } else if ((isLtr && event.key === 'ArrowLeft') || (isRtl && event.key === 'ArrowRight')) {
-        //
-        // When focus is on an expanded item with chilren, collapses the submenu.
-        // When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node.
-        // When focus is on an item with a collapsed child menu, does nothing.
-        //
-        if (!activeItem || activeItem.disabled || activeItem.isLeaf || !activeItem.expanded) {
+        } else if ((event.key === 'ArrowUp') || (event.key === 'Tab' && event.shiftKey)) {
+          // Moves focus to the next node that is focusable without opening or closing a node.
           focusItemAt(activeItemIndex - 1);
-        } else {
-          toggleExpand(false);
-        }
-      } else if (event.key === 'Home') {
-        // Moves focus to the first node in the nav without opening or closing a node.
-        focusItemAt(0);
-      } else if (event.key === 'End') {
-        // Moves focus to the last node in the nav that is focusable without opening the node.
-        focusItemAt(items.length - 1);
-      } else if (event.key === 'Enter' || event.key === ' ') {
-        // Fire a click event on the item
-        if (!activeItem.disabled) {
-          activeItem.click();
+        } else if ((isLtr && event.key === 'ArrowRight') || (isRtl && event.key === 'ArrowLeft')) {
+          //
+          // When focus is on an nav item with collapsed children, opens the submenu; focus does not move.
+          // When focus is on an expanded item with children, moves focus to the first child node.
+          // When focus is on an childless nav item, does nothing.
+          //
+          if (!activeItem || activeItem.disabled || (activeItem.isParent && activeItem.expanded) || !activeItem.isParent) {
+            focusItemAt(activeItemIndex + 1);
+          } else {
+            toggleExpand(true);
+          }
+        } else if ((isLtr && event.key === 'ArrowLeft') || (isRtl && event.key === 'ArrowRight')) {
+          //
+          // When focus is on an expanded item with chilren, collapses the submenu.
+          // When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node.
+          // When focus is on an item with a collapsed child menu, does nothing.
+          //
+          if (!activeItem || activeItem.disabled || !activeItem.isParent || (activeItem.isParent && !activeItem.expanded)) {
+            focusItemAt(activeItemIndex - 1);
+          } else {
+            toggleExpand(false);
+          }
+        } else if (event.key === 'Home') {
+          // Moves focus to the first node in the nav without opening or closing a node.
+          focusItemAt(0);
+        } else if (event.key === 'End') {
+          // Moves focus to the last node in the nav that is focusable without opening the node.
+          focusItemAt(items.length - 1);
+        } else if (event.key === 'Enter' || event.key === ' ') {
+          // Fire a click event on the item
+          if (!activeItem.disabled) {
+            activeItem.click();
+          }
         }
       }
     }
@@ -179,13 +182,13 @@ export default class LynkNav extends LynkElement {
 
   private handleClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const navItem = target.closest('lynk-nav-item');
+    const item = target.closest('lynk-nav-item');
 
-    if (!navItem || navItem.disabled) {
+    if (!item || item.disabled || item.inert) {
       return;
     }
 
-    this.emit('on:select', { detail: { navItem } });
+    this.emit('on:select', { detail: { item } });
   }
 
   private handleFocusOut(event: FocusEvent) {
@@ -217,22 +220,28 @@ export default class LynkNav extends LynkElement {
     }
   }
 
+  private handleSlotChange() {
+    // const items = this.getAllNavItems();
+    // items.forEach(this.initNavItem);
+  }
+
   render() {
     return html`
-      <nav
+      <div
         part="base"
         class=${classMap({
           'lynk-nav': true
         })}
+        role="menu"
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
       >
         <slot
           part="list"
-          role="menu"
+          role="group"
           @slotchange=${this.handleSlotChange}
         ></slot>
-      </nav>
+      </div>
     `;
   }
 }

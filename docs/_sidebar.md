@@ -31,7 +31,7 @@
   - [Icons](/components/icon)
   - [Nav](/components/nav)
   - [Nav Item](/components/nav-item)
-  - [Nav Heading](/components/nav-heading)
+  <!-- - [Nav Heading](/components/nav-heading) -->
   - [Popover](/components/popover)
   - [Stack](/components/stack)
   - [Tab](/components/tab)

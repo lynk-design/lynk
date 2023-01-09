@@ -17,8 +17,6 @@ import type { CSSResultGroup } from 'lit';
  * @dependency lynk-icon
  *
  * @event on:click - Emitted when a menu item is clicked
- * @event on:label-change - Emitted when the menu item's text label changes. For performance reasons, this event is only
- *   emitted if the default slot's `slotchange` event is triggered. It will not fire when the label is first set.
  *
  * @slot - The menu item's label.
  * @slot prefix - Used to prepend an icon or similar element to the menu item.
@@ -39,6 +37,9 @@ export default class LynkMenuItem extends LynkElement {
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
   @query('.lynk-menu-item') menuItem: HTMLElement;
 
+  /** The type of menu item to render. To use `checked`, this value must be set to `checkbox`. */
+  @property() type: 'normal' | 'checkbox' = 'normal';
+
   /** Draws the item in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;
 
@@ -48,37 +49,7 @@ export default class LynkMenuItem extends LynkElement {
   /** Draws the menu item in a disabled state. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  firstUpdated() {
-    this.setAttribute('role', 'menuitem');
-  }
-
-  /** Returns a text label based on the contents of the menu item's default slot. */
-  getTextLabel() {
-    return getTextContent(this.defaultSlot);
-  }
-
-  @watch('checked')
-  handleCheckedChange() {
-    this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
-  }
-
-  @watch('disabled')
-  handleDisabledChange() {
-    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
-  }
-
-  handleClick(event: MouseEvent) {
-    if (this.disabled) {
-      event.preventDefault();
-      event.stopPropagation();
-      return;
-    }
-
-    this.emit('on:click');
-  }
-
-
-  handleDefaultSlotChange() {
+  private handleDefaultSlotChange() {
     const textLabel = this.getTextLabel();
 
     // Ignore the first time the label is set
@@ -91,6 +62,54 @@ export default class LynkMenuItem extends LynkElement {
       this.cachedTextLabel = textLabel;
       this.emit('on:label-change');
     }
+  }
+
+  private handleClick(event: MouseEvent) {
+    if (this.disabled) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    this.emit('on:click');
+  }
+
+  @watch('checked')
+  handleCheckedChange() {
+    // For proper accessibility, users have to use type="checkbox" to use the checked attribute
+    if (this.checked && this.type !== 'checkbox') {
+      this.checked = false;
+      console.error('The checked attribute can only be used on menu items with type="checkbox"', this);
+      return;
+    }
+
+    // Only checkbox types can receive the aria-checked attribute
+    if (this.type === 'checkbox') {
+      this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
+    } else {
+      this.removeAttribute('aria-checked');
+    }
+  }
+
+  @watch('disabled')
+  handleDisabledChange() {
+    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+  }
+
+  @watch('type')
+  handleTypeChange() {
+    if (this.type === 'checkbox') {
+      this.setAttribute('role', 'menuitemcheckbox');
+      this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
+    } else {
+      this.setAttribute('role', 'menuitem');
+      this.removeAttribute('aria-checked');
+    }
+  }
+
+  /** Returns a text label based on the contents of the menu item's default slot. */
+  getTextLabel() {
+    return getTextContent(this.defaultSlot);
   }
 
   render() {

@@ -10,6 +10,10 @@ export default css`
     --hover-color: var(--lynk-color-primary-600);
   }
 
+  :host([inert]) {
+    display: none;
+  }
+
   .lynk-menu-item {
     position: relative;
     display: flex;
@@ -62,11 +66,16 @@ export default css`
     outline: none;
   }
 
-  :host(:hover:not([aria-disabled='true'])) .lynk-menu-item,
-  :host(:focus-visible:not(.lynk-focus-invisible):not([aria-disabled='true'])) .lynk-menu-item {
+  :host(:hover:not([aria-disabled='true'])) .lynk-menu-item {
+    background-color: var(--lynk-color-neutral-100);
+    color: var(--lynk-color-neutral-1000);
+  }
+
+  :host(:focus-visible) .lynk-menu-item {
     outline: none;
     background-color: var(--hover-color);
     color: var(--lynk-color-neutral-0);
+    opacity: 1;
   }
 
   .lynk-menu-item .lynk-menu-item__check,
@@ -86,7 +95,7 @@ export default css`
 
   @media (forced-colors: active) {
     :host(:hover:not([aria-disabled='true'])) .lynk-menu-item,
-    :host(:focus-visible:not(.lynk-focus-invisible):not([aria-disabled='true'])) .lynk-menu-item {
+    :host(:focus-visible) .lynk-menu-item {
       outline: dashed 1px SelectedItem;
       outline-offset: -1px;
     }

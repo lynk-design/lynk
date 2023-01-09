@@ -3,7 +3,6 @@ import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
-import { LocalizeController } from '../../utilities/localize';
 import styles from './nav-group.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -30,6 +29,11 @@ export default class LynkNavGroup extends LynkElement {
   /** The nav groups heading label. Alternatively, you can use the label slot. */
   @property({ reflect: true })
   public heading= '';
+
+  async connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute('role', 'group');
+  }
 
   render() {
     const hasHeadingSlot = this.hasSlotController.test('heading');
