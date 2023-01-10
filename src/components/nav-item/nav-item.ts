@@ -9,9 +9,8 @@ import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import { LocalizeController } from '../../utilities/localize';
 import '../icon/icon';
-import type LynkNav from '../nav/nav';
 import styles from './nav-item.styles';
-import type { CSSResultGroup, PropertyValueMap } from 'lit';
+import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Nav items allow the user to navigate or trigger actions from within a navigation menu.
@@ -51,6 +50,8 @@ export default class LynkNavItem extends LynkElement {
   private cachedTextLabel: string;
 
   @state() isParent = false;
+  @state() isChild = false;
+  @state() depth = 0;
 
   @property() title = ''; // make reactive to pass through
 
@@ -98,21 +99,23 @@ export default class LynkNavItem extends LynkElement {
     this.setAttribute('role', 'menuitem');
     this.setAttribute('tabindex', '-1');
 
-    if (this.isNestedItem()) {
+    if (this.hasParent()) {
       this.slot = 'children';
+      this.isChild = true;
+      this.depth = this.getDepth();
     }
   }
 
   firstUpdated() {
-
     this.childrenContainer.hidden = !this.expanded;
+    this.childrenContainer.style.height = this.expanded ? 'auto' : '0';
 
     this.isParent = this.hasChildren;
     this.handleExpandedChange();
   }
 
   /** Simulates a click on the nav item. */
-  public override click(): void {
+  public click() {
     this.navItem.click();
   }
 
@@ -149,19 +152,8 @@ export default class LynkNavItem extends LynkElement {
     this.emit('after:expand');
   }
 
-  protected get parentNav(): LynkNav | undefined {
-    if (!this._parentNav) {
-      this._parentNav = this.closest('lynk-nav') as
-        | LynkNav
-        | undefined;
-    }
-    return this._parentNav;
-  }
-
-  protected _parentNav?: LynkNav;
-
   // Checks whether the item is nested into an item
-  private isNestedItem(): boolean {
+  private hasParent(): boolean {
     const parent = this.parentElement;
     return !!parent && LynkNavItem.isNavItem(parent);
   }
@@ -170,7 +162,7 @@ export default class LynkNavItem extends LynkElement {
     return !!this.querySelector('lynk-nav-item');
   }
 
-  protected get depth(): number {
+  private getDepth(): number {
     let depth = 0;
     let element = this.parentElement;
     while (element instanceof LynkNavItem) {
@@ -192,7 +184,7 @@ export default class LynkNavItem extends LynkElement {
 
   @watch('expanded', { waitUntilFirstUpdate: true })
   handleExpandedChange() {
-    if (!this.hasChildren) {
+    if (this.hasChildren) {
       this.setAttribute('aria-expanded', this.expanded ? 'true' : 'false');
     } else {
       this.removeAttribute('aria-expanded');
@@ -208,9 +200,9 @@ export default class LynkNavItem extends LynkElement {
     }
   }
 
-  protected handleClick(event?: Event): void {
+  protected handleClick(event: MouseEvent) {
 
-    if (this.disabled && event) {
+    if (this.disabled) {
       event.preventDefault();
       event.stopPropagation();
       return
@@ -267,7 +259,6 @@ export default class LynkNavItem extends LynkElement {
         target=${ifDefined(isLink ? this.target : undefined)}
         download=${ifDefined(isLink ? this.download : undefined)}
         rel=${ifDefined(isLink && this.target ? 'noreferrer noopener' : undefined)}
-        role=${ifDefined(isLink ? undefined : 'menuitem')}
         data-level=${this.depth}
         aria-disabled=${this.disabled ? 'true' : 'false'}
         @click=${this.handleClick}
