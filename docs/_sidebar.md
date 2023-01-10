@@ -25,18 +25,13 @@
 
   - [Accordion](/components/accordion)
   - [Box](/components/box)
+  - [Dialog](/components/dialog)
   - [Divider](/components/divider)
   - [Drawer](/components/drawer)
   - [Grid](/components/grid)
   - [Icons](/components/icon)
-  - [Nav](/components/nav)
-  - [Nav Item](/components/nav-item)
-  <!-- - [Nav Heading](/components/nav-heading) -->
   - [Popover](/components/popover)
   - [Stack](/components/stack)
-  - [Tab](/components/tab)
-  - [Tab Group](/components/tab-group)
-  - [Tab Panel](/components/tab-panel)
   - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)
 
@@ -46,7 +41,6 @@
   - [Button Group](/components/button-group)
   - [Checkbox](/components/checkbox)
   - [Dropdown](/components/dropdown)
-  - [Dialog](/components/dialog)
   - [Input](/components/input)
   - [Icon Button](/components/icon-button)
   - [Menu](/components/menu)
@@ -68,6 +62,16 @@
   - [Spinner](/components/spinner)
   <!-- - [Progress Bar](/components/progress-bar) -->
   <!-- - [Progress Ring](/components/progress-ring) -->
+
+- Navigation
+
+  - [Nav](/components/nav)
+  - [Nav Item](/components/nav-item)
+  - [Nav Group](/components/nav-group)
+  - [Tab](/components/tab)
+  - [Tab Group](/components/tab-group)
+  - [Tab Panel](/components/tab-panel)
+
 
 - Tables
   - [Table](/components/table)

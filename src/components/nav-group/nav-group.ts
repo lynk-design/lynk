@@ -7,9 +7,9 @@ import styles from './nav-group.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Short summary of the component's intended use.
+ * @summary Group navigation items into categories with a header.
  *
- * @since 2.0
+ * @since 1.0
  * @status experimental
  *
  * @slot - the Nav Items to display in association with the heading
@@ -18,7 +18,6 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The nav groups heading wrapper.
  * @csspart children - The nav groups children wrapper.
  *
- * @cssproperty --example - An example CSS custom property.
  */
 @customElement('lynk-nav-group')
 export default class LynkNavGroup extends LynkElement {
