@@ -9,6 +9,7 @@ import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import { LocalizeController } from '../../utilities/localize';
 import '../icon/icon';
+import '../tooltip/tooltip';
 import styles from './nav-item.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -52,11 +53,14 @@ export default class LynkNavItem extends LynkElement {
   @state() isParent = false;
   @state() isChild = false;
   @state() depth = 0;
+  @state() squished = false;
 
-  @property() title = ''; // make reactive to pass through
+  @property()
+  public title = ''; // make reactive to pass through
 
   /** An optional name for the button. Ignored when `href` is set. */
-  @property() name = '';
+  @property()
+  public name = '';
 
   /** A unique value to store in the nav item. This can be used as a way to identify nav items when selected. */
   @property()
@@ -67,11 +71,14 @@ export default class LynkNavItem extends LynkElement {
   public href = '';
 
   /** Tells the browser where to open the link. Only used when `href` is set. */
-  @property() target?: '_blank' | '_parent' | '_self' | '_top';
+  @property()
+  public target?: '_blank' | '_parent' | '_self' | '_top';
 
   /** Tells the browser to download the linked file as this filename. Only used when `href` is set. */
-  @property() download?: string;
+  @property()
+  public download?: string;
 
+  /** Draws the nav item in a highlighted or active state. */
   @property({ type: Boolean, reflect: true })
   public selected = false;
 
@@ -82,6 +89,11 @@ export default class LynkNavItem extends LynkElement {
   /** Draws the nav item in a disabled state. */
   @property({ type: Boolean, reflect: true })
   public disabled = false;
+
+  /**
+   * Disables the label and replaces with a tooltip.
+   */
+  @property({ attribute: 'no-label', type: Boolean, reflect: true }) noLabel = false;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
   @query('slot[name=children]') childrenSlot: HTMLSlotElement;
@@ -112,6 +124,7 @@ export default class LynkNavItem extends LynkElement {
 
     this.isParent = this.hasChildren;
     this.handleExpandedChange();
+    this.handleSquished();
   }
 
   /** Simulates a click on the nav item. */
@@ -197,6 +210,15 @@ export default class LynkNavItem extends LynkElement {
       this.animateExpand();
     } else {
       this.animateCollapse();
+    }
+  }
+
+  @watch('squished', { waitUntilFirstUpdate: true })
+  handleSquished() {
+    if (this.squished) {
+      this.setAttribute('squished', this.squished ? 'true' : 'false');
+    } else {
+      this.removeAttribute('squished');
     }
   }
 

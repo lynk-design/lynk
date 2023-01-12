@@ -3,7 +3,7 @@
 [component-header:lynk-nav-item]
 
 ```html preview
-<lynk-nav>
+<lynk-nav style="max-width: 200px;">
   <lynk-nav-item>Getting Started</lynk-nav-item>
   <lynk-nav-item>Usage</lynk-nav-item>
   <lynk-nav-item>Contributing</lynk-nav-item>

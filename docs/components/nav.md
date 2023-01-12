@@ -54,4 +54,95 @@ The `value` attribute can be used to assign a hidden value, such as a unique ide
 </script>
 ```
 
+### Squished
+
+The `squished` property can be used to render the entire nav in a simplified narrow style. Nested nav items are hidden, as are nav item labels, which are instead shown via  tooltip.
+
+```html preview
+<lynk-nav style="width: 96px; --background: var(--lynk-color-gray-a10); --padding: var(--lynk-spacing-x-small);" squished>
+  <lynk-nav-item>
+    <lynk-icon slot="prefix" name="file-earmark-play"></lynk-icon> Content
+    <lynk-nav-item selected>All Content</lynk-nav-item>
+    <lynk-nav-item>Playlists</lynk-nav-item>
+    <lynk-nav-item>Libraries</lynk-nav-item>
+  </lynk-nav-item>
+  <lynk-nav-item>
+    <lynk-icon slot="prefix" name="tv"></lynk-icon> Channels
+    <lynk-nav-item>Live Channels</lynk-nav-item>
+    <lynk-nav-item>Audiences</lynk-nav-item>
+    <lynk-nav-item>Rules</lynk-nav-item>
+  </lynk-nav-item>
+  <lynk-nav-item>
+    <lynk-icon slot="prefix" name="camera-reels"></lynk-icon> Events
+    <lynk-nav-item>Live Events</lynk-nav-item>
+    <lynk-nav-item>Real Time Events</lynk-nav-item>
+    <lynk-nav-item>Event Calendar</lynk-nav-item>
+  </lynk-nav-item>
+  <lynk-nav-item><lynk-icon slot="prefix" name="film"></lynk-icon> Slicers</lynk-nav-item>
+  <lynk-nav-item><lynk-icon slot="prefix" name="speedometer"></lynk-icon> Monitoring</lynk-nav-item>
+  <lynk-nav-item><lynk-icon slot="prefix" name="bar-chart"></lynk-icon> Analytics</lynk-nav-item>
+  <lynk-nav-item><lynk-icon slot="prefix" name="database-gear"></lynk-icon> Ad Server Debug</lynk-nav-item>
+  <lynk-nav-item><lynk-icon slot="prefix" name="gear"></lynk-icon> Settings</lynk-nav-item>
+  <lynk-nav-item><lynk-icon slot="prefix" name="house-gear"></lynk-icon> Admin</lynk-nav-item>
+```
+
+Squished navs can also utilize nav groups and tooltips in place of labels for individual nav items. For best usability practices, avoid using nested nav items and icons that are not easily identifiable with this style of nav.
+
+```html preview
+<lynk-nav style="width: 96px;" squished>
+  <lynk-nav-group heading="Content">
+    <lynk-tooltip content="All content" placement="right">
+      <lynk-nav-item no-label>
+        <lynk-icon slot="prefix" name="file-earmark-play"></lynk-icon>
+      </lynk-nav-item>
+    </lynk-tooltip>
+    <lynk-tooltip content="Playlists" placement="right">
+      <lynk-nav-item no-label>
+        <lynk-icon slot="prefix" name="music-note-list"></lynk-icon>
+      </lynk-nav-item>
+    </lynk-tooltip>
+    <lynk-tooltip content="Playlists" placement="right">
+      <lynk-nav-item no-label>
+        <lynk-icon slot="prefix" name="folder2-open"></lynk-icon>
+      </lynk-nav-item>
+    </lynk-tooltip>
+  </lynk-nav-group>
+  <lynk-nav-group heading="Channels">
+    <lynk-tooltip content="Live Channels" placement="right">
+      <lynk-nav-item no-label>
+        <lynk-icon slot="prefix" name="tv"></lynk-icon>
+      </lynk-nav-item>
+    </lynk-tooltip>
+    <lynk-tooltip content="Audiences" placement="right">
+      <lynk-nav-item no-label>
+        <lynk-icon slot="prefix" name="people"></lynk-icon>
+      </lynk-nav-item>
+    </lynk-tooltip>
+    <lynk-tooltip content="Rules" placement="right">
+      <lynk-nav-item no-label>
+        <lynk-icon slot="prefix" name="eye"></lynk-icon>
+      </lynk-nav-item>
+    </lynk-tooltip>
+  </lynk-nav-group>
+  <lynk-nav-group heading="Events">
+    <lynk-tooltip content="Live Events" placement="right">
+      <lynk-nav-item no-label>
+        <lynk-icon slot="prefix" name="camera-reels"></lynk-icon>
+      </lynk-nav-item>
+    </lynk-tooltip>
+    <lynk-tooltip content="Real Time Events" placement="right">
+      <lynk-nav-item no-label>
+        <lynk-icon slot="prefix" name="camera-video"></lynk-icon>
+      </lynk-nav-item>
+    </lynk-tooltip>
+    <lynk-tooltip content="Calendar" placement="right">
+      <lynk-nav-item no-label>
+        <lynk-icon slot="prefix" name="calendar2-range"></lynk-icon>
+      </lynk-nav-item>
+    </lynk-tooltip>
+  </lynk-nav-group>
+</lynk-nav>
+```
+
+
 [component-metadata:lynk-nav]

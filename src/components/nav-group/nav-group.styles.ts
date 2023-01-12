@@ -6,6 +6,8 @@ export default css`
 
   :host {
     display: block;
+    --margin: var(--lynk-spacing-medium) 0 0 0;
+    margin: var(--margin);
   }
 
   .lynk-nav__heading {
@@ -13,6 +15,6 @@ export default css`
     font-weight: var(--lynk-font-weight-bold);
     font-size: var(--lynk-font-size-small);
     padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-base);
-    margin: var(--lynk-spacing-medium) 0 var(--lynk-spacing-x-small) 0;
+    margin: 0 0 var(--lynk-spacing-x-small) 0;
   }
 `;

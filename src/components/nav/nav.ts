@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { clamp } from '../../internal/math';
+import { watch } from '../../internal/watch';
 import { classMap } from 'lit/directives/class-map.js';
 import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
@@ -27,6 +28,10 @@ export default class LynkNav extends LynkElement {
 
   @property({ reflect: true })
   public value: string | undefined = undefined;
+
+  /** Simplifies the nav and draws the nav items in a slim style. */
+  @property({ type: Boolean, reflect: true })
+  public squished = false;
 
   //
   // A collection of all the items in the nav, in the order they appear. The collection is live, meaning it is
@@ -61,6 +66,10 @@ export default class LynkNav extends LynkElement {
 
     this.removeEventListener('focusin', this.handleFocusIn);
     this.removeEventListener('focusout', this.handleFocusOut);
+  }
+
+  firstUpdated() {
+    this.handleSquishedChange();
   }
 
   private handleNavChanged(mutations: MutationRecord[]) {
@@ -223,6 +232,17 @@ export default class LynkNav extends LynkElement {
   private handleSlotChange() {
     // const items = this.getAllNavItems();
     // items.forEach(this.initNavItem);
+  }
+
+  @watch('squished', { waitUntilFirstUpdate: true })
+  handleSquishedChange() {
+    const items = this.getAllNavItems();
+    console.log('hellpo');
+    items.forEach(item => {
+      item.squished = this.squished;
+      item.expanded = false;
+      item.isParent = false;
+    });
   }
 
   render() {
