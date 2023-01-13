@@ -237,7 +237,6 @@ export default class LynkNav extends LynkElement {
   @watch('squished', { waitUntilFirstUpdate: true })
   handleSquishedChange() {
     const items = this.getAllNavItems();
-    console.log('hellpo');
     items.forEach(item => {
       item.squished = this.squished;
       item.expanded = false;

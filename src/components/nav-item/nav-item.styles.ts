@@ -6,9 +6,9 @@ export default css`
 
   :host {
     display: block;
-    --hover-bg-color: var(--lynk-color-neutral-50);
+    --hover-bg-color: var(--lynk-color-gray-a25);
     --selected-color: var(--lynk-color-primary-700);
-    --selected-bg-color: var(--lynk-color-neutral-50);
+    --selected-bg-color: var(--lynk-color-gray-a25);
     margin: var(--lynk-spacing-2x-small) 0;
   }
 
