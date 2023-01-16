@@ -263,12 +263,6 @@ export default class LynkDropdown extends LynkElement {
           });
         }
       }
-
-      // Other keys bring focus to the menu and initiate type-to-select behavior
-      const ignoredKeys = ['Tab', 'Shift', 'Meta', 'Ctrl', 'Alt'];
-      if (this.open && !ignoredKeys.includes(event.key)) {
-        menu.typeToSelect(event);
-      }
     }
   }
 

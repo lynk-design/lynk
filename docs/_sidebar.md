@@ -6,6 +6,7 @@
   - [Themes](/getting-started/themes)
   - [Form Controls](/getting-started/form-controls)
   - [Customizing](/getting-started/customizing)
+  - [Contributing](/getting-started/contributing)
   <!-- - [Localization](/getting-started/localization) -->
 
 - Integrations
@@ -24,15 +25,13 @@
 
   - [Accordion](/components/accordion)
   - [Box](/components/box)
+  - [Dialog](/components/dialog)
   - [Divider](/components/divider)
   - [Drawer](/components/drawer)
   - [Grid](/components/grid)
   - [Icons](/components/icon)
   - [Popover](/components/popover)
   - [Stack](/components/stack)
-  - [Tab](/components/tab)
-  - [Tab Group](/components/tab-group)
-  - [Tab Panel](/components/tab-panel)
   - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)
 
@@ -42,7 +41,6 @@
   - [Button Group](/components/button-group)
   - [Checkbox](/components/checkbox)
   - [Dropdown](/components/dropdown)
-  - [Dialog](/components/dialog)
   - [Input](/components/input)
   - [Icon Button](/components/icon-button)
   - [Menu](/components/menu)
@@ -53,6 +51,7 @@
   - [Radio Group](/components/radio-group)
   - [Range](/components/range)
   - [Select](/components/select)
+  - [Option](/components/option)
   - [Switch](/components/switch)
   - [Textarea](/components/textarea)
 
@@ -63,6 +62,16 @@
   - [Spinner](/components/spinner)
   <!-- - [Progress Bar](/components/progress-bar) -->
   <!-- - [Progress Ring](/components/progress-ring) -->
+
+- Navigation
+
+  - [Nav](/components/nav)
+  - [Nav Item](/components/nav-item)
+  - [Nav Group](/components/nav-group)
+  - [Tab](/components/tab)
+  - [Tab Group](/components/tab-group)
+  - [Tab Panel](/components/tab-panel)
+
 
 - Tables
   - [Table](/components/table)
@@ -87,5 +96,6 @@
   - [Resize Observer](/utilities/resize-observer)
   - [Responsive Media](/utilities/responsive-media)
   - [Visually Hidden](/utilities/visually-hidden)
+
 
   <!--plop:component-->

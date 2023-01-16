@@ -4,7 +4,7 @@ import { globbySync } from 'globby';
 
 export default {
   rootDir: '.',
-  files: 'src/**/*.test.ts',
+  files: 'src/**/*.test.ts', // "default" group
   concurrency: 1,
   concurrentBrowsers: 1,
   nodeResolve: true,
@@ -29,8 +29,8 @@ export default {
       </body>
     </html>
   `,
-  // Create a named group for every test file to enable running single tests.
-  // If a test file is `split-panel.test.ts` then you can run `npm run test -- --group split-panel` to run only that file's tests
+  // Create a named group for every test file to enable running single tests. If a test file is `split-panel.test.ts`
+  // then you can run `npm run test -- --group split-panel` to run only that component's tests.
   groups: globbySync('src/**/*.test.ts').map(path => {
     const groupName = path.match(/^.*\/(?<fileName>.*)\.test\.ts/).groups.fileName;
     return {

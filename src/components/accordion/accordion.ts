@@ -200,7 +200,7 @@ export default class LynkAccordion extends LynkElement {
   }
 }
 
-setDefaultAnimation('details.show', {
+setDefaultAnimation('accordion.show', {
   keyframes: [
     { height: '0', opacity: '0' },
     { height: 'auto', opacity: '1' }
@@ -208,7 +208,7 @@ setDefaultAnimation('details.show', {
   options: { duration: 250, easing: 'linear' }
 });
 
-setDefaultAnimation('details.hide', {
+setDefaultAnimation('accordion.hide', {
   keyframes: [
     { height: 'auto', opacity: '1' },
     { height: '0', opacity: '0' }

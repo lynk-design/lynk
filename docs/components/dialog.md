@@ -172,6 +172,6 @@ By default, the dialog's panel will gain focus when opened. This allows a subseq
 </script>
 ```
 
-<lynk-alert open>You can further customize initial focus behavior by canceling the `l-initial-focus` event and setting focus yourself inside the event handler.</lynk-alert>
+<lynk-alert type="info" open>You can further customize initial focus behavior by canceling the `on:initial-focus` event and setting focus yourself inside the event handler.</lynk-alert>
 
 [component-metadata:lynk-dialog]

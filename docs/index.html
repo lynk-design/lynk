@@ -2,9 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>
-      Lynk: A library of web components and CSS for building web applications with the Edgio Streaming user interface design language.
-    </title>
+    <title>Lynk: A library of web components for building web applications with the Edgio Uplynk user interface design language.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta
       name="description"
@@ -12,11 +10,13 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="custom-elements-manifest" content="dist/custom-elements.json" />
-    <meta property="og:title" content="LYNK" />
+    <meta property="og:title" content="Lynk Design" />
     <meta
       property="og:description"
       content="LYNK provides a collection of professionally designed, every day UI components built on a framework-agnostic technology."
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lynk.design/" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/pure.css" />
     <link rel="stylesheet" href="/assets/styles/docs.css" />
@@ -38,10 +38,7 @@
       // Set the initial theme to prevent flashing
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const theme = localStorage.getItem('theme') || 'auto';
-      document.documentElement.classList.toggle(
-        'lynk-theme-dark',
-        theme === 'dark' || (theme === 'auto' && prefersDark)
-      );
+      document.documentElement.classList.toggle('sl-theme-dark', theme === 'dark' || (theme === 'auto' && prefersDark));
     </script>
     <script>
       window.$docsify = {

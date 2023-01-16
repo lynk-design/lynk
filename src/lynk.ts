@@ -22,6 +22,9 @@ export { default as LynkMenu } from './components/menu/menu';
 export { default as LynkMenuItem } from './components/menu-item/menu-item';
 export { default as LynkMenuLabel } from './components/menu-label/menu-label';
 export { default as LynkMutationObserver } from './components/mutation-observer/mutation-observer';
+export { default as LynkNav } from './components/nav/nav';
+export { default as LynkNavGroup } from './components/nav-group/nav-group';
+export { default as LynkNavItem } from './components/nav-item/nav-item';
 export { default as LynkPopup } from './components/popup/popup';
 export { default as LynkPopover } from './components/popover/popover';
 export { default as LynkProgressBar } from './components/progress-bar/progress-bar';
@@ -44,8 +47,6 @@ export { default as LynkTag } from './components/tag/tag';
 export { default as LynkTextarea } from './components/textarea/textarea';
 export { default as LynkTooltip } from './components/tooltip/tooltip';
 export { default as LynkVisuallyHidden } from './components/visually-hidden/visually-hidden';
-
-
 export { default as LynkStack } from './components/stack/stack';
 export { default as LynkTable } from './components/table/table';
 export { default as LynkTableCell } from './components/table-cell/table-cell';
@@ -55,6 +56,7 @@ export { default as LynkTableHeader } from './components/table-header/table-head
 export { default as LynkTableHeaderGroup } from './components/table-header-group/table-header-group';
 export { default as LynkTableRow } from './components/table-row/table-row';
 export { default as LynkTableRowGroup } from './components/table-row-group/table-row-group';
+export { default as LynkOption } from './components/option/option';
 /* plop:component */
 
 // Utilities

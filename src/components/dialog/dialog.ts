@@ -19,7 +19,7 @@ import type { CSSResultGroup } from 'lit';
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
  *
  * @since 1.0
- * @status experimental
+ * @status stable
  *
  * @dependency lynk-icon-button
  *

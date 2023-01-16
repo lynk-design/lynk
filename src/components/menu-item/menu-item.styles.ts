@@ -6,8 +6,10 @@ export default css`
 
   :host {
     display: block;
-    --color: var(--lynk-color-neutral-700);
-    --hover-color: var(--lynk-color-primary-600);
+  }
+
+  :host([inert]) {
+    display: none;
   }
 
   .lynk-menu-item {
@@ -19,7 +21,7 @@ export default css`
     font-weight: var(--lynk-font-weight-normal);
     line-height: var(--lynk-line-height-normal);
     letter-spacing: var(--lynk-letter-spacing-normal);
-    color: var(--color);
+    color: var(--lynk-color-neutral-700);
     padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-2x-small);
     transition: var(--lynk-transition-fast) fill;
     user-select: none;
@@ -62,11 +64,16 @@ export default css`
     outline: none;
   }
 
-  :host(:hover:not([aria-disabled='true'])) .lynk-menu-item,
-  :host(:focus-visible:not(.lynk-focus-invisible):not([aria-disabled='true'])) .lynk-menu-item {
+  :host(:hover:not([aria-disabled='true'])) .lynk-menu-item {
+    background-color: var(--lynk-color-neutral-100);
+    color: var(--lynk-color-neutral-1000);
+  }
+
+  :host(:focus-visible) .lynk-menu-item {
     outline: none;
-    background-color: var(--hover-color);
+    background-color: var(--lynk-color-primary-600);
     color: var(--lynk-color-neutral-0);
+    opacity: 1;
   }
 
   .lynk-menu-item .lynk-menu-item__check,
@@ -86,7 +93,7 @@ export default css`
 
   @media (forced-colors: active) {
     :host(:hover:not([aria-disabled='true'])) .lynk-menu-item,
-    :host(:focus-visible:not(.lynk-focus-invisible):not([aria-disabled='true'])) .lynk-menu-item {
+    :host(:focus-visible) .lynk-menu-item {
       outline: dashed 1px SelectedItem;
       outline-offset: -1px;
     }

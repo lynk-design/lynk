@@ -14,8 +14,10 @@ import type { CSSResultGroup } from 'lit';
  *
  * @csspart base - The component's internal wrapper.
  *
- * @cssproperty --width - Customize the width of the stack group, defaults to `auto`.
- * @cssproperty --height - Customize the width of the stack group, defaults to `auto`.
+ * @cssproperty [--width=100%] - Customize the width of the stack group.
+ * @cssproperty [--height=auto] - Customize the width of the stack group.
+ * @cssproperty [--gap=var(--lynk-spacing-small)] - Customize the gap of the stack group.
+ * @cssproperty [--margin=0] - Customize the margin of the stack group.
  */
 @customElement('lynk-stack')
 export default class LynkStack extends LynkElement {

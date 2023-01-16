@@ -41,7 +41,7 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
 
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this, {
-    value: (control: LynkSwitch) => (control.checked ? control.value : undefined),
+    value: (control: LynkSwitch) => (control.checked ? control.value || 'on' : undefined),
     defaultValue: (control: LynkSwitch) => control.defaultChecked,
     setValue: (control: LynkSwitch, checked: boolean) => (control.checked = checked)
   });

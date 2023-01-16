@@ -11,7 +11,7 @@ import type { CSSResultGroup } from 'lit';
  * @since 1.0
  * @status stable
  *
- * @event on:mutation - Emitted when a mutation occurs.
+ * @event {{ mutationList: MutationRecord[] }} on:mutation - Emitted when a mutation occurs.
  *
  * @slot - The content to watch for mutations.
  */
@@ -57,32 +57,13 @@ export default class LynkMutationObserver extends LynkElement {
     this.stopObserver();
   }
 
-  @watch('disabled')
-  handleDisabledChange() {
-    if (this.disabled) {
-      this.stopObserver();
-    } else {
-      this.startObserver();
-    }
-  }
-
-  @watch('attr', { waitUntilFirstUpdate: true })
-  @watch('attr-old-value', { waitUntilFirstUpdate: true })
-  @watch('char-data', { waitUntilFirstUpdate: true })
-  @watch('char-data-old-value', { waitUntilFirstUpdate: true })
-  @watch('childList', { waitUntilFirstUpdate: true })
-  handleChange() {
-    this.stopObserver();
-    this.startObserver();
-  }
-
-  handleMutation(mutationList: MutationRecord[]) {
+  private handleMutation(mutationList: MutationRecord[]) {
     this.emit('on:mutation', {
       detail: { mutationList }
     });
   }
 
-  startObserver() {
+  private startObserver() {
     const observeAttributes = typeof this.attr === 'string' && this.attr.length > 0;
     const attributeFilter = observeAttributes && this.attr !== '*' ? this.attr.split(' ') : undefined;
 
@@ -105,8 +86,27 @@ export default class LynkMutationObserver extends LynkElement {
     }
   }
 
-  stopObserver() {
+  private stopObserver() {
     this.mutationObserver.disconnect();
+  }
+
+  @watch('disabled')
+  handleDisabledChange() {
+    if (this.disabled) {
+      this.stopObserver();
+    } else {
+      this.startObserver();
+    }
+  }
+
+  @watch('attr', { waitUntilFirstUpdate: true })
+  @watch('attr-old-value', { waitUntilFirstUpdate: true })
+  @watch('char-data', { waitUntilFirstUpdate: true })
+  @watch('char-data-old-value', { waitUntilFirstUpdate: true })
+  @watch('childList', { waitUntilFirstUpdate: true })
+  handleChange() {
+    this.stopObserver();
+    this.startObserver();
   }
 
   render() {

@@ -307,10 +307,10 @@
   resolved "https://registry.yarnpkg.com/@cspell/strong-weak-map/-/strong-weak-map-6.17.0.tgz#841ef99a4e0fdf9aacce36281829b87616b01478"
   integrity sha512-fRghm6eoUEH7Uz57t0SEKJNm4lqODF2/DRiLd2ek7QkzUHKrCetre/5UrvdE78GIUyl0+8GLx9iFwo/XFa6dDA==
 
-"@custom-elements-manifest/analyzer@^0.6.6":
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/@custom-elements-manifest/analyzer/-/analyzer-0.6.6.tgz#52db8a3f6c575821d05694ff5a0295c0cb4bbb07"
-  integrity sha512-aPBZBdkrGcQPhgPPEucgw66vfOfLpS80GOGzDXE8NZuO/VmTdy3QQNAsuD4MPJmv9eRPV9W2V7ezodS5g8erng==
+"@custom-elements-manifest/analyzer@^0.6.7":
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/@custom-elements-manifest/analyzer/-/analyzer-0.6.7.tgz#060f1768cf5fd1a4bb136f41b017367fecb6bae8"
+  integrity sha512-vVNRmZ8NnIbnFXSAABpP6SJ01JSKiDoi+ejfR8Y9Cd56B3lqGdDrDNFDKBA0eyq/Z4/TvNl5VmnWRPdlbp4CJg==
   dependencies:
     "@custom-elements-manifest/find-dependencies" "^0.0.5"
     "@github/catalyst" "^1.6.0"
@@ -1961,10 +1961,10 @@ capital-case@^1.0.4:
     tslib "^2.0.3"
     upper-case-first "^2.0.2"
 
-cem-plugin-vs-code-custom-data-generator@^1.2.1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/cem-plugin-vs-code-custom-data-generator/-/cem-plugin-vs-code-custom-data-generator-1.3.0.tgz#fe75a074dc4b1eda66ccfcd85ecfbc7ade16cd8a"
-  integrity sha512-Pcrz+Xi6V8vOHFW+TBHrHcY7KSqTCujuOAuLyBTWEE0OyERc3NxfwT8z9Ahf+AFxxiv67Fs/MGaWx56YCLUeVA==
+cem-plugin-vs-code-custom-data-generator@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/cem-plugin-vs-code-custom-data-generator/-/cem-plugin-vs-code-custom-data-generator-1.3.1.tgz#ac1ce934e13607c81ef85c869d29797d5cc5d168"
+  integrity sha512-XK4M5CxFRyqBVzIjoWcsdHZ+GZjiVqxatWdfzVtcvsu7KGjYmrPMejzhnSvaTxfqBX2ZgMmJ6rtyNwgo8optXA==
   dependencies:
     prettier "^2.7.1"
 
