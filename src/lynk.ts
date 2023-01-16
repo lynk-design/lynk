@@ -47,8 +47,6 @@ export { default as LynkTag } from './components/tag/tag';
 export { default as LynkTextarea } from './components/textarea/textarea';
 export { default as LynkTooltip } from './components/tooltip/tooltip';
 export { default as LynkVisuallyHidden } from './components/visually-hidden/visually-hidden';
-
-
 export { default as LynkStack } from './components/stack/stack';
 export { default as LynkTable } from './components/table/table';
 export { default as LynkTableCell } from './components/table-cell/table-cell';

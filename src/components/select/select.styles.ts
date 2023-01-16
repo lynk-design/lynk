@@ -69,7 +69,7 @@ export default css`
   }
 
   /* Visually hide the display input when multiple is enabled */
-  .lynk-select--multiple .lynk-select__display-input {
+  .lynk-select--multiple:not(.lynk-select--placeholder-visible) .lynk-select__display-input {
     position: absolute;
     z-index: -1;
     top: 0;

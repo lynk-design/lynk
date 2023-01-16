@@ -150,13 +150,11 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   /** The select's help text. If you need to display HTML, use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
 
-  /** The select's required attribute. */
-  @property({ type: Boolean, reflect: true }) required = false;
-
-
-
   /** The select's help tooltip appended to the label. Alternatively, you can use the help-tip slot. */
   @property({ attribute: 'help-tip' }) helpTip = '';
+
+  /** The select's required attribute. */
+  @property({ type: Boolean, reflect: true }) required = false;
 
   /** Replaces the select with a plain text string of the selected value. */
   @property({ type: Boolean, reflect: true }) restricted = false;
@@ -637,6 +635,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     const hasHelpTip = this.helpTip ? true : !!hasHelpTipSlot;
     const hasClearIcon = this.clearable && !this.disabled && this.value.length > 0;
+    const isPlaceholderVisible = this.placeholder && this.value.length === 0;
 
     return html`
       <div
@@ -697,6 +696,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
               'lynk-select--restricted': this.restricted,
               'lynk-select--multiple': this.multiple,
               'lynk-select--focused': this.hasFocus,
+              'lynk-select--placeholder-visible': isPlaceholderVisible,
               'lynk-select--top': this.placement === 'top',
               'lynk-select--bottom': this.placement === 'bottom',
               'lynk-select--small': this.size === 'small',

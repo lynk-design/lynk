@@ -145,7 +145,7 @@ describe('<lynk-accordion>', () => {
     await first.show();
     await second.show();
 
-    expect(firstBody.clientHeight).to.equal(200);
-    expect(secondBody.clientHeight).to.equal(400);
+    expect(firstBody.clientHeight).to.equal(200); // 200 + 20px + 20px (vertical padding)
+    expect(secondBody.clientHeight).to.equal(400); // 400 + 20px + 20px (vertical padding)
   });
 });

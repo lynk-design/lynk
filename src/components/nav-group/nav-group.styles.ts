@@ -7,6 +7,7 @@ export default css`
   :host {
     display: block;
     --margin: var(--lynk-spacing-medium) 0 0 0;
+    --color: var(--lynk-color-neutral-600);
     margin: var(--margin);
   }
 
@@ -14,6 +15,7 @@ export default css`
     display: block;
     text-align: inherit;
     font-weight: var(--lynk-font-weight-bold);
+    color: var(--color);
     font-size: var(--lynk-font-size-small);
     padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-base);
     margin: 0 0 var(--lynk-spacing-x-small) 0;

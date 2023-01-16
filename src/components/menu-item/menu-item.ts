@@ -60,7 +60,7 @@ export default class LynkMenuItem extends LynkElement {
 
     if (textLabel !== this.cachedTextLabel) {
       this.cachedTextLabel = textLabel;
-      this.emit('on:label-change');
+      this.emit('slotchange', { bubbles: true, composed: false, cancelable: false });
     }
   }
 

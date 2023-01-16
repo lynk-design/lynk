@@ -19,6 +19,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The nav groups heading wrapper.
  * @csspart children - The nav groups children wrapper.
  *
+ * @cssproperty [--color=var(--lynk-color-neutral-600)] - Customize the header color.
+ *
  */
 @customElement('lynk-nav-group')
 export default class LynkNavGroup extends LynkElement {

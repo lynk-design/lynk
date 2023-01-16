@@ -29,6 +29,34 @@ describe('<lynk-select>', () => {
     expect(el.displayInput.disabled).to.be.true;
   });
 
+  it('should show a placeholder when no options are selected', async () => {
+    const el = await fixture<LynkSelect>(html`
+      <lynk-select placeholder="Select one">
+        <lynk-option value="option-1">Option 1</lynk-option>
+        <lynk-option value="option-2">Option 2</lynk-option>
+        <lynk-option value="option-3">Option 3</lynk-option>
+      </lynk-select>
+    `);
+    const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="display-input"]')!;
+
+    expect(getComputedStyle(displayInput).opacity).to.not.equal('0');
+    expect(displayInput.placeholder).to.equal('Select one');
+  });
+
+  it('should show a placeholder when no options are selected and multiple is set', async () => {
+    const el = await fixture<LynkSelect>(html`
+      <lynk-select placeholder="Select a few" multiple>
+        <lynk-option value="option-1">Option 1</lynk-option>
+        <lynk-option value="option-2">Option 2</lynk-option>
+        <lynk-option value="option-3">Option 3</lynk-option>
+      </lynk-select>
+    `);
+    const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="display-input"]')!;
+
+    expect(getComputedStyle(displayInput).opacity).to.not.equal('0');
+    expect(displayInput.placeholder).to.equal('Select a few');
+  });
+
   it('should not allow selection when the option is disabled', async () => {
     const el = await fixture<LynkSelect>(html`
       <lynk-select value="option-1">
@@ -72,7 +100,7 @@ describe('<lynk-select>', () => {
           <lynk-option value="option-3">Option 3</lynk-option>
         </lynk-select>
       `);
-      const secondOption = el.querySelectorAll<LynkOption>('lynk-option')[1];
+      const secondOption = el.querySelectorAll<SlOption>('lynk-option')[1];
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();
 
@@ -143,7 +171,7 @@ describe('<lynk-select>', () => {
         <lynk-option value="option-3">Option 3</lynk-option>
       </lynk-select>
     `);
-    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.select__display-input')!;
+    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.lynk-select__display-input')!;
 
     el.focus();
     await sendKeys({ press: 'r' });
@@ -160,7 +188,7 @@ describe('<lynk-select>', () => {
         <lynk-option value="option-3">Option 3</lynk-option>
       </lynk-select>
     `);
-    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.select__display-input')!;
+    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.lynk-select__display-input')!;
 
     el.focus();
     await sendKeys({ down: 'Control' });
@@ -288,12 +316,10 @@ describe('<lynk-select>', () => {
       `);
       const resetButton = form.querySelector('lynk-button')!;
       const select = form.querySelector('lynk-select')!;
-      const option2 = form.querySelectorAll('lynk-option')![1];
 
-      await select.show();
-      await clickOnElement(option2);
+      select.value = 'option-3';
       await select.updateComplete;
-      expect(select.value).to.equal('option-2');
+      expect(select.value).to.equal('option-3');
 
       setTimeout(() => clickOnElement(resetButton));
       await oneEvent(form, 'reset');
@@ -310,7 +336,7 @@ describe('<lynk-select>', () => {
         <lynk-option value="option-3">Option 3</lynk-option>
       </lynk-select>
     `);
-    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.select__display-input')!;
+    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.lynk-select__display-input')!;
     const option = el.querySelector('lynk-option')!;
 
     expect(displayInput.value).to.equal('Option 1');

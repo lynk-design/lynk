@@ -6,7 +6,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
 import LynkNavItem from '../nav-item/nav-item';
-import LynkNavGroup from '../nav-item/nav-group';
+import LynkNavGroup from '../nav-group/nav-group';
 import styles from './nav.styles';
 import type { CSSResultGroup } from 'lit';
 
