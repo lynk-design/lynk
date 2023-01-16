@@ -89,7 +89,7 @@ The `squished` property can be used to render the entire nav in a simplified nar
 Squished navs can also utilize nav groups and tooltips in place of labels for individual nav items. For best usability practices, avoid using nested nav items and icons that are not easily identifiable with this style of nav.
 
 ```html preview
-<lynk-nav style="width: 96px;" squished>
+<lynk-nav style="width: 88px; --padding: var(--lynk-spacing-small);" squished>
   <lynk-nav-group heading="Content">
     <lynk-tooltip content="All content" placement="right">
       <lynk-nav-item no-label>

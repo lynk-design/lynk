@@ -9,6 +9,8 @@ export default css`
     --hover-bg-color: var(--lynk-color-gray-a25);
     --selected-color: var(--lynk-color-primary-700);
     --selected-bg-color: var(--lynk-color-gray-a25);
+    --border-radius: 0;
+    --padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-base);
     margin: var(--lynk-spacing-2x-small) 0;
   }
 
@@ -25,10 +27,10 @@ export default css`
     justify-content: start;
     color: var(--lynk-nav-item-color);
     cursor: pointer;
-    border-radius: var(--lynk-border-radius-small);
+    border-radius: var(--border-radius);
     display: flex;
     hyphens: auto;
-    padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-base);
+    padding: var(--padding);
     position: relative;
     text-decoration: none;
     border: none;
@@ -144,7 +146,7 @@ export default css`
     align-items: center;
     font-size: var(--lynk-font-size-small);
     line-height: var(--lynk-line-height-dense);
-    border-radius: var(--lynk-border-radius-medium);
+    border-radius: var(--border-radius);
     padding: var(--lynk-spacing-x-small) var(--lynk-spacing-2x-small);
   }
 
@@ -153,18 +155,13 @@ export default css`
     background-color: var(--selected-bg-color);
   }
 
-  :host([squished]) .lynk-nav-item::before {
-    border: 1px solid transparent;
-    border-radius: var(--lynk-border-radius-medium);
+  :host([squished]) .lynk-nav-item::before,
+  :host([squished]) .lynk-nav-item .lynk-nav-item__chevron {
     display: none;
   }
 
   :host([squished]) .lynk-nav-item.lynk-nav-item--selected::before {
     border-color: var(--selected-color);
-  }
-
-  :host([squished]) .lynk-nav-item .lynk-nav-item__chevron {
-    display: none;
   }
 
   :host([squished]) .lynk-nav-item .lynk-nav-item__prefix::slotted(*) {

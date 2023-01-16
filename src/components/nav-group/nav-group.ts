@@ -1,8 +1,9 @@
 import { html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
+import { watch } from '../../internal/watch';
 import styles from './nav-group.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -25,6 +26,8 @@ export default class LynkNavGroup extends LynkElement {
 
   private readonly hasSlotController = new HasSlotController(this, 'heading');
 
+  @state() squished = false;
+
   /** The nav groups heading label. Alternatively, you can use the label slot. */
   @property({ reflect: true })
   public heading= '';
@@ -34,21 +37,34 @@ export default class LynkNavGroup extends LynkElement {
     this.setAttribute('role', 'group');
   }
 
+  firstUpdated() {
+    this.handleSquished();
+  }
+
+  @watch('squished', { waitUntilFirstUpdate: true })
+  handleSquished() {
+    if (this.squished) {
+      this.setAttribute('squished', this.squished ? 'true' : 'false');
+    } else {
+      this.removeAttribute('squished');
+    }
+  }
+
   render() {
     const hasHeadingSlot = this.hasSlotController.test('heading');
     const hasHeading = this.heading ? true : !!hasHeadingSlot;
 
     return html`
-      <h2
+      <div
         id="heading"
         part="base"
         class=${classMap({
-          'lynk-nav__heading': true,
+          'lynk-nav-group__heading': true,
         })}
         aria-hidden=${hasHeading ? 'false' : 'true'}
       >
         <slot name="heading">${this.heading}</slot>
-      </h2>
+      </div>
       <slot part="children" class="lynk-nav-group"></slot>
     `;
   }

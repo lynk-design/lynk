@@ -6,6 +6,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
 import LynkNavItem from '../nav-item/nav-item';
+import LynkNavGroup from '../nav-item/nav-group';
 import styles from './nav.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -19,6 +20,14 @@ import type { CSSResultGroup } from 'lit';
  *
  * @slot - The nav's content, including nav items, nav groups, and dividers.
  *
+* @cssproperty [--max-width=100%] - Customize the max nav width.
+* @cssproperty [--background=transparent] - Customize the nav background.
+* @cssproperty [--padding=var(--lynk-spacing-x-small) 0] - Customize the nav padding.
+* @cssproperty [--border-top=none] - Customize the top border.
+* @cssproperty [--border-right=none] - Customize the right border.
+* @cssproperty [--border-bottom=none] - Customize the bottom border.
+* @cssproperty [--border-left=none] - Customize the left border.
+* @cssproperty [--border-radius=0] - Customize the border radius.
  */
 @customElement('lynk-nav')
 export default class LynkNav extends LynkElement {
@@ -87,6 +96,10 @@ export default class LynkNav extends LynkElement {
 
   private getAllNavItems() {
     return [...this.querySelectorAll<LynkNavItem>('lynk-nav-item')];
+  }
+
+  private getNavGroups() {
+    return [...this.querySelectorAll<LynkNavGroup>('lynk-nav-group')];
   }
 
   private getFocusableItems() {
@@ -237,10 +250,14 @@ export default class LynkNav extends LynkElement {
   @watch('squished', { waitUntilFirstUpdate: true })
   handleSquishedChange() {
     const items = this.getAllNavItems();
+    const groups = this.getNavGroups();
     items.forEach(item => {
       item.squished = this.squished;
       item.expanded = false;
       item.isParent = false;
+    });
+    groups.forEach(item => {
+      item.squished = this.squished;
     });
   }
 

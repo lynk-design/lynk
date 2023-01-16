@@ -10,7 +10,9 @@ export default css`
     --margin: 0;
     --width: 100%;
     --height: auto;
-    --gap: var(--lynk-spacing-small)
+    --gap: var(--lynk-spacing-small);
+    height: var(--height);
+    width: var(--width);
   }
 
   :host([no-wrap]) .lynk-stack {

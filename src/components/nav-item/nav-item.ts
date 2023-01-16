@@ -38,6 +38,10 @@ import type { CSSResultGroup } from 'lit';
  * @csspart label - The nav item label.
  * @csspart suffix - The suffix container.
  *
+ * @cssproperty [--hover-bg-color=var(--lynk-color-gray-a25)] - Customize the hover styles.
+ * @cssproperty [--selected-bg-color=var(--lynk-color-primary-700)] - Customize the selected styles.
+ * @cssproperty [--selected-color=var(--lynk-color-gray-a25)] - Customize the selected styles.
+ * @cssproperty [--border-radius=0] - Customize the border radius.
  */
 @customElement('lynk-nav-item')
 export default class LynkNavItem extends LynkElement {
