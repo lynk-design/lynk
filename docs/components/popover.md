@@ -13,10 +13,10 @@ Unlike a tooltip, users can interact with popover content. However, popover's sh
   <lynk-button slot="trigger">Click Me</lynk-button>
 
     Could you have any Grey Poupon?
-    <lynk-select size="small" placeholder="Select one">
-      <lynk-menu-item value="option-1">Yes</lynk-menu-item>
-      <lynk-menu-item value="option-2">No</lynk-menu-item>
-      <lynk-menu-item value="option-3">Ignore</lynk-menu-item>
+    <lynk-select size="small" placeholder="Select one" hoist>
+      <lynk-option value="option-1">Yes</lynk-option>
+      <lynk-option value="option-2">No</lynk-option>
+      <lynk-option value="option-3">Ignore</lynk-option>
     </lynk-select>
 
     <lynk-button slot="footer" size="small">Driver</lynk-button>
@@ -34,10 +34,10 @@ The preferred placement of the popover can be set with the `placement` attribute
   <lynk-button slot="trigger">Click Me</lynk-button>
 
     Could you have any Grey Poupon?
-    <lynk-select size="small" placeholder="Select one">
-      <lynk-menu-item value="option-1">Yes</lynk-menu-item>
-      <lynk-menu-item value="option-2">No</lynk-menu-item>
-      <lynk-menu-item value="option-3">Ignore</lynk-menu-item>
+    <lynk-select size="small" placeholder="Select one" hoist>
+      <lynk-option value="option-1">Yes</lynk-option>
+      <lynk-option value="option-2">No</lynk-option>
+      <lynk-option value="option-3">Ignore</lynk-option>
     </lynk-select>
 
     <lynk-button slot="footer" size="small">Driver</lynk-button>
@@ -53,10 +53,10 @@ Disable a popover from opening using the `disabled` attribute.
   <lynk-button slot="trigger">Click Me</lynk-button>
 
     Could you have any Grey Poupon?
-    <lynk-select size="small" placeholder="Select one">
-      <lynk-menu-item value="option-1">Yes</lynk-menu-item>
-      <lynk-menu-item value="option-2">No</lynk-menu-item>
-      <lynk-menu-item value="option-3">Ignore</lynk-menu-item>
+    <lynk-select size="small" placeholder="Select one" hoist>
+      <lynk-option value="option-1">Yes</lynk-option>
+      <lynk-option value="option-2">No</lynk-option>
+      <lynk-option value="option-3">Ignore</lynk-option>
     </lynk-select>
 
     <lynk-button slot="footer" size="small">Driver</lynk-button>
@@ -72,10 +72,10 @@ The distance from the panel to the trigger can be customized using the `distance
   <lynk-button slot="trigger">Click Me</lynk-button>
 
     Could you have any Grey Poupon?
-    <lynk-select size="small" placeholder="Select one">
-      <lynk-menu-item value="option-1">Yes</lynk-menu-item>
-      <lynk-menu-item value="option-2">No</lynk-menu-item>
-      <lynk-menu-item value="option-3">Ignore</lynk-menu-item>
+    <lynk-select size="small" placeholder="Select one" hoist>
+      <lynk-option value="option-1">Yes</lynk-option>
+      <lynk-option value="option-2">No</lynk-option>
+      <lynk-option value="option-3">Ignore</lynk-option>
     </lynk-select>
 
     <lynk-button slot="footer" size="small">Driver</lynk-button>
@@ -91,10 +91,10 @@ The offset of the panel along the trigger can be customized using the `skidding`
   <lynk-button slot="trigger">Click Me</lynk-button>
 
     Could you have any Grey Poupon?
-    <lynk-select size="small" placeholder="Select one">
-      <lynk-menu-item value="option-1">Yes</lynk-menu-item>
-      <lynk-menu-item value="option-2">No</lynk-menu-item>
-      <lynk-menu-item value="option-3">Ignore</lynk-menu-item>
+    <lynk-select size="small" placeholder="Select one" hoist>
+      <lynk-option value="option-1">Yes</lynk-option>
+      <lynk-option value="option-2">No</lynk-option>
+      <lynk-option value="option-3">Ignore</lynk-option>
     </lynk-select>
 
     <lynk-button slot="footer" size="small">Driver</lynk-button>
@@ -111,10 +111,10 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
     <lynk-button slot="trigger">No Hoist</lynk-button>
 
       Could you have any Grey Poupon?
-      <lynk-select size="small" placeholder="Select one">
-        <lynk-menu-item value="option-1">Yes</lynk-menu-item>
-        <lynk-menu-item value="option-2">No</lynk-menu-item>
-        <lynk-menu-item value="option-3">Ignore</lynk-menu-item>
+      <lynk-select size="small" placeholder="Select one" hoist>
+        <lynk-option value="option-1">Yes</lynk-option>
+        <lynk-option value="option-2">No</lynk-option>
+        <lynk-option value="option-3">Ignore</lynk-option>
       </lynk-select>
 
       <lynk-button slot="footer" size="small">Driver</lynk-button>
@@ -124,10 +124,10 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
     <lynk-button slot="trigger">Hoist</lynk-button>
 
       Could you have any Grey Poupon?
-      <lynk-select size="small" placeholder="Select one">
-        <lynk-menu-item value="option-1">Yes</lynk-menu-item>
-        <lynk-menu-item value="option-2">No</lynk-menu-item>
-        <lynk-menu-item value="option-3">Ignore</lynk-menu-item>
+      <lynk-select size="small" placeholder="Select one" hoist>
+        <lynk-option value="option-1">Yes</lynk-option>
+        <lynk-option value="option-2">No</lynk-option>
+        <lynk-option value="option-3">Ignore</lynk-option>
       </lynk-select>
 
       <lynk-button slot="footer" size="small">Driver</lynk-button>

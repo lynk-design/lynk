@@ -8,7 +8,7 @@ export default css`
     display: block;
     text-align: unset;
     --margin: 0;
-    --width: 100%;
+    --width: auto;
     --height: auto;
     --gap: var(--lynk-spacing-small);
     height: var(--height);
