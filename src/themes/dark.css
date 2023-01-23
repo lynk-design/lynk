@@ -636,6 +636,7 @@
    */
 
   --lynk-z-index-sticky: 100;
+  --lynk-z-index-footer: 600;
   --lynk-z-index-drawer: 700;
   --lynk-z-index-dialog: 800;
   --lynk-z-index-dropdown: 900;

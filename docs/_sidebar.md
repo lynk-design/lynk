@@ -65,6 +65,8 @@
 
 - Navigation
 
+  - [Breadcrumb](/components/breadcrumb)
+  - [Breadcrumb Item](/components/breadcrumb-item)
   - [Nav](/components/nav)
   - [Nav Item](/components/nav-item)
   - [Nav Group](/components/nav-group)
@@ -98,4 +100,11 @@
   - [Visually Hidden](/utilities/visually-hidden)
 
 
+  - [Layout](/components/layout)
+  - [Layout Part](/components/layout-part)
+  - [Page Header](/components/page-header)
+  - [Page Footer](/components/page-footer)
+  - [Page Sidebar](/components/page-sidebar)
+  - [Page Layout](/components/page-layout)
+  - [Page Container](/components/page-container)
   <!--plop:component-->

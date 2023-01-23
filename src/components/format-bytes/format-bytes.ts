@@ -5,7 +5,7 @@ import { LocalizeController } from '../../utilities/localize';
 /**
  * @summary Formats a number as a human readable bytes value.
  *
- * @since 2.0
+ * @since 1.0
  * @status stable
  */
 @customElement('lynk-format-bytes')

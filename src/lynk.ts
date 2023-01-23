@@ -4,6 +4,8 @@ export { default as LynkAlert } from './components/alert/alert';
 export { default as LynkAnimation } from './components/animation/animation';
 export { default as LynkBadge } from './components/badge/badge';
 export { default as LynkBox } from './components/box/box';
+export { default as LynkBreadcrumb } from './components/breadcrumb/breadcrumb';
+export { default as LynkBreadcrumbItem } from './components/breadcrumb-item/breadcrumb-item';
 export { default as LynkButton } from './components/button/button';
 export { default as LynkButtonGroup } from './components/button-group/button-group';
 export { default as LynkCheckbox } from './components/checkbox/checkbox';
@@ -25,6 +27,10 @@ export { default as LynkMutationObserver } from './components/mutation-observer/
 export { default as LynkNav } from './components/nav/nav';
 export { default as LynkNavGroup } from './components/nav-group/nav-group';
 export { default as LynkNavItem } from './components/nav-item/nav-item';
+export { default as LynkPageHeader } from './components/page-header/page-header';
+export { default as LynkPageFooter } from './components/page-footer/page-footer';
+export { default as LynkPageSidebar } from './components/page-sidebar/page-sidebar';
+export { default as LynkPageLayout } from './components/page-layout/page-layout';
 export { default as LynkPopup } from './components/popup/popup';
 export { default as LynkPopover } from './components/popover/popover';
 export { default as LynkProgressBar } from './components/progress-bar/progress-bar';
@@ -57,6 +63,8 @@ export { default as LynkTableHeaderGroup } from './components/table-header-group
 export { default as LynkTableRow } from './components/table-row/table-row';
 export { default as LynkTableRowGroup } from './components/table-row-group/table-row-group';
 export { default as LynkOption } from './components/option/option';
+
+export { default as LynkPageContainer } from './components/page-container/page-container';
 /* plop:component */
 
 // Utilities
