@@ -279,6 +279,7 @@ export default class LynkNavItem extends LynkElement {
         })}
         ?disabled=${this.disabled}
         title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
+        part="nav-item"
         name=${ifDefined(isLink ? undefined : this.name)}
         value=${ifDefined(isLink ? undefined : this.value)}
         href=${ifDefined(isLink ? this.href : undefined)}
