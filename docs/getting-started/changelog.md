@@ -1,10 +1,10 @@
 # Changelog
 
-Lynk follows [Semantic Versioning](https://semver.org/). Breaking changes in components with the <lynk-badge variant="primary" pill>Stable</lynk-badge> badge will not be accepted until the next major version. As such, all contributions must consider the project's roadmap and take this into consideration. Features that are deemed no longer necessary will be deprecated but not removed.
+Lynk follows [Semantic Versioning](https://semver.org/). Breaking changes in components with the <lynk-badge type="primary" pill>Stable</lynk-badge> badge will not be accepted until the next major version. As such, all contributions must consider the project's roadmap and take this into consideration. Features that are deemed no longer necessary will be deprecated but not removed.
 
-Components with the <lynk-badge variant="warning" pill>Experimental</lynk-badge> badge should not be used in production. They are made available as release candidates for development and testing purposes. As such, changes to experimental components will not be subject to semantic versioning.
+Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> badge should only be used in production with extreme caution. They are made available as release candidates for development and testing purposes and may not be fully tested and reliable. As such, changes to experimental components will not be subject to semantic versioning.
 
-?> During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛
+<lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
 ## 0.4.2
 
@@ -43,3 +43,7 @@ Initial changelog creation. This release includes a complete rewrite of `<lynk-s
 - Updated non-public fields to use the `private` keyword (these were previously private only by convention, but now TypeScript will warn you)
 - Updated the hover style of `<lynk-menu-item>` to be consistent with `<lynk-option>`
 - Updated Bootstrap Icons to 1.10.3
+
+## 0.0.0 through 0.3.0
+
+And Lynk was without form, and void; and darkness was on the interface of the deep.
