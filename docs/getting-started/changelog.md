@@ -10,6 +10,7 @@ Components with the <lynk-badge variant="warning" pill>Experimental</lynk-badge>
 
 - Fixed a bug in `<lynk-nav>` that caused z-index issues stack issues
 - Fixed a bug in `<lynk-nav>` with the `squashed` style that cause text-align issues in Safari
+- Fixed a bug in `<lynk-popover>` where the arrow was briefly visible after the popover had closed.
 
 ## 0.4.1
 
