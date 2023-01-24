@@ -6,6 +6,7 @@
   - [Themes](/getting-started/themes)
   - [Form Controls](/getting-started/form-controls)
   - [Customizing](/getting-started/customizing)
+  - [Changelog](/getting-started/changelog)
   - [Contributing](/getting-started/contributing)
   <!-- - [Localization](/getting-started/localization) -->
 

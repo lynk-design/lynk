@@ -6,7 +6,6 @@ export default css`
 
   :host {
     display: block;
-    isolation: isolate;
     --max-width: 100%;
     --background: transparent;
     --padding: var(--lynk-spacing-x-small) 0;

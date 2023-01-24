@@ -12,11 +12,13 @@ export default css`
     --footer-spacing: var(--lynk-spacing-base);
     --hide-delay: 0ms;
     --show-delay: 150ms;
+
     display: contents;
   }
 
   .lynk-popover::part(popup) {
     z-index: var(--lynk-z-index-dropdown);
+    --arrow-size: var(--lynk-tooltip-arrow-size);
     --arrow-color: var(--lynk-panel-border-color);
   }
 
@@ -36,22 +38,17 @@ export default css`
     transform-origin: left;
   }
 
-  .lynk-popover {
-    position: relative;
-  }
-
   .lynk-popover-target {
     display: contents;
   }
 
 
   .lynk-popover--open .lynk-popover__panel {
-    display: flex;
     pointer-events: all;
   }
 
   .lynk-popover__panel {
-    display: none;
+    display: flex;
     pointer-events: none;
     flex-direction: column;
     z-index: 2;
