@@ -10,7 +10,7 @@ export default css`
     --header-spacing: var(--lynk-spacing-large);
     --body-spacing: var(--lynk-spacing-large);
     --footer-spacing: var(--lynk-spacing-large);
-    --background-color: var(--lynk-color-neutral-25);
+    --background-color: var(--lynk-color-neutral-0);
   }
 
   .lynk-page-sidebar {
@@ -31,19 +31,19 @@ export default css`
   }
 
   .lynk-page-sidebar.lynk-page-sidebar--left {
-      border-inline-end: 1px solid var(--lynk-color-neutral-100);
+      border-inline-end: 1px solid var(--lynk-color-neutral-200);
       height: 100%;
   }
 
   .lynk-page-sidebar.lynk-page-sidebar--right {
-      border-inline-start: 1px solid var(--lynk-color-neutral-100);
+      border-inline-start: 1px solid var(--lynk-color-neutral-200);
       height: 100%;
   }
 
   .lynk-page-sidebar.lynk-page-sidebar--right-inset,
   .lynk-page-sidebar.lynk-page-sidebar--left-inset {
       border-radius: 8px;
-      border: 1px solid var(--lynk-color-neutral-100);
+      border: 1px solid var(--lynk-color-neutral-200);
       margin: var(--lynk-spacing-large) auto;
       height: calc(100% - 48px);
   }
@@ -78,14 +78,6 @@ export default css`
       }
   }
 
-  .lynk-page-sidebar__header {
-    display: none;
-  }
-
-  .lynk-page-sidebar--open .lynk-page-sidebar__header {
-      display: flex;
-  }
-
   .lynk-page-sidebar__title {
     flex: 1 1 auto;
     font: inherit;
@@ -118,24 +110,21 @@ export default css`
     flex: 1 1 auto;
     padding: var(--body-spacing);
     overflow: auto;
+    display: block;
     max-width: var(--max-width);
-
     -webkit-overflow-scrolling: touch;
-  }
-
-  .lynk-page-sidebar--open .lynk-page-sidebar__body {
-      display: block;
   }
 
   .lynk-page-sidebar--left .lynk-page-sidebar__toggle {
       position: absolute;
-      top: var(--header-spacing);
+      bottom: var(--footer-spacing);
       right: -12px;
+      z-index: 1;
   }
 
   .lynk-page-sidebar--right .lynk-page-sidebar__toggle {
       position: absolute;
-      top: var(--header-spacing);
+      bottom: var(--footer-spacing);
       left: -12px;
       rotate: 180deg;
   }
@@ -153,7 +142,6 @@ export default css`
   }
 
   .lynk-page-sidebar__footer {
-    text-align: right;
     padding: var(--footer-spacing);
   }
 

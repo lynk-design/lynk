@@ -38,6 +38,20 @@ Use the `size` attribute to change a switch's size.
 <lynk-switch size="large">Large</lynk-switch>
 ```
 
+## Colors
+
+Use the `color` attribute to change a switch's checked color.
+
+```html preview
+<lynk-switch color="default" checked>Default</lynk-switch>
+<br />
+<lynk-switch color="success" checked>Success</lynk-switch>
+<br />
+<lynk-switch color="warning" checked>Warning</lynk-switch>
+<br />
+<lynk-switch color="danger" checked>Danger</lynk-switch>
+```
+
 ### Custom Styles
 
 Use the available custom properties to change how the switch is styled.

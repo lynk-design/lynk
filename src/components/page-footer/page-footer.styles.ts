@@ -10,10 +10,12 @@ export default css`
 
   .lynk-page-footer {
     border-radius: var(--lynk-border-radius-large) var(--lynk-border-radius-large) 0 0;
-    height: 56px;
+    height: auto;
     background: var(--lynk-color-neutral-100);
     box-shadow: var(--lynk-shadow-large);
-    padding: var(--lynk-spacing-x-small);
+    border: 1px solid var(--lynk-color-neutral-200);
+    border-bottom: none;
+    padding: var(--lynk-spacing-small);
     margin: 0 var(--lynk-spacing-large);
     z-index: var(--lynk-z-index-footer);
     display: grid;

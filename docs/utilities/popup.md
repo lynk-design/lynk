@@ -17,18 +17,18 @@ Popup doesn't provide any styles — just positioning! The popup's preferred pla
 
   <div class="popup-overview-options">
     <lynk-select label="Placement" name="placement" value="top" class="popup-overview-select">
-      <lynk-menu-item value="top">top</lynk-menu-item>
-      <lynk-menu-item value="top-start">top-start</lynk-menu-item>
-      <lynk-menu-item value="top-end">top-end</lynk-menu-item>
-      <lynk-menu-item value="bottom">bottom</lynk-menu-item>
-      <lynk-menu-item value="bottom-start">bottom-start</lynk-menu-item>
-      <lynk-menu-item value="bottom-end">bottom-end</lynk-menu-item>
-      <lynk-menu-item value="right">right</lynk-menu-item>
-      <lynk-menu-item value="right-start">right-start</lynk-menu-item>
-      <lynk-menu-item value="right-end">right-end</lynk-menu-item>
-      <lynk-menu-item value="left">left</lynk-menu-item>
-      <lynk-menu-item value="left-start">left-start</lynk-menu-item>
-      <lynk-menu-item value="left-end">left-end</lynk-menu-item>
+      <lynk-option value="top">top</lynk-option>
+      <lynk-option value="top-start">top-start</lynk-option>
+      <lynk-option value="top-end">top-end</lynk-option>
+      <lynk-option value="bottom">bottom</lynk-option>
+      <lynk-option value="bottom-start">bottom-start</lynk-option>
+      <lynk-option value="bottom-end">bottom-end</lynk-option>
+      <lynk-option value="right">right</lynk-option>
+      <lynk-option value="right-start">right-start</lynk-option>
+      <lynk-option value="right-end">right-end</lynk-option>
+      <lynk-option value="left">left</lynk-option>
+      <lynk-option value="left-start">left-start</lynk-option>
+      <lynk-option value="left-end">left-end</lynk-option>
     </lynk-select>
     <lynk-input type="number" name="distance" label="distance" value="0"></lynk-input>
     <lynk-input type="number" name="skidding" label="Skidding" value="0"></lynk-input>
@@ -187,18 +187,18 @@ Since placement is preferred when using `flip`, you can observe the popup's curr
   </lynk-popup>
 
   <lynk-select label="Placement" value="top">
-    <lynk-menu-item value="top">top</lynk-menu-item>
-    <lynk-menu-item value="top-start">top-start</lynk-menu-item>
-    <lynk-menu-item value="top-end">top-end</lynk-menu-item>
-    <lynk-menu-item value="bottom">bottom</lynk-menu-item>
-    <lynk-menu-item value="bottom-start">bottom-start</lynk-menu-item>
-    <lynk-menu-item value="bottom-end">bottom-end</lynk-menu-item>
-    <lynk-menu-item value="right">right</lynk-menu-item>
-    <lynk-menu-item value="right-start">right-start</lynk-menu-item>
-    <lynk-menu-item value="right-end">right-end</lynk-menu-item>
-    <lynk-menu-item value="left">left</lynk-menu-item>
-    <lynk-menu-item value="left-start">left-start</lynk-menu-item>
-    <lynk-menu-item value="left-end">left-end</lynk-menu-item>
+    <lynk-option value="top">top</lynk-option>
+    <lynk-option value="top-start">top-start</lynk-option>
+    <lynk-option value="top-end">top-end</lynk-option>
+    <lynk-option value="bottom">bottom</lynk-option>
+    <lynk-option value="bottom-start">bottom-start</lynk-option>
+    <lynk-option value="bottom-end">bottom-end</lynk-option>
+    <lynk-option value="right">right</lynk-option>
+    <lynk-option value="right-start">right-start</lynk-option>
+    <lynk-option value="right-end">right-end</lynk-option>
+    <lynk-option value="left">left</lynk-option>
+    <lynk-option value="left-start">left-start</lynk-option>
+    <lynk-option value="left-end">left-end</lynk-option>
   </lynk-select>
 </div>
 
@@ -337,25 +337,25 @@ By default, the arrow will be aligned as close to the center of the _anchor_ as 
 
   <div class="popup-arrow-options">
     <lynk-select label="Placement" name="placement" value="top" class="popup-overview-select">
-      <lynk-menu-item value="top">top</lynk-menu-item>
-      <lynk-menu-item value="top-start">top-start</lynk-menu-item>
-      <lynk-menu-item value="top-end">top-end</lynk-menu-item>
-      <lynk-menu-item value="bottom">bottom</lynk-menu-item>
-      <lynk-menu-item value="bottom-start">bottom-start</lynk-menu-item>
-      <lynk-menu-item value="bottom-end">bottom-end</lynk-menu-item>
-      <lynk-menu-item value="right">right</lynk-menu-item>
-      <lynk-menu-item value="right-start">right-start</lynk-menu-item>
-      <lynk-menu-item value="right-end">right-end</lynk-menu-item>
-      <lynk-menu-item value="left">left</lynk-menu-item>
-      <lynk-menu-item value="left-start">left-start</lynk-menu-item>
-      <lynk-menu-item value="left-end">left-end</lynk-menu-item>
+      <lynk-option value="top">top</lynk-option>
+      <lynk-option value="top-start">top-start</lynk-option>
+      <lynk-option value="top-end">top-end</lynk-option>
+      <lynk-option value="bottom">bottom</lynk-option>
+      <lynk-option value="bottom-start">bottom-start</lynk-option>
+      <lynk-option value="bottom-end">bottom-end</lynk-option>
+      <lynk-option value="right">right</lynk-option>
+      <lynk-option value="right-start">right-start</lynk-option>
+      <lynk-option value="right-end">right-end</lynk-option>
+      <lynk-option value="left">left</lynk-option>
+      <lynk-option value="left-start">left-start</lynk-option>
+      <lynk-option value="left-end">left-end</lynk-option>
     </lynk-select>
 
     <lynk-select label="Arrow Placement" name="arrow-placement" value="anchor">
-      <lynk-menu-item value="anchor">anchor</lynk-menu-item>
-      <lynk-menu-item value="start">start</lynk-menu-item>
-      <lynk-menu-item value="end">end</lynk-menu-item>
-      <lynk-menu-item value="center">center</lynk-menu-item>
+      <lynk-option value="anchor">anchor</lynk-option>
+      <lynk-option value="start">start</lynk-option>
+      <lynk-option value="end">end</lynk-option>
+      <lynk-option value="center">center</lynk-option>
     </lynk-select>
   </div>
 
@@ -426,10 +426,10 @@ Use the `sync` attribute to make the popup the same width or height as the ancho
   </lynk-popup>
 
   <lynk-select value="width" label="Sync">
-    <lynk-menu-item value="width">Width</lynk-menu-item>
-    <lynk-menu-item value="height">Height</lynk-menu-item>
-    <lynk-menu-item value="both">Both</lynk-menu-item>
-    <lynk-menu-item value="">None</lynk-menu-item>
+    <lynk-option value="width">Width</lynk-option>
+    <lynk-option value="height">Height</lynk-option>
+    <lynk-option value="both">Both</lynk-option>
+    <lynk-option value="">None</lynk-option>
   </lynk-select>
 </div>
 

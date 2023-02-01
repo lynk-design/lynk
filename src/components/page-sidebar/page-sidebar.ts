@@ -47,6 +47,8 @@ export default class LynkPageSidebar extends LynkElement {
 
   @query('.lynk-page-sidebar') sidebar: HTMLElement;
   @query('.lynk-page-sidebar__body') body: HTMLElement;
+  @query('.lynk-page-sidebar__header') header: HTMLElement;
+  @query('.lynk-page-sidebar__footer') footer: HTMLElement;
 
   private readonly hasSlotController = new HasSlotController(this, 'footer');
   private readonly localize = new LocalizeController(this);
@@ -74,7 +76,8 @@ export default class LynkPageSidebar extends LynkElement {
 
   firstUpdated() {
     this.body.hidden = !this.open;
-    this.body.style.width = this.open ? 'auto' : '0';
+    this.header.hidden = !this.open;
+    this.footer.hidden = !this.open;
   }
 
   /** Shows the accordion. */
@@ -114,11 +117,18 @@ export default class LynkPageSidebar extends LynkElement {
       this.emit('on:show');
 
       // DO SOME STUFF HERE
+      this.body.hidden = !this.open;
+      this.header.hidden = !this.open;
+      this.footer.hidden = !this.open;
 
       this.emit('after:show');
     } else {
       // Hide
       this.emit('on:hide');
+
+      this.body.hidden = !this.open;
+      this.header.hidden = !this.open;
+      this.footer.hidden = !this.open;
 
       // DO SOME STUFF HERE
 

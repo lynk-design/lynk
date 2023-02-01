@@ -58,6 +58,7 @@ export default css`
 
   .lynk-page-header__tabs,
   ::slotted(lynk-tab-group) {
+      display: block;
       grid-area: tabs;
       margin-top: var(--lynk-spacing-x-small);
   }

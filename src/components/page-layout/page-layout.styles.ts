@@ -12,15 +12,6 @@ export default css`
     width: 100%;
     height: 100%;
     display: grid;
-    flex-direction: column;
-    grid-template-areas:
-        'header'
-        'left-sidebar'
-        'left-inset-sidebar'
-        'main'
-        'right-inset-sidebar'
-        'right-sidebar'
-        'footer';
     grid-template:
         'left-sidebar left-inset-sidebar header right-inset-sidebar right-sidebar' min-content
         'left-sidebar left-inset-sidebar main right-inset-sidebar right-sidebar' 1fr

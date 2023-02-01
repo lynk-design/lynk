@@ -108,6 +108,8 @@ The `type` attribute controls the type of input the browser renders.
 <lynk-input type="number" placeholder="Number"></lynk-input>
 <br />
 <lynk-input type="date" placeholder="Date"></lynk-input>
+<br />
+<lynk-input type="datetime-local" placeholder="Date"></lynk-input>
 ```
 
 ### Disabled

@@ -6,10 +6,12 @@ export default css`
 
   :host {
       display: contents;
+      --padding: var(--lynk-spacing-large) 0;
   }
 
   .lynk-page-container {
         margin: 0 var(--lynk-spacing-large);
+        padding: var(--padding);
   }
 
   @media only screen and (min-width: 1024px) {

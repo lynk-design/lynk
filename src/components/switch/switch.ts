@@ -59,6 +59,9 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
   /** The switch's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
+  /** The switch's color */
+  @property({ reflect: true }) color: 'default' | 'success' | 'warning' | 'danger' = 'default';
+
   /** Disables the switch. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
@@ -163,6 +166,9 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
           'lynk-switch--checked': this.checked,
           'lynk-switch--disabled': this.disabled,
           'lynk-switch--focused': this.hasFocus,
+          'lynk-switch--success': this.color === 'success',
+          'lynk-switch--warning': this.color === 'warning',
+          'lynk-switch--danger': this.color === 'danger',
           'lynk-switch--small': this.size === 'small',
           'lynk-switch--medium': this.size === 'medium',
           'lynk-switch--large': this.size === 'large'
