@@ -56,6 +56,8 @@ export default class LynkNav extends LynkElement {
     this.handleFocusIn = this.handleFocusIn.bind(this);
     this.handleFocusOut = this.handleFocusOut.bind(this);
 
+    this.handleSquishedChange();
+
     this.setAttribute('role', 'navigation');
     this.setAttribute('tabindex', '0');
 
@@ -75,10 +77,6 @@ export default class LynkNav extends LynkElement {
 
     this.removeEventListener('focusin', this.handleFocusIn);
     this.removeEventListener('focusout', this.handleFocusOut);
-  }
-
-  firstUpdated() {
-    this.handleSquishedChange();
   }
 
   private handleNavChanged(mutations: MutationRecord[]) {
