@@ -13,14 +13,14 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Tab groups organize content into a container that shows one section at a time.
- *
+ * @documentation https://lynk.design/components/tab-group
  * @since 1.0
  * @status experimental
  *
  * @dependency lynk-icon-button
  *
- * @slot - Used for grouping tab panels in the tab group.
- * @slot nav - Used for grouping tabs in the tab group.
+ * @slot - Used for grouping tab panels in the tab group. Must be `<lynk-tab-panel>` elements.
+ * @slot nav - Used for grouping tabs in the tab group. Must be `<lynk-tab>` elements.
  *
  * @event {{ name: String }} on:tab-show - Emitted when a tab is shown.
  * @event {{ name: String }} on:tab-hide - Emitted when a tab is hidden.
@@ -28,15 +28,15 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The component's internal wrapper.
  * @csspart nav - The tab group navigation container.
  * @csspart tabs - The container that wraps the slotted tabs.
- * @csspart active-tab-indicator - An element that displays the currently selected tab. This is a child of the tabs container.
+ * @csspart active-tab-indicator - The line that highlights the currently selected tab.
  * @csspart body - The tab group body where tab panels are slotted in.
- * @csspart scroll-button - The previous and next scroll buttons that appear when tabs are scrollable.
+ * @csspart scroll-button - The previous/next scroll buttons that show when tabs are scrollable, an `<lynk-icon-button>`.
  * @csspart scroll-button--start - Targets the starting scroll button.
  * @csspart scroll-button--end - Targets the ending scroll button.
  * @csspart scroll-button__base - The scroll button's `base` part.
  *
  * @cssproperty --indicator-color - The color of the active tab indicator.
- * @cssproperty --track-color - The color of the indicator's track (i.e. the line that separates tabs from panels).
+ * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
  */
 @customElement('lynk-tab-group')
@@ -44,16 +44,16 @@ export default class LynkTabGroup extends LynkElement {
   static styles: CSSResultGroup = styles;
   private readonly localize = new LocalizeController(this);
 
-  @query('.lynk-tab-group') tabGroup: HTMLElement;
-  @query('.lynk-tab-group__body') body: HTMLSlotElement;
-  @query('.lynk-tab-group__nav') nav: HTMLElement;
-  @query('.lynk-tab-group__indicator') indicator: HTMLElement;
-
   private activeTab?: LynkTab;
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
   private tabs: LynkTab[] = [];
   private panels: LynkTabPanel[] = [];
+
+  @query('.lynk-tab-group') tabGroup: HTMLElement;
+  @query('.lynk-tab-group__body') body: HTMLSlotElement;
+  @query('.lynk-tab-group__nav') nav: HTMLElement;
+  @query('.lynk-tab-group__indicator') indicator: HTMLElement;
 
   @state() private hasScrollControls = false;
 
@@ -111,16 +111,7 @@ export default class LynkTabGroup extends LynkElement {
     this.resizeObserver.unobserve(this.nav);
   }
 
-  /** Shows the specified tab panel. */
-  show(panel: string) {
-    const tab = this.tabs.find(el => el.panel === panel);
-
-    if (tab) {
-      this.setActiveTab(tab, { scrollBehavior: 'smooth' });
-    }
-  }
-
-  getAllTabs(options: { includeDisabled: boolean } = { includeDisabled: true }) {
+  private getAllTabs(options: { includeDisabled: boolean } = { includeDisabled: true }) {
     const slot = this.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="nav"]')!;
 
     return [...(slot.assignedElements() as LynkTab[])].filter(el => {
@@ -130,15 +121,15 @@ export default class LynkTabGroup extends LynkElement {
     });
   }
 
-  getAllPanels() {
+  private getAllPanels() {
     return [...this.body.assignedElements()].filter(el => el.tagName.toLowerCase() === 'lynk-tab-panel') as [LynkTabPanel];
   }
 
-  getActiveTab() {
+  private getActiveTab() {
     return this.tabs.find(el => el.active);
   }
 
-  handleClick(event: MouseEvent) {
+  private handleClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const tab = target.closest('lynk-tab');
     const tabGroup = tab?.closest('lynk-tab-group');
@@ -153,7 +144,7 @@ export default class LynkTabGroup extends LynkElement {
     }
   }
 
-  handleKeyDown(event: KeyboardEvent) {
+  private handleKeyDown(event: KeyboardEvent) {
     const target = event.target as HTMLElement;
     const tab = target.closest('lynk-tab');
     const tabGroup = tab?.closest('lynk-tab-group');
@@ -218,7 +209,7 @@ export default class LynkTabGroup extends LynkElement {
     }
   }
 
-  handleScrollToStart() {
+  private handleScrollToStart() {
     this.nav.scroll({
       left:
         this.localize.dir() === 'rtl'
@@ -228,7 +219,7 @@ export default class LynkTabGroup extends LynkElement {
     });
   }
 
-  handleScrollToEnd() {
+  private handleScrollToEnd() {
     this.nav.scroll({
       left:
         this.localize.dir() === 'rtl'
@@ -238,17 +229,7 @@ export default class LynkTabGroup extends LynkElement {
     });
   }
 
-  @watch('noScrollControls', { waitUntilFirstUpdate: true })
-  updateScrollControls() {
-    if (this.noScrollControls) {
-      this.hasScrollControls = false;
-    } else {
-      this.hasScrollControls =
-        ['top', 'bottom'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth;
-    }
-  }
-
-  setActiveTab(tab: LynkTab, options?: { emitEvents?: boolean; scrollBehavior?: 'auto' | 'smooth' }) {
+  private setActiveTab(tab: LynkTab, options?: { emitEvents?: boolean; scrollBehavior?: 'auto' | 'smooth' }) {
     options = {
       emitEvents: true,
       scrollBehavior: 'auto',
@@ -271,15 +252,15 @@ export default class LynkTabGroup extends LynkElement {
       // Emit events
       if (options.emitEvents) {
         if (previousTab) {
-          this.emit('on:hide', { detail: { name: previousTab.panel } });
+          this.emit('on:tab-hide', { detail: { name: previousTab.panel } });
         }
 
-        this.emit('on:show', { detail: { name: this.activeTab.panel } });
+        this.emit('on:tab-show', { detail: { name: this.activeTab.panel } });
       }
     }
   }
 
-  setAriaLabels() {
+  private setAriaLabels() {
     // Link each tab with its corresponding panel
     this.tabs.forEach(tab => {
       const panel = this.panels.find(el => el.name === tab.panel);
@@ -290,19 +271,7 @@ export default class LynkTabGroup extends LynkElement {
     });
   }
 
-  @watch('placement', { waitUntilFirstUpdate: true })
-  syncIndicator() {
-    const tab = this.getActiveTab();
-
-    if (tab) {
-      this.indicator.style.display = 'block';
-      this.repositionIndicator();
-    } else {
-      this.indicator.style.display = 'none';
-    }
-  }
-
-  repositionIndicator() {
+  private repositionIndicator() {
     const currentTab = this.getActiveTab();
 
     if (!currentTab) {
@@ -337,16 +306,47 @@ export default class LynkTabGroup extends LynkElement {
       case 'end':
         this.indicator.style.width = 'auto';
         this.indicator.style.height = `${height}px`;
-        this.indicator.style.translate = `0px ${offset.top}px`;
+        this.indicator.style.translate = `0 ${offset.top}px`;
         break;
     }
   }
 
   // This stores tabs and panels so we can refer to a cache instead of calling querySelectorAll() multiple times.
-  syncTabsAndPanels() {
+  private syncTabsAndPanels() {
     this.tabs = this.getAllTabs({ includeDisabled: false });
     this.panels = this.getAllPanels();
     this.syncIndicator();
+  }
+
+  @watch('noScrollControls', { waitUntilFirstUpdate: true })
+  updateScrollControls() {
+    if (this.noScrollControls) {
+      this.hasScrollControls = false;
+    } else {
+      this.hasScrollControls =
+        ['top', 'bottom'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth;
+    }
+  }
+
+  @watch('placement', { waitUntilFirstUpdate: true })
+  syncIndicator() {
+    const tab = this.getActiveTab();
+
+    if (tab) {
+      this.indicator.style.display = 'block';
+      this.repositionIndicator();
+    } else {
+      this.indicator.style.display = 'none';
+    }
+  }
+
+  /** Shows the specified tab panel. */
+  show(panel: string) {
+    const tab = this.tabs.find(el => el.panel === panel);
+
+    if (tab) {
+      this.setActiveTab(tab, { scrollBehavior: 'smooth' });
+    }
   }
 
   render() {

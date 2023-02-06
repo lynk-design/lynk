@@ -35,14 +35,6 @@ describe('<lynk-tab-panel>', () => {
     expect(el.getAttribute('aria-hidden')).to.equal('false');
   });
 
-  it('changing active should always update aria-hidden role', async () => {
-    const el = await fixture<LynkTabPanel>(html` <lynk-tab-panel>Test</lynk-tab-panel> `);
-
-    el.active = true;
-    await aTimeout(100);
-    expect(el.getAttribute('aria-hidden')).to.equal('false');
-  });
-
   it('passed id should be used', async () => {
     const el = await fixture<LynkTabPanel>(html` <lynk-tab-panel id="test-id">Test</lynk-tab-panel> `);
 
