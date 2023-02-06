@@ -6,6 +6,12 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.5.0
+
+- Changed default styles for `<lynk-nav>` and `<lynk-nav-item>` components
+- Added color options to `<lynk-switch>` component
+- Added the `<lynk-page-layout>`, `<lynk-page-header>`, `<lynk-page-sidebar>`, `<lynk-page-footer>`, and `<lynk-page-container>` components
+
 ## 0.4.2
 
 - Fixed a bug in `<lynk-nav>` that caused z-index issues stack issues
