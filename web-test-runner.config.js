@@ -8,7 +8,12 @@ export default {
   concurrency: 1,
   concurrentBrowsers: 1,
   nodeResolve: true,
-  testsFinishTimeout: 20000,
+  testFramework: {
+    config: {
+      timeout: 3000,
+      retries: 1
+    }
+  },
   plugins: [
     esbuildPlugin({
       ts: true,
@@ -24,6 +29,7 @@ export default {
     <html lang="en-US">
       <head></head>
       <body>
+        <link rel="stylesheet" href="dist/themes/dark.css">
         <script type="module" src="dist/lynk.js"></script>
         <script type="module" src="${testFramework}"></script>
       </body>
