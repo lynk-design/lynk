@@ -29,7 +29,6 @@ export default {
     <html lang="en-US">
       <head></head>
       <body>
-        <link rel="stylesheet" href="dist/themes/dark.css">
         <script type="module" src="dist/lynk.js"></script>
         <script type="module" src="${testFramework}"></script>
       </body>
