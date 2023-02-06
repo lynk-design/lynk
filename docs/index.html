@@ -38,7 +38,7 @@
       // Set the initial theme to prevent flashing
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const theme = localStorage.getItem('theme') || 'auto';
-      document.documentElement.classList.toggle('sl-theme-dark', theme === 'dark' || (theme === 'auto' && prefersDark));
+      document.documentElement.classList.toggle('lynk-theme-dark', theme === 'dark' || (theme === 'auto' && prefersDark));
     </script>
     <script>
       window.$docsify = {

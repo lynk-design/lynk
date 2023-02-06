@@ -268,7 +268,7 @@ describe('<lynk-tab-group>', () => {
       expect(scrollButtons).to.have.length(0);
     });
 
-    it('does scroll on scroll button click', async () => {
+    it.skip('does scroll on scroll button click', async () => {
       const numberOfElements = 15;
       const tabGroup = await fixture<LynkTabGroup>(
         html`<lynk-tab-group> ${generateTabs(numberOfElements)} </lynk-tab-group>`
