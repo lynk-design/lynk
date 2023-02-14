@@ -106,25 +106,25 @@ A typical example of how a table is used within Uplynk
         </lynk-tr>
     </lynk-thead>
     <lynk-tbody>
-        <lynk-tr hoverable>
+        <lynk-tr interactive>
             <lynk-td><lynk-checkbox checked></lynk-checkbox></lynk-td>
             <lynk-td>Dumb & Dumber</lynk-td>
             <lynk-td>01:45:00</lynk-td>
             <lynk-td state="primary" barberpole>Slicing</lynk-td>
         </lynk-tr>
-        <lynk-tr hoverable>
+        <lynk-tr interactive>
             <lynk-td><lynk-checkbox></lynk-checkbox></lynk-td>
             <lynk-td>Legends of the Fall</lynk-td>
             <lynk-td>02:10:25</lynk-td>
             <lynk-td>Complete</lynk-td>
         </lynk-tr>
-        <lynk-tr hoverable>
+        <lynk-tr interactive>
             <lynk-td><lynk-checkbox></lynk-checkbox></lynk-td>
             <lynk-td>Die Hard</lynk-td>
             <lynk-td>01:39:15</lynk-td>
             <lynk-td>Complete</lynk-td>
         </lynk-tr>
-        <lynk-tr state="danger" hoverable pulse>
+        <lynk-tr state="danger" interactive pulse>
             <lynk-td><lynk-checkbox checked></lynk-checkbox></lynk-td>
             <lynk-td>Apollo 13</lynk-td>
             <lynk-td>02:05:40</lynk-td>

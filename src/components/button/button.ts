@@ -1,21 +1,21 @@
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import { html, literal } from 'lit/static-html.js';
-import { FormSubmitController } from '../../internal/form';
-import LynkElement from '../../internal/lynk-element';
-import { HasSlotController } from '../../internal/slot';
-import { watch } from '../../internal/watch';
-import { LocalizeController } from '../../utilities/localize';
 import '../icon/icon';
 import '../spinner/spinner';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { FormSubmitController } from '../../internal/form';
+import { HasSlotController } from '../../internal/slot';
+import { html, literal } from 'lit/static-html.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { LocalizeController } from '../../utilities/localize';
+import LynkElement from '../../internal/lynk-element';
+import { watch } from '../../internal/watch';
 import styles from './button.styles';
-import type { LynkFormControl } from '../../internal/lynk-element';
 import type { CSSResultGroup } from 'lit';
+import type { LynkFormControl } from '../../internal/lynk-element';
 
 /**
  * @summary Buttons represent actions that are available to the user.
- *
+ * @documentation https://lynk.design/components/button
  * @since 1.0
  * @status stable
  *
@@ -40,8 +40,6 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkButton extends LynkElement implements LynkFormControl {
   static styles: CSSResultGroup = styles;
 
-  @query('.lynk-button') button: HTMLButtonElement | HTMLLinkElement;
-
   private readonly formSubmitController = new FormSubmitController(this, {
     form: input => {
       // Buttons support a form attribute that points to an arbitrary form, so if this attribute it set we need to query
@@ -58,6 +56,8 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
   });
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
   private readonly localize = new LocalizeController(this);
+
+  @query('.lynk-button') button: HTMLButtonElement | HTMLLinkElement;
 
   @state() private hasFocus = false;
   @state() invalid = false;
@@ -91,10 +91,16 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
   /** Draws a pill-style button with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
 
-  /** Draws an icon only circle button. */
+  /**
+   * Draws a circular icon button. When this attribute is present, the button expects a single `<sl-icon>` in the
+   * default slot.
+   */
   @property({ type: Boolean, reflect: true }) circle = false;
 
-  /** Draws an icon only square button. */
+  /**
+   * Draws a square icon button. When this attribute is present, the button expects a single `<sl-icon>` in the
+   * default slot.
+   */
   @property({ type: Boolean, reflect: true }) square = false;
 
   /**
@@ -103,10 +109,16 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
    */
   @property() type: 'button' | 'submit' | 'reset' = 'button';
 
-  /** An optional name for the button. Ignored when `href` is set. */
+  /**
+   * The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.
+   * This attribute is ignored when `href` is present.
+   */
   @property() name = '';
 
-  /** An optional value for the button. Ignored when `href` is set. */
+  /**
+   * The value of the button, submitted as a pair with the button's name as part of the form data, but only when this
+   * button is the submitter. This attribute is ignored when `href` is present.
+   */
   @property() value = '';
 
   /** When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`. */
@@ -140,8 +152,75 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
   /** Used to override the form owner's `target` attribute. */
   @property({ attribute: 'formtarget' }) formTarget: '_self' | '_blank' | '_parent' | '_top' | string;
 
+  /** Used to override the default event bubbling. */
+  @property({ attribute: 'no-bubble', type: Boolean, reflect: true }) noBubble = false;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.handleHostClick = this.handleHostClick.bind(this);
+    this.addEventListener('click', this.handleHostClick);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.handleHostClick);
+  }
+
   firstUpdated() {
     if (this.isButton()) {
+      this.invalid = !(this.button as HTMLButtonElement).checkValidity();
+    }
+  }
+
+  private handleBlur() {
+    this.hasFocus = false;
+    this.emit('on:blur');
+  }
+
+  private handleFocus() {
+    this.hasFocus = true;
+    this.emit('on:focus');
+  }
+
+  private handleClick(event: MouseEvent) {
+    if (this.type === 'submit') {
+      this.formSubmitController.submit(this);
+    }
+
+    if (this.type === 'reset') {
+      this.formSubmitController.reset(this);
+    }
+
+    this.emit('on:click', {
+        bubbles: !this.noBubble
+    });
+  }
+
+  private handleHostClick(event: MouseEvent) {
+    // Prevent the native click event and the custom on:click event from being emitted when the button is disabled or loading
+    if (this.disabled || this.loading) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+
+    if (this.noBubble) {
+        event.stopPropagation();
+    }
+  }
+
+  private isButton() {
+    return this.href ? false : true;
+  }
+
+  private isLink() {
+    return this.href ? true : false;
+  }
+
+  @watch('disabled', { waitUntilFirstUpdate: true })
+  handleDisabledChange() {
+    // Disabled form controls are always valid, so we need to recheck validity when the state changes
+    if (this.isButton()) {
+      this.button.disabled = this.disabled;
       this.invalid = !(this.button as HTMLButtonElement).checkValidity();
     }
   }
@@ -185,51 +264,6 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
       (this.button as HTMLButtonElement).setCustomValidity(message);
       this.invalid = !(this.button as HTMLButtonElement).checkValidity();
     }
-  }
-
-  handleBlur() {
-    this.hasFocus = false;
-    this.emit('on:blur');
-  }
-
-  handleFocus() {
-    this.hasFocus = true;
-    this.emit('on:focus');
-  }
-
-  handleClick(event: MouseEvent) {
-    if (this.disabled || this.thinking) {
-      event.preventDefault();
-      event.stopPropagation();
-      return;
-    }
-
-    if (this.type === 'submit') {
-      this.formSubmitController.submit(this);
-    }
-
-    if (this.type === 'reset') {
-      this.formSubmitController.reset(this);
-    }
-
-    this.emit('on:click');
-  }
-
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    // Disabled form controls are always valid, so we need to recheck validity when the state changes
-    if (this.isButton()) {
-      this.button.disabled = this.disabled;
-      this.invalid = !(this.button as HTMLButtonElement).checkValidity();
-    }
-  }
-
-  private isButton() {
-    return this.href ? false : true;
-  }
-
-  private isLink() {
-    return this.href ? true : false;
   }
 
   render() {

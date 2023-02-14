@@ -103,12 +103,15 @@ export default css`
     cursor: not-allowed;
   }
 
+  .lynk-checkbox--has-label .lynk-checkbox__label {
+      margin-inline-start: 0.5em;
+  }
+
   .lynk-checkbox__label {
     display: inline-block;
     color: var(--lynk-input-label-color);
     font-size: inherit;
     line-height: var(--toggle-size);
-    margin-inline-start: 0.5em;
     user-select: none;
   }
 

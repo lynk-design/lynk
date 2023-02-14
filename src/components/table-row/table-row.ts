@@ -6,10 +6,10 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Table rows are used inside manually constructed [tables](/components/tables) as child elements of [table row groups](/components/table-row-group) or [table head groups](/components/table-head-group) and are intended to behave like native `<tr>` HTML elements.
- * 
+ *
  * @since 1.0
  * @status experimental
- * 
+ *
  * @event on:click - Emitted when table row is clicked.
   *
  * @slot - Should contain 1 or more `<lynk-td>` or `<lynk-th>` components.
@@ -20,14 +20,14 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkTableRow extends LynkElement {
   static styles: CSSResultGroup = styles;
 
-  /** Draws teh table row using status colors */
+  /** Draws the table row using status colors */
   @property({reflect: true}) state: 'primary' | 'danger' | 'success' | 'warning' | 'neutral' | 'custom';
 
-  /** Highlight the table row on hover */
-  @property({ type: Boolean, reflect: true }) hoverable = false;
+  /** Determines whether to highlight the table row on hover or touch interactions */
+  @property({ type: Boolean, reflect: true }) interactive = false;
 
-  /** Highlight the table row */
-  @property({ type: Boolean, reflect: true }) selected = false;
+  /** Draws the table row in a highlighted state  */
+  @property({ type: Boolean, reflect: true }) active = false;
 
   /** Pulse the status colors for increased visibility */
   @property({ type: Boolean, reflect: true }) pulse = false;

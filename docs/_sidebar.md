@@ -32,6 +32,11 @@
   - [Grid](/components/grid)
   - [Icons](/components/icon)
   - [Popover](/components/popover)
+  - [Page Layout](/components/page-layout)
+  - [Page Sidebar](/components/page-sidebar)
+  - [Page Content](/components/page-content)
+  - [Page Header](/components/page-header)
+  - [Page Footer](/components/page-footer)
   - [Stack](/components/stack)
   - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)
@@ -100,12 +105,4 @@
   - [Responsive Media](/utilities/responsive-media)
   - [Visually Hidden](/utilities/visually-hidden)
 
-
-  - [Layout](/components/layout)
-  - [Layout Part](/components/layout-part)
-  - [Page Header](/components/page-header)
-  - [Page Footer](/components/page-footer)
-  - [Page Sidebar](/components/page-sidebar)
-  - [Page Layout](/components/page-layout)
-  - [Page Container](/components/page-container)
   <!--plop:component-->

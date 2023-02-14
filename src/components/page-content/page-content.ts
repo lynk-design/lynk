@@ -2,7 +2,7 @@ import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
-import styles from './page-container.styles';
+import styles from './page-content.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -12,15 +12,15 @@ import type { CSSResultGroup } from 'lit';
  * @status experimental
  *
  */
-@customElement('lynk-page-container')
-export default class LynkPageContainer extends LynkElement {
+@customElement('lynk-page-content')
+export default class LynkPageContent extends LynkElement {
   static styles: CSSResultGroup = styles;
 
   render() {
     return html`
         <div
           part="base"
-          class="lynk-page-container">
+          class="lynk-page-content">
             <slot></slot>
         </div>
      `;
@@ -29,6 +29,6 @@ export default class LynkPageContainer extends LynkElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'lynk-page-container': LynkPageContainer;
+    'lynk-page-content': LynkPageContent;
   }
 }

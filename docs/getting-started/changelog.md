@@ -8,9 +8,10 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 ## 0.5.0
 
+- 🚨 BREAKING: changed `<lynk-table-row>` to use `interactive` and `active` properties instead of `hoverable` and `selected` for cleaner semantics
 - Changed default styles for `<lynk-nav>` and `<lynk-nav-item>` components
 - Added color options to `<lynk-switch>` component
-- Added the `<lynk-page-layout>`, `<lynk-page-header>`, `<lynk-page-sidebar>`, `<lynk-page-footer>`, and `<lynk-page-container>` components
+- Added the `<lynk-page-layout>`, `<lynk-page-header>`, `<lynk-page-sidebar>`, `<lynk-page-footer>`, and `<lynk-page-content>` components
 
 ## 0.4.2
 

@@ -3,7 +3,7 @@
 [component-header:lynk-checkbox]
 
 ```html preview
-<lynk-checkbox>Checkbox</lynk-checkbox>
+<lynk-checkbox></lynk-checkbox>
 ```
 <lynk-alert> This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.</lynk-alert>
 

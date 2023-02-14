@@ -76,7 +76,9 @@ export default class LynkPageSidebar extends LynkElement {
 
   firstUpdated() {
     this.body.hidden = !this.open;
-    this.header.hidden = !this.open;
+    if (!this.noHeader) {
+        this.header.hidden = !this.open;
+    }
     this.footer.hidden = !this.open;
   }
 
@@ -118,7 +120,11 @@ export default class LynkPageSidebar extends LynkElement {
 
       // DO SOME STUFF HERE
       this.body.hidden = !this.open;
-      this.header.hidden = !this.open;
+
+      if (!this.noHeader) {
+          this.header.hidden = !this.open;
+      }
+
       this.footer.hidden = !this.open;
 
       this.emit('after:show');
@@ -127,7 +133,11 @@ export default class LynkPageSidebar extends LynkElement {
       this.emit('on:hide');
 
       this.body.hidden = !this.open;
-      this.header.hidden = !this.open;
+
+      if (!this.noHeader) {
+          this.header.hidden = !this.open;
+      }
+
       this.footer.hidden = !this.open;
 
       // DO SOME STUFF HERE

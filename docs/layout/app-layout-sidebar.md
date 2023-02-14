@@ -59,7 +59,7 @@
                   <lynk-tab slot="nav" panel="disabled" disabled>Disabled</lynk-tab>
                 </lynk-tab-group>
             </lynk-page-header>
-            <lynk-page-container>
+            <lynk-page-content>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin blandit diam sed dolor elementum, et interdum tortor mollis. Sed rhoncus faucibus dolor, aliquam consequat quam euismod sit amet. Duis rhoncus laoreet augue et elementum. Pellentesque vel metus luctus, auctor quam at, sodales massa. Duis eget varius nisi. Quisque convallis tempor lacus, vel accumsan nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Vivamus enim odio, rhoncus non ultrices non, condimentum ut tortor. Aliquam nec nisl ligula. Phasellus nec est at mi sollicitudin bibendum. In porttitor tempus imperdiet. Donec ultricies ligula sed diam luctus iaculis. Cras non lectus volutpat, volutpat nisl nec, hendrerit lacus. Suspendisse vitae hendrerit tellus.</p>
 
 <p>Integer aliquet tempus erat eget scelerisque. Fusce massa felis, aliquet a vestibulum vitae, ultrices eu nunc. Morbi vitae suscipit nulla, eget malesuada orci. Morbi rutrum nisl ut felis pharetra, eget venenatis turpis tempus. Nunc sollicitudin vestibulum lorem id imperdiet. Sed turpis velit, varius et mi sit amet, consequat porttitor lectus. Cras dapibus tellus id nisl aliquet, vel pretium lorem imperdiet. Proin mi mauris, viverra et urna nec, blandit mollis orci. Cras et justo ante. Aliquam mollis ut neque ac placerat. Morbi purus ipsum, sodales tempus tempor at, eleifend ut erat. Pellentesque tempor turpis dolor, a vulputate magna pellentesque et.</p>
@@ -69,7 +69,7 @@
 <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent dictum tincidunt ante, eget dignissim justo viverra in. Aenean consequat leo eget nisl mattis pulvinar. Pellentesque at libero sit amet metus porta efficitur malesuada sit amet nulla. Morbi semper porta accumsan. Sed fringilla consectetur ante, ac interdum dui fermentum quis. Ut porta est dapibus, faucibus leo interdum, euismod ex. Quisque magna nulla, molestie nec est sed, bibendum auctor urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque metus ante, feugiat at turpis in, placerat pellentesque sem. Integer vestibulum metus id nunc iaculis, a feugiat lorem interdum. Praesent ut risus luctus, dapibus nibh sed, congue sem. Nunc sed suscipit tortor. Morbi tellus arcu, semper eget feugiat ac, ultrices eget nisi. Sed iaculis elit non metus suscipit porta.</p>
 
 <p>Quisque mauris lectus, ultricies sit amet placerat eu, mollis in dolor. Integer porttitor, erat vel consequat tincidunt, sapien velit iaculis sem, ac euismod ex enim a lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam rutrum finibus velit, ut eleifend lorem fermentum sed. Integer nisl nisl, mollis facilisis tincidunt eu, convallis a quam. Pellentesque sagittis pretium neque ac ornare. Ut gravida, ante a posuere suscipit, enim urna vulputate elit, ac hendrerit lorem diam at nibh. Suspendisse aliquet ex nec mi mollis, nec aliquet sapien faucibus.</p>
-                </lynk-page-container>
+                </lynk-page-content>
                 <lynk-page-sidebar slot="right-sidebar" label="Right Sidebar" placement="right">
                 </lynk-page-sidebar>
                 <lynk-page-footer slot="footer">

@@ -9,20 +9,24 @@ export default css`
       --padding: var(--lynk-spacing-large) 0;
   }
 
-  .lynk-page-container {
+  .lynk-page-content {
         margin: 0 var(--lynk-spacing-large);
+        width: fit-content;
+        min-width: calc(100% - (var(--lynk-spacing-large) * 2));
         padding: var(--padding);
   }
 
   @media only screen and (min-width: 1024px) {
-      .lynk-page-container {
+      .lynk-page-content {
           margin: 0 var(--lynk-spacing-x-large);
+          min-width: calc(100% - (var(--lynk-spacing-x-large) * 2));
       }
   }
 
   @media only screen and (min-width: 1440px) {
-      .lynk-page-container {
+      .lynk-page-content {
           margin: 0 var(--lynk-spacing-2x-large);
+          min-width: calc(100% - (var(--lynk-spacing-2x-large) * 2));
       }
   }
 `;

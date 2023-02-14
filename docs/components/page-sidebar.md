@@ -5,7 +5,9 @@
 A description of the component goes here.
 
 ```html preview
-<lynk-page-sidebar></lynk-page-sidebar>
+<lynk-page-sidebar open>
+    This is a sidebar
+</lynk-page-sidebar>
 ```
 
 ## Examples

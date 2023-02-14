@@ -31,6 +31,7 @@ export { default as LynkPageHeader } from './components/page-header/page-header'
 export { default as LynkPageFooter } from './components/page-footer/page-footer';
 export { default as LynkPageSidebar } from './components/page-sidebar/page-sidebar';
 export { default as LynkPageLayout } from './components/page-layout/page-layout';
+export { default as LynkPageContent } from './components/page-content/page-content';
 export { default as LynkPopup } from './components/popup/popup';
 export { default as LynkPopover } from './components/popover/popover';
 export { default as LynkProgressBar } from './components/progress-bar/progress-bar';
@@ -64,7 +65,6 @@ export { default as LynkTableRow } from './components/table-row/table-row';
 export { default as LynkTableRowGroup } from './components/table-row-group/table-row-group';
 export { default as LynkOption } from './components/option/option';
 
-export { default as LynkPageContainer } from './components/page-container/page-container';
 /* plop:component */
 
 // Utilities

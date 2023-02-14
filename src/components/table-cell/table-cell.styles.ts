@@ -9,6 +9,7 @@ export default css`
     --state-color: transparent;
     --state-color-b: transparent;
     background: transparent;
+    vertical-align: middle;
     padding: var(--lynk-spacing-small) var(--lynk-spacing-base);
   }
 
