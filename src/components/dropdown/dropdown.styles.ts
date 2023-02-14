@@ -40,8 +40,8 @@ export default css`
     font-family: var(--lynk-font-sans);
     font-size: var(--lynk-font-size-medium);
     font-weight: var(--lynk-font-weight-normal);
-    color: var(--color);
     box-shadow: var(--lynk-shadow-large);
+    border-radius: var(--sl-border-radius-medium);
     pointer-events: none;
   }
 

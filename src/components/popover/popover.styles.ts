@@ -58,7 +58,6 @@ export default css`
     font-family: var(--lynk-font-sans);
     font-size: var(--lynk-font-size-medium);
     font-weight: var(--lynk-font-weight-normal);
-    color: var(--color);
     box-shadow: var(--lynk-shadow-large);
     border-radius: var(--lynk-border-radius-medium);
     background-color: var(--lynk-panel-background-color);

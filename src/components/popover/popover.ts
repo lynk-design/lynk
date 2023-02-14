@@ -135,7 +135,7 @@ export default class LynkPopover extends LynkElement {
     }
   }
 
-  async firstUpdated() {
+  firstUpdated() {
     this.panel.hidden = !this.open;
 
     // If the popover is visible on init, update its position
