@@ -6,6 +6,11 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.4.4
+
+- Fixes a bug where popovers used in table-rows were inheriting transparent text color
+
+
 ## 0.4.3
 
 - Fixed the `<lynk-tab-group>` event names back to `on:tab-show` and `on:tab-hide`
