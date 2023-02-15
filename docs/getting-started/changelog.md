@@ -6,12 +6,22 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+
 ## 0.5.0
 
 - 🚨 BREAKING: changed `<lynk-table-row>` to use `interactive` and `active` properties instead of `hoverable` and `selected` for cleaner semantics
 - Changed default styles for `<lynk-nav>` and `<lynk-nav-item>` components
 - Added color options to `<lynk-switch>` component
 - Added the `<lynk-page-layout>`, `<lynk-page-header>`, `<lynk-page-sidebar>`, `<lynk-page-footer>`, and `<lynk-page-content>` components
+
+## 0.4.4
+
+- Fixes a bug where popovers used in table-rows were inheriting transparent text color
+
+## 0.4.3
+
+- Fixed the `<lynk-tab-group>` event names back to `on:tab-show` and `on:tab-hide`
+- Added test coverage for `<lynk-tab-group>` components
 
 ## 0.4.2
 
