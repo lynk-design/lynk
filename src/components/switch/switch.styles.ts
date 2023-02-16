@@ -100,7 +100,7 @@ export default css`
     outline-offset: var(--lynk-focus-ring-offset);
   }
 
-  /* Checked */
+  /* Checked  */
   .lynk-switch--checked .lynk-switch__control {
     background-color: var(--lynk-color-primary-600);
     border-color: var(--lynk-color-primary-600);
@@ -134,6 +134,96 @@ export default css`
     border-color: var(--lynk-color-primary-600);
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
+  }
+
+  /* Success + Checked */
+  .lynk-switch--checked.lynk-switch--success .lynk-switch__control {
+    background-color: var(--lynk-color-success);
+    border-color: var(--lynk-color-success);
+  }
+
+  .lynk-switch--checked.lynk-switch--success .lynk-switch__control .lynk-switch__thumb {
+    border-color: var(--lynk-color-success);
+  }
+
+  /* Success + Checked + hover */
+  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover {
+    background-color: var(--lynk-color-success);
+    border-color: var(--lynk-color-success);
+  }
+
+  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover .lynk-switch__thumb {
+    border-color: var(--lynk-color-success);
+  }
+
+  /* Success + Checked + focus */
+  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
+    background-color: var(--lynk-color-success);
+    border-color: var(--lynk-color-success);
+  }
+
+  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
+    border-color: var(--lynk-color-success);
+  }
+
+  /* Warning + Checked */
+  .lynk-switch--checked.lynk-switch--warning .lynk-switch__control {
+    background-color: var(--lynk-color-warning);
+    border-color: var(--lynk-color-warning);
+  }
+
+  .lynk-switch--checked.lynk-switch--warning .lynk-switch__control .lynk-switch__thumb {
+    border-color: var(--lynk-color-warning);
+  }
+
+  /* Warning + Checked + hover */
+  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover {
+    background-color: var(--lynk-color-warning);
+    border-color: var(--lynk-color-warning);
+  }
+
+  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover .lynk-switch__thumb {
+    border-color: var(--lynk-color-warning);
+  }
+
+  /* Warning + Checked + focus */
+  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
+    background-color: var(--lynk-color-warning);
+    border-color: var(--lynk-color-warning);
+  }
+
+  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
+    border-color: var(--lynk-color-warning);
+  }
+
+  /* Danger + Checked */
+  .lynk-switch--checked.lynk-switch--danger .lynk-switch__control {
+    background-color: var(--lynk-color-danger);
+    border-color: var(--lynk-color-danger);
+  }
+
+  .lynk-switch--checked.lynk-switch--danger .lynk-switch__control .lynk-switch__thumb {
+    border-color: var(--lynk-color-danger);
+  }
+
+  /* Danger + Checked + hover */
+  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover {
+    background-color: var(--lynk-color-danger);
+    border-color: var(--lynk-color-danger);
+  }
+
+  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover .lynk-switch__thumb {
+    border-color: var(--lynk-color-danger);
+  }
+
+  /* Danger + Checked + focus */
+  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
+    background-color: var(--lynk-color-danger);
+    border-color: var(--lynk-color-danger);
+  }
+
+  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
+    border-color: var(--lynk-color-danger);
   }
 
   /* Disabled */

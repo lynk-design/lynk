@@ -5,8 +5,8 @@ export default css`
   ${componentStyles}
 
   :host {
-    --color: var(--lynk-divider-color);
-    --width: var(--lynk-panel-border-width);
+    --color: var(--lynk-divider-color, var(--lynk-color-neutral-200));
+    --width: var(--lynk-panel-border-width, 1px);
     --spacing: var(--lynk-spacing-medium);
   }
 
@@ -22,5 +22,9 @@ export default css`
     height: 100%;
     border-left: solid var(--width) var(--color);
     margin: 0 var(--spacing);
+  }
+
+  :host([vertical][auto]) {
+      height: auto;
   }
 `;

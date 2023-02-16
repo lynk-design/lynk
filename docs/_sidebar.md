@@ -32,6 +32,11 @@
   - [Grid](/components/grid)
   - [Icons](/components/icon)
   - [Popover](/components/popover)
+  - [Page Layout](/components/page-layout)
+  - [Page Sidebar](/components/page-sidebar)
+  - [Page Content](/components/page-content)
+  - [Page Header](/components/page-header)
+  - [Page Footer](/components/page-footer)
   - [Stack](/components/stack)
   - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)
@@ -66,6 +71,8 @@
 
 - Navigation
 
+  - [Breadcrumb](/components/breadcrumb)
+  - [Breadcrumb Item](/components/breadcrumb-item)
   - [Nav](/components/nav)
   - [Nav Item](/components/nav-item)
   - [Nav Group](/components/nav-group)
@@ -97,6 +104,5 @@
   - [Resize Observer](/utilities/resize-observer)
   - [Responsive Media](/utilities/responsive-media)
   - [Visually Hidden](/utilities/visually-hidden)
-
 
   <!--plop:component-->

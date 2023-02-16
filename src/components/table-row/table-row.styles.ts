@@ -23,16 +23,16 @@ export default css`
     animation: pulse 1.5s infinite;
   }
 
-  :host([pulse][hoverable]:hover) {
+  :host([pulse][interactive]:hover) {
     animation: none;
   }
 
-  :host([hoverable]:hover) {
+  :host([interactive]:hover) {
     cursor: pointer;
     box-shadow: 0 0 0 1px var(--lynk-color-primary);
   }
 
-  :host([selected]) {
+  :host([active]) {
     box-shadow: 0 0 0 1px var(--lynk-color-primary);
   }
 
@@ -42,8 +42,8 @@ export default css`
     --state-color: var(--lynk-color-primary);
   }
 
-  :host([state='primary'][hoverable]:hover),
-  :host([state='primary'][selected]) {
+  :host([state='primary'][interactive]:hover),
+  :host([state='primary'][active]) {
     box-shadow: 0 0 0 1px var(--lynk-color-primary);
   }
 
@@ -57,8 +57,8 @@ export default css`
     --state-color: var(--lynk-color-danger);
   }
 
-  :host([state='danger'][hoverable]:hover),
-  :host([state='danger'][selected]) {
+  :host([state='danger'][interactive]:hover),
+  :host([state='danger'][active]) {
     box-shadow: 0 0 0 1px var(--lynk-color-danger);
   }
 
@@ -72,8 +72,8 @@ export default css`
     --state-color: var(--lynk-color-warning);
   }
 
-  :host([state='warning'][hoverable]:hover),
-  :host([state='warning'][selected]) {
+  :host([state='warning'][interactive]:hover),
+  :host([state='warning'][active]) {
     box-shadow: 0 0 0 1px var(--lynk-color-warning);
   }
 
@@ -87,8 +87,8 @@ export default css`
     --state-color: var(--lynk-color-success);
   }
 
-  :host([state='success'][hoverable]:hover),
-  :host([state='success'][selected]) {
+  :host([state='success'][interactive]:hover),
+  :host([state='success'][active]) {
     box-shadow: 0 0 0 1px var(--lynk-color-success);
   }
 
@@ -102,8 +102,8 @@ export default css`
     --state-color: var(--lynk-color-neutral);
   }
 
-  :host([state='neutral'][hoverable]:hover),
-  :host([state='neutral'][selected]) {
+  :host([state='neutral'][interactive]:hover),
+  :host([state='neutral'][active]) {
     box-shadow: 0 0 0 1px var(--lynk-color-neutral);
   }
 
@@ -117,8 +117,8 @@ export default css`
     --state-color: var(--color);
   }
 
-  :host([state='custom'][hoverable]:hover),
-  :host([state='custom'][selected]) {
+  :host([state='custom'][interactive]:hover),
+  :host([state='custom'][active]) {
     box-shadow: 0 0 0 1px var(--color);
   }
 
@@ -140,7 +140,7 @@ export default css`
   ::slotted(lynk-th:first-child) {
     padding-left: calc(var(--lynk-spacing-base) + 4px);
   }
-  
+
   ::slotted(lynk-td:last-child),
   ::slotted(lynk-th:last-child) {
     border-radius: 0 var(--lynk-table-border-radius) var(--lynk-table-border-radius) 0;

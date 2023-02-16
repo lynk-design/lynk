@@ -83,4 +83,8 @@ export default css`
   .lynk-stack--align-baseline {
     align-items: baseline;
   }
+
+  .lynk-stack::slotted(lynk-icon) {
+      flex-shrink: 0;
+  }
 `;

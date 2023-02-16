@@ -14,7 +14,7 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
- *
+ * @documentation https://lynk.design/components/checkbox
  * @since 1.0
  * @status stable
  *
@@ -39,8 +39,6 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkCheckbox extends LynkElement implements LynkFormControl {
   static styles: CSSResultGroup = styles;
 
-  @query('input[type="checkbox"]') input: HTMLInputElement;
-
   // @ts-expect-error -- Controller is currently unused
   private readonly formSubmitController = new FormSubmitController(this, {
     value: (control: LynkCheckbox) => (control.checked ? control.value || 'on' : undefined),
@@ -48,8 +46,13 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
     setValue: (control: LynkCheckbox, checked: boolean) => (control.checked = checked)
   });
 
+  @query('slot') defaultSlot: HTMLSlotElement;
+  @query('input[type="checkbox"]') input: HTMLInputElement;
+
+  @state() private hasLabel = false;
   @state() private hasFocus = false;
   @state() invalid = false;
+
   @property() title = ''; // make reactive to pass through
 
   /** Name of the HTML form control. Submitted with the form as part of a name/value pair. */
@@ -64,9 +67,6 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
   /** Disables the checkbox. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-  /** Makes the checkbox a required field. */
-  @property({ type: Boolean, reflect: true }) required = false;
-
   /** Draws the checkbox in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;
 
@@ -76,7 +76,88 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
   /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue('checked') defaultChecked = false;
 
+  /**
+   * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+   * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+   * the same document or shadow root for this to work.
+   */
+  @property({ reflect: true }) form = '';
+
+  /** Makes the checkbox a required field. */
+  @property({ type: Boolean, reflect: true }) required = false;
+
+  /** Used to override the default event bubbling. */
+  @property({ attribute: 'no-bubble', type: Boolean, reflect: true }) noBubble = false;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.handleHostClick = this.handleHostClick.bind(this);
+    this.addEventListener('click', this.handleHostClick);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.handleHostClick);
+  }
+
   firstUpdated() {
+    this.invalid = !this.input.checkValidity();
+  }
+
+  private handleHostClick(event: MouseEvent) {
+    // Prevent the click event from being emitted when the button is disabled
+    if (this.disabled) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+
+    if (this.noBubble) {
+        event.stopPropagation();
+    }
+  }
+
+  private handleClick() {
+    this.checked = !this.checked;
+    this.indeterminate = false;
+    this.emit('on:change', { bubbles: !this.noBubble });
+  }
+
+  private handleBlur() {
+    this.hasFocus = false;
+    this.emit('on:blur');
+  }
+
+  private handleInput() {
+    this.emit('on:input');
+  }
+
+  private handleFocus() {
+    this.hasFocus = true;
+    this.emit('on:focus');
+  }
+
+  private handleSlotChange() {
+    const slottedElements = [...this.defaultSlot.assignedNodes({ flatten: true })] as HTMLElement[];
+
+    if (slottedElements.length) {
+        this.hasLabel = true;
+    } else {
+        this.hasLabel = false;
+    }
+  }
+
+  @watch('disabled', { waitUntilFirstUpdate: true })
+  handleDisabledChange() {
+    // Disabled form controls are always valid, so we need to recheck validity when the state changes
+    this.input.disabled = this.disabled;
+    this.invalid = !this.input.checkValidity();
+  }
+
+  @watch('checked', { waitUntilFirstUpdate: true })
+  @watch('indeterminate', { waitUntilFirstUpdate: true })
+  handleStateChange() {
+    this.input.checked = this.checked; // force a sync update
+    this.input.indeterminate = this.indeterminate; // force a sync update
     this.invalid = !this.input.checkValidity();
   }
 
@@ -114,41 +195,6 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
     this.invalid = !this.input.checkValidity();
   }
 
-  handleClick() {
-    this.checked = !this.checked;
-    this.indeterminate = false;
-    this.emit('on:change');
-  }
-
-  handleBlur() {
-    this.hasFocus = false;
-    this.emit('on:blur');
-  }
-
-  handleInput() {
-    this.emit('on:input');
-  }
-
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    // Disabled form controls are always valid, so we need to recheck validity when the state changes
-    this.input.disabled = this.disabled;
-    this.invalid = !this.input.checkValidity();
-  }
-
-  handleFocus() {
-    this.hasFocus = true;
-    this.emit('on:focus');
-  }
-
-  @watch('checked', { waitUntilFirstUpdate: true })
-  @watch('indeterminate', { waitUntilFirstUpdate: true })
-  handleStateChange() {
-    this.input.checked = this.checked; // force a sync update
-    this.input.indeterminate = this.indeterminate; // force a sync update
-    this.invalid = !this.input.checkValidity();
-  }
-
   render() {
     return html`
       <label
@@ -158,6 +204,7 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
           'lynk-checkbox--checked': this.checked,
           'lynk-checkbox--disabled': this.disabled,
           'lynk-checkbox--focused': this.hasFocus,
+          'lynk-checkbox--has-label': this.hasLabel,
           'lynk-checkbox--indeterminate': this.indeterminate,
           'lynk-checkbox--small': this.size === 'small',
           'lynk-checkbox--medium': this.size === 'medium',
@@ -199,7 +246,11 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
           : ''}
         </span>
 
-        <slot part="label" class="lynk-checkbox__label"></slot>
+        <slot
+            part="label"
+            class="lynk-checkbox__label"
+            @slotchange=${this.handleSlotChange}
+        ></slot>
       </label>
     `;
   }

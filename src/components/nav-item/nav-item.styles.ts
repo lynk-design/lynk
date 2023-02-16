@@ -7,10 +7,11 @@ export default css`
   :host {
     display: block;
     --hover-bg-color: var(--lynk-color-gray-a25);
-    --selected-color: var(--lynk-color-primary-700);
+    --selected-color: var(--lynk-color-neutral-1000);
+    --selected-indicator-color: var(--lynk-color-primary);
     --selected-bg-color: var(--lynk-color-gray-a25);
-    --border-radius: 0;
-    --padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-base);
+    --border-radius: var(--lynk-border-radius-medium);
+    --padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-small);
     margin: var(--lynk-spacing-2x-small) 0;
   }
 
@@ -37,7 +38,7 @@ export default css`
     background: none;
     font-family: var(--lynk-font-sans);
     font-size: var(--lynk-font-size-medium);
-    font-weight: var(--lynk-font-weight-semibold);
+    font-weight: var(--lynk-font-weight-normal);
     text-align: unset;
     width: 100%;
     word-break: break-word;
@@ -47,13 +48,13 @@ export default css`
 
   .lynk-nav-item::before {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
+    width: 4px;
+    bottom: -2px;
+    top: -2px;
+    left: -8px;
     content: "";
     pointer-events: none;
-    border-inline-start: solid 3px transparent;
+    border-radius: var(--border-radius);
   }
 
   :host(:focus-visible) .lynk-nav-item {
@@ -78,7 +79,7 @@ export default css`
   }
 
   .lynk-nav-item.lynk-nav-item--selected::before {
-    border-inline-start-color: var(--selected-color);
+    background-color: var(--selected-indicator-color);
     display: block;
   }
 
@@ -96,11 +97,11 @@ export default css`
   }
 
   .lynk-nav-item .lynk-nav-item__prefix::slotted(*) {
-    margin-inline-end: var(--lynk-spacing-base);
+    margin-inline-end: var(--lynk-spacing-small);
   }
 
   .lynk-nav-item .lynk-nav-item__suffix::slotted(*) {
-    margin-inline-start: var(--lynk-spacing-base);
+    margin-inline-start: var(--lynk-spacing-small);
   }
 
   .lynk-nav-item__chevron {
@@ -123,21 +124,19 @@ export default css`
   }
 
   .lynk-nav-item[data-level='1'] {
-    padding-left: var(--lynk-spacing-3x-large);
+    margin-inline-start: calc(var(--lynk-spacing-x-large) + 2px);
   }
 
   .lynk-nav-item[data-level='2'] {
-    padding-left: var(--lynk-spacing-4x-large);
+    margin-inline-start: var(--lynk-spacing-2x-large);
   }
 
   .lynk-nav-item.lynk-nav-item--rtl[data-level='1'] {
-    padding-left: var(--lynk-spacing-base);
-    padding-right: var(--lynk-spacing-3x-large);
+    margin-inline-end: calc(var(--lynk-spacing-x-large) + 2px);
   }
 
   .lynk-nav-item.lynk-nav-item--rtl[data-level='2'] {
-    padding-left: var(--lynk-spacing-base);
-    padding-right: var(--lynk-spacing-4x-large);
+    margin-inline-end: var(--lynk-spacing-2x-large);
   }
 
   :host([squished]) .lynk-nav-item {

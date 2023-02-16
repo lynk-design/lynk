@@ -6,9 +6,9 @@ export default css`
 
   :host {
     --size: 25rem;
-    --header-spacing: var(--lynk-spacing-large);
-    --body-spacing: var(--lynk-spacing-large);
-    --footer-spacing: var(--lynk-spacing-large);
+    --header-spacing: var(--lynk-spacing-base);
+    --body-spacing: var(--lynk-spacing-base);
+    --footer-spacing: var(--lynk-spacing-base);
 
     display: contents;
   }
@@ -97,6 +97,9 @@ export default css`
     line-height: var(--lynk-line-height-dense);
     padding: var(--header-spacing);
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .lynk-drawer__header-actions {
