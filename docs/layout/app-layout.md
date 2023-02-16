@@ -7,7 +7,7 @@
     </header>
     <aside class="lynk-app__nav">
         <lynk-nav style="width: 76px;" squished>
-            <lynk-nav-item>
+            <lynk-nav-item href="/">
                 <lynk-icon slot="prefix" name="arrow-left-circle"></lynk-icon> Docs
             </lynk-nav-item>
             <lynk-nav-group heading="Layouts">
@@ -25,16 +25,17 @@
     </aside>
     <div class="lynk-app__main">
         <lynk-page-layout>
-            <lynk-page-header>
+            <lynk-page-header heading="Title">
+                <h1>Page Title</h1>
                 <lynk-button slot="aux" size="tiny" square></lynk-button>
                 <lynk-button slot="aux" size="tiny" circle></lynk-button>
-                <lynk-input slot="actions" type="search" placeholder="Search" clearable>
+                <lynk-input slot="controls" type="search" placeholder="Search" clearable>
                     <lynk-icon slot="prefix" name="search"></lynk-icon>
                     <lynk-button slot="suffix" size="tiny" square>
                         <lynk-icon name="arrow-return-left" label="Settings"></lynk-icon>
                     </lynk-button>
                 </lynk-input>
-                <lynk-dropdown slot="actions" placement="bottom-start">
+                <lynk-dropdown slot="controls" placement="bottom-start">
                     <lynk-button slot="trigger">
                         <lynk-icon slot="prefix" name="filter"></lynk-icon>
                     </lynk-button>
@@ -43,21 +44,20 @@
                         <lynk-menu-item>Test</lynk-menu-item>
                     </lynk-menu>
                 </lynk-dropdown>
-                <lynk-breadcrumb>
+                <lynk-breadcrumb slot="breadcrumb">
                     <span slot="separator">/</span>
                     <lynk-breadcrumb-item>First</lynk-breadcrumb-item>
                     <lynk-breadcrumb-item>Second</lynk-breadcrumb-item>
                     <lynk-breadcrumb-item>Third</lynk-breadcrumb-item>
                 </lynk-breadcrumb>
-                <h1>Header Title</h1>
-                <lynk-tab-group>
+                <lynk-tab-group slot="tabs">
                   <lynk-tab slot="nav" panel="general">General</lynk-tab>
                   <lynk-tab slot="nav" panel="custom">Custom</lynk-tab>
                   <lynk-tab slot="nav" panel="advanced">Advanced</lynk-tab>
                   <lynk-tab slot="nav" panel="disabled" disabled>Disabled</lynk-tab>
                 </lynk-tab-group>
             </lynk-page-header>
-            <lynk-page-content>
+            <lynk-page-content width="medium">
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin blandit diam sed dolor elementum, et interdum tortor mollis. Sed rhoncus faucibus dolor, aliquam consequat quam euismod sit amet. Duis rhoncus laoreet augue et elementum. Pellentesque vel metus luctus, auctor quam at, sodales massa. Duis eget varius nisi. Quisque convallis tempor lacus, vel accumsan nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Vivamus enim odio, rhoncus non ultrices non, condimentum ut tortor. Aliquam nec nisl ligula. Phasellus nec est at mi sollicitudin bibendum. In porttitor tempus imperdiet. Donec ultricies ligula sed diam luctus iaculis. Cras non lectus volutpat, volutpat nisl nec, hendrerit lacus. Suspendisse vitae hendrerit tellus.</p>
 
 <p>Integer aliquet tempus erat eget scelerisque. Fusce massa felis, aliquet a vestibulum vitae, ultrices eu nunc. Morbi vitae suscipit nulla, eget malesuada orci. Morbi rutrum nisl ut felis pharetra, eget venenatis turpis tempus. Nunc sollicitudin vestibulum lorem id imperdiet. Sed turpis velit, varius et mi sit amet, consequat porttitor lectus. Cras dapibus tellus id nisl aliquet, vel pretium lorem imperdiet. Proin mi mauris, viverra et urna nec, blandit mollis orci. Cras et justo ante. Aliquam mollis ut neque ac placerat. Morbi purus ipsum, sodales tempus tempor at, eleifend ut erat. Pellentesque tempor turpis dolor, a vulputate magna pellentesque et.</p>
@@ -70,6 +70,7 @@
             </lynk-page-content>
             <lynk-page-footer>
                 <lynk-button color="primary">Save</lynk-button>
+                <lynk-button>Cancel</lynk-button>
                 <span slot="center">3 of 5</span>
                 <lynk-button slot="secondary" square></lynk-button>
                 <lynk-button slot="secondary" square></lynk-button>

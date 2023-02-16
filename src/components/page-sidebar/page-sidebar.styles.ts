@@ -6,7 +6,8 @@ export default css`
 
   :host {
     display: contents;
-    --max-width: 240px;
+    --width: 240px;
+    --collapsed-width: 36px;
     --header-spacing: var(--lynk-spacing-large);
     --body-spacing: var(--lynk-spacing-large);
     --footer-spacing: var(--lynk-spacing-large);
@@ -18,7 +19,7 @@ export default css`
     display: flex;
     flex-direction: column;
     z-index: 2;
-    min-width: 36px;
+    min-width: var(--collapsed-width);
     max-width: 100%;
     max-height: 100%;
     height: 100%;
@@ -27,7 +28,7 @@ export default css`
   }
 
   .lynk-page-sidebar.lynk-page-sidebar--open {
-    width: var(--max-width);
+    width: var(--width);
   }
 
   .lynk-page-sidebar.lynk-page-sidebar--left {
@@ -68,7 +69,7 @@ export default css`
     }
   }
 
-  @media only screen and (min-width: 1440px) {
+  @media only screen and (min-width: 1400px) {
     .lynk-page-sidebar.lynk-page-sidebar--left-inset {
       margin-left: var(--lynk-spacing-2x-large);
     }
@@ -120,21 +121,23 @@ export default css`
     padding: var(--body-spacing);
     overflow: auto;
     display: block;
-    max-width: var(--max-width);
+    max-width: var(--width);
     -webkit-overflow-scrolling: touch;
+  }
+
+  .lynk-page-sidebar__toggle {
+    position: absolute;
+    top: var(--header-spacing);
+    z-index: 1;
   }
 
   .lynk-page-sidebar--left .lynk-page-sidebar__toggle,
   .lynk-page-sidebar--left-inset .lynk-page-sidebar__toggle {
-    position: absolute;
-    top: var(--header-spacing);
     right: -13px;
   }
 
   .lynk-page-sidebar--right .lynk-page-sidebar__toggle,
   .lynk-page-sidebar--right-inset .lynk-page-sidebar__toggle {
-    position: absolute;
-    top: var(--header-spacing);
     left: -13px;
     rotate: 180deg;
   }

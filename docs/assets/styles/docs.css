@@ -207,10 +207,11 @@ strong {
 /* Content */
 .content {
   padding-top: 0;
+  left: 256px;
 }
 
 .markdown-section {
-  width: 860px;
+  width: 960px;
 }
 
 .anchor span {

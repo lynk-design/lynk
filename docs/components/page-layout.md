@@ -2,7 +2,7 @@
 
 [component-header:lynk-page-layout]
 
-The `lynk-page-layout` component is intended to be used with `lynk-page-header`, `lynk-page-sidebar`, `lynk-page-content`, and `lynk-page-footer` components.
+The Page Layout component is intended to be used with [Page Header](/components/page-header), [Page Sidebar](/components/page-sidebar), [Page Content](/components/page-content), and [Page Footer](/components/page-footer) components.
 
 ```html preview
 <lynk-page-layout>

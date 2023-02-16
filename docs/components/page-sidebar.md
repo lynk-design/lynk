@@ -2,8 +2,6 @@
 
 [component-header:lynk-page-sidebar]
 
-A description of the component goes here.
-
 ```html preview
 <lynk-page-sidebar>
     This is a sidebar
@@ -14,7 +12,7 @@ A description of the component goes here.
 
 ### Placement
 
-Use the `placement` attribute to set where you want the sidebar to render within the `<lynk-page-layout>` grid and slot structure.
+Use the `placement` attribute to set where you want the sidebar to render within the [Page Layout](/components/page-layout) grid and slot structure.
 
 ```html preview
 <lynk-page-layout>

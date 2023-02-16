@@ -7,7 +7,7 @@
     </header>
     <aside class="lynk-app__nav">
         <lynk-nav style="width: 76px;" squished>
-            <lynk-nav-item>
+            <lynk-nav-item href="/">
                 <lynk-icon slot="prefix" name="arrow-left-circle"></lynk-icon> Docs
             </lynk-nav-item>
             <lynk-nav-group heading="Layouts">
@@ -32,13 +32,13 @@
         <lynk-page-header>
             <lynk-button slot="aux" size="tiny" square></lynk-button>
             <lynk-button slot="aux" size="tiny" circle></lynk-button>
-            <lynk-input slot="actions" type="search" placeholder="Search" clearable>
+            <lynk-input slot="controls" type="search" placeholder="Search" clearable>
                 <lynk-icon slot="prefix" name="search"></lynk-icon>
                 <lynk-button slot="suffix" size="tiny" square>
                     <lynk-icon name="arrow-return-left" label="Settings"></lynk-icon>
                 </lynk-button>
             </lynk-input>
-            <lynk-dropdown slot="actions" placement="bottom-start">
+            <lynk-dropdown slot="controls" placement="bottom-start">
                 <lynk-button slot="trigger">
                     <lynk-icon slot="prefix" name="filter"></lynk-icon>
                 </lynk-button>
@@ -47,14 +47,14 @@
                     <lynk-menu-item>Test</lynk-menu-item>
                 </lynk-menu>
             </lynk-dropdown>
-            <lynk-breadcrumb>
+            <lynk-breadcrumb slot="breadcrumb">
                 <span slot="separator">/</span>
                 <lynk-breadcrumb-item>First</lynk-breadcrumb-item>
                 <lynk-breadcrumb-item>Second</lynk-breadcrumb-item>
                 <lynk-breadcrumb-item>Third</lynk-breadcrumb-item>
             </lynk-breadcrumb>
             <h1>Header Title</h1>
-            <lynk-tab-group>
+            <lynk-tab-group slot="tabs">
               <lynk-tab slot="nav" panel="general">General</lynk-tab>
               <lynk-tab slot="nav" panel="custom">Custom</lynk-tab>
               <lynk-tab slot="nav" panel="advanced">Advanced</lynk-tab>
@@ -72,12 +72,13 @@
 
 <p>Quisque mauris lectus, ultricies sit amet placerat eu, mollis in dolor. Integer porttitor, erat vel consequat tincidunt, sapien velit iaculis sem, ac euismod ex enim a lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam rutrum finibus velit, ut eleifend lorem fermentum sed. Integer nisl nisl, mollis facilisis tincidunt eu, convallis a quam. Pellentesque sagittis pretium neque ac ornare. Ut gravida, ante a posuere suscipit, enim urna vulputate elit, ac hendrerit lorem diam at nibh. Suspendisse aliquet ex nec mi mollis, nec aliquet sapien faucibus.</p>
             </lynk-page-content>
-            <lynk-page-sidebar heading="Right Inset Sidebar" placement="right-inset" style="--max-width: 480px;" toggle="visibility" open>
+            <lynk-page-sidebar heading="Right Inset Sidebar" placement="right-inset" style="--width: 480px;" toggle="visibility" open>
             </lynk-page-sidebar>
             <lynk-page-sidebar heading="Right Sidebar" placement="right" toggle="visibility" open>
             </lynk-page-sidebar>
             <lynk-page-footer>
                 <lynk-button color="primary">Save</lynk-button>
+                <lynk-button>Cancel</lynk-button>
                 <span slot="center">3 of 5</span>
                 <lynk-button slot="secondary" square></lynk-button>
                 <lynk-button slot="secondary" square></lynk-button>

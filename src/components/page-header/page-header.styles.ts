@@ -6,16 +6,17 @@ export default css`
 
   :host {
     display: contents;
+    --gap: var(--lynk-spacing-x-small);
   }
 
   .lynk-page-header {
-    margin: 0 var(--lynk-spacing-large);
-    padding-top: var(--lynk-spacing-large);
+    padding-top: var(--lynk-spacing-base);
     display: grid;
+    gap: var(--gap);
     grid-template-areas:
-        'breadcrumb aux'
-        'main controls'
-        'tabs tabs';
+        'breadcrumb breadcrumb aux'
+        'main main controls'
+        'tabs tabs tabs';
     grid-template-rows: min-content;
     grid-template-columns: 1fr min-content;
   }
@@ -23,55 +24,44 @@ export default css`
   .lynk-page-header__breadcrumb,
   ::slotted(lynk-breadcrumb) {
       grid-area: breadcrumb;
-      margin-bottom: var(--lynk-spacing-small);
   }
 
-  .lynk-page-header__aux-actions {
+  .lynk-page-header__aux {
       grid-area: aux;
       display: flex;
       gap: var(--lynk-spacing-2x-small);
       justify-content: flex-end;
   }
 
-  .lynk-page-header__actions {
+  .lynk-page-header__controls {
       grid-area: controls;
       display: flex;
       width: auto;
+      margin-left: auto;
       gap: var(--lynk-spacing-2x-small);
       justify-content: flex-end;
       align-self: center;
   }
 
-  .lynk-page-header__details {
+  .lynk-page-header__main {
+      display: block;
       grid-area: main;
-      min-width: 320px;
+      min-width: max-content;
   }
 
-  .lynk-page-header__details::slotted(h1),
-  .lynk-page-header__details::slotted(h2),
-  .lynk-page-header__details::slotted(h3) {
-      margin: var(--lynk-spacing-2x-small) 0;
+  .lynk-page-header__main h1,
+  .lynk-page-header__main::slotted(h1),
+  .lynk-page-header__main::slotted(h2),
+  .lynk-page-header__main::slotted(h3) {
+      margin: 0;
       font-size: var(--lynk-font-size-2x-large);
       line-height: var(--lynk-line-height-dense);
       font-weight: var(--lynk-font-weight-semibold);
   }
 
   .lynk-page-header__tabs,
-  ::slotted(lynk-tab-group) {
+  .lynk-page-header ::slotted(lynk-tab-group) {
       display: block;
       grid-area: tabs;
-      margin-top: var(--lynk-spacing-x-small);
-  }
-
-  @media only screen and (min-width: 1024px) {
-      .lynk-page-header {
-          margin: 0 var(--lynk-spacing-x-large);
-      }
-  }
-
-  @media only screen and (min-width: 1440px) {
-      .lynk-page-header {
-          margin: 0 var(--lynk-spacing-2x-large);
-      }
   }
 `;

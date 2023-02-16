@@ -15,7 +15,7 @@ import styles from './page-sidebar.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Short summary of the component's intended use.
+ * @summary The Page Sidebar is used inside a [Page Layout](/components/page-layout) to render navigation and selection menus, or other related content that would normally be placed in a native `<aside>` element.
  *
  * @since 2.0
  * @status experimental
@@ -31,15 +31,14 @@ import type { CSSResultGroup } from 'lit';
  * @csspart overlay - The overlay.
  * @csspart panel - The sidebar panel (where the sidebar and its content is rendered).
  * @csspart header - The sidebar header.
- * @csspart header-actions - Optional actions to add to the header. Works best with `<sl-icon-button>`.
+ * @csspart header-actions - Optional actions to add to the header. Works best with `<lynk-icon-button>`.
  * @csspart title - The sidebar title.
  * @csspart close-button - The close button.
  * @csspart close-button__base - The close button's `base` part.
  * @csspart body - The sidebar body.
  * @csspart footer - The sidebar footer.
  *
- * @cssproperty --size - The preferred size of the sidebar. This will be applied to the sidebar's width or height
- *   depending on its `placement`. Note that the sidebar will shrink to accommodate smaller screens.
+ * @cssproperty --width - The preferred width of the sidebar.
  * @cssproperty --header-spacing - The amount of padding to use for the header.
  * @cssproperty --body-spacing - The amount of padding to use for the body.
  * @cssproperty --footer-spacing - The amount of padding to use for the footer.
@@ -204,7 +203,7 @@ export default class LynkPageSidebar extends LynkElement {
 
           ${this.toggle === 'contents'
             ? html`
-              <lynk-tooltip hoist class="lynk-page-sidebar__trigger-tooltip" content="${this.open ? 'Hide Sidebar' : 'Show Sidebar'}">
+              <lynk-tooltip hoist placement="bottom" class="lynk-page-sidebar__trigger-tooltip" content="${this.open ? 'Hide Sidebar' : 'Show Sidebar'}">
                 <lynk-button
                   part="close-button"
                   size="tiny"

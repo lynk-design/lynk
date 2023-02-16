@@ -16,7 +16,6 @@ export default css`
     border: 1px solid var(--lynk-color-neutral-200);
     border-bottom: none;
     padding: var(--lynk-spacing-small);
-    margin: 0 var(--lynk-spacing-large);
     z-index: var(--lynk-z-index-footer);
     display: grid;
     grid-template-areas: 'primary center secondary';
@@ -44,17 +43,5 @@ export default css`
       display: flex;
       gap: var(--lynk-spacing-x-small);
       justify-content: flex-end;
-  }
-
-  @media only screen and (min-width: 1024px) {
-      .lynk-page-footer {
-          margin: 0 var(--lynk-spacing-x-large);
-      }
-  }
-
-  @media only screen and (min-width: 1440px) {
-      .lynk-page-footer {
-          margin: 0 var(--lynk-spacing-2x-large);
-      }
   }
 `;
