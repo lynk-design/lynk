@@ -1,12 +1,10 @@
 import { html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate';
 import { waitForEvent } from '../../internal/event';
 import LynkElement from '../../internal/lynk-element';
 import { HasSlotController } from '../../internal/slot';
 import { watch } from '../../internal/watch';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import { LocalizeController } from '../../utilities/localize';
 import '../button/button';
 import type LynkTooltip from'../tooltip/tooltip';
@@ -88,7 +86,7 @@ export default class LynkPageSidebar extends LynkElement {
 
   /** Shows the accordion. */
   async show() {
-    if (this.open || this.disabled) {
+    if (this.open) {
       return undefined;
     }
 
@@ -98,7 +96,7 @@ export default class LynkPageSidebar extends LynkElement {
 
   /** Hides the accordion */
   async hide() {
-    if (!this.open || this.disabled) {
+    if (!this.open) {
       return undefined;
     }
 
@@ -113,12 +111,10 @@ export default class LynkPageSidebar extends LynkElement {
   }
 
   private handleToggleClick() {
-    if (!this.disabled) {
-      if (this.open) {
-        this.hide();
-      } else {
-        this.show();
-      }
+    if (this.open) {
+      this.hide();
+    } else {
+      this.show();
     }
   }
 
@@ -155,10 +151,7 @@ export default class LynkPageSidebar extends LynkElement {
   }
 
   render() {
-    const hasHeader = this.hasSlotController.test('header') ||
-                      this.hasSlotController.test('heading') ||
-                      this.hasSlotController.test('header-actions') ||
-                      this.heading;
+    const hasHeading = this.heading ? true : false;
     return html`
         <aside
           part="base"
@@ -170,7 +163,11 @@ export default class LynkPageSidebar extends LynkElement {
             'lynk-page-sidebar--left-inset': this.placement === 'left-inset',
             'lynk-page-sidebar--right-inset': this.placement === 'right-inset',
             'lynk-page-sidebar--rtl': this.localize.dir() === 'rtl',
-            'lynk-page-sidebar--has-header': hasHeader,
+            'lynk-page-sidebar--has-header': 
+              this.hasSlotController.test('header') ||
+              this.hasSlotController.test('heading') ||
+              this.hasSlotController.test('header-actions') ||
+              hasHeading,
             'lynk-page-sidebar--has-footer': this.hasSlotController.test('footer')
           })}
         >

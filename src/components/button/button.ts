@@ -182,7 +182,7 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
     this.emit('on:focus');
   }
 
-  private handleClick(event: MouseEvent) {
+  private handleClick() {
     if (this.type === 'submit') {
       this.formSubmitController.submit(this);
     }
@@ -198,7 +198,7 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
 
   private handleHostClick(event: MouseEvent) {
     // Prevent the native click event and the custom on:click event from being emitted when the button is disabled or loading
-    if (this.disabled || this.loading) {
+    if (this.disabled || this.thinking) {
       event.preventDefault();
       event.stopImmediatePropagation();
     }

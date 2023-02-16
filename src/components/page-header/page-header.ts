@@ -1,9 +1,6 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
 import LynkElement from '../../internal/lynk-element';
-import { watch } from '../../internal/watch';
-import { LocalizeController } from '../../utilities/localize';
 import LynkPageLayout from '../../components/page-layout/page-layout';
 import '../../components/page-content/page-content';
 import styles from './page-header.styles';
