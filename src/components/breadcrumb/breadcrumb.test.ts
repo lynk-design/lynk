@@ -24,8 +24,8 @@ describe('<lynk-breadcrumb>', () => {
       await expect(el).to.be.accessible({ ignoredRules });
     });
 
-    it('should render sl-icon as separator', () => {
-      expect(el.querySelectorAll('sl-icon').length).to.eq(4);
+    it('should render lynk-icon as separator', () => {
+      expect(el.querySelectorAll('lynk-icon').length).to.eq(4);
     });
 
     it('should attach aria-current "page" on the last breadcrumb item.', () => {
@@ -58,9 +58,9 @@ describe('<lynk-breadcrumb>', () => {
       expect(childNodes.length).to.eq(1);
     });
 
-    it('should replace the sl-icon separator with the provided separator', () => {
+    it('should replace the lynk-icon separator with the provided separator', () => {
       expect(el.querySelectorAll('.replacement-separator').length).to.eq(4);
-      expect(el.querySelectorAll('sl-icon').length).to.eq(0);
+      expect(el.querySelectorAll('lynk-icon').length).to.eq(0);
     });
   });
 
