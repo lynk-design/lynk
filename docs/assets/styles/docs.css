@@ -713,6 +713,7 @@ body[data-page*="/layout/"] .markdown-section {
   border-right: 1px solid var(--lynk-color-neutral-100);
   background: var(--lynk-color-black);
   grid-area: nav;
+  padding: var(--lynk-spacing-x-small);
 }
 
 .lynk-app__main {

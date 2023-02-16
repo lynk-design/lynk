@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
+import LynkPageLayout from '../../components/page-layout/page-layout';
 import styles from './page-footer.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -13,7 +14,7 @@ import type { CSSResultGroup } from 'lit';
  * @since 2.0
  * @status experimental
  *
- * @dependency lynk-example
+ * @dependency lynk-page-layout
  *
  * @event on:event-name - Emitted as an example.
  *
@@ -30,13 +31,18 @@ export default class LynkPageFooter extends LynkElement {
 
   private readonly localize = new LocalizeController(this);
 
-  /** An example attribute. */
-  @property() attr = 'example';
+  connectedCallback() {
+    super.connectedCallback();
 
-  @watch('someProperty')
-  doSomething() {
-    // Example event
-    this.emit('on:event-name');
+    if (!this.slot && this.hasParentLayout()) {
+      this.slot = 'footer';
+    }
+  }
+
+  // Checks whether the footer is nested into a page-layout element
+  private hasParentLayout(): boolean {
+    const parent = this.parentElement;
+    return parent instanceof LynkPageLayout;
   }
 
   render() {

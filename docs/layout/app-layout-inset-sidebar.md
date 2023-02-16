@@ -25,11 +25,11 @@
     </aside>
     <div class="lynk-app__main">
     <lynk-page-layout>
-        <lynk-page-sidebar slot="left-sidebar" label="Left Sidebar">
+        <lynk-page-sidebar heading="Left Sidebar" toggle="visibility" open>
         </lynk-page-sidebar>
-        <lynk-page-sidebar slot="left-inset-sidebar" label="Left Inset Sidebar" placement="left-inset">
+        <lynk-page-sidebar heading="Left Inset Sidebar" placement="left-inset" toggle="visibility" open>
         </lynk-page-sidebar>
-        <lynk-page-header slot="header">
+        <lynk-page-header>
             <lynk-button slot="aux" size="tiny" square></lynk-button>
             <lynk-button slot="aux" size="tiny" circle></lynk-button>
             <lynk-input slot="actions" type="search" placeholder="Search" clearable>
@@ -72,11 +72,11 @@
 
 <p>Quisque mauris lectus, ultricies sit amet placerat eu, mollis in dolor. Integer porttitor, erat vel consequat tincidunt, sapien velit iaculis sem, ac euismod ex enim a lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam rutrum finibus velit, ut eleifend lorem fermentum sed. Integer nisl nisl, mollis facilisis tincidunt eu, convallis a quam. Pellentesque sagittis pretium neque ac ornare. Ut gravida, ante a posuere suscipit, enim urna vulputate elit, ac hendrerit lorem diam at nibh. Suspendisse aliquet ex nec mi mollis, nec aliquet sapien faucibus.</p>
             </lynk-page-content>
-            <lynk-page-sidebar slot="right-inset-sidebar" label="Right Inset Sidebar" placement="right-inset" style="--max-width: 480px;">
+            <lynk-page-sidebar heading="Right Inset Sidebar" placement="right-inset" style="--max-width: 480px;" toggle="visibility" open>
             </lynk-page-sidebar>
-            <lynk-page-sidebar slot="right-sidebar" label="Right Sidebar" placement="right">
+            <lynk-page-sidebar heading="Right Sidebar" placement="right" toggle="visibility" open>
             </lynk-page-sidebar>
-            <lynk-page-footer slot="footer">
+            <lynk-page-footer>
                 <lynk-button color="primary">Save</lynk-button>
                 <span slot="center">3 of 5</span>
                 <lynk-button slot="secondary" square></lynk-button>

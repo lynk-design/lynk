@@ -9,6 +9,8 @@ import { watch } from '../../internal/watch';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import { LocalizeController } from '../../utilities/localize';
 import '../button/button';
+import type LynkTooltip from'../tooltip/tooltip';
+import LynkPageLayout from '../../components/page-layout/page-layout';
 import styles from './page-sidebar.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -19,6 +21,7 @@ import type { CSSResultGroup } from 'lit';
  * @status experimental
  *
  * @dependency lynk-button
+ * @dependency lynk-tooltip
  *
  * @slot - The sidebar's content.
  * @slot label - The sidebar's label. Alternatively, you can use the label prop.
@@ -49,37 +52,39 @@ export default class LynkPageSidebar extends LynkElement {
   @query('.lynk-page-sidebar__body') body: HTMLElement;
   @query('.lynk-page-sidebar__header') header: HTMLElement;
   @query('.lynk-page-sidebar__footer') footer: HTMLElement;
+  @query('.lynk-page-sidebar__trigger-tooltip') tooltip: LynkTooltip;
 
-  private readonly hasSlotController = new HasSlotController(this, 'footer');
+  private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'heading', 'header-actions');
   private readonly localize = new LocalizeController(this);
 
   /** Indicates whether or not the sidebar is open. You can use this in lieu of the show/hide methods. */
   @property({ type: Boolean, reflect: true }) open = false;
 
   /**
-   * The sidebar's label as displayed in the header. You should always include a relevant label even when using
-   * `no-header`, as it is required for proper accessibility. If you need to display HTML, you can use the `label` slot
-   * instead.
+   * The sidebar optional heading as displayed in the header. If you need to display HTML, you can use the `header` slot instead.
    */
-  @property({ reflect: true }) label = '';
+  @property({ reflect: true }) heading? : string;
 
   /** The placement of the sidebar in the page layout */
   @property({ reflect: true }) placement: 'left' | 'right' | 'left-inset' | 'right-inset' = 'left';
 
-  /** Choose if the toggle functionality hides the sidebar entirely, or collapses the contents */
-  @property({ reflect: true }) toggle: 'contents' | 'visibility' = 'contents';
+  /** Choose if the toggle functionality collapses the contents, hides the sidebar entirely, or is disabled  */
+  @property({ reflect: true }) toggle: 'contents' | 'visibility' | 'none' = 'none';
 
-  /**
-   * Removes the header.
-   */
-  @property({ attribute: 'no-header', type: Boolean, reflect: true }) noHeader = false;
+  connectedCallback() {
+    super.connectedCallback();
+
+    if (!this.slot && this.hasParentLayout()) {
+      this.slot = `${this.placement}-sidebar`;
+    }
+
+    if (this.toggle === 'none') {
+      this.open = true;
+    }
+  }
 
   firstUpdated() {
-    this.body.hidden = !this.open;
-    if (!this.noHeader) {
-        this.header.hidden = !this.open;
-    }
-    this.footer.hidden = !this.open;
+    this.updateVisibility();
   }
 
   /** Shows the accordion. */
@@ -102,7 +107,13 @@ export default class LynkPageSidebar extends LynkElement {
     return waitForEvent(this, 'after:hide');
   }
 
-  handleToggleClick() {
+  // Checks whether the item is nested into an item
+  private hasParentLayout(): boolean {
+    const parent = this.parentElement;
+    return parent instanceof LynkPageLayout;
+  }
+
+  private handleToggleClick() {
     if (!this.disabled) {
       if (this.open) {
         this.hide();
@@ -112,41 +123,43 @@ export default class LynkPageSidebar extends LynkElement {
     }
   }
 
+  private updateVisibility() {
+    if (this.toggle === 'visibility') {
+      this.sidebar.hidden = !this.open;
+    }
+
+    if (this.toggle === 'contents') {
+      this.tooltip.hide();
+      this.body.hidden = !this.open;
+      this.header.hidden = !this.open;
+      this.footer.hidden = !this.open;
+    }
+  }
+
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
     if (this.open) {
       // Show
       this.emit('on:show');
 
-      // DO SOME STUFF HERE
-      this.body.hidden = !this.open;
-
-      if (!this.noHeader) {
-          this.header.hidden = !this.open;
-      }
-
-      this.footer.hidden = !this.open;
+      this.updateVisibility();
 
       this.emit('after:show');
     } else {
       // Hide
       this.emit('on:hide');
 
-      this.body.hidden = !this.open;
-
-      if (!this.noHeader) {
-          this.header.hidden = !this.open;
-      }
-
-      this.footer.hidden = !this.open;
-
-      // DO SOME STUFF HERE
+      this.updateVisibility();
 
       this.emit('after:hide');
     }
   }
 
   render() {
+    const hasHeader = this.hasSlotController.test('header') ||
+                      this.hasSlotController.test('heading') ||
+                      this.hasSlotController.test('header-actions') ||
+                      this.heading;
     return html`
         <aside
           part="base"
@@ -158,34 +171,54 @@ export default class LynkPageSidebar extends LynkElement {
             'lynk-page-sidebar--left-inset': this.placement === 'left-inset',
             'lynk-page-sidebar--right-inset': this.placement === 'right-inset',
             'lynk-page-sidebar--rtl': this.localize.dir() === 'rtl',
+            'lynk-page-sidebar--has-header': hasHeader,
             'lynk-page-sidebar--has-footer': this.hasSlotController.test('footer')
           })}
         >
-          ${!this.noHeader
-            ? html`
-                <header part="header" class="lynk-page-sidebar__header">
-                  <h2 part="title" class="lynk-page-sidebar__title" id="title">
-                    <!-- If there's no label, use an invisible character to prevent the header from collapsing -->
-                    <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
-                  </h2>
-                  <div part="header-actions" class="lynk-page-sidebar__header-actions">
-                    <slot name="header-actions"></slot>
-                   </div>
-                </header>
-              `
-            : ''}
 
-            <lynk-button
-              part="close-button"
-              size="tiny"
-              circle
-              exportparts="base:close-button__base"
-              class="lynk-page-sidebar__toggle"
-              label=${this.localize.term('close')}
-              @click=${this.handleToggleClick}
-            >
-                <lynk-icon library="system" name="${this.open ? 'chevron-left' : 'chevron-right'}"></lynk-icon>
-            </lynk-button>
+          <header part="header" class="lynk-page-sidebar__header">
+            <slot name="header">
+              <h2 part="title" class="lynk-page-sidebar__title" id="title">
+                <!-- If there's no label, use an invisible character to prevent the header from collapsing -->
+                <slot name="heading"> ${this.heading && this.heading.length > 0 ? this.heading : String.fromCharCode(65279)} </slot>
+              </h2>
+              <div part="header-actions" class="lynk-page-sidebar__header-actions">
+                <slot name="header-actions">
+                  ${this.toggle === 'visibility'
+                    ? html`
+                      <lynk-button
+                        part="close-button"
+                        size="tiny"
+                        circle
+                        label=${this.localize.term('close')}
+                        @click=${this.handleToggleClick}
+                      >
+                          <lynk-icon library="system" name="x-lg"></lynk-icon>
+                      </lynk-button>
+                    `
+                    : ''}
+                </slot>
+              </div>
+            </slot>
+          </header>
+
+          ${this.toggle === 'contents'
+            ? html`
+              <lynk-tooltip hoist class="lynk-page-sidebar__trigger-tooltip" content="${this.open ? 'Hide Sidebar' : 'Show Sidebar'}">
+                <lynk-button
+                  part="close-button"
+                  size="tiny"
+                  circle
+                  exportparts="base:close-button__base"
+                  class="lynk-page-sidebar__toggle"
+                  label=${this.localize.term('close')}
+                  @click=${this.handleToggleClick}
+                >
+                    <lynk-icon library="system" name="${this.open ? 'chevron-left' : 'chevron-right'}"></lynk-icon>
+                </lynk-button>
+              </lynk-tooltip>
+            `
+            : ''}
           <slot part="body" class="lynk-page-sidebar__body"></slot>
 
           <footer part="footer" class="lynk-page-sidebar__footer">

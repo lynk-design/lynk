@@ -4,18 +4,17 @@ import { classMap } from 'lit/directives/class-map.js';
 import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
+import LynkPageLayout from '../../components/page-layout/page-layout';
 import styles from './page-header.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Short summary of the component's intended use.
+ * @summary A standardized page header componenent.
  *
- * @since 2.0
+ * @since 1.0
  * @status experimental
  *
- * @dependency lynk-example
- *
- * @event on:event-name - Emitted as an example.
+ * @dependency lynk-page-layout
  *
  * @slot - The default slot.
  * @slot example - An example slot.
@@ -34,13 +33,18 @@ export default class LynkPageHeader extends LynkElement {
    */
   @property({ reflect: true }) heading = '';
 
-  /** An example attribute. */
-  @property() attr = 'example';
+  connectedCallback() {
+    super.connectedCallback();
 
-  @watch('someProperty')
-  doSomething() {
-    // Example event
-    this.emit('sl-event-name');
+    if (!this.slot && this.hasParentLayout()) {
+      this.slot = 'header';
+    }
+  }
+
+  // Checks whether the item is nested into an item
+  private hasParentLayout(): boolean {
+    const parent = this.parentElement;
+    return parent instanceof LynkPageLayout;
   }
 
   render() {
