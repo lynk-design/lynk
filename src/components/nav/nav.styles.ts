@@ -26,11 +26,14 @@ export default css`
     border-left: var(--border-left);
     border-radius: var(--border-radius);
     padding: var(--padding);
+    display: flex;
+    flex-direction: column;
     height: 100%;
+    gap: var(--lynk-spacing-2x-small);
   }
 
-  ::slotted(lynk-nav-group:not(:first-of-type)) {
-    margin-top: var(--lynk-spacing-medium);
+  ::slotted(lynk-nav-group) {
+    margin-top: var(--lynk-spacing-base);
   }
 
   :host([squished]) ::slotted(lynk-nav-group) {

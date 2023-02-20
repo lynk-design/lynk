@@ -12,7 +12,6 @@ export default css`
     --selected-bg-color: var(--lynk-color-gray-a25);
     --border-radius: var(--lynk-border-radius-medium);
     --padding: var(--lynk-spacing-2x-small) var(--lynk-spacing-small);
-    margin: var(--lynk-spacing-2x-small) 0;
   }
 
   :host([disabled]) {
@@ -41,6 +40,9 @@ export default css`
     font-weight: var(--lynk-font-weight-normal);
     text-align: unset;
     width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
     word-break: break-word;
     line-height: var(--lynk-line-height-dense);
     transition: var(--lynk-transition-fast) fill;
@@ -116,7 +118,10 @@ export default css`
   }
 
   .lynk-nav-item__children {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: var(--lynk-spacing-2x-small);
+    margin: var(--lynk-spacing-2x-small) 0;
   }
 
   :host(:focus) {
@@ -124,7 +129,7 @@ export default css`
   }
 
   .lynk-nav-item[data-level='1'] {
-    margin-inline-start: calc(var(--lynk-spacing-x-large) + 2px);
+    margin-inline-start: var(--lynk-spacing-x-large);
   }
 
   .lynk-nav-item[data-level='2'] {

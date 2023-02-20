@@ -119,7 +119,7 @@ export default css`
   .lynk-page-sidebar__body {
     flex: 1 1 auto;
     padding: var(--body-spacing);
-    overflow: auto;
+    overflow: hidden auto;
     display: block;
     max-width: var(--width);
     -webkit-overflow-scrolling: touch;

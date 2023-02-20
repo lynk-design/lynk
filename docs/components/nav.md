@@ -2,14 +2,12 @@
 
 [component-header:lynk-nav]
 
-A description of the component goes here.
-
 ```html preview
 <lynk-nav style="max-width: 200px;">
   <lynk-nav-item><lynk-icon slot="prefix" name="house-door"></lynk-icon> Home</lynk-nav-item>
   <lynk-nav-item>
     <lynk-icon slot="prefix" name="app-indicator"></lynk-icon> Apps
-    <lynk-nav-item>CDN</lynk-nav-item>
+    <lynk-nav-item selected>CDN</lynk-nav-item>
     <lynk-nav-item>Sites</lynk-nav-item>
     <lynk-nav-item>Security</lynk-nav-item>
   </lynk-nav-item>
@@ -27,6 +25,37 @@ A description of the component goes here.
 ```
 
 ## Examples
+
+### Nested
+
+Use a multi-level side navigation when there are multiple layers of hierarchical navigation. Clicking on a header opens or collapses the sub-level navigation items, and in some cases also sends the user to the top-level location.
+
+```html preview
+<lynk-nav style="max-width: 200px;">
+  <lynk-nav-item>Getting Started</lynk-nav-item>
+  <lynk-nav-item>Integrations</lynk-nav-item>
+  <lynk-nav-item disabled>Coming Soon</lynk-nav-item>
+  <lynk-nav-item expanded selected>
+    Tokens
+    <lynk-nav-item>Radius</lynk-nav-item>
+    <lynk-nav-item expanded selected>
+      Color
+      <lynk-nav-item selected>Theme Tokens</lynk-nav-item>
+      <lynk-nav-item>Primitives</lynk-nav-item>
+    </lynk-nav-item>
+    <lynk-nav-item>Elevation</lynk-nav-item>
+    <lynk-nav-item>Spacing</lynk-nav-item>
+    <lynk-nav-item>
+      Typography
+      <lynk-nav-item>Font Family</lynk-nav-item>
+      <lynk-nav-item>Font Size</lynk-nav-item>
+      <lynk-nav-item>Font Weight</lynk-nav-item>
+      <lynk-nav-item>Letter Spacing</lynk-nav-item>
+      <lynk-nav-item>Line Height</lynk-nav-item>
+    </lynk-nav-item>
+  </lynk-nav-item>
+</lynk-nav>
+```
 
 ### Selection
 
