@@ -1,6 +1,6 @@
+import { clickOnElement } from '../../internal/test';
 import { expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
-import { clickOnElement } from '../../internal/test';
 import type LynkNavItem from './nav-item';
 
 describe('<lynk-nav-item>', () => {
@@ -70,7 +70,6 @@ describe('<lynk-nav-item>', () => {
       expect(childItem.depth).to.eq(1);
     });
   });
-
 
   describe('when the user clicks the parent nav item', () => {
     describe('and the item is collapsed', () => {

@@ -13,6 +13,7 @@ export default css`
   .lynk-form-control {
     border: none;
     padding: 0;
+    margin: 0;
   }
 
   .lynk-form-control__label {

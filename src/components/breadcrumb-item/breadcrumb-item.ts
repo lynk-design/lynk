@@ -70,7 +70,11 @@ export default class LynkBreadcrumbItem extends LynkElement {
               </a>
             `
           : html`
-              <button part="label" type="button" class="lynk-breadcrumb-item__label lynk-breadcrumb-item__label--button">
+              <button
+                part="label"
+                type="button"
+                class="lynk-breadcrumb-item__label lynk-breadcrumb-item__label--button"
+              >
                 <slot></slot>
               </button>
             `}

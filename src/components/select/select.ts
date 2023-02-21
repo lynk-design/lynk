@@ -1,28 +1,28 @@
-import { html } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { scrollIntoView } from 'src/internal/scroll';
-import { animateTo, stopAnimations } from '../../internal/animate';
-import { defaultValue } from '../../internal/default-value';
-import { waitForEvent } from '../../internal/event';
-import { FormSubmitController } from '../../internal/form';
-import LynkElement from '../../internal/lynk-element';
-import { HasSlotController } from '../../internal/slot';
-import { watch } from '../../internal/watch';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import { LocalizeController } from '../../utilities/localize';
 import '../icon/icon';
 import '../popup/popup';
 import '../tag/tag';
+import { animateTo, stopAnimations } from '../../internal/animate';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { defaultValue } from '../../internal/default-value';
+import { FormControlController } from '../../internal/form';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { HasSlotController } from '../../internal/slot';
+import { html } from 'lit';
+import { LocalizeController } from '../../utilities/localize';
+import { scrollIntoView } from 'src/internal/scroll';
+import { waitForEvent } from '../../internal/event';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './select.styles';
+import type { CSSResultGroup } from 'lit';
 import type { LynkFormControl } from '../../internal/lynk-element';
 import type LynkOption from '../option/option';
 import type LynkPopup from '../popup/popup';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
- *
+ * @documentation https://lynk-design/components/select
  * @since 1.0
  * @status stable
  *
@@ -46,6 +46,7 @@ import type { CSSResultGroup } from 'lit';
  * @event after:show - Emitted after the select's menu opens and all animations are complete.
  * @event on:hide - Emitted when the select's menu closes.
  * @event after:hide - Emitted after the select's menu closes and all animations are complete.
+ * @event on:invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -55,6 +56,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
  * @csspart listbox - The listbox container where options are slotted.
+ * @csspart tags - The container that houses option tags when `multiselect` is used.
+ * @csspart tag - The individual tags that represent each multiselect option.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  */
@@ -62,9 +65,10 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkSelect extends LynkElement implements LynkFormControl {
   static styles: CSSResultGroup = styles;
 
-  // @ts-expect-error -- Controller is currently unused
-  private readonly formSubmitController = new FormSubmitController(this);
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private readonly formControlController = new FormControlController(this, {
+    assumeInteractionOn: ['on:blur', 'on:input']
+  });
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'help-tip', 'label');
   private readonly localize = new LocalizeController(this);
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
@@ -79,7 +83,6 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   @state() displayLabel = '';
   @state() currentOption: LynkOption;
   @state() selectedOptions: LynkOption[] = [];
-  @state() invalid = false;
 
   /** The name of the select, submitted as a name/value pair with form data. */
   @property() name = '';
@@ -153,6 +156,13 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   /** The select's help tooltip appended to the label. Alternatively, you can use the help-tip slot. */
   @property({ attribute: 'help-tip' }) helpTip = '';
 
+  /**
+   * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+   * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+   * the same document or shadow root for this to work.
+   */
+  @property({ reflect: true }) form = '';
+
   /** The select's required attribute. */
   @property({ type: Boolean, reflect: true }) required = false;
 
@@ -162,6 +172,15 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   /** The select's feedback status using manual validation. Alternatively, you can use the invalid attribute */
   @property({ reflect: true }) state: 'error' | 'warning' | 'success';
 
+  /** Gets the validity state object */
+  get validity() {
+    return this.valueInput.validity;
+  }
+
+  /** Gets the validation message */
+  get validationMessage() {
+    return this.valueInput.validationMessage;
+  }
 
   connectedCallback() {
     super.connectedCallback();
@@ -339,7 +358,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   }
 
   private handleLabelClick() {
-    if (!this.restricted){
+    if (!this.restricted) {
       this.displayInput.focus();
     }
   }
@@ -348,7 +367,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     const path = event.composedPath();
     const isIconButton = path.some(el => el instanceof Element && el.tagName.toLowerCase() === 'lynk-icon-button');
 
-    // Ignore disabled controls and clicks on tags (remove buttons)
+    // Ignore disabled and restricted controls and clicks on tags (remove buttons)
     if (this.disabled || this.restricted || isIconButton) {
       return;
     }
@@ -417,7 +436,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     allOptions.forEach(option => {
       if (values.includes(option.value)) {
         console.error(
-          `An option with duplicate values has been found in <lynk-select>. All options must have unique values.`,
+          `An option with a duplicate value of "${option.value}" has been found in <lynk-select>. All options must have unique values.`,
           option
         );
       }
@@ -426,6 +445,16 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
     // Select only the options that match the new value
     this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
+  }
+
+  private handleTagRemove(event: CustomEvent, option: LynkOption) {
+    event.stopPropagation();
+
+    if (!this.disabled) {
+      this.toggleOptionSelection(option, false);
+      this.emit('on:input');
+      this.emit('on:change');
+    }
   }
 
   // Gets an array of all <lynk-option> elements
@@ -455,7 +484,6 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
       option.current = true;
       option.tabIndex = 0;
       option.focus();
-      scrollIntoView(option, this.listbox);
     }
   }
 
@@ -470,9 +498,6 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     // Set the new selection
     if (newSelectedOptions.length) {
       newSelectedOptions.forEach(el => (el.selected = true));
-
-      // Scroll the first selected option into view
-      scrollIntoView(newSelectedOptions[0]!, this.listbox);
     }
 
     // Update selection, value, and display label
@@ -499,29 +524,33 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     // Update the value and display label
     if (this.multiple) {
       this.value = this.selectedOptions.map(el => el.value);
-      this.displayLabel = this.localize.term('numOptionsSelected', this.selectedOptions.length);
+
+      if (this.placeholder && this.value.length === 0) {
+        // When no items are selected, keep the value empty so the placeholder shows
+        this.displayLabel = '';
+      } else {
+        this.displayLabel = this.localize.term('numOptionsSelected', this.selectedOptions.length);
+      }
     } else {
       this.value = this.selectedOptions[0]?.value ?? '';
       this.displayLabel = this.selectedOptions[0]?.getTextLabel() ?? '';
     }
 
     // Update validity
-    this.updateComplete.then(() => (this.invalid = !this.checkValidity()));
+    this.updateComplete.then(() => {
+      this.formControlController.updateValidity();
+    });
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
+  private handleInvalid(event: Event) {
+    this.formControlController.setValidity(false);
+    this.formControlController.emitInvalidEvent(event);
+  }
+
+  @watch(['disabled', 'restricted'], { waitUntilFirstUpdate: true })
   handleDisabledChange() {
-    // Close the listbox when the control is disabled
+    // Close the listbox when the control is disabled || restricted
     if (this.disabled || this.restricted) {
-      this.open = false;
-      this.handleOpenChange();
-    }
-  }
-
-  @watch('restricted', { waitUntilFirstUpdate: true })
-  handleRestrictedChange() {
-    // Close the listbox when the control is restricted
-    if (this.restricted) {
       this.open = false;
       this.handleOpenChange();
     }
@@ -581,7 +610,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
   /** Shows the listbox. */
   async show() {
-    if (this.open || this.disabled) {
+    if (this.open || this.disabled || this.restricted) {
       this.open = false;
       return undefined;
     }
@@ -592,7 +621,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
   /** Hides the listbox. */
   async hide() {
-    if (!this.open || this.disabled) {
+    if (!this.open || this.disabled || this.restricted) {
       this.open = false;
       return undefined;
     }
@@ -614,7 +643,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
   setCustomValidity(message: string) {
     this.valueInput.setCustomValidity(message);
-    this.invalid = !this.valueInput.checkValidity();
+    this.formControlController.updateValidity();
   }
 
   /** Sets focus on the control. */
@@ -657,7 +686,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
           part="form-control-label"
           class=${classMap({
             'lynk-form-control__label': true,
-            'lynk-form-control--focused': this.hasFocus,
+            'lynk-form-control--focused': this.hasFocus
           })}
           aria-hidden=${hasLabel ? 'false' : 'true'}
           @click=${this.handleLabelClick}
@@ -671,7 +700,6 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
                 </lynk-tooltip>
               `
             : ''}
-
           ${hasHelpTip
             ? html`
                 <lynk-tooltip hoist>
@@ -704,7 +732,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
               'lynk-select--large': this.size === 'large',
               'lynk-select--has-error': this.state === 'error',
               'lynk-select--has-warning': this.state === 'warning',
-              'lynk-select--has-success': this.state === 'success',
+              'lynk-select--has-success': this.state === 'success'
             })}
             placement=${this.placement}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
@@ -725,65 +753,60 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
               ${this.restricted
                 ? html`
-                  <div
-                    part="display-input"
-                    class="lynk-select__display-input"
-                  >
-                    ${this.displayLabel ? this.displayLabel : '-'}
-                  </div>
-                ` : html`
-                  <input
-                    part="display-input"
-                    class="lynk-select__display-input"
-                    type="text"
-                    placeholder=${this.placeholder}
-                    .disabled=${this.disabled}
-                    .value=${this.displayLabel}
-                    autocomplete="off"
-                    spellcheck="false"
-                    autocapitalize="off"
-                    readonly
-                    aria-controls="listbox"
-                    aria-expanded=${this.open ? 'true' : 'false'}
-                    aria-haspopup="listbox"
-                    aria-labelledby="label"
-                    aria-disabled=${this.disabled ? 'true' : 'false'}
-                    aria-describedby="help-text"
-                    role="combobox"
-                    tabindex="0"
-                    @focus=${this.handleFocus}
-                    @blur=${this.handleBlur}
-                  />
-              `}
-
+                    <div part="display-input" class="lynk-select__display-input">
+                      ${this.displayLabel ? this.displayLabel : '-'}
+                    </div>
+                  `
+                : html`
+                    <input
+                      part="display-input"
+                      class="lynk-select__display-input"
+                      type="text"
+                      placeholder=${this.placeholder}
+                      .disabled=${this.disabled}
+                      .value=${this.displayLabel}
+                      autocomplete="off"
+                      spellcheck="false"
+                      autocapitalize="off"
+                      readonly
+                      aria-controls="listbox"
+                      aria-expanded=${this.open ? 'true' : 'false'}
+                      aria-haspopup="listbox"
+                      aria-labelledby="label"
+                      aria-disabled=${this.disabled ? 'true' : 'false'}
+                      aria-describedby="help-text"
+                      role="combobox"
+                      tabindex="0"
+                      @focus=${this.handleFocus}
+                      @blur=${this.handleBlur}
+                    />
+                  `}
               ${this.multiple
                 ? html`
-                  <div part="tags" class="lynk-select__tags">
-                    ${this.selectedOptions.map((option, index) => {
-                      if (index < this.maxOptionsVisible || this.maxOptionsVisible <= 0) {
-                        return html`
-                          <lynk-tag
-                            size=${this.size}
-                            ?removable=${!this.restricted}
-                            @on:remove=${(event: CustomEvent) => {
-                              event.stopPropagation();
-                              if (!this.disabled) {
-                                this.toggleOptionSelection(option, false);
-                              }
-                            }}
-                          >
-                            ${option.getTextLabel()}
-                          </lynk-tag>
-                        `;
-                      } else if (index === this.maxOptionsVisible) {
-                        return html` <lynk-tag size=${this.size}> +${this.selectedOptions.length - index} </lynk-tag> `;
-                      } else {
+                    <div part="tags" class="lynk-select__tags">
+                      ${this.selectedOptions.map((option, index) => {
+                        if (index < this.maxOptionsVisible || this.maxOptionsVisible <= 0) {
+                          return html`
+                            <lynk-tag
+                              part="tag"
+                              ?pill=${this.pill}
+                              size=${this.size}
+                              ?removable=${!this.restricted}
+                              @on:remove=${(event: CustomEvent) => this.handleTagRemove(event, option)}
+                            >
+                              ${option.getTextLabel()}
+                            </lynk-tag>
+                          `;
+                        } else if (index === this.maxOptionsVisible) {
+                          return html`
+                            <lynk-tag size=${this.size}> +${this.selectedOptions.length - index} </lynk-tag>
+                          `;
+                        }
                         return null;
-                      }
-                    })}
-                  </div>
-                `
-              : ''}
+                      })}
+                    </div>
+                  `
+                : ''}
 
               <input
                 class="lynk-select__value-input"
@@ -794,25 +817,26 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
                 tabindex="-1"
                 aria-hidden="true"
                 @focus=${() => this.focus()}
+                @invalid=${this.handleInvalid}
               />
 
               ${hasClearIcon
                 ? html`
-                  <button
-                    part="clear-button"
-                    class="lynk-select__clear"
-                    type="button"
-                    aria-label=${this.localize.term('clearEntry')}
-                    @mousedown=${this.handleClearMouseDown}
-                    @click=${this.handleClearClick}
-                    tabindex="-1"
-                  >
-                    <slot name="clear-icon">
-                      <lynk-icon name="x-circle-fill" library="system"></lynk-icon>
-                    </slot>
-                  </button>
-                `
-              : ''}
+                    <button
+                      part="clear-button"
+                      class="lynk-select__clear"
+                      type="button"
+                      aria-label=${this.localize.term('clearEntry')}
+                      @mousedown=${this.handleClearMouseDown}
+                      @click=${this.handleClearClick}
+                      tabindex="-1"
+                    >
+                      <slot name="clear-icon">
+                        <lynk-icon name="x-circle-fill" library="system"></lynk-icon>
+                      </slot>
+                    </button>
+                  `
+                : ''}
 
               <slot name="expand-icon" part="expand-icon" class="lynk-select__expand-icon">
                 <lynk-icon library="system" name="chevron-down"></lynk-icon>

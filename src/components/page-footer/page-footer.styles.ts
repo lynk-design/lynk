@@ -23,25 +23,25 @@ export default css`
   }
 
   .lynk-page-footer__primary {
-      grid-area: primary;
-      display: flex;
-      gap: var(--lynk-spacing-x-small);
+    grid-area: primary;
+    display: flex;
+    gap: var(--lynk-spacing-x-small);
   }
 
   .lynk-page-footer__center {
-      grid-area: center;
-      display: flex;
-      justify-self: center;
-      justify-content: center;
-      align-self: center;
-      align-content: center;
-      gap: var(--lynk-spacing-x-small);
+    grid-area: center;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+    gap: var(--lynk-spacing-x-small);
   }
 
   .lynk-page-footer__secondary {
-      grid-area: secondary;
-      display: flex;
-      gap: var(--lynk-spacing-x-small);
-      justify-content: flex-end;
+    grid-area: secondary;
+    display: flex;
+    gap: var(--lynk-spacing-x-small);
+    justify-content: flex-end;
   }
 `;

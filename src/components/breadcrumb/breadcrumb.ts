@@ -52,7 +52,7 @@ export default class LynkBreadcrumb extends LynkElement {
   private handleSlotChange() {
     const items = [...this.defaultSlot.assignedElements({ flatten: true })].filter(
       item => item.tagName.toLowerCase() === 'lynk-breadcrumb-item'
-  ) as LynkBreadcrumbItem[];
+    ) as LynkBreadcrumbItem[];
 
     items.forEach((item, index) => {
       // Append separators to each item if they don't already have one
@@ -91,7 +91,10 @@ export default class LynkBreadcrumb extends LynkElement {
       </nav>
 
       <slot name="separator" hidden aria-hidden="true">
-        <lynk-icon name=${this.localize.dir() === 'rtl' ? 'chevron-left' : 'chevron-right'} library="system"></lynk-icon>
+        <lynk-icon
+          name=${this.localize.dir() === 'rtl' ? 'chevron-left' : 'chevron-right'}
+          library="system"
+        ></lynk-icon>
       </slot>
     `;
   }

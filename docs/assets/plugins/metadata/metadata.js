@@ -492,9 +492,9 @@
 
         // Strip whitespace so markdown doesn't process things as code blocks
         return result.replace(/^ +| +$/gm, '');
-        });
+      });
 
-        next(content);
+      next(content);
     });
 
     // Wrap tables so we can scroll them horizontally when needed

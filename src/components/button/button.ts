@@ -2,13 +2,13 @@ import '../icon/icon';
 import '../spinner/spinner';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { FormSubmitController } from '../../internal/form';
+import { FormControlController, validValidityState } from '../../internal/form';
 import { HasSlotController } from '../../internal/slot';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize';
-import LynkElement from '../../internal/lynk-element';
 import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './button.styles';
 import type { CSSResultGroup } from 'lit';
 import type { LynkFormControl } from '../../internal/lynk-element';
@@ -25,6 +25,7 @@ import type { LynkFormControl } from '../../internal/lynk-element';
  * @event on:blur - Emitted when the button loses focus.
  * @event on:click - Emitted when the button is clicked.
  * @event on:focus - Emitted when the button gains focus.
+ * @event on:invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied..
  *
  * @slot - The button's label.
  * @slot prefix - Used to prepend an icon or similar element to the button.
@@ -40,7 +41,7 @@ import type { LynkFormControl } from '../../internal/lynk-element';
 export default class LynkButton extends LynkElement implements LynkFormControl {
   static styles: CSSResultGroup = styles;
 
-  private readonly formSubmitController = new FormSubmitController(this, {
+  private readonly formControlController = new FormControlController(this, {
     form: input => {
       // Buttons support a form attribute that points to an arbitrary form, so if this attribute it set we need to query
       // the form from the same root using its id
@@ -52,7 +53,8 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
 
       // Fall back to the closest containing form
       return input.closest('form');
-    }
+    },
+    assumeInteractionOn: ['click']
   });
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
   private readonly localize = new LocalizeController(this);
@@ -127,6 +129,14 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
   /** Tells the browser where to open the link. Only used when `href` is set. */
   @property() target?: '_blank' | '_parent' | '_self' | '_top';
 
+  /**
+   * When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the
+   * default is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a
+   * specific tab/window, this will prevent that from working correctly. You can remove or change the default value by
+   * setting the attribute to an empty string or a value of your choice, respectively.
+   */
+  @property() rel = 'noreferrer noopener';
+
   /** Tells the browser to download the linked file as this filename. Only used when `href` is set. */
   @property() download?: string;
 
@@ -155,6 +165,24 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
   /** Used to override the default event bubbling. */
   @property({ attribute: 'no-bubble', type: Boolean, reflect: true }) noBubble = false;
 
+  /** Gets the validity state object */
+  get validity() {
+    if (this.isButton()) {
+      return (this.button as HTMLButtonElement).validity;
+    }
+
+    return validValidityState;
+  }
+
+  /** Gets the validation message */
+  get validationMessage() {
+    if (this.isButton()) {
+      return (this.button as HTMLButtonElement).validationMessage;
+    }
+
+    return '';
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this.handleHostClick = this.handleHostClick.bind(this);
@@ -168,7 +196,7 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
 
   firstUpdated() {
     if (this.isButton()) {
-      this.invalid = !(this.button as HTMLButtonElement).checkValidity();
+      this.formControlController.updateValidity();
     }
   }
 
@@ -184,15 +212,15 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
 
   private handleClick() {
     if (this.type === 'submit') {
-      this.formSubmitController.submit(this);
+      this.formControlController.submit(this);
     }
 
     if (this.type === 'reset') {
-      this.formSubmitController.reset(this);
+      this.formControlController.reset(this);
     }
 
     this.emit('on:click', {
-        bubbles: !this.noBubble
+      bubbles: !this.noBubble
     });
   }
 
@@ -204,8 +232,13 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
     }
 
     if (this.noBubble) {
-        event.stopPropagation();
+      event.stopPropagation();
     }
+  }
+
+  private handleInvalid(event: Event) {
+    this.formControlController.setValidity(false);
+    this.formControlController.emitInvalidEvent(event);
   }
 
   private isButton() {
@@ -218,10 +251,9 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
 
   @watch('disabled', { waitUntilFirstUpdate: true })
   handleDisabledChange() {
-    // Disabled form controls are always valid, so we need to recheck validity when the state changes
     if (this.isButton()) {
-      this.button.disabled = this.disabled;
-      this.invalid = !(this.button as HTMLButtonElement).checkValidity();
+      // Disabled form controls are always valid
+      this.formControlController.setValidity(this.disabled);
     }
   }
 
@@ -258,11 +290,11 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
     return true;
   }
 
-  /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
+  /** Sets a custom validation message. Pass an empty string to restore validity. */
   setCustomValidity(message: string) {
     if (this.isButton()) {
       (this.button as HTMLButtonElement).setCustomValidity(message);
-      this.invalid = !(this.button as HTMLButtonElement).checkValidity();
+      this.formControlController.updateValidity();
     }
   }
 
@@ -310,19 +342,22 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
         href=${ifDefined(isLink ? this.href : undefined)}
         target=${ifDefined(isLink ? this.target : undefined)}
         download=${ifDefined(isLink ? this.download : undefined)}
-        rel=${ifDefined(isLink && this.target ? 'noreferrer noopener' : undefined)}
+        rel=${ifDefined(isLink ? this.rel : undefined)}
         role=${ifDefined(isLink ? undefined : 'button')}
         aria-disabled=${this.disabled ? 'true' : 'false'}
         tabindex=${this.disabled ? '-1' : '0'}
         @blur=${this.handleBlur}
         @focus=${this.handleFocus}
+        @invalid=${this.isButton() ? this.handleInvalid : null}
         @click=${this.handleClick}
       >
       <slot name="prefix" part="prefix" class="lynk-button__prefix"></slot>
       <slot part="label" class="lynk-button__label"></slot>
       <slot name="suffix" part="suffix" class="lynk-button__suffix"></slot>
       ${
-        this.caret ? html` <lynk-icon part="caret" class="lynk-button__caret" library="system" name="caret"></lynk-icon> ` : ''
+        this.caret
+          ? html` <lynk-icon part="caret" class="lynk-button__caret" library="system" name="caret"></lynk-icon> `
+          : ''
       }
         ${this.thinking ? html`<lynk-spinner></lynk-spinner>` : ''}
       </${tag}>

@@ -1,7 +1,7 @@
-import { html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import LynkElement from '../../internal/lynk-element';
+import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize';
+import LynkElement from '../../internal/lynk-element';
 import styles from './progress-ring.styles';
 import type { CSSResultGroup } from 'lit';
 

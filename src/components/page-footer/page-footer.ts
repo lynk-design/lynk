@@ -1,9 +1,9 @@
-import { html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import '../../components/page-content/page-content';
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import LynkPageLayout from '../../components/page-layout/page-layout';
-import '../../components/page-content/page-content';
 import styles from './page-footer.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -30,14 +30,8 @@ export default class LynkPageFooter extends LynkElement {
   static styles: CSSResultGroup = styles;
 
   /** Set an optional maximum width for page header  */
-  @property({ reflect: true }) width :
-    | 'auto'
-    | 'small'
-    | 'medium'
-    | 'large'
-    | 'x-large'
-    | '2x-large'
-    | 'fluid' = 'fluid';
+  @property({ reflect: true }) width: 'auto' | 'small' | 'medium' | 'large' | 'x-large' | '2x-large' | 'fluid' =
+    'fluid';
 
   connectedCallback() {
     super.connectedCallback();

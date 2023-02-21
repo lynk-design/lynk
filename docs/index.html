@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Lynk: A library of web components for building web applications with the Edgio Uplynk user interface design language.</title>
+    <title>
+      Lynk: A library of web components for building web applications with the Edgio Uplynk user interface design
+      language.
+    </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta
       name="description"
@@ -37,7 +40,10 @@
       // Set the initial theme to prevent flashing
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const theme = localStorage.getItem('theme') || 'auto';
-      document.documentElement.classList.toggle('lynk-theme-dark', theme === 'dark' || (theme === 'auto' && prefersDark));
+      document.documentElement.classList.toggle(
+        'lynk-theme-dark',
+        theme === 'dark' || (theme === 'auto' && prefersDark)
+      );
     </script>
     <script>
       window.$docsify = {

@@ -48,10 +48,10 @@
   --lynk-color-orange-950: hsl(46.2 100% 95%);
 
   /* Amber */
-  --lynk-color-amber-a10: hsla(43.3 100% 53.4% / .1);
-  --lynk-color-amber-a25: hsla(43.3 100% 53.4% / .25);
-  --lynk-color-amber-a50: hsla(43.3 100% 53.4% / .5);
-  --lynk-color-amber-a75: hsla(43.3 100% 53.4% / .75);
+  --lynk-color-amber-a10: hsla(43.3 100% 53.4% / 0.1);
+  --lynk-color-amber-a25: hsla(43.3 100% 53.4% / 0.25);
+  --lynk-color-amber-a50: hsla(43.3 100% 53.4% / 0.5);
+  --lynk-color-amber-a75: hsla(43.3 100% 53.4% / 0.75);
 
   --lynk-color-amber-50: hsl(21.9 66.3% 21.1%);
   --lynk-color-amber-100: hsl(21.5 73.6% 29.7%);
@@ -105,10 +105,10 @@
   --lynk-color-green-950: hsl(144 100% 95.5%);
 
   /* Emerald */
-  --lynk-color-emerald-a10: hsl(157.8 66.8% 48.9% / .10);
-  --lynk-color-emerald-a25: hsl(157.8 66.8% 48.9% / .25);
-  --lynk-color-emerald-a50: hsl(157.8 66.8% 48.9% / .5);
-  --lynk-color-emerald-a75: hsl(157.8 66.8% 48.9% / .75);
+  --lynk-color-emerald-a10: hsl(157.8 66.8% 48.9% / 0.1);
+  --lynk-color-emerald-a25: hsl(157.8 66.8% 48.9% / 0.25);
+  --lynk-color-emerald-a50: hsl(157.8 66.8% 48.9% / 0.5);
+  --lynk-color-emerald-a75: hsl(157.8 66.8% 48.9% / 0.75);
 
   --lynk-color-emerald-50: hsl(164.3 75% 13.5%);
   --lynk-color-emerald-100: hsl(163.5 72.6% 20.1%);
@@ -187,12 +187,11 @@
   --lynk-color-indigo-900: hsl(225 100% 90%);
   --lynk-color-indigo-950: hsl(222 100% 95%);
 
-
   /* Violet */
-  --lynk-color-violet-a10: hsl(260 100% 65% / .10);
-  --lynk-color-violet-a25: hsl(260 100% 65% / .25);
-  --lynk-color-violet-a50: hsl(260 100% 65% / .5);
-  --lynk-color-violet-a75: hsl(260 100% 65% / .75);
+  --lynk-color-violet-a10: hsl(260 100% 65% / 0.1);
+  --lynk-color-violet-a25: hsl(260 100% 65% / 0.25);
+  --lynk-color-violet-a50: hsl(260 100% 65% / 0.5);
+  --lynk-color-violet-a75: hsl(260 100% 65% / 0.75);
 
   --lynk-color-violet-50: hsl(263 55% 24%);
   --lynk-color-violet-100: hsl(262 60% 35%);
@@ -205,7 +204,6 @@
   --lynk-color-violet-800: hsl(257 100% 85%);
   --lynk-color-violet-900: hsl(256 100% 90%);
   --lynk-color-violet-950: hsl(255 100% 95%);
-
 
   /* Purple */
   --lynk-color-purple-50: hsl(276 54.3% 20.5%);
@@ -248,10 +246,10 @@
   --lynk-color-pink-950: hsl(315 100% 95.9%);
 
   /* Rose */
-  --lynk-color-rose-a10: hsla(350 85% 55% / .1);
-  --lynk-color-rose-a25: hsla(350 85% 55% / .25);
-  --lynk-color-rose-a50: hsla(350 85% 55% / .5);
-  --lynk-color-rose-a75: hsla(350 85% 55% / .75);
+  --lynk-color-rose-a10: hsla(350 85% 55% / 0.1);
+  --lynk-color-rose-a25: hsla(350 85% 55% / 0.25);
+  --lynk-color-rose-a50: hsla(350 85% 55% / 0.5);
+  --lynk-color-rose-a75: hsla(350 85% 55% / 0.75);
 
   --lynk-color-rose-50: hsl(342 63% 20%);
   --lynk-color-rose-100: hsl(343 69% 30%);
@@ -370,24 +368,23 @@
   --lynk-color-neutral-1000: hsl(0 0% 95%);
 
   --lynk-color-black: hsl(240 4% 7%);
-  --lynk-color-black-a10: hsla(240 4% 7% / .1);
-  --lynk-color-black-a25: hsla(240 4% 7% / .25);
-  --lynk-color-black-a50: hsla(240 4% 7% / .5);
-  --lynk-color-black-a75: hsla(240 4% 7% / .75);
+  --lynk-color-black-a10: hsla(240 4% 7% / 0.1);
+  --lynk-color-black-a25: hsla(240 4% 7% / 0.25);
+  --lynk-color-black-a50: hsla(240 4% 7% / 0.5);
+  --lynk-color-black-a75: hsla(240 4% 7% / 0.75);
 
-  --lynk-color-gray-a05: hsla(240 4% 40% / .05);
-  --lynk-color-gray-a10: hsla(240 4% 40% / .1);
-  --lynk-color-gray-a15: hsla(240 4% 40% / .15);
-  --lynk-color-gray-a25: hsla(240 4% 40% / .25);
-  --lynk-color-gray-a50: hsla(240 4% 40% / .5);
-  --lynk-color-gray-a75: hsla(240 4% 40% / .75);
+  --lynk-color-gray-a05: hsla(240 4% 40% / 0.05);
+  --lynk-color-gray-a10: hsla(240 4% 40% / 0.1);
+  --lynk-color-gray-a15: hsla(240 4% 40% / 0.15);
+  --lynk-color-gray-a25: hsla(240 4% 40% / 0.25);
+  --lynk-color-gray-a50: hsla(240 4% 40% / 0.5);
+  --lynk-color-gray-a75: hsla(240 4% 40% / 0.75);
 
   --lynk-color-white: hsl(0 0% 95%);
-  --lynk-color-white-a10: hsla(0 0% 95% / .1);
-  --lynk-color-white-a25: hsla(0 0% 95% / .25);
-  --lynk-color-white-a50: hsla(0 0% 95% / .5);
-  --lynk-color-white-a75: hsla(0 0% 95% / .75);
-
+  --lynk-color-white-a10: hsla(0 0% 95% / 0.1);
+  --lynk-color-white-a25: hsla(0 0% 95% / 0.25);
+  --lynk-color-white-a50: hsla(0 0% 95% / 0.5);
+  --lynk-color-white-a75: hsla(0 0% 95% / 0.75);
 
   /*
    * Border radii
@@ -609,13 +606,12 @@
    * Tables
    */
 
-  --lynk-table-header-background-color:  var(--lynk-color-black);
+  --lynk-table-header-background-color: var(--lynk-color-black);
   --lynk-table-header-color: var(--lynk-color-neutral-600);
   --lynk-table-border-color: var(--lynk-color-neutral-50);
   --lynk-table-border-radius: var(--lynk-border-radius-medium);
   --lynk-table-cell-background-color: var(--lynk-color-gray-a05);
   --lynk-table-striped-cell-background-color: var(--lynk-color-gray-a15);
-
 
   /*
    * Tooltips

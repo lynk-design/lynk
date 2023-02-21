@@ -1,6 +1,6 @@
-import { html } from 'lit';
-import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import styles from './box.styles';
 import type { CSSResultGroup } from 'lit';

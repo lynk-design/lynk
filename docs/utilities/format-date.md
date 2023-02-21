@@ -47,7 +47,6 @@ By default, the browser will determine whether to use 12-hour or 24-hour time. T
 <lynk-format-date hour="numeric" minute="numeric" hour-format="24"></lynk-format-date>
 ```
 
-
 ### Localization
 
 Use the `lang` attribute to set the date/time formatting locale.

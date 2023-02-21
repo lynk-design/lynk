@@ -1,5 +1,5 @@
-import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import styles from './stack.styles';
 import type { CSSResultGroup } from 'lit';
@@ -41,18 +41,12 @@ export default class LynkStack extends LynkElement {
   render() {
     const horizontalClass = this.horizontal ? 'lynk-stack--horizontal' : null;
     const reverseClass = this.reverse ? 'lynk-stack--reverse' : null;
-    const justifyClass = this.justify ? 'lynk-stack--justify-' + this.justify : null;
-    const alignClass = this.align ? 'lynk-stack--align-' + this.align : null;
+    const justifyClass = this.justify ? `lynk-stack--justify-${this.justify}` : null;
+    const alignClass = this.align ? `lynk-stack--align-${this.align}` : null;
 
     const classList = [horizontalClass, reverseClass, justifyClass, alignClass];
 
-    return html`
-      <slot
-        part="base"
-        class="lynk-stack ${classList.join(' ')}"
-        style="--gap: ${this.gap};"
-      ></slot>
-    `;
+    return html` <slot part="base" class="lynk-stack ${classList.join(' ')}" style="--gap: ${this.gap};"></slot> `;
   }
 }
 

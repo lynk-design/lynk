@@ -1,5 +1,5 @@
-import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import styles from './page-layout.styles';
 import type { CSSResultGroup } from 'lit';
@@ -34,43 +34,16 @@ export default class LynkPageLayout extends LynkElement {
 
   render() {
     return html`
-      <div
-        part="base"
-        class="lynk-page-layout"
-      >
-        <slot
-          name="header"
-          part="header"
-          class="lynk-page-layout__header"
-        ></slot>
-        <slot
-          name="left-sidebar"
-          part="left-sidebar" 
-          class="lynk-page-layout__left-sidebar"
-        ></slot>
-        <slot
-          name="left-inset-sidebar"
-          part="left-inset-sidebar"
-          class="lynk-page-layout__left-inset-sidebar"
-        ></slot>
-        <div
-          part="main"
-          class="lynk-page-layout__main"
-        >
-            <slot></slot>
+      <div part="base" class="lynk-page-layout">
+        <slot name="header" part="header" class="lynk-page-layout__header"></slot>
+        <slot name="left-sidebar" part="left-sidebar" class="lynk-page-layout__left-sidebar"></slot>
+        <slot name="left-inset-sidebar" part="left-inset-sidebar" class="lynk-page-layout__left-inset-sidebar"></slot>
+        <div part="main" class="lynk-page-layout__main">
+          <slot></slot>
         </div>
-        <slot
-          name="right-sidebar"
-          class="lynk-page-layout__right-sidebar"
-        ></slot>
-        <slot
-          name="right-inset-sidebar"
-          class="lynk-page-layout__right-inset-sidebar"
-        ></slot>
-        <slot
-          name="footer"
-          class="lynk-page-layout__footer"
-        ></slot>
+        <slot name="right-sidebar" class="lynk-page-layout__right-sidebar"></slot>
+        <slot name="right-inset-sidebar" class="lynk-page-layout__right-inset-sidebar"></slot>
+        <slot name="footer" class="lynk-page-layout__footer"></slot>
       </div>
     `;
   }

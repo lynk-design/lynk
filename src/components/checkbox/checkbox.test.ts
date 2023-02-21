@@ -1,4 +1,6 @@
-import { aTimeout, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
+import { clickOnElement } from '../../internal/test';
+import { expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
+import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import type LynkCheckbox from './checkbox';
@@ -48,8 +50,7 @@ describe('<lynk-checkbox>', () => {
 
   it('should be valid by default', async () => {
     const el = await fixture<LynkCheckbox>(html` <lynk-checkbox></lynk-checkbox> `);
-
-    expect(el.invalid).to.be.false;
+    expect(el.checkValidity()).to.be.true;
   });
 
   it('should emit on:change and on:input when clicked', async () => {
@@ -92,6 +93,18 @@ describe('<lynk-checkbox>', () => {
     await el.updateComplete;
     el.checked = false;
     await el.updateComplete;
+  });
+
+  it('should hide the native input with the correct positioning to scroll correctly when contained in an overflow', async () => {
+    const el = await fixture<LynkCheckbox>(html` <lynk-checkbox></lynk-checkbox> `);
+    const label = el.shadowRoot!.querySelector('.lynk-checkbox')!;
+    const input = el.shadowRoot!.querySelector('.lynk-checkbox__input')!;
+
+    const labelPosition = getComputedStyle(label).position;
+    const inputPosition = getComputedStyle(input).position;
+
+    expect(labelPosition).to.equal('relative');
+    expect(inputPosition).to.equal('absolute');
   });
 
   describe('when submitting a form', () => {
@@ -139,25 +152,62 @@ describe('<lynk-checkbox>', () => {
       expect(formData!.get('a')).to.equal('on');
     });
 
-    it('should show a constraint validation error when setCustomValidity() is called', async () => {
-      const form = await fixture<HTMLFormElement>(html`
-        <form>
-          <lynk-checkbox name="a" value="1" checked></lynk-checkbox>
-          <lynk-button type="submit">Submit</lynk-button>
-        </form>
-      `);
-      const button = form.querySelector('lynk-button')!;
-      const checkbox = form.querySelector('lynk-checkbox')!;
-      const submitHandler = sinon.spy((event: SubmitEvent) => event.preventDefault());
+    it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
+      const checkbox = await fixture<HTMLFormElement>(html` <lynk-checkbox></lynk-checkbox> `);
 
       // Submitting the form after setting custom validity should not trigger the handler
       checkbox.setCustomValidity('Invalid selection');
-      form.addEventListener('submit', submitHandler);
-      button.click();
+      await checkbox.updateComplete;
 
-      await aTimeout(100);
+      expect(checkbox.checkValidity()).to.be.false;
+      expect(checkbox.checkValidity()).to.be.false;
+      expect(checkbox.hasAttribute('data-invalid')).to.be.true;
+      expect(checkbox.hasAttribute('data-valid')).to.be.false;
+      expect(checkbox.hasAttribute('data-user-invalid')).to.be.false;
+      expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
 
-      expect(submitHandler).to.not.have.been.called;
+      await clickOnElement(checkbox);
+      await checkbox.updateComplete;
+
+      expect(checkbox.hasAttribute('data-user-invalid')).to.be.true;
+      expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
+    });
+
+    it('should be invalid when required and unchecked', async () => {
+      const checkbox = await fixture<HTMLFormElement>(html` <lynk-checkbox required></lynk-checkbox> `);
+      expect(checkbox.checkValidity()).to.be.false;
+    });
+
+    it('should be valid when required and checked', async () => {
+      const checkbox = await fixture<HTMLFormElement>(html` <lynk-checkbox required checked></lynk-checkbox> `);
+      expect(checkbox.checkValidity()).to.be.true;
+    });
+
+    it('should be present in form data when using the form attribute and located outside of a <form>', async () => {
+      const el = await fixture<HTMLFormElement>(html`
+        <div>
+          <form id="f">
+            <lynk-button type="submit">Submit</lynk-button>
+          </form>
+          <lynk-checkbox form="f" name="a" value="1" checked></lynk-checkbox>
+        </div>
+      `);
+      const form = el.querySelector('form')!;
+      const formData = new FormData(form);
+
+      expect(formData.get('a')).to.equal('1');
+    });
+
+    it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
+      const el = await fixture<HTMLFormElement>(html` <form novalidate><lynk-checkbox required></lynk-checkbox></form> `);
+      const checkbox = el.querySelector<SlCheckbox>('lynk-checkbox')!;
+
+      expect(checkbox.hasAttribute('data-required')).to.be.true;
+      expect(checkbox.hasAttribute('data-optional')).to.be.false;
+      expect(checkbox.hasAttribute('data-invalid')).to.be.true;
+      expect(checkbox.hasAttribute('data-valid')).to.be.false;
+      expect(checkbox.hasAttribute('data-user-invalid')).to.be.false;
+      expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
     });
   });
 
@@ -256,5 +306,7 @@ describe('<lynk-checkbox>', () => {
 
       expect(indeterminateIcon).to.be.null;
     });
+
+    runFormControlBaseTests('lynk-checkbox');
   });
 });

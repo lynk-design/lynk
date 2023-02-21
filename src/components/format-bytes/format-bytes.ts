@@ -1,6 +1,6 @@
 import { customElement, property } from 'lit/decorators.js';
-import LynkElement from '../../internal/lynk-element';
 import { LocalizeController } from '../../utilities/localize';
+import LynkElement from '../../internal/lynk-element';
 
 /**
  * @summary Formats a number as a human readable bytes value.

@@ -38,7 +38,6 @@ Adjust spacing between using `gap` property.
   <lynk-box style="--background: var(--lynk-color-neutral-100);">Fifth Item</lynk-box>
   <lynk-box style="--background: var(--lynk-color-neutral-100);">Sixth Item</lynk-box>
 </lynk-stack>
-
 ```
 
 Reverse stack order using `reverse` attribute
@@ -98,9 +97,15 @@ Use the `justify`, and `align` properties to arrange your vertical stack.
 
 ```html preview
 <lynk-stack horizontal>
-  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-small);">First Item</lynk-box>
-  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-medium);">Second Item</lynk-box>
-  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-large);">Third Item</lynk-box>
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-small);"
+    >First Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-medium);"
+    >Second Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-large);"
+    >Third Item</lynk-box
+  >
 </lynk-stack>
 ```
 
@@ -108,9 +113,15 @@ Reverse stack order using `reverse` attribute
 
 ```html preview
 <lynk-stack horizontal reverse>
-  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-small);">First Item</lynk-box>
-  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-medium);">Second Item</lynk-box>
-  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-large);">Third Item</lynk-box>
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-small);"
+    >First Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-medium);"
+    >Second Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-large);"
+    >Third Item</lynk-box
+  >
 </lynk-stack>
 ```
 
@@ -118,9 +129,15 @@ Use the `justify`, and `align` properties to arrange your horizontal stack.
 
 ```html preview
 <lynk-stack horizontal class="test-h-stack">
-  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-small);">First Item</lynk-box>
-  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-medium);">Second Item</lynk-box>
-  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-large);">Third Item</lynk-box>
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-small);"
+    >First Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-medium);"
+    >Second Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-large);"
+    >Third Item</lynk-box
+  >
 </lynk-stack>
 
 <lynk-grid container class="h-stack-options">

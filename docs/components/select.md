@@ -14,7 +14,6 @@
 </lynk-select>
 ```
 
-
 <lynk-alert type="info" open>This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.</lynk-alert>
 
 ## Examples
@@ -52,7 +51,10 @@ Add informative help text in a tooltip appended to the label with the `help-tip`
 Use the `help-tip` value to share informative content that will help the user understand the purpose of the field or how the data will be used.
 
 ```html preview
-<lynk-select label="Experience" help-tip="Additional form-fields will be customized based on your selected experience level.">
+<lynk-select
+  label="Experience"
+  help-tip="Additional form-fields will be customized based on your selected experience level."
+>
   <lynk-option value="1">Novice</lynk-option>
   <lynk-option value="2">Intermediate</lynk-option>
   <lynk-option value="3">Advanced</lynk-option>
@@ -64,7 +66,7 @@ Use the `help-tip` value to share informative content that will help the user un
 Use the `required` attribute to visually indicate a required field.
 
 ```html preview
-<lynk-select label="Experience" placeholder="Select One" help-text="Please tell us your skill level." required >
+<lynk-select label="Experience" placeholder="Select One" help-text="Please tell us your skill level." required>
   <lynk-option value="1">Novice</lynk-option>
   <lynk-option value="2">Intermediate</lynk-option>
   <lynk-option value="3">Advanced</lynk-option>
@@ -76,17 +78,17 @@ Use the `required` attribute to visually indicate a required field.
 Use the `state` attribute to manually add an error, warning, or success state.
 
 ```html preview
-<lynk-select label="Experience" value="1" state="error" help-text="This level is not preferable." required >
+<lynk-select label="Experience" value="1" state="error" help-text="This level is not preferable." required>
   <lynk-option value="1">Novice</lynk-option>
   <lynk-option value="2">Intermediate</lynk-option>
   <lynk-option value="3">Advanced</lynk-option>
 </lynk-select>
-<lynk-select label="Experience" value="2" state="warning" help-text="This level is acceptable." required >
+<lynk-select label="Experience" value="2" state="warning" help-text="This level is acceptable." required>
   <lynk-option value="1">Novice</lynk-option>
   <lynk-option value="2">Intermediate</lynk-option>
   <lynk-option value="3">Advanced</lynk-option>
 </lynk-select>
-<lynk-select label="Experience" value="3" state="success" help-text="Congratulations Chad!" required >
+<lynk-select label="Experience" value="3" state="success" help-text="Congratulations Chad!" required>
   <lynk-option value="1">Novice</lynk-option>
   <lynk-option value="2">Intermediate</lynk-option>
   <lynk-option value="3">Advanced</lynk-option>

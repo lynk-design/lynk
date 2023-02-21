@@ -1,18 +1,18 @@
-import { html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import { animateTo, stopAnimations } from '../../internal/animate';
-import { waitForEvent } from '../../internal/event';
-import Modal from '../../internal/modal';
-import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll';
-import LynkElement from '../../internal/lynk-element';
-import { HasSlotController } from '../../internal/slot';
-import { uppercaseFirstLetter } from '../../internal/string';
-import { watch } from '../../internal/watch';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import { LocalizeController } from '../../utilities/localize';
 import '../icon-button/icon-button';
+import { animateTo, stopAnimations } from '../../internal/animate';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query } from 'lit/decorators.js';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { HasSlotController } from '../../internal/slot';
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { LocalizeController } from '../../utilities/localize';
+import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll';
+import { uppercaseFirstLetter } from '../../internal/string';
+import { waitForEvent } from '../../internal/event';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
+import Modal from '../../internal/modal';
 import styles from './drawer.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -292,7 +292,12 @@ export default class LynkDrawer extends LynkElement {
           'lynk-drawer--has-footer': this.hasSlotController.test('footer')
         })}
       >
-        <div part="overlay" class="lynk-drawer__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
+        <div
+          part="overlay"
+          class="lynk-drawer__overlay"
+          @click=${() => this.requestClose('overlay')}
+          tabindex="-1"
+        ></div>
 
         <div
           part="panel"

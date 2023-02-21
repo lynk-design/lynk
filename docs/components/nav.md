@@ -85,10 +85,13 @@ The `value` attribute can be used to assign a hidden value, such as a unique ide
 
 ### Squished
 
-The `squished` property can be used to render the entire nav in a simplified narrow style. Nested nav items are hidden, as are nav item labels, which are instead shown via  tooltip.
+The `squished` property can be used to render the entire nav in a simplified narrow style. Nested nav items are hidden, as are nav item labels, which are instead shown via tooltip.
 
 ```html preview
-<lynk-nav style="width: 96px; --background: var(--lynk-color-gray-a10); --padding: var(--lynk-spacing-x-small);" squished>
+<lynk-nav
+  style="width: 96px; --background: var(--lynk-color-gray-a10); --padding: var(--lynk-spacing-x-small);"
+  squished
+>
   <lynk-nav-item>
     <lynk-icon slot="prefix" name="file-earmark-play"></lynk-icon> Content
     <lynk-nav-item selected>All Content</lynk-nav-item>
@@ -112,7 +115,8 @@ The `squished` property can be used to render the entire nav in a simplified nar
   <lynk-nav-item><lynk-icon slot="prefix" name="bar-chart"></lynk-icon> Analytics</lynk-nav-item>
   <lynk-nav-item><lynk-icon slot="prefix" name="database-gear"></lynk-icon> Ad Server Debug</lynk-nav-item>
   <lynk-nav-item><lynk-icon slot="prefix" name="gear"></lynk-icon> Settings</lynk-nav-item>
-  <lynk-nav-item><lynk-icon slot="prefix" name="house-gear"></lynk-icon> Admin</lynk-nav-item>
+  <lynk-nav-item><lynk-icon slot="prefix" name="house-gear"></lynk-icon> Admin</lynk-nav-item></lynk-nav
+>
 ```
 
 Squished navs can also utilize nav groups and tooltips in place of labels for individual nav items. For best usability practices, avoid using nested nav items and icons that are not easily identifiable with this style of nav.
@@ -172,6 +176,5 @@ Squished navs can also utilize nav groups and tooltips in place of labels for in
   </lynk-nav-group>
 </lynk-nav>
 ```
-
 
 [component-metadata:lynk-nav]

@@ -1,20 +1,25 @@
-import { html } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { FormSubmitController } from '../../internal/form';
-import LynkElement from '../../internal/lynk-element';
-import { HasSlotController } from '../../internal/slot';
-import { watch } from '../../internal/watch';
 import '../button-group/button-group';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import {
+  customErrorValidityState,
+  FormControlController,
+  validValidityState,
+  valueMissingValidityState
+} from '../../internal/form';
+import { HasSlotController } from '../../internal/slot';
+import { html } from 'lit';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './radio-group.styles';
-import type { LynkFormControl } from '../../internal/lynk-element';
-import type LynkRadioButton from '../radio-button/radio-button';
-import type LynkRadio from '../radio/radio';
 import type { CSSResultGroup } from 'lit';
+import type { LynkFormControl } from '../../internal/lynk-element';
+import type LynkRadio from '../radio/radio';
+import type LynkRadioButton from '../radio-button/radio-button';
 
 /**
  * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
- *
+ * @documentation https://lynk.design/components/radio-group
  * @since 1.0
  * @status stable
  *
@@ -25,6 +30,7 @@ import type { CSSResultGroup } from 'lit';
  *
  * @event on:change - Emitted when the radio group's selected value changes.
  * @event on:input - Emitted when the radio group receives user input.
+ * @event on:invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -37,19 +43,17 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkRadioGroup extends LynkElement implements LynkFormControl {
   static styles: CSSResultGroup = styles;
 
-  protected readonly formSubmitController = new FormSubmitController(this, {
-    defaultValue: control => control.defaultValue
-  });
+  protected readonly formControlController = new FormControlController(this);
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private customValidityMessage = '';
+  private validationTimeout: number;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
-  @query('.lynk-radio-group__validation-input') input: HTMLInputElement;
+  @query('.lynk-radio-group__validation-input') validationInput: HTMLInputElement;
 
   @state() private hasButtonGroup = false;
   @state() private errorMessage = '';
-  @state() private customErrorMessage = '';
   @state() defaultValue = '';
-  @state() invalid = false;
 
   /**
    * The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot
@@ -66,14 +70,45 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
   /** The current value of the radio group, submitted as a name/value pair with form data. */
   @property({ reflect: true }) value = '';
 
+  /**
+   * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+   * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+   * the same document or shadow root for this to work.
+   */
+  @property({ reflect: true }) form = '';
+
   /** Ensures a child radio is checked before allowing the containing form to submit. */
   @property({ type: Boolean, reflect: true }) required = false;
 
-  @watch('value')
-  handleValueChange() {
-    if (this.hasUpdated) {
-      this.updateCheckedRadio();
+  /** The input's feedback status using manual validation. Alternatively, you can use the invalid attribute */
+  @property({ reflect: true }) state: 'error' | 'warning' | 'success';
+
+  /** Gets the validity state object */
+  get validity() {
+    const isRequiredAndEmpty = this.required && !this.value;
+    const hasCustomValidityMessage = this.customValidityMessage !== '';
+
+    if (hasCustomValidityMessage) {
+      return customErrorValidityState;
+    } else if (isRequiredAndEmpty) {
+      return valueMissingValidityState;
     }
+
+    return validValidityState;
+  }
+
+  /** Gets the validation message */
+  get validationMessage() {
+    const isRequiredAndEmpty = this.required && !this.value;
+    const hasCustomValidityMessage = this.customValidityMessage !== '';
+
+    if (hasCustomValidityMessage) {
+      return this.customValidityMessage;
+    } else if (isRequiredAndEmpty) {
+      return this.validationInput.validationMessage;
+    }
+
+    return '';
   }
 
   connectedCallback() {
@@ -82,66 +117,15 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
   }
 
   firstUpdated() {
-    this.invalid = !this.validity.valid;
+    this.formControlController.updateValidity();
   }
 
-  /** Checks for validity but does not show the browser's validation message. */
-  checkValidity() {
-    return this.validity.valid;
-  }
-
-  /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
-  setCustomValidity(message = '') {
-    this.customErrorMessage = message;
-    this.errorMessage = message;
-
-    if (!message) {
-      this.invalid = false;
-    } else {
-      this.invalid = true;
-      this.input.setCustomValidity(message);
-    }
-  }
-
-  get validity(): ValidityState {
-    const hasMissingData = !((this.value && this.required) || !this.required);
-    const hasCustomError = this.customErrorMessage !== '';
-
-    return {
-      badInput: false,
-      customError: hasCustomError,
-      patternMismatch: false,
-      rangeOverflow: false,
-      rangeUnderflow: false,
-      stepMismatch: false,
-      tooLong: false,
-      tooShort: false,
-      typeMismatch: false,
-      valid: hasMissingData || hasCustomError ? false : true,
-      valueMissing: !hasMissingData
-    };
-  }
-
-  /** Checks for validity and shows the browser's validation message if the control is invalid. */
-  reportValidity(): boolean {
-    const validity = this.validity;
-
-    this.errorMessage = this.customErrorMessage || validity.valid ? '' : this.input.validationMessage;
-    this.invalid = !validity.valid;
-
-    if (!validity.valid) {
-      this.showNativeErrorMessage();
-    }
-
-    return !this.invalid;
-  }
-
-  getAllRadios() {
+  private getAllRadios() {
     return [...this.querySelectorAll<LynkRadio | LynkRadioButton>('lynk-radio, lynk-radio-button')];
   }
 
-  handleRadioClick(event: MouseEvent) {
-    const target = event.target as LynkRadio | LynkRadioButton;
+  private handleRadioClick(event: MouseEvent) {
+    const target = (event.target as HTMLElement).closest<LynkRadio | LynkRadioButton>('lynk-radio, lynk-radio-button')!;
     const radios = this.getAllRadios();
     const oldValue = this.value;
 
@@ -158,7 +142,7 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
     }
   }
 
-  handleKeyDown(event: KeyboardEvent) {
+  private handleKeyDown(event: KeyboardEvent) {
     if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(event.key)) {
       return;
     }
@@ -203,7 +187,7 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
     event.preventDefault();
   }
 
-  handleLabelClick() {
+  private handleLabelClick() {
     const radios = this.getAllRadios();
     const checked = radios.find(radio => radio.checked);
     const radioToFocus = checked || radios[0];
@@ -214,7 +198,7 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
     }
   }
 
-  handleSlotChange() {
+  private handleSlotChange() {
     const radios = this.getAllRadios();
 
     radios.forEach(radio => (radio.checked = radio.value === this.value));
@@ -239,16 +223,62 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
     }
   }
 
-  showNativeErrorMessage() {
-    this.input.hidden = false;
-    this.input.reportValidity();
-    setTimeout(() => (this.input.hidden = true), 10000);
+  private handleInvalid(event: Event) {
+    this.formControlController.setValidity(false);
+    this.formControlController.emitInvalidEvent(event);
   }
 
-  updateCheckedRadio() {
+  private updateCheckedRadio() {
     const radios = this.getAllRadios();
     radios.forEach(radio => (radio.checked = radio.value === this.value));
-    this.invalid = !this.validity.valid;
+    this.formControlController.setValidity(this.validity.valid);
+  }
+
+  @watch('value')
+  handleValueChange() {
+    if (this.hasUpdated) {
+      this.updateCheckedRadio();
+    }
+  }
+
+  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
+  checkValidity() {
+    const isRequiredAndEmpty = this.required && !this.value;
+    const hasCustomValidityMessage = this.customValidityMessage !== '';
+
+    if (isRequiredAndEmpty || hasCustomValidityMessage) {
+      this.formControlController.emitInvalidEvent();
+      return false;
+    }
+
+    return true;
+  }
+
+  /** Sets a custom validation message. Pass an empty string to restore validity. */
+  setCustomValidity(message = '') {
+    this.customValidityMessage = message;
+    this.errorMessage = message;
+    this.validationInput.setCustomValidity(message);
+    this.formControlController.updateValidity();
+  }
+
+  /** Checks for validity and shows the browser's validation message if the control is invalid. */
+  reportValidity(): boolean {
+    const isValid = this.validity.valid;
+
+    this.errorMessage = this.customValidityMessage || isValid ? '' : this.validationInput.validationMessage;
+    this.formControlController.setValidity(isValid);
+    this.validationInput.hidden = true;
+    clearTimeout(this.validationTimeout);
+
+    if (!isValid) {
+      // Show the browser's constraint validation message
+      this.validationInput.hidden = false;
+      this.validationInput.reportValidity();
+      this.validationTimeout = setTimeout(() => (this.validationInput.hidden = true), 10000) as unknown as number;
+    }
+
+    return isValid;
   }
 
   render() {
@@ -274,7 +304,10 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
           'lynk-form-control--medium': true,
           'lynk-form-control--radio-group': true,
           'lynk-form-control--has-label': hasLabel,
-          'lynk-form-control--has-help-text': hasHelpText
+          'lynk-form-control--has-help-text': hasHelpText,
+          'lynk-form-control--has-error': this.state === 'error',
+          'lynk-form-control--has-warning': this.state === 'warning',
+          'lynk-form-control--has-success': this.state === 'success'
         })}
         role="radiogroup"
         aria-labelledby="label"
@@ -301,6 +334,7 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
                 ?required=${this.required}
                 tabindex="-1"
                 hidden
+                @invalid=${this.handleInvalid}
               />
             </label>
           </div>

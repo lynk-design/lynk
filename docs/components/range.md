@@ -23,12 +23,7 @@ Use the `label` attribute to give the range an accessible label. For labels that
 Add descriptive help text to a range with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
 ```html preview
-<lynk-range
-  label="Volume"
-  help-text="Controls the volume of the current song."
-  min="0"
-  max="100"
-></lynk-range>
+<lynk-range label="Volume" help-text="Controls the volume of the current song." min="0" max="100"></lynk-range>
 ```
 
 ### Min, Max, and Step

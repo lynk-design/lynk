@@ -1,7 +1,16 @@
 /* eslint-env node */
 
 module.exports = {
-  plugins: ['@typescript-eslint', 'wc', 'lit', 'lit-a11y', 'chai-expect', 'chai-friendly', 'import'],
+  plugins: [
+    '@typescript-eslint',
+    'wc',
+    'lit',
+    'lit-a11y',
+    'chai-expect',
+    'chai-friendly',
+    'import',
+    'sort-imports-es6-autofix'
+  ],
   extends: [
     'eslint:recommended',
     'plugin:wc/recommended',
@@ -13,7 +22,6 @@ module.exports = {
     es2021: true,
     browser: true
   },
-  reportUnusedDisableDirectives: true,
   parserOptions: {
     sourceType: 'module'
   },
@@ -105,6 +113,7 @@ module.exports = {
     curly: 'off',
     'default-param-last': 'error',
     eqeqeq: 'error',
+    'lit-a11y/click-events-have-key-events': 'off',
     'no-constructor-return': 'error',
     'no-empty-function': 'warn',
     'no-eval': 'error',
@@ -149,8 +158,8 @@ module.exports = {
     'prefer-object-spread': 'warn',
     'prefer-rest-params': 'warn',
     'prefer-spread': 'warn',
-    'prefer-template': 'warn',
-    'no-else-return': 'warn',
+    'prefer-template': 'off',
+    'no-else-return': 'off',
     'func-names': ['warn', 'never'],
     'one-var': ['warn', 'never'],
     'operator-assignment': 'warn',
@@ -171,22 +180,12 @@ module.exports = {
       }
     ],
     'import/no-duplicates': 'warn',
-    'import/order': [
-      'warn',
+    'sort-imports-es6-autofix/sort-imports-es6': [
+      2,
       {
-        groups: ['builtin', 'external', 'internal', 'unknown', 'parent', 'sibling', 'index', 'object', 'type'],
-        pathGroups: [
-          {
-            pattern: 'dist/**',
-            group: 'external'
-          }
-        ],
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true
-        },
-        'newlines-between': 'never',
-        warnOnUnassignedImports: true
+        ignoreCase: true,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single']
       }
     ],
     'wc/guard-super-call': 'off'

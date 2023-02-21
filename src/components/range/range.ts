@@ -1,21 +1,21 @@
-import { html } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { defaultValue } from '../../internal/default-value';
+import { FormControlController } from '../../internal/form';
+import { HasSlotController } from '../../internal/slot';
+import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { defaultValue } from '../../internal/default-value';
-import { FormSubmitController } from '../../internal/form';
-import LynkElement from '../../internal/lynk-element';
-import { HasSlotController } from '../../internal/slot';
-import { watch } from '../../internal/watch';
 import { LocalizeController } from '../../utilities/localize';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './range.styles';
-import type { LynkFormControl } from '../../internal/lynk-element';
 import type { CSSResultGroup } from 'lit';
+import type { LynkFormControl } from '../../internal/lynk-element';
 
 /**
  * @summary Ranges allow the user to select a single value within a given range using a slider.
- *
+ * @documentation https://lynk.design/components/range
  * @since 1.0
  * @status stable
  *
@@ -26,6 +26,7 @@ import type { CSSResultGroup } from 'lit';
  * @event on:change - Emitted when an alteration to the control's value is committed by the user.
  * @event on:focus - Emitted when the control gains focus.
  * @event on:input - Emitted when the control receives input.
+ * @event on:invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -46,18 +47,16 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkRange extends LynkElement implements LynkFormControl {
   static styles: CSSResultGroup = styles;
 
-  @query('.lynk-range__control') input: HTMLInputElement;
-  @query('.lynk-range__tooltip') output: HTMLOutputElement | null;
-
-  // @ts-expect-error -- Controller is currently unused
-  private readonly formSubmitController = new FormSubmitController(this);
+  private readonly formControlController = new FormControlController(this);
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
   private resizeObserver: ResizeObserver;
 
+  @query('.lynk-range__control') input: HTMLInputElement;
+  @query('.lynk-range__tooltip') output: HTMLOutputElement | null;
+
   @state() private hasFocus = false;
   @state() private hasTooltip = false;
-  @state() invalid = false;
   @property() title = ''; // make reactive to pass through
 
   /** The name of the range, submitted as a name/value pair with form data. */
@@ -93,8 +92,25 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
    */
   @property({ attribute: false }) tooltipFormatter: (value: number) => string = (value: number) => value.toString();
 
+  /**
+   * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+   * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+   * the same document or shadow root for this to work.
+   */
+  @property({ reflect: true }) form = '';
+
   /** The default value of the form control. Primarily used for resetting the form control. */
   @defaultValue() defaultValue = 0;
+
+  /** Gets the validity state object */
+  get validity() {
+    return this.input.validity;
+  }
+
+  /** Gets the validation message */
+  get validationMessage() {
+    return this.input.validationMessage;
+  }
 
   connectedCallback() {
     super.connectedCallback();
@@ -118,17 +134,106 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     this.resizeObserver.unobserve(this.input);
   }
 
-  /** Sets focus on the input. */
+  private handleChange() {
+    this.emit('on:change');
+  }
+
+  private handleInput() {
+    this.value = parseFloat(this.input.value);
+    this.emit('on:input');
+    this.syncRange();
+  }
+
+  private handleBlur() {
+    this.hasFocus = false;
+    this.hasTooltip = false;
+    this.emit('on:blur');
+  }
+
+  private handleFocus() {
+    this.hasFocus = true;
+    this.hasTooltip = true;
+    this.emit('on:focus');
+  }
+
+  private handleThumbDragStart() {
+    this.hasTooltip = true;
+  }
+
+  private handleThumbDragEnd() {
+    this.hasTooltip = false;
+  }
+
+  private syncProgress(percent: number) {
+    this.input.style.setProperty('--percent', `${percent * 100}%`);
+  }
+
+  private syncTooltip(percent: number) {
+    if (this.output !== null) {
+      const inputWidth = this.input.offsetWidth;
+      const tooltipWidth = this.output.offsetWidth;
+      const thumbSize = getComputedStyle(this.input).getPropertyValue('--thumb-size');
+      const isRtl = this.localize.dir() === 'rtl';
+      const percentAsWidth = inputWidth * percent;
+
+      // The calculations are used to "guess" where the thumb is located. Since we're using the native range control
+      // under the hood, we don't have access to the thumb's true coordinates. These measurements can be a pixel or two
+      // off depending on the size of the control, thumb, and tooltip dimensions.
+      if (isRtl) {
+        const x = `${inputWidth - percentAsWidth}px + ${percent} * ${thumbSize}`;
+        this.output.style.translate = `calc((${x} - ${tooltipWidth / 2}px - ${thumbSize} / 2))`;
+      } else {
+        const x = `${percentAsWidth}px - ${percent} * ${thumbSize}`;
+        this.output.style.translate = `calc(${x} - ${tooltipWidth / 2}px + ${thumbSize} / 2)`;
+      }
+    }
+  }
+
+  private handleInvalid(event: Event) {
+    this.formControlController.setValidity(false);
+    this.formControlController.emitInvalidEvent(event);
+  }
+
+  @watch('value', { waitUntilFirstUpdate: true })
+  handleValueChange() {
+    this.formControlController.updateValidity();
+
+    // The value may have constraints, so we set the native control's value and sync it back to ensure it adhere's to
+    // min, max, and step properly
+    this.input.value = this.value.toString();
+    this.value = parseFloat(this.input.value);
+
+    this.syncRange();
+  }
+
+  @watch('disabled', { waitUntilFirstUpdate: true })
+  handleDisabledChange() {
+    // Disabled form controls are always valid
+    this.formControlController.setValidity(this.disabled);
+  }
+
+  @watch('hasTooltip', { waitUntilFirstUpdate: true })
+  syncRange() {
+    const percent = Math.max(0, (this.value - this.min) / (this.max - this.min));
+
+    this.syncProgress(percent);
+
+    if (this.tooltip !== 'none') {
+      this.syncTooltip(percent);
+    }
+  }
+
+  /** Sets focus on the range. */
   focus(options?: FocusOptions) {
     this.input.focus(options);
   }
 
-  /** Removes focus from the input. */
+  /** Removes focus from the range. */
   blur() {
     this.input.blur();
   }
 
-  /** Increments the value of the input by the value of the step attribute. */
+  /** Increments the value of the range by the value of the step attribute. */
   stepUp() {
     this.input.stepUp();
     if (this.value !== Number(this.input.value)) {
@@ -136,7 +241,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     }
   }
 
-  /** Decrements the value of the input by the value of the step attribute. */
+  /** Decrements the value of the range by the value of the step attribute. */
   stepDown() {
     this.input.stepDown();
     if (this.value !== Number(this.input.value)) {
@@ -157,92 +262,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
   /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
   setCustomValidity(message: string) {
     this.input.setCustomValidity(message);
-    this.invalid = !this.input.checkValidity();
-  }
-
-  handleChange() {
-    this.emit('on:change');
-  }
-
-  handleInput() {
-    this.value = parseFloat(this.input.value);
-    this.emit('on:input');
-    this.syncRange();
-  }
-
-  handleBlur() {
-    this.hasFocus = false;
-    this.hasTooltip = false;
-    this.emit('on:blur');
-  }
-
-  @watch('value', { waitUntilFirstUpdate: true })
-  handleValueChange() {
-    this.invalid = !this.input.checkValidity();
-
-    // The value may have constraints, so we set the native control's value and sync it back to ensure it adhere's to
-    // min, max, and step properly
-    this.input.value = this.value.toString();
-    this.value = parseFloat(this.input.value);
-
-    this.syncRange();
-  }
-
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    // Disabled form controls are always valid, so we need to recheck validity when the state changes
-    this.input.disabled = this.disabled;
-    this.invalid = !this.input.checkValidity();
-  }
-
-  handleFocus() {
-    this.hasFocus = true;
-    this.hasTooltip = true;
-    this.emit('on:focus');
-  }
-
-  handleThumbDragStart() {
-    this.hasTooltip = true;
-  }
-
-  handleThumbDragEnd() {
-    this.hasTooltip = false;
-  }
-
-  @watch('hasTooltip', { waitUntilFirstUpdate: true })
-  syncRange() {
-    const percent = Math.max(0, (this.value - this.min) / (this.max - this.min));
-
-    this.syncProgress(percent);
-
-    if (this.tooltip !== 'none') {
-      this.syncTooltip(percent);
-    }
-  }
-
-  syncProgress(percent: number) {
-    this.input.style.setProperty('--percent', `${percent * 100}%`);
-  }
-
-  syncTooltip(percent: number) {
-    if (this.output !== null) {
-      const inputWidth = this.input.offsetWidth;
-      const tooltipWidth = this.output.offsetWidth;
-      const thumbSize = getComputedStyle(this.input).getPropertyValue('--thumb-size');
-      const isRtl = this.localize.dir() === 'rtl';
-      const percentAsWidth = inputWidth * percent;
-
-      // The calculations are used to "guess" where the thumb is located. Since we're using the native range control
-      // under the hood, we don't have access to the thumb's true coordinates. These measurements can be a pixel or two
-      // off depending on the size of the control, thumb, and tooltip dimensions.
-      if (isRtl) {
-        const x = `${inputWidth - percentAsWidth}px + ${percent} * ${thumbSize}`;
-        this.output.style.translate = `calc((${x} - ${tooltipWidth / 2}px - ${thumbSize} / 2))`;
-      } else {
-        const x = `${percentAsWidth}px - ${percent} * ${thumbSize}`;
-        this.output.style.translate = `calc(${x} - ${tooltipWidth / 2}px + ${thumbSize} / 2)`;
-      }
-    }
+    this.formControlController.updateValidity();
   }
 
   render() {
@@ -304,6 +324,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
               @change=${this.handleChange}
               @input=${this.handleInput}
               @focus=${this.handleFocus}
+              @invalid=${this.handleInvalid}
               @blur=${this.handleBlur}
             />
             ${this.tooltip !== 'none' && !this.disabled

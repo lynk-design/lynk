@@ -22,6 +22,7 @@ To animate an element, wrap it in `<lynk-animation>` and set an animation `name`
   }
 </style>
 ```
+
 <lynk-alert open>The animation will only be applied to the first child element found in `<lynk-animation>`.</lynk-alert>
 
 ## Examples

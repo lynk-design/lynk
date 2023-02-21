@@ -46,8 +46,8 @@ export default css`
     vertical-align: middle;
     overflow: hidden;
     cursor: pointer;
-    transition: var(--lynk-transition-fast) color, var(--lynk-transition-fast) border, var(--lynk-transition-fast) box-shadow,
-      var(--lynk-transition-fast) background-color;
+    transition: var(--lynk-transition-fast) color, var(--lynk-transition-fast) border,
+      var(--lynk-transition-fast) box-shadow, var(--lynk-transition-fast) background-color;
   }
 
   .lynk-select__display-input {
@@ -62,6 +62,10 @@ export default css`
     padding: 0;
     margin: 0;
     -webkit-appearance: none;
+  }
+
+  .lynk-select:not(.lynk-select--disabled):hover .lynk-select__display-input {
+    color: var(--lynk-input-color-hover);
   }
 
   .lynk-select__display-input:focus {
@@ -81,6 +85,8 @@ export default css`
 
   .lynk-select__value-input {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     padding: 0;
@@ -364,7 +370,7 @@ export default css`
   .lynk-select--restricted .lynk-select__combobox {
     border-color: transparent;
     cursor: initial;
-    gap: 0
+    gap: 0;
   }
 
   .lynk-select--restricted .lynk-select__combobox,

@@ -1,8 +1,9 @@
-import { expect, fixture, html, oneEvent } from '@open-wc/testing';
-import { sendKeys } from '@web/test-runner-commands';
-import sinon from 'sinon';
 import { clickOnElement } from '../../internal/test';
+import { expect, fixture, html, oneEvent } from '@open-wc/testing';
+import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests';
+import { sendKeys } from '@web/test-runner-commands';
 import { serialize } from '../../utilities/form';
+import sinon from 'sinon';
 import type LynkRange from './range';
 
 describe('<lynk-range>', () => {
@@ -20,7 +21,7 @@ describe('<lynk-range>', () => {
     expect(el.label).to.equal('');
     expect(el.helpText).to.equal('');
     expect(el.disabled).to.be.false;
-    expect(el.invalid).to.be.false;
+    expect(el.checkValidity()).to.be.true;
     expect(el.min).to.equal(0);
     expect(el.max).to.equal(100);
     expect(el.step).to.equal(1);
@@ -137,7 +138,7 @@ describe('<lynk-range>', () => {
     });
   });
 
-  describe('when serializing', () => {
+  describe('when submitting a form', () => {
     it('should serialize its name and value with FormData', async () => {
       const form = await fixture<HTMLFormElement>(html` <form><lynk-range name="a" value="1"></lynk-range></form> `);
       const formData = new FormData(form);
@@ -148,6 +149,55 @@ describe('<lynk-range>', () => {
       const form = await fixture<HTMLFormElement>(html` <form><lynk-range name="a" value="1"></lynk-range></form> `);
       const json = serialize(form);
       expect(json.a).to.equal('1');
+    });
+
+    it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
+      const range = await fixture<HTMLFormElement>(html` <lynk-range></lynk-range> `);
+
+      range.setCustomValidity('Invalid selection');
+      await range.updateComplete;
+
+      expect(range.checkValidity()).to.be.false;
+      expect(range.hasAttribute('data-invalid')).to.be.true;
+      expect(range.hasAttribute('data-valid')).to.be.false;
+      expect(range.hasAttribute('data-user-invalid')).to.be.false;
+      expect(range.hasAttribute('data-user-valid')).to.be.false;
+
+      await clickOnElement(range);
+      await range.updateComplete;
+      range.blur();
+      await range.updateComplete;
+
+      expect(range.hasAttribute('data-user-invalid')).to.be.true;
+      expect(range.hasAttribute('data-user-valid')).to.be.false;
+    });
+
+    it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
+      const el = await fixture<HTMLFormElement>(html` <form novalidate><lynk-range></lynk-range></form> `);
+      const range = el.querySelector<LynkRange>('lynk-range')!;
+
+      range.setCustomValidity('Invalid value');
+      await range.updateComplete;
+
+      expect(range.hasAttribute('data-invalid')).to.be.true;
+      expect(range.hasAttribute('data-valid')).to.be.false;
+      expect(range.hasAttribute('data-user-invalid')).to.be.false;
+      expect(range.hasAttribute('data-user-valid')).to.be.false;
+    });
+
+    it('should be present in form data when using the form attribute and located outside of a <form>', async () => {
+      const el = await fixture<HTMLFormElement>(html`
+        <div>
+          <form id="f">
+            <lynk-button type="submit">Submit</lynk-button>
+          </form>
+          <lynk-range form="f" name="a" value="50"></lynk-range>
+        </div>
+      `);
+      const form = el.querySelector('form')!;
+      const formData = new FormData(form);
+
+      expect(formData.get('a')).to.equal('50');
     });
   });
 
@@ -180,4 +230,6 @@ describe('<lynk-range>', () => {
       expect(input.value).to.equal(0);
     });
   });
+
+  runFormControlBaseTests('lynk-range');
 });

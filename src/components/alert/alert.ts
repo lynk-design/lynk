@@ -1,14 +1,14 @@
-import { html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { animateTo, stopAnimations } from '../../internal/animate';
-import { waitForEvent } from '../../internal/event';
-import LynkElement from '../../internal/lynk-element';
-import { HasSlotController } from '../../internal/slot';
-import { watch } from '../../internal/watch';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import { LocalizeController } from '../../utilities/localize';
 import '../icon-button/icon-button';
+import { animateTo, stopAnimations } from '../../internal/animate';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query } from 'lit/decorators.js';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { HasSlotController } from '../../internal/slot';
+import { html } from 'lit';
+import { LocalizeController } from '../../utilities/localize';
+import { waitForEvent } from '../../internal/event';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './alert.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -189,12 +189,12 @@ export default class LynkAlert extends LynkElement {
           'lynk-alert--open': this.open,
           'lynk-alert--closable': this.closable,
           'lynk-alert--has-icon':
-            this.hasSlotController.test('icon')
-            || this.type === 'info'
-            || this.type === 'neutral'
-            || this.type === 'success'
-            || this.type === 'warning'
-            || this.type === 'danger',
+            this.hasSlotController.test('icon') ||
+            this.type === 'info' ||
+            this.type === 'neutral' ||
+            this.type === 'success' ||
+            this.type === 'warning' ||
+            this.type === 'danger',
           'lynk-alert--primary': this.type === 'primary' || this.type === 'info',
           'lynk-alert--success': this.type === 'success',
           'lynk-alert--neutral': this.type === 'neutral',
@@ -210,29 +210,33 @@ export default class LynkAlert extends LynkElement {
         <slot name="icon" part="icon" class="lynk-alert__icon">
           ${this.type
             ? html`
-              <lynk-icon
-                library="system"
-                name="${
-                  this.type === 'info' ? 'info-circle' :
-                  this.type === 'neutral' ? 'question-square' :
-                  this.type === 'success' ? 'check-circle' :
-                  this.type === 'warning' ? 'exclamation-triangle' :
-                  this.type === 'danger' ? 'exclamation-octagon' :
-                  ''
-                }"
-              ></lynk-icon>
-            ` : ''}
+                <lynk-icon
+                  library="system"
+                  name="${this.type === 'info'
+                    ? 'info-circle'
+                    : this.type === 'neutral'
+                    ? 'question-square'
+                    : this.type === 'success'
+                    ? 'check-circle'
+                    : this.type === 'warning'
+                    ? 'exclamation-triangle'
+                    : this.type === 'danger'
+                    ? 'exclamation-octagon'
+                    : ''}"
+                ></lynk-icon>
+              `
+            : ''}
         </slot>
 
         <slot part="message" class="lynk-alert__message" aria-live="polite"></slot>
 
         ${this.hasSlotController.test('action')
           ? html`
-            <span part="action" class="lynk-alert__action">
-              <slot name="action"></slot>
-            </span>
-          ` : ''}
-
+              <span part="action" class="lynk-alert__action">
+                <slot name="action"></slot>
+              </span>
+            `
+          : ''}
         ${this.closable
           ? html`
               <lynk-icon-button

@@ -85,6 +85,6 @@ export default css`
   }
 
   .lynk-stack::slotted(lynk-icon) {
-      flex-shrink: 0;
+    flex-shrink: 0;
   }
 `;

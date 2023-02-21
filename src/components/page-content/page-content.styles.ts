@@ -21,12 +21,12 @@ export default css`
   }
 
   .lynk-page-content.lynk-page-content--fluid {
-      width: fit-content;
-      max-width: unset;
-      padding-left: 0;
-      padding-right: 0;
-      margin: 0 var(--lynk-spacing-large);
-      min-width: calc(100% - (var(--lynk-spacing-large) * 2));
+    width: fit-content;
+    max-width: unset;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 var(--lynk-spacing-large);
+    min-width: calc(100% - (var(--lynk-spacing-large) * 2));
   }
 
   @media (min-width: 588px) {
@@ -83,7 +83,6 @@ export default css`
       min-width: calc(100% - (var(--lynk-spacing-2x-large) * 2));
     }
   }
-
 
   //   :host {
   //     display: contents;

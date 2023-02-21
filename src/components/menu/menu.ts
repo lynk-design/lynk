@@ -1,16 +1,16 @@
-import { html } from 'lit';
 import { customElement, query } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import styles from './menu.styles';
-import type LynkMenuItem from '../../components/menu-item/menu-item';
 import type { CSSResultGroup } from 'lit';
+import type LynkMenuItem from '../menu-item/menu-item';
 export interface MenuSelectEventDetail {
   item: LynkMenuItem;
 }
 
 /**
  * @summary Menus provide a list of options for the user to choose from.
- *
+ * @documentation https://lynk.design/components/menu
  * @since 1.0
  * @status stable
  *
@@ -27,16 +27,6 @@ export default class LynkMenu extends LynkElement {
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'menu');
-  }
-
-  private getAllItems() {
-    return [...this.defaultSlot.assignedElements({ flatten: true })].filter((el: HTMLElement) => {
-      if (el.inert || !this.isMenuItem(el)) {
-        return false;
-      }
-
-      return true;
-    }) as LynkMenuItem[];
   }
 
   private handleClick(event: MouseEvent) {
@@ -123,6 +113,16 @@ export default class LynkMenu extends LynkElement {
       item.tagName.toLowerCase() === 'lynk-menu-item' ||
       ['menuitem', 'menuitemcheckbox', 'menuitemradio'].includes(item.getAttribute('role') ?? '')
     );
+  }
+
+  /** @internal Gets all slotted menu items, ignoring dividers, headers, and other elements. */
+  getAllItems() {
+    return [...this.defaultSlot.assignedElements({ flatten: true })].filter((el: HTMLElement) => {
+      if (el.inert || !this.isMenuItem(el)) {
+        return false;
+      }
+      return true;
+    }) as LynkMenuItem[];
   }
 
   /**

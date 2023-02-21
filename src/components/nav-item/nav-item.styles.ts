@@ -54,7 +54,7 @@ export default css`
     bottom: -2px;
     top: -2px;
     left: -8px;
-    content: "";
+    content: '';
     pointer-events: none;
     border-radius: var(--border-radius);
   }

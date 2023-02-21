@@ -69,9 +69,8 @@ const waitForHeaderToBeActive = async (container: HTMLElement, headerTestId: str
   });
   if (generalHeader) {
     return generalHeader;
-  } else {
-    throw new Error(`did not find error with testid=${headerTestId}`);
   }
+  throw new Error(`did not find error with testid=${headerTestId}`);
 };
 
 describe('<lynk-tab-group>', () => {
@@ -212,9 +211,8 @@ describe('<lynk-tab-group>', () => {
         } else if (errorHandler) {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           return errorHandler(event, source, lineno, colno, error);
-        } else {
-          return true;
         }
+        return true;
       };
     });
 
@@ -299,7 +297,10 @@ describe('<lynk-tab-group>', () => {
   });
 
   describe('tab selection', () => {
-    const expectCustomTabToBeActiveAfter = async (tabGroup: LynkTabGroup, action: () => Promise<void>): Promise<void> => {
+    const expectCustomTabToBeActiveAfter = async (
+      tabGroup: LynkTabGroup,
+      action: () => Promise<void>
+    ): Promise<void> => {
       const generalHeader = await waitForHeaderToBeActive(tabGroup, 'general-header');
       generalHeader.focus();
 
@@ -352,7 +353,9 @@ describe('<lynk-tab-group>', () => {
         <lynk-tab-group>
           <lynk-tab slot="nav" panel="general" data-testid="general-header">General</lynk-tab>
           <lynk-tab slot="nav" panel="custom">Custom</lynk-tab>
-          <lynk-tab-panel name="general" data-testid="general-tab-content">This is the general tab panel.</lynk-tab-panel>
+          <lynk-tab-panel name="general" data-testid="general-tab-content"
+            >This is the general tab panel.</lynk-tab-panel
+          >
           <lynk-tab-panel name="custom">This is the custom tab panel.</lynk-tab-panel>
         </lynk-tab-group>
       `);
@@ -366,7 +369,9 @@ describe('<lynk-tab-group>', () => {
         <lynk-tab-group>
           <lynk-tab slot="nav" panel="general" data-testid="general-header">General</lynk-tab>
           <lynk-tab slot="nav" panel="disabled" data-testid="disabled-header" disabled>disabled</lynk-tab>
-          <lynk-tab-panel name="general" data-testid="general-tab-content">This is the general tab panel.</lynk-tab-panel>
+          <lynk-tab-panel name="general" data-testid="general-tab-content"
+            >This is the general tab panel.</lynk-tab-panel
+          >
           <lynk-tab-panel name="disabled">This is the disabled tab panel.</lynk-tab-panel>
         </lynk-tab-group>
       `);
@@ -422,7 +427,9 @@ describe('<lynk-tab-group>', () => {
         <lynk-tab-group>
           <lynk-tab slot="nav" panel="general" data-testid="general-header">General</lynk-tab>
           <lynk-tab slot="nav" panel="disabled" disabled>Disabled</lynk-tab>
-          <lynk-tab-panel name="general" data-testid="general-tab-content">This is the general tab panel.</lynk-tab-panel>
+          <lynk-tab-panel name="general" data-testid="general-tab-content"
+            >This is the general tab panel.</lynk-tab-panel
+          >
           <lynk-tab-panel name="disabled">This is the custom tab panel.</lynk-tab-panel>
         </lynk-tab-group>
       `);

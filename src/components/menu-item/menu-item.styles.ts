@@ -93,7 +93,7 @@ export default css`
 
   @media (forced-colors: active) {
     :host(:hover:not([aria-disabled='true'])) .lynk-menu-item,
-    :host(:focus-visible) .lynk-menu-item {
+    :host(:focus) .lynk-menu-item {
       outline: dashed 1px SelectedItem;
       outline-offset: -1px;
     }

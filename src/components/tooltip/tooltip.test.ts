@@ -136,7 +136,6 @@ describe('<lynk-tooltip>', () => {
     expect(body.hidden).to.be.true;
   });
 
-
   it('should show when open initially', async () => {
     const el = await fixture<LynkTooltip>(html`
       <lynk-tooltip content="This is a tooltip" open>

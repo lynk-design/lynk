@@ -1,18 +1,18 @@
-import { html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
-import LynkElement from '../../internal/lynk-element';
-import { watch } from '../../internal/watch';
-import styles from './icon.styles';
 import { getIconLibrary, unwatchIcon, watchIcon } from './library';
+import { html } from 'lit';
 import { requestIcon } from './request';
+import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
+import styles from './icon.styles';
 import type { CSSResultGroup } from 'lit';
 
 let parser: DOMParser;
 
 /**
  * @summary Icons are symbols that can be used to represent various options within an application.
- *
+ * @documentation https://lynk.design/components/icon
  * @since 1.0
  * @status stable
  *
@@ -29,13 +29,15 @@ export default class LynkIcon extends LynkElement {
   @property({ reflect: true }) name?: string;
 
   /**
-   * An external URL of an SVG file.
-   *
-   * WARNING: Be sure you trust the content you are including as it will be executed as code and can result in XSS attacks.
+   * An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and
+   * can result in XSS attacks.
    */
   @property() src?: string;
 
-  /** An alternate description to use for accessibility. If omitted, the icon will be ignored by assistive devices. */
+  /**
+   * An alternate description to use for assistive devices. If omitted, the icon will be considered presentational and
+   * ignored by assistive devices.
+   */
   @property() label = '';
 
   /** The name of a registered custom icon library. */
@@ -83,9 +85,7 @@ export default class LynkIcon extends LynkElement {
     }
   }
 
-  @watch('name')
-  @watch('src')
-  @watch('library')
+  @watch(['name', 'src', 'library'])
   async setIcon() {
     const library = getIconLibrary(this.library);
     const url = this.getUrl();

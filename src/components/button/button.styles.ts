@@ -319,112 +319,112 @@ export default css`
    * Stealth buttons
    */
 
-   .lynk-button--stealth {
-     background: none;
-     border-color: transparent;
-   }
+  .lynk-button--stealth {
+    background: none;
+    border-color: transparent;
+  }
 
-   /* Default */
-   .lynk-button--stealth.lynk-button--default {
-     color: var(--lynk-color-primary-600);
-   }
+  /* Default */
+  .lynk-button--stealth.lynk-button--default {
+    color: var(--lynk-color-primary-600);
+  }
 
-   .lynk-button--stealth.lynk-button--default:hover:not(.lynk-button--disabled) {
-     color: var(--lynk-color-primary-500);
-   }
+  .lynk-button--stealth.lynk-button--default:hover:not(.lynk-button--disabled) {
+    color: var(--lynk-color-primary-500);
+  }
 
-   .lynk-button--stealth.lynk-button--default:active:not(.lynk-button--disabled) {
-     color: var(--lynk-color-neutral-0);
-   }
+  .lynk-button--stealth.lynk-button--default:active:not(.lynk-button--disabled) {
+    color: var(--lynk-color-neutral-0);
+  }
 
-   /* Primary */
-   .lynk-button--stealth.lynk-button--primary {
-     color: var(--lynk-color-primary-600);
-   }
+  /* Primary */
+  .lynk-button--stealth.lynk-button--primary {
+    color: var(--lynk-color-primary-600);
+  }
 
-   .lynk-button--stealth.lynk-button--primary:hover:not(.lynk-button--disabled) {
-     color: var(--lynk-color-primary-600);
-     background-color: var(--lynk-color-primary-a25);
-   }
+  .lynk-button--stealth.lynk-button--primary:hover:not(.lynk-button--disabled) {
+    color: var(--lynk-color-primary-600);
+    background-color: var(--lynk-color-primary-a25);
+  }
 
-   .lynk-button--stealth.lynk-button--primary:active:not(.lynk-button--disabled) {
-     color: var(--lynk-color-primary-700);
-     background-color: var(--lynk-color-primary-a50);
-   }
+  .lynk-button--stealth.lynk-button--primary:active:not(.lynk-button--disabled) {
+    color: var(--lynk-color-primary-700);
+    background-color: var(--lynk-color-primary-a50);
+  }
 
-   /* Success */
-   .lynk-button--stealth.lynk-button--success {
-     color: var(--lynk-color-success-600);
-   }
+  /* Success */
+  .lynk-button--stealth.lynk-button--success {
+    color: var(--lynk-color-success-600);
+  }
 
-   .lynk-button--stealth.lynk-button--success:hover:not(.lynk-button--disabled) {
-     color: var(--lynk-color-success-600);
-     background-color: var(--lynk-color-success-a10);
-   }
+  .lynk-button--stealth.lynk-button--success:hover:not(.lynk-button--disabled) {
+    color: var(--lynk-color-success-600);
+    background-color: var(--lynk-color-success-a10);
+  }
 
-   .lynk-button--stealth.lynk-button--success:active:not(.lynk-button--disabled) {
-     color: var(--lynk-color-success-700);
-     background-color: var(--lynk-color-success-a25);
-   }
+  .lynk-button--stealth.lynk-button--success:active:not(.lynk-button--disabled) {
+    color: var(--lynk-color-success-700);
+    background-color: var(--lynk-color-success-a25);
+  }
 
-   /* Neutral */
-   .lynk-button--stealth.lynk-button--neutral {
-     color: var(--lynk-color-neutral-600);
-   }
+  /* Neutral */
+  .lynk-button--stealth.lynk-button--neutral {
+    color: var(--lynk-color-neutral-600);
+  }
 
-   .lynk-button--stealth.lynk-button--neutral:hover:not(.lynk-button--disabled) {
-     color: var(--lynk-color-neutral-600);
-     background-color: var(--lynk-color-neutral-50);
-   }
+  .lynk-button--stealth.lynk-button--neutral:hover:not(.lynk-button--disabled) {
+    color: var(--lynk-color-neutral-600);
+    background-color: var(--lynk-color-neutral-50);
+  }
 
-   .lynk-button--stealth.lynk-button--neutral:active:not(.lynk-button--disabled) {
-     color: var(--lynk-color-neutral-700);
-     background-color: var(--lynk-color-neutral-100);
-   }
+  .lynk-button--stealth.lynk-button--neutral:active:not(.lynk-button--disabled) {
+    color: var(--lynk-color-neutral-700);
+    background-color: var(--lynk-color-neutral-100);
+  }
 
-   /* Warning */
-   .lynk-button--stealth.lynk-button--warning {
-     color: var(--lynk-color-warning-600);
-   }
+  /* Warning */
+  .lynk-button--stealth.lynk-button--warning {
+    color: var(--lynk-color-warning-600);
+  }
 
-   .lynk-button--stealth.lynk-button--warning:hover:not(.lynk-button--disabled) {
-     color: var(--lynk-color-warning-600);
-     background-color: var(--lynk-color-warning-a10);
-   }
+  .lynk-button--stealth.lynk-button--warning:hover:not(.lynk-button--disabled) {
+    color: var(--lynk-color-warning-600);
+    background-color: var(--lynk-color-warning-a10);
+  }
 
-   .lynk-button--stealth.lynk-button--warning:active:not(.lynk-button--disabled) {
-     color: var(--lynk-color-warning-700);
-     background-color: var(--lynk-color-warning-a25);
-   }
+  .lynk-button--stealth.lynk-button--warning:active:not(.lynk-button--disabled) {
+    color: var(--lynk-color-warning-700);
+    background-color: var(--lynk-color-warning-a25);
+  }
 
-   /* Danger */
-   .lynk-button--stealth.lynk-button--danger {
-     color: var(--lynk-color-danger-600);
-   }
+  /* Danger */
+  .lynk-button--stealth.lynk-button--danger {
+    color: var(--lynk-color-danger-600);
+  }
 
-   .lynk-button--stealth.lynk-button--danger:hover:not(.lynk-button--disabled) {
-     color: var(--lynk-color-danger-600);
-     background-color: var(--lynk-color-danger-a10);
-   }
+  .lynk-button--stealth.lynk-button--danger:hover:not(.lynk-button--disabled) {
+    color: var(--lynk-color-danger-600);
+    background-color: var(--lynk-color-danger-a10);
+  }
 
-   .lynk-button--stealth.lynk-button--danger:active:not(.lynk-button--disabled) {
-     color: var(--lynk-color-danger-700);
-     background-color: var(--lynk-color-danger-a25);
-   }
+  .lynk-button--stealth.lynk-button--danger:active:not(.lynk-button--disabled) {
+    color: var(--lynk-color-danger-700);
+    background-color: var(--lynk-color-danger-a25);
+  }
 
   /*
    * Size modifiers
    */
 
-   .lynk-button--tiny {
-     font-size: var(--lynk-button-font-size-small);
-     height: var(--lynk-button-height-tiny);
-     line-height: calc(var(--lynk-button-height-tiny) - var(--lynk-button-border-width) * 2);
-     border-radius: var(--lynk-button-border-radius-small);
-   }
-   .lynk-button--tiny .lynk-button__label::slotted(lynk-icon) {
-     font-size: var(--lynk-font-size-small);
-   }
+  .lynk-button--tiny {
+    font-size: var(--lynk-button-font-size-small);
+    height: var(--lynk-button-height-tiny);
+    line-height: calc(var(--lynk-button-height-tiny) - var(--lynk-button-border-width) * 2);
+    border-radius: var(--lynk-button-border-radius-small);
+  }
+  .lynk-button--tiny .lynk-button__label::slotted(lynk-icon) {
+    font-size: var(--lynk-font-size-small);
+  }
 
   .lynk-button--small {
     font-size: var(--lynk-button-font-size-small);
@@ -459,14 +459,13 @@ export default css`
     vertical-align: -4px;
   }
 
-
   /*
    * Pill modifier
    */
 
-   .lynk-button--pill.lynk-button--tiny {
-     border-radius: var(--lynk-button-height-tiny);
-   }
+  .lynk-button--pill.lynk-button--tiny {
+    border-radius: var(--lynk-button-height-tiny);
+  }
 
   .lynk-button--pill.lynk-button--small {
     border-radius: var(--lynk-button-height-small);
@@ -610,9 +609,9 @@ export default css`
    * Button spacing
    */
 
-   .lynk-button--has-label.lynk-button--tiny .lynk-button__label {
-     padding: 0 var(--lynk-spacing-x-small);
-   }
+  .lynk-button--has-label.lynk-button--tiny .lynk-button__label {
+    padding: 0 var(--lynk-spacing-x-small);
+  }
 
   .lynk-button--has-label.lynk-button--small .lynk-button__label {
     padding: 0 var(--lynk-spacing-small);
@@ -725,7 +724,13 @@ export default css`
   }
 
   /* Add a visual separator between solid buttons */
-  :host(.lynk-button-group__button:not(.lynk-button-group__button--focus, .lynk-button-group__button--first, [variant='default']):not(:hover, :active, :focus))
+  :host(
+      .lynk-button-group__button:not(
+          .lynk-button-group__button--focus,
+          .lynk-button-group__button--first,
+          [variant='default']
+        ):not(:hover, :active, :focus)
+    )
     .lynk-button:after {
     content: '';
     position: absolute;

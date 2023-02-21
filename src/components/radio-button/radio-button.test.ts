@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import type LynkRadioGroup from '../radio-group/radio-group';
 import type LynkRadioButton from './radio-button';
+import type LynkRadioGroup from '../radio-group/radio-group';
 
 describe('<lynk-radio-button>', () => {
   it('should not get checked when disabled', async () => {

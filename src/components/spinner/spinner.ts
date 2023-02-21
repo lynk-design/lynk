@@ -1,13 +1,13 @@
-import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import LynkElement from '../../internal/lynk-element';
+import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize';
+import LynkElement from '../../internal/lynk-element';
 import styles from './spinner.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Spinners are used to show the progress of an indeterminate operation.
- *
+ * @documentation https://lynk.design/components/spinner
  * @since 1.0
  * @status stable
  *

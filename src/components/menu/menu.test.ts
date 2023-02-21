@@ -1,9 +1,9 @@
 import { expect, fixture, waitUntil } from '@open-wc/testing';
-import { sendKeys } from '@web/test-runner-commands';
 import { html } from 'lit';
+import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import type LynkMenuItem from '../menu-item/menu-item';
 import type LynkMenu from './menu';
+import type LynkMenuItem from '../menu-item/menu-item';
 
 interface Payload {
   item: LynkMenuItem;

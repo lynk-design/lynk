@@ -33,6 +33,7 @@ export default css`
   }
 
   .lynk-switch {
+    position: relative;
     display: inline-flex;
     align-items: center;
     font-family: var(--lynk-input-font-family);
@@ -88,12 +89,17 @@ export default css`
   }
 
   /* Focus */
-  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
+  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control {
     background-color: var(--lynk-color-neutral-400);
     border-color: var(--lynk-color-neutral-400);
   }
 
-  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
+  .lynk-switch:not(.lynk-switch--checked):not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control
+    .lynk-switch__thumb {
     background-color: var(--lynk-color-neutral-0);
     border-color: var(--lynk-color-primary-600);
     outline: var(--lynk-focus-ring);
@@ -124,12 +130,17 @@ export default css`
   }
 
   /* Checked + focus */
-  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
+  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control {
     background-color: var(--lynk-color-primary-600);
     border-color: var(--lynk-color-primary-600);
   }
 
-  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
+  .lynk-switch.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control
+    .lynk-switch__thumb {
     background-color: var(--lynk-color-neutral-0);
     border-color: var(--lynk-color-primary-600);
     outline: var(--lynk-focus-ring);
@@ -152,17 +163,24 @@ export default css`
     border-color: var(--lynk-color-success);
   }
 
-  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover .lynk-switch__thumb {
+  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__control:hover
+    .lynk-switch__thumb {
     border-color: var(--lynk-color-success);
   }
 
   /* Success + Checked + focus */
-  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
+  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control {
     background-color: var(--lynk-color-success);
     border-color: var(--lynk-color-success);
   }
 
-  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
+  .lynk-switch.lynk-switch--success.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control
+    .lynk-switch__thumb {
     border-color: var(--lynk-color-success);
   }
 
@@ -182,17 +200,24 @@ export default css`
     border-color: var(--lynk-color-warning);
   }
 
-  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover .lynk-switch__thumb {
+  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__control:hover
+    .lynk-switch__thumb {
     border-color: var(--lynk-color-warning);
   }
 
   /* Warning + Checked + focus */
-  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
+  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control {
     background-color: var(--lynk-color-warning);
     border-color: var(--lynk-color-warning);
   }
 
-  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
+  .lynk-switch.lynk-switch--warning.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control
+    .lynk-switch__thumb {
     border-color: var(--lynk-color-warning);
   }
 
@@ -212,17 +237,24 @@ export default css`
     border-color: var(--lynk-color-danger);
   }
 
-  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__control:hover .lynk-switch__thumb {
+  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__control:hover
+    .lynk-switch__thumb {
     border-color: var(--lynk-color-danger);
   }
 
   /* Danger + Checked + focus */
-  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control {
+  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control {
     background-color: var(--lynk-color-danger);
     border-color: var(--lynk-color-danger);
   }
 
-  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled) .lynk-switch__input:focus-visible ~ .lynk-switch__control .lynk-switch__thumb {
+  .lynk-switch.lynk-switch--danger.lynk-switch--checked:not(.lynk-switch--disabled)
+    .lynk-switch__input:focus-visible
+    ~ .lynk-switch__control
+    .lynk-switch__thumb {
     border-color: var(--lynk-color-danger);
   }
 
