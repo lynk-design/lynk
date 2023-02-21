@@ -1,8 +1,6 @@
 import '../button/button';
-import { animateTo, stopAnimations } from '../../internal/animate';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import { HasSlotController } from '../../internal/slot';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize';
@@ -149,8 +147,6 @@ export default class LynkPageSidebar extends LynkElement {
       this.emit('on:show');
 
       this.updateVisibility();
-      await stopAnimations(this.body);
-      this.container.hidden = !this.open;
 
       this.emit('after:show');
     } else {
@@ -255,22 +251,6 @@ export default class LynkPageSidebar extends LynkElement {
     `;
   }
 }
-
-setDefaultAnimation('sidebar.show', {
-  keyframes: [
-    { width: '0', opacity: '0' },
-    { width: 'auto', opacity: '1' }
-  ],
-  options: { duration: 250, easing: 'linear' }
-});
-
-setDefaultAnimation('sidebar.hide', {
-  keyframes: [
-    { width: 'auto', opacity: '1' },
-    { width: '0', opacity: '0' }
-  ],
-  options: { duration: 250, easing: 'linear' }
-});
 
 declare global {
   interface HTMLElementTagNameMap {
