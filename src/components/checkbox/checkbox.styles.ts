@@ -9,6 +9,7 @@ export default css`
   }
 
   .lynk-checkbox {
+    position: relative;
     display: inline-flex;
     align-items: top;
     font-family: var(--lynk-input-font-family);
@@ -71,7 +72,9 @@ export default css`
   }
 
   /* Focus */
-  .lynk-checkbox:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled) .lynk-checkbox__input:focus-visible ~ .lynk-checkbox__control {
+  .lynk-checkbox:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled)
+    .lynk-checkbox__input:focus-visible
+    ~ .lynk-checkbox__control {
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
   }
@@ -91,8 +94,12 @@ export default css`
   }
 
   /* Checked/indeterminate + focus */
-  .lynk-checkbox.lynk-checkbox--checked:not(.lynk-checkbox--disabled) .lynk-checkbox__input:focus-visible ~ .lynk-checkbox__control,
-  .lynk-checkbox.lynk-checkbox--indeterminate:not(.lynk-checkbox--disabled) .lynk-checkbox__input:focus-visible ~ .lynk-checkbox__control {
+  .lynk-checkbox.lynk-checkbox--checked:not(.lynk-checkbox--disabled)
+    .lynk-checkbox__input:focus-visible
+    ~ .lynk-checkbox__control,
+  .lynk-checkbox.lynk-checkbox--indeterminate:not(.lynk-checkbox--disabled)
+    .lynk-checkbox__input:focus-visible
+    ~ .lynk-checkbox__control {
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
   }
@@ -104,7 +111,7 @@ export default css`
   }
 
   .lynk-checkbox--has-label .lynk-checkbox__label {
-      margin-inline-start: 0.5em;
+    margin-inline-start: 0.5em;
   }
 
   .lynk-checkbox__label {

@@ -2,29 +2,41 @@ import { getOffset } from './offset';
 
 const locks = new Set();
 
-//
-// Prevents body scrolling. Keeps track of which elements requested a lock so multiple levels of locking are possible
-// without premature unlocking.
-//
-export function lockBodyScrolling(lockingEl: HTMLElement) {
-  locks.add(lockingEl);
-  document.body.classList.add('lynk-scroll-lock');
+/** Returns the width of the document's scrollbar */
+function getScrollbarWidth() {
+  const documentWidth = document.documentElement.clientWidth;
+  return Math.abs(window.innerWidth - documentWidth);
 }
 
-//
-// Unlocks body scrolling. Scrolling will only be unlocked once all elements that requested a lock call this method.
-//
+/**
+ * Prevents body scrolling. Keeps track of which elements requested a lock so multiple levels of locking are possible
+ * without premature unlocking.
+ */
+export function lockBodyScrolling(lockingEl: HTMLElement) {
+  locks.add(lockingEl);
+
+  // When the first lock is created, set the scroll lock size to match the scrollbar's width to prevent content from
+  // shifting. We only do this on the first lock because the scrollbar width will measure zero after overflow is hidden.
+  if (!document.body.classList.contains('lynk-scroll-lock')) {
+    const scrollbarWidth = getScrollbarWidth(); // must be measured before the `lynk-scroll-lock` class is applied
+    document.body.classList.add('lynk-scroll-lock');
+    document.body.style.setProperty('--lynk-scroll-lock-size', `${scrollbarWidth}px`);
+  }
+}
+
+/**
+ * Unlocks body scrolling. Scrolling will only be unlocked once all elements that requested a lock call this method.
+ */
 export function unlockBodyScrolling(lockingEl: HTMLElement) {
   locks.delete(lockingEl);
 
   if (locks.size === 0) {
     document.body.classList.remove('lynk-scroll-lock');
+    document.body.style.removeProperty('--lynk-scrollbar-width');
   }
 }
 
-//
-// Scrolls an element into view of its container. If the element is already in view, nothing will happen.
-//
+/** Scrolls an element into view of its container. If the element is already in view, nothing will happen. */
 export function scrollIntoView(
   element: HTMLElement,
   container: HTMLElement,

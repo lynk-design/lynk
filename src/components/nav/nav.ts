@@ -1,14 +1,14 @@
-import { html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
 import { clamp } from '../../internal/math';
-import { watch } from '../../internal/watch';
 import { classMap } from 'lit/directives/class-map.js';
-import LynkElement from '../../internal/lynk-element';
+import { customElement, property, query } from 'lit/decorators.js';
+import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import LynkNavItem from '../nav-item/nav-item';
-import LynkNavGroup from '../nav-group/nav-group';
 import styles from './nav.styles';
 import type { CSSResultGroup } from 'lit';
+import type LynkNavGroup from '../nav-group/nav-group';
 
 /**
  * @summary Navs display a hierarchical menu of [nav items](/components/nav-item) for navigating within an app or page. Items with children can be expanded and collapsed as desired by the user.
@@ -20,14 +20,14 @@ import type { CSSResultGroup } from 'lit';
  *
  * @slot - The nav's content, including nav items, nav groups, and dividers.
  *
-* @cssproperty [--max-width=100%] - Customize the max nav width.
-* @cssproperty [--background=transparent] - Customize the nav background.
-* @cssproperty [--padding=var(--lynk-spacing-x-small) 0] - Customize the nav padding.
-* @cssproperty [--border-top=none] - Customize the top border.
-* @cssproperty [--border-right=none] - Customize the right border.
-* @cssproperty [--border-bottom=none] - Customize the bottom border.
-* @cssproperty [--border-left=none] - Customize the left border.
-* @cssproperty [--border-radius=0] - Customize the border radius.
+ * @cssproperty [--max-width=100%] - Customize the max nav width.
+ * @cssproperty [--background=transparent] - Customize the nav background.
+ * @cssproperty [--padding=var(--lynk-spacing-x-small) 0] - Customize the nav padding.
+ * @cssproperty [--border-top=none] - Customize the top border.
+ * @cssproperty [--border-right=none] - Customize the right border.
+ * @cssproperty [--border-bottom=none] - Customize the bottom border.
+ * @cssproperty [--border-left=none] - Customize the left border.
+ * @cssproperty [--border-radius=0] - Customize the border radius.
  */
 @customElement('lynk-nav')
 export default class LynkNav extends LynkElement {
@@ -132,7 +132,6 @@ export default class LynkNav extends LynkElement {
     const isRtl = this.localize.dir() === 'rtl';
 
     if (items.length > 0) {
-
       const activeItemIndex = items.findIndex(item => item.matches(':focus'));
       const activeItem: LynkNavItem | undefined = items[activeItemIndex];
 
@@ -145,21 +144,19 @@ export default class LynkNav extends LynkElement {
       };
 
       // Allow tabbing to contine on to the next dom element outside the nav as expected
-      if ((event.key === 'Tab' && !event.shiftKey) && activeItemIndex === items.length - 1 ) {
+      if (event.key === 'Tab' && !event.shiftKey && activeItemIndex === items.length - 1) {
         this.tabIndex = 0;
         activeItem.tabIndex = 0;
-        return;
-      } else if ((event.key === 'Tab' && event.shiftKey) && activeItemIndex === 0 ){
+      } else if (event.key === 'Tab' && event.shiftKey && activeItemIndex === 0) {
         this.tabIndex = -1;
         activeItem.tabIndex = -1;
       } else {
-
         event.preventDefault();
 
         if (event.key === 'ArrowDown' || (event.key === 'Tab' && !event.shiftKey)) {
           // Moves focus to the next node that is focusable without opening or closing a node.
           focusItemAt(activeItemIndex + 1);
-        } else if ((event.key === 'ArrowUp') || (event.key === 'Tab' && event.shiftKey)) {
+        } else if (event.key === 'ArrowUp' || (event.key === 'Tab' && event.shiftKey)) {
           // Moves focus to the next node that is focusable without opening or closing a node.
           focusItemAt(activeItemIndex - 1);
         } else if ((isLtr && event.key === 'ArrowRight') || (isRtl && event.key === 'ArrowLeft')) {
@@ -168,7 +165,12 @@ export default class LynkNav extends LynkElement {
           // When focus is on an expanded item with children, moves focus to the first child node.
           // When focus is on an childless nav item, does nothing.
           //
-          if (!activeItem || activeItem.disabled || (activeItem.isParent && activeItem.expanded) || !activeItem.isParent) {
+          if (
+            !activeItem ||
+            activeItem.disabled ||
+            (activeItem.isParent && activeItem.expanded) ||
+            !activeItem.isParent
+          ) {
             focusItemAt(activeItemIndex + 1);
           } else {
             toggleExpand(true);
@@ -179,7 +181,12 @@ export default class LynkNav extends LynkElement {
           // When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node.
           // When focus is on an item with a collapsed child menu, does nothing.
           //
-          if (!activeItem || activeItem.disabled || !activeItem.isParent || (activeItem.isParent && !activeItem.expanded)) {
+          if (
+            !activeItem ||
+            activeItem.disabled ||
+            !activeItem.isParent ||
+            (activeItem.isParent && !activeItem.expanded)
+          ) {
             focusItemAt(activeItemIndex - 1);
           } else {
             toggleExpand(false);
@@ -270,11 +277,7 @@ export default class LynkNav extends LynkElement {
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
       >
-        <slot
-          part="list"
-          role="group"
-          @slotchange=${this.handleSlotChange}
-        ></slot>
+        <slot part="list" role="group" @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;
   }

@@ -1,15 +1,15 @@
-import { html } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { scrollIntoView } from '../../internal/scroll';
-import LynkElement from '../../internal/lynk-element';
-import { watch } from '../../internal/watch';
-import { LocalizeController } from '../../utilities/localize';
 import '../icon-button/icon-button';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { html } from 'lit';
+import { LocalizeController } from '../../utilities/localize';
+import { scrollIntoView } from '../../internal/scroll';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './tab-group.styles';
-import type LynkTabPanel from '../tab-panel/tab-panel';
-import type LynkTab from '../tab/tab';
 import type { CSSResultGroup } from 'lit';
+import type LynkTab from '../tab/tab';
+import type LynkTabPanel from '../tab-panel/tab-panel';
 
 /**
  * @summary Tab groups organize content into a container that shows one section at a time.
@@ -122,7 +122,9 @@ export default class LynkTabGroup extends LynkElement {
   }
 
   private getAllPanels() {
-    return [...this.body.assignedElements()].filter(el => el.tagName.toLowerCase() === 'lynk-tab-panel') as [LynkTabPanel];
+    return [...this.body.assignedElements()].filter(el => el.tagName.toLowerCase() === 'lynk-tab-panel') as [
+      LynkTabPanel
+    ];
   }
 
   private getActiveTab() {

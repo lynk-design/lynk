@@ -1,6 +1,6 @@
 import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
 import { LynkTableSortDirection, LynkTableSortEvent } from './models';
-import type { ILynkTableCol} from './models';
+import type { ILynkTableCol } from './models';
 import type LynkTable from './table';
 
 describe('<lynk-table>', () => {
@@ -11,33 +11,29 @@ describe('<lynk-table>', () => {
     cols = [
       {
         key: 'keyA',
-        title: 'titleA',
+        title: 'titleA'
       },
       {
         key: 'keyB',
-        title: 'titleB',
-      },
+        title: 'titleB'
+      }
     ];
 
     rows = [
       {
         keyA: 'a1',
-        keyB: 'b1',
+        keyB: 'b1'
       },
       {
         keyA: 'a2',
-        keyB: 'b2',
-      },
+        keyB: 'b2'
+      }
     ];
   });
 
   it('should render a component using slotted elements', async () => {
     const el = await fixture<LynkTable>(html`
-      <lynk-table
-        custom
-        .cols=${cols}
-        .rows=${rows}
-      >
+      <lynk-table custom .cols=${cols} .rows=${rows}>
         <lynk-thead>
           <lynk-tr>
             <lynk-th>Title</lynk-th>
@@ -67,12 +63,7 @@ describe('<lynk-table>', () => {
   });
 
   it('should render a component using data', async () => {
-    const el = await fixture<LynkTable>(html`
-      <lynk-table
-        .cols=${cols}
-        .rows=${rows}
-      ></lynk-table>
-    `);
+    const el = await fixture<LynkTable>(html` <lynk-table .cols=${cols} .rows=${rows}></lynk-table> `);
     expect(el).shadowDom.to.equal(`
       <slot part="base" class="lynk-table">
         <lynk-colgroup>
@@ -106,18 +97,13 @@ describe('<lynk-table>', () => {
       cols[0].sortable = true;
       cols[1].sortable = true;
 
-      const el = await fixture<LynkTable>(html`
-        <lynk-table
-          .cols=${cols}
-          .rows=${rows}
-        ></lynk-table>
-      `);
+      const el = await fixture<LynkTable>(html` <lynk-table .cols=${cols} .rows=${rows}></lynk-table> `);
 
       const event = new LynkTableSortEvent();
       event.key = cols[0].key;
       el.handleSort(event);
       await elementUpdated(el);
-      
+
       expect(el).shadowDom.to.equal(`
         <slot part="base" class="lynk-table">
           <lynk-colgroup>
@@ -159,18 +145,13 @@ describe('<lynk-table>', () => {
       cols[1].sortable = true;
       rows.reverse();
 
-      const el = await fixture<LynkTable>(html`
-        <lynk-table
-          .cols=${cols}
-          .rows=${rows}
-        ></lynk-table>
-      `);
+      const el = await fixture<LynkTable>(html` <lynk-table .cols=${cols} .rows=${rows}></lynk-table> `);
 
       const event = new LynkTableSortEvent();
       event.key = cols[0].key;
       el.handleSort(event);
       await elementUpdated(el);
-      
+
       expect(el).shadowDom.to.equal(`
         <slot part="base" class="lynk-table">
           <lynk-colgroup>
@@ -212,18 +193,13 @@ describe('<lynk-table>', () => {
       cols[1].sortable = true;
       rows.reverse();
 
-      const el = await fixture<LynkTable>(html`
-        <lynk-table
-          .cols=${cols}
-          .rows=${rows}
-        ></lynk-table>
-      `);
+      const el = await fixture<LynkTable>(html` <lynk-table .cols=${cols} .rows=${rows}></lynk-table> `);
 
       const event = new LynkTableSortEvent();
       event.key = cols[1].key;
       el.handleSort(event);
       await elementUpdated(el);
-      
+
       expect(el).shadowDom.to.equal(`
         <slot part="base" class="lynk-table">
           <lynk-colgroup>
@@ -265,18 +241,13 @@ describe('<lynk-table>', () => {
       cols[1].sortable = true;
       rows[0] = { keyA: 'a1' };
 
-      const el = await fixture<LynkTable>(html`
-        <lynk-table
-          .cols=${cols}
-          .rows=${rows}
-        ></lynk-table>
-      `);
+      const el = await fixture<LynkTable>(html` <lynk-table .cols=${cols} .rows=${rows}></lynk-table> `);
 
       const event = new LynkTableSortEvent();
       event.key = cols[1].key;
       el.handleSort(event);
       await elementUpdated(el);
-      
+
       expect(el).shadowDom.to.equal(`
         <slot part="base" class="lynk-table">
           <lynk-colgroup>
@@ -318,18 +289,13 @@ describe('<lynk-table>', () => {
       cols[1].sortable = true;
       rows[1] = { keyA: 'a2' };
 
-      const el = await fixture<LynkTable>(html`
-        <lynk-table
-          .cols=${cols}
-          .rows=${rows}
-        ></lynk-table>
-      `);
+      const el = await fixture<LynkTable>(html` <lynk-table .cols=${cols} .rows=${rows}></lynk-table> `);
 
       const event = new LynkTableSortEvent();
       event.key = cols[1].key;
       el.handleSort(event);
       await elementUpdated(el);
-      
+
       expect(el).shadowDom.to.equal(`
         <slot part="base" class="lynk-table">
           <lynk-colgroup>
@@ -372,18 +338,13 @@ describe('<lynk-table>', () => {
       rows[0] = { keyA: 1 };
       rows[1] = { keyA: 2 };
 
-      const el = await fixture<LynkTable>(html`
-        <lynk-table
-          .cols=${cols}
-          .rows=${rows}
-        ></lynk-table>
-      `);
+      const el = await fixture<LynkTable>(html` <lynk-table .cols=${cols} .rows=${rows}></lynk-table> `);
 
       const event = new LynkTableSortEvent();
       event.key = cols[0].key;
       el.handleSort(event);
       await elementUpdated(el);
-      
+
       expect(el).shadowDom.to.equal(`
         <slot part="base" class="lynk-table">
           <lynk-colgroup>

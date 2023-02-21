@@ -1,16 +1,16 @@
-import { html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import LynkElement from '../../internal/lynk-element';
-import { getTextContent } from '../../internal/slot';
-import { watch } from '../../internal/watch';
 import '../icon/icon';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query } from 'lit/decorators.js';
+import { getTextContent } from '../../internal/slot';
+import { html } from 'lit';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './menu-item.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Menu items provide options for the user to pick from in a menu.
- *
+ * @documentation https://lynk.design/components/menu-item
  * @since 1.0
  * @status stable
  *
@@ -49,6 +49,17 @@ export default class LynkMenuItem extends LynkElement {
   /** Draws the menu item in a disabled state. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.handleHostClick = this.handleHostClick.bind(this);
+    this.addEventListener('click', this.handleHostClick);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.handleHostClick);
+  }
+
   private handleDefaultSlotChange() {
     const textLabel = this.getTextLabel();
 
@@ -64,11 +75,11 @@ export default class LynkMenuItem extends LynkElement {
     }
   }
 
-  private handleClick(event: MouseEvent) {
+  private handleHostClick(event: MouseEvent) {
+    // Prevent the click event from being emitted when the button is disabled or loading
     if (this.disabled) {
       event.preventDefault();
-      event.stopPropagation();
-      return;
+      event.stopImmediatePropagation();
     }
 
     this.emit('on:click');
@@ -122,7 +133,6 @@ export default class LynkMenuItem extends LynkElement {
           'lynk-menu-item--disabled': this.disabled,
           'lynk-menu-item--has-submenu': false // reserved for future use
         })}
-        @click=${this.handleClick}
       >
         <span part="checked-icon" class="lynk-menu-item__check">
           <lynk-icon name="check" library="system" aria-hidden="true"></lynk-icon>

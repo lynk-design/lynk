@@ -1,7 +1,7 @@
-import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import LynkElement from '../../internal/lynk-element';
+import { html } from 'lit';
 import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './mutation-observer.styles';
 import type { CSSResultGroup } from 'lit';
 

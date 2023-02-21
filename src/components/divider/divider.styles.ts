@@ -25,6 +25,6 @@ export default css`
   }
 
   :host([vertical][auto]) {
-      height: auto;
+    height: auto;
   }
 `;

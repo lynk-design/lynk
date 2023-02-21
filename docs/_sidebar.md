@@ -11,6 +11,7 @@
   <!-- - [Localization](/getting-started/localization) -->
 
 - Integrations
+
   - [Aurelia 1](/integrations/aurelia-1)
 
 - Foundation Tokens
@@ -66,8 +67,8 @@
   - [Alert](/components/alert)
   - [Badge](/components/badge)
   - [Spinner](/components/spinner)
-  <!-- - [Progress Bar](/components/progress-bar) -->
-  <!-- - [Progress Ring](/components/progress-ring) -->
+    <!-- - [Progress Bar](/components/progress-bar) -->
+    <!-- - [Progress Ring](/components/progress-ring) -->
 
 - Navigation
 
@@ -80,8 +81,8 @@
   - [Tab Group](/components/tab-group)
   - [Tab Panel](/components/tab-panel)
 
-
 - Tables
+
   - [Table](/components/table)
   - [Table Cell](/components/table-cell)
   - [Table Column](/components/table-column)

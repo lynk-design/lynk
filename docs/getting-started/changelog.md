@@ -6,6 +6,36 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.6.0
+
+- Added the `form` attribute to all form controls to allow placing them outside of a `<form>` element
+- Added the `getFormControls()` function as an alternative to `HTMLFormElement.elements`
+- Added the `on:invalid` event to all form controls to enable custom validation logic
+- Added `validity` and `validationMessage` properties to all form controls
+- Added the `rel` attribute to `<lynk-button>` to allow users to create button links that point to specific targets
+- Added the `tag` part to `<lynk-select>`
+- Fixed a bug in `<lynk-select>` that caused the display label to render incorrectly in Chrome after form validation
+- Fixed a bug that prevented `web-types.json` from being generated
+- Fixed a bug in `<lynk-dropdown>` that prevented keyboard users from selecting menu items when using the keyboard
+- Fixed a bug in the template for `<lynk-select>` that caused the `form-control-help-text` part to not be in the same location as other form controls
+- Fixed a bug in `<lynk-checkbox>` and `<lynk-switch>` that caused the browser to scroll incorrectly when focusing on a control in a container with overflow
+- Fixed a bug in `<lynk-menu-item>` that caused the `click` event to be emitted when the item was disabled
+- Fixed a bug in `<lynk-select>` that prevented placeholders from showing when `multiple` was used
+- Fixed a bug in `<lynk-select>` that caused tags to not be rounded when using the `pill` attribute
+- Fixed a bug in `<lynk-select>` where the `on:change` and `on:input` events didn't weren't emitted when removing tags
+- Fixed a bug in `<lynk-select>` that caused the listbox to scroll to the first selected item when selecting multiple items
+- Improved the behavior of `<lynk-dropdown>` in Safari so keyboard interaction works the same as in other browsers
+- Fixed a bug in `<lynk-icon>` that caused icons to sometimes be clipped in Safari
+- Fixed a bug in `<lynk-spinner>` that caused the animation to stop working correctly in Safari
+- Fixed tests so they now only run once in half the time
+- Improved user interaction heuristics for all form controls
+- Improved styles on Page Layout and Nav components
+- Refactored the `LynkFormControl` interface to remove the `invalid` property, allowing a more intuitive API for controlling validation internally
+- Renamed the internal `FormSubmitController` to `FormControlController` to better reflect what it's used for
+- Updated Lit to 2.6.1
+- Updated Floating UI to 1.2.1
+- Updated Bootstrap Icons to 1.10.3
+- Updated all other dependencies to latest versions
 
 ## 0.5.0
 

@@ -1,20 +1,20 @@
-import { html } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import { live } from 'lit/directives/live.js';
-import { defaultValue } from '../../internal/default-value';
-import { FormSubmitController } from '../../internal/form';
-import LynkElement from '../../internal/lynk-element';
-import { HasSlotController } from '../../internal/slot';
-import { watch } from '../../internal/watch';
-import { LocalizeController } from '../../utilities/localize';
 import '../../components/icon/icon';
 import '../../components/stack/stack';
 import '../../components/tooltip/tooltip';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { defaultValue } from '../../internal/default-value';
+import { FormControlController } from '../../internal/form';
+import { HasSlotController } from '../../internal/slot';
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { live } from 'lit/directives/live.js';
+import { LocalizeController } from '../../utilities/localize';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './input.styles';
-import type { LynkFormControl } from '../../internal/lynk-element';
 import type { CSSResultGroup } from 'lit';
+import type { LynkFormControl } from '../../internal/lynk-element';
 
 // It's currently impossible to hide Firefox's built-in clear icon when using <input type="date|time">, so we need this
 // check to apply a clip-path to hide it. I know, I know...user agent sniffing is nasty but, if it fails, we only see a
@@ -29,11 +29,12 @@ const isFirefox = isChromium ? false : navigator.userAgent.includes('Firefox');
 
 /**
  * @summary Inputs collect data from the user.
- *
+ * @documentation https://lynk.design/components/input
  * @since 1.0
  * @status experimental
  *
  * @dependency lynk-icon
+ * @dependency lynk-stack
  * @dependency lynk-tooltip
  *
  * @slot action - append a custom button to the input.
@@ -52,6 +53,7 @@ const isFirefox = isChromium ? false : navigator.userAgent.includes('Firefox');
  * @event on:enter - Emitted when the return key is pressed while the input has focus.
  * @event on:focus - Emitted when the control gains focus.
  * @event on:input - Emitted when the control receives input.
+ * @event on:invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and help-text.
  * @csspart form-control-label - The label's wrapper.
@@ -68,14 +70,15 @@ const isFirefox = isChromium ? false : navigator.userAgent.includes('Firefox');
 export default class LynkInput extends LynkElement implements LynkFormControl {
   static styles: CSSResultGroup = styles;
 
-  @query('.lynk-input__control') input: HTMLInputElement;
-
-  private readonly formSubmitController = new FormSubmitController(this);
+  private readonly formControlController = new FormControlController(this, {
+    assumeInteractionOn: ['on:blur', 'on:input']
+  });
   private readonly hasSlotController = new HasSlotController(this, 'action', 'help-text', 'help-tip', 'label');
   private readonly localize = new LocalizeController(this);
 
+  @query('.lynk-input__control') input: HTMLInputElement;
+
   @state() private hasFocus = false;
-  @state() invalid = false;
   @property() title = ''; // make reactive to pass through
 
   /**
@@ -94,12 +97,6 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     | 'time'
     | 'url' = 'text';
 
-  /** The input's feedback status using manual validation. Alternatively, you can use the invalid attribute */
-  @property({ reflect: true }) state: 'error' | 'warning' | 'success';
-
-  /** The input's size. */
-  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
-
   /** The input's name attribute. */
   @property() name = '';
 
@@ -108,6 +105,12 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
 
   /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
   @defaultValue() defaultValue = '';
+
+  /** The input's feedback status using manual validation. Alternatively, you can use the invalid attribute */
+  @property({ reflect: true }) state: 'error' | 'warning' | 'success';
+
+  /** The input's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Draws a filled input. */
   @property({ type: Boolean, reflect: true }) filled = false;
@@ -127,6 +130,18 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   /** Adds a clear button when the input is populated. */
   @property({ type: Boolean }) clearable = false;
 
+  /** Disables the input. */
+  @property({ type: Boolean, reflect: true }) disabled = false;
+
+    /** Placeholder text to show as a hint when the input is empty. */
+  @property() placeholder = '';
+
+  /** Makes the input readonly. */
+  @property({ type: Boolean, reflect: true }) readonly = false;
+
+  /** Replaces the input with a plain text string. */
+  @property({ type: Boolean, reflect: true }) restricted = false;
+
   /** Adds a button to toggle the password's visibility. Only applies to password types. */
   @property({ attribute: 'password-toggle', type: Boolean }) passwordToggle = false;
 
@@ -136,17 +151,18 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   /** Hides the browser's built-in increment/decrement spin buttons for number inputs. */
   @property({ attribute: 'no-spin-buttons', type: Boolean }) noSpinButtons = false;
 
-  /** Placeholder text to show as a hint when the input is empty. */
-  @property() placeholder = '';
+  /**
+   * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+   * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+   * the same document or shadow root for this to work.
+   */
+  @property({ reflect: true }) form = '';
 
-  /** Disables the input. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  /** Makes the input a required field. */
+  @property({ type: Boolean, reflect: true }) required = false;
 
-  /** Makes the input readonly. */
-  @property({ type: Boolean, reflect: true }) readonly = false;
-
-  /** Replaces the input with a plain text string. */
-  @property({ type: Boolean, reflect: true }) restricted = false;
+  /** A regular expression pattern to validate input against. */
+  @property() pattern: string;
 
   /** The minimum length of input that will be considered valid. */
   @property({ type: Number }) minlength: number;
@@ -154,23 +170,17 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   /** The maximum length of input that will be considered valid. */
   @property({ type: Number }) maxlength: number;
 
-  /** The input's minimum value. */
-  @property() min: number;
+  /** The input's minimum value. Only applies to date and number input types. */
+  @property({ type: Number }) min: number;
 
-  /** The input's maximum value. */
-  @property() max: number;
+  /** The input's maximum value. Only applies to date and number input types. */
+  @property({ type: Number }) max: number;
 
   /**
    * Specifies the granularity that the value must adhere to, or the special value `any` which means no stepping is
    * implied, allowing any numeric value.
    */
   @property() step: number | 'any';
-
-  /** A pattern to validate input against. */
-  @property() pattern: string;
-
-  /** Makes the input a required field. */
-  @property({ type: Boolean, reflect: true }) required = false;
 
   /** The input's autocapitalize attribute. */
   @property() autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
@@ -233,8 +243,99 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     this.value = input.value;
   }
 
+  /** Gets the validity state object */
+  get validity() {
+    return this.input.validity;
+  }
+
+  /** Gets the validation message */
+  get validationMessage() {
+    return this.input.validationMessage;
+  }
+
   firstUpdated() {
-    this.invalid = !this.input.checkValidity();
+    this.formControlController.updateValidity();
+  }
+
+  private handleBlur() {
+    this.hasFocus = false;
+    this.emit('on:blur');
+  }
+
+  private handleChange() {
+    this.value = this.input.value;
+    this.emit('on:change');
+  }
+
+  private handleClearClick(event: MouseEvent) {
+    this.value = '';
+    this.emit('on:clear');
+    this.emit('on:input');
+    this.emit('on:change');
+    this.input.focus();
+
+    event.stopPropagation();
+  }
+
+  private handleFocus() {
+    this.hasFocus = true;
+    this.emit('on:focus');
+  }
+
+  private handleInput() {
+    this.value = this.input.value;
+    this.formControlController.updateValidity();
+    this.emit('on:input');
+  }
+
+  private handleInvalid(event: Event) {
+    this.formControlController.setValidity(false);
+    this.formControlController.emitInvalidEvent(event);
+  }
+
+  private handleKeyDown(event: KeyboardEvent) {
+    const hasModifier = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+
+    // Pressing enter when focused on an input should submit the form like a native input, but we wait a tick before
+    // submitting to allow users to cancel the keydown event if they need to
+    if (event.key === 'Enter' && !hasModifier) {
+      setTimeout(() => {
+        //
+        // When using an Input Method Editor (IME), pressing enter will cause the form to submit unexpectedly. One way
+        // to check for this is to look at event.isComposing, which will be true when the IME is open.
+        //
+        // See https://github.com/shoelace-style/shoelace/pull/988
+        //
+        if (!event.defaultPrevented && !event.isComposing) {
+          this.formControlController.submit();
+          this.emit('on:enter');
+        }
+      });
+    }
+  }
+
+  private handlePasswordToggle() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
+  @watch('disabled', { waitUntilFirstUpdate: true })
+  handleDisabledChange() {
+    // Disabled form controls are always valid
+    this.formControlController.setValidity(this.disabled);
+  }
+
+  @watch('step', { waitUntilFirstUpdate: true })
+  handleStepChange() {
+    // If step changes, the value may become invalid so we need to recheck after the update. We set the new step
+    // imperatively so we don't have to wait for the next render to report the updated validity.
+    this.input.step = String(this.step);
+    this.formControlController.updateValidity();
+  }
+
+  @watch('value', { waitUntilFirstUpdate: true })
+  async handleValueChange() {
+    await this.updateComplete;
+    this.formControlController.updateValidity();
   }
 
   /** Sets focus on the input. */
@@ -299,7 +400,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     }
   }
 
-  /** Checks for validity but does not show the browser's validation message. */
+  /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
   checkValidity() {
     return this.input.checkValidity();
   }
@@ -309,91 +410,10 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     return this.input.reportValidity();
   }
 
-  /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
+  /** Sets a custom validation message. Pass an empty string to restore validity. */
   setCustomValidity(message: string) {
     this.input.setCustomValidity(message);
-    this.invalid = !this.input.checkValidity();
-  }
-
-  handleBlur() {
-    this.hasFocus = false;
-    this.emit('on:blur');
-  }
-
-  handleChange() {
-    this.value = this.input.value;
-    this.emit('on:change');
-  }
-
-  handleClearClick(event: MouseEvent) {
-    this.value = '';
-    this.emit('on:clear');
-    this.emit('on:input');
-    this.emit('on:change');
-    this.input.focus();
-
-    event.stopPropagation();
-  }
-
-  @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
-    // Disabled form controls are always valid, so we need to recheck validity when the state changes
-    this.input.disabled = this.disabled;
-    this.invalid = !this.input.checkValidity();
-  }
-
-  @watch('step', { waitUntilFirstUpdate: true })
-  handleStepChange() {
-    // If step changes, the value may become invalid so we need to recheck after the update. We set the new step
-    // imperatively so we don't have to wait for the next render to report the updated validity.
-    this.input.step = String(this.step);
-
-    this.invalid = !this.input.checkValidity();
-  }
-
-  handleFocus() {
-    this.hasFocus = true;
-    this.emit('on:focus');
-  }
-
-  handleInput() {
-    this.value = this.input.value;
-    this.emit('on:input');
-  }
-
-  handleInvalid() {
-    this.invalid = true;
-  }
-
-  handleKeyDown(event: KeyboardEvent) {
-    const hasModifier = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
-
-    // Pressing enter when focused on an input should submit the form like a native input, but we wait a tick before
-    // submitting to allow users to cancel the keydown event if they need to
-    if (event.key === 'Enter' && !hasModifier) {
-      setTimeout(() => {
-        //
-        // When using an Input Method Editor (IME), pressing enter will cause the form to submit unexpectedly. One way
-        // to check for this is to look at event.isComposing, which will be true when the IME is open.
-        //
-        // See https://github.com/shoelace-style/shoelace/pull/988
-        //
-        if (!event.defaultPrevented && !event.isComposing) {
-          this.formSubmitController.submit();
-          this.emit('on:enter');
-        }
-      });
-    }
-  }
-
-  handlePasswordToggle() {
-    this.passwordVisible = !this.passwordVisible;
-  }
-
-  @watch('value', { waitUntilFirstUpdate: true })
-  handleValueChange() {
-    this.input.value = this.value; // force a sync update
-    this.invalid = !this.input.checkValidity();
+    this.formControlController.updateValidity();
   }
 
   render() {
@@ -425,7 +445,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
           part="form-control-label"
           class=${classMap({
             'lynk-form-control__label': true,
-            'lynk-form-control--focused': this.hasFocus,
+            'lynk-form-control--focused': this.hasFocus
           })}
           for="input"
           aria-hidden=${hasLabel ? 'false' : 'true'}
@@ -439,7 +459,6 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                 </lynk-tooltip>
               `
             : ''}
-
           ${hasHelpTip
             ? html`
                 <lynk-tooltip hoist>
@@ -450,7 +469,6 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                 </lynk-tooltip>
               `
             : ''}
-
         </label>
 
         <lynk-stack
@@ -477,7 +495,6 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
               'lynk-input--restricted': this.restricted,
               'lynk-input--focused': this.hasFocus,
               'lynk-input--empty': !this.value,
-              'lynk-input--invalid': this.invalid,
               'lynk-input--has-error': this.state === 'error',
               'lynk-input--has-warning': this.state === 'warning',
               'lynk-input--has-success': this.state === 'success',
@@ -489,15 +506,14 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
 
             ${this.restricted
               ? html`
-                <div
-                  part="input"
-                  aria-describedby="help-text"
-                  class="lynk-input__control lynk-input__control--restricted"
-                >
-                  ${this.value || 'None'}
-                </div>
-              `
-              : html`
+                  <div
+                    part="input"
+                    aria-describedby="help-text"
+                    class="lynk-input__control lynk-input__control--restricted"
+                  >
+                    ${this.value || 'None'}
+                  </div>
+              ` : html`
                 <input
                   part="input"
                   id="input"
@@ -515,16 +531,15 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                   max=${ifDefined(this.max)}
                   step=${ifDefined(this.step as number)}
                   .value=${live(this.value)}
-                  autocapitalize=${ifDefined(this.type === 'password' ? 'off' : this.autocapitalize)}
-                  autocomplete=${ifDefined(this.type === 'password' ? 'off' : this.autocomplete)}
-                  autocorrect=${ifDefined(this.type === 'password' ? 'off' : this.autocorrect)}
+                  autocapitalize=${ifDefined(this.autocapitalize)}
+                  autocomplete=${ifDefined(this.autocomplete)}
+                  autocorrect=${ifDefined(this.autocorrect)}
                   ?autofocus=${this.autofocus}
-                  spellcheck=${ifDefined(this.spellcheck)}
+                  spellcheck=${this.spellcheck}
                   pattern=${ifDefined(this.pattern)}
                   enterkeyhint=${ifDefined(this.enterkeyhint)}
                   inputmode=${ifDefined(this.inputmode)}
                   aria-describedby="help-text"
-                  aria-invalid=${this.invalid ? 'true' : 'false'}
                   @change=${this.handleChange}
                   @input=${this.handleInput}
                   @invalid=${this.handleInvalid}
@@ -532,8 +547,8 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                   @focus=${this.handleFocus}
                   @blur=${this.handleBlur}
                 />
-            `}
-
+              `
+            }
             ${hasClearIcon
               ? html`
                   <button
@@ -549,7 +564,8 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                     </slot>
                   </button>
                 `
-              : ''}
+              : ''
+            }
             ${this.passwordToggle && !this.disabled
               ? html`
                   <button
@@ -573,7 +589,8 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                         `}
                   </button>
                 `
-              : ''}
+              : ''
+            }
 
             <slot name="suffix" part="suffix" class="lynk-input__suffix"></slot>
           </div>

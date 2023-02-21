@@ -1,21 +1,21 @@
-import { html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
+import '../popup/popup';
 import { animateTo, stopAnimations } from '../../internal/animate';
-import { waitForEvent } from '../../internal/event';
-import LynkElement from '../../internal/lynk-element';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query } from 'lit/decorators.js';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import { getTabbableBoundary } from '../../internal/tabbable';
 import { HasSlotController } from '../../internal/slot';
-import { watch } from '../../internal/watch';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import '../popup/popup';
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize';
+import { waitForEvent } from '../../internal/event';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './popover.styles';
+import type { CSSResultGroup } from 'lit';
 import type LynkButton from '../../components/button/button';
 import type LynkIconButton from '../../components/icon-button/icon-button';
 import type LynkPopup from '../popup/popup';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Popover's display rich content in a "pop over" panel to add additional information or functionality when a user interacts with a triggering element.
@@ -78,7 +78,6 @@ export default class LynkPopover extends LynkElement {
    * Hides the arrow.
    */
   @property({ attribute: 'no-arrow', type: Boolean, reflect: true }) noArrow = false;
-
 
   /**
    * Hide the popover by clicking outside the panel.
@@ -220,13 +219,12 @@ export default class LynkPopover extends LynkElement {
     // key again to hide the menu in case they don't want to make a selection.
     if ([' ', 'Enter'].includes(event.key)) {
       const target = event.target as HTMLElement;
-      const isInputTrigger = (target.tagName.toLowerCase() === 'lynk-input');
+      const isInputTrigger = target.tagName.toLowerCase() === 'lynk-input';
       // Unless the enter key event is coming from an input, in which case preventDefault will cause the on:enter event to not fire.
       if (!isInputTrigger) {
         event.preventDefault();
       }
       this.handleTriggerClick();
-      return;
     }
   }
 
@@ -407,7 +405,6 @@ export default class LynkPopover extends LynkElement {
           aria-labelledby=${ifDefined(!this.noHeader ? 'title' : undefined)}
           tabindex="0"
         >
-
           ${!this.noHeader
             ? html`
                 <header part="header" class="lynk-popover__header">
@@ -431,11 +428,11 @@ export default class LynkPopover extends LynkElement {
 
           ${this.hasSlotController.test('footer')
             ? html`
-              <footer part="footer" class="lynk-popover__footer">
-                <slot name="footer"></slot>
-              </footer>
-            `
-          : ''}
+                <footer part="footer" class="lynk-popover__footer">
+                  <slot name="footer"></slot>
+                </footer>
+              `
+            : ''}
         </div>
       </lynk-popup>
     `;

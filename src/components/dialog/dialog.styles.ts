@@ -121,7 +121,6 @@ export default css`
     }
   }
 
-
   /*
   * Size modifiers
   */

@@ -4,8 +4,8 @@
 
 ```html preview
 <lynk-page-footer>
-    <lynk-button color="primary">Save</lynk-button>
-    <lynk-button>Cancel</lynk-button>
+  <lynk-button color="primary">Save</lynk-button>
+  <lynk-button>Cancel</lynk-button>
 </lynk-page-footer>
 ```
 
@@ -32,8 +32,8 @@ Like the [Page Layout](/components/page-layout) component, the Page Footer's max
 
 ```html preview
 <lynk-page-footer width="small">
-    <lynk-button color="primary">Save</lynk-button>
-    <lynk-button>Cancel</lynk-button>
+  <lynk-button color="primary">Save</lynk-button>
+  <lynk-button>Cancel</lynk-button>
 </lynk-page-footer>
 ```
 

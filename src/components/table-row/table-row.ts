@@ -1,5 +1,5 @@
-import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import styles from './table-row.styles';
 import type { CSSResultGroup } from 'lit';
@@ -11,7 +11,7 @@ import type { CSSResultGroup } from 'lit';
  * @status experimental
  *
  * @event on:click - Emitted when table row is clicked.
-  *
+ *
  * @slot - Should contain 1 or more `<lynk-td>` or `<lynk-th>` components.
  *
  * @csspart base - The component's internal wrapper.
@@ -21,7 +21,7 @@ export default class LynkTableRow extends LynkElement {
   static styles: CSSResultGroup = styles;
 
   /** Draws the table row using status colors */
-  @property({reflect: true}) state: 'primary' | 'danger' | 'success' | 'warning' | 'neutral' | 'custom';
+  @property({ reflect: true }) state: 'primary' | 'danger' | 'success' | 'warning' | 'neutral' | 'custom';
 
   /** Determines whether to highlight the table row on hover or touch interactions */
   @property({ type: Boolean, reflect: true }) interactive = false;

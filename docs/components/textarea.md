@@ -33,7 +33,10 @@ Add informative help text in a tooltip appended to the label with the `help-tip`
 Use the `help-tip` value to share informative content that will help the user understand the purpose of the field or how the data will be used.
 
 ```html preview
-<lynk-textarea label="Feedback" help-tip="Help us make our product better! Please don't include any personally identifiable information."></lynk-textarea>
+<lynk-textarea
+  label="Feedback"
+  help-tip="Help us make our product better! Please don't include any personally identifiable information."
+></lynk-textarea>
 ```
 
 ### Rows

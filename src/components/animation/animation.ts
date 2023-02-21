@@ -1,9 +1,9 @@
-import { html } from 'lit';
-import { customElement, property, queryAsync } from 'lit/decorators.js';
-import LynkElement from '../../internal/lynk-element';
-import { watch } from '../../internal/watch';
-import styles from './animation.styles';
 import { animations } from './animations';
+import { customElement, property, queryAsync } from 'lit/decorators.js';
+import { html } from 'lit';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
+import styles from './animation.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**

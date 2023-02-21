@@ -6,7 +6,6 @@
 <lynk-alert type="info" open>
   This is a standard alert. Add the <code>open</code> attribute to make it visible.
 </lynk-alert>
-
 ```
 
 ## Examples
@@ -95,10 +94,8 @@ Icons can be customized using the `icon` slot, or removed by omitting the `type`
   <lynk-icon slot="icon" name="app-indicator"></lynk-icon>
   This alert is using a different icon!
 </lynk-alert>
-<br>
-<lynk-alert open>
-  This alert doesn't have any icon at all!
-</lynk-alert>
+<br />
+<lynk-alert open> This alert doesn't have any icon at all! </lynk-alert>
 ```
 
 ### Duration

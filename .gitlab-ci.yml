@@ -12,7 +12,6 @@ stages:
 default:
   image: node:14.18
 
-
 build-package:
   stage: build
   before_script:
@@ -28,7 +27,6 @@ build-package:
       - docs/
       - node_modules/
 
-
 run-tests:
   stage: test
   image: mcr.microsoft.com/playwright:v1.28.0-focal
@@ -38,7 +36,6 @@ run-tests:
     - npx playwright install
   script:
     - yarn test
-
 
 publish-release:
   stage: publish
@@ -60,7 +57,6 @@ publish-release:
         } >> .npmrc
       fi
     - echo "Created the following .npmrc:"; cat .npmrc
-
     # Extract a few values from package.json
     - NPM_PACKAGE_NAME=$(node -p "require('./package.json').name")
     - NPM_PACKAGE_VERSION=$(node -p "require('./package.json').version")
@@ -83,7 +79,6 @@ publish-release:
       else
         echo "Version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} has already been published, so no new version has been published."
       fi
-
 
 publish-docs:
   stage: publish

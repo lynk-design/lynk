@@ -1,15 +1,15 @@
-import { html, literal } from 'lit/static-html.js';
-import { customElement, property, query, state} from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate';
-import LynkElement from '../../internal/lynk-element';
-import { getTextContent } from '../../internal/slot';
-import { watch } from '../../internal/watch';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import { LocalizeController } from '../../utilities/localize';
 import '../icon/icon';
 import '../tooltip/tooltip';
+import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { getTextContent } from '../../internal/slot';
+import { html, literal } from 'lit/static-html.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { LocalizeController } from '../../utilities/localize';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './nav-item.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -41,7 +41,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty [--hover-bg-color=var(--lynk-color-gray-a25)] - Customize the hover styles.
  * @cssproperty [--selected-bg-color=var(--lynk-color-primary-700)] - Customize the selected styles.
  * @cssproperty [--selected-color=var(--lynk-color-gray-a25)] - Customize the selected styles.
- * @cssproperty [--border-radius=0] - Customize the border radius.
+ * @cssproperty [--border-radius=var(--lynk-border-radius-medium)] - Customize the border radius.
  */
 @customElement('lynk-nav-item')
 export default class LynkNavItem extends LynkElement {
@@ -111,7 +111,7 @@ export default class LynkNavItem extends LynkElement {
      ** Because we are also implemening ARIA based Menu Keyboard Interactions, this
      ** can be considered an appropriate use of the menuitem role
      ** see https://stackoverflow.com/questions/41141247/aria-role-menuitem-for-a-or-li
-    **/
+     **/
     this.setAttribute('role', 'menuitem');
     this.setAttribute('tabindex', '-1');
 
@@ -227,11 +227,10 @@ export default class LynkNavItem extends LynkElement {
   }
 
   protected handleClick(event: MouseEvent) {
-
     if (this.disabled) {
       event.preventDefault();
       event.stopPropagation();
-      return
+      return;
     }
 
     if (this.hasChildren) {
@@ -275,7 +274,7 @@ export default class LynkNavItem extends LynkElement {
           'lynk-nav-item--selected': this.selected,
           'lynk-nav-item--has-children': this.isParent,
           'lynk-nav-item--expanded': this.expanded,
-          'lynk-nav-item--rtl': isRtl,
+          'lynk-nav-item--rtl': isRtl
         })}
         ?disabled=${this.disabled}
         title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
@@ -297,12 +296,19 @@ export default class LynkNavItem extends LynkElement {
 
         <slot name="suffix" part="suffix" class="lynk-nav-item__suffix"></slot>
 
-        ${this.isParent
-          ? html`
-            <span class="lynk-nav-item__chevron">
-              <lynk-icon library="system" aria-hidden="true" name=${isRtl ? 'chevron-left' : 'chevron-right'}></lynk-icon>
-            </span>
-        ` : ''}
+        ${
+          this.isParent
+            ? html`
+                <span class="lynk-nav-item__chevron">
+                  <lynk-icon
+                    library="system"
+                    aria-hidden="true"
+                    name=${isRtl ? 'chevron-left' : 'chevron-right'}
+                  ></lynk-icon>
+                </span>
+              `
+            : ''
+        }
 
       </${tag}>
 

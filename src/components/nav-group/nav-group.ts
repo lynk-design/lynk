@@ -1,9 +1,9 @@
-import { html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import LynkElement from '../../internal/lynk-element';
+import { customElement, property, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot';
+import { html } from 'lit';
 import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './nav-group.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -32,7 +32,7 @@ export default class LynkNavGroup extends LynkElement {
 
   /** The nav groups heading label. Alternatively, you can use the label slot. */
   @property({ reflect: true })
-  public heading= '';
+  public heading = '';
 
   async connectedCallback() {
     super.connectedCallback();
@@ -61,7 +61,7 @@ export default class LynkNavGroup extends LynkElement {
         id="heading"
         part="base"
         class=${classMap({
-          'lynk-nav-group__heading': true,
+          'lynk-nav-group__heading': true
         })}
         aria-hidden=${hasHeading ? 'false' : 'true'}
       >

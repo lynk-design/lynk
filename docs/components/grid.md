@@ -7,10 +7,16 @@ There are two required parts to a grid layout: `<lynk-grid container>` and `<lyn
 ```html preview
 <lynk-grid container>
   <lynk-grid item>
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">"Welcome to, the grid!"</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >"Welcome to, the grid!"</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item>
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">- Jeff Bridges</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >- Jeff Bridges</lynk-box
+    >
   </lynk-grid>
 </lynk-grid>
 ```
@@ -21,56 +27,103 @@ Lynk's grid uses a breakpoint based 4, 8, and 12-column layout. Passing in a `sp
 - The 8 column viewport breakpoint starts at `768px` and ends at `1024px`.
 - The 12 column breakpoint is any viewport larger than `1024px`.
 
-
 ```html preview
 <lynk-grid container>
   <lynk-grid item span="1">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">1</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >1</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="1">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">1</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >1</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="1">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">1</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >1</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="1">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">1</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >1</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="1">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">1</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >1</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="1">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">1</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >1</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="1">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">1</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >1</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="1">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">1</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >1</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="2">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">2</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >2</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="2">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">2</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >2</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="3">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">3</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >3</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="3">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">3</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >3</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="6">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">6</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >6</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="4">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">4</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >4</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="8">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">8</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >8</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item span="100">
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);">12</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small);"
+      >12</lynk-box
+    >
   </lynk-grid>
 </lynk-grid>
 ```
@@ -80,13 +133,22 @@ Use the direction, justify, and align properties to arrange your grid.
 ```html preview
 <lynk-grid container class="test-grid" style="--height: 320px;">
   <lynk-grid item>
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small); ">Cell 1</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-small); "
+      >Cell 1</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item>
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-medium); ">Cell 2</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-medium); "
+      >Cell 2</lynk-box
+    >
   </lynk-grid>
   <lynk-grid item>
-    <lynk-box style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-large); ">Cell 3</lynk-box>
+    <lynk-box
+      style="--background: var(--lynk-color-neutral-100); --text-align: center; --padding: var(--lynk-spacing-large); "
+      >Cell 3</lynk-box
+    >
   </lynk-grid>
 </lynk-grid>
 

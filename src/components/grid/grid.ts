@@ -1,5 +1,5 @@
-import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import styles from './grid.styles';
 import type { CSSResultGroup } from 'lit';
@@ -36,20 +36,36 @@ export default class LynkGrid extends LynkElement {
   @property({ reflect: true }) align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
 
   /** The width of a grid item. Requires item property  being set. This can be a single string or an array. */
-  @property({ reflect: true }) span? : string;
+  @property({ reflect: true }) span?: string;
 
   /** The space between grid items. Uses spacing token sizes.  */
-  @property({ reflect: true }) gap: '0' | 'tiny' | '2x-small' | 'x-small' | 'small' | 'base' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large' = 'base';
+  @property({ reflect: true }) gap:
+    | '0'
+    | 'tiny'
+    | '2x-small'
+    | 'x-small'
+    | 'small'
+    | 'base'
+    | 'medium'
+    | 'large'
+    | 'x-large'
+    | '2x-large'
+    | '3x-large' = 'base';
 
   getBreakpointClasses() {
-    return this.span ? this.span.split(',').map(key => `span--${key.trim()}`).join(' ') : '';
-  };
+    return this.span
+      ? this.span
+          .split(',')
+          .map(key => `span--${key.trim()}`)
+          .join(' ')
+      : '';
+  }
 
   render() {
     const containerClass = this.container ? 'lynk-grid' : null;
-    const directionClass = this.direction && this.container ? 'lynk-grid--' + this.direction : null;
-    const justifyClass = this.justify && this.container ? 'lynk-grid--justify-' + this.justify : null;
-    const alignClass = this.align && this.container ? 'lynk-grid--align-' + this.align : null;
+    const directionClass = this.direction && this.container ? `lynk-grid--${this.direction}` : null;
+    const justifyClass = this.justify && this.container ? `lynk-grid--justify-${this.justify}` : null;
+    const alignClass = this.align && this.container ? `lynk-grid--align-${this.align}` : null;
     const itemClass = this.item ? 'lynk-grid__item' : null;
     const spanClass = this.span && this.item ? this.getBreakpointClasses() : null;
 

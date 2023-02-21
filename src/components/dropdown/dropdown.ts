@@ -1,26 +1,26 @@
-import { html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { animateTo, stopAnimations } from '../../internal/animate';
-import { waitForEvent } from '../../internal/event';
-import { scrollIntoView } from '../../internal/scroll';
-import LynkElement from '../../internal/lynk-element';
-import { getTabbableBoundary } from '../../internal/tabbable';
-import { watch } from '../../internal/watch';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import { LocalizeController } from '../../utilities/localize';
 import '../popup/popup';
+import { animateTo, stopAnimations } from '../../internal/animate';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query } from 'lit/decorators.js';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { getTabbableBoundary } from '../../internal/tabbable';
+import { html } from 'lit';
+import { LocalizeController } from '../../utilities/localize';
+import { scrollIntoView } from '../../internal/scroll';
+import { waitForEvent } from '../../internal/event';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './dropdown.styles';
+import type { CSSResultGroup } from 'lit';
 import type LynkButton from '../button/button';
 import type LynkIconButton from '../icon-button/icon-button';
-import type LynkMenuItem from '../menu-item/menu-item';
 import type LynkMenu from '../menu/menu';
+import type LynkMenuItem from '../menu-item/menu-item';
 import type LynkPopup from '../popup/popup';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Dropdowns expose additional content that "drops down" in a panel.
- *
+ * @documentation https:/lynk.design/components/dropdown
  * @since 1.0
  * @status stable
  *
@@ -51,7 +51,10 @@ export default class LynkDropdown extends LynkElement {
 
   private readonly localize = new LocalizeController(this);
 
-  /** Indicates whether or not the dropdown is open. You can use this in lieu of the show/hide methods. */
+  /**
+   * Indicates whether or not the dropdown is open. You can toggle this attribute to show and hide the dropdown, or you
+   * can use the `show()` and `hide()` methods and this attribute will reflect the dropdown's open state.
+   */
   @property({ type: Boolean, reflect: true }) open = false;
 
   /**
@@ -81,7 +84,10 @@ export default class LynkDropdown extends LynkElement {
    */
   @property({ attribute: 'stay-open-on-select', type: Boolean, reflect: true }) stayOpenOnSelect = false;
 
-  /** The dropdown will close when the user interacts outside of this element (e.g. clicking). */
+  /**
+   * The dropdown will close when the user interacts outside of this element (e.g. clicking). Useful for composing other
+   * components that use a dropdown internally.
+   */
   @property({ attribute: false }) containingElement?: HTMLElement;
 
   /** The distance in pixels from which to offset the panel away from its trigger. */
@@ -95,7 +101,7 @@ export default class LynkDropdown extends LynkElement {
 
   /**
    * Enable this option to prevent the panel from being clipped when the component is placed inside a container with
-   * `overflow: auto|scroll`.
+   * `overflow: auto|scroll`. Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
    */
   @property({ type: Boolean }) hoist = false;
 
@@ -152,6 +158,14 @@ export default class LynkDropdown extends LynkElement {
   }
 
   handleDocumentKeyDown(event: KeyboardEvent) {
+    // Close when escape or tab is pressed
+    if (event.key === 'Escape' && this.open) {
+      event.stopPropagation();
+      this.focusOnTrigger();
+      this.hide();
+      return;
+    }
+
     // Handle tabbing
     if (event.key === 'Tab') {
       // Tabbing within an open menu should close the dropdown and refocus the trigger
@@ -210,18 +224,11 @@ export default class LynkDropdown extends LynkElement {
       this.hide();
     } else {
       this.show();
+      this.focusOnTrigger();
     }
   }
 
   handleTriggerKeyDown(event: KeyboardEvent) {
-    // Close when escape or tab is pressed
-    if (event.key === 'Escape' && this.open) {
-      event.stopPropagation();
-      this.focusOnTrigger();
-      this.hide();
-      return;
-    }
-
     // When spacebar/enter is pressed, show the panel but don't focus on the menu. This let's the user press the same
     // key again to hide the menu in case they don't want to make a selection.
     if ([' ', 'Enter'].includes(event.key)) {
@@ -233,7 +240,7 @@ export default class LynkDropdown extends LynkElement {
     const menu = this.getMenu();
 
     if (menu) {
-      const menuItems = menu.defaultSlot.assignedElements({ flatten: true }) as LynkMenuItem[];
+      const menuItems = menu.getAllItems();
       const firstMenuItem = menuItems[0];
       const lastMenuItem = menuItems[menuItems.length - 1];
 

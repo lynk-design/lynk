@@ -15,27 +15,27 @@ export default css`
 
   :host([state='danger']) {
     --state-color: var(--lynk-color-danger-50);
-    --state-color-b: var(--lynk-color-danger-a10)
+    --state-color-b: var(--lynk-color-danger-a10);
   }
 
   :host([state='primary']) {
     --state-color: var(--lynk-color-primary-50);
-    --state-color-b: var(--lynk-color-primary-a10)
+    --state-color-b: var(--lynk-color-primary-a10);
   }
 
   :host([state='success']) {
     --state-color: var(--lynk-color-success-50);
-    --state-color-b: var(--lynk-color-success-a10)
+    --state-color-b: var(--lynk-color-success-a10);
   }
 
   :host([state='warning']) {
     --state-color: var(--lynk-color-warning-50);
-    --state-color-b: var(--lynk-color-warning-a10)
+    --state-color-b: var(--lynk-color-warning-a10);
   }
 
   :host([state='neutral']) {
     --state-color: var(--lynk-color-neutral-50);
-    --state-color-b: var(--lynk-color-neutral-100)
+    --state-color-b: var(--lynk-color-neutral-100);
   }
 
   :host([state]) {
@@ -43,7 +43,17 @@ export default css`
   }
 
   :host([barberpole]) {
-    background: linear-gradient( -45deg, var(--state-color) 25%, var(--state-color-b) 25%, var(--state-color-b) 50%, var(--state-color) 50%, var(--state-color) 75%, var(--state-color-b) 75%, var(--state-color-b)) var(--state-color);
+    background: linear-gradient(
+        -45deg,
+        var(--state-color) 25%,
+        var(--state-color-b) 25%,
+        var(--state-color-b) 50%,
+        var(--state-color) 50%,
+        var(--state-color) 75%,
+        var(--state-color-b) 75%,
+        var(--state-color-b)
+      )
+      var(--state-color);
     background-size: 40px 40px;
     animation: barberpole 1.5s linear infinite;
   }

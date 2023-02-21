@@ -46,7 +46,6 @@ By default, drawers slide in from the end. To make the drawer slide in from the 
 </script>
 ```
 
-
 ### Slide in From Top
 
 To make the drawer slide in from the top, set the `placement` attribute to `top`.
@@ -69,7 +68,6 @@ To make the drawer slide in from the top, set the `placement` attribute to `top`
 </script>
 ```
 
-
 ### Slide in From Bottom
 
 To make the drawer slide in from the bottom, set the `placement` attribute to `bottom`.
@@ -91,7 +89,6 @@ To make the drawer slide in from the bottom, set the `placement` attribute to `b
   closeButton.addEventListener('on:click', () => drawer.hide());
 </script>
 ```
-
 
 ### Contained to an Element
 
@@ -121,7 +118,6 @@ By default, the drawer slides out of its [containing block](https://developer.mo
 </script>
 ```
 
-
 ### Custom Size
 
 Use the `--size` custom property to set the drawer's size. This will be applied to the drawer's width or height depending on its `placement`.
@@ -143,7 +139,6 @@ Use the `--size` custom property to set the drawer's size. This will be applied 
   closeButton.addEventListener('on:click', () => drawer.hide());
 </script>
 ```
-
 
 ### Scrolling
 
@@ -168,7 +163,6 @@ By design, a drawer's height will never exceed 100% of its container. As such, d
   closeButton.addEventListener('on:click', () => drawer.hide());
 </script>
 ```
-
 
 ### Preventing the Drawer from Closing
 
@@ -203,7 +197,6 @@ You can use `event.detail.source` to determine what triggered the request to clo
 </script>
 ```
 
-
 ### Customizing Initial Focus
 
 By default, the drawer's panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the drawer. If you want a different element to have focus, add the `autofocus` attribute to it as shown below.
@@ -226,7 +219,6 @@ By default, the drawer's panel will gain focus when opened. This allows a subseq
   closeButton.addEventListener('on:click', () => drawer.hide());
 </script>
 ```
-
 
 <lynk-alert type="info" open>You can further customize initial focus behavior by canceling the `on:initial-focus` event and setting focus yourself inside the event handler.</lynk-alert>
 [component-metadata:lynk-drawer]

@@ -1,10 +1,10 @@
-import { html } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import LynkElement from '../../internal/lynk-element';
-import { watch } from '../../internal/watch';
-import { LocalizeController } from '../../utilities/localize';
 import '../icon/icon';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { html } from 'lit';
+import { LocalizeController } from '../../utilities/localize';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './option.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -117,7 +117,13 @@ export default class LynkOption extends LynkElement {
         @mouseenter=${this.handleMouseEnter}
         @mouseleave=${this.handleMouseLeave}
       >
-        <lynk-icon part="checked-icon" class="lynk-option__check" name="check" library="system" aria-hidden="true"></lynk-icon>
+        <lynk-icon
+          part="checked-icon"
+          class="lynk-option__check"
+          name="check"
+          library="system"
+          aria-hidden="true"
+        ></lynk-icon>
         <slot part="prefix" name="prefix" class="lynk-option__prefix"></slot>
         <slot part="label" class="lynk-option__label" @slotchange=${this.handleDefaultSlotChange}></slot>
         <slot part="suffix" name="suffix" class="lynk-option__suffix"></slot>

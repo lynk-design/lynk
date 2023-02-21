@@ -42,7 +42,6 @@ export default css`
     display: contents;
   }
 
-
   .lynk-popover--open .lynk-popover__panel {
     pointer-events: all;
   }
@@ -88,7 +87,7 @@ export default css`
     font: inherit;
     font-size: var(--lynk-font-size-base);
     line-height: var(--lynk-line-height-dense);
-    margin: 0
+    margin: 0;
   }
 
   .lynk-popover__close {

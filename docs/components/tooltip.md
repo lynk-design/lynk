@@ -144,13 +144,13 @@ Tooltips can be controller programmatically by setting the `trigger` attribute t
 You can control the size of tooltip arrows by overriding the `--lynk-tooltip-arrow-size` design token or remove them entirely by adding the 'no-arrow' attribute.
 
 ```html preview
-  <lynk-tooltip style="--lynk-tooltip-arrow-size: 24px;" content="This is a tooltip with a large arrow.">
-    <lynk-button>Above</lynk-button>
-  </lynk-tooltip>
+<lynk-tooltip style="--lynk-tooltip-arrow-size: 24px;" content="This is a tooltip with a large arrow.">
+  <lynk-button>Above</lynk-button>
+</lynk-tooltip>
 
-  <lynk-tooltip no-arrow content="This is a tooltip with no arrow." placement="bottom">
-    <lynk-button>Below</lynk-button>
-  </lynk-tooltip>
+<lynk-tooltip no-arrow content="This is a tooltip with no arrow." placement="bottom">
+  <lynk-button>Below</lynk-button>
+</lynk-tooltip>
 ```
 
 To override it globally, set it in a root block in your stylesheet after the Lynk stylesheet is loaded.

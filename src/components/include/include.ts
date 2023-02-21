@@ -1,9 +1,9 @@
-import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import LynkElement from '../../internal/lynk-element';
-import { watch } from '../../internal/watch';
-import styles from './include.styles';
+import { html } from 'lit';
 import { requestInclude } from './request';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
+import styles from './include.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**

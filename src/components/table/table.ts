@@ -1,22 +1,22 @@
-import { html } from 'lit';
 import { customElement, property, queryAssignedElements } from 'lit/decorators.js';
+import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { LynkTableSortDirection, LynkTableSortEvent } from './models';
 import { repeat } from 'lit/directives/repeat.js';
 import LynkElement from '../../internal/lynk-element';
-import { LynkTableSortDirection, LynkTableSortEvent } from './models';
 import styles from './table.styles';
+import type { CSSResultGroup } from 'lit';
+import type { ILynkTableCol, ILynkTableRow } from './models';
 import type LynkTableHeaderGroup from '../table-header-group/table-header-group';
 import type LynkTableRowGroup from '../table-row-group/table-row-group';
-import type { ILynkTableCol, ILynkTableRow } from './models';
-import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Tables display tabular data in a basic grid composed of cells, columns, and rows. This format makes it easy for users to scan and compare large amounts of data. Lynk based tables are intended to bahave like native html `<table>` elements. 
- * 
+ * @summary Tables display tabular data in a basic grid composed of cells, columns, and rows. This format makes it easy for users to scan and compare large amounts of data. Lynk based tables are intended to bahave like native html `<table>` elements.
+ *
  * @since 1.0
  * @status experimental
-  *
- * @slot - The tables content. If constructing manually, should contain 1 or more `<lynk-thead>` and `<lynk-tbody>` components. Should be unused for automatically constructed tables that use the `cols` and `rows` properties. 
+ *
+ * @slot - The tables content. If constructing manually, should contain 1 or more `<lynk-thead>` and `<lynk-tbody>` components. Should be unused for automatically constructed tables that use the `cols` and `rows` properties.
  *
  * @csspart base - The component's internal wrapper.
  */
@@ -32,21 +32,21 @@ export default class LynkTable extends LynkElement {
    **/
   @property() cols: ILynkTableCol[] = [];
 
-   /**
-    * Objects used for mapping row data.
-    * Required for data-driven tables.
-    * Optional for custom tables, except if you want to use the built-in sorting.
-    * Each object is expected to have a string property corresponding to a "key" in one of the cols.
-    */
+  /**
+   * Objects used for mapping row data.
+   * Required for data-driven tables.
+   * Optional for custom tables, except if you want to use the built-in sorting.
+   * Each object is expected to have a string property corresponding to a "key" in one of the cols.
+   */
   @property() rows: ILynkTableRow[] = [];
 
   /** Enables slotted children, and disables automatic table element construction */
   @property({ type: Boolean, reflect: true }) custom = false;
 
-  @queryAssignedElements({selector: 'lynk-thead', flatten: true})
+  @queryAssignedElements({ selector: 'lynk-thead', flatten: true })
   assignedHeaderGroup: NodeListOf<LynkTableHeaderGroup>;
 
-  @queryAssignedElements({selector: 'lynk-tbody', flatten: true})
+  @queryAssignedElements({ selector: 'lynk-tbody', flatten: true })
   assignedRowGroup: NodeListOf<LynkTableRowGroup>;
 
   connectedCallback() {
@@ -64,8 +64,8 @@ export default class LynkTable extends LynkElement {
     this.assignedHeaderGroup.forEach(headerGroup => {
       headerGroup.querySelectorAll('lynk-tr').forEach(row => {
         row.querySelectorAll('lynk-th').forEach(header => {
-          if(header.key === event.key) {
-            switch(LynkTableSortDirection[header.sortDirection]) {
+          if (header.key === event.key) {
+            switch (LynkTableSortDirection[header.sortDirection]) {
               case LynkTableSortDirection[LynkTableSortDirection.DESC]:
                 header.sortDirection = LynkTableSortDirection.ASC;
                 break;
@@ -104,25 +104,27 @@ export default class LynkTable extends LynkElement {
   render() {
     return html`
       <slot part="base" class="lynk-table">
-        <lynk-colgroup>
-          ${repeat(this.cols, col => html`<lynk-col class="${col.key}"></lynk-col>`)}
-        </lynk-colgroup>
+        <lynk-colgroup> ${repeat(this.cols, col => html`<lynk-col class="${col.key}"></lynk-col>`)} </lynk-colgroup>
         <lynk-thead>
           <lynk-tr>
-            ${repeat(this.cols, col => html`
-              <lynk-th
-                key="${col.key}"
-                sort-direction=${ifDefined(col.sortDirection ? col.sortDirection : undefined)}
-                ?sortable=${ifDefined(col.sortable ? col.sortable : undefined)}
-              >${col.title}</lynk-th>
-            `)}
+            ${repeat(
+              this.cols,
+              col => html`
+                <lynk-th
+                  key="${col.key}"
+                  sort-direction=${ifDefined(col.sortDirection ? col.sortDirection : undefined)}
+                  ?sortable=${ifDefined(col.sortable ? col.sortable : undefined)}
+                  >${col.title}</lynk-th
+                >
+              `
+            )}
           </lynk-tr>
         </lynk-thead>
         <lynk-tbody>
-          ${repeat(this.rows, row => html`
-          <lynk-tr>
-            ${repeat(this.cols, col => html`<lynk-td>${row[col.key]}</lynk-td>`)}
-          </lynk-tr>`)}
+          ${repeat(
+            this.rows,
+            row => html` <lynk-tr> ${repeat(this.cols, col => html`<lynk-td>${row[col.key]}</lynk-td>`)} </lynk-tr>`
+          )}
         </lynk-tbody>
       </slot>
     `;

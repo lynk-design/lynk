@@ -23,7 +23,8 @@ export default css`
     line-height: var(--lynk-line-height-normal);
     letter-spacing: var(--lynk-letter-spacing-normal);
     color: var(--lynk-color-neutral-700);
-    padding: var(--lynk-spacing-x-small) var(--lynk-spacing-medium) var(--lynk-spacing-x-small) var(--lynk-spacing-x-small);
+    padding: var(--lynk-spacing-x-small) var(--lynk-spacing-medium) var(--lynk-spacing-x-small)
+      var(--lynk-spacing-x-small);
     transition: var(--lynk-transition-fast) fill;
     cursor: pointer;
   }

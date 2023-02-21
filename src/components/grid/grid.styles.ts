@@ -125,7 +125,6 @@ export default css`
     max-width: 100%;
   }
 
-
   @media only screen and (min-width: 768px) {
     .span--md-1,
     .span--1 {
@@ -361,5 +360,4 @@ export default css`
     }
   }
   */
-
 `;

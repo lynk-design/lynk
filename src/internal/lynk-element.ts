@@ -29,6 +29,7 @@ export interface LynkFormControl extends LynkElement {
   disabled?: boolean;
   defaultValue?: unknown;
   defaultChecked?: boolean;
+  form?: string;
 
   // Standard validation attributes
   pattern?: string;
@@ -39,11 +40,13 @@ export interface LynkFormControl extends LynkElement {
   minlength?: number;
   maxlength?: number;
 
-  // Proprietary validation properties (non-attributes)
-  invalid: boolean;
+  // Validation properties
+  readonly validity: ValidityState;
+  readonly validationMessage: string;
 
   // Validation methods
   checkValidity: () => boolean;
+  /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity: () => boolean;
   setCustomValidity: (message: string) => void;
 }

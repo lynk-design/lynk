@@ -1,5 +1,5 @@
-import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import styles from './menu-label.styles';
 import type { CSSResultGroup } from 'lit';

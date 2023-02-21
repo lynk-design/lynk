@@ -1,16 +1,15 @@
-import { html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate';
-import { waitForEvent } from '../../internal/event';
-import LynkElement from '../../internal/lynk-element';
-import { watch } from '../../internal/watch';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
-import { LocalizeController } from '../../utilities/localize';
 import '../icon/icon';
+import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query } from 'lit/decorators.js';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { html } from 'lit';
+import { LocalizeController } from '../../utilities/localize';
+import { waitForEvent } from '../../internal/event';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './accordion.styles';
 import type { CSSResultGroup } from 'lit';
-
 
 /**
  * @summary Accordions show a brief summary and expand to show additional content.
@@ -193,7 +192,13 @@ export default class LynkAccordion extends LynkElement {
         </header>
 
         <div class="lynk-accordion__body">
-          <slot part="content" id="content" class="lynk-accordion__content" role="region" aria-labelledby="header"></slot>
+          <slot
+            part="content"
+            id="content"
+            class="lynk-accordion__content"
+            role="region"
+            aria-labelledby="header"
+          ></slot>
         </div>
       </div>
     `;

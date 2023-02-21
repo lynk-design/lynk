@@ -1,15 +1,15 @@
-import { html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import LynkElement from '../../internal/lynk-element';
-import { watch } from '../../internal/watch';
 import '../icon/icon';
+import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, state } from 'lit/decorators.js';
+import { html } from 'lit';
+import { watch } from '../../internal/watch';
+import LynkElement from '../../internal/lynk-element';
 import styles from './radio.styles';
 import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Radios allow the user to select a single option from a group.
- *
+ * @documentation https://lynk.design/components/radio
  * @since 1.0
  * @status stable
  *
@@ -21,98 +21,119 @@ import type { CSSResultGroup } from 'lit';
  * @event on:focus - Emitted when the control gains focus.
  *
  * @csspart base - The component's internal wrapper.
- * @csspart control - The radio control.
- * @csspart control--checked - The radio control if radio is checked.
- * @csspart checked-icon - The container the wraps the checked icon.
- * @csspart label - The radio label.
+ * @csspart control - The circular container that wraps the radio's checked state.
+ * @csspart control--checked - The radio control when the radio is checked.
+ * @csspart checked-icon - The checked icon, an `<lynk-icon>` element.
+ * @csspart label - The container that wraps the radio's label.
  */
 
- @customElement('lynk-radio')
- export default class LynkRadio extends LynkElement {
-   static styles: CSSResultGroup = styles;
+@customElement('lynk-radio')
+export default class LynkRadio extends LynkElement {
+  static styles: CSSResultGroup = styles;
 
-   @state() checked = false;
-   @state() protected hasFocus = false;
+  @state() checked = false;
+  @state() protected hasFocus = false;
 
-   /** The radio's value attribute. */
-   @property() value: string;
+  /** The radio's value. When selected, the radio group will receive this value. */
+  @property() value: string;
 
-   /** The radio's size. */
-   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+  /** The radio's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-   /** Disables the radio. */
-   @property({ type: Boolean, reflect: true }) disabled = false;
+  /** Disables the radio. */
+  @property({ type: Boolean, reflect: true }) disabled = false;
 
-   connectedCallback(): void {
-     super.connectedCallback();
-     this.setInitialAttributes();
-     this.addEventListeners();
-   }
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
 
-   @watch('checked')
-   handleCheckedChange() {
-     this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
-     this.setAttribute('tabindex', this.checked ? '0' : '-1');
-   }
+    this.setInitialAttributes();
+    this.addEventListeners();
+  }
 
-   @watch('disabled', { waitUntilFirstUpdate: true })
-   handleDisabledChange() {
-     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
-   }
+  disconnectedCallback() {
+    this.removeEventListeners();
+  }
 
-   private handleBlur() {
-     this.hasFocus = false;
-     this.emit('on:blur');
-   }
+  private addEventListeners() {
+    this.addEventListener('blur', this.handleBlur);
+    this.addEventListener('click', this.handleClick);
+    this.addEventListener('focus', this.handleFocus);
+  }
 
-   private handleClick() {
-     if (!this.disabled) {
-       this.checked = true;
-     }
-   }
+  private removeEventListeners() {
+    this.removeEventListener('blur', this.handleBlur);
+    this.removeEventListener('click', this.handleClick);
+    this.removeEventListener('focus', this.handleFocus);
+  }
 
-   private handleFocus() {
-     this.hasFocus = true;
-     this.emit('on:focus');
-   }
+  private handleBlur() {
+    this.hasFocus = false;
+    this.emit('on:blur');
+  }
 
-   private addEventListeners() {
-     this.addEventListener('blur', () => this.handleBlur());
-     this.addEventListener('click', () => this.handleClick());
-     this.addEventListener('focus', () => this.handleFocus());
-   }
+  private handleClick() {
+    if (!this.disabled) {
+      this.checked = true;
+    }
+  }
 
-   private setInitialAttributes() {
-     this.setAttribute('role', 'radio');
-     this.setAttribute('tabindex', '-1');
-     this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
-   }
+  private handleFocus() {
+    this.hasFocus = true;
+    this.emit('on:focus');
+  }
 
-   render() {
-     return html`
-       <span
-         part="base"
-         class=${classMap({
-           'lynk-radio': true,
-           'lynk-radio--checked': this.checked,
-           'lynk-radio--disabled': this.disabled,
-           'lynk-radio--focused': this.hasFocus,
-           'lynk-radio--small': this.size === 'small',
-           'lynk-radio--medium': this.size === 'medium',
-           'lynk-radio--large': this.size === 'large'
-         })}
-       >
-         <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="lynk-radio__control">
-           ${this.checked
-             ? html` <lynk-icon part="checked-icon" class="lynk-radio__checked-icon" library="system" name="radio"></lynk-icon> `
-             : ''}
-         </span>
+  private setInitialAttributes() {
+    this.setAttribute('role', 'radio');
+    this.setAttribute('tabindex', '-1');
+    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+  }
 
-         <slot part="label" class="lynk-radio__label"></slot>
-       </span>
-     `;
-   }
- }
+  @watch('checked')
+  handleCheckedChange() {
+    this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
+    this.setAttribute('tabindex', this.checked ? '0' : '-1');
+  }
+
+  @watch('disabled', { waitUntilFirstUpdate: true })
+  handleDisabledChange() {
+    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+  }
+
+  render() {
+    return html`
+      <span
+        part="base"
+        class=${classMap({
+          'lynk-radio': true,
+          'lynk-radio--checked': this.checked,
+          'lynk-radio--disabled': this.disabled,
+          'lynk-radio--focused': this.hasFocus,
+          'lynk-radio--small': this.size === 'small',
+          'lynk-radio--medium': this.size === 'medium',
+          'lynk-radio--large': this.size === 'large'
+        })}
+      >
+        <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="lynk-radio__control">
+          ${this.checked
+            ? html`
+                <lynk-icon
+                  part="checked-icon"
+                  class="lynk-radio__checked-icon"
+                  library="system"
+                  name="radio"
+                ></lynk-icon>
+              `
+            : ''}
+        </span>
+
+        <slot part="label" class="lynk-radio__label"></slot>
+      </span>
+    `;
+  }
+}
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -54,7 +54,7 @@ export default css`
   }
 
   /* Primary */
-    .lynk-icon-button.lynk-icon-button--primary {
+  .lynk-icon-button.lynk-icon-button--primary {
     color: var(--lynk-color-primary-600);
   }
 
@@ -68,7 +68,7 @@ export default css`
   }
 
   /* Success */
-    .lynk-icon-button.lynk-icon-button--success {
+  .lynk-icon-button.lynk-icon-button--success {
     color: var(--lynk-color-success-600);
   }
 
@@ -82,7 +82,7 @@ export default css`
   }
 
   /* Neutral */
-    .lynk-icon-button.lynk-icon-button--neutral {
+  .lynk-icon-button.lynk-icon-button--neutral {
     color: var(--lynk-color-neutral-600);
   }
 
@@ -96,7 +96,7 @@ export default css`
   }
 
   /* Warning */
-    .lynk-icon-button.lynk-icon-button--warning {
+  .lynk-icon-button.lynk-icon-button--warning {
     color: var(--lynk-color-warning-600);
   }
 
@@ -110,7 +110,7 @@ export default css`
   }
 
   /* Danger */
-    .lynk-icon-button.lynk-icon-button--danger {
+  .lynk-icon-button.lynk-icon-button--danger {
     color: var(--lynk-color-danger-600);
   }
 
@@ -122,7 +122,6 @@ export default css`
   .lynk-icon-button.lynk-icon-button--danger:active:not(.lynk-icon-button--disabled) {
     color: var(--lynk-color-danger-700);
   }
-
 
   .lynk-icon-button--has-prefix .lynk-icon-button__prefix {
     display: inline;
@@ -141,8 +140,7 @@ export default css`
     align-items: center;
     pointer-events: none;
     white-space: nowrap;
-    overflow:hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
   }
-
 `;

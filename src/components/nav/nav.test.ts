@@ -1,9 +1,9 @@
+import { clickOnElement } from '../../internal/test';
 import { expect, fixture, html, triggerBlurFor, triggerFocusFor } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
-import { clickOnElement } from '../../internal/test';
-import type LynkNavItem from '../nav-item/nav-item';
 import type LynkNav from './nav';
+import type LynkNavItem from '../nav-item/nav-item';
 
 describe('<lynk-nav>', () => {
   let el: LynkNav;
@@ -251,7 +251,6 @@ describe('<lynk-nav>', () => {
 
       describe('and selection is not a parent', () => {
         it('nav should emit on:select with the correct event detail', async () => {
-
           const navItem = el.children[0];
 
           const selectHandler = sinon.spy((event: CustomEvent) => {
@@ -296,7 +295,6 @@ describe('<lynk-nav>', () => {
     describe('when the user clicks on a nav item', () => {
       describe('and item is not a parent', () => {
         it('nav should emit on:select with the correct event detail', async () => {
-
           const navItem = el.children[0];
 
           const selectHandler = sinon.spy((event: CustomEvent) => {
@@ -328,7 +326,6 @@ describe('<lynk-nav>', () => {
           expect(parentItem).to.have.attribute('expanded');
         });
         it('nav should not emit on:select when expanding or collapsing children list', async () => {
-
           const parentItem = el.children[2] as LynkNavItem;
 
           const selectHandler = sinon.spy();

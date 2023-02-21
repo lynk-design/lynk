@@ -21,16 +21,15 @@ export default css`
     cursor: pointer;
   }
 
-  :host([sort-direction="1"]),
-  :host([sort-direction="-1"]) {
+  :host([sort-direction='1']),
+  :host([sort-direction='-1']) {
     color: var(--lynk-color-primary);
   }
 
-  :host([sort-direction="1"]) lynk-icon,
-  :host([sort-direction="-1"]) lynk-icon {
+  :host([sort-direction='1']) lynk-icon,
+  :host([sort-direction='-1']) lynk-icon {
     opacity: 1;
   }
-
 
   :host([sortable]:hover) {
     color: var(--lynk-color-primary-600);

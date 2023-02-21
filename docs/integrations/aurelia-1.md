@@ -5,11 +5,14 @@ LYNK works great with all modern app frameworks, including Aurelia, with full in
 ## Installation
 
 To add LYNK to your Aurelia app, first authenticate to the Uplynk project package registry
+
 ```shell
 npm config set -- //gitlab.edgecastcdn.net/api/v4/projects/6611/packages/npm/:_authToken=YOUR_ACCESS_TOKEN
 echo @uplynk:registry=https://gitlab.edgecastcdn.net/api/v4/projects/6611/packages/npm/ >> .npmrc
 ```
+
 Then install just like any other npm package
+
 ```shell
 npm i @uplynk/lynk-design
 yarn install @uplynk/lynk-design
@@ -40,13 +43,13 @@ That's it! Now you can start using LYNK components in your app!
 When binding to standard Aurelia events like `click`, the `trigger` binding command seems to be more reliable than `delegate`.
 
 ```html
-<lynk-button click.trigger="myListener()">
+<lynk-button click.trigger="myListener()"></lynk-button>
 ```
 
 To bind listeners to custom events emitted by LYNK components, use the same trigger binding command on the event emitted from the component.
 
 ```html
-<lynk-menu on:select.trigger="myListener($event)">
+<lynk-menu on:select.trigger="myListener($event)"></lynk-menu>
 ```
 
 ### Two-way Data Binding
@@ -56,7 +59,7 @@ Because Aurelia doesn't recognize form controls within LYNK components, the `bin
 ```html
 <!-- This doesn't work for form controls -->
 <lynk-input value.bind="myValue">
-
-<!-- This works as expected -->
-<lynk-input value.two-way="myValue">
+  <!-- This works as expected -->
+  <lynk-input value.two-way="myValue"></lynk-input
+></lynk-input>
 ```

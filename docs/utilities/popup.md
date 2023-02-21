@@ -6,7 +6,7 @@ This component's name is inspired by [`<popup>`](https://github.com/MicrosoftEdg
 
 Popup doesn't provide any styles — just positioning! The popup's preferred placement, distance, and skidding (offset) can be configured using attributes. An arrow that points to the anchor can be shown and customized to your liking. Additional positioning options are available and described in more detail below.
 
-<lynk-alert type="warning" open>Popup is a low-level utility built specifically for positioning elements. Do not mistake it for a [popover](/components/popover) or [tooltip](/components/tooltip) because it does not facilitate an accessible experience!_ Almost every correct usage of `<lynk-popup>` will involve building other components. It should rarely, if ever, occur in your own HTML.</lynk-alert>
+<lynk-alert type="warning" open>Popup is a low-level utility built specifically for positioning elements. Do not mistake it for a [popover](/components/popover) or [tooltip](/components/tooltip) because it does not facilitate an accessible experience!\_ Almost every correct usage of `<lynk-popup>` will involve building other components. It should rarely, if ever, occur in your own HTML.</lynk-alert>
 
 ```html preview
 <div class="popup-overview">
@@ -142,7 +142,6 @@ Popups are inactive and hidden until the `active` attribute is applied. Removing
 </script>
 ```
 
-
 ### External Anchors
 
 By default, anchors are slotted into the popup using the `anchor` slot. If your anchor needs to live outside of the popup, you can pass the anchor's `id` to the `anchor` attribute. Alternatively, you can pass an element reference to the `anchor` property to achieve the same effect without using an `id`.
@@ -171,7 +170,6 @@ By default, anchors are slotted into the popup using the `anchor` slot. If your 
   }
 </style>
 ```
-
 
 ### Placement
 
@@ -232,7 +230,6 @@ Since placement is preferred when using `flip`, you can observe the popup's curr
 </script>
 ```
 
-
 ### Distance
 
 Use the `distance` attribute to change the distance between the popup and its anchor. A positive value will move the popup further away and a negative value will move it closer.
@@ -276,7 +273,6 @@ Use the `distance` attribute to change the distance between the popup and its an
   distance.addEventListener('on:change', () => (popup.distance = distance.value));
 </script>
 ```
-
 
 ### Skidding
 
@@ -413,7 +409,6 @@ By default, the arrow will be aligned as close to the center of the _anchor_ as 
 </div>
 ```
 
-
 ### Syncing with the Anchor's Dimensions
 
 Use the `sync` attribute to make the popup the same width or height as the anchor element. This is useful for controls that need the popup to stay the same width or height as the trigger.
@@ -465,7 +460,6 @@ Use the `sync` attribute to make the popup the same width or height as the ancho
   sync.addEventListener('on:change', () => (popup.sync = sync.value));
 </script>
 ```
-
 
 ### Positioning Strategy
 

@@ -15,4 +15,5 @@
   <lynk-menu-item value="zucchini">Zucchini</lynk-menu-item>
 </lynk-menu>
 ```
+
 [component-metadata:lynk-menu-label]

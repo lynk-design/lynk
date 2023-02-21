@@ -48,7 +48,6 @@ Radios and radio buttons can be disabled by adding the `disabled` attribute to t
 </lynk-radio-group>
 ```
 
-
 ### Validation
 
 Setting the `required` attribute to make selecting an option mandatory. If a value has not been selected, it will prevent the form from submitting and display an error message.

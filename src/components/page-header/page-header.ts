@@ -1,8 +1,8 @@
-import { html } from 'lit';
+import '../../components/page-content/page-content';
 import { customElement, property } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import LynkPageLayout from '../../components/page-layout/page-layout';
-import '../../components/page-content/page-content';
 import styles from './page-header.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -15,7 +15,7 @@ import type { CSSResultGroup } from 'lit';
  * @dependency lynk-page-layout
  * @dependency lynk-page-content
  *
- * @slot - The default slot for the title, description, and other relevant metadata. 
+ * @slot - The default slot for the title, description, and other relevant metadata.
  * @slot breadcrumb - Designated top-left area for breadcrumb navigation.
  * @slot controls - Designated area to right of default slot for standard header actions.
  * @slot aux - Designated top-right area for auxiliary header actions.
@@ -35,14 +35,8 @@ export default class LynkPageHeader extends LynkElement {
   static styles: CSSResultGroup = styles;
 
   /** Set an optional maximum width for page header  */
-  @property({ reflect: true }) width :
-    | 'auto'
-    | 'small'
-    | 'medium'
-    | 'large'
-    | 'x-large'
-    | '2x-large'
-    | 'fluid' = 'fluid';
+  @property({ reflect: true }) width: 'auto' | 'small' | 'medium' | 'large' | 'x-large' | '2x-large' | 'fluid' =
+    'fluid';
 
   connectedCallback() {
     super.connectedCallback();
@@ -60,14 +54,8 @@ export default class LynkPageHeader extends LynkElement {
 
   render() {
     return html`
-      <lynk-page-content
-        width="${this.width}"
-        style="--padding-top: 0; --padding-bottom: 0;"
-      >
-        <header
-          part="base"
-          class="lynk-page-header"
-        >
+      <lynk-page-content width="${this.width}" style="--padding-top: 0; --padding-bottom: 0;">
+        <header part="base" class="lynk-page-header">
           <slot name="breadcrumb" part="breadcrumb" class="lynk-page-header__breadcrumb"></slot>
           <slot name="controls" part="controls" class="lynk-page-header__controls"></slot>
           <slot name="aux" part="aux" class="lynk-page-header__aux"></slot>
