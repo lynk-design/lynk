@@ -174,7 +174,7 @@ export default css`
     margin-inline-end: var(--lynk-input-spacing-small);
   }
 
-  .lynk-select--small.lynk-select--multiple .lynk-select__combobox {
+  .lynk-select--small.lynk-select--multiple:not(.lynk-select--placeholder-visible) .lynk-select__combobox {
     padding-block: 2px;
     padding-inline-start: 0;
   }
@@ -199,7 +199,7 @@ export default css`
     margin-inline-end: var(--lynk-input-spacing-medium);
   }
 
-  .lynk-select--medium.lynk-select--multiple .lynk-select__combobox {
+  .lynk-select--medium.lynk-select--multiple:not(.lynk-select--placeholder-visible) .lynk-select__combobox {
     padding-inline-start: 0;
     padding-block: 3px;
   }
@@ -224,7 +224,7 @@ export default css`
     margin-inline-end: var(--lynk-input-spacing-large);
   }
 
-  .lynk-select--large.lynk-select--multiple .lynk-select__combobox {
+  .lynk-select--large.lynk-select--multiple:not(.lynk-select--placeholder-visible) .lynk-select__combobox {
     padding-inline-start: 0;
     padding-block: 4px;
   }
