@@ -268,7 +268,6 @@ describe('<lynk-select>', () => {
       await el.updateComplete;
 
       expect(el.checkValidity()).to.be.true;
-      expect(el.state).to.equal('success');
       expect(el.hasAttribute('data-user-invalid')).to.be.false;
       expect(el.hasAttribute('data-user-valid')).to.be.true;
     });

@@ -343,12 +343,9 @@ export class FormControlController implements ReactiveController {
 
     if (!isValid && hasInteracted && hasState){
       host.state = 'error';
+    } else {
+      host.state = 'default';
     }
-
-    if (isValid && hasInteracted && hasState){
-      host.state = 'success';
-    }
-
   }
 
   /**
