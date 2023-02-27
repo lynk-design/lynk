@@ -91,6 +91,9 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
   /** Used to override the default event bubbling. */
   @property({ attribute: 'no-bubble', type: Boolean, reflect: true }) noBubble = false;
 
+  /** The input's validity state when using manual validation or set automatically to `error` or `success` when field uses Contraint Validation */
+  @property({ reflect: true }) state: 'error' | 'warning' | 'success' | 'default' = 'default';
+
   /** Gets the validity state object */
   get validity() {
     return this.input.validity;
@@ -223,7 +226,10 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
           'lynk-checkbox--indeterminate': this.indeterminate,
           'lynk-checkbox--small': this.size === 'small',
           'lynk-checkbox--medium': this.size === 'medium',
-          'lynk-checkbox--large': this.size === 'large'
+          'lynk-checkbox--large': this.size === 'large',
+          'lynk-checkbox--has-error': this.state === 'error',
+          'lynk-checkbox--has-warning': this.state === 'warning',
+          'lynk-checkbox--has-success': this.state === 'success'
         })}
       >
         <input
