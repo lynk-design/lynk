@@ -36,6 +36,7 @@ export default css`
   .lynk-page-header__controls {
     grid-area: controls;
     display: flex;
+    flex-wrap: wrap;
     width: auto;
     margin-left: auto;
     gap: var(--lynk-spacing-2x-small);
@@ -46,7 +47,7 @@ export default css`
   .lynk-page-header__main {
     display: block;
     grid-area: main;
-    min-width: max-content;
+    min-width: min-content;
   }
 
   .lynk-page-header__main h1,

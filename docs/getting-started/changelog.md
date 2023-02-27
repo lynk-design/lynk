@@ -6,6 +6,10 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.6.3
+
+- Fixing bug in `page-layout-header` that allowed the main area width to stretch beyond its desired limits
+
 ## 0.6.2
 
 - Removing the `state="success"` property from auto applying with constraint validation.
