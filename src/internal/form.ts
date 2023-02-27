@@ -1,4 +1,5 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import type { LynkFormControl } from '../internal/lynk-element';
 import type LynkButton from '../components/button/button';
 
@@ -325,6 +326,7 @@ export class FormControlController implements ReactiveController {
     const host = this.host;
     const hasInteracted = Boolean(userInteractedControls.has(host));
     const required = Boolean(host.required);
+    const hasState = ifDefined(host.state);
 
     //
     // We're mapping the following "states" to data attributes. In the future, we can use ElementInternals.states to
@@ -338,6 +340,15 @@ export class FormControlController implements ReactiveController {
     host.toggleAttribute('data-valid', isValid);
     host.toggleAttribute('data-user-invalid', !isValid && hasInteracted);
     host.toggleAttribute('data-user-valid', isValid && hasInteracted);
+
+    if (!isValid && hasInteracted && hasState){
+      host.state = 'error';
+    }
+
+    if (isValid && hasInteracted && hasState){
+      host.state = 'success';
+    }
+
   }
 
   /**

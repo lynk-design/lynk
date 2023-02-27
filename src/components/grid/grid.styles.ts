@@ -16,7 +16,7 @@ export default css`
     width: calc(var(--width) + var(--gap));
     height: calc(var(--height) + var(--gap));
     flex-flow: row wrap;
-    margin: calc(var(--gap) * -0.5);
+    margin: 0 calc(var(--gap) * -0.5);
   }
 
   .lynk-grid--row {

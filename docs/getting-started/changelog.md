@@ -6,6 +6,11 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.6.1
+
+- Tied the contraint validation data attributes of `data-user-invalid`, and `data-user-valid` to also autmatically effect the state properties of `state="error"` and `state="success"`
+- Removing the default top and bottom margin on `<lynk-grid container>` element
+
 ## 0.6.0
 
 - Added the `form` attribute to all form controls to allow placing them outside of a `<form>` element

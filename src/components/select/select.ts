@@ -170,7 +170,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   @property({ type: Boolean, reflect: true }) restricted = false;
 
   /** The select's feedback status using manual validation. Alternatively, you can use the invalid attribute */
-  @property({ reflect: true }) state: 'error' | 'warning' | 'success';
+  @property({ reflect: true }) state: 'error' | 'warning' | 'success' | 'default' = 'default';
 
   /** Gets the validity state object */
   get validity() {

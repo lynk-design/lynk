@@ -25,9 +25,9 @@
     </aside>
     <div class="lynk-app__main">
     <lynk-page-layout>
-        <lynk-page-sidebar heading="Left Sidebar" toggle="contents" open>
+        <lynk-page-sidebar heading="Left Sidebar" toggle="visibility" open>
         </lynk-page-sidebar>
-        <lynk-page-sidebar heading="Left Inset Sidebar" placement="left-inset" toggle="contents" open>
+        <lynk-page-sidebar heading="Left Inset Sidebar" placement="left-inset" toggle="visibility" open>
         </lynk-page-sidebar>
         <lynk-page-header>
             <lynk-button slot="aux" size="tiny" square></lynk-button>
@@ -72,9 +72,9 @@
 
 <p>Quisque mauris lectus, ultricies sit amet placerat eu, mollis in dolor. Integer porttitor, erat vel consequat tincidunt, sapien velit iaculis sem, ac euismod ex enim a lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam rutrum finibus velit, ut eleifend lorem fermentum sed. Integer nisl nisl, mollis facilisis tincidunt eu, convallis a quam. Pellentesque sagittis pretium neque ac ornare. Ut gravida, ante a posuere suscipit, enim urna vulputate elit, ac hendrerit lorem diam at nibh. Suspendisse aliquet ex nec mi mollis, nec aliquet sapien faucibus.</p>
             </lynk-page-content>
-            <lynk-page-sidebar heading="Right Inset Sidebar" placement="right-inset" style="--width: 480px;" toggle="contents" open>
+            <lynk-page-sidebar heading="Right Inset Sidebar" placement="right-inset" style="--width: 480px;" toggle="visibility" open>
             </lynk-page-sidebar>
-            <lynk-page-sidebar heading="Right Sidebar" placement="right" toggle="contents" open>
+            <lynk-page-sidebar heading="Right Sidebar" placement="right" toggle="visibility" open>
             </lynk-page-sidebar>
             <lynk-page-footer>
                 <lynk-button color="primary">Save</lynk-button>
