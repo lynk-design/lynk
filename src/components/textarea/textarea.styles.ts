@@ -176,4 +176,39 @@ export default css`
     height: auto;
     resize: none;
   }
+
+
+  /*
+   * Error & Warning States
+   */
+
+  .lynk-textarea--has-error,
+  .lynk-textarea--has-error:hover:not(.lynk-textarea--disabled) {
+    border-color: var(--lynk-color-danger-500);
+  }
+
+  .lynk-textarea--has-error.lynk-textarea--focused:not(.lynk-textarea--disabled) {
+    border-color: var(--lynk-color-danger-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-danger-a50);
+  }
+
+  .lynk-textarea--has-warning,
+  .lynk-textarea--has-warning:hover:not(.lynk-textarea--disabled) {
+    border-color: var(--lynk-color-warning-500);
+  }
+
+  .lynk-textarea--has-warning.lynk-textarea--focused:not(.lynk-textarea--disabled) {
+    border-color: var(--lynk-color-warning-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-warning-a50);
+  }
+
+  .lynk-textarea--has-success,
+  .lynk-textarea--has-success:hover:not(.lynk-textarea--disabled) {
+    border-color: var(--lynk-color-success-500);
+  }
+
+  .lynk-textarea--has-success.lynk-textarea--focused:not(.lynk-textarea--disabled) {
+    border-color: var(--lynk-color-success-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-success-a50);
+  }
 `;

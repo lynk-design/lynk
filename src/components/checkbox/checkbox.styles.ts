@@ -126,4 +126,65 @@ export default css`
     content: var(--lynk-input-required-content);
     margin-inline-start: var(--lynk-input-required-content-offset);
   }
+
+    /*
+   * Error & Warning States
+   */
+
+  .lynk-checkbox--has-error .lynk-checkbox__control,
+  .lynk-checkbox--has-error:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled) .lynk-checkbox__control:hover {
+    border-color: var(--lynk-color-danger-500);
+  }
+
+  .lynk-checkbox--has-error.lynk-checkbox--focused:not(.lynk-checkbox--disabled) .lynk-checkbox__control {
+    border-color: var(--lynk-color-danger-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-danger-a50);
+  }
+
+  .lynk-checkbox--has-error .lynk-checkbox__label {
+    color: var(--lynk-color-danger-500);
+  }
+
+  .lynk-checkbox--has-error.lynk-checkbox--checked .lynk-checkbox__control {
+    background-color: var(--lynk-color-success-500);
+    outline: none;
+  }
+
+  .lynk-checkbox--has-warning .lynk-checkbox__control,
+  .lynk-checkbox--has-warning:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled) .lynk-checkbox__control:hover {
+    border-color: var(--lynk-color-warning-500);
+  }
+
+  .lynk-checkbox--has-warning.lynk-checkbox--focused:not(.lynk-checkbox--disabled) .lynk-checkbox__control {
+    border-color: var(--lynk-color-warning-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-warning-a50);
+  }
+
+  .lynk-checkbox--has-warning .lynk-checkbox__label {
+    color: var(--lynk-color-warning-500);
+  }
+
+  .lynk-checkbox--has-warning.lynk-checkbox--checked .lynk-checkbox__control {
+    background-color: var(--lynk-color-warning-500);
+    outline: none;
+  }
+
+  .lynk-checkbox--has-success .lynk-checkbox__control,
+  .lynk-checkbox--has-success:not(.lynk-checkbox--checked):not(.lynk-checkbox--disabled) .lynk-checkbox__control:hover {
+    border-color: var(--lynk-color-success-500);
+  }
+
+  .lynk-checkbox--has-success.lynk-checkbox--focused:not(.lynk-checkbox--disabled) .lynk-checkbox__control {
+    border-color: var(--lynk-color-success-500);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-success-a50);
+  }
+
+  .lynk-checkbox--has-success .lynk-checkbox__label {
+    color: var(--lynk-color-success-500);
+  }
+
+  .lynk-checkbox--has-success.lynk-checkbox--checked .lynk-checkbox__control {
+    background-color: var(--lynk-color-success-500);
+    outline: none;
+  }
 `;

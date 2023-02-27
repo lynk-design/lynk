@@ -106,8 +106,8 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
   @defaultValue() defaultValue = '';
 
-  /** The input's feedback status using manual validation. Alternatively, you can use the invalid attribute */
-  @property({ reflect: true }) state: 'error' | 'warning' | 'success';
+  /** The input's validity state when using manual validation or set automatically to `error` or `success` when field uses Contraint Validation */
+  @property({ reflect: true }) state: 'error' | 'warning' | 'success' | 'default' = 'default';
 
   /** The input's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';

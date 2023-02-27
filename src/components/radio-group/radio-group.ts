@@ -81,7 +81,7 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
   @property({ type: Boolean, reflect: true }) required = false;
 
   /** The input's feedback status using manual validation. Alternatively, you can use the invalid attribute */
-  @property({ reflect: true }) state: 'error' | 'warning' | 'success';
+  @property({ reflect: true }) state: 'error' | 'warning' | 'success' | 'default' = 'default';
 
   /** Gets the validity state object */
   get validity() {

@@ -62,7 +62,7 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
   @property() value = '';
 
   /** The textareas feedback status using manual validation. Alternatively, you can use the invalid attribute */
-  @property({ reflect: true }) state: 'error' | 'warning' | 'success';
+  @property({ reflect: true }) state: 'error' | 'warning' | 'success' | 'default' = 'default';
 
   /** The textarea's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';

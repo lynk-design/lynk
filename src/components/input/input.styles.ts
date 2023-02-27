@@ -264,7 +264,7 @@ export default css`
 
   .lynk-input--has-error.lynk-input--focused:not(.lynk-input--disabled) {
     border-color: var(--lynk-color-danger-500);
-    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-danger-400);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-danger-a50);
   }
 
   .lynk-input--has-warning,
@@ -274,7 +274,7 @@ export default css`
 
   .lynk-input--has-warning.lynk-input--focused:not(.lynk-input--disabled) {
     border-color: var(--lynk-color-warning-500);
-    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-warning-400);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-warning-a50);
   }
 
   .lynk-input--has-success,
@@ -284,7 +284,7 @@ export default css`
 
   .lynk-input--has-success.lynk-input--focused:not(.lynk-input--disabled) {
     border-color: var(--lynk-color-success-500);
-    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-success-400);
+    box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-success-a50);
   }
 
   /* Restricted */

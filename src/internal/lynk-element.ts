@@ -39,6 +39,7 @@ export interface LynkFormControl extends LynkElement {
   required?: boolean;
   minlength?: number;
   maxlength?: number;
+  state?: string;
 
   // Validation properties
   readonly validity: ValidityState;

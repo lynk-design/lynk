@@ -104,6 +104,7 @@ describe('<lynk-radio-group>', () => {
       await secondRadio.updateComplete;
 
       expect(radioGroup.checkValidity()).to.be.true;
+      expect(radioGroup.state).to.equal('success');
       expect(radioGroup.hasAttribute('data-user-invalid')).to.be.false;
       expect(radioGroup.hasAttribute('data-user-valid')).to.be.true;
     });
@@ -128,6 +129,7 @@ describe('<lynk-radio-group>', () => {
       radioGroup.value = '';
       await radioGroup.updateComplete;
 
+      expect(radioGroup.state).to.equal('error');
       expect(radioGroup.hasAttribute('data-user-invalid')).to.be.true;
       expect(radioGroup.hasAttribute('data-user-valid')).to.be.false;
     });
