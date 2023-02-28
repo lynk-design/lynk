@@ -2,7 +2,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
-import { scrollIntoView, getScrollParent } from '../../internal/scroll';
+import { getScrollParent } from '../../internal/scroll';
 import LynkPageLayout from '../../components/page-layout/page-layout';
 import styles from './page-content.styles';
 import type { CSSResultGroup } from 'lit';
@@ -32,7 +32,7 @@ export default class LynkPageContent extends LynkElement {
       getScrollParent(this.pageContent);
 
       if (parent) {
-          scrollIntoView(this.pageContent, parent);
+          parent.scrollTo({ top: 0, behavior: 'smooth' });
       }
   }
 
