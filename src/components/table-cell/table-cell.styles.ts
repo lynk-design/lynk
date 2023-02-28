@@ -29,7 +29,7 @@ export default css`
   }
 
   :host([state='warning']) {
-    --state-color: var(--lynk-color-warning-50);
+    --state-color: var(--lynk-color-warning-a25);
     --state-color-b: var(--lynk-color-warning-a10);
   }
 
