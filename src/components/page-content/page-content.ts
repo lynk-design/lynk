@@ -2,7 +2,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
-import { scrollIntoView } from '../../internal/scroll';
+import { scrollIntoView, getScrollParent } from '../../internal/scroll';
 import LynkPageLayout from '../../components/page-layout/page-layout';
 import styles from './page-content.styles';
 import type { CSSResultGroup } from 'lit';
@@ -25,33 +25,21 @@ export default class LynkPageContent extends LynkElement {
   @query('.lynk-page-content') pageContent: HTMLElement;
 
   /** Scrolls the nearest scrollable parent element to the top. */
-  public scrollTop() {
+  scrollToTop() {
 
-    const parentNode = this.hasParentLayout ? 
-      this.parentNode.renderRoot.querySelector('.lynk-page-layout__main') :
-      this.getScrollParent(this.pageContent);
+    const parent: HTMLElement | null = this.hasParentLayout() ? 
+      (this.parentElement as LynkPageLayout).renderRoot.querySelector('.lynk-page-layout__main') :
+      getScrollParent(this.pageContent);
 
-    scrollIntoView(this.pageContent, parentNode);
+      if (parent) {
+          scrollIntoView(this.pageContent, parent);
+      }
   }
 
   // Checks whether the page content is nested into a lynk-page-layout
   private hasParentLayout(): boolean {
     const parent = this.parentElement;
     return parent instanceof LynkPageLayout;
-  }
-
-  private getScrollParent(node: Node) {
-    const { overflowY } = window.getComputedStyle(node);
-    const isScrollable = overflowY !== 'visible' && overflowY !== 'hidden';
-
-    if (isScrollable && node.scrollHeight >= node.clientHeight) {
-      return node;
-    }
-    // shadowRoot has .host to point to the host of the node element
-    // bypass shadowRoot by directly refer to its host as parentNode
-    const parentNode = node.parentNode.host || node.parentNode;
-
-    return this.getScrollParent(parentNode) || document.body;
   }
 
   render() {

@@ -86,11 +86,6 @@
   const pageContent = document.querySelector('.page-content');
 
   scrollTopButton.addEventListener('click', function(){
-     pageContent.scrollTop();
-  });
-
-  // Bind each to a scroll event listener
-  pageContent.addEventListener("scroll", function(){
-      console.log('page content scrolled');
+     pageContent.scrollToTop();
   });
 </script>
