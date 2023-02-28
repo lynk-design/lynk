@@ -1,7 +1,9 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
+import { scrollIntoView, getScrollParent } from '../../internal/scroll';
+import LynkPageLayout from '../../components/page-layout/page-layout';
 import styles from './page-content.styles';
 import type { CSSResultGroup } from 'lit';
 
@@ -19,6 +21,26 @@ export default class LynkPageContent extends LynkElement {
   /** Set an optional maximum width for page content  */
   @property({ reflect: true }) width: 'auto' | 'small' | 'medium' | 'large' | 'x-large' | '2x-large' | 'fluid' =
     'fluid';
+
+  @query('.lynk-page-content') pageContent: HTMLElement;
+
+  /** Scrolls the nearest scrollable parent element to the top. */
+  scrollToTop() {
+
+    const parent: HTMLElement | null = this.hasParentLayout() ? 
+      (this.parentElement as LynkPageLayout).renderRoot.querySelector('.lynk-page-layout__main') :
+      getScrollParent(this.pageContent);
+
+      if (parent) {
+          scrollIntoView(this.pageContent, parent);
+      }
+  }
+
+  // Checks whether the page content is nested into a lynk-page-layout
+  private hasParentLayout(): boolean {
+    const parent = this.parentElement;
+    return parent instanceof LynkPageLayout;
+  }
 
   render() {
     return html`

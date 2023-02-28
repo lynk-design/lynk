@@ -57,7 +57,7 @@
                   <lynk-tab slot="nav" panel="disabled" disabled>Disabled</lynk-tab>
                 </lynk-tab-group>
             </lynk-page-header>
-            <lynk-page-content width="medium">
+            <lynk-page-content class="page-content" width="medium">
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin blandit diam sed dolor elementum, et interdum tortor mollis. Sed rhoncus faucibus dolor, aliquam consequat quam euismod sit amet. Duis rhoncus laoreet augue et elementum. Pellentesque vel metus luctus, auctor quam at, sodales massa. Duis eget varius nisi. Quisque convallis tempor lacus, vel accumsan nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Vivamus enim odio, rhoncus non ultrices non, condimentum ut tortor. Aliquam nec nisl ligula. Phasellus nec est at mi sollicitudin bibendum. In porttitor tempus imperdiet. Donec ultricies ligula sed diam luctus iaculis. Cras non lectus volutpat, volutpat nisl nec, hendrerit lacus. Suspendisse vitae hendrerit tellus.</p>
 
 <p>Integer aliquet tempus erat eget scelerisque. Fusce massa felis, aliquet a vestibulum vitae, ultrices eu nunc. Morbi vitae suscipit nulla, eget malesuada orci. Morbi rutrum nisl ut felis pharetra, eget venenatis turpis tempus. Nunc sollicitudin vestibulum lorem id imperdiet. Sed turpis velit, varius et mi sit amet, consequat porttitor lectus. Cras dapibus tellus id nisl aliquet, vel pretium lorem imperdiet. Proin mi mauris, viverra et urna nec, blandit mollis orci. Cras et justo ante. Aliquam mollis ut neque ac placerat. Morbi purus ipsum, sodales tempus tempor at, eleifend ut erat. Pellentesque tempor turpis dolor, a vulputate magna pellentesque et.</p>
@@ -72,10 +72,20 @@
                 <lynk-button color="primary">Save</lynk-button>
                 <lynk-button>Cancel</lynk-button>
                 <span slot="center">3 of 5</span>
-                <lynk-button slot="secondary" square></lynk-button>
+                <lynk-button class="scroll-top" slot="secondary" square></lynk-button>
                 <lynk-button slot="secondary" square></lynk-button>
                 <lynk-button slot="secondary" color="danger"">Delete</lynk-button>
             </lynk-page-footer>
         </lynk-page-layout>
     </div>
 </div>
+
+<script>
+  console.log('herro');
+  const scrollTopButton = document.querySelector('.scroll-top');
+  const pageContent = document.querySelector('.page-content');
+
+  scrollTopButton.addEventListener('click', function(){
+     pageContent.scrollToTop();
+  });
+</script>

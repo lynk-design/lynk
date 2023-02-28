@@ -6,17 +6,13 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
-## 0.6.3
-
-- Fixing bug in `page-layout-header` that allowed the main area width to stretch beyond its desired limits
-
-## 0.6.2
-
-- Removing the `state="success"` property from auto applying with constraint validation.
 
 ## 0.6.1
 
-- Tied the contraint validation data attributes of `data-user-invalid`, and `data-user-valid` to also autmatically effect the state properties of `state="error"` and `state="success"`
+- Updated the `state="warning"` styles for `lynk-td` component
+- Added a public `scrollTop` method to the `page-content` component
+- Fixing bug in `page-header` that allowed the main area width to stretch beyond its desired limits
+- Tied the contraint validation `data-user-invalid` attribute to also autmatically effect toggle the `state="error"` of form controls
 - Removing the default top and bottom margin on `<lynk-grid container>` element
 
 ## 0.6.0
