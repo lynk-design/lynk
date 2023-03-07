@@ -67,7 +67,7 @@
   - [Alert](/components/alert)
   - [Badge](/components/badge)
   - [Spinner](/components/spinner)
-    <!-- - [Progress Bar](/components/progress-bar) -->
+  - [Progress Bar](/components/progress-bar)
     <!-- - [Progress Ring](/components/progress-ring) -->
 
 - Navigation

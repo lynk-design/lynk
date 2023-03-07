@@ -340,12 +340,6 @@ export class FormControlController implements ReactiveController {
     host.toggleAttribute('data-valid', isValid);
     host.toggleAttribute('data-user-invalid', !isValid && hasInteracted);
     host.toggleAttribute('data-user-valid', isValid && hasInteracted);
-
-    if (!isValid && hasInteracted && hasState){
-      host.state = 'error';
-    } else {
-      host.state = 'default';
-    }
   }
 
   /**

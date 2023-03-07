@@ -162,6 +162,32 @@ describe('<lynk-select>', () => {
 
       await el.updateComplete;
     });
+
+    it('should emit om:change and om:input with the correct validation message when the value changes', async () => {
+      const el = await fixture<SlSelect>(html`
+        <lynk-select required>
+          <lynk-option value="option-1">Option 1</lynk-option>
+          <lynk-option value="option-2">Option 2</lynk-option>
+          <lynk-option value="option-3">Option 3</lynk-option>
+        </lynk-select>
+      `);
+      const option2 = el.querySelectorAll('lynk-option')[1];
+      const handler = sinon.spy((event: CustomEvent) => {
+        if (el.validationMessage) {
+          expect.fail(`Validation message should be empty when ${event.type} is emitted and a value is set`);
+        }
+      });
+
+      el.addEventListener('on:change', handler);
+      el.addEventListener('on:input', handler);
+
+      await clickOnElement(el);
+      await aTimeout(500);
+      await clickOnElement(option2);
+      await el.updateComplete;
+
+      expect(handler).to.be.calledTwice;
+    });
   });
 
   it('should open the listbox when any letter key is pressed with lynk-select is on focus', async () => {

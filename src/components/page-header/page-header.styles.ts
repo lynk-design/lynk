@@ -14,9 +14,10 @@ export default css`
     display: grid;
     gap: var(--gap);
     grid-template-areas:
-      'breadcrumb breadcrumb aux'
-      'main main controls'
-      'tabs tabs tabs';
+      'breadcrumb aux'
+      'main main'
+      'controls controls'
+      'tabs tabs';
     grid-template-rows: min-content;
     grid-template-columns: 1fr min-content;
   }
@@ -36,11 +37,11 @@ export default css`
   .lynk-page-header__controls {
     grid-area: controls;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: auto;
-    margin-left: auto;
+    margin-right: auto;
     gap: var(--lynk-spacing-2x-small);
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-self: center;
   }
 
@@ -64,5 +65,19 @@ export default css`
   .lynk-page-header ::slotted(lynk-tab-group) {
     display: block;
     grid-area: tabs;
+  }
+
+  @media (min-width: 768px) {
+    .lynk-page-header {
+      grid-template-areas:
+        'breadcrumb aux'
+        'main controls'
+        'tabs tabs';
+    }
+
+    .lynk-page-header__controls {
+      margin-left: auto;
+      justify-content: flex-end;
+    }
   }
 `;

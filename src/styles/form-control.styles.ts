@@ -60,7 +60,7 @@ export default css`
     font-size: var(--lynk-input-help-text-font-size-large);
   }
 
-  /* Feedback States */
+  /* Validation States */
   .lynk-form-control--has-error.lynk-form-control--has-label .lynk-form-control__label,
   .lynk-form-control--has-error.lynk-form-control--has-help-text .lynk-form-control__help-text {
     color: var(--lynk-color-danger-500);

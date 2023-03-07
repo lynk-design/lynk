@@ -305,7 +305,7 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
           'lynk-form-control--radio-group': true,
           'lynk-form-control--has-label': hasLabel,
           'lynk-form-control--has-help-text': hasHelpText,
-          'lynk-form-control--has-error': this.state === 'error',
+          'lynk-form-control--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
           'lynk-form-control--has-warning': this.state === 'warning',
           'lynk-form-control--has-success': this.state === 'success'
         })}

@@ -325,7 +325,7 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
           'lynk-form-control--large': this.size === 'large',
           'lynk-form-control--has-label': hasLabel,
           'lynk-form-control--has-help-text': hasHelpText,
-          'lynk-form-control--has-error': this.state === 'error',
+          'lynk-form-control--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
           'lynk-form-control--has-warning': this.state === 'warning',
           'lynk-form-control--has-success': this.state === 'success'
         })}
@@ -377,7 +377,7 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
               'lynk-textarea--resize-none': this.resize === 'none',
               'lynk-textarea--resize-vertical': this.resize === 'vertical',
               'lynk-textarea--resize-auto': this.resize === 'auto',
-              'lynk-textarea--has-error': this.state === 'error',
+              'lynk-textarea--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
               'lynk-textarea--has-warning': this.state === 'warning',
               'lynk-textarea--has-success': this.state === 'success'
             })}

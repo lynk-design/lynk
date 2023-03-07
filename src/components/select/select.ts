@@ -58,6 +58,10 @@ import type LynkPopup from '../popup/popup';
  * @csspart listbox - The listbox container where options are slotted.
  * @csspart tags - The container that houses option tags when `multiselect` is used.
  * @csspart tag - The individual tags that represent each multiselect option.
+ * @csspart tag__base - The tag's base part.
+ * @csspart tag__content - The tag's content part.
+ * @csspart tag__remove-button - The tag's remove button.
+ * @csspart tag__remove-button__base - The tag's remove button base part.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  */
@@ -261,8 +265,11 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
           this.setSelectedOptions(this.currentOption);
         }
 
-        this.emit('on:input');
-        this.emit('on:change');
+        // Emit after updating
+        this.updateComplete.then(() => {
+          this.emit('on:input');
+          this.emit('on:change');
+        });
 
         if (!this.multiple) {
           this.hide();
@@ -388,9 +395,13 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     if (this.value !== '') {
       this.setSelectedOptions([]);
       this.displayInput.focus({ preventScroll: true });
-      this.emit('on:clear');
-      this.emit('on:input');
-      this.emit('on:change');
+
+      // Emit after update
+      this.updateComplete.then(() => {
+        this.emit('on:clear');
+        this.emit('on:input');
+        this.emit('on:change');
+      });
     }
   }
 
@@ -416,8 +427,12 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
       this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
 
       if (this.value !== oldValue) {
-        this.emit('on:input');
-        this.emit('on:change');
+
+        // Emit after updating
+        this.updateComplete.then(() => {
+          this.emit('on:input');
+          this.emit('on:change');
+        });
       }
 
       if (!this.multiple) {
@@ -452,8 +467,12 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
     if (!this.disabled) {
       this.toggleOptionSelection(option, false);
-      this.emit('on:input');
-      this.emit('on:change');
+
+      // Emit after updating
+      this.updateComplete.then(() => {
+        this.emit('on:input');
+        this.emit('on:change');
+      });
     }
   }
 
@@ -676,7 +695,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
           'lynk-form-control--large': this.size === 'large',
           'lynk-form-control--has-label': hasLabel,
           'lynk-form-control--has-help-text': hasHelpText,
-          'lynk-form-control--has-error': this.state === 'error',
+          'lynk-form-control--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
           'lynk-form-control--has-warning': this.state === 'warning',
           'lynk-form-control--has-success': this.state === 'success'
         })}
@@ -730,7 +749,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
               'lynk-select--small': this.size === 'small',
               'lynk-select--medium': this.size === 'medium',
               'lynk-select--large': this.size === 'large',
-              'lynk-select--has-error': this.state === 'error',
+              'lynk-select--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
               'lynk-select--has-warning': this.state === 'warning',
               'lynk-select--has-success': this.state === 'success'
             })}
@@ -789,6 +808,12 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
                           return html`
                             <lynk-tag
                               part="tag"
+                              exportparts="
+                                base:tag__base,
+                                content:tag__content,
+                                remove-button:tag__remove-button,
+                                remove-button__base:tag__remove-button__base
+                              "
                               ?pill=${this.pill}
                               size=${this.size}
                               ?removable=${!this.restricted}

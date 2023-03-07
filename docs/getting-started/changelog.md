@@ -6,6 +6,17 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.6.3
+
+- Added documentation for `<lynk-progress-bar>`
+- Added `custom-elements.json` to package exports
+- Improved responsive styles for `<lynk-page-header>`
+- Fixed a bug in all form elements that prevented manually setting the state property on fields that were using browser constraint validation
+- Fixed a bug in `<lynk-menu-item>` that caused the focus color to show when selecting menu items with a mouse or touch device
+- Added `tag__base`, `tag__content`, `tag__remove-button`, `tag__remove-button__base` parts to `<lynk-select>`
+- Fixed a bug in `<lynk-select>` that caused the display label to render incorrectly in Chrome after form validation
+- Fixed a bug in `<lynk-select>` that caused `on:change` and `on:input` to be emitted too early
+
 
 ## 0.6.2
 
