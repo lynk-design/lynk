@@ -326,7 +326,6 @@ export class FormControlController implements ReactiveController {
     const host = this.host;
     const hasInteracted = Boolean(userInteractedControls.has(host));
     const required = Boolean(host.required);
-    const hasState = ifDefined(host.state);
 
     //
     // We're mapping the following "states" to data attributes. In the future, we can use ElementInternals.states to
