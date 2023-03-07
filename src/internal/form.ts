@@ -1,5 +1,4 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import type { LynkFormControl } from '../internal/lynk-element';
 import type LynkButton from '../components/button/button';
 
