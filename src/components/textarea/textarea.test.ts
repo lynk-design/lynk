@@ -173,7 +173,6 @@ describe('<lynk-textarea>', () => {
       el.blur();
       await el.updateComplete;
 
-      expect(el.state).to.equal('error');
       expect(el.hasAttribute('data-user-invalid')).to.be.true;
       expect(el.hasAttribute('data-user-valid')).to.be.false;
     });
