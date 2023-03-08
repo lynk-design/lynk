@@ -8,6 +8,7 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 ## 0.6.3
 
+- 🎉 NEW: Added experimental `<lynk-truncate>` component
 - Added documentation for `<lynk-progress-bar>`
 - Added `custom-elements.json` to package exports
 - Improved responsive styles for `<lynk-page-header>`

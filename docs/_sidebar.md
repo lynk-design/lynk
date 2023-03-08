@@ -104,6 +104,7 @@
   - [Relative Time](/utilities/relative-time)
   - [Resize Observer](/utilities/resize-observer)
   - [Responsive Media](/utilities/responsive-media)
+  - [Truncate](/utilities/truncate)
   - [Visually Hidden](/utilities/visually-hidden)
 
   <!--plop:component-->
