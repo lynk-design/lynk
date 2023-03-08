@@ -67,7 +67,7 @@
   - [Alert](/components/alert)
   - [Badge](/components/badge)
   - [Spinner](/components/spinner)
-    <!-- - [Progress Bar](/components/progress-bar) -->
+  - [Progress Bar](/components/progress-bar)
     <!-- - [Progress Ring](/components/progress-ring) -->
 
 - Navigation
@@ -104,6 +104,7 @@
   - [Relative Time](/utilities/relative-time)
   - [Resize Observer](/utilities/resize-observer)
   - [Responsive Media](/utilities/responsive-media)
+  - [Truncate](/utilities/truncate)
   - [Visually Hidden](/utilities/visually-hidden)
 
   <!--plop:component-->

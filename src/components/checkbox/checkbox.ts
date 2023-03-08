@@ -227,7 +227,7 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
           'lynk-checkbox--small': this.size === 'small',
           'lynk-checkbox--medium': this.size === 'medium',
           'lynk-checkbox--large': this.size === 'large',
-          'lynk-checkbox--has-error': this.state === 'error',
+          'lynk-checkbox--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
           'lynk-checkbox--has-warning': this.state === 'warning',
           'lynk-checkbox--has-success': this.state === 'success'
         })}

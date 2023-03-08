@@ -64,6 +64,7 @@ export { default as LynkTableHeaderGroup } from './components/table-header-group
 export { default as LynkTableRow } from './components/table-row/table-row';
 export { default as LynkTableRowGroup } from './components/table-row-group/table-row-group';
 export { default as LynkOption } from './components/option/option';
+export { default as LynkTruncate } from './components/truncate/truncate';
 
 /* plop:component */
 

@@ -436,7 +436,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
           'lynk-form-control--large': this.size === 'large',
           'lynk-form-control--has-label': hasLabel,
           'lynk-form-control--has-help-text': hasHelpText,
-          'lynk-form-control--has-error': this.state === 'error',
+          'lynk-form-control--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
           'lynk-form-control--has-warning': this.state === 'warning',
           'lynk-form-control--has-success': this.state === 'success'
         })}
@@ -495,7 +495,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
               'lynk-input--restricted': this.restricted,
               'lynk-input--focused': this.hasFocus,
               'lynk-input--empty': !this.value,
-              'lynk-input--has-error': this.state === 'error',
+              'lynk-input--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
               'lynk-input--has-warning': this.state === 'warning',
               'lynk-input--has-success': this.state === 'success',
               'lynk-input--no-spin-buttons': this.noSpinButtons,

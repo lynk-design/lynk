@@ -57,9 +57,9 @@ export default class LynkPageHeader extends LynkElement {
       <lynk-page-content width="${this.width}" style="--padding-top: 0; --padding-bottom: 0;">
         <header part="base" class="lynk-page-header">
           <slot name="breadcrumb" part="breadcrumb" class="lynk-page-header__breadcrumb"></slot>
-          <slot name="controls" part="controls" class="lynk-page-header__controls"></slot>
           <slot name="aux" part="aux" class="lynk-page-header__aux"></slot>
           <slot class="lynk-page-header__main"></slot>
+          <slot name="controls" part="controls" class="lynk-page-header__controls"></slot>
           <slot name="tabs" part="tabs" class="lynk-page-header__tabs"></slot>
         </header>
       </lynk-page-content>
