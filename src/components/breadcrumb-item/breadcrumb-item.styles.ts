@@ -6,6 +6,8 @@ export default css`
 
   :host {
     display: inline-flex;
+    --max-width: 40ch;
+    --min-width: 1ch;
   }
 
   .lynk-breadcrumb-item {
@@ -84,5 +86,10 @@ export default css`
     align-items: center;
     margin: 0 var(--lynk-spacing-x-small);
     user-select: none;
+  }
+
+  .lynk-breadcrumb-item__label lynk-truncate::part(base) {
+    max-width: var(--max-width);
+    min-width: var(--min-width) !important;
   }
 `;

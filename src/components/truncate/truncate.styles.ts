@@ -6,7 +6,8 @@ export default css`
 
   :host {
     display: contents;
-    --truncate-min-width: 12ch;
+    --gap: 0px;
+    --truncate-min-width: 6ch;
     --truncate__start--min-width: 6ch;
   }
 
@@ -15,6 +16,7 @@ export default css`
     grid-auto-flow: column;
     align-items: baseline;
     min-width: var(--truncate-min-width);
+    gap: var(--gap);
   }
 
   .truncate__start,
@@ -30,9 +32,17 @@ export default css`
     min-width: var(-truncate__start--min-width);
   }
 
+  .truncate--end .truncate__end {
+    display: none;
+  }
+
   .truncate--start .truncate__end {
     min-width: var(-truncate__start--min-width);
     direction: rtl;
+  }
+
+  .truncate--start. .truncate__start {
+    display: none;
   }
 
   :host([clamp]) .truncate__start {

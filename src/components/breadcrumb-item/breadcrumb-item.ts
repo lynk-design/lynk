@@ -1,3 +1,4 @@
+import '../truncate/truncate';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot';
@@ -19,6 +20,8 @@ import type { CSSResultGroup } from 'lit';
  * @slot separator - The separator to use for the breadcrumb item. This will only change the separator for this item. If
  * you want to change it for all items in the group, set the separator on `<lynk-breadcrumb>` instead.
  *
+ * @dependency lynk-truncate
+ * 
  * @csspart base - The component's base wrapper.
  * @csspart label - The breadcrumb item's label.
  * @csspart prefix - The container that wraps the prefix.
@@ -66,7 +69,7 @@ export default class LynkBreadcrumbItem extends LynkElement {
                 target="${ifDefined(this.target ? this.target : undefined)}"
                 rel=${ifDefined(this.target ? this.rel : undefined)}
               >
-                <slot></slot>
+                <lynk-truncate><slot></slot></lynk-truncate>
               </a>
             `
           : html`
@@ -75,7 +78,7 @@ export default class LynkBreadcrumbItem extends LynkElement {
                 type="button"
                 class="lynk-breadcrumb-item__label lynk-breadcrumb-item__label--button"
               >
-                <slot></slot>
+                <lynk-truncate><slot></slot></lynk-truncate>
               </button>
             `}
 
