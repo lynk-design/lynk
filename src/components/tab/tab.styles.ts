@@ -6,7 +6,7 @@ export default css`
 
   :host {
     display: inline-block;
-    --padding: var(--lynk-spacing-small) var(--lynk-spacing-medium);
+    --padding: var(--lynk-spacing-x-small) var(--lynk-spacing-small);
   }
 
   .lynk-tab {
@@ -18,6 +18,7 @@ export default css`
     border-radius: var(--lynk-border-radius-medium);
     color: var(--lynk-color-neutral-600);
     padding: var(--padding);
+    text-decoration: none;
     white-space: nowrap;
     user-select: none;
     cursor: pointer;

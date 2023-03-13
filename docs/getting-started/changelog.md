@@ -6,6 +6,13 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.6.4
+
+- Added `href` property to `<lynk-tab>` to support router navigation
+- Improved default styles of `<lynk-page-footer>` and `<lynk-page-header>`
+- Fixed a bug in `<lynk-truncate>` where the min width was too big and caused issues in breadcrumbs
+- Fixed `<lynk-breadcrumb>` to utilize `<lynk-truncate>` to control overflows
+
 ## 0.6.3
 
 - 🎉 NEW: Added experimental `<lynk-truncate>` component

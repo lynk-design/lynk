@@ -1,7 +1,8 @@
 import '../icon-button/icon-button';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
-import { html } from 'lit';
+import { html, literal } from 'lit/static-html.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize';
 import { watch } from '../../internal/watch';
 import LynkElement from '../../internal/lynk-element';
@@ -48,6 +49,17 @@ export default class LynkTab extends LynkElement {
   /** Disables the tab and prevents selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  /** When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`. */
+  @property() href = '';
+
+  /**
+  * When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the
+  * default is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a
+  * specific tab/window, this will prevent that from working correctly. You can remove or change the default value by
+  * setting the attribute to an empty string or a value of your choice, respectively.
+  */
+  @property() rel = 'noreferrer noopener';
+
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'tab');
@@ -55,6 +67,10 @@ export default class LynkTab extends LynkElement {
 
   private handleCloseClick() {
     this.emit('on:close');
+  }
+
+  private isLink() {
+    return this.href ? true : false;
   }
 
   @watch('active')
@@ -78,12 +94,17 @@ export default class LynkTab extends LynkElement {
   }
 
   render() {
+    const isLink = this.isLink();
+    const tag = isLink ? literal`a` : literal`div`;
+
     // If the user didn't provide an ID, we'll set one so we can link tabs and tab panels with aria labels
     this.id = this.id.length > 0 ? this.id : this.componentId;
 
     return html`
-      <div
+      <${tag}
         part="base"
+        href=${ifDefined(isLink ? this.href : undefined)}
+        rel=${ifDefined(isLink ? this.rel : undefined)}
         class=${classMap({
           'lynk-tab': true,
           'lynk-tab--active': this.active,
@@ -107,7 +128,7 @@ export default class LynkTab extends LynkElement {
               ></lynk-icon-button>
             `
           : ''}
-      </div>
+      </${tag}>
     `;
   }
 }

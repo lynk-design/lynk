@@ -6,12 +6,13 @@ export default css`
 
   :host {
     display: contents;
+    --background-color: var(--lynk-color-neutral-50);
   }
 
   .lynk-page-footer {
     border-radius: var(--lynk-border-radius-large) var(--lynk-border-radius-large) 0 0;
     height: auto;
-    background: var(--lynk-color-neutral-100);
+    background: var(--background-color);
     box-shadow: var(--lynk-shadow-large);
     border: 1px solid var(--lynk-color-neutral-200);
     border-bottom: none;

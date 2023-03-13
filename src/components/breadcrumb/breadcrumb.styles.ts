@@ -7,6 +7,6 @@ export default css`
   .lynk-breadcrumb {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 `;

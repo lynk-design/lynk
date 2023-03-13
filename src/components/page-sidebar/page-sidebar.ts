@@ -74,8 +74,11 @@ export default class LynkPageSidebar extends LynkElement {
   @property({ reflect: true }) toggle: 'contents' | 'visibility' | 'none' = 'none';
 
   /** Choose placement of toggle button when toggling contents  */
-  @property({ attribute: 'toggle-placement', reflect: true }) togglePlacement: 'top' | 'bottom' = 'top';
+  @property({ attribute: 'toggle-placement', reflect: true }) togglePlacement: 'top' | 'bottom' | 'hidden' = 'top';
 
+  /** Customize toggle contents tooltip text  */
+  @property({ attribute: 'toggle-tip-hide-text', reflect: false }) toggleTipHideText: string = 'Hide Sidebar';
+  @property({ attribute: 'toggle-tip-show-text', reflect: false }) toggleTipShowText: string = 'Show Sidebar';
 
   connectedCallback() {
     super.connectedCallback();
@@ -228,7 +231,7 @@ export default class LynkPageSidebar extends LynkElement {
               hoist
               placement="bottom"
               class="lynk-page-sidebar__trigger-tooltip"
-              content="${this.open ? 'Hide Sidebar' : 'Show Sidebar'}"
+              content="${this.open ? this.toggleTipHideText : this.toggleTipShowText }"
             >
               <lynk-button
                 part="close-button"
@@ -237,7 +240,8 @@ export default class LynkPageSidebar extends LynkElement {
                 exportparts="base:close-button__base"
                 class=${classMap({
                   'lynk-page-sidebar__toggle': true,
-                  'lynk-page-sidebar__toggle--bottom': this.togglePlacement === 'bottom'
+                  'lynk-page-sidebar__toggle--bottom': this.togglePlacement === 'bottom',
+                  'lynk-page-sidebar__toggle--hidden': this.togglePlacement === 'hidden'
                 })}
                 label=${this.localize.term('close')}
                 @click=${this.handleToggleClick}

@@ -62,8 +62,8 @@ export default css`
   .lynk-page-sidebar.lynk-page-sidebar--left-inset {
     border-radius: 8px;
     border: 1px solid var(--lynk-color-neutral-200);
-    margin: var(--lynk-spacing-large) auto;
-    height: calc(100% - 48px);
+    margin: var(--lynk-spacing-base) auto;
+    height: calc(100% - 32px);
   }
 
   .lynk-page-sidebar.lynk-page-sidebar--left-inset {
@@ -150,6 +150,10 @@ export default css`
   .lynk-page-sidebar__toggle.lynk-page-sidebar__toggle--bottom {
     top: unset;
     bottom: var(--footer-spacing);
+  }
+
+  .lynk-page-sidebar__toggle.lynk-page-sidebar__toggle--hidden {
+    display: none;
   }
 
   .lynk-page-sidebar--left .lynk-page-sidebar__toggle,

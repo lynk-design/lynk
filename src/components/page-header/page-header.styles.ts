@@ -6,7 +6,7 @@ export default css`
 
   :host {
     display: contents;
-    --gap: var(--lynk-spacing-x-small);
+    --gap: var(--lynk-spacing-2x-small);
   }
 
   .lynk-page-header {
@@ -25,6 +25,7 @@ export default css`
   .lynk-page-header__breadcrumb,
   ::slotted(lynk-breadcrumb) {
     grid-area: breadcrumb;
+    align-self: center;
   }
 
   .lynk-page-header__aux {
