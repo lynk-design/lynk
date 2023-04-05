@@ -21,6 +21,7 @@ Use the `disabled` attribute to disable an option and prevent it from being sele
   <lynk-option value="option-1">Option 1</lynk-option>
   <lynk-option value="option-2" disabled>Option 2</lynk-option>
   <lynk-option value="option-3">Option 3</lynk-option>
+  <lynk-option value="option-4" hidden>Option 4</lynk-option>
 </lynk-select>
 ```
 

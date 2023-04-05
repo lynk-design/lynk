@@ -6,7 +6,6 @@ import { getAnimation, setDefaultAnimation } from '../../utilities/animation-reg
 import { getTabbableBoundary } from '../../internal/tabbable';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize';
-import { scrollIntoView } from '../../internal/scroll';
 import { waitForEvent } from '../../internal/event';
 import { watch } from '../../internal/watch';
 import LynkElement from '../../internal/lynk-element';
@@ -15,8 +14,8 @@ import type { CSSResultGroup } from 'lit';
 import type LynkButton from '../button/button';
 import type LynkIconButton from '../icon-button/icon-button';
 import type LynkMenu from '../menu/menu';
-import type LynkMenuItem from '../menu-item/menu-item';
 import type LynkPopup from '../popup/popup';
+import type OnSelectEvent from '../../events/on-select';
 
 /**
  * @summary Dropdowns expose additional content that "drops down" in a panel.
@@ -107,7 +106,6 @@ export default class LynkDropdown extends LynkElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.handleMenuItemActivate = this.handleMenuItemActivate.bind(this);
     this.handlePanelSelect = this.handlePanelSelect.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
@@ -204,12 +202,7 @@ export default class LynkDropdown extends LynkElement {
     }
   }
 
-  handleMenuItemActivate(event: CustomEvent) {
-    const item = event.target as LynkMenuItem;
-    scrollIntoView(item, this.panel);
-  }
-
-  handlePanelSelect(event: CustomEvent) {
+  handlePanelSelect(event: OnSelectEvent) {
     const target = event.target as HTMLElement;
 
     // Hide the dropdown when a menu item is selected
@@ -345,7 +338,6 @@ export default class LynkDropdown extends LynkElement {
   }
 
   addOpenListeners() {
-    this.panel.addEventListener('on:activate', this.handleMenuItemActivate);
     this.panel.addEventListener('on:select', this.handlePanelSelect);
     this.panel.addEventListener('keydown', this.handleKeyDown);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
@@ -354,7 +346,6 @@ export default class LynkDropdown extends LynkElement {
 
   removeOpenListeners() {
     if (this.panel) {
-      this.panel.removeEventListener('on:activate', this.handleMenuItemActivate);
       this.panel.removeEventListener('on:select', this.handlePanelSelect);
       this.panel.removeEventListener('keydown', this.handleKeyDown);
     }

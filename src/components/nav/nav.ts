@@ -35,12 +35,10 @@ export default class LynkNav extends LynkElement {
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
 
-  @property({ reflect: true })
-  public value: string | undefined = undefined;
+  @property({ reflect: true }) value: string | undefined = undefined;
 
   /** Simplifies the nav and draws the nav items in a slim style. */
-  @property({ type: Boolean, reflect: true })
-  public squished = false;
+  @property({ type: Boolean, reflect: true }) squished = false;
 
   //
   // A collection of all the items in the nav, in the order they appear. The collection is live, meaning it is
@@ -56,7 +54,9 @@ export default class LynkNav extends LynkElement {
     this.handleFocusIn = this.handleFocusIn.bind(this);
     this.handleFocusOut = this.handleFocusOut.bind(this);
 
-    this.handleSquishedChange();
+    if (this.squished) {
+      this.handleSquishedChange();
+    }
 
     this.setAttribute('role', 'navigation');
     this.setAttribute('tabindex', '0');

@@ -19,7 +19,7 @@ const reportValidityOverloads: WeakMap<HTMLFormElement, () => boolean> = new Wea
 // We store a Set of controls that users have interacted with. This allows us to determine the interaction state
 // without littering the DOM with additional data attributes.
 //
-const userInteractedControls: Set<LynkFormControl> = new Set();
+const userInteractedControls: WeakSet<LynkFormControl> = new WeakSet();
 
 //
 // We store a WeakMap of interactions for each form control so we can track when all conditions are met for validation.
@@ -271,7 +271,7 @@ export class FormControlController implements ReactiveController {
     el.requestUpdate();
   }
 
-  private doAction(type: 'submit' | 'reset', invoker?: HTMLInputElement | LynkButton) {
+  private doAction(type: 'submit' | 'reset', submitter?: HTMLInputElement | LynkButton) {
     if (this.form) {
       const button = document.createElement('button');
       button.type = type;
@@ -283,13 +283,13 @@ export class FormControlController implements ReactiveController {
       button.style.whiteSpace = 'nowrap';
 
       // Pass name, value, and form attributes through to the temporary button
-      if (invoker) {
-        button.name = invoker.name;
-        button.value = invoker.value;
+      if (submitter) {
+        button.name = submitter.name;
+        button.value = submitter.value;
 
         ['formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget'].forEach(attr => {
-          if (invoker.hasAttribute(attr)) {
-            button.setAttribute(attr, invoker.getAttribute(attr)!);
+          if (submitter.hasAttribute(attr)) {
+            button.setAttribute(attr, submitter.getAttribute(attr)!);
           }
         });
       }
@@ -306,15 +306,15 @@ export class FormControlController implements ReactiveController {
   }
 
   /** Resets the form, restoring all the control to their default value */
-  reset(invoker?: HTMLInputElement | LynkButton) {
-    this.doAction('reset', invoker);
+  reset(submitter?: HTMLInputElement | LynkButton) {
+    this.doAction('reset', submitter);
   }
 
   /** Submits the form, triggering validation and form data injection. */
-  submit(invoker?: HTMLInputElement | LynkButton) {
+  submit(submitter?: HTMLInputElement | LynkButton) {
     // Calling form.submit() bypasses the submit event and constraint validation. To prevent this, we can inject a
     // native submit button into the form, "click" it, then remove it to simulate a standard form submission.
-    this.doAction('submit', invoker);
+    this.doAction('submit', submitter);
   }
 
   /**
@@ -357,10 +357,11 @@ export class FormControlController implements ReactiveController {
    * event will be cancelled before being dispatched.
    */
   emitInvalidEvent(originalInvalidEvent?: Event) {
-    const onInvalidEvent = new CustomEvent<void>('on:invalid', {
+    const onInvalidEvent = new CustomEvent<Record<PropertyKey, never>>('on:invalid', {
       bubbles: false,
       composed: false,
-      cancelable: true
+      cancelable: true,
+      detail: {}
     });
 
     if (!originalInvalidEvent) {

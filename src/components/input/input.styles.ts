@@ -123,7 +123,7 @@ export default css`
   .lynk-input__control:-webkit-autofill:focus,
   .lynk-input__control:-webkit-autofill:active {
     box-shadow: 0 0 0 var(--lynk-input-height-large) var(--lynk-input-background-color-hover) inset !important;
-    -webkit-text-fill-color: var(--lynk-color-primary-500);
+    -webkit-text-fill-color: var(--lynk-input-color);
     caret-color: var(--lynk-input-color);
   }
 

@@ -19,6 +19,7 @@ import type { CSSResultGroup } from 'lit';
 import type { LynkFormControl } from '../../internal/lynk-element';
 import type LynkOption from '../option/option';
 import type LynkPopup from '../popup/popup';
+import type OnRemoveEvent from '../../events/on-remove';
 
 /**
  * @summary Selects allow you to choose items from a menu of predefined options.
@@ -462,7 +463,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
   }
 
-  private handleTagRemove(event: CustomEvent, option: LynkOption) {
+  private handleTagRemove(event: OnRemoveEvent, option: LynkOption) {
     event.stopPropagation();
 
     if (!this.disabled) {
@@ -654,6 +655,11 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     return this.valueInput.checkValidity();
   }
 
+  /** Gets the associated form, if one exists. */
+  getForm(): HTMLFormElement | null {
+    return this.formControlController.getForm();
+  }
+
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
     return this.valueInput.reportValidity();
@@ -817,7 +823,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
                               ?pill=${this.pill}
                               size=${this.size}
                               ?removable=${!this.restricted}
-                              @on:remove=${(event: CustomEvent) => this.handleTagRemove(event, option)}
+                              @on:remove=${(event: OnRemoveEvent) => this.handleTagRemove(event, option)}
                             >
                               ${option.getTextLabel()}
                             </lynk-tag>

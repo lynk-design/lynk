@@ -25,7 +25,28 @@
     </aside>
     <div class="lynk-app__main">
         <lynk-page-layout>
-            <lynk-page-sidebar toggle="contents" heading="Left Sidebar" open>
+            <lynk-page-sidebar toggle="contents" style="--body-spacing: 8px" open>
+                <lynk-nav>
+                    <lynk-nav-item>
+                        All Video Content
+                    </lynk-nav-item>
+                    <lynk-nav-item>
+                        Static Graphics
+                    </lynk-nav-item>
+                    <lynk-nav-item>
+                        Playlists
+                    </lynk-nav-item>
+                    <lynk-nav-group heading="Libraries">
+                      <lynk-nav-item>My Library</lynk-nav-item>
+                        <lynk-nav-item>
+                            Messages
+                            <lynk-icon slot="suffix" name="share"></lynk-icon>
+                            <lynk-button slot="suffix" square size="tiny">
+                                <lynk-icon name="gear"></lynk-icon>
+                            </lynk-button>
+                        </lynk-nav-item>
+                    </lynk-nav-group>
+                </lynk-nav>
             </lynk-page-sidebar>
             <lynk-page-header>
                 <lynk-button slot="aux" size="tiny" square></lynk-button>

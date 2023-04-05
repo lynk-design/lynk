@@ -6,6 +6,12 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.6.5
+
+- 🎉 NEW: Added experimental `<lynk-intersection-observer>` component
+- Improved `<lynk-option>` so it converts non-string values to strings for convenience
+- Improved styles for `<lynk-input>` and `<lynk-spinner>` slotted into a `<lynk-menu>`
+
 ## 0.6.4
 
 - Added `href` property to `<lynk-tab>` to support router navigation

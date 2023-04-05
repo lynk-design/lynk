@@ -84,6 +84,35 @@ Alternatively, you can listen for the `click` event on individual menu items. No
 </script>
 ```
 
+### Using a lynk-input as the trigger
+
+```html preview
+<div class="dropdown-selection-alt">
+  <lynk-dropdown>
+    <lynk-input slot="trigger" type="search" placeholder="Search" autocomplete="off" clearable>
+      <lynk-icon slot="prefix" name="search" library="default"></lynk-icon>
+    </lynk-input>
+    <lynk-menu>
+      <lynk-menu-item value="cut">Cut</lynk-menu-item>
+      <lynk-menu-item value="copy">Copy</lynk-menu-item>
+      <lynk-menu-item value="paste">Paste</lynk-menu-item>
+    </lynk-menu>
+  </lynk-dropdown>
+</div>
+
+<script>
+  const container = document.querySelector('.dropdown-selection-alt');
+  const cut = container.querySelector('lynk-menu-item[value="cut"]');
+  const copy = container.querySelector('lynk-menu-item[value="copy"]');
+  const paste = container.querySelector('lynk-menu-item[value="paste"]');
+
+  cut.addEventListener('click', () => console.log('cut'));
+  copy.addEventListener('click', () => console.log('copy'));
+  paste.addEventListener('click', () => console.log('paste'));
+</script>
+```
+
+
 ### Placement
 
 The preferred placement of the dropdown can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport.

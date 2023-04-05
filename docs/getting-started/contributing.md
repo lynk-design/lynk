@@ -41,7 +41,7 @@ After the initial build, a browser will open automatically to a local version of
 To scaffold a new component, run the following command, replacing `lynk-tag-name` with the desired tag name.
 
 ```bash
-yarn create lynk-tag-name
+yarn run create lynk-tag-name
 ```
 
 This will generate a source file, a stylesheet, and a docs page for you. When you start the dev server, you'll find the new component in the "Components" section of the sidebar.

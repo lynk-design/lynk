@@ -254,6 +254,11 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
     return true;
   }
 
+  /** Gets the associated form, if one exists. */
+  getForm(): HTMLFormElement | null {
+    return this.formControlController.getForm();
+  }
+
   /** Sets a custom validation message. Pass an empty string to restore validity. */
   setCustomValidity(message = '') {
     this.customValidityMessage = message;

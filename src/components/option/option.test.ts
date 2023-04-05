@@ -41,4 +41,14 @@ describe('<lynk-option>', () => {
 
     expect(slotChangeHandler).to.have.been.calledOnce;
   });
+
+  it('should convert non-string values to string', async () => {
+    const el = await fixture<LynkOption>(html` <lynk-option>Text</lynk-option> `);
+
+    // @ts-expect-error - intentional
+    el.value = 10;
+    await el.updateComplete;
+
+    expect(el.value).to.equal('10');
+  });
 });

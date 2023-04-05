@@ -11,6 +11,7 @@ export default css`
     box-sizing: inherit;
   }
 
+  :host([hidden]),
   [hidden] {
     display: none !important;
   }
