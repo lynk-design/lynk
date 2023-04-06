@@ -56,8 +56,6 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
   });
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'help-tip', 'label');
   private readonly localize = new LocalizeController(this);
-  private typeToSelectString = '';
-  private typeToSelectTimeout: number;
 
   @query('.lynk-combobox') popup: LynkPopup;
   @query('.lynk-combobox__control') combobox: HTMLSlotElement;
@@ -70,7 +68,7 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
   @state() private comboboxHasFocus = false;
   @state() private listboxHasFocus = false;
 
-  @state() displayValue = '';
+  @state() displayValue: string | string[] = '';
   @state() currentOption: LynkOption;
   @state() selectedOptions: LynkOption[] = [];
   @state() filteredOptions: LynkOption[] = [];
@@ -229,11 +227,24 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
     this.emit('on:focus');
   }
 
-  private handleFocusOut() {
+  private async handleFocusOut() {
     this.hasFocus = false;
     this.hide();
-    this.removeComboboxListeners();
     this.emit('on:blur');
+
+    await waitForEvent(this, 'after:hide');
+
+    if (this.allowCustomValue) {
+      // Set the value to whatever custom value has been entered
+      this.value = this.displayValue;
+    } else {
+      // Reset the custom entered value to the selected value or the default value
+      this.displayValue = this.value || this.defaultValue;
+    }
+
+    if (this.autocomplete === 'list' || this.autocomplete === 'both') {
+      this.filterOptions();
+    }
   }
 
   private handleComboboxFocus() {
@@ -281,12 +292,10 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
       return;
     }
 
-    if (event.key.length === 1 && this.trigger === 'input' && !this.open) {
+    if (event.key.length === 1 && !this.open && this.trigger !== 'manual') {
       this.show();
     }
 
-    // Handle enter and space. When pressing space, we allow for type to select behaviors so if there's anything in the
-    // buffer we _don't_ close it.
     if (event.key === 'Enter') {
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -299,6 +308,16 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
 
       if (this.allowCustomValue && this.displayValue) {
         this.value = this.displayValue;
+
+        // Emit after updating
+        this.updateComplete.then(() => {
+          this.emit('on:input');
+          this.emit('on:change');
+          this.emit('on:enter');
+        });
+
+        this.hide();
+        this.displayInput.focus({ preventScroll: true });
       }
 
       // If it is open, update the value based on the current selection and close it
@@ -313,6 +332,7 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
         this.updateComplete.then(() => {
           this.emit('on:input');
           this.emit('on:change');
+          this.emit('on:enter');
         });
 
         if (!this.multiple) {
@@ -321,14 +341,12 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
         }
       }
 
-      return
+      return;
     }
 
     // Navigate options
     if (['ArrowUp', 'ArrowDown'].includes(event.key) && this.filteredOptions.length > 0) {
-      const allOptions = this.getAllOptions();
-      const currentIndex = allOptions.indexOf(this.currentOption);
-      let newOption; 
+      let newOption : LynkOption | null = null; 
 
       // Prevent scrolling
       event.preventDefault();
@@ -345,13 +363,14 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
       }
 
       if (event.key === 'ArrowDown') {
-        newOption = this.getNextSelectableOption(currentIndex);
+        newOption = this.getNextSelectableOption(this.currentOption);
       } else if (event.key === 'ArrowUp') {
-        newOption = this.getPreviousSelectableOption(currentIndex);
+        newOption = this.getPreviousSelectableOption(this.currentOption);
       } 
 
-      this.listboxHasFocus = true;
       this.setCurrentOption(newOption);
+      this.currentOption.focus();
+      this.listboxHasFocus = true;
     }
 
     // Close when pressing escape
@@ -390,9 +409,62 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
   private handleComboboxKeyUp(event: KeyboardEvent) {
     // Printable keys trigger autocomplete
     if (event.key.length === 1 || event.key === 'Backspace') {
-      if (this.autocomplete === 'list') {
+      if (this.autocomplete === 'list' || this.autocomplete === 'both') {
+
+        if (!this.open && this.displayValue.length) {
+          this.show();
+        }
+
         this.filterOptions();
       }
+
+      if (this.autocomplete === 'inline') {
+        const allOptions = this.getAllOptions();
+        
+        for (const option of allOptions) {
+          const label = option.getTextLabel().toLowerCase();
+          const value = this.displayValue.toLowerCase();
+
+          if (label.includes(value)) {
+            this.setCurrentOption(option);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  private handleListboxKeyDown(event: KeyboardEvent) {
+    if (!this.hasFocus && !this.listboxHasFocus) {
+      return;
+    }
+
+    if (['ArrowRight', 'ArrowLeft'].includes(event.key)) {
+      const len = this.displayValue.length;
+      this.displayInput.focus({ preventScroll: true });
+      this.displayInput.setSelectionRange(len, len);
+    }
+
+    // Navigate options
+    if (['Home', 'End'].includes(event.key) && this.listboxHasFocus && this.filteredOptions.length > 0) {
+      let newOption : LynkOption | null = null;
+
+      // Prevent default scrolling
+      event.preventDefault();
+
+      if (event.key === 'Home') {
+        newOption = this.getFirstSelectableOption();
+      } else if (event.key === 'End') {
+        newOption = this.getLastSelectableOption();
+      }
+
+      this.setCurrentOption(newOption);
+    }
+
+    // All other "printable" keys trigger default text input
+    if (event.key.length === 1 || event.key === 'Backspace') {
+      this.displayInput.focus({ preventScroll: true });
+      event.stopPropagation();
     }
   }
 
@@ -412,43 +484,17 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
       }
     }
 
-    this.setCurrentOption(this.getFirstSelectableOption());
+    if (this.filteredOptions.length) {
+      this.setCurrentOption(this.getFirstSelectableOption());
+    }
   }
 
-  private handleListboxKeyDown(event: KeyboardEvent) {
-    if (!this.hasFocus && !this.listboxHasFocus) {
-      return;
-    }
-
-    if (['ArrowRight', 'ArrowLeft'].includes(event.key)) {
-      const len = this.displayValue.length;
-      this.displayInput.focus({ preventScroll: true });
-      this.displayInput.setSelectionRange(len, len);
-    }
-
-    // Navigate options
-    if (['Home', 'End'].includes(event.key) && this.listboxHasFocus && this.filteredOptions.length > 0) {
-      let newOption;
-      // Prevent scrolling
-      event.preventDefault();
-
-      if (event.key === 'Home') {
-        console.log("hello")
-        newOption = this.getFirstSelectableOption();
-        // newIndex = 0;
-      } else if (event.key === 'End') {
-        newOption = this.getPreviousSelectableOption(0);
-        // newIndex = allOptions.length - 1;
-      }
-
-      this.setCurrentOption(newOption);
-    }
-
-    // All other "printable" keys trigger default text input
-    if (event.key.length === 1 || event.key === 'Backspace') {
-      this.displayInput.focus({ preventScroll: true });
-      event.stopPropagation();
-    }
+  private resetFilteredOptions() {
+    const allOptions = this.getAllOptions();
+    allOptions.forEach(option => {
+      delete option['hidden'];
+    });
+    this.filteredOptions = this.getAllOptions();
   }
 
   private handleComboboxMouseDown(event: MouseEvent) {
@@ -473,15 +519,13 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
 
     this.displayValue = this.displayInput.value = '';
 
-    if (this.autocomplete === 'list') {
+    if (this.autocomplete === 'list' || this.autocomplete === 'both') {
       this.filterOptions();
     }
 
     if (this.value !== '') {
       this.setSelectedOptions([]);
       this.displayInput.focus({ preventScroll: true });
-
-
 
       // Emit after update
       this.updateComplete.then(() => {
@@ -505,10 +549,12 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
 
   private handleInput() {
     this.displayValue = this.displayInput.value;
+    this.emit('on:input');
   }
 
   private handleChange() {
     this.displayValue = this.displayInput.value;
+    this.emit('on:change');
   }
 
   private handleOptionClick(event: MouseEvent) {
@@ -582,12 +628,21 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
     return this.querySelector<LynkOption>('lynk-option');
   }
 
+  // Gets the first <lynk-option> that is neither hidden or disabled
   private getFirstSelectableOption() {
-    return this.querySelector<LynkOption>('lynk-option:not([hidden])');
+    const firstOption = this.getFirstOption();
+
+    if (firstOption.disabled || firstOption.hidden) {
+      return this.getNextSelectableOption(firstOption);
+    } else {
+      return firstOption;
+    }
   }
 
-  private getPreviousSelectableOption(currentIndex: number) {
+  // Gets the previous <lynk-option> that is neither hidden or disabled
+  private getPreviousSelectableOption(option: LynkOption) : LynkOption {
     const allOptions = this.getAllOptions();
+    const currentIndex = allOptions.indexOf(option);
     let previousIndex = currentIndex - 1;
 
     if (previousIndex < 0) previousIndex = allOptions.length - 1;
@@ -595,14 +650,16 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
     const previousOption = allOptions[previousIndex];
 
     if (previousOption.disabled || previousOption.hidden) {
-      return this.getPreviousSelectableOption(previousIndex);
+      return this.getPreviousSelectableOption(previousOption);
     } else {
       return previousOption;
     }
   }
 
-  private getNextSelectableOption(currentIndex: number) {
+  // Gets the next <lynk-option> that is neither hidden or disabled
+  private getNextSelectableOption(option: LynkOption) : LynkOption {
     const allOptions = this.getAllOptions();
+    const currentIndex = allOptions.indexOf(option);
     let nextIndex = currentIndex + 1;
 
     if (nextIndex > allOptions.length - 1) nextIndex = 0;
@@ -610,9 +667,21 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
     const nextOption = allOptions[nextIndex];
 
     if (nextOption.disabled || nextOption.hidden) {
-      return this.getNextSelectableOption(nextIndex);
+      return this.getNextSelectableOption(nextOption);
     } else {
       return nextOption;
+    }
+  }
+
+  // Gets the last <lynk-option> that is neither hidden or disabled
+  private getLastSelectableOption() : LynkOption {
+    const allOptions = this.getAllOptions();
+    const lastOption = allOptions[allOptions.length - 1];
+
+    if (lastOption.disabled || lastOption.hidden) {
+      return this.getPreviousSelectableOption(lastOption);
+    } else {
+      return lastOption;
     }
   }
 
@@ -633,7 +702,6 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
       option.current = true;
       option.tabIndex = 0;
       scrollIntoView(option, this.listbox, 'vertical', 'auto');
-      // option.focus();
     }
   }
 
@@ -719,16 +787,24 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
   handleValueChange() {
     const allOptions = this.getAllOptions();
     const value = Array.isArray(this.value) ? this.value : [this.value];
+    const matchingOptions = allOptions.filter(el => value.includes(el.value));
 
-    // Select only the options that match the new value
-    this.setSelectedOptions(allOptions.filter(el => value.includes(el.value)));
+    if ((this.allowCustomValue && matchingOptions.length > 0) || !this.allowCustomValue) {
+      // Select only the options that match the new value
+      this.setSelectedOptions(matchingOptions);
+    }
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
     if (this.open && !this.disabled) {
-      // Reset the current option
-      this.setCurrentOption(this.selectedOptions[0] || this.getFirstOption());
+
+      if (this.allowCustomValue) {
+        this.setCurrentOption();
+      } else {
+        // Reset the current option
+        this.setCurrentOption(this.selectedOptions[0] || this.getFirstSelectableOption() || this.getFirstOption());
+      }
 
       // Show
       this.emit('on:show');
@@ -738,10 +814,10 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
       this.listbox.hidden = false;
       this.popup.active = true;
 
-      // Select the appropriate option based on value after the listbox opens
-      // requestAnimationFrame(() => {
-      //   this.setCurrentOption(this.currentOption);
-      // });
+      //Select the appropriate option based on value after the listbox opens
+      requestAnimationFrame(() => {
+        this.setCurrentOption(this.currentOption);
+      });
 
       const { keyframes, options } = getAnimation(this, 'combobox.show', { dir: this.localize.dir() });
       await animateTo(this.popup.popup, keyframes, options);

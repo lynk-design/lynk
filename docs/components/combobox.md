@@ -96,14 +96,14 @@ Determines if the value in the input changes or not as the user navigates with t
 
 Set this to false when you don't really need the value from the input but want to populate some other state (like the recipient selector in Gmail). But if your input is more like a normal text input, then leave the true default.
 
-### List Autocomplete
+### List Autocomplete (Type To Filter)
 
 This example illustrates the autocomplete behavior known as list autocomplete with manual selection. If the user types one or more characters in the combobox and the typed characters match the beginning of the name of one or more options, a listbox popup appears containing the matching names or values. When the listbox appears, a suggested option is not automatically selected. Thus, after typing, if the user tabs or clicks out of the combobox without choosing a value from the listbox, the typed string becomes the value of the combobox. Note that this implementation enables users to input the name or value of an option, but it does not prevent input of any other arbitrary value.
 
 ```html preview
-<lynk-combobox label="Autocomplete List Combobox" autocomplete="list" placeholder="Search" clearable trigger="focus" listbox-help>
+<lynk-combobox label="Autocomplete List Combobox" autocomplete="list" placeholder="Search" clearable trigger="focus">
     <lynk-icon slot="prefix" name="search" library="default"></lynk-icon>
-    <lynk-option value="al">Alabama</lynk-option>
+    <lynk-option disabled value="al">Alabama</lynk-option>
     <lynk-option value="ak">Alaska</lynk-option>
     <lynk-option value="az">Arizona</lynk-option>
     <lynk-option value="ar">Arkansas</lynk-option>
@@ -153,13 +153,91 @@ This example illustrates the autocomplete behavior known as list autocomplete wi
     <lynk-option value="wa">Washington</lynk-option>
     <lynk-option value="wv">West Viginia</lynk-option>
     <lynk-option value="wi">Wisconsin</lynk-option>
-    <lynk-option value="wy">Wyoming</lynk-option>
+    <lynk-option disabled value="wy">Wyoming</lynk-option>
 </lynk-combobox>
 ```
+
+### Inline Autocomplete (Type To Select)
+
+This example illustrates the autocomplete behavior known as inline autocomplete with manual selection. If the user types one or more characters in the combobox and the typed characters match the beginning of the name of one or more options, a listbox popup appears with a suggested option autmatically highlighted but without the option list being filtered. Thus, after typing, if the user tabs or clicks out of the combobox without choosing a value from the listbox, the typed string either resets or becomes the value of the combobox depending on if the `allow-custom-value` property is enabled.
+
+```html preview
+<lynk-combobox label="Autocomplete Inline Combobox" autocomplete="inline" placeholder="Search" clearable trigger="focus">
+    <lynk-icon slot="prefix" name="search" library="default"></lynk-icon>
+    <lynk-option disabled value="al">Alabama</lynk-option>
+    <lynk-option value="ak">Alaska</lynk-option>
+    <lynk-option value="az">Arizona</lynk-option>
+    <lynk-option value="ar">Arkansas</lynk-option>
+    <lynk-option value="ca">California</lynk-option>
+    <lynk-option value="co">Colorado</lynk-option>
+    <lynk-option value="ct">Connecticut</lynk-option>
+    <lynk-option value="de">Delaware</lynk-option>
+    <lynk-option disabled value="dc">District of Columbia</lynk-option>
+    <lynk-option value="fl">Florida</lynk-option>
+    <lynk-option value="ga">Georgia</lynk-option>
+    <lynk-option value="hi">Hawaii</lynk-option>
+    <lynk-option value="id">Idaho</lynk-option>
+    <lynk-option value="il">Illinois</lynk-option>
+    <lynk-option value="in">Indiana</lynk-option>
+    <lynk-option value="ia">Iowa</lynk-option>
+    <lynk-option value="ks">Kansas</lynk-option>
+    <lynk-option value="ky">Kentucky</lynk-option>
+    <lynk-option value="la">Louisiana</lynk-option>
+    <lynk-option value="me">Maine</lynk-option>
+    <lynk-option value="mt">Montana</lynk-option>
+    <lynk-option value="ne">Nebraska</lynk-option>
+    <lynk-option value="nv">Nevada</lynk-option>
+    <lynk-option value="nh">New Hampshire</lynk-option>
+    <lynk-option value="nj">New Jersey</lynk-option>
+    <lynk-option value="nm">New Mexico</lynk-option>
+    <lynk-option value="ny">New York</lynk-option>
+    <lynk-option value="nc">North Carolina</lynk-option>
+    <lynk-option value="nd">North Dakota</lynk-option>
+    <lynk-option value="oh">Ohio</lynk-option>
+    <lynk-option value="ok">Oklahoma</lynk-option>
+    <lynk-option value="or">Oregon</lynk-option>
+    <lynk-option value="md">Maryland</lynk-option>
+    <lynk-option value="ma">Massachusetts</lynk-option>
+    <lynk-option value="mi">Michigan</lynk-option>
+    <lynk-option value="mn">Minnesota</lynk-option>
+    <lynk-option value="ms">Missippi</lynk-option>
+    <lynk-option value="mo">Missouri</lynk-option>
+    <lynk-option value="pa">Pennsylvania</lynk-option>
+    <lynk-option value="ri">Rhode Island</lynk-option>
+    <lynk-option value="sc">South Carolina</lynk-option>
+    <lynk-option value="sd">South Dakota</lynk-option>
+    <lynk-option value="tn">Tennessee</lynk-option>
+    <lynk-option value="tx">Texas</lynk-option>
+    <lynk-option value="ut">Utah</lynk-option>
+    <lynk-option value="vt">Vermont</lynk-option>
+    <lynk-option value="va">Virginia</lynk-option>
+    <lynk-option value="wa">Washington</lynk-option>
+    <lynk-option value="wv">West Viginia</lynk-option>
+    <lynk-option value="wi">Wisconsin</lynk-option>
+    <lynk-option disabled value="wy">Wyoming</lynk-option>
+</lynk-combobox>
+```
+
 
 ## Allow Custom Values
 
 By default on blur, a ComboBox will either reset its input value to match the selected option's text or clear its input value if an option has not been selected. If you would like to allow the end user to provide a custom input value to the ComboBox, the `allow-custom` property can be used to override the default behavior.
+
+```html preview
+<lynk-combobox label="Allow Custom Values" placeholder="What is your favorite fruit?"  trigger="focus" allow-custom-value clearable>
+    <lynk-option value="apples">Apples</lynk-option>
+    <lynk-option value="oranges">Oranges</lynk-option>
+    <lynk-option value="bananas">Bananas</lynk-option>
+</lynk-combobox>
+
+<br />
+
+<lynk-combobox label="No Custom Values" placeholder="Select your favorite fruit?" trigger="focus" clearable>
+    <lynk-option value="apples">Apples</lynk-option>
+    <lynk-option value="oranges">Oranges</lynk-option>
+    <lynk-option value="bananas">Bananas</lynk-option>
+</lynk-combobox>
+```
 
 ## Multiple Selections
 
