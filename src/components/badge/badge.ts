@@ -14,13 +14,17 @@ import type { CSSResultGroup } from 'lit';
  * @slot - The badge's content.
  *
  * @csspart base | .lynk-badge - The component's internal wrapper.
+ * 
+ * @cssproperty --background-color - The badges background and pulse color.
+ * @cssproperty --color - The badges text color.
+ * 
  */
 @customElement('lynk-badge')
 export default class LynkBadge extends LynkElement {
   static styles: CSSResultGroup = styles;
 
   /** The badge's variant. */
-  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+  @property({ reflect: true }) type?: 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
 
   /** Draws a pill-style badge with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;

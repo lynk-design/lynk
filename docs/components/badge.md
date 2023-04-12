@@ -52,6 +52,15 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
 </style>
 ```
 
+### Custom Color Badges
+
+Use the `--background-color` and `--color` css properties to customize the badge colors.
+
+```html preview
+<lynk-badge pill pulse style="--background-color: deeppink; --color: white">Deep Pink</lynk-badge>
+
+```
+
 ### With Buttons
 
 One of the most common use cases for badges is attaching them to buttons. To make this easier, badges will be automatically positioned at the top-right when they're a child of a button.

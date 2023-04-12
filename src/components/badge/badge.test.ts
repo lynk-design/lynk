@@ -19,11 +19,6 @@ describe('<lynk-badge>', () => {
     it('should render the child content provided', () => {
       expect(el.innerText).to.eq('Badge');
     });
-
-    it('should default to square styling, with the primary color', () => {
-      const part = el.shadowRoot!.querySelector('[part="base"]')!;
-      expect(part.classList.value.trim()).to.eq('lynk-badge lynk-badge--primary');
-    });
   });
 
   describe('when provided a pill parameter', () => {

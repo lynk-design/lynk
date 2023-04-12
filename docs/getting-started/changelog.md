@@ -9,6 +9,7 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 ## 0.6.5
 
 - 🎉 NEW: Added experimental `<lynk-intersection-observer>` component
+- Added option to customize colors of `<lynk-badge>`
 - Improved `<lynk-option>` so it converts non-string values to strings for convenience
 - Improved styles for `<lynk-input>` and `<lynk-spinner>` slotted into a `<lynk-menu>`
 
