@@ -68,7 +68,7 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
   @state() private comboboxHasFocus = false;
   @state() private listboxHasFocus = false;
 
-  @state() displayValue: string | string[] = '';
+  @state() displayValue: string = '';
   @state() currentOption: LynkOption;
   @state() selectedOptions: LynkOption[] = [];
   @state() filteredOptions: LynkOption[] = [];
@@ -243,7 +243,7 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
     }
 
     if (this.autocomplete === 'list' || this.autocomplete === 'both') {
-      this.filterOptions();
+      this.resetFilteredOptions();
     }
   }
 
@@ -492,9 +492,10 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
   private resetFilteredOptions() {
     const allOptions = this.getAllOptions();
     allOptions.forEach(option => {
-      delete option['hidden'];
+      option.hidden = false;
     });
-    this.filteredOptions = this.getAllOptions();
+    this.filteredOptions = allOptions;;
+    this.setCurrentOption(null);
   }
 
   private handleComboboxMouseDown(event: MouseEvent) {
@@ -632,7 +633,9 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
   private getFirstSelectableOption() {
     const firstOption = this.getFirstOption();
 
-    if (firstOption.disabled || firstOption.hidden) {
+    if (!firstOption) {
+      return null;
+    } else if (firstOption.disabled || firstOption.hidden) {
       return this.getNextSelectableOption(firstOption);
     } else {
       return firstOption;
@@ -640,7 +643,11 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
   }
 
   // Gets the previous <lynk-option> that is neither hidden or disabled
-  private getPreviousSelectableOption(option: LynkOption) : LynkOption {
+  private getPreviousSelectableOption(option: LynkOption | null) : LynkOption {
+    if (!option) {
+      return this.getFirstSelectableOption();
+    }
+
     const allOptions = this.getAllOptions();
     const currentIndex = allOptions.indexOf(option);
     let previousIndex = currentIndex - 1;
@@ -657,7 +664,11 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
   }
 
   // Gets the next <lynk-option> that is neither hidden or disabled
-  private getNextSelectableOption(option: LynkOption) : LynkOption {
+  private getNextSelectableOption(option: LynkOption | null) : LynkOption {
+    if (!option) {
+      return this.getLastSelectableOption() || null;
+    }
+
     const allOptions = this.getAllOptions();
     const currentIndex = allOptions.indexOf(option);
     let nextIndex = currentIndex + 1;
@@ -800,7 +811,7 @@ export default class LynkCombobox extends LynkElement implements LynkFormControl
     if (this.open && !this.disabled) {
 
       if (this.allowCustomValue) {
-        this.setCurrentOption();
+        this.setCurrentOption(null);
       } else {
         // Reset the current option
         this.setCurrentOption(this.selectedOptions[0] || this.getFirstSelectableOption() || this.getFirstOption());
