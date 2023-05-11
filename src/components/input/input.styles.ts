@@ -88,10 +88,21 @@ export default css /* syntax: css */`
     cursor: not-allowed;
   }
 
-  .lynk-input.lynk-input--restricted {
-    border: none;
-    background-color: none;
+  /* Restricted Inputs */
+  .lynk-input--restricted,
+  .lynk-input--restricted:hover {
+    border: none !important;
+    background-color: transparent !important;
+    cursor: default;
     color: var(--lynk-input-color);
+  }
+
+  .lynk-input--restricted .lynk-input__control {
+    padding: 0 !important;
+    cursor: text;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
   }
 
   .lynk-input__control {
@@ -148,8 +159,7 @@ export default css /* syntax: css */`
   }
 
   .lynk-input__prefix,
-  .lynk-input__suffix,
-  .lynk-input__control.lynk-input__control--restricted {
+  .lynk-input__suffix {
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
@@ -285,11 +295,6 @@ export default css /* syntax: css */`
   .lynk-input--has-success.lynk-input--focused:not(.lynk-input--disabled) {
     border-color: var(--lynk-color-success-500);
     box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-success-a50);
-  }
-
-  /* Restricted */
-  .lynk-input__control.lynk-input__control--restricted {
-    padding: 0;
   }
 
   /*

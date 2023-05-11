@@ -9,7 +9,6 @@ export { default as LynkBreadcrumbItem } from './components/breadcrumb-item/brea
 export { default as LynkButton } from './components/button/button';
 export { default as LynkButtonGroup } from './components/button-group/button-group';
 export { default as LynkCheckbox } from './components/checkbox/checkbox';
-export { default as LynkCombobox } from './components/combobox/combobox';
 export { default as LynkDialog } from './components/dialog/dialog';
 export { default as LynkDivider } from './components/divider/divider';
 export { default as LynkDrawer } from './components/drawer/drawer';
