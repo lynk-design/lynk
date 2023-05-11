@@ -2,7 +2,7 @@ import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 import formControlStyles from '../../styles/form-control.styles';
 
-export default css`
+export default css /* syntax: css */`
   ${componentStyles}
   ${formControlStyles}
 
