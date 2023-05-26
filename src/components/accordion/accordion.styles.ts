@@ -6,78 +6,93 @@ export default css`
 
   :host {
     display: block;
+    --header-spacing: var(--lynk-spacing-medium);
+    --body-spacing: var(--lynk-spacing-medium);
+    --footer-spacing: var(--lynk-spacing-medium);
+    --background-color: var(--lynk-color-neutral-50);
   }
 
-  .lynk-accordion {
+  .accordion {
     border: solid 1px var(--lynk-color-neutral-200);
     border-radius: var(--lynk-border-radius-medium);
-    background-color: var(--lynk-color-neutral-0);
+    background-color: var(--background-color);
     overflow-anchor: none;
   }
 
-  .lynk-accordion--disabled {
+  .accordion--disabled {
     opacity: 0.5;
   }
 
-  .lynk-accordion__header {
+  .accordion__header {
     display: flex;
     align-items: center;
     border-radius: inherit;
-    padding: var(--lynk-spacing-medium);
+    padding: var(--header-spacing);
     user-select: none;
     cursor: pointer;
+    gap: var(--lynk-spacing-x-small);
   }
 
-  .lynk-accordion__header:focus {
+  .accordion__header:focus {
     outline: none;
   }
 
-  .lynk-accordion__header:focus-visible {
+  .accordion__header:focus-visible {
     outline: var(--lynk-focus-ring);
     outline-offset: calc(1px + var(--lynk-focus-ring-offset));
   }
 
-  .lynk-accordion--disabled .lynk-accordion__header {
+  .accordion--disabled .accordion__header {
     cursor: not-allowed;
   }
 
-  .lynk-accordion--disabled .lynk-accordion__header:focus-visible {
+  .accordion--disabled .accordion__header:focus-visible {
     outline: none;
     box-shadow: none;
   }
 
-  .lynk-accordion__summary {
+  .accordion__summary {
     flex: 1 1 auto;
     display: flex;
     align-items: center;
   }
 
-  .lynk-accordion__summary-icon {
+  .accordion__summary-icon {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     transition: var(--lynk-transition-medium) rotate ease;
   }
 
-  .lynk-accordion--open .lynk-accordion__summary-icon {
+  .accordion--open .accordion__summary-icon {
     rotate: 90deg;
   }
 
-  .lynk-accordion--open.lynk-accordion--rtl .lynk-accordion__summary-icon {
+  .accordion--open.accordion--rtl .accordion__summary-icon {
     rotate: -90deg;
   }
 
-  .lynk-accordion--open slot[name='expand-icon'],
-  .lynk-accordion:not(.lynk-accordion--open) slot[name='collapse-icon'] {
+  .accordion--open slot[name='expand-icon'],
+  .accordion:not(.accordion--open) slot[name='collapse-icon'] {
     display: none;
   }
 
-  .lynk-accordion__body {
+  .accordion__body {
     overflow: hidden;
   }
 
-  .lynk-accordion__content {
+  .accordion__content {
     display: block;
-    padding: var(--lynk-spacing-medium);
+    padding: var(--body-spacing);
+  }
+
+  .accordion__footer {
+    display: flex;
+    padding: var(--footer-spacing);
+    gap: var(--lynk-spacing-2x-small);
+  }
+
+  .accordion:not(.accordion--has-footer) .accordion__footer {
+    display: none;
   }
 `;

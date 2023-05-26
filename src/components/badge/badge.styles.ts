@@ -6,9 +6,11 @@ export default css`
 
   :host {
     display: inline-flex;
+    --background-color: var(--lynk-color-primary-600);
+    --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge {
+  .badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -21,68 +23,50 @@ export default css`
     white-space: nowrap;
     padding: 3px 6px;
     user-select: none;
+    background-color: var(--background-color);
+    color: var(--color);
     cursor: inherit;
   }
 
   /* Variant modifiers */
-  .lynk-badge--primary {
-    background-color: var(--lynk-color-primary-600);
-    color: var(--lynk-color-neutral-0);
+  .badge.badge--primary {
+    --background-color: var(--lynk-color-primary-600);
+    --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge--success {
-    background-color: var(--lynk-color-success-600);
-    color: var(--lynk-color-neutral-0);
+  .badge.badge--success {
+    --background-color: var(--lynk-color-success-600);
+    --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge--neutral {
-    background-color: var(--lynk-color-neutral-600);
-    color: var(--lynk-color-neutral-0);
+  .badge.badge--neutral {
+    --background-color: var(--lynk-color-neutral-600);
+    --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge--warning {
-    background-color: var(--lynk-color-warning-600);
-    color: var(--lynk-color-neutral-0);
+  .badge.badge--warning {
+    --background-color: var(--lynk-color-warning-600);
+    --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge--danger {
-    background-color: var(--lynk-color-danger-600);
-    color: var(--lynk-color-neutral-0);
+  .badge.badge--danger {
+    --background-color: var(--lynk-color-danger-600);
+    --color: var(--lynk-color-neutral-0);
   }
 
   /* Pill modifier */
-  .lynk-badge--pill {
+  .badge--pill {
     border-radius: var(--lynk-border-radius-pill);
   }
 
   /* Pulse modifier */
-  .lynk-badge--pulse {
+  .badge--pulse {
     animation: pulse 1.5s infinite;
-  }
-
-  .lynk-badge--pulse.lynk-badge--primary {
-    --pulse-color: var(--lynk-color-primary-600);
-  }
-
-  .lynk-badge--pulse.lynk-badge--success {
-    --pulse-color: var(--lynk-color-success-600);
-  }
-
-  .lynk-badge--pulse.lynk-badge--neutral {
-    --pulse-color: var(--lynk-color-neutral-600);
-  }
-
-  .lynk-badge--pulse.lynk-badge--warning {
-    --pulse-color: var(--lynk-color-warning-600);
-  }
-
-  .lynk-badge--pulse.lynk-badge--danger {
-    --pulse-color: var(--lynk-color-danger-600);
   }
 
   @keyframes pulse {
     0% {
-      box-shadow: 0 0 0 0 var(--pulse-color);
+      box-shadow: 0 0 0 0 var(--background-color);
     }
     70% {
       box-shadow: 0 0 0 0.5rem transparent;

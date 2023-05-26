@@ -6,6 +6,17 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.6.5
+
+- 🎉 NEW: Added experimental `<lynk-intersection-observer>` component
+- Added option to customize colors of `<lynk-badge>`
+- Added prefix, suffix, and footer slots to `<lynk-accordion>` and prevent `prefix` and `suffix` slots from triggering default summary event behavior.
+- Improved `lynk-stack` styles and added `wrap` option
+- Improved `<lynk-option>` so it converts non-string values to strings for convenience
+- Improved styles for `<lynk-input>` and `<lynk-spinner>` slotted into a `<lynk-menu>`
+- Fixed a bug where `lynk-select` or `lynk-input` with undefined values would throw an error when using the `clearable` property
+- Fixed a bug where an observe error would be thrown on `lynk-nav-group`
+
 ## 0.6.4
 
 - Added `href` property to `<lynk-tab>` to support router navigation
@@ -31,7 +42,7 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 - Updated the `state="warning"` styles for `lynk-td` component
 - Added a public `scrollTop` method to the `page-content` component
 - Fixing bug in `page-header` that allowed the main area width to stretch beyond its desired limits
-- Tied the contraint validation `data-user-invalid` attribute to also autmatically effect toggle the `state="error"` of form controls
+- Tied the constraint validation `data-user-invalid` attribute to also automatically effect toggle the `state="error"` of form controls
 - Removing the default top and bottom margin on `<lynk-grid container>` element
 
 ## 0.6.0

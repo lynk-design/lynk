@@ -15,7 +15,7 @@ The resize observer will report changes to the dimensions of the elements it wra
   const container = document.querySelector('.resize-observer-overview');
   const resizeObserver = container.querySelector('lynk-resize-observer');
 
-  resizeObserver.addEventListener('lynk-resize', event => {
+  resizeObserver.addEventListener('on:resize', event => {
     console.log(event.detail);
   });
 </script>

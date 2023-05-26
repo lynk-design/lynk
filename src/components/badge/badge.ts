@@ -13,14 +13,18 @@ import type { CSSResultGroup } from 'lit';
  *
  * @slot - The badge's content.
  *
- * @csspart base | .lynk-badge - The component's internal wrapper.
+ * @csspart base - The component's internal wrapper.
+ * 
+ * @cssproperty --background-color - The badges background and pulse color.
+ * @cssproperty --color - The badges text color.
+ * 
  */
 @customElement('lynk-badge')
 export default class LynkBadge extends LynkElement {
   static styles: CSSResultGroup = styles;
 
   /** The badge's variant. */
-  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+  @property({ reflect: true }) type?: 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
 
   /** Draws a pill-style badge with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
@@ -33,14 +37,14 @@ export default class LynkBadge extends LynkElement {
       <slot
         part="base"
         class=${classMap({
-          'lynk-badge': true,
-          'lynk-badge--primary': this.type === 'primary',
-          'lynk-badge--success': this.type === 'success',
-          'lynk-badge--neutral': this.type === 'neutral',
-          'lynk-badge--warning': this.type === 'warning',
-          'lynk-badge--danger': this.type === 'danger',
-          'lynk-badge--pill': this.pill,
-          'lynk-badge--pulse': this.pulse
+          'badge': true,
+          'badge--primary': this.type === 'primary',
+          'badge--success': this.type === 'success',
+          'badge--neutral': this.type === 'neutral',
+          'badge--warning': this.type === 'warning',
+          'badge--danger': this.type === 'danger',
+          'badge--pill': this.pill,
+          'badge--pulse': this.pulse
         })}
         role="status"
       ></slot>

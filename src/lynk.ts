@@ -20,6 +20,7 @@ export { default as LynkGrid } from './components/grid/grid';
 export { default as LynkIcon } from './components/icon/icon';
 export { default as LynkIconButton } from './components/icon-button/icon-button';
 export { default as LynkInput } from './components/input/input';
+export { default as LynkIntersectionObserver } from './components/intersection-observer/intersection-observer';
 export { default as LynkMenu } from './components/menu/menu';
 export { default as LynkMenuItem } from './components/menu-item/menu-item';
 export { default as LynkMenuLabel } from './components/menu-label/menu-label';
@@ -72,3 +73,6 @@ export { default as LynkTruncate } from './components/truncate/truncate';
 export * from './utilities/animation';
 export * from './utilities/base-path';
 export * from './utilities/icon-library';
+
+// Events
+export * from './events/events';

@@ -18,4 +18,14 @@ export default css`
   ::slotted(lynk-divider) {
     --spacing: var(--lynk-spacing-x-small);
   }
+
+  ::slotted(lynk-input) {
+    padding: 0 var(--lynk-spacing-x-small);
+    margin-bottom: var(--lynk-spacing-x-small);
+  }
+
+  ::slotted(lynk-spinner) {
+    display: block;
+    margin: var(--lynk-spacing-x-small) auto;
+  }
 `;

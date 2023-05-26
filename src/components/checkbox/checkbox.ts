@@ -199,6 +199,11 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
     return this.input.checkValidity();
   }
 
+  /** Gets the associated form, if one exists. */
+  getForm(): HTMLFormElement | null {
+    return this.formControlController.getForm();
+  }
+
   /** Checks for validity and shows a validation message if the control is invalid. */
   reportValidity() {
     return this.input.reportValidity();

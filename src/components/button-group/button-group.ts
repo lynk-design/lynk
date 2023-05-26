@@ -25,22 +25,22 @@ export default class LynkButtonGroup extends LynkElement {
   /** A label to use for the button group's `aria-label` attribute. */
   @property() label = '';
 
-  handleFocus(event: CustomEvent) {
+  handleFocus(event: Event) {
     const button = findButton(event.target as HTMLElement);
     button?.classList.add('lynk-button-group__button--focus');
   }
 
-  handleBlur(event: CustomEvent) {
+  handleBlur(event: Event) {
     const button = findButton(event.target as HTMLElement);
     button?.classList.remove('lynk-button-group__button--focus');
   }
 
-  handleMouseOver(event: CustomEvent) {
+  handleMouseOver(event: Event) {
     const button = findButton(event.target as HTMLElement);
     button?.classList.add('lynk-button-group__button--hover');
   }
 
-  handleMouseOut(event: CustomEvent) {
+  handleMouseOut(event: Event) {
     const button = findButton(event.target as HTMLElement);
     button?.classList.remove('lynk-button-group__button--hover');
   }

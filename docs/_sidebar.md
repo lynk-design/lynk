@@ -99,6 +99,7 @@
   - [Format Date](/utilities/format-date)
   - [Format Number](/utilities/format-number)
   - [Include](/utilities/include)
+  - [Intersection Observer](/utilities/intersection-observer)
   - [Mutation Observer](/utilities/mutation-observer)
   - [Popup](/utilities/popup)
   - [Relative Time](/utilities/relative-time)

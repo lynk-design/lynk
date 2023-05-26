@@ -20,9 +20,9 @@ All available icons in the `default` icon library are shown below. Click or tap 
       <lynk-icon slot="prefix" name="search"></lynk-icon>
     </lynk-input>
     <lynk-select value="outline">
-      <lynk-menu-item value="outline">Outlined</lynk-menu-item>
-      <lynk-menu-item value="fill">Filled</lynk-menu-item>
-      <lynk-menu-item value="all">All icons</lynk-menu-item>
+      <lynk-option value="outline">Outlined</lynk-option>
+      <lynk-option value="fill">Filled</lynk-option>
+      <lynk-option value="all">All icons</lynk-option>
     </lynk-select>
   </div>
   <div class="icon-list"></div>

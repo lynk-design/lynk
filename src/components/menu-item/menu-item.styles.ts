@@ -69,7 +69,8 @@ export default css`
     color: var(--lynk-color-neutral-1000);
   }
 
-  :host(:focus-visible) .lynk-menu-item {
+  :host(:focus-visible) .lynk-menu-item,
+  :host(:focus-visible:hover:not([aria-disabled='true'])) .lynk-menu-item {
     outline: none;
     background-color: var(--lynk-color-primary-600);
     color: var(--lynk-color-neutral-0);

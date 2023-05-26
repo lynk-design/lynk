@@ -59,40 +59,31 @@ export default class LynkNavItem extends LynkElement {
   @state() depth = 0;
   @state() squished = false;
 
-  @property()
-  public title = ''; // make reactive to pass through
+  @property() title = ''; // make reactive to pass through
 
   /** An optional name for the button. Ignored when `href` is set. */
-  @property()
-  public name = '';
+  @property() name = '';
 
   /** A unique value to store in the nav item. This can be used as a way to identify nav items when selected. */
-  @property()
-  public value = '';
+  @property() value = '';
 
   /** When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`. */
-  @property()
-  public href = '';
+  @property() href = '';
 
   /** Tells the browser where to open the link. Only used when `href` is set. */
-  @property()
-  public target?: '_blank' | '_parent' | '_self' | '_top';
+  @property() target?: '_blank' | '_parent' | '_self' | '_top';
 
   /** Tells the browser to download the linked file as this filename. Only used when `href` is set. */
-  @property()
-  public download?: string;
+  @property() download?: string;
 
   /** Draws the nav item in a highlighted or active state. */
-  @property({ type: Boolean, reflect: true })
-  public selected = false;
+  @property({ type: Boolean, reflect: true }) selected = false;
 
   /** Displays nested child nav-items if slotted  */
-  @property({ type: Boolean, reflect: true })
-  public expanded = false;
+  @property({ type: Boolean, reflect: true }) expanded = false;
 
   /** Draws the nav item in a disabled state. */
-  @property({ type: Boolean, reflect: true })
-  public disabled = false;
+  @property({ type: Boolean, reflect: true }) disabled = false;
 
   /**
    * Disables the label and replaces with a tooltip.
@@ -253,7 +244,6 @@ export default class LynkNavItem extends LynkElement {
 
     if (textLabel !== this.cachedTextLabel) {
       this.cachedTextLabel = textLabel;
-      this.emit('on:label-change');
     }
   }
 

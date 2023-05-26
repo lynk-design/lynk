@@ -3,6 +3,7 @@ import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../intern
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query } from 'lit/decorators.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
+import { HasSlotController } from '../../internal/slot';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize';
 import { waitForEvent } from '../../internal/event';
@@ -21,8 +22,11 @@ import type { CSSResultGroup } from 'lit';
  *
  * @slot - The accordions' content.
  * @slot summary - The accordions' summary. Alternatively, you can use the `summary` attribute.
+ * @slot prefix - The accordions' summary prefix `<slot>`.
+ * @slot suffix - The accordions' summary suffix `<slot>`.
  * @slot expand-icon - The expand icon's `<slot>`.
  * @slot collapse-icon - The collapse icon's `<slot>`.
+ * @slot footer - The accordions' footer `<slot>`.
  *
  * @event on:show - Emitted when the accordion opens.
  * @event after:show - Emitted after the accordion opens and all animations are complete.
@@ -32,9 +36,17 @@ import type { CSSResultGroup } from 'lit';
  * @csspart base - The component's internal wrapper.
  * @csspart header - The summary header.
  * @csspart summary - The accordion summary.
+ * @csspart prefix - The accordion summary prefix.
+ * @csspart suffix - The accordion summary suffix.
  * @csspart summary-icon - The expand/collapse summary icon.
  * @csspart content - The accordion content.
+ * @csspart footer - The accordion footer.
  *
+ * @cssproperty --background-color - The accordions background color
+ * @cssproperty --header-spacing - The amount of padding to use for the header.
+ * @cssproperty --body-spacing - The amount of padding to use for the body.
+ * @cssproperty --footer-spacing - The amount of padding to use for the footer.
+ * 
  * @animation accordion.show - The animation to use when showing accordion. You can use `height: auto` with this animation.
  * @animation accordion.hide - The animation to use when hiding accordion. You can use `height: auto` with this animation.
  */
@@ -42,11 +54,12 @@ import type { CSSResultGroup } from 'lit';
 export default class LynkAccordion extends LynkElement {
   static styles: CSSResultGroup = styles;
 
-  @query('.lynk-accordion') accordion: HTMLElement;
-  @query('.lynk-accordion__header') header: HTMLElement;
-  @query('.lynk-accordion__body') body: HTMLElement;
-  @query('.lynk-accordion__expand-icon-slot') expandIconSlot: HTMLSlotElement;
+  @query('.accordion') accordion: HTMLElement;
+  @query('.accordion__header') header: HTMLElement;
+  @query('.accordion__body') body: HTMLElement;
+  @query('.accordion__expand-icon-slot') expandIconSlot: HTMLSlotElement;
 
+  private readonly hasSlotController = new HasSlotController(this, 'prefix', 'suffix', 'footer');
   private readonly localize = new LocalizeController(this);
 
   /** Indicates whether or not the accordion is open. You can use this in lieu of the show/hide methods. */
@@ -63,27 +76,7 @@ export default class LynkAccordion extends LynkElement {
     this.body.style.height = this.open ? 'auto' : '0';
   }
 
-  /** Shows the accordion. */
-  async show() {
-    if (this.open || this.disabled) {
-      return undefined;
-    }
-
-    this.open = true;
-    return waitForEvent(this, 'after:show');
-  }
-
-  /** Hides the accordion */
-  async hide() {
-    if (!this.open || this.disabled) {
-      return undefined;
-    }
-
-    this.open = false;
-    return waitForEvent(this, 'after:hide');
-  }
-
-  handleSummaryClick() {
+  private handleSummaryClick() {
     if (!this.disabled) {
       if (this.open) {
         this.hide();
@@ -95,7 +88,11 @@ export default class LynkAccordion extends LynkElement {
     }
   }
 
-  handleSummaryKeyDown(event: KeyboardEvent) {
+  private handlePrefixSuffixClick(event: MouseEvent) {
+    event.stopPropagation();
+  }
+
+  private handleSummaryKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
 
@@ -115,6 +112,10 @@ export default class LynkAccordion extends LynkElement {
       event.preventDefault();
       this.show();
     }
+  }
+
+  private handlePrefixSuffixKeyDown(event: KeyboardEvent) {
+    event.stopPropagation();
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
@@ -154,6 +155,26 @@ export default class LynkAccordion extends LynkElement {
     }
   }
 
+  /** Shows the accordion. */
+  async show() {
+    if (this.open || this.disabled) {
+      return undefined;
+    }
+
+    this.open = true;
+    return waitForEvent(this, 'after:show');
+  }
+
+  /** Hides the accordion */
+  async hide() {
+    if (!this.open || this.disabled) {
+      return undefined;
+    }
+
+    this.open = false;
+    return waitForEvent(this, 'after:hide');
+  }
+
   render() {
     const isRtl = this.localize.dir() === 'rtl';
 
@@ -161,16 +182,19 @@ export default class LynkAccordion extends LynkElement {
       <div
         part="base"
         class=${classMap({
-          'lynk-accordion': true,
-          'lynk-accordion--open': this.open,
-          'lynk-accordion--disabled': this.disabled,
-          'lynk-accordion--rtl': isRtl
+          'accordion': true,
+          'accordion--open': this.open,
+          'accordion--disabled': this.disabled,
+          'accordion--rtl': isRtl,
+          'accordion--has-prefix': this.hasSlotController.test('prefix'),
+          'accordion--has-suffix': this.hasSlotController.test('suffix'),
+          'accordion--has-footer': this.hasSlotController.test('footer')
         })}
       >
         <header
           part="header"
           id="header"
-          class="lynk-accordion__header"
+          class="accordion__header"
           role="button"
           aria-expanded=${this.open ? 'true' : 'false'}
           aria-controls="content"
@@ -179,9 +203,29 @@ export default class LynkAccordion extends LynkElement {
           @click=${this.handleSummaryClick}
           @keydown=${this.handleSummaryKeyDown}
         >
-          <slot name="summary" part="summary" class="lynk-accordion__summary">${this.summary}</slot>
+          <slot
+            name="prefix"
+            part="prefix"
+            class="accordion__prefix"
+            @click=${this.handlePrefixSuffixClick}
+            @keydown=${this.handlePrefixSuffixKeyDown}
+          ></slot>
+          <slot
+            name="summary"
+            part="summary"
+            class="accordion__summary"
+          >
+            ${this.summary}
+          </slot>
+          <slot
+            name="suffix"
+            part="suffix"
+            class="accordion__suffix"
+            @click=${this.handlePrefixSuffixClick}
+            @keydown=${this.handlePrefixSuffixKeyDown}
+          ></slot>
 
-          <span part="summary-icon" class="lynk-accordion__summary-icon">
+          <span part="summary-icon" class="accordion__summary-icon">
             <slot name="expand-icon">
               <lynk-icon library="system" name=${isRtl ? 'chevron-left' : 'chevron-right'}></lynk-icon>
             </slot>
@@ -191,14 +235,15 @@ export default class LynkAccordion extends LynkElement {
           </span>
         </header>
 
-        <div class="lynk-accordion__body">
+        <div class="accordion__body">
           <slot
             part="content"
             id="content"
-            class="lynk-accordion__content"
+            class="accordion__content"
             role="region"
             aria-labelledby="header"
           ></slot>
+          <slot name="footer" part="footer" class="accordion__footer"></slot>
         </div>
       </div>
     `;

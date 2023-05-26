@@ -2,7 +2,7 @@ import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 import formControlStyles from '../../styles/form-control.styles';
 
-export default css`
+export default css /* syntax: css */`
   ${componentStyles}
   ${formControlStyles}
 
@@ -88,10 +88,21 @@ export default css`
     cursor: not-allowed;
   }
 
-  .lynk-input.lynk-input--restricted {
-    border: none;
-    background-color: none;
+  /* Restricted Inputs */
+  .lynk-input--restricted,
+  .lynk-input--restricted:hover {
+    border: none !important;
+    background-color: transparent !important;
+    cursor: default;
     color: var(--lynk-input-color);
+  }
+
+  .lynk-input--restricted .lynk-input__control {
+    padding: 0 !important;
+    cursor: text;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
   }
 
   .lynk-input__control {
@@ -123,7 +134,7 @@ export default css`
   .lynk-input__control:-webkit-autofill:focus,
   .lynk-input__control:-webkit-autofill:active {
     box-shadow: 0 0 0 var(--lynk-input-height-large) var(--lynk-input-background-color-hover) inset !important;
-    -webkit-text-fill-color: var(--lynk-color-primary-500);
+    -webkit-text-fill-color: var(--lynk-input-color);
     caret-color: var(--lynk-input-color);
   }
 
@@ -148,8 +159,7 @@ export default css`
   }
 
   .lynk-input__prefix,
-  .lynk-input__suffix,
-  .lynk-input__control.lynk-input__control--restricted {
+  .lynk-input__suffix {
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
@@ -285,11 +295,6 @@ export default css`
   .lynk-input--has-success.lynk-input--focused:not(.lynk-input--disabled) {
     border-color: var(--lynk-color-success-500);
     box-shadow: 0 0 2px var(--lynk-focus-ring-width) var(--lynk-color-success-a50);
-  }
-
-  /* Restricted */
-  .lynk-input__control.lynk-input__control--restricted {
-    padding: 0;
   }
 
   /*

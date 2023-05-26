@@ -12,7 +12,7 @@ describe('<lynk-accordion>', () => {
         consequat.
       </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.accordion__body')!;
 
     expect(body.hidden).to.be.false;
   });
@@ -25,7 +25,7 @@ describe('<lynk-accordion>', () => {
         consequat.
       </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.accordion__body')!;
 
     expect(body.hidden).to.be.true;
   });
@@ -38,7 +38,7 @@ describe('<lynk-accordion>', () => {
         consequat.
       </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.accordion__body')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
@@ -62,7 +62,7 @@ describe('<lynk-accordion>', () => {
         consequat.
       </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.accordion__body')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
@@ -86,7 +86,7 @@ describe('<lynk-accordion>', () => {
         consequat.
       </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.accordion__body')!;
     const showHandler = sinon.spy();
     const afterShowHandler = sinon.spy();
 
@@ -110,7 +110,7 @@ describe('<lynk-accordion>', () => {
         consequat.
       </lynk-accordion>
     `);
-    const body = el.shadowRoot!.querySelector<HTMLElement>('.lynk-accordion__body')!;
+    const body = el.shadowRoot!.querySelector<HTMLElement>('.accordion__body')!;
     const hideHandler = sinon.spy();
     const afterHideHandler = sinon.spy();
 
@@ -139,8 +139,8 @@ describe('<lynk-accordion>', () => {
     `);
     const first = el.querySelectorAll('lynk-accordion')[0];
     const second = el.querySelectorAll('lynk-accordion')[1];
-    const firstBody = first.shadowRoot!.querySelector('.lynk-accordion__body')!;
-    const secondBody = second.shadowRoot!.querySelector('.lynk-accordion__body')!;
+    const firstBody = first.shadowRoot!.querySelector('.accordion__body')!;
+    const secondBody = second.shadowRoot!.querySelector('.accordion__body')!;
 
     await first.show();
     await second.show();
