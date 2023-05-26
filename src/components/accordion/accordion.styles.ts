@@ -7,7 +7,7 @@ export default css`
   :host {
     display: block;
     --header-spacing: var(--lynk-spacing-medium);
-    --body-spacing: var(--lynk-spacing-x-small) var(--lynk-spacing-medium) var(--lynk-spacing-medium) var(--lynk-spacing-medium);
+    --body-spacing: var(--lynk-spacing-medium);
     --footer-spacing: var(--lynk-spacing-medium);
     --background-color: var(--lynk-color-neutral-50);
   }

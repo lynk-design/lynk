@@ -10,7 +10,7 @@ export default css`
     --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge {
+  .badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -29,38 +29,38 @@ export default css`
   }
 
   /* Variant modifiers */
-  .lynk-badge.lynk-badge--primary {
+  .badge.badge--primary {
     --background-color: var(--lynk-color-primary-600);
     --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge.lynk-badge--success {
+  .badge.badge--success {
     --background-color: var(--lynk-color-success-600);
     --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge.lynk-badge--neutral {
+  .badge.badge--neutral {
     --background-color: var(--lynk-color-neutral-600);
     --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge.lynk-badge--warning {
+  .badge.badge--warning {
     --background-color: var(--lynk-color-warning-600);
     --color: var(--lynk-color-neutral-0);
   }
 
-  .lynk-badge.lynk-badge--danger {
+  .badge.badge--danger {
     --background-color: var(--lynk-color-danger-600);
     --color: var(--lynk-color-neutral-0);
   }
 
   /* Pill modifier */
-  .lynk-badge--pill {
+  .badge--pill {
     border-radius: var(--lynk-border-radius-pill);
   }
 
   /* Pulse modifier */
-  .lynk-badge--pulse {
+  .badge--pulse {
     animation: pulse 1.5s infinite;
   }
 

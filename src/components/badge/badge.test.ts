@@ -32,7 +32,7 @@ describe('<lynk-badge>', () => {
 
     it('should append the pill class to the classlist to render a pill', () => {
       const part = el.shadowRoot!.querySelector('[part="base"]')!;
-      expect(part.classList.value.trim()).to.eq('lynk-badge lynk-badge--primary lynk-badge--pill');
+      expect(part.classList.value.trim()).to.eq('badge badge--pill');
     });
   });
 
@@ -47,7 +47,7 @@ describe('<lynk-badge>', () => {
 
     it('should append the pulse class to the classlist to render a pulse', () => {
       const part = el.shadowRoot!.querySelector('[part="base"]')!;
-      expect(part.classList.value.trim()).to.eq('lynk-badge lynk-badge--primary lynk-badge--pulse');
+      expect(part.classList.value.trim()).to.eq('badge badge--pulse');
     });
   });
 
@@ -63,7 +63,7 @@ describe('<lynk-badge>', () => {
 
       it('should default to square styling, with the primary color', () => {
         const part = el.shadowRoot!.querySelector('[part="base"]')!;
-        expect(part.classList.value.trim()).to.eq(`lynk-badge lynk-badge--${type}`);
+        expect(part.classList.value.trim()).to.eq(`badge badge--${type}`);
       });
     });
   });
