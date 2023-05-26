@@ -1,3 +1,4 @@
+import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
@@ -32,21 +33,38 @@ export default class LynkStack extends LynkElement {
   /** How to justify stack items */
   @property({ reflect: true }) justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
 
-  /** Hot to align stack items to eachother */
+  /** How to align stack items to eachother */
   @property({ reflect: true }) align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
+
+  /** How to wrap the stack */
+  @property({ type: Boolean, reflect: true }) wrap = false;
 
   /** The space between stack items. Use spacing tokens or any custom size. */
   @property({ type: String, reflect: true }) gap = 'var(--lynk-spacing-small)';
 
   render() {
-    const horizontalClass = this.horizontal ? 'lynk-stack--horizontal' : null;
-    const reverseClass = this.reverse ? 'lynk-stack--reverse' : null;
-    const justifyClass = this.justify ? `lynk-stack--justify-${this.justify}` : null;
-    const alignClass = this.align ? `lynk-stack--align-${this.align}` : null;
-
-    const classList = [horizontalClass, reverseClass, justifyClass, alignClass];
-
-    return html` <slot part="base" class="lynk-stack ${classList.join(' ')}" style="--gap: ${this.gap};"></slot> `;
+    return html`
+      <slot
+        part="base"
+        class=${classMap({
+          'stack': true,
+          'stack--horizontal': this.horizontal,
+          'stack--reverse': this.reverse,
+          'stack--align-start': this.align === 'start',
+          'stack--align-center': this.align === 'center',
+          'stack--align-end': this.align === 'end',
+          'stack--align-stretch': this.align === 'stretch',
+          'stack--align-baseline': this.align === 'baseline',
+          'stack--justify-start': this.justify === 'start',
+          'stack--justify-center': this.justify === 'center',
+          'stack--justify-end': this.justify === 'end',
+          'stack--justify-between': this.justify === 'between',
+          'stack--justify-around': this.justify === 'around',
+          'stack--justify-evenly': this.justify === 'evenly',
+          'stack--wrap': this.wrap,
+        })}
+        style="--gap: ${this.gap};"
+      ></slot> `;
   }
 }
 

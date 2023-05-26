@@ -108,7 +108,10 @@ export default class LynkTabGroup extends LynkElement {
 
   disconnectedCallback() {
     this.mutationObserver.disconnect();
-    this.resizeObserver.unobserve(this.nav);
+
+    if(this.nav) {
+      this.resizeObserver.unobserve(this.nav);
+    }
   }
 
   private getAllTabs(options: { includeDisabled: boolean } = { includeDisabled: true }) {

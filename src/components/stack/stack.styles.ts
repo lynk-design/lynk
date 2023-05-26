@@ -15,11 +15,7 @@ export default css`
     width: var(--width);
   }
 
-  :host([no-wrap]) .lynk-stack {
-    flex-wrap: nowrap;
-  }
-
-  .lynk-stack {
+  .stack {
     display: flex;
     flex-direction: column;
     gap: var(--gap);
@@ -28,63 +24,75 @@ export default css`
     margin: var(--margin);
   }
 
-  .lynk-stack--reverse {
+  .stack--reverse {
     flex-direction: column-reverse;
   }
 
-  .lynk-stack--horizontal {
+  .stack--horizontal {
     flex-direction: row;
   }
 
-  .lynk-stack--horizontal.lynk-stack--reverse {
+  .stack--horizontal.stack--reverse {
     flex-direction: row-reverse;
   }
 
-  .lynk-stack--justify-start {
+  .stack--justify-start {
     justify-content: flex-start;
   }
 
-  .lynk-stack--justify-center {
+  .stack--justify-center {
     justify-content: center;
   }
 
-  .lynk-stack--justify-end {
+  .stack--justify-end {
     justify-content: flex-end;
   }
 
-  .lynk-stack--justify-between {
+  .stack--justify-between {
     justify-content: space-between;
   }
 
-  .lynk-stack--justify-around {
+  .stack--justify-around {
     justify-content: space-around;
   }
 
-  .lynk-stack--justify-evenly {
+  .stack--justify-evenly {
     justify-content: space-evenly;
   }
 
-  .lynk-stack--align-start {
+  .stack--align-start {
     align-items: flex-start;
   }
 
-  .lynk-stack--align-center {
+  .stack--align-center {
     align-items: center;
   }
 
-  .lynk-stack--align-end {
+  .stack--align-end {
     align-items: flex-end;
   }
 
-  .lynk-stack--align-stretch {
+  .stack--align-stretch {
     align-items: stretch;
   }
 
-  .lynk-stack--align-baseline {
+  .stack--align-baseline {
     align-items: baseline;
   }
 
-  .lynk-stack::slotted(lynk-icon) {
+  .stack::slotted(lynk-icon) {
     flex-shrink: 0;
+  }
+
+  .stack--wrap {
+    flex-wrap: wrap;
+  }
+
+  .stack--no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  .stack--wrap-reverse {
+    flex-wrap: wrap-reverse;
   }
 `;

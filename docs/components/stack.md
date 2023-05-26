@@ -61,7 +61,7 @@ Use the `justify`, and `align` properties to arrange your vertical stack.
 
 <lynk-grid container class="v-stack-options">
   <lynk-grid item>
-    <lynk-radio-group label="Justify" name="justify" value="start">
+    <lynk-radio-group label="Justify" name="justify">
       <lynk-radio value="start">Start</lynk-radio>
       <lynk-radio value="center">Center</lynk-radio>
       <lynk-radio value="end">End</lynk-radio>
@@ -71,7 +71,7 @@ Use the `justify`, and `align` properties to arrange your vertical stack.
     </lynk-radio-group>
   </lynk-grid>
   <lynk-grid item>
-    <lynk-radio-group label="Align" name="align" value="start">
+    <lynk-radio-group label="Align" name="align">
       <lynk-radio value="start">Start</lynk-radio>
       <lynk-radio value="center">Center</lynk-radio>
       <lynk-radio value="end">End</lynk-radio>
@@ -109,6 +109,35 @@ Use the `justify`, and `align` properties to arrange your vertical stack.
 </lynk-stack>
 ```
 
+Wrap the stack using the `wrap` attribute
+
+```html preview
+<lynk-stack horizontal wrap>
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-small);"
+    >First Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-medium);"
+    >Second Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-large);"
+    >Fourth Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-medium);"
+    >Fifth Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-large);"
+    >Sixth Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-medium);"
+    >Seventh Item</lynk-box
+  >
+  <lynk-box style="--background: var(--lynk-color-neutral-100); --padding: var(--lynk-spacing-large);"
+    >Eighth Item</lynk-box
+  >
+</lynk-stack>
+```
+
+
 Reverse stack order using `reverse` attribute
 
 ```html preview
@@ -142,7 +171,7 @@ Use the `justify`, and `align` properties to arrange your horizontal stack.
 
 <lynk-grid container class="h-stack-options">
   <lynk-grid item>
-    <lynk-radio-group label="Justify" name="justify" value="start">
+    <lynk-radio-group label="Justify" name="justify">
       <lynk-radio value="start">Start</lynk-radio>
       <lynk-radio value="center">Center</lynk-radio>
       <lynk-radio value="end">End</lynk-radio>
@@ -152,7 +181,7 @@ Use the `justify`, and `align` properties to arrange your horizontal stack.
     </lynk-radio-group>
   </lynk-grid>
   <lynk-grid item>
-    <lynk-radio-group label="Align" name="align" value="start">
+    <lynk-radio-group label="Align" name="align">
       <lynk-radio value="start">Start</lynk-radio>
       <lynk-radio value="center">Center</lynk-radio>
       <lynk-radio value="end">End</lynk-radio>
