@@ -208,7 +208,7 @@ export default class LynkAccordion extends LynkElement {
             part="prefix"
             class="accordion__prefix"
             @click=${this.handlePrefixSuffixClick}
-            @keydown=${this.handlePrefixSuffixyKeyDown}
+            @keydown=${this.handlePrefixSuffixKeyDown}
           ></slot>
           <slot
             name="summary"
@@ -222,7 +222,7 @@ export default class LynkAccordion extends LynkElement {
             part="suffix"
             class="accordion__suffix"
             @click=${this.handlePrefixSuffixClick}
-            @keydown=${this.handlePrefixSuffixyKeyDown}
+            @keydown=${this.handlePrefixSuffixKeyDown}
           ></slot>
 
           <span part="summary-icon" class="accordion__summary-icon">
