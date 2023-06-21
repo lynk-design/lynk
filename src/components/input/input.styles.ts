@@ -114,7 +114,7 @@ export default css /* syntax: css */`
     height: 100%;
     color: var(--lynk-input-color);
     border: none;
-    background: none;
+    background: inherit;
     box-shadow: none;
     padding: 0;
     margin: 0;

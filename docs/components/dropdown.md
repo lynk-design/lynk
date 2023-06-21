@@ -14,7 +14,7 @@ Dropdowns are designed to work well with [menus](/components/menu) to provide a 
     <lynk-menu-item>Dropdown Item 2</lynk-menu-item>
     <lynk-menu-item>Dropdown Item 3</lynk-menu-item>
     <lynk-divider></lynk-divider>
-    <lynk-menu-item checked>Checked</lynk-menu-item>
+    <lynk-menu-item type="checkbox" checked>Checked</lynk-menu-item>
     <lynk-menu-item disabled>Disabled</lynk-menu-item>
     <lynk-divider></lynk-divider>
     <lynk-menu-item>
@@ -83,35 +83,6 @@ Alternatively, you can listen for the `click` event on individual menu items. No
   paste.addEventListener('click', () => console.log('paste'));
 </script>
 ```
-
-### Using a lynk-input as the trigger
-
-```html preview
-<div class="dropdown-selection-alt">
-  <lynk-dropdown>
-    <lynk-input slot="trigger" type="search" placeholder="Search" autocomplete="off" clearable>
-      <lynk-icon slot="prefix" name="search" library="default"></lynk-icon>
-    </lynk-input>
-    <lynk-menu>
-      <lynk-menu-item value="cut">Cut</lynk-menu-item>
-      <lynk-menu-item value="copy">Copy</lynk-menu-item>
-      <lynk-menu-item value="paste">Paste</lynk-menu-item>
-    </lynk-menu>
-  </lynk-dropdown>
-</div>
-
-<script>
-  const container = document.querySelector('.dropdown-selection-alt');
-  const cut = container.querySelector('lynk-menu-item[value="cut"]');
-  const copy = container.querySelector('lynk-menu-item[value="copy"]');
-  const paste = container.querySelector('lynk-menu-item[value="paste"]');
-
-  cut.addEventListener('click', () => console.log('cut'));
-  copy.addEventListener('click', () => console.log('copy'));
-  paste.addEventListener('click', () => console.log('paste'));
-</script>
-```
-
 
 ### Placement
 
@@ -218,6 +189,35 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
     overflow: hidden;
   }
 </style>
+```
+
+### Using a search input within the menu
+
+```html preview
+<lynk-dropdown class="dropdown-selection-search">
+  <lynk-button slot="trigger" caret>Dropdown</lynk-button>
+  <lynk-menu>
+    <lynk-input type="search" placeholder="Search" autocomplete="off" clearable>
+      <lynk-icon slot="prefix" name="search"></lynk-icon>
+    </lynk-input>
+    <lynk-menu-label>Category A</lynk-menu-label>
+    <lynk-menu-item value="one">Item 1</lynk-menu-item>
+    <lynk-menu-item value="two">Item 2</lynk-menu-item>
+    <lynk-menu-item value="three">Item 3</lynk-menu-item>
+    <lynk-menu-label>Category B</lynk-menu-label>
+    <lynk-menu-item value="one">Item 4</lynk-menu-item>
+    <lynk-menu-item value="two">Item 5</lynk-menu-item>
+    <lynk-menu-item value="three">Item 6</lynk-menu-item>
+  </lynk-menu>
+</lynk-dropdown>
+
+
+<script>
+  const dropdown = document.querySelector('.dropdown-selection-search');
+  const search = dropdown.querySelector('lynk-input');
+
+  dropdown.addEventListener('after:show', () => search.focus());
+</script>
 ```
 
 [component-metadata:lynk-dropdown]
