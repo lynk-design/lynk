@@ -232,9 +232,10 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     const target = event.target as HTMLElement;
     const isClearButton = target.closest('.lynk-select__clear') !== null;
     const isIconButton = target.closest('lynk-icon-button') !== null;
+    const isInput = target.closest('lynk-input') !== null;
 
     // Ignore presses when the target is an icon button (e.g. the remove button in <lynk-tag>)
-    if (isClearButton || isIconButton) {
+    if (isClearButton || isIconButton || isInput) {
       return;
     }
 

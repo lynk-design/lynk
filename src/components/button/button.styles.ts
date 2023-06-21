@@ -418,7 +418,8 @@ export default css`
 
   .lynk-button--tiny {
     font-size: var(--lynk-button-font-size-small);
-    height: var(--lynk-button-height-tiny);
+    height: auto;
+    min-height: var(--lynk-button-height-tiny);
     line-height: calc(var(--lynk-button-height-tiny) - var(--lynk-button-border-width) * 2);
     border-radius: var(--lynk-button-border-radius-small);
   }
@@ -428,7 +429,8 @@ export default css`
 
   .lynk-button--small {
     font-size: var(--lynk-button-font-size-small);
-    height: var(--lynk-button-height-small);
+    min-height: var(--lynk-button-height-small);
+    height: auto;
     line-height: calc(var(--lynk-button-height-small) - var(--lynk-button-border-width) * 2);
     border-radius: var(--lynk-button-border-radius-small);
   }
@@ -439,7 +441,8 @@ export default css`
 
   .lynk-button--medium {
     font-size: var(--lynk-button-font-size-medium);
-    height: var(--lynk-button-height-medium);
+    min-height: var(--lynk-button-height-medium);
+    height: auto;
     line-height: calc(var(--lynk-button-height-medium) - var(--lynk-button-border-width) * 2);
     border-radius: var(--lynk-button-border-radius-medium);
   }
@@ -450,7 +453,8 @@ export default css`
 
   .lynk-button--large {
     font-size: var(--lynk-button-font-size-large);
-    height: var(--lynk-button-height-large);
+    min-height: var(--lynk-button-height-large);
+    height: auto;
     line-height: calc(var(--lynk-button-height-large) - var(--lynk-button-border-width) * 2);
     border-radius: var(--lynk-button-border-radius-large);
   }

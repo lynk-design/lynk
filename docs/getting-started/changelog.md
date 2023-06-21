@@ -6,6 +6,15 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.6.6
+
+- Improved keyboard handling for `<lynk-menu>` or `<lynk-select>` that contain a slotted `<lynk-input>` for search.
+- Improved `<lynk-button>` so it can accept slotted content of variable heights
+- Fixed a bug in `<lynk-input>` that caused date pickers to look filled in even when empty in Safari
+- Updated Lit to 2.7.5
+- Updated Floating UI to 1.4.2
+- Updated Bootstrap Icons to 1.10.5
+
 ## 0.6.5
 
 - 🎉 NEW: Added experimental `<lynk-intersection-observer>` component
