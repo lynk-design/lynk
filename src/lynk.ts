@@ -47,6 +47,7 @@ export { default as LynkResizeObserver } from './components/resize-observer/resi
 export { default as LynkResponsiveMedia } from './components/responsive-media/responsive-media';
 export { default as LynkSelect } from './components/select/select';
 export { default as LynkSpinner } from './components/spinner/spinner';
+export { default as LynkSplitPanel } from './components/split-panel/split-panel';
 export { default as LynkSwitch } from './components/switch/switch';
 export { default as LynkTab } from './components/tab/tab';
 export { default as LynkTabGroup } from './components/tab-group/tab-group';

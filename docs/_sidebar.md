@@ -38,6 +38,7 @@
   - [Page Content](/components/page-content)
   - [Page Header](/components/page-header)
   - [Page Footer](/components/page-footer)
+  - [Split Panel](/components/split-panel)
   - [Stack](/components/stack)
   - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)

@@ -2,8 +2,6 @@
 
 [component-header:lynk-split-panel]
 
-Split panels display two adjacent panels, allowing the user to reposition them.
-
 ```html preview
 <lynk-split-panel>
   <div
@@ -64,7 +62,6 @@ To set the initial position in pixels instead of a percentage, use the `position
   </div>
 </lynk-split-panel>
 ```
-
 ### Vertical
 
 Add the `vertical` attribute to render the split panel in a vertical orientation where the start and end panels are stacked. You also need to set a height when using the vertical orientation.
@@ -181,19 +178,19 @@ Try resizing the example below with each option and notice how the panels respon
     </div>
   </lynk-split-panel>
 
-  <lynk-select label="Primary Panel" value="" style="max-width: 200px; margin-top: 1rem;">
-    <lynk-menu-item value="">None</lynk-menu-item>
-    <lynk-menu-item value="start">Start</lynk-menu-item>
-    <lynk-menu-item value="end">End</lynk-menu-item>
-  </lynk-select>
+  <sl-select label="Primary Panel" value="" style="max-width: 200px; margin-top: 1rem;">
+    <sl-option value="">None</sl-option>
+    <sl-option value="start">Start</sl-option>
+    <sl-option value="end">End</sl-option>
+  </sl-select>
 </div>
 
 <script>
   const container = document.querySelector('.split-panel-primary');
   const splitPanel = container.querySelector('lynk-split-panel');
-  const select = container.querySelector('lynk-select');
+  const select = container.querySelector('sl-select');
 
-  select.addEventListener('on:change', () => (splitPanel.primary = select.value));
+  select.addEventListener('sl-change', () => (splitPanel.primary = select.value));
 </script>
 ```
 
@@ -253,11 +250,11 @@ Create complex layouts that can be repositioned independently by nesting split p
 
 ### Customizing the Divider
 
-You can target the `divider` part to apply CSS properties to the divider. To add a handle, slot an icon or another element into the `handle` slot. When customizing the divider, make sure to think about focus styles for keyboard users.
+You can target the `divider` part to apply CSS properties to the divider. To add a custom handle, slot an icon into the `divider` slot. When customizing the divider, make sure to think about focus styles for keyboard users.
 
 ```html preview
 <lynk-split-panel style="--divider-width: 20px;">
-  <lynk-icon slot="handle" name="grip-vertical"></lynk-icon>
+  <lynk-icon slot="divider" name="grip-vertical"></lynk-icon>
   <div
     slot="start"
     style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
@@ -276,9 +273,9 @@ You can target the `divider` part to apply CSS properties to the divider. To add
 Here's a more elaborate example that changes the divider's color and width and adds a styled handle.
 
 ```html preview
-<div class="split-panel-handle">
+<div class="split-panel-divider">
   <lynk-split-panel>
-    <lynk-icon slot="handle" name="grip-vertical"></lynk-icon>
+    <lynk-icon slot="divider" name="grip-vertical"></lynk-icon>
     <div
       slot="start"
       style="height: 200px; background: var(--lynk-color-neutral-50); display: flex; align-items: center; justify-content: center;"
@@ -295,15 +292,15 @@ Here's a more elaborate example that changes the divider's color and width and a
 </div>
 
 <style>
-  .split-panel-handle l-split-panel {
+  .split-panel-divider lynk-split-panel {
     --divider-width: 2px;
   }
 
-  .split-panel-handle l-split-panel::part(divider) {
+  .split-panel-divider lynk-split-panel::part(divider) {
     background-color: var(--lynk-color-pink-600);
   }
 
-  .split-panel-handle lynk-icon {
+  .split-panel-divider lynk-icon {
     position: absolute;
     border-radius: var(--lynk-border-radius-small);
     background: var(--lynk-color-pink-600);
@@ -311,11 +308,11 @@ Here's a more elaborate example that changes the divider's color and width and a
     padding: 0.5rem 0.125rem;
   }
 
-  .split-panel-handle l-split-panel::part(divider):focus-visible {
+  .split-panel-divider lynk-split-panel::part(divider):focus-visible {
     background-color: var(--lynk-color-primary-600);
   }
 
-  .split-panel-handle l-split-panel:focus-within lynk-icon {
+  .split-panel-divider lynk-split-panel:focus-within lynk-icon {
     background-color: var(--lynk-color-primary-600);
     color: var(--lynk-color-neutral-0);
   }
