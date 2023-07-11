@@ -6,6 +6,9 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.7.0
+- 🎉 NEW: Added experimental `<lynk-split-panel>` layout component
+
 ## 0.6.6
 
 - Improved keyboard handling for `<lynk-menu>` or `<lynk-select>` that contain a slotted `<lynk-input>` for search.
