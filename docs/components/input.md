@@ -4,7 +4,6 @@
 
 ```html preview
 <lynk-input></lynk-input>
-<lynk-input type="file"></lynk-input>
 ```
 
 ## Examples
