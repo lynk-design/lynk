@@ -6,7 +6,7 @@
 <lynk-nav style="max-width: 200px;">
   <lynk-nav-item>Getting Started</lynk-nav-item>
   <lynk-nav-item>Usage</lynk-nav-item>
-  <lynk-nav-item>Contributing</lynk-nav-item>
+  <lynk-nav-item target="_blank">Contributing</lynk-nav-item>
   <lynk-nav-item expanded>
     Components
     <lynk-nav-item>Button</lynk-nav-item>
