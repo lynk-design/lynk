@@ -111,7 +111,7 @@ The `squished` property can be used to render the entire nav in a simplified nar
     <lynk-nav-item>Event Calendar</lynk-nav-item>
   </lynk-nav-item>
   <lynk-nav-item><lynk-icon slot="prefix" name="film"></lynk-icon> Slicers</lynk-nav-item>
-  <lynk-nav-item><lynk-icon slot="prefix" name="speedometer"></lynk-icon> Monitoring</lynk-nav-item>
+  <lynk-nav-item target="_blank"><lynk-icon slot="prefix" name="speedometer"></lynk-icon> Monitoring</lynk-nav-item>
   <lynk-nav-item><lynk-icon slot="prefix" name="bar-chart"></lynk-icon> Analytics</lynk-nav-item>
   <lynk-nav-item><lynk-icon slot="prefix" name="database-gear"></lynk-icon> Ad Server Debug</lynk-nav-item>
   <lynk-nav-item><lynk-icon slot="prefix" name="gear"></lynk-icon> Settings</lynk-nav-item>

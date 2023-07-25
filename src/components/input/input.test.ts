@@ -42,7 +42,7 @@ describe('<lynk-input>', () => {
     expect(el.required).to.be.false;
     expect(el.autocapitalize).to.be.undefined;
     expect(el.autocorrect).to.be.undefined;
-    expect(el.autocomplete).to.be.undefined;
+    expect(el.autocomplete).to.equal('off');
     expect(el.autofocus).to.be.undefined;
     expect(el.enterkeyhint).to.be.undefined;
     expect(el.spellcheck).to.be.true;

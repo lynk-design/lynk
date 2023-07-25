@@ -192,7 +192,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
    * Specifies what permission the browser has to provide assistance in filling out form field values. Refer to
    * [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.
    */
-  @property() autocomplete: string;
+  @property({ type: String }) autocomplete = 'off';
 
   /** The input's autofocus attribute. */
   @property({ type: Boolean }) autofocus: boolean;
@@ -537,7 +537,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                   step=${ifDefined(this.step as number)}
                   .value=${live(this.value)}
                   autocapitalize=${ifDefined(this.autocapitalize)}
-                  autocomplete=${ifDefined(this.autocomplete)}
+                  autocomplete=${ifDefined(this.autocomplete) || "off"}
                   autocorrect=${ifDefined(this.autocorrect)}
                   ?autofocus=${this.autofocus}
                   spellcheck=${this.spellcheck}
