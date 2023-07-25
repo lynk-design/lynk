@@ -8,6 +8,8 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 ## 0.7.1
 - Improved `<lynk-nav>` so that squished styles are applied by class rather than attribute
+- Improved `<lynk-input>` by turning autocomplete to "off" by default
+- Added `striped` option to `<lynk-tr>`
 
 ## 0.7.0
 - 🎉 NEW: Added experimental `<lynk-split-panel>` layout component
