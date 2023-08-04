@@ -5,86 +5,102 @@
 [component-header:lynk-accordion]
 
 ```html preview
-<lynk-accordion summary="Toggle Me">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+<lynk-accordion>
+  <lynk-panel heading="First">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
+  <lynk-panel heading="Second" expanded>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
+  <lynk-panel heading="Third">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
 </lynk-accordion>
 ```
 
 ## Examples
 
-### Disabled
+### Multiple
 
-Use the `disable` attribute to prevent the Accordion from expanding.
+To allow multiple panels to be expanded, use the multiple attribute.
 
 ```html preview
-<lynk-accordion summary="Disabled" disabled>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+<lynk-accordion multiple>
+  <lynk-panel heading="First" expanded>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
+  <lynk-panel heading="Second" expanded>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
+  <lynk-panel heading="Third" expanded>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
 </lynk-accordion>
 ```
 
-### Prefix & Suffix
+### Density & Dividers
 
-Use the `prefix` and `suffix` slots to add additional controls to the accordion header.
+The `density` attribute can change the spacing between each accordion panel. Use `density="flush"` to remove all spacing and apply a single pixel divider between each panel.
 
 ```html preview
-<lynk-accordion summary="Encoding Profile">
-  <lynk-checkbox slot="prefix" checked></lynk-checkbox>
-  <lynk-button slot="suffix" square size="small"><lynk-icon name="three-dots-vertical"></lynk-icon></lynk-button>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+<lynk-accordion density="flush">
+  <lynk-panel heading="First">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
+  <lynk-panel heading="Second" expanded>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
+  <lynk-panel heading="Third">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
 </lynk-accordion>
 ```
 
-### Footer
-
-Use the `footer` slots to add additional controls to the accordion body that are only visible when the accordion is open.
+The divider width and color can be customized using the `--divider` css property.
 
 ```html preview
-<lynk-accordion summary="Encoding Profile">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  <lynk-button color="primary" slot="footer">Save</lynk-button>
+<lynk-accordion density="flush" style="--divider: 2px solid var(--lynk-color-warning)">
+  <lynk-panel heading="First">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
+  <lynk-panel heading="Second" expanded>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
+  <lynk-panel heading="Third">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </lynk-panel>
 </lynk-accordion>
 ```
 
-### Grouping Accordions
-
-Accordions are designed to function independently, but you can group multiple Accordion components where only one is shown at a time by listening for the `on:show` event.
+Give each panel more space by applying the `density="comfy"` attribute. Note that the divider is only available for the `flushed` density.
 
 ```html preview
-<div class="accordion-group-example">
-  <lynk-accordion summary="First" open>
+<lynk-accordion density="comfy">
+  <lynk-panel heading="First">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </lynk-accordion>
-
-  <lynk-accordion summary="Second">
+  </lynk-panel>
+  <lynk-panel heading="Second" expanded>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </lynk-accordion>
-
-  <lynk-accordion summary="Third">
+  </lynk-panel>
+  <lynk-panel heading="Third">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </lynk-accordion>
-</div>
-
-<script>
-  const container = document.querySelector('.accordion-group-example');
-
-  // Close all other details when one is shown
-  container.addEventListener('on:show', event => {
-    [...container.querySelectorAll('lynk-accordion')].map(accordion => (accordion.open = event.target === accordion));
-  });
-</script>
-
-<style>
-  .accordion-group-example lynk-accordion:not(:last-of-type) {
-    margin-bottom: var(--lynk-spacing-2x-small);
-  }
-</style>
+  </lynk-panel>
+</lynk-accordion>
 ```
 
 [component-metadata:lynk-accordion]

@@ -33,6 +33,7 @@ export { default as LynkPageFooter } from './components/page-footer/page-footer'
 export { default as LynkPageSidebar } from './components/page-sidebar/page-sidebar';
 export { default as LynkPageLayout } from './components/page-layout/page-layout';
 export { default as LynkPageContent } from './components/page-content/page-content';
+export { default as LynkPanel } from './components/panel/panel';
 export { default as LynkPopup } from './components/popup/popup';
 export { default as LynkPopover } from './components/popover/popover';
 export { default as LynkProgressBar } from './components/progress-bar/progress-bar';

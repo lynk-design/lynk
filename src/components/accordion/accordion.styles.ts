@@ -5,94 +5,50 @@ export default css`
   ${componentStyles}
 
   :host {
-    display: block;
-    --header-spacing: var(--lynk-spacing-medium);
-    --body-spacing: var(--lynk-spacing-medium);
-    --footer-spacing: var(--lynk-spacing-medium);
-    --background-color: var(--lynk-color-neutral-50);
+    display: contents;
+    --spacing: var(--lynk-spacing-small);
+    --divider: 1px solid var(--lynk-color-neutral-200);
   }
 
   .accordion {
-    border: solid 1px var(--lynk-color-neutral-200);
-    border-radius: var(--lynk-border-radius-medium);
-    background-color: var(--background-color);
-    overflow-anchor: none;
-  }
-
-  .accordion--disabled {
-    opacity: 0.5;
-  }
-
-  .accordion__header {
     display: flex;
-    align-items: center;
-    border-radius: inherit;
-    padding: var(--header-spacing);
-    user-select: none;
-    cursor: pointer;
+    flex-direction: column;
+    gap: var(--spacing);
+  }
+
+  .accordion--flush{
+    gap: 0;
+  }
+
+  .accordion--flush::slotted(lynk-panel),
+  .accordion--square::slotted(lynk-panel) {
+    --border-radius: 0;
+  }
+
+  .accordion--flush::slotted(lynk-panel:first-child) {
+    --border-radius: var(--lynk-border-radius-medium) var(--lynk-border-radius-medium) 0 0;
+  }
+
+  .accordion--flush::slotted(lynk-panel:last-child) {
+    --border-radius: 0 0 var(--lynk-border-radius-medium) var(--lynk-border-radius-medium);
+  }
+
+  .accordion--flush::slotted(lynk-panel) {
+    border-top: var(--divider); 
+  }
+  .accordion--flush::slotted(lynk-panel:first-child) {
+    border-top: none;
+  }
+
+  .accordion--compact {
     gap: var(--lynk-spacing-x-small);
   }
 
-  .accordion__header:focus {
-    outline: none;
+  .accordion--comfy {
+    gap: var(--lynk-spacing-medium);
   }
 
-  .accordion__header:focus-visible {
-    outline: var(--lynk-focus-ring);
-    outline-offset: calc(1px + var(--lynk-focus-ring-offset));
-  }
-
-  .accordion--disabled .accordion__header {
-    cursor: not-allowed;
-  }
-
-  .accordion--disabled .accordion__header:focus-visible {
-    outline: none;
-    box-shadow: none;
-  }
-
-  .accordion__summary {
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-  }
-
-  .accordion__summary-icon {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    transition: var(--lynk-transition-medium) rotate ease;
-  }
-
-  .accordion--open .accordion__summary-icon {
-    rotate: 90deg;
-  }
-
-  .accordion--open.accordion--rtl .accordion__summary-icon {
-    rotate: -90deg;
-  }
-
-  .accordion--open slot[name='expand-icon'],
-  .accordion:not(.accordion--open) slot[name='collapse-icon'] {
-    display: none;
-  }
-
-  .accordion__body {
-    overflow: hidden;
-  }
-
-  .accordion__content {
-    display: block;
-    padding: var(--body-spacing);
-  }
-
-  .accordion__footer {
-    display: flex;
-    padding: var(--footer-spacing);
-    gap: var(--lynk-spacing-2x-small);
-  }
-
-  .accordion:not(.accordion--has-footer) .accordion__footer {
-    display: none;
+  .accordion--rounded::slotted(lynk-panel) {
+    --border-radius: var(--lynk-border-radius-large);
   }
 `;

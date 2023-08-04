@@ -26,6 +26,7 @@
 - Content & Layout
 
   - [Accordion](/components/accordion)
+  - [Panel](/components/panel)
   - [Box](/components/box)
   - [Dialog](/components/dialog)
   - [Divider](/components/divider)
