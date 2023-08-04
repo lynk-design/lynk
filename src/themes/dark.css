@@ -373,6 +373,13 @@
   --lynk-color-black-a50: hsla(240 4% 7% / 0.5);
   --lynk-color-black-a75: hsla(240 4% 7% / 0.75);
 
+  --lynk-color-gray-200-a05: hsla(240 4% 22% / 0.05);
+  --lynk-color-gray-200-a10: hsla(240 4% 22% / 0.1);
+  --lynk-color-gray-200-a15: hsla(240 4% 22% / 0.15);
+  --lynk-color-gray-200-a25: hsla(240 4% 22% / 0.25);
+  --lynk-color-gray-200-a50: hsla(240 4% 22% / 0.5);
+  --lynk-color-gray-200-a75: hsla(240 4% 22% / 0.75);
+
   --lynk-color-gray-a05: hsla(240 4% 40% / 0.05);
   --lynk-color-gray-a10: hsla(240 4% 40% / 0.1);
   --lynk-color-gray-a15: hsla(240 4% 40% / 0.15);
@@ -610,8 +617,8 @@
   --lynk-table-header-color: var(--lynk-color-neutral-600);
   --lynk-table-border-color: var(--lynk-color-neutral-50);
   --lynk-table-border-radius: var(--lynk-border-radius-medium);
-  --lynk-table-cell-background-color: var(--lynk-color-gray-a05);
-  --lynk-table-striped-cell-background-color: var(--lynk-color-gray-a15);
+  --lynk-table-cell-background-color: var(--lynk-color-gray-a15);
+  --lynk-table-striped-cell-background-color: var(--lynk-color-gray-a05);
 
   /*
    * Tooltips

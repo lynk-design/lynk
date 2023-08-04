@@ -45,6 +45,9 @@ export default class LynkMenu extends LynkElement {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
+    const target = event.target as HTMLElement;
+    const isInput = target.closest('lynk-input') !== null;
+
     // Make a selection when pressing enter
     if (event.key === 'Enter') {
       const item = this.getCurrentItem();
@@ -55,7 +58,7 @@ export default class LynkMenu extends LynkElement {
     }
 
     // Prevent scrolling when space is pressed
-    if (event.key === ' ') {
+    if (event.key === ' ' && !isInput) {
       event.preventDefault();
     }
 
@@ -64,6 +67,10 @@ export default class LynkMenu extends LynkElement {
       const items = this.getAllItems();
       const activeItem = this.getCurrentItem();
       let index = activeItem ? items.indexOf(activeItem) : 0;
+
+      if (isInput) {
+        index = -1;
+      }
 
       if (items.length > 0) {
         event.preventDefault();

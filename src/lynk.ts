@@ -33,6 +33,7 @@ export { default as LynkPageFooter } from './components/page-footer/page-footer'
 export { default as LynkPageSidebar } from './components/page-sidebar/page-sidebar';
 export { default as LynkPageLayout } from './components/page-layout/page-layout';
 export { default as LynkPageContent } from './components/page-content/page-content';
+export { default as LynkPanel } from './components/panel/panel';
 export { default as LynkPopup } from './components/popup/popup';
 export { default as LynkPopover } from './components/popover/popover';
 export { default as LynkProgressBar } from './components/progress-bar/progress-bar';
@@ -47,6 +48,7 @@ export { default as LynkResizeObserver } from './components/resize-observer/resi
 export { default as LynkResponsiveMedia } from './components/responsive-media/responsive-media';
 export { default as LynkSelect } from './components/select/select';
 export { default as LynkSpinner } from './components/spinner/spinner';
+export { default as LynkSplitPanel } from './components/split-panel/split-panel';
 export { default as LynkSwitch } from './components/switch/switch';
 export { default as LynkTab } from './components/tab/tab';
 export { default as LynkTabGroup } from './components/tab-group/tab-group';

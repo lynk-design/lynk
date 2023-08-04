@@ -25,7 +25,7 @@ let numIcons = 0;
     const url = `https://github.com/twbs/icons/archive/v${version}.zip`;
 
     try {
-      await stat(`${srcPath}/LICENSE.md`);
+      await stat(`${srcPath}/LICENSE`);
       console.log('Generating icons from cache');
     } catch {
       // Download the source from GitHub (since not everything is published to NPM)
@@ -39,7 +39,7 @@ let numIcons = 0;
     mkdirSync(iconDir, { recursive: true });
     await Promise.all([
       copy(`${srcPath}/icons`, iconDir),
-      copy(`${srcPath}/LICENSE.md`, path.join(iconDir, 'LICENSE.md')),
+      copy(`${srcPath}/LICENSE`, path.join(iconDir, 'LICENSE')),
       copy(`${srcPath}/bootstrap-icons.svg`, './docs/assets/icons/sprite.svg', { overwrite: true })
     ]);
 

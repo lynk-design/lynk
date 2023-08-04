@@ -26,6 +26,7 @@
 - Content & Layout
 
   - [Accordion](/components/accordion)
+  - [Panel](/components/panel)
   - [Box](/components/box)
   - [Dialog](/components/dialog)
   - [Divider](/components/divider)
@@ -38,6 +39,7 @@
   - [Page Content](/components/page-content)
   - [Page Header](/components/page-header)
   - [Page Footer](/components/page-footer)
+  - [Split Panel](/components/split-panel)
   - [Stack](/components/stack)
   - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)

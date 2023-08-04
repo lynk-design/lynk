@@ -67,7 +67,14 @@ export default class LynkNavGroup extends LynkElement {
       >
         <slot name="heading">${this.heading}</slot>
       </div>
-      <slot part="children" class="lynk-nav-group"></slot>
+
+      <slot
+        part="children"
+        class=${classMap({
+          'lynk-nav-group': true,
+          'lynk-nav-group--squished': this.squished
+        })}
+      ></slot>
     `;
   }
 }

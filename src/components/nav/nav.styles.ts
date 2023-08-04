@@ -36,7 +36,7 @@ export default css`
     margin-top: var(--lynk-spacing-base);
   }
 
-  :host([squished]) ::slotted(lynk-nav-group) {
+  .lynk-nav--squished ::slotted(lynk-nav-group) {
     text-align: center;
   }
 `;

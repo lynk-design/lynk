@@ -6,6 +6,27 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.8.0
+- 🎉 NEW: Added a `<lynk-panel>` layout component to replace the functionality of the previous `<lynk-accordion>` component.
+- 🚨 BREAKING: changed `<lynk-accordion>` to function more like a typical accordion that can contain multiple `<lynk-panel>` components
+
+## 0.7.1
+- Improved `<lynk-nav>` so that squished styles are applied by class rather than attribute
+- Improved `<lynk-input>` by turning autocomplete to "off" by default
+- Added `striped` option to `<lynk-tr>`
+
+## 0.7.0
+- 🎉 NEW: Added experimental `<lynk-split-panel>` layout component
+
+## 0.6.6
+
+- Improved keyboard handling for `<lynk-menu>` or `<lynk-select>` that contain a slotted `<lynk-input>` for search.
+- Improved `<lynk-button>` so it can accept slotted content of variable heights
+- Fixed a bug in `<lynk-input>` that caused date pickers to look filled in even when empty in Safari
+- Updated Lit to 2.7.5
+- Updated Floating UI to 1.4.2
+- Updated Bootstrap Icons to 1.10.5
+
 ## 0.6.5
 
 - 🎉 NEW: Added experimental `<lynk-intersection-observer>` component

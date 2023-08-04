@@ -271,7 +271,8 @@ export default class LynkNav extends LynkElement {
       <div
         part="base"
         class=${classMap({
-          'lynk-nav': true
+          'lynk-nav': true,
+          'lynk-nav--squished': this.squished
         })}
         role="menu"
         @click=${this.handleClick}

@@ -15,7 +15,7 @@ export default css`
       var(--lynk-transition-fast) border, var(--lynk-transition-fast) box-shadow;
   }
 
-  :host(:nth-of-type(even)) {
+  :host([striped]:nth-of-type(odd)) {
     background: var(--lynk-table-striped-cell-background-color);
   }
 

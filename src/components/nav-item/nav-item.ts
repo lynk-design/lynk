@@ -57,7 +57,7 @@ export default class LynkNavItem extends LynkElement {
   @state() isParent = false;
   @state() isChild = false;
   @state() depth = 0;
-  @state() squished = false;
+  @property({ type: Boolean, reflect: true }) squished = false;
 
   @property() title = ''; // make reactive to pass through
 
@@ -264,6 +264,7 @@ export default class LynkNavItem extends LynkElement {
           'lynk-nav-item--selected': this.selected,
           'lynk-nav-item--has-children': this.isParent,
           'lynk-nav-item--expanded': this.expanded,
+          'lynk-nav-item--squished': this.squished,
           'lynk-nav-item--rtl': isRtl
         })}
         ?disabled=${this.disabled}
@@ -287,13 +288,41 @@ export default class LynkNavItem extends LynkElement {
         <slot name="suffix" part="suffix" class="lynk-nav-item__suffix"></slot>
 
         ${
-          this.isParent
+          this.isParent && !this.squished
             ? html`
                 <span class="lynk-nav-item__chevron">
                   <lynk-icon
                     library="system"
                     aria-hidden="true"
                     name=${isRtl ? 'chevron-left' : 'chevron-right'}
+                  ></lynk-icon>
+                </span>
+              `
+            : ''
+        }
+
+        ${
+          this.isParent && this.squished
+            ? html`
+                <span class="lynk-nav-item__chevron">
+                  <lynk-icon
+                    library="system"
+                    aria-hidden="true"
+                    name='chevron-down'
+                  ></lynk-icon>
+                </span>
+              `
+            : ''
+        }
+
+        ${
+          this.target === '_blank'
+            ? html`
+                <span class="lynk-nav-item__external">
+                  <lynk-icon
+                    library="system"
+                    aria-hidden="true"
+                    name='external'
                   ></lynk-icon>
                 </span>
               `
