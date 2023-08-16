@@ -44,9 +44,9 @@ import type { CSSResultGroup } from 'lit';
  * @csspart footer - The panel footer.
  *
  * @cssproperty --background-color - The panels background color
- * @cssproperty --header-spacing - The amount of padding to use for the header.
- * @cssproperty --body-spacing - The amount of padding to use for the body.
- * @cssproperty --footer-spacing - The amount of padding to use for the footer.
+ * @cssproperty --spacing - The amount of padding to use for the header, body, and footer.
+ * @cssproperty --border-color - Apply a panel border of your choosing.
+ * @cssproperty --border-radius - The panels border radius.
  * 
  * @animation panel.expand - The animation to use when expanding the panel. You can use `height: auto` with this animation.
  * @animation panel.collapse - The animation to use when collapsing the panel. You can use `height: auto` with this animation.
