@@ -9,10 +9,11 @@
     src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
     alt="A kitten sits patiently between a terracotta pot and decorative grasses."
   />
-
-  <strong>Mittens</strong><br />
-  This kitten is as cute as he is playful. Bring him home today!<br />
-  <small>6 weeks old</small>
+  <lynk-stack gap="8px">
+    <strong>Mittens</strong>
+    This kitten is as cute as he is playful. Bring him home today!
+    <small>6 weeks old</small>
+  </lynk-stack>
 
   <div slot="footer">
     <lynk-button color="primary" pill>More Info</lynk-button>
@@ -134,6 +135,81 @@ Cards accept an `image` slot. The image is displayed atop the card and stretches
     max-width: 300px;
   }
 </style>
+```
+
+## Interactive Card
+
+Cards can react to hover and click events by adding the `interactive` attribute.
+
+```html preview
+<lynk-card class="card-interactive" interactive>
+  <img
+    slot="image"
+    src="https://images.unsplash.com/photo-1547191783-94d5f8f6d8b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"
+    alt="A kitten walks towards camera on top of pallet."
+  />
+  This is a kitten, but not just any kitten. This kitten likes walking along pallets.
+</lynk-card>
+
+<style>
+  .card-interactive {
+    max-width: 300px;
+  }
+</style>
+
+<script>
+  const card = document.querySelector('.card-interactive');
+
+  card.addEventListener('click', async event => {
+    card.active = !card.active;
+  });
+</script>
+```
+
+## Card States
+
+Cards can be styled with status colors using the `state` property. Accepted values are `primary, danger, warning, success, neutral`.
+
+```html preview
+<lynk-stack horizontal>
+  <lynk-card state="primary" active>
+    This is a primary state card.
+  </lynk-card>
+
+  <lynk-card state="danger" active>
+    This is a danger state card.
+  </lynk-card>
+
+  <lynk-card state="warning" active>
+    This is a warning state card.
+  </lynk-card>
+
+  <lynk-card state="success" active>
+    This is a success state card.
+  </lynk-card>
+
+  <lynk-card state="neutral" active>
+    This is a neutral state card.
+  </lynk-card>
+
+  <lynk-card style="--state-color: fuchsia;" active>
+    This is a custom state card.
+  </lynk-card>
+</lynk-stack>
+
+```
+
+
+## Card Pulse State
+
+Draw extra visual attention to an active card by adding the `pulse` attribute.
+
+```html preview
+
+<lynk-card state="danger" interactive pulse>
+  This is a pulsing danger state card.
+</lynk-card>
+
 ```
 
 [component-metadata:lynk-card]

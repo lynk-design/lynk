@@ -1,5 +1,5 @@
 import { classMap } from 'lit/directives/class-map.js';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot';
 import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
@@ -26,6 +26,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-color - The card's border color, including borders that occur inside the card.
  * @cssproperty --border-radius - The border radius for the card's edges.
  * @cssproperty --border-width - The width of the card's borders.
+ * @cssproperty --state-color - A custom color for the interactive state.
  * @cssproperty --padding - The padding to use for the card's sections.
  */
 @customElement('lynk-card')
@@ -34,12 +35,32 @@ export default class LynkCard extends LynkElement {
 
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');
 
+  /** Draws the table row using status colors */
+  @property({ reflect: true }) state: 'primary' | 'danger' | 'success' | 'warning' | 'neutral';
+
+  /** Determines whether to highlight the card on hover */
+  @property({ type: Boolean, reflect: true }) interactive = false;
+
+  /** Draws the card in a highlighted state  */
+  @property({ type: Boolean, reflect: true }) active = false;
+
+  /** Pulse the status colors for increased visibility */
+  @property({ type: Boolean, reflect: true }) pulse = false;
+
   render() {
     return html`
       <div
         part="base"
         class=${classMap({
           card: true,
+          'card--interactive': this.interactive,
+          'card--active': this.active,
+          'card--pulse': this.pulse,
+          'card--primary': this.state === 'primary',
+          'card--danger': this.state === 'danger',
+          'card--success': this.state === 'success',
+          'card--neutral': this.state === 'neutral',
+          'card--warning': this.state === 'warning',
           'card--has-footer': this.hasSlotController.test('footer'),
           'card--has-image': this.hasSlotController.test('image'),
           'card--has-header': this.hasSlotController.test('header')

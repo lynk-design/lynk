@@ -9,6 +9,6 @@
 <lynk-tab disabled>Disabled</lynk-tab>
 ```
 
-?> Additional demonstrations can be found in the [tab group examples](/components/tab-group).
+<lynk-alert type="info" open>Additional demonstrations can be found in the [tab group examples](/components/tab-group).</lynk-alert>
 
 [component-metadata:lynk-tab]

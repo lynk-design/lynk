@@ -2,6 +2,7 @@
 export { default as LynkAccordion } from './components/accordion/accordion';
 export { default as LynkAlert } from './components/alert/alert';
 export { default as LynkAnimation } from './components/animation/animation';
+export { default as LynkAutoGrid } from './components/auto-grid/auto-grid';
 export { default as LynkBadge } from './components/badge/badge';
 export { default as LynkBox } from './components/box/box';
 export { default as LynkBreadcrumb } from './components/breadcrumb/breadcrumb';
