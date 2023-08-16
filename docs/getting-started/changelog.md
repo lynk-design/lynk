@@ -6,6 +6,10 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.0
+- 🎉 NEW: Added a `<lynk-auto-grid>` layout component that utilizes the CSS Grid spec for simple grid layouts.
+- 🎉 NEW: Added a `<lynk-card>` layout component for simple card based related content.
+
 ## 0.8.0
 - 🎉 NEW: Added a `<lynk-panel>` layout component to replace the functionality of the previous `<lynk-accordion>` component.
 - 🚨 BREAKING: changed `<lynk-accordion>` to function more like a typical accordion that can contain multiple `<lynk-panel>` components

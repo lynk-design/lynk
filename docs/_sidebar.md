@@ -26,13 +26,15 @@
 - Content & Layout
 
   - [Accordion](/components/accordion)
-  - [Panel](/components/panel)
+  - [Auto-Grid](/components/auto-grid)
   - [Box](/components/box)
+  - [Card](/components/card)
   - [Dialog](/components/dialog)
   - [Divider](/components/divider)
   - [Drawer](/components/drawer)
   - [Grid](/components/grid)
   - [Icons](/components/icon)
+  - [Panel](/components/panel)
   - [Popover](/components/popover)
   - [Page Layout](/components/page-layout)
   - [Page Sidebar](/components/page-sidebar)

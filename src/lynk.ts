@@ -2,12 +2,14 @@
 export { default as LynkAccordion } from './components/accordion/accordion';
 export { default as LynkAlert } from './components/alert/alert';
 export { default as LynkAnimation } from './components/animation/animation';
+export { default as LynkAutoGrid } from './components/auto-grid/auto-grid';
 export { default as LynkBadge } from './components/badge/badge';
 export { default as LynkBox } from './components/box/box';
 export { default as LynkBreadcrumb } from './components/breadcrumb/breadcrumb';
 export { default as LynkBreadcrumbItem } from './components/breadcrumb-item/breadcrumb-item';
 export { default as LynkButton } from './components/button/button';
 export { default as LynkButtonGroup } from './components/button-group/button-group';
+export { default as LynkCard } from './components/card/card';
 export { default as LynkCheckbox } from './components/checkbox/checkbox';
 export { default as LynkDialog } from './components/dialog/dialog';
 export { default as LynkDivider } from './components/divider/divider';
