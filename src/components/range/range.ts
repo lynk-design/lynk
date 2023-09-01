@@ -4,7 +4,6 @@ import { defaultValue } from '../../internal/default-value';
 import { FormControlController } from '../../internal/form';
 import { HasSlotController } from '../../internal/slot';
 import { html } from 'lit';
-import { repeat } from 'lit/directives/repeat.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { LocalizeController } from '../../utilities/localize';
@@ -178,7 +177,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
 
   private handleMarkClick(event: MouseEvent, mark: ITickMarker) {
     event.stopPropagation();
-    this.value = parseFloat(mark.value);
+    this.value = mark.value;
   }
 
   private syncProgress(percent: number) {
@@ -210,9 +209,9 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     return ((value - min) * 100) / (max - min);
   }
 
-  private percentToValue(percent: number, min: number, max: number) {
-    return (max - min) * percent + min;
-  }
+  // private percentToValue(percent: number, min: number, max: number) {
+  //   return (max - min) * percent + min;
+  // }
 
   private handleInvalid(event: Event) {
     this.formControlController.setValidity(false);
@@ -377,14 +376,15 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
               ${this.markers.length ? html`
                   ${this.markers
                     .filter((mark) => mark.value >= this.min && mark.value <= this.max)
-                    .map((mark, index) => {
+                    .map((mark) => {
                       const percent = this.valueToPercent(mark.value, this.min, this.max);
+                      const isSelected = (mark.selected && typeof mark.selected === 'boolean') ? mark.selected : false;
 
                       return html`
                         <div
                           class=${classMap({
                             'range__mark': true,
-                            'range__mark--selected': mark.selected
+                            'range__mark--selected': isSelected
                           })}
                           style="--offset: ${percent}%"
                         >

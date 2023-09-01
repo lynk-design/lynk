@@ -94,11 +94,7 @@ You can add custom marker ticks to the range by passing in a rich array to the `
 
 ```html preview
 <lynk-stack>
-  <lynk-range min="10" max="20" markers='[{"value": 5},{"value": 10},{"value": 17},{"value": 20},{"value": 25}]'></lynk-range>
-
-  <lynk-stack>
   <lynk-range step="25" markers='[{"value": 0},{"value": 25},{"value": 50},{"value": 75},{"value": 100}]'></lynk-range>
-
   <lynk-range class="range-with-markers" min="0" max="50"></lynk-range>
 </lynk-stack>
 
