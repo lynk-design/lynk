@@ -43,17 +43,24 @@ import type { LynkFormControl } from '../../internal/lynk-element';
  * @cssproperty --track-height - The height of the track.
  * @cssproperty --track-active-offset - The point of origin of the active track.
  */
+
+export interface ITickMarker {
+  value: number;
+  label?: string;
+  selected?: boolean;
+}
+
 @customElement('lynk-range')
 export default class LynkRange extends LynkElement implements LynkFormControl {
   static styles: CSSResultGroup = styles;
 
   private readonly formControlController = new FormControlController(this);
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label', 'ticks');
   private readonly localize = new LocalizeController(this);
   private resizeObserver: ResizeObserver;
 
-  @query('.lynk-range__control') input: HTMLInputElement;
-  @query('.lynk-range__tooltip') output: HTMLOutputElement | null;
+  @query('.range__control') input: HTMLInputElement;
+  @query('.range__tooltip') output: HTMLOutputElement | null;
 
   @state() private hasFocus = false;
   @state() private hasTooltip = false;
@@ -82,6 +89,9 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
 
   /** The range's step attribute. */
   @property({ type: Number }) step = 1;
+
+  /** Custom tick markers */
+  @property({ type: Array }) markers: ITickMarker[] = [];
 
   /** The preferred placement of the tooltip. */
   @property() tooltip: 'top' | 'bottom' | 'none' = 'top';
@@ -127,6 +137,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
       this.syncRange();
       this.resizeObserver.observe(this.input);
     });
+
   }
 
   disconnectedCallback() {
@@ -164,6 +175,11 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     this.hasTooltip = false;
   }
 
+  private handleMarkClick(event: MouseEvent, mark: ITickMarker) {
+    event.stopPropagation();
+    this.value = mark.value;
+  }
+
   private syncProgress(percent: number) {
     this.input.style.setProperty('--percent', `${percent * 100}%`);
   }
@@ -188,6 +204,14 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
       }
     }
   }
+
+  private valueToPercent(value: number, min: number, max: number) {
+    return ((value - min) * 100) / (max - min);
+  }
+
+  // private percentToValue(percent: number, min: number, max: number) {
+  //   return (max - min) * percent + min;
+  // }
 
   private handleInvalid(event: Event) {
     this.formControlController.setValidity(false);
@@ -221,6 +245,11 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     if (this.tooltip !== 'none') {
       this.syncTooltip(percent);
     }
+  }
+
+  @watch('markers', {waitUntilFirstUpdate: true})
+  handleMarkersChange() {
+    console.log(this.markers);
   }
 
   /** Sets focus on the range. */
@@ -300,13 +329,14 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
           <div
             part="base"
             class=${classMap({
-              'lynk-range': true,
-              'lynk-range--disabled': this.disabled,
-              'lynk-range--focused': this.hasFocus,
-              'lynk-range--rtl': this.localize.dir() === 'rtl',
-              'lynk-range--tooltip-visible': this.hasTooltip,
-              'lynk-range--tooltip-top': this.tooltip === 'top',
-              'lynk-range--tooltip-bottom': this.tooltip === 'bottom'
+              'range': true,
+              'range--disabled': this.disabled,
+              'range--focused': this.hasFocus,
+              'range--has-markers': this.markers.length,
+              'range--rtl': this.localize.dir() === 'rtl',
+              'range--tooltip-visible': this.hasTooltip,
+              'range--tooltip-top': this.tooltip === 'top',
+              'range--tooltip-bottom': this.tooltip === 'bottom'
             })}
             @mousedown=${this.handleThumbDragStart}
             @mouseup=${this.handleThumbDragEnd}
@@ -316,7 +346,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
             <input
               part="input"
               id="input"
-              class="lynk-range__control"
+              class="range__control"
               title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
               type="range"
               name=${ifDefined(this.name)}
@@ -334,11 +364,45 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
             />
             ${this.tooltip !== 'none' && !this.disabled
               ? html`
-                  <output part="tooltip" class="lynk-range__tooltip">
-                    ${typeof this.tooltipFormatter === 'function' ? this.tooltipFormatter(this.value) : this.value}
+                  <output part="tooltip" class="range__tooltip">
+                    <slot name="tooltip">
+                      ${typeof this.tooltipFormatter === 'function' ? this.tooltipFormatter(this.value) : this.value}
+                    </slot>
                   </output>
                 `
               : ''}
+
+            <slot name="markers" class="range__markers">
+              ${this.markers.length ? html`
+                  ${this.markers
+                    .filter((mark) => mark.value >= this.min && mark.value <= this.max)
+                    .map((mark) => {
+                      const percent = this.valueToPercent(mark.value, this.min, this.max);
+                      const isSelected = (mark.selected && typeof mark.selected === 'boolean') ? mark.selected : false;
+
+                      return html`
+                        <div
+                          class=${classMap({
+                            'range__mark': true,
+                            'range__mark--selected': isSelected
+                          })}
+                          style="--offset: ${percent}%"
+                        >
+                          ${mark.label ? html`
+                            <span
+                              class="range__mark-label"
+                              @click=${(event: MouseEvent) => this.handleMarkClick(event, mark)}
+                            >
+                              ${mark.value}
+                            </span>
+                          ` : ''}
+                        </div>
+                      `
+                    })
+                  }
+                ` : ''}
+            </slot>
+
           </div>
         </div>
 

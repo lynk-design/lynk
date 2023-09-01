@@ -231,5 +231,16 @@ describe('<lynk-range>', () => {
     });
   });
 
+  describe('marks', () => {
+    it('should not render marks that are out of min&max bounds', async () => {
+      const el = await fixture<LynkRange>(html`
+        <lynk-range markers='[{"value": -1},{"value": 0},{"value": 100},{"value": 120}]'></lynk-range>
+      `);
+      const marks = el.shadowRoot!.querySelectorAll('.range__mark')!
+
+      expect(marks.length).to.equal(2);
+    });
+  });
+
   runFormControlBaseTests('lynk-range');
 });
