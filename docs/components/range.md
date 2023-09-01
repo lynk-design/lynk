@@ -73,14 +73,46 @@ You can customize the active and inactive portions of the track using the `--tra
 
 ### Custom Tooltip Formatter
 
-You can change the tooltip's content by setting the `tooltipFormatter` property to a function that accepts the range's value as an argument.
+You can change the tooltip's content by setting the `tooltipFormatter` property to a function that accepts the range's value as an argument. Alternatively, you may also pass in a custom tooltip value by using the `tooltip` slot.
 
 ```html preview
 <lynk-range min="0" max="100" step="1" class="range-with-custom-formatter"></lynk-range>
 
+<lynk-range min="0" max="100" step="1">
+  <span slot="tooltip">Hotdogs</span>
+</lynk-range>
+
 <script>
   const range = document.querySelector('.range-with-custom-formatter');
   range.tooltipFormatter = value => `Total - ${value}%`;
+</script>
+```
+
+### Custom Markers
+
+You can add custom marker ticks to the range by passing in a rich array to the `markers` property. Each marker is required to have a `value` key/value pair that maps to the corresponding value on the range input, and an optional `label` key/value pair.
+
+```html preview
+<lynk-stack>
+  <lynk-range min="10" max="20" markers='[{"value": 5},{"value": 10},{"value": 17},{"value": 20},{"value": 25}]'></lynk-range>
+
+  <lynk-stack>
+  <lynk-range step="25" markers='[{"value": 0},{"value": 25},{"value": 50},{"value": 75},{"value": 100}]'></lynk-range>
+
+  <lynk-range class="range-with-markers" min="0" max="50"></lynk-range>
+</lynk-stack>
+
+<script>
+  const range = document.querySelector('.range-with-markers');
+  const button = document.querySelector('.add-marker');
+
+  range.markers = [
+    {value: 0, label: '0'},
+    {value: 22, label: '22'},
+    {value: 31, label: '31'},
+    {value: 46, label: '46', selected: true},
+    {value: 50, label: '50'}
+  ];
 </script>
 ```
 

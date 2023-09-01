@@ -13,19 +13,25 @@ export default css`
     --track-color-inactive: var(--lynk-color-neutral-200);
     --track-active-offset: 0%;
     --track-height: 6px;
+    --marker-color: var(--lynk-color-white);
+    --marker-size: 4px;
+    --marker-selected-color: var(--lynk-color-primary);
 
     display: block;
   }
 
-  .lynk-range {
+  .range {
     position: relative;
   }
 
-  .lynk-range__control {
+  .range__control {
     --percent: 0%;
     -webkit-appearance: none;
+    appearance: none;
     border-radius: 3px;
     width: 100%;
+    cursor: pointer;
+    outline: none;
     height: var(--track-height);
     background: transparent;
     line-height: var(--lynk-input-height-medium);
@@ -43,7 +49,7 @@ export default css`
     );
   }
 
-  .lynk-range--rtl .lynk-range__control {
+  .range--rtl .range__control {
     background-image: linear-gradient(
       to left,
       var(--track-color-inactive) 0%,
@@ -55,54 +61,64 @@ export default css`
     );
   }
 
+
   /* Webkit */
-  .lynk-range__control::-webkit-slider-runnable-track {
+  .range__control::-webkit-slider-runnable-track {
     width: 100%;
-    height: var(--track-height);
+    height: var(--thumb-size);
     border-radius: 3px;
     border: none;
   }
 
-  .lynk-range__control::-webkit-slider-thumb {
+  .range__control::-webkit-slider-thumb {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
     border: none;
+    /* custom design */
+    position: relative;
+    z-index: 2;
     width: var(--thumb-size);
     height: var(--thumb-size);
     border-radius: 50%;
     background-color: var(--lynk-color-primary-600);
     border: solid var(--lynk-input-border-width) var(--lynk-color-primary-600);
-    -webkit-appearance: none;
-    margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
-    cursor: pointer;
+    
+/*    margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
+    cursor: pointer;*/
+
+    transition: var(--lynk-transition-fast);
   }
 
-  .lynk-range__control:enabled::-webkit-slider-thumb:hover {
+  .range__control:enabled::-webkit-slider-thumb:hover {
     background-color: var(--lynk-color-primary-500);
     border-color: var(--lynk-color-primary-500);
+    box-shadow: 0 0 0 8px var(--lynk-color-primary-a25);
   }
 
-  .lynk-range__control:enabled:focus-visible::-webkit-slider-thumb {
-    outline: var(--lynk-focus-ring);
-    outline-offset: var(--lynk-focus-ring-offset);
+  .range__control:enabled:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 8px var(--lynk-color-primary-a50);
   }
 
-  .lynk-range__control:enabled::-webkit-slider-thumb:active {
+  .range__control:enabled::-webkit-slider-thumb:active {
     background-color: var(--lynk-color-primary-500);
     border-color: var(--lynk-color-primary-500);
+    box-shadow: 0 0 0 8px var(--lynk-color-primary-a50);
     cursor: grabbing;
   }
 
   /* Firefox */
-  .lynk-range__control::-moz-focus-outer {
+  .range__control::-moz-focus-outer {
     border: 0;
   }
 
-  .lynk-range__control::-moz-range-progress {
+  .range__control::-moz-range-progress {
     background-color: var(--track-color-active);
     border-radius: 3px;
     height: var(--track-height);
   }
 
-  .lynk-range__control::-moz-range-track {
+  .range__control::-moz-range-track {
     width: 100%;
     height: var(--track-height);
     background-color: var(--track-color-inactive);
@@ -110,7 +126,7 @@ export default css`
     border: none;
   }
 
-  .lynk-range__control::-moz-range-thumb {
+  .range__control::-moz-range-thumb {
     border: none;
     height: var(--thumb-size);
     width: var(--thumb-size);
@@ -119,44 +135,42 @@ export default css`
     border-color: var(--lynk-color-primary-600);
     transition: var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) background-color,
       var(--lynk-transition-fast) color, var(--lynk-transition-fast) box-shadow;
-    cursor: pointer;
   }
 
-  .lynk-range__control:enabled::-moz-range-thumb:hover {
+  .range__control:enabled::-moz-range-thumb:hover {
     background-color: var(--lynk-color-primary-500);
     border-color: var(--lynk-color-primary-500);
+    box-shadow: 0 0 0 8px var(--lynk-color-primary-a25);
   }
 
-  .lynk-range__control:enabled:focus-visible::-moz-range-thumb {
+  .range__control:enabled:focus-visible::-moz-range-thumb {
     outline: var(--lynk-focus-ring);
     outline-offset: var(--lynk-focus-ring-offset);
+    box-shadow: 0 0 0 8px var(--lynk-color-primary-a50);
   }
 
-  .lynk-range__control:enabled::-moz-range-thumb:active {
+  .range__control:enabled::-moz-range-thumb:active {
     background-color: var(--lynk-color-primary-500);
     border-color: var(--lynk-color-primary-500);
-    cursor: grabbing;
+    box-shadow: 0 0 0 8px var(--lynk-color-primary-a50);
   }
 
   /* States */
-  .lynk-range__control:focus-visible {
+  .range__control:focus-visible {
     outline: none;
   }
 
-  .lynk-range__control:disabled {
+  .range__control:disabled {
     opacity: 0.5;
-  }
-
-  .lynk-range__control:disabled::-webkit-slider-thumb {
     cursor: not-allowed;
   }
 
-  .lynk-range__control:disabled::-moz-range-thumb {
-    cursor: not-allowed;
+  .range__control:enabled:active {
+    cursor: grabbing;
   }
 
   /* Tooltip output */
-  .lynk-range__tooltip {
+  .range__tooltip {
     position: absolute;
     z-index: var(--lynk-z-index-tooltip);
     left: 0;
@@ -173,7 +187,7 @@ export default css`
     pointer-events: none;
   }
 
-  .lynk-range__tooltip:after {
+  .range__tooltip:after {
     content: '';
     position: absolute;
     width: 0;
@@ -182,16 +196,16 @@ export default css`
     translate: calc(-1 * var(--lynk-tooltip-arrow-size));
   }
 
-  .lynk-range--tooltip-visible .lynk-range__tooltip {
+  .range--tooltip-visible .range__tooltip {
     opacity: 1;
   }
 
   /* Tooltip on top */
-  .lynk-range--tooltip-top .lynk-range__tooltip {
+  .range--tooltip-top .range__tooltip {
     top: calc(-1 * var(--thumb-size) - var(--tooltip-offset));
   }
 
-  .lynk-range--tooltip-top .lynk-range__tooltip:after {
+  .range--tooltip-top .range__tooltip:after {
     border-top: var(--lynk-tooltip-arrow-size) solid var(--lynk-tooltip-background-color);
     border-left: var(--lynk-tooltip-arrow-size) solid transparent;
     border-right: var(--lynk-tooltip-arrow-size) solid transparent;
@@ -199,32 +213,89 @@ export default css`
   }
 
   /* Tooltip on bottom */
-  .lynk-range--tooltip-bottom .lynk-range__tooltip {
+  .range--tooltip-bottom .range__tooltip {
     bottom: calc(-1 * var(--thumb-size) - var(--tooltip-offset));
   }
 
-  .lynk-range--tooltip-bottom .lynk-range__tooltip:after {
+  .range--tooltip-bottom .range__tooltip:after {
     border-bottom: var(--lynk-tooltip-arrow-size) solid var(--lynk-tooltip-background-color);
     border-left: var(--lynk-tooltip-arrow-size) solid transparent;
     border-right: var(--lynk-tooltip-arrow-size) solid transparent;
     bottom: 100%;
   }
 
+  /* Slider Ticks & Markers */
+
+  .range--has-markers {
+    margin-bottom: var(--lynk-spacing-base);
+  }
+  .range__markers {
+    display: flex;
+    position: absolute;
+    left: calc(var(--thumb-size) / 2);
+    right: calc(var(--thumb-size) / 2);
+    z-index: 1;
+    top: calc((var(--thumb-size) / 2) + var(--marker-size));
+    pointer-events: none;
+/*    top: calc(var(--thumb-size) * -1);*/
+  }
+
+
+
+  .range__mark {
+    position: absolute;
+    left: var(--offset);
+    transform: translateX(-50%);
+  }
+
+  .range--rtl .range__mark {
+    left: initial;
+    right: var(--offset);
+  }
+
+  .range__mark::before {
+    width: var(--marker-size);
+    height: var(--marker-size);
+    border-radius: 50%;
+    background-color: var(--marker-color);
+    content: "";
+    position: relative;
+    left: 50%;
+/*    top: calc((var(--thumb-size) - var(--track-height)) / 2);*/
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+  }
+
+  .range__mark-label {
+    display: inline-block;
+    margin-top: var(--lynk-spacing-2x-small);
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  .range__mark--selected.range__mark::before {
+    background-color: var(--marker-selected-color);
+  }
+
+  .range__mark--selected .range__mark-label {
+    color: var(--marker-selected-color);
+  }
+
   @media (forced-colors: active) {
-    .lynk-range__control,
-    .lynk-range__tooltip {
+    .range__control,
+    .range__tooltip {
       border: solid 1px transparent;
     }
 
-    .lynk-range__control::-webkit-slider-thumb {
+    .range__control::-webkit-slider-thumb {
       border: solid 1px transparent;
     }
 
-    .lynk-range__control::-moz-range-thumb {
+    .range__control::-moz-range-thumb {
       border: solid 1px transparent;
     }
 
-    .lynk-range__tooltip:after {
+    .range__tooltip:after {
       display: none;
     }
   }
