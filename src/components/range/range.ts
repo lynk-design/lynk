@@ -21,6 +21,7 @@ import type { LynkFormControl } from '../../internal/lynk-element';
  *
  * @slot label - The input's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Help text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
+ * @slot ticks - Build your own ticks.
  *
  * @event on:blur - Emitted when the control loses focus.
  * @event on:change - Emitted when an alteration to the control's value is committed by the user.
@@ -42,6 +43,10 @@ import type { LynkFormControl } from '../../internal/lynk-element';
  * @cssproperty --track-color-inactive - The of the portion of the track that represents the remaining value.
  * @cssproperty --track-height - The height of the track.
  * @cssproperty --track-active-offset - The point of origin of the active track.
+ * @cssproperty --tick-color - The default color of a tick.
+ * @cssproperty --tick-selected-color - The color of a selected tick.
+ * @cssproperty --tick-width - The width of a tick.
+ * @cssproperty --tick-height - The height of a tick.
  */
 
 export interface ITickMarker {
@@ -90,8 +95,8 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
   /** The range's step attribute. */
   @property({ type: Number }) step = 1;
 
-  /** Custom tick markers */
-  @property({ type: Array }) markers: ITickMarker[] = [];
+  /** Custom tick ticks */
+  @property({ type: Array }) ticks: ITickMarker[] = [];
 
   /** The preferred placement of the tooltip. */
   @property() tooltip: 'top' | 'bottom' | 'none' = 'top';
@@ -175,9 +180,11 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     this.hasTooltip = false;
   }
 
-  private handleMarkClick(event: MouseEvent, mark: ITickMarker) {
+  private handleMarkClick(event: MouseEvent, tick: ITickMarker) {
     event.stopPropagation();
-    this.value = mark.value;
+    this.hasTooltip = false;
+
+    this.value = tick.value;
   }
 
   private syncProgress(percent: number) {
@@ -247,9 +254,9 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     }
   }
 
-  @watch('markers', {waitUntilFirstUpdate: true})
+  @watch('ticks', {waitUntilFirstUpdate: true})
   handleMarkersChange() {
-    console.log(this.markers);
+    // do something later
   }
 
   /** Sets focus on the range. */
@@ -332,7 +339,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
               'range': true,
               'range--disabled': this.disabled,
               'range--focused': this.hasFocus,
-              'range--has-markers': this.markers.length,
+              'range--has-ticks': this.ticks.length,
               'range--rtl': this.localize.dir() === 'rtl',
               'range--tooltip-visible': this.hasTooltip,
               'range--tooltip-top': this.tooltip === 'top',
@@ -372,28 +379,28 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
                 `
               : ''}
 
-            <slot name="markers" class="range__markers">
-              ${this.markers.length ? html`
-                  ${this.markers
-                    .filter((mark) => mark.value >= this.min && mark.value <= this.max)
-                    .map((mark) => {
-                      const percent = this.valueToPercent(mark.value, this.min, this.max);
-                      const isSelected = (mark.selected && typeof mark.selected === 'boolean') ? mark.selected : false;
+            <slot name="ticks" class="range__ticks">
+              ${this.ticks.length ? html`
+                  ${this.ticks
+                    .filter((tick) => tick.value >= this.min && tick.value <= this.max)
+                    .map((tick) => {
+                      const percent = this.valueToPercent(tick.value, this.min, this.max);
+                      const isSelected = (tick.selected && typeof tick.selected === 'boolean') ? tick.selected : false;
 
                       return html`
                         <div
                           class=${classMap({
-                            'range__mark': true,
-                            'range__mark--selected': isSelected
+                            'range__tick': true,
+                            'range__tick--selected': isSelected
                           })}
                           style="--offset: ${percent}%"
+                          @click=${(event: MouseEvent) => this.handleMarkClick(event, tick)}
                         >
-                          ${mark.label ? html`
+                          ${tick.label ? html`
                             <span
-                              class="range__mark-label"
-                              @click=${(event: MouseEvent) => this.handleMarkClick(event, mark)}
+                              class="range__tick-label"
                             >
-                              ${mark.value}
+                              ${tick.label}
                             </span>
                           ` : ''}
                         </div>
