@@ -306,6 +306,10 @@ export default css`
     font-size: var(--lynk-font-size-small);
   }
 
+  .range--disabled .range__tick-label {
+    cursor: not-allowed;
+  }
+
   .range__tick--selected.range__tick::before {
     background-color: var(--tick-selected-color);
   }

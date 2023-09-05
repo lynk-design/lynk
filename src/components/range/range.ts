@@ -182,8 +182,12 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
 
   private handleMarkClick(event: MouseEvent, tick: ITickMarker) {
     event.stopPropagation();
-    this.hasTooltip = false;
 
+    if (this.disabled) {
+      return;
+    }
+
+    this.hasTooltip = false;
     this.value = tick.value;
   }
 
