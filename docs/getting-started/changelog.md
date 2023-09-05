@@ -6,6 +6,9 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.2
+- Improved `<lynk-range>` tick styles
+
 ## 0.9.1
 - Improved `<lynk-range>` so that the handle and slider has a larger tap area
 - Improved `<lynk-range>` with custom marker/tick support

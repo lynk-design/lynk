@@ -66,7 +66,7 @@ You can customize the active and inactive portions of the track using the `--tra
 <lynk-range
   style="
   --track-color-active: var(--lynk-color-primary-600);
-  --track-color-inactive: var(--lynk-color-primary-100);
+  --track-color-inactive: var(--lynk-color-primary-50);
 "
 ></lynk-range>
 ```
@@ -76,12 +76,13 @@ You can customize the active and inactive portions of the track using the `--tra
 You can change the tooltip's content by setting the `tooltipFormatter` property to a function that accepts the range's value as an argument. Alternatively, you may also pass in a custom tooltip value by using the `tooltip` slot.
 
 ```html preview
-<lynk-range min="0" max="100" step="1" class="range-with-custom-formatter"></lynk-range>
+<lynk-stack>
+  <lynk-range min="0" max="100" step="1" class="range-with-custom-formatter"></lynk-range>
 
-<lynk-range min="0" max="100" step="1">
-  <span slot="tooltip">Hotdogs</span>
-</lynk-range>
-
+  <lynk-range min="0" max="100" step="1">
+    <span slot="tooltip">Hotdogs</span>
+  </lynk-range>
+</lynk-stack>
 <script>
   const range = document.querySelector('.range-with-custom-formatter');
   range.tooltipFormatter = value => `Total - ${value}%`;
@@ -90,19 +91,18 @@ You can change the tooltip's content by setting the `tooltipFormatter` property 
 
 ### Custom Markers
 
-You can add custom marker ticks to the range by passing in a rich array to the `markers` property. Each marker is required to have a `value` key/value pair that maps to the corresponding value on the range input, and an optional `label` key/value pair.
+You can add custom marker ticks to the range by passing in a rich array to the `ticks` property. Each tick is required to have a `value` key/value pair that maps to the corresponding value on the range input, and an optional `label` value to display below the tick.
 
 ```html preview
 <lynk-stack>
-  <lynk-range step="25" markers='[{"value": 0},{"value": 25},{"value": 50},{"value": 75},{"value": 100}]'></lynk-range>
-  <lynk-range class="range-with-markers" min="0" max="50"></lynk-range>
+  <lynk-range step="25" ticks='[{"value": 0},{"value": 25},{"value": 50},{"value": 75},{"value": 100}]'></lynk-range>
+  <lynk-range class="range-with-ticks" min="0" max="50"></lynk-range>
 </lynk-stack>
 
 <script>
-  const range = document.querySelector('.range-with-markers');
-  const button = document.querySelector('.add-marker');
+  const range = document.querySelector('.range-with-ticks');
 
-  range.markers = [
+  range.ticks = [
     {value: 0, label: '0'},
     {value: 22, label: '22'},
     {value: 31, label: '31'},

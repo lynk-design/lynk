@@ -231,14 +231,14 @@ describe('<lynk-range>', () => {
     });
   });
 
-  describe('marks', () => {
-    it('should not render marks that are out of min&max bounds', async () => {
+  describe('ticks', () => {
+    it('should not render ticks that are out of min&max bounds', async () => {
       const el = await fixture<LynkRange>(html`
-        <lynk-range markers='[{"value": -1},{"value": 0},{"value": 100},{"value": 120}]'></lynk-range>
+        <lynk-range ticks='[{"value": -1},{"value": 0},{"value": 100},{"value": 120}]'></lynk-range>
       `);
-      const marks = el.shadowRoot!.querySelectorAll('.range__mark')!
+      const ticks = el.shadowRoot!.querySelectorAll('.range__tick')!
 
-      expect(marks.length).to.equal(2);
+      expect(ticks.length).to.equal(2);
     });
   });
 
