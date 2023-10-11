@@ -9,6 +9,7 @@ export { default as OnClearEvent } from './on-clear';
 export { default as OnClickEvent } from './on-click';
 export { default as OnCloseEvent } from './on-close';
 export { default as OnCollapseEvent } from './on-collapse';
+export { default as OnCopyEvent } from './on-copy';
 export { default as OnErrorEvent } from './on-error';
 export { default as OnEnterEvent } from './on-enter';
 export { default as OnExpandEvent } from './on-expand';

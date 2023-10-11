@@ -35,6 +35,7 @@ export default css`
     background-color: var(--lynk-panel-background-color);
     border-radius: var(--lynk-border-radius-medium);
     box-shadow: var(--lynk-shadow-x-large);
+    transition: var(--lynk-transition-fast) width, var(--lynk-transition-fast) height;
   }
 
   .lynk-dialog__panel:focus {
@@ -127,11 +128,11 @@ export default css`
 
   .lynk-dialog--fitted .lynk-dialog__panel {
     width: 80vw;
-    height: 80vh;
+    min-height: 80vh;
   }
 
   .lynk-dialog--full .lynk-dialog__panel {
-    width: 100vw;
-    height: 100vh;
+    width: calc(100% - var(--lynk-spacing-2x-large));
+    height: calc(100% - var(--lynk-spacing-2x-large));
   }
 `;

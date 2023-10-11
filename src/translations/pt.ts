@@ -1,29 +1,36 @@
-import { registerTranslation } from '../utilities/localize';
-import type { Translation } from '../utilities/localize';
+import { registerTranslation } from '../utilities/localize.js';
+import type { Translation } from '../utilities/localize.js';
 
 const translation: Translation = {
   $code: 'pt',
   $name: 'Português',
   $dir: 'ltr',
 
+  carousel: 'Carrossel',
   clearEntry: 'Limpar entrada',
   close: 'Fechar',
+  copied: 'Copiado',
   copy: 'Copiar',
-  numOptionsSelected: (num: number) => {
+  currentValue: 'Valor atual',
+  error: 'Erro',
+  goToSlide: (slide, count) => `Vá para o slide ${slide} de ${count}`,
+  hidePassword: 'Esconder a senha',
+  loading: 'Carregando',
+  nextSlide: 'Próximo slide',
+  numOptionsSelected: num => {
     if (num === 0) return 'Nenhuma opção selecionada';
     if (num === 1) return '1 opção selecionada';
     return `${num} opções selecionadas`;
   },
-  currentValue: 'Valor atual',
-  hidePassword: 'Esconder a senha',
-  loading: 'Carregando',
+  previousSlide: 'Slide anterior',
   progress: 'Progresso',
   remove: 'Remover',
   resize: 'Mudar o tamanho',
   scrollToEnd: 'Rolar até o final',
-  scrollToStart: 'Rolar até o começo',
+  scrollToStart: 'Rolar até o início',
   selectAColorFromTheScreen: 'Selecionar uma cor da tela',
-  showPassword: 'Mostrar senhaShow password',
+  showPassword: 'Mostrar senha',
+  slideNum: slide => `Slide ${slide}`,
   toggleColorFormat: 'Trocar o formato de cor'
 };
 

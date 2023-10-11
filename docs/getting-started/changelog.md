@@ -6,6 +6,13 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.3
+- 🎉 NEW: Added experimental `<lynk-copy-button>` component that will copy text values to the clipboard.
+- Improved transitions for `<lynk-dialog>` sizes
+- Improved the behavior of the clear button in `<lynk-input>` to prevent the component’s width from shifting when toggled
+- Added the spinner part to `<lynk-button>`
+- Updated Bootstrap Icons to 1.11.0
+
 ## 0.9.2
 - Improved `<lynk-range>` tick styles
 

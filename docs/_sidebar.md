@@ -46,11 +46,12 @@
   - [Tag](/components/tag)
   - [Tooltip](/components/tooltip)
 
-- Action & Input
+- Forms, Actions & Input
 
   - [Buttons](/components/button)
   - [Button Group](/components/button-group)
   - [Checkbox](/components/checkbox)
+  - [Copy Button](/components/copy-button)
   - [Dropdown](/components/dropdown)
   - [Input](/components/input)
   - [Icon Button](/components/icon-button)
