@@ -120,7 +120,7 @@ fs.mkdirSync(outdir, { recursive: true });
     // Launch browser sync
     bs.init(browserSyncConfig, () => {
       const url = `http://localhost:${port}`;
-      console.log(chalk.cyan(`Launched the Shoelace dev server at ${url} 🥾\n`));
+      console.log(chalk.cyan(`Launched the Lynk dev server at ${url} 🥾\n`));
       open(url);
     });
 

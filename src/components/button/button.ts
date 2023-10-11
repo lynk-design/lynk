@@ -364,7 +364,7 @@ export default class LynkButton extends LynkElement implements LynkFormControl {
           ? html` <lynk-icon part="caret" class="lynk-button__caret" library="system" name="caret"></lynk-icon> `
           : ''
       }
-        ${this.thinking ? html`<lynk-spinner></lynk-spinner>` : ''}
+        ${this.thinking ? html`<lynk-spinner part="spinner"></lynk-spinner>` : ''}
       </${tag}>
     `;
     /* eslint-enable lit/no-invalid-html */

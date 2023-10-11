@@ -11,6 +11,7 @@ export { default as LynkButton } from './components/button/button';
 export { default as LynkButtonGroup } from './components/button-group/button-group';
 export { default as LynkCard } from './components/card/card';
 export { default as LynkCheckbox } from './components/checkbox/checkbox';
+export { default as LynkCopyButton } from './components/copy-button/copy-button';
 export { default as LynkDialog } from './components/dialog/dialog';
 export { default as LynkDivider } from './components/divider/divider';
 export { default as LynkDrawer } from './components/drawer/drawer';

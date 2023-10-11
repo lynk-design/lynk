@@ -1,22 +1,28 @@
-import { registerTranslation } from '../utilities/localize';
-import type { Translation } from '../utilities/localize';
+import { registerTranslation } from '../utilities/localize.js';
+import type { Translation } from '../utilities/localize.js';
 
 const translation: Translation = {
   $code: 'he',
   $name: 'עברית',
   $dir: 'rtl',
 
+  carousel: 'קרוסלה',
   clearEntry: 'נקה קלט',
   close: 'סגור',
+  copied: 'מוּעֲתָק',
   copy: 'העתק',
-  numOptionsSelected: (num: number) => {
+  currentValue: 'ערך נוכחי',
+  error: 'שְׁגִיאָה',
+  goToSlide: (slide, count) => `עבור לשקופית ${slide} של ${count}`,
+  hidePassword: 'הסתר סיסמא',
+  loading: 'טוען',
+  nextSlide: 'Next slide',
+  numOptionsSelected: num => {
     if (num === 0) return 'לא נבחרו אפשרויות';
     if (num === 1) return 'נבחרה אפשרות אחת';
     return `נבחרו ${num} אפשרויות`;
   },
-  currentValue: 'ערך נוכחי',
-  hidePassword: 'הסתר סיסמא',
-  loading: 'טוען',
+  previousSlide: 'Previous slide',
   progress: 'התקדמות',
   remove: 'לְהַסִיר',
   resize: 'שנה גודל',
@@ -24,6 +30,7 @@ const translation: Translation = {
   scrollToStart: 'גלול להתחלה',
   selectAColorFromTheScreen: 'בחור צבע מהמסך',
   showPassword: 'הראה סיסמה',
+  slideNum: slide => `שקופית ${slide}`,
   toggleColorFormat: 'החלף פורמט צבע'
 };
 

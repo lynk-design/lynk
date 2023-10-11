@@ -13,13 +13,19 @@ export interface Translation extends DefaultTranslation {
   $name: string; // e.g. English, Español
   $dir: 'ltr' | 'rtl';
 
+  carousel: string;
   clearEntry: string;
   close: string;
+  copied: string;
   copy: string;
-  numOptionsSelected: (num: number) => string;
   currentValue: string;
+  error: string;
+  goToSlide: (slide: number, count: number) => string;
   hidePassword: string;
   loading: string;
+  nextSlide: string;
+  numOptionsSelected: (num: number) => string;
+  previousSlide: string;
   progress: string;
   remove: string;
   resize: string;
@@ -27,5 +33,6 @@ export interface Translation extends DefaultTranslation {
   scrollToStart: string;
   selectAColorFromTheScreen: string;
   showPassword: string;
+  slideNum: (slide: number) => string;
   toggleColorFormat: string;
 }
