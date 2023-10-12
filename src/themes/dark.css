@@ -584,6 +584,20 @@
   --lynk-toggle-size-large: 1.375rem; /* 22px @ 16px base */
 
   /*
+   * Page Layouts
+   */
+
+  --lynk-page-layout-margin: var(--lynk-spacing-large);
+
+  @media (min-width: 1024px) {
+    --lynk-page-layout-margin: var(--lynk-spacing-x-large);
+  }
+
+  @media (min-width: 1400px) {
+    --lynk-page-layout-margin: var(--lynk-spacing-2x-large);
+  }
+
+  /*
    * Overlays
    */
 
