@@ -67,33 +67,13 @@ export default css`
   }
 
   .lynk-page-sidebar.lynk-page-sidebar--left-inset {
-    margin-left: var(--lynk-spacing-large);
+    margin-left: var(--lynk-page-layout-margin);
     margin-right: 0;
   }
 
   .lynk-page-sidebar.lynk-page-sidebar--right-inset {
-    margin-right: var(--lynk-spacing-large);
+    margin-right: var(--lynk-page-layout-margin);
     margin-left: 0;
-  }
-
-  @media only screen and (min-width: 1024px) {
-    .lynk-page-sidebar.lynk-page-sidebar--left-inset {
-      margin-left: var(--lynk-spacing-x-large);
-    }
-
-    .lynk-page-sidebar.lynk-page-sidebar--right-inset {
-      margin-right: var(--lynk-spacing-x-large);
-    }
-  }
-
-  @media only screen and (min-width: 1400px) {
-    .lynk-page-sidebar.lynk-page-sidebar--left-inset {
-      margin-left: var(--lynk-spacing-2x-large);
-    }
-
-    .lynk-page-sidebar.lynk-page-sidebar--right-inset {
-      margin-right: var(--lynk-spacing-2x-large);
-    }
   }
 
   .lynk-page-sidebar__header {

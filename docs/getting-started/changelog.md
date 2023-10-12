@@ -6,6 +6,9 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.4
+- Improved the margin handling for `<page-layout>`, `<page-header>`, `<page-content>`, `<page-sidebar>`, and `<page-footer>` components.
+
 ## 0.9.3
 - 🎉 NEW: Added experimental `<lynk-copy-button>` component that will copy text values to the clipboard.
 - Improved transitions for `<lynk-dialog>` sizes

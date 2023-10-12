@@ -11,8 +11,8 @@ export default css`
   }
 
   .lynk-page-content {
-    padding-left: var(--lynk-spacing-large);
-    padding-right: var(--lynk-spacing-large);
+    padding-left: var(--lynk-page-layout-margin);
+    padding-right: var(--lynk-page-layout-margin);
     padding-top: var(--padding-top);
     padding-bottom: var(--padding-bottom);
     margin-left: auto;
@@ -25,8 +25,8 @@ export default css`
     max-width: unset;
     padding-left: 0;
     padding-right: 0;
-    margin: 0 var(--lynk-spacing-large);
-    min-width: calc(100% - (var(--lynk-spacing-large) * 2));
+    margin: 0 var(--lynk-page-layout-margin);
+    min-width: calc(100% - (var(--lynk-page-layout-margin) * 2));
   }
 
   @media (min-width: 588px) {
@@ -44,19 +44,9 @@ export default css`
   }
 
   @media (min-width: 1024px) {
-    .lynk-page-content {
-      padding-left: var(--lynk-spacing-x-large);
-      padding-right: var(--lynk-spacing-x-large);
-    }
-
     .lynk-page-content,
     .lynk-page-content.lynk-page-content--lg {
       max-width: 968px;
-    }
-
-    .lynk-page-content.lynk-page-content--fluid {
-      margin: 0 var(--lynk-spacing-x-large);
-      min-width: calc(100% - (var(--lynk-spacing-x-large) * 2));
     }
   }
 
@@ -68,19 +58,9 @@ export default css`
   }
 
   @media (min-width: 1400px) {
-    .lynk-page-content {
-      padding-left: var(--lynk-spacing-2x-large);
-      padding-right: var(--lynk-spacing-2x-large);
-    }
-
     .lynk-page-content,
     .lynk-page-content.lynk-page-content--xxl {
       max-width: 1328px;
-    }
-
-    .lynk-page-content.lynk-page-content--fluid {
-      margin: 0 var(--lynk-spacing-2x-large);
-      min-width: calc(100% - (var(--lynk-spacing-2x-large) * 2));
     }
   }
 `;

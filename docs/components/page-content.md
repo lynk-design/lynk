@@ -10,6 +10,10 @@ By default, Lynk's page content container is set to be a fluid `width: 100%` at 
 <lynk-page-content>Page content goes here.</lynk-page-content>
 ```
 
+## Examples
+
+### Content Width & Viewport Breakpoints
+
 The table below shows how the Page Conent component's `max-width` changes across each breakpoint for each `width` property option.
 
 <lynk-table>
@@ -90,5 +94,17 @@ The table below shows how the Page Conent component's `max-width` changes across
         </lynk-tr>
     </lynk-tbody>
 </lynk-table>
+
+<br />
+
+### Layout Margins
+
+By default, the margins of the content will automatically increase at specific breakpoints to increase the breathing room of content as screen size increases. 
+
+If you are using the the page layout and related components within a container where margins or padding are already handled, you can reset the layout margins by redefining the `--lynk-page-layout-margin` css variable locally.
+
+```html preview
+<lynk-page-content style="--lynk-page-layout-margin: 0px;">Page content goes here.</lynk-page-content>
+```
 
 [component-metadata:lynk-page-content]
