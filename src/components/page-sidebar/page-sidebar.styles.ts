@@ -48,6 +48,14 @@ export default css`
     transition-delay: var(--lynk-transition-fast);
   }
 
+  .lynk-page-sidebar__nav {
+    display: inline-block;
+  }
+
+  .lynk-page-sidebar--open .lynk-page-sidebar__nav {
+    border-right: 1px solid var(--lynk-color-neutral-100);
+  }
+
   .lynk-page-sidebar.lynk-page-sidebar--left {
     border-inline-end: 1px solid var(--lynk-color-neutral-200);
     height: 100%;
@@ -125,6 +133,10 @@ export default css`
     position: absolute;
     top: var(--header-spacing);
     z-index: 1;
+  }
+
+  .lynk-page-sidebar__toggle.lynk-page-sidebar__toggle--center {
+    top: 50%;
   }
 
   .lynk-page-sidebar__toggle.lynk-page-sidebar__toggle--bottom {
