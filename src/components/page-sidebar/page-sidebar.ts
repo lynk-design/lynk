@@ -24,6 +24,7 @@ import type LynkTooltip from '../tooltip/tooltip';
  * @slot - The sidebar's content.
  * @slot label - The sidebar's label. Alternatively, you can use the label prop.
  * @slot footer - The sidebar's footer, usually one or more buttons representing various options.
+ * @slot nav - An optional slot that can be used to display nav controls even when sidebar is collapsed.
  *
  * @event on:show - Emitted when the sidebar opens.
  * @event after:show - Emitted after the sidebar opens and all animations are complete.
@@ -39,6 +40,7 @@ import type LynkTooltip from '../tooltip/tooltip';
  * @csspart close-button__base - The close button's `base` part.
  * @csspart body - The sidebar body.
  * @csspart footer - The sidebar footer.
+ * @csspart nav - The optional sidebar nav do display controls even when the sidebar is collapsed.
  *
  * @cssproperty --width - The preferred width of the sidebar.
  * @cssproperty --header-spacing - The amount of padding to use for the header.
@@ -74,7 +76,7 @@ export default class LynkPageSidebar extends LynkElement {
   @property({ reflect: true }) toggle: 'contents' | 'visibility' | 'none' = 'none';
 
   /** Choose placement of toggle button when toggling contents  */
-  @property({ attribute: 'toggle-placement', reflect: true }) togglePlacement: 'top' | 'bottom' | 'hidden' = 'top';
+  @property({ attribute: 'toggle-placement', reflect: true }) togglePlacement: 'top' | 'center' | 'bottom' | 'hidden' = 'top';
 
   /** Customize toggle contents tooltip text  */
   @property({ attribute: 'toggle-tip-hide-text', reflect: false }) toggleTipHideText: string = 'Hide Sidebar';
@@ -186,6 +188,7 @@ export default class LynkPageSidebar extends LynkElement {
           'lynk-page-sidebar--has-footer': this.hasSlotController.test('footer')
         })}
       >
+        <slot name="nav" part="nav" class="lynk-page-sidebar__nav"></slot>
         <div
           part="container"
           class="lynk-page-sidebar__container"
@@ -227,6 +230,7 @@ export default class LynkPageSidebar extends LynkElement {
 
         ${this.toggle === 'contents'
           ? html`
+
             <lynk-tooltip
               hoist
               placement="bottom"
@@ -240,6 +244,7 @@ export default class LynkPageSidebar extends LynkElement {
                 exportparts="base:close-button__base"
                 class=${classMap({
                   'lynk-page-sidebar__toggle': true,
+                  'lynk-page-sidebar__toggle--center': this.togglePlacement === 'center',
                   'lynk-page-sidebar__toggle--bottom': this.togglePlacement === 'bottom',
                   'lynk-page-sidebar__toggle--hidden': this.togglePlacement === 'hidden'
                 })}

@@ -1,33 +1,41 @@
 <div class="lynk-app">
-    <header class="lynk-app__header">
-        <lynk-stack horizontal justify="between" align="center">
-            <img src="/assets/images/mark.svg" alt="Lynk" style="max-height: 48px; margin: 8px 0;">
-            <lynk-button circle small><lynk-icon name="person"></lynk-icon></lynk-button>
-        </lynk-stack>
-    </header>
-    <aside class="lynk-app__nav">
-        <lynk-nav style="width: 76px;" squished>
-            <lynk-nav-item href="/">
-                <lynk-icon slot="prefix" name="arrow-left-circle"></lynk-icon> Docs
-            </lynk-nav-item>
-            <lynk-nav-group heading="Layouts">
-                <lynk-nav-item href="/layout/app-layout">
-                    <lynk-icon slot="prefix" name="app"></lynk-icon> App
-                </lynk-nav-item>
-                <lynk-nav-item href="/layout/app-layout-sidebar">
-                    <lynk-icon slot="prefix" name="layout-sidebar"></lynk-icon> Sidebar
-                </lynk-nav-item>
-                <lynk-nav-item selected href="/layout/app-layout-inset-sidebar">
-                    <lynk-icon slot="prefix" name="layout-sidebar-inset-reverse"></lynk-icon> Inset Sidebar
-                </lynk-nav-item>
-            </lynk-nav-group>
-        </lynk-nav>
-    </aside>
+  <header class="lynk-app__header">
+    <lynk-stack
+      horizontal
+      justify="between"
+      align="center"
+    >
+      <img
+        src="/assets/images/mark.svg"
+        alt="Lynk"
+        style="max-height: 48px; margin: 8px 0;"
+      >
+        <lynk-button circle small>
+          <lynk-icon name="person"></lynk-icon>
+        </lynk-button>
+    </lynk-stack>
+  </header>
+  <aside class="lynk-app__nav">
+    <lynk-nav style="width: 76px;" squished>
+      <lynk-nav-item href="/">
+        <lynk-icon slot="prefix" name="arrow-left-circle"></lynk-icon> Docs
+      </lynk-nav-item>
+      <lynk-nav-group heading="Layouts">
+        <lynk-nav-item href="/layout/app-layout">
+          <lynk-icon slot="prefix" name="app"></lynk-icon> App
+        </lynk-nav-item>
+        <lynk-nav-item href="/layout/app-layout-sidebar">
+          <lynk-icon slot="prefix" name="layout-sidebar"></lynk-icon> Sidebar
+        </lynk-nav-item>
+        <lynk-nav-item selected href="/layout/app-layout-inset-sidebar">
+          <lynk-icon slot="prefix" name="layout-sidebar-inset-reverse"></lynk-icon> Inset Sidebar
+        </lynk-nav-item>
+      </lynk-nav-group>
+    </lynk-nav>
+  </aside>
     <div class="lynk-app__main">
     <lynk-page-layout>
-        <lynk-page-sidebar heading="Left Sidebar" toggle="visibility" open>
-        </lynk-page-sidebar>
-        <lynk-page-sidebar heading="Left Inset Sidebar" placement="left-inset" toggle="visibility" open>
+        <lynk-page-sidebar heading="Left Sidebar" toggle="contents" toggle-placement="center" open>
         </lynk-page-sidebar>
         <lynk-page-header>
             <lynk-button slot="aux" size="tiny" square></lynk-button>
@@ -72,9 +80,38 @@
 
 <p>Quisque mauris lectus, ultricies sit amet placerat eu, mollis in dolor. Integer porttitor, erat vel consequat tincidunt, sapien velit iaculis sem, ac euismod ex enim a lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam rutrum finibus velit, ut eleifend lorem fermentum sed. Integer nisl nisl, mollis facilisis tincidunt eu, convallis a quam. Pellentesque sagittis pretium neque ac ornare. Ut gravida, ante a posuere suscipit, enim urna vulputate elit, ac hendrerit lorem diam at nibh. Suspendisse aliquet ex nec mi mollis, nec aliquet sapien faucibus.</p>
             </lynk-page-content>
-            <lynk-page-sidebar heading="Right Inset Sidebar" placement="right-inset" style="--width: 480px;" toggle="visibility" open>
-            </lynk-page-sidebar>
-            <lynk-page-sidebar heading="Right Sidebar" placement="right" toggle="visibility" open>
+            <lynk-page-sidebar
+              heading="Right Inset Sidebar"
+              placement="right-inset"
+              style="--width: 480px; --collapsed-width: 48px;"
+              toggle="contents"
+              toggle-placement="center"
+              open
+            >
+              <lynk-nav
+                slot="nav"
+                style="width: 46px; --padding: var(--lynk-spacing-small) var(--lynk-spacing-2x-small);"
+                squished
+              >
+                <lynk-tooltip content="Collapse sidebar" placement="left" hoist>
+                  <lynk-nav-item no-label style="--border-radius: 48px; --hover-bg-color: transparent">
+                    <lynk-button slot="prefix" size="tiny" circle>
+                      <lynk-icon name="x-lg"></lynk-icon>
+                    </lynk-button>
+                  </lynk-nav-item>
+                </lynk-tooltip>
+                <lynk-divider style="--spacing: 0px; --color: var(--lynk-color-neutral-100)"></lynk-divider>
+                <lynk-tooltip content="Link Monitoring" placement="left" hoist>
+                <lynk-nav-item no-label selected>
+                  <lynk-icon slot="prefix" name="activity"></lynk-icon>
+                </lynk-nav-item>
+              </lynk-tooltip>
+              <lynk-tooltip content="Slicer Live Preview" placement="left" hoist>
+                <lynk-nav-item no-label>
+                  <lynk-icon slot="prefix" name="play-circle"></lynk-icon>
+                </lynk-nav-item>
+              </lynk-nav>
+            </lynk-tooltip>
             </lynk-page-sidebar>
             <lynk-page-footer>
                 <lynk-button color="primary">Save</lynk-button>
