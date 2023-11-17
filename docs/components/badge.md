@@ -37,19 +37,25 @@ Use the `pill` attribute to give badges rounded edges.
 Use the `pulse` attribute to draw attention to the badge with a subtle animation.
 
 ```html preview
-<div class="badge-pulse">
+<lynk-stack horizontal>
   <lynk-badge type="primary" pill pulse>1</lynk-badge>
   <lynk-badge type="success" pill pulse>1</lynk-badge>
   <lynk-badge type="neutral" pill pulse>1</lynk-badge>
   <lynk-badge type="warning" pill pulse>1</lynk-badge>
   <lynk-badge type="danger" pill pulse>1</lynk-badge>
-</div>
+</lynk-stack>
 
-<style>
-  .badge-pulse lynk-badge:not(:last-of-type) {
-    margin-right: 1rem;
-  }
-</style>
+```
+
+Customize the pulse speed by defining a custom `--pulse-speed` css variable.
+
+```html preview
+<lynk-stack horizontal>
+  <lynk-badge type="success" pill pulse style="--pulse-speed: 3s">Slow</lynk-badge>
+  <lynk-badge type="warning" pill pulse >Default</lynk-badge>
+  <lynk-badge type="danger" pill pulse style="--pulse-speed: 750ms">Fast</lynk-badge>
+</lynk-stack>
+
 ```
 
 ### Custom Color Badges

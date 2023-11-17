@@ -8,6 +8,7 @@ export default css`
     display: inline-flex;
     --background-color: var(--lynk-color-primary-600);
     --color: var(--lynk-color-neutral-0);
+    --pulse-speed: 1.5s;
   }
 
   .badge {
@@ -61,7 +62,7 @@ export default css`
 
   /* Pulse modifier */
   .badge--pulse {
-    animation: pulse 1.5s infinite;
+    animation: pulse var(--pulse-speed) infinite;
   }
 
   @keyframes pulse {

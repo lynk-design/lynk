@@ -56,7 +56,7 @@ This example demonstrates all of the baked-in animations and easings. Animations
   const easings = getEasingNames();
 
   animations.map(name => {
-    const menuItem = Object.assign(document.createElement('lynk-menu-item'), {
+    const menuItem = Object.assign(document.createElement('lynk-option'), {
       textContent: name,
       value: name
     });
@@ -64,7 +64,7 @@ This example demonstrates all of the baked-in animations and easings. Animations
   });
 
   easings.map(name => {
-    const menuItem = Object.assign(document.createElement('lynk-menu-item'), {
+    const menuItem = Object.assign(document.createElement('lynk-option'), {
       textContent: name,
       value: name
     });
