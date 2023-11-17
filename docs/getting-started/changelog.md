@@ -6,6 +6,10 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.6
+- Improved `<lynk-badge>` with customizable pulse speed.
+- Fixed documentation for animation utility
+
 ## 0.9.5
 - Improved `<lynk-page-sidebar>` with added slot for collapsed nav content.
 

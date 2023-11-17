@@ -17,6 +17,7 @@ import type { CSSResultGroup } from 'lit';
  * 
  * @cssproperty --background-color - The badges background and pulse color.
  * @cssproperty --color - The badges text color.
+ * @cssproperty --pulse-speed - The badges pulse speed in seconds or ms. Default is 1.5s.
  * 
  */
 @customElement('lynk-badge')
