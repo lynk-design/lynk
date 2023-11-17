@@ -8,7 +8,8 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 ## 0.9.6
 - Improved `<lynk-badge>` with customizable pulse speed.
-- Fixed documentation for animation utility
+- Fixed documentation for animation utility.
+- Fixed missing parts in `<lynk-page-layout>`.
 
 ## 0.9.5
 - Improved `<lynk-page-sidebar>` with added slot for collapsed nav content.
