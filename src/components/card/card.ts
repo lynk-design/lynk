@@ -27,6 +27,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-radius - The border radius for the card's edges.
  * @cssproperty --border-width - The width of the card's borders.
  * @cssproperty --state-color - A custom color for the interactive state.
+ * @cssproperty --pulse-speed - A custom speed for the pulse animation.
  * @cssproperty --padding - The padding to use for the card's sections.
  */
 @customElement('lynk-card')

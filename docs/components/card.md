@@ -212,4 +212,14 @@ Draw extra visual attention to an active card by adding the `pulse` attribute.
 
 ```
 
+You can change the speed of the pulse by passing in a custom value to the `--pulse-speed` variable. Note that when using a custom `--state-color` you also need to set the `active` property to apply the state color to the border as well.
+
+```html preview
+
+<lynk-card interactive active pulse style="--state-color: fuchsia; --pulse-speed: 0.5s;">
+  This is a custom pulsing card.
+</lynk-card>
+
+```
+
 [component-metadata:lynk-card]
