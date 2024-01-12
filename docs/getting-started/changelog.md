@@ -6,6 +6,13 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.8
+- Fixes documentation for intersection observer utility
+- Fixed `<lynk-dialog>` not accounting for elements with hidden dialog controls like `<video>`
+- Fixed an issue with focus trapping elements like `<lynk-dialog>` when wrapped by other elements not checking the assigned elements of `<slot>`s.
+- Fixed a bug in the focus trapping utility used by modals that caused unexpected focus behavior.
+- 🎉 NEW: Added a `<lynk-form-field>` component for wrapping adding labels and help-text to non standard fields.
+
 ## 0.9.7
 - Improved `<lynk-card>` with customizable pulse speed and state colors.
 

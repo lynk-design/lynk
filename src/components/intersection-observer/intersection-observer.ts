@@ -31,6 +31,7 @@ export default class LynkIntersectionObserver extends LynkElement {
     super.connectedCallback();
     this.intersectionObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry: IntersectionObserverEntry) => {
+        console.log(entry);
         if (entry.intersectionRatio > 0) {
           this.emit('on:enter-view', {detail: { entry } });
         } else {

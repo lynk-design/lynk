@@ -149,11 +149,11 @@ Use the `restricted` attribute to replace the input with a plain text string.
 Use the `size` attribute to change an input's size.
 
 ```html preview
-<lynk-input placeholder="Small" size="small"></lynk-input>
+<lynk-input placeholder="Small" size="small" label="Size"></lynk-input>
 <br />
-<lynk-input placeholder="Medium" size="medium"></lynk-input>
+<lynk-input placeholder="Medium" size="medium" label="Size"></lynk-input>
 <br />
-<lynk-input placeholder="Large" size="large"></lynk-input>
+<lynk-input placeholder="Large" size="large" label="Size"></lynk-input>
 ```
 
 ### Prefix & Suffix Icons

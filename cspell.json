@@ -84,6 +84,8 @@
     "minlength",
     "monospace",
     "mousedown",
+    "mousemove",
+    "mouseout",
     "mouseup",
     "multiselectable",
     "nextjs",

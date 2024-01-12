@@ -1,11 +1,19 @@
 import { css } from 'lit';
 import componentStyles from '../../styles/component.styles';
 
+/*
+  Note on flex:none on the :host
+  Resizing a spinner element using anything but font-size will break the animation
+  mostly because the animation uses em units. Therefore, if a spinner is used in a flex container,
+  without flex:none applied, the spinner can grow/shrink and break the animation
+  flex:none hopes to prevent this by always having the spinner sized according to its actual dimensions
+*/
+
 export default css`
   ${componentStyles}
 
   :host {
-    --track-width: 2px;
+    --track-width: 3px;
     --track-color: rgb(128 128 128 / 25%);
     --indicator-color: var(--lynk-color-primary-600);
     --speed: 2s;
@@ -13,6 +21,7 @@ export default css`
     display: inline-flex;
     width: 1em;
     height: 1em;
+    flex: none;
   }
 
   .lynk-spinner {
@@ -47,7 +56,7 @@ export default css`
   @keyframes spin {
     0% {
       transform: rotate(0deg);
-      stroke-dasharray: 0.01em, 2.75em;
+      stroke-dasharray: 0.05em, 3em;
     }
 
     50% {
@@ -57,7 +66,7 @@ export default css`
 
     100% {
       transform: rotate(1080deg);
-      stroke-dasharray: 0.01em, 2.75em;
+      stroke-dasharray: 0.05em, 3em;
     }
   }
 `;

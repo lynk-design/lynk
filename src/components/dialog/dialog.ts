@@ -17,14 +17,15 @@ import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
- *
+ * @documentation https://lynk.design/components/dialog
  * @since 1.0
  * @status stable
  *
  * @dependency lynk-icon-button
  *
- * @slot - The dialog's content.
+ * @slot - The dialog's main content.
  * @slot label - The dialog's label. Alternatively, you can use the label prop.
+ * @slot header-actions - Optional actions to add to the header. Works best with `<lynk-icon-button>`.
  * @slot footer - The dialog's footer, usually one or more buttons representing various options.
  *
  * @event on:show - Emitted when the dialog opens.
@@ -59,27 +60,33 @@ import type { CSSResultGroup } from 'lit';
  * @animation dialog.denyClose - The animation to use when a request to close the dialog is denied.
  * @animation dialog.overlay.show - The animation to use when showing the dialog's overlay.
  * @animation dialog.overlay.hide - The animation to use when hiding the dialog's overlay.
+ * 
+ * @property modal - Exposes the internal modal utility that controls focus trapping. To temporarily disable focus
+ *   trapping and allow third-party modals spawned from an active Lynk modal, call `modal.activateExternal()` when
+ *   the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Lynk's focus trapping.
  */
 @customElement('lynk-dialog')
 export default class LynkDialog extends LynkElement {
   static styles: CSSResultGroup = styles;
 
-  @query('.lynk-dialog') dialog: HTMLElement;
-  @query('.lynk-dialog__panel') panel: HTMLElement;
-  @query('.lynk-dialog__overlay') overlay: HTMLElement;
-
   private readonly hasSlotController = new HasSlotController(this, 'footer');
   private readonly localize = new LocalizeController(this);
-  private modal: Modal;
   private originalTrigger: HTMLElement | null;
+  public modal: Modal;
 
-  /** Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods. */
+  @query('.dialog') dialog: HTMLElement;
+  @query('.dialog__panel') panel: HTMLElement;
+  @query('.dialog__overlay') overlay: HTMLElement;
+
+  /**
+   * Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can
+   * use the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.
+   */
   @property({ type: Boolean, reflect: true }) open = false;
 
   /**
    * The dialog's label as displayed in the header. You should always include a relevant label even when using
-   * `no-header`, as it is required for proper accessibility. If you need to display HTML, you can use the `label` slot
-   * instead.
+   * `no-header`, as it is required for proper accessibility. If you need to display HTML, use the `label` slot instead.
    */
   @property({ reflect: true }) label = '';
 
@@ -110,27 +117,8 @@ export default class LynkDialog extends LynkElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    this.modal.deactivate();
     unlockBodyScrolling(this);
-  }
-
-  /** Shows the dialog. */
-  async show() {
-    if (this.open) {
-      return undefined;
-    }
-
-    this.open = true;
-    return waitForEvent(this, 'after:show');
-  }
-
-  /** Hides the dialog */
-  async hide() {
-    if (!this.open) {
-      return undefined;
-    }
-
-    this.open = false;
-    return waitForEvent(this, 'after:hide');
   }
 
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
@@ -148,16 +136,16 @@ export default class LynkDialog extends LynkElement {
     this.hide();
   }
 
-  addOpenListeners() {
+  private addOpenListeners() {
     document.addEventListener('keydown', this.handleDocumentKeyDown);
   }
 
-  removeOpenListeners() {
+  private removeOpenListeners() {
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
   }
 
-  handleDocumentKeyDown(event: KeyboardEvent) {
-    if (this.open && event.key === 'Escape') {
+  private handleDocumentKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape' && this.modal.isActive() && this.open) {
       event.stopPropagation();
       this.requestClose('keyboard');
     }
@@ -177,8 +165,6 @@ export default class LynkDialog extends LynkElement {
       // When the dialog is shown, Safari will attempt to set focus on whatever element has autofocus. This can cause
       // the dialogs's animation to jitter (if it starts offscreen), so we'll temporarily remove the attribute, call
       // `focus({ preventScroll: true })` ourselves, and add the attribute back afterwards.
-      //
-      // Related: https://github.com/shoelace-style/shoelace/issues/693
       //
       const autoFocusTarget = this.querySelector('[autofocus]');
       if (autoFocusTarget) {
@@ -255,28 +241,49 @@ export default class LynkDialog extends LynkElement {
     }
   }
 
+
+  /** Shows the dialog. */
+  async show() {
+    if (this.open) {
+      return undefined;
+    }
+
+    this.open = true;
+    return waitForEvent(this, 'after:show');
+  }
+
+  /** Hides the dialog */
+  async hide() {
+    if (!this.open) {
+      return undefined;
+    }
+
+    this.open = false;
+    return waitForEvent(this, 'after:hide');
+  }
+
   render() {
     return html`
       <div
         part="base"
         class=${classMap({
-          'lynk-dialog': true,
-          'lynk-dialog--open': this.open,
-          'lynk-dialog--fitted': this.size === 'fitted',
-          'lynk-dialog--full': this.size === 'full',
-          'lynk-dialog--has-footer': this.hasSlotController.test('footer')
+          'dialog': true,
+          'dialog--open': this.open,
+          'dialog--fitted': this.size === 'fitted',
+          'dialog--full': this.size === 'full',
+          'dialog--has-footer': this.hasSlotController.test('footer')
         })}
       >
         <div
           part="overlay"
-          class="lynk-dialog__overlay"
+          class="dialog__overlay"
           @click=${() => this.requestClose('overlay')}
           tabindex="-1"
         ></div>
 
         <div
           part="panel"
-          class="lynk-dialog__panel"
+          class="dialog__panel"
           role="dialog"
           aria-modal="true"
           aria-hidden=${this.open ? 'false' : 'true'}
@@ -286,16 +293,16 @@ export default class LynkDialog extends LynkElement {
         >
           ${!this.noHeader
             ? html`
-                <header part="header" class="lynk-dialog__header">
-                  <h2 part="title" class="lynk-dialog__title" id="title">
+                <header part="header" class="dialog__header">
+                  <h2 part="title" class="dialog__title" id="title">
                     <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
                   </h2>
-                  <div part="header-actions" class="lynk-dialog__header-actions">
+                  <div part="header-actions" class="dialog__header-actions">
                     <slot name="header-actions"></slot>
                     <lynk-icon-button
                       part="close-button"
                       exportparts="base:close-button__base"
-                      class="lynk-dialog__close"
+                      class="dialog__close"
                       name="x-lg"
                       label=${this.localize.term('close')}
                       library="system"
@@ -306,9 +313,13 @@ export default class LynkDialog extends LynkElement {
               `
             : ''}
 
-          <slot part="body" class="lynk-dialog__body"></slot>
+          ${
+            '' /* The tabindex="-1" is here because the body is technically scrollable if overflowing. However, if there's no focusable elements inside, you won't actually be able to scroll it via keyboard. Previously this was just a <slot>, but tabindex="-1" on the slot causes children to not be focusable. https://github.com/shoelace-style/shoelace/issues/1753#issuecomment-1836803277 */
+          }
 
-          <footer part="footer" class="lynk-dialog__footer">
+          <div part="body" class="dialog__body" tabindex="-1"><slot></slot></div>
+
+          <footer part="footer" class="dialog__footer">
             <slot name="footer"></slot>
           </footer>
         </div>

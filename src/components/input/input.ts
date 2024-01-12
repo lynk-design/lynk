@@ -1,6 +1,7 @@
 import '../../components/icon/icon';
 import '../../components/stack/stack';
 import '../../components/tooltip/tooltip';
+import '../../components/form-field/form-field';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { defaultValue } from '../../internal/default-value';
@@ -18,11 +19,7 @@ import type { LynkFormControl } from '../../internal/lynk-element';
 
 // It's currently impossible to hide Firefox's built-in clear icon when using <input type="date|time">, so we need this
 // check to apply a clip-path to hide it. I know, I know...user agent sniffing is nasty but, if it fails, we only see a
-// redundant clear icon so nothing important is breaking. The benefits outweigh the costs for this one. See the
-// discussion at: https://github.com/shoelace-style/shoelace/pull/794
-//
-// Also note that we do the Chromium check first to prevent Chrome from logging a console notice as described here:
-// https://github.com/shoelace-style/shoelace/issues/855
+// redundant clear icon so nothing important is breaking. The benefits outweigh the costs for this one.
 //
 const isChromium = navigator.userAgentData?.brands.some(b => b.brand.includes('Chromium'));
 const isFirefox = isChromium ? false : navigator.userAgent.includes('Firefox');

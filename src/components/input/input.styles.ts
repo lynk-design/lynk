@@ -105,6 +105,8 @@ export default css`
     align-items: center;
   }
 
+
+  /* Input Defaults */
   .lynk-input__control {
     flex: 1 1 auto;
     font-family: inherit;
