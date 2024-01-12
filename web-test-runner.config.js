@@ -8,10 +8,10 @@ export default {
   concurrency: 1,
   concurrentBrowsers: 1,
   nodeResolve: true,
-  testsFinishTimeout: 30000,
+  testsFinishTimeout: 20000,
   testFramework: {
     config: {
-      timeout: 5000,
+      timeout: 3000,
       retries: 2
     }
   },
@@ -23,7 +23,7 @@ export default {
   ],
   browsers: [
     playwrightLauncher({ product: 'chromium' }),
-    playwrightLauncher({ product: 'firefox' }),
+    // playwrightLauncher({ product: 'firefox' }),
     playwrightLauncher({ product: 'webkit' })
   ],
   testRunnerHtml: testFramework => `

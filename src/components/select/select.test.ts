@@ -461,8 +461,7 @@ describe('<lynk-select>', () => {
       await select.updateComplete;
       expect(select.value).to.equal('option-3');
 
-      await clickOnElement(resetButton);
-      await aTimeout(500);
+      setTimeout(() => clickOnElement(resetButton));
       await oneEvent(form, 'reset');
       await select.updateComplete;
       expect(select.value).to.equal('option-1');
