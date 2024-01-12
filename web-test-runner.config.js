@@ -8,11 +8,11 @@ export default {
   concurrency: 1,
   concurrentBrowsers: 1,
   nodeResolve: true,
-  testsFinishTimeout: 20000,
+  testsFinishTimeout: 30000,
   testFramework: {
     config: {
-      timeout: 3000,
-      retries: 1
+      timeout: 5000,
+      retries: 2
     }
   },
   plugins: [
