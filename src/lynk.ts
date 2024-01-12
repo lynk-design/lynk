@@ -72,6 +72,7 @@ export { default as LynkTableRowGroup } from './components/table-row-group/table
 export { default as LynkOption } from './components/option/option';
 export { default as LynkTruncate } from './components/truncate/truncate';
 
+export { default as LynkFormField } from './components/form-field/form-field';
 /* plop:component */
 
 // Utilities
