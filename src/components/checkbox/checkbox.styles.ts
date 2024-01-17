@@ -10,8 +10,8 @@ export default css`
 
   .lynk-checkbox {
     position: relative;
-    display: flex;
-    align-items: top;
+    display: inline-flex;
+    align-items: flex-start;
     font-family: var(--lynk-input-font-family);
     font-weight: var(--lynk-input-font-weight);
     color: var(--lynk-input-color);

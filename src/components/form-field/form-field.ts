@@ -1,5 +1,5 @@
-import '../../components/icon/icon';
-import '../../components/tooltip/tooltip';
+import '../icon/icon';
+import '../tooltip/tooltip';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot';
@@ -192,7 +192,7 @@ export default class LynkFormField extends LynkElement {
     const hasHelpTip = this.helpTip ? true : !!hasHelpTipSlot;
 
     return html`
-      <div
+      <fieldset
         part="base"
         class=${classMap({
           'form-field': true,
@@ -255,7 +255,7 @@ export default class LynkFormField extends LynkElement {
         >
           ${this.helpText}
         </slot>
-      </div>
+      </fieldset>
     `;
   }
 }
