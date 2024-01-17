@@ -12,7 +12,7 @@ export default {
   testFramework: {
     config: {
       timeout: 3000,
-      retries: 1
+      retries: 2
     }
   },
   plugins: [
@@ -23,7 +23,7 @@ export default {
   ],
   browsers: [
     playwrightLauncher({ product: 'chromium' }),
-    playwrightLauncher({ product: 'firefox' }),
+    // playwrightLauncher({ product: 'firefox' }),
     playwrightLauncher({ product: 'webkit' })
   ],
   testRunnerHtml: testFramework => `

@@ -3,10 +3,15 @@ import { css } from 'lit';
 export default css`
   .form-field {
     text-align: left;
+    border: none;
+    padding: 0;
+    margin: 0;
   }
 
   .form-field__control {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: var(--lynk-spacing-tiny);
   }
 
   .form-field .form-field__label {

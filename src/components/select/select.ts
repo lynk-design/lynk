@@ -11,11 +11,12 @@ import { HasSlotController } from '../../internal/slot';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize';
 import { scrollIntoView } from 'src/internal/scroll';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { waitForEvent } from '../../internal/event';
 import { watch } from '../../internal/watch';
 import LynkElement from '../../internal/lynk-element';
 import styles from './select.styles';
-import type { CSSResultGroup } from 'lit';
+import type { CSSResultGroup, TemplateResult } from 'lit';
 import type { LynkFormControl } from '../../internal/lynk-element';
 import type LynkOption from '../option/option';
 import type LynkPopup from '../popup/popup';
@@ -78,11 +79,11 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
 
-  @query('.lynk-select') popup: LynkPopup;
-  @query('.lynk-select__combobox') combobox: HTMLSlotElement;
-  @query('.lynk-select__display-input') displayInput: HTMLInputElement;
-  @query('.lynk-select__value-input') valueInput: HTMLInputElement;
-  @query('.lynk-select__listbox') listbox: HTMLSlotElement;
+  @query('.select') popup: LynkPopup;
+  @query('.select__combobox') combobox: HTMLSlotElement;
+  @query('.select__display-input') displayInput: HTMLInputElement;
+  @query('.select__value-input') valueInput: HTMLInputElement;
+  @query('.select__listbox') listbox: HTMLSlotElement;
 
   @state() private hasFocus = false;
   @state() displayLabel = '';
@@ -94,7 +95,8 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
   /**
    * The current value of the select, submitted as a name/value pair with form data. When `multiple` is enabled, the
-   * value will be a space-delimited list of values based on the options selected.
+   * value attribute will be a space-delimited list of values based on the options selected, and the value property will
+   * be an array. **For this reason, values must not contain spaces.**
    */
   @property({
     converter: {
@@ -108,7 +110,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   @defaultValue() defaultValue: string | string[] = '';
 
   /** The select's size. */
-  @property() size: 'small' | 'medium' | 'large' = 'medium';
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Placeholder text to show as a hint when the select is empty. */
   @property() placeholder = '';
@@ -177,6 +179,31 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   /** The select's feedback status using manual validation. Alternatively, you can use the invalid attribute */
   @property({ reflect: true }) state: 'error' | 'warning' | 'success' | 'default' = 'default';
 
+/**
+   * A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second
+   * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
+   * the specified value.
+   */
+  @property() getTag: (option: LynkOption, index: number) => TemplateResult | string | HTMLElement = option => {
+    return html`
+      <lynk-tag
+        part="tag"
+        exportparts="
+              base:tag__base,
+              content:tag__content,
+              remove-button:tag__remove-button,
+              remove-button__base:tag__remove-button__base
+            "
+        ?pill=${this.pill}
+        size=${this.size}
+        ?removable=${!this.restricted}
+        @on:remove=${(event: OnRemoveEvent) => this.handleTagRemove(event, option)}
+      >
+        ${option.getTextLabel()}
+      </lynk-tag>
+    `;
+  };
+
   /** Gets the validity state object */
   get validity() {
     return this.valueInput.validity;
@@ -209,6 +236,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
   }
 
+
   private handleFocus() {
     this.hasFocus = true;
     this.displayInput.setSelectionRange(0, 0);
@@ -230,7 +258,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
   private handleDocumentKeyDown(event: KeyboardEvent) {
     const target = event.target as HTMLElement;
-    const isClearButton = target.closest('.lynk-select__clear') !== null;
+    const isClearButton = target.closest('.select__clear') !== null;
     const isIconButton = target.closest('lynk-icon-button') !== null;
     const isInput = target.closest('lynk-input') !== null;
 
@@ -568,6 +596,22 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     this.formControlController.emitInvalidEvent(event);
   }
 
+  protected get tags() {
+    return this.selectedOptions.map((option, index) => {
+      if (index < this.maxOptionsVisible || this.maxOptionsVisible <= 0) {
+        const tag = this.getTag(option, index);
+        // Wrap so we can handle the remove
+        return html`<div @on:remove=${(e: OnRemoveEvent) => this.handleTagRemove(e, option)}>
+          ${typeof tag === 'string' ? unsafeHTML(tag) : tag}
+        </div>`;
+      } else if (index === this.maxOptionsVisible) {
+        // Hit tag limit
+        return html`<lynk-tag>+${this.selectedOptions.length - index}</lynk-tag>`;
+      }
+      return html``;
+    });
+  }
+
   @watch(['disabled', 'restricted'], { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     // Close the listbox when the control is disabled || restricted
@@ -741,24 +785,24 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
         <div part="form-control-input" class="lynk-form-control-input">
           <lynk-popup
             class=${classMap({
-              'lynk-select': true,
-              'lynk-select--standard': true,
-              'lynk-select--filled': this.filled,
-              'lynk-select--pill': this.pill,
-              'lynk-select--open': this.open,
-              'lynk-select--disabled': this.disabled,
-              'lynk-select--restricted': this.restricted,
-              'lynk-select--multiple': this.multiple,
-              'lynk-select--focused': this.hasFocus,
-              'lynk-select--placeholder-visible': isPlaceholderVisible,
-              'lynk-select--top': this.placement === 'top',
-              'lynk-select--bottom': this.placement === 'bottom',
-              'lynk-select--small': this.size === 'small',
-              'lynk-select--medium': this.size === 'medium',
-              'lynk-select--large': this.size === 'large',
-              'lynk-select--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
-              'lynk-select--has-warning': this.state === 'warning',
-              'lynk-select--has-success': this.state === 'success'
+              'select': true,
+              'select--standard': true,
+              'select--filled': this.filled,
+              'select--pill': this.pill,
+              'select--open': this.open,
+              'select--disabled': this.disabled,
+              'select--restricted': this.restricted,
+              'select--multiple': this.multiple,
+              'select--focused': this.hasFocus,
+              'select--placeholder-visible': isPlaceholderVisible,
+              'select--top': this.placement === 'top',
+              'select--bottom': this.placement === 'bottom',
+              'select--small': this.size === 'small',
+              'select--medium': this.size === 'medium',
+              'select--large': this.size === 'large',
+              'select--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
+              'select--has-warning': this.state === 'warning',
+              'select--has-success': this.state === 'success'
             })}
             placement=${this.placement}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
@@ -770,78 +814,48 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
           >
             <div
               part="combobox"
-              class="lynk-select__combobox"
+              class="select__combobox"
               slot="anchor"
               @keydown=${this.handleComboboxKeyDown}
               @mousedown=${this.handleComboboxMouseDown}
             >
-              <slot part="prefix" name="prefix" class="lynk-select__prefix"></slot>
+              <slot part="prefix" name="prefix" class="select__prefix"></slot>
 
               ${this.restricted
                 ? html`
-                    <div part="display-input" class="lynk-select__display-input">
-                      ${this.displayLabel ? this.displayLabel : '-'}
-                    </div>
-                  `
-                : html`
-                    <input
-                      part="display-input"
-                      class="lynk-select__display-input"
-                      type="text"
-                      placeholder=${this.placeholder}
-                      .disabled=${this.disabled}
-                      .value=${this.displayLabel}
-                      autocomplete="off"
-                      spellcheck="false"
-                      autocapitalize="off"
-                      readonly
-                      aria-controls="listbox"
-                      aria-expanded=${this.open ? 'true' : 'false'}
-                      aria-haspopup="listbox"
-                      aria-labelledby="label"
-                      aria-disabled=${this.disabled ? 'true' : 'false'}
-                      aria-describedby="help-text"
-                      role="combobox"
-                      tabindex="0"
-                      @focus=${this.handleFocus}
-                      @blur=${this.handleBlur}
-                    />
-                  `}
-              ${this.multiple
-                ? html`
-                    <div part="tags" class="lynk-select__tags">
-                      ${this.selectedOptions.map((option, index) => {
-                        if (index < this.maxOptionsVisible || this.maxOptionsVisible <= 0) {
-                          return html`
-                            <lynk-tag
-                              part="tag"
-                              exportparts="
-                                base:tag__base,
-                                content:tag__content,
-                                remove-button:tag__remove-button,
-                                remove-button__base:tag__remove-button__base
-                              "
-                              ?pill=${this.pill}
-                              size=${this.size}
-                              ?removable=${!this.restricted}
-                              @on:remove=${(event: OnRemoveEvent) => this.handleTagRemove(event, option)}
-                            >
-                              ${option.getTextLabel()}
-                            </lynk-tag>
-                          `;
-                        } else if (index === this.maxOptionsVisible) {
-                          return html`
-                            <lynk-tag size=${this.size}> +${this.selectedOptions.length - index} </lynk-tag>
-                          `;
-                        }
-                        return null;
-                      })}
-                    </div>
-                  `
-                : ''}
+                  <div part="display-input" class="select__display-input">
+                    ${this.displayLabel ? this.displayLabel : '-'}
+                  </div>
+                ` : html`
+                  <input
+                    part="display-input"
+                    class="select__display-input"
+                    type="text"
+                    placeholder=${this.placeholder}
+                    .disabled=${this.disabled}
+                    .value=${this.displayLabel}
+                    autocomplete="off"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    readonly
+                    aria-controls="listbox"
+                    aria-expanded=${this.open ? 'true' : 'false'}
+                    aria-haspopup="listbox"
+                    aria-labelledby="label"
+                    aria-disabled=${this.disabled ? 'true' : 'false'}
+                    aria-describedby="help-text"
+                    role="combobox"
+                    tabindex="0"
+                    @focus=${this.handleFocus}
+                    @blur=${this.handleBlur}
+                  />
+                `
+              }
+
+              ${this.multiple ? html`<div part="tags" class="select__tags">${this.tags}</div>` : ''}
 
               <input
-                class="lynk-select__value-input"
+                class="select__value-input"
                 type="text"
                 ?disabled=${this.disabled || this.restricted}
                 ?required=${this.required}
@@ -856,7 +870,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
                 ? html`
                     <button
                       part="clear-button"
-                      class="lynk-select__clear"
+                      class="select__clear"
                       type="button"
                       aria-label=${this.localize.term('clearEntry')}
                       @mousedown=${this.handleClearMouseDown}
@@ -870,23 +884,25 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
                   `
                 : ''}
 
-              <slot name="expand-icon" part="expand-icon" class="lynk-select__expand-icon">
+              <slot name="expand-icon" part="expand-icon" class="select__expand-icon">
                 <lynk-icon library="system" name="chevron-down"></lynk-icon>
               </slot>
             </div>
 
-            <slot
+            <div
               id="listbox"
               role="listbox"
               aria-expanded=${this.open ? 'true' : 'false'}
               aria-multiselectable=${this.multiple ? 'true' : 'false'}
               aria-labelledby="label"
               part="listbox"
-              class="lynk-select__listbox"
+              class="select__listbox"
               tabindex="-1"
               @mouseup=${this.handleOptionClick}
               @slotchange=${this.handleDefaultSlotChange}
-            ></slot>
+            >
+              <slot></slot>
+            </div>
           </lynk-popup>
 
           <slot

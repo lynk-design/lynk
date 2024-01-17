@@ -27,7 +27,7 @@ Use the `label` attribute to give the form fiel an accessible label. For labels 
 
 ### Help Text
 
-Add descriptive help text to an input with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
+Add descriptive help text to a form field with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
 
 ```html preview
 <lynk-form-field label="Nickname" help-text="What would you like people to call you?">
@@ -37,7 +37,7 @@ Add descriptive help text to an input with the `help-text` attribute. For help t
 
 ### Help Tip
 
-Add descriptive help tooltip to an input's label with the `help-tip` attribute. For help tips that contain HTML, use the `help-tip` slot instead.
+Add descriptive help tooltip to a form field's label with the `help-tip` attribute. For help tips that contain HTML, use the `help-tip` slot instead.
 
 ```html preview
 <lynk-form-field label="Nickname" help-tip="What would you like people to call you?">

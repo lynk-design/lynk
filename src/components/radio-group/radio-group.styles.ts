@@ -20,9 +20,19 @@ export default css`
     padding: 0;
   }
 
-  .lynk-radio-group--required .lynk-radio-group__label::after {
+  .radio-group--required .radio-group__label::after {
     content: var(--lynk-input-required-content);
     margin-inline-start: var(--lynk-input-required-content-offset);
+  }
+
+  .radio-group__control {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lynk-spacing-tiny);
+  }
+
+  .radio-group__control--has-button-group {
+    display: contents;
   }
 
   .visually-hidden {

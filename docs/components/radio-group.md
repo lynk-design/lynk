@@ -24,6 +24,18 @@ Add descriptive help text to a radio group with the `help-text` attribute. For h
 </lynk-radio-group>
 ```
 
+### Help Tip
+
+Add descriptive help tooltip to a radio group's label with the `help-tip` attribute. For help tips that contain HTML, use the `help-tip` slot instead.
+
+```html preview
+<lynk-radio-group label="Select an option" help-tip="Choose the most appropriate option." name="a" value="1">
+  <lynk-radio value="1">Option 1</lynk-radio>
+  <lynk-radio value="2">Option 2</lynk-radio>
+  <lynk-radio value="3">Option 3</lynk-radio>
+</lynk-radio-group>
+```
+
 ### Radio Buttons
 
 [Radio buttons](/components/radio-button) offer an alternate way to display radio controls. In this case, an internal [button group](/components/button-group) is used to group the buttons into a single, cohesive control.

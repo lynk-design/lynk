@@ -5,7 +5,7 @@ export default css`
   ${componentStyles}
 
   :host {
-    display: block;
+    display: inline-block;
   }
 
   :host(:focus-visible) {
@@ -14,9 +14,8 @@ export default css`
 
   .lynk-radio {
     display: inline-flex;
-    align-items: top;
+    align-items: flex-start;
     font-family: var(--lynk-input-font-family);
-    font-size: var(--lynk-input-font-size-medium);
     font-weight: var(--lynk-input-font-weight);
     color: var(--lynk-input-color);
     vertical-align: middle;
@@ -25,17 +24,17 @@ export default css`
 
   .lynk-radio--small {
     --toggle-size: var(--lynk-toggle-size-small);
-    font-size: var(--lynk-input-font-size-small);
+    font-size: var(--lynk-input-label-font-size-small);
   }
 
   .lynk-radio--medium {
     --toggle-size: var(--lynk-toggle-size-medium);
-    font-size: var(--lynk-input-font-size-medium);
+    font-size: var(--lynk-input-label-font-size-medium);
   }
 
   .lynk-radio--large {
     --toggle-size: var(--lynk-toggle-size-large);
-    font-size: var(--lynk-input-font-size-large);
+    font-size: var(--lynk-input-label-font-size-large);
   }
 
   .lynk-radio__checked-icon {

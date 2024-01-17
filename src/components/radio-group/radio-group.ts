@@ -1,4 +1,5 @@
 import '../button-group/button-group';
+import '../tooltip/tooltip';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import {
@@ -24,8 +25,11 @@ import type LynkRadioButton from '../radio-button/radio-button';
  * @status stable
  *
  * @dependency lynk-button-group
+ * @dependency lynk-tooltip
  *
  * @slot - The default slot where `<lynk-radio>` or `<lynk-radio-button>` elements are placed.
+ * @slot help-tip - Custom help-tip content.
+ * @slot help-text - Custom help-text content.
  * @slot label - The radio group label. Required for proper accessibility. Alternatively, you can use the label attribute.
  *
  * @event on:change - Emitted when the radio group's selected value changes.
@@ -44,12 +48,12 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
   static styles: CSSResultGroup = styles;
 
   protected readonly formControlController = new FormControlController(this);
-  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+  private readonly hasSlotController = new HasSlotController(this, 'help-text', 'help-tip', 'label');
   private customValidityMessage = '';
   private validationTimeout: number;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
-  @query('.lynk-radio-group__validation-input') validationInput: HTMLInputElement;
+  @query('.radio-group__validation-input') validationInput: HTMLInputElement;
 
   @state() private hasButtonGroup = false;
   @state() private errorMessage = '';
@@ -63,6 +67,9 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
 
   /** The input's help text. If you need to display HTML, you can use the `help-text` slot instead. */
   @property({ attribute: 'help-text' }) helpText = '';
+
+  /** The help tooltip appended to the label. Alternatively, you can use the help-tip slot. */
+  @property({ attribute: 'help-tip' }) helpTip = '';
 
   /** The name of the radio group, submitted as a name/value pair with form data. */
   @property() name = 'option';
@@ -289,11 +296,17 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
   render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
+    const hasHelpTipSlot = this.hasSlotController.test('help-tip');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
+    const hasHelpTip = this.helpTip ? true : !!hasHelpTipSlot;
 
     const defaultSlot = html`
       <slot
+        class=${classMap({
+          'radio-group__control': true,
+          'radio-group__control--has-button-group': this.hasButtonGroup
+        })}
         @click=${this.handleRadioClick}
         @keydown=${this.handleKeyDown}
         @slotchange=${this.handleSlotChange}
@@ -319,23 +332,44 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
         aria-describedby="help-text"
         aria-errormessage="error-message"
       >
+
         <label
-          part="form-control-label"
           id="label"
-          class="lynk-form-control__label"
+          part="form-control-label"
+          class=${classMap({
+            'lynk-form-control__label': true,
+          })}
           aria-hidden=${hasLabel ? 'false' : 'true'}
           @click=${this.handleLabelClick}
         >
           <slot name="label">${this.label}</slot>
+
+          ${this.required
+            ? html`
+                <lynk-tooltip content="Required" hoist>
+                  <lynk-icon style="font-size: 9px;" name="asterisk" library="system"></lynk-icon>
+                </lynk-tooltip>
+              `
+            : ''}
+          ${hasHelpTip
+            ? html`
+                <lynk-tooltip hoist>
+                  <div slot="content">
+                    <slot name="help-tip">${this.helpTip}</slot>
+                  </div>
+                  <lynk-icon style="font-size: 11px;" name="question-fill" library="system"></lynk-icon>
+                </lynk-tooltip>
+              `
+            : ''}
         </label>
 
         <div part="form-control-input" class="lynk-form-control-input">
           <div class="visually-hidden">
             <div id="error-message" aria-live="assertive">${this.errorMessage}</div>
-            <label class="lynk-radio-group__validation">
+            <label class="radio-group__validation">
               <input
                 type="text"
-                class="lynk-radio-group__validation-input"
+                class="radio-group__validation-input"
                 ?required=${this.required}
                 tabindex="-1"
                 hidden

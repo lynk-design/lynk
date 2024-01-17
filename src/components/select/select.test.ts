@@ -8,15 +8,31 @@ import type LynkOption from '../option/option';
 import type LynkSelect from './select';
 
 describe('<lynk-select>', () => {
-  it('should pass accessibility tests', async () => {
-    const el = await fixture<LynkSelect>(html`
-      <lynk-select label="Select one">
-        <lynk-option value="option-1">Option 1</lynk-option>
-        <lynk-option value="option-2">Option 2</lynk-option>
-        <lynk-option value="option-3">Option 3</lynk-option>
-      </lynk-select>
-    `);
-    await expect(el).to.be.accessible();
+  describe('accessibility', () => {
+    it('should pass accessibility tests when closed', async () => {
+      const select = await fixture<LynkSelect>(html`
+        <lynk-select label="Select one">
+          <lynk-option value="option-1">Option 1</lynk-option>
+          <lynk-option value="option-2">Option 2</lynk-option>
+          <lynk-option value="option-3">Option 3</lynk-option>
+        </lynk-select>
+      `);
+      await expect(select).to.be.accessible();
+    });
+
+    it('should pass accessibility tests when open', async () => {
+      const select = await fixture<LynkSelect>(html`
+        <lynk-select label="Select one">
+          <lynk-option value="option-1">Option 1</lynk-option>
+          <lynk-option value="option-2">Option 2</lynk-option>
+          <lynk-option value="option-3">Option 3</lynk-option>
+        </lynk-select>
+      `);
+
+      await select.show();
+
+      await expect(select).to.be.accessible();
+    });
   });
 
   it('should be disabled with the disabled attribute', async () => {
@@ -139,6 +155,7 @@ describe('<lynk-select>', () => {
       await el.updateComplete;
       await sendKeys({ press: 'ArrowDown' }); // move selection to the third option
       await el.updateComplete;
+      el.focus(); // For some reason, the browser loses focus before we press enter. Refocus the select.
       await sendKeys({ press: 'Enter' }); // commit the selection
       await el.updateComplete;
 
@@ -198,7 +215,7 @@ describe('<lynk-select>', () => {
         <lynk-option value="option-3">Option 3</lynk-option>
       </lynk-select>
     `);
-    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.lynk-select__display-input')!;
+    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.select__display-input')!;
 
     el.focus();
     await sendKeys({ press: 'r' });
@@ -215,7 +232,7 @@ describe('<lynk-select>', () => {
         <lynk-option value="option-3">Option 3</lynk-option>
       </lynk-select>
     `);
-    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.lynk-select__display-input')!;
+    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.select__display-input')!;
 
     el.focus();
     await sendKeys({ down: 'Control' });
@@ -459,7 +476,7 @@ describe('<lynk-select>', () => {
         <lynk-option value="option-3">Option 3</lynk-option>
       </lynk-select>
     `);
-    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.lynk-select__display-input')!;
+    const displayInput = el.shadowRoot!.querySelector<HTMLSelectElement>('.select__display-input')!;
     const option = el.querySelector('lynk-option')!;
 
     expect(displayInput.value).to.equal('Option 1');
