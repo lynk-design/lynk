@@ -6,6 +6,9 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.10
+- Fixed a bug in `<lynk-radio-group>` and `<lynk-dialog>` that caused an error due to an undefined tabIndex.
+
 ## 0.9.9
 - Fixed a bug in `<lynk-select>` that prevented it from closing when tabbing to another select inside a shadow root
 - Improved styling of `<lynk-form-field>` and `<lynk-radio-group>` to display `<lynk-radio>` or `<lynk-checkbox>` components similarly.
