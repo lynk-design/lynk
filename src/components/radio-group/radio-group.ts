@@ -217,7 +217,9 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
         const buttonRadio = radios[0].shadowRoot!.querySelector('button')!;
         buttonRadio.tabIndex = 0;
       } else {
-        radios[0]?.tabIndex = 0;
+        if (radios[0]) {
+          radios[0].tabIndex = 0;
+        }
       }
     }
 

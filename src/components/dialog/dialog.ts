@@ -295,7 +295,7 @@ export default class LynkDialog extends LynkElement {
             ? html`
                 <header part="header" class="dialog__header">
                   <h2 part="title" class="dialog__title" id="title">
-                    <slot name="label"> ${this.label?.length > 0 ?? String.fromCharCode(65279)} </slot>
+                    <slot name="label"> ${(this.label && this.label.length > 0) ? this.label : String.fromCharCode(65279)} </slot>
                   </h2>
                   <div part="header-actions" class="dialog__header-actions">
                     <slot name="header-actions"></slot>
