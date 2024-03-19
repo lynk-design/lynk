@@ -6,9 +6,6 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
-## 0.9.11
-- Modifying the `on:change, on:input` even emitters in the `<lynk-input>`, `<lynk-checkbox>`, and `<lynk-switch>`components to fire after the `updateComplete` lifecycle so that we can use them more reliably in Aurelia.
-
 ## 0.9.10
 - Fixed a bug in `<lynk-radio-group>` and `<lynk-dialog>` that caused an error due to an undefined tabIndex.
 
