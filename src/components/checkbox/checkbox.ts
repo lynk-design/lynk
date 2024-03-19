@@ -134,9 +134,7 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
   private handleClick() {
     this.checked = !this.checked;
     this.indeterminate = false;
-    this.updateComplete.then(() => {
-      this.emit('on:change', { bubbles: !this.noBubble });
-    });
+    this.emit('on:change', { bubbles: !this.noBubble });
   }
 
   private handleBlur() {
@@ -145,9 +143,7 @@ export default class LynkCheckbox extends LynkElement implements LynkFormControl
   }
 
   private handleInput() {
-    this.updateComplete.then(() => {
-      this.emit('on:input');
-    });
+    this.emit('on:input');
   }
 
   private handleInvalid(event: Event) {

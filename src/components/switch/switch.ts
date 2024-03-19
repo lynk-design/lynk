@@ -100,9 +100,7 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
   }
 
   private handleInput() {
-    this.updateComplete.then(() => {
-      this.emit('on:input');
-    });
+    this.emit('on:input');
   }
 
   private handleInvalid(event: Event) {
@@ -112,9 +110,7 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
 
   private handleClick() {
     this.checked = !this.checked;
-    this.updateComplete.then(() => {
-      this.emit('on:change');
-    });
+    this.emit('on:change');
   }
 
   private handleFocus() {
@@ -126,19 +122,15 @@ export default class LynkSwitch extends LynkElement implements LynkFormControl {
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       this.checked = false;
-      this.updateComplete.then(() => {
-        this.emit('on:change');
-        this.emit('on:input');
-      });
+      this.emit('on:change');
+      this.emit('on:input');
     }
 
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       this.checked = true;
-      this.updateComplete.then(() => {
-        this.emit('on:change');
-        this.emit('on:input');
-      });
+      this.emit('on:change');
+      this.emit('on:input');
     }
   }
 

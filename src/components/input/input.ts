@@ -261,18 +261,14 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
 
   private handleChange() {
     this.value = this.input.value;
-    this.updateComplete.then(() => {
-      this.emit('on:change');
-    });
+    this.emit('on:change');
   }
 
   private handleClearClick(event: MouseEvent) {
     this.value = '';
-    this.updateComplete.then(() => {
-      this.emit('on:clear');
-      this.emit('on:input');
-      this.emit('on:change');
-    });
+    this.emit('on:clear');
+    this.emit('on:input');
+    this.emit('on:change');
     this.input.focus();
 
     event.stopPropagation();
@@ -286,9 +282,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   private handleInput() {
     this.value = this.input.value;
     this.formControlController.updateValidity();
-    this.updateComplete.then(() => {
-      this.emit('on:input');
-    });
+    this.emit('on:input');
   }
 
   private handleInvalid(event: Event) {
