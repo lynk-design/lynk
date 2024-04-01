@@ -41,7 +41,7 @@ Add descriptive help tooltip to a form field's label with the `help-tip` attribu
 
 ```html preview
 <lynk-form-field label="Nickname" help-tip="What would you like people to call you?">
-  <input />
+  <lynk-switch>Text</lynk-switch>
 </lynk-form-field>
 ```
 

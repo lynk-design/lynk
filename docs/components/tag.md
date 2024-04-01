@@ -61,4 +61,40 @@ Use the `removable` attribute to add a remove button to the tag.
 </style>
 ```
 
+### Pulsating Tags
+
+Use the `pulse` attribute to draw attention to the tag with a subtle animation.
+
+```html preview
+<lynk-stack horizontal>
+  <lynk-tag type="primary" size="small" badge pill pulse>1</lynk-tag>
+  <lynk-tag type="success" size="small" badge pill pulse>1</lynk-tag>
+  <lynk-tag type="neutral" size="small" badge pill pulse>1</lynk-tag>
+  <lynk-tag type="warning" size="small" badge pill pulse>1</lynk-tag>
+  <lynk-tag type="danger" size="small" badge pill pulse>1</lynk-tag>
+  <lynk-tag type="text" size="small" badge pill pulse>1</lynk-tag>
+</lynk-stack>
+
+```
+
+Customize the pulse speed by defining a custom `--pulse-speed` css variable.
+
+```html preview
+<lynk-stack horizontal>
+  <lynk-tag type="success" size="small" badge pill pulse style="--pulse-speed: 3s">Slow</lynk-tag>
+  <lynk-tag type="warning" size="small" badge pill pulse >Default</lynk-tag>
+  <lynk-tag type="danger" size="small" badge pill pulse style="--pulse-speed: 750ms">Fast</lynk-tag>
+</lynk-stack>
+
+```
+
+### Custom Color Badges
+
+Use the `--background-color`, `--border-color` and `--color` css properties to customize the tag colors.
+
+```html preview
+<lynk-tag pill pulse removable size="small" style="--background-color: deeppink; --color: black; --border-color: lightpink;">Deep Pink</lynk-tag>
+
+```
+
 [component-metadata:lynk-tag]

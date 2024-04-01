@@ -6,6 +6,9 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.11
+- Added some additional style options to  `<lynk-tag>`.
+
 ## 0.9.10
 - Fixed a bug in `<lynk-radio-group>` and `<lynk-dialog>` that caused an error due to an undefined tabIndex.
 

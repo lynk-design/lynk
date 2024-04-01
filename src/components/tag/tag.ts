@@ -30,7 +30,7 @@ export default class LynkTag extends LynkElement {
   private readonly localize = new LocalizeController(this);
 
   /** The tag's variant. */
-  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' = 'neutral';
+  @property({ reflect: true }) type: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text';
 
   /** The tag's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -41,6 +41,12 @@ export default class LynkTag extends LynkElement {
   /** Makes the tag removable. */
   @property({ type: Boolean }) removable = false;
 
+  /** Makes the tag pulsate to draw attention. */
+  @property({ type: Boolean, reflect: true }) pulse = false;
+
+  /** Drwas a solid filled badge-styled tag . */
+  @property({ type: Boolean, reflect: true }) badge = false;
+
   handleRemoveClick() {
     this.emit('on:remove');
   }
@@ -50,27 +56,29 @@ export default class LynkTag extends LynkElement {
       <span
         part="base"
         class=${classMap({
-          'lynk-tag': true,
+          'tag': true,
 
           // Types
-          'lynk-tag--primary': this.type === 'primary',
-          'lynk-tag--success': this.type === 'success',
-          'lynk-tag--neutral': this.type === 'neutral',
-          'lynk-tag--warning': this.type === 'warning',
-          'lynk-tag--danger': this.type === 'danger',
-          'lynk-tag--text': this.type === 'text',
+          'tag--primary': this.type === 'primary',
+          'tag--success': this.type === 'success',
+          'tag--neutral': this.type === 'neutral',
+          'tag--warning': this.type === 'warning',
+          'tag--danger': this.type === 'danger',
+          'tag--text': this.type === 'text',
 
           // Sizes
-          'lynk-tag--small': this.size === 'small',
-          'lynk-tag--medium': this.size === 'medium',
-          'lynk-tag--large': this.size === 'large',
+          'tag--small': this.size === 'small',
+          'tag--medium': this.size === 'medium',
+          'tag--large': this.size === 'large',
 
           // Modifiers
-          'lynk-tag--pill': this.pill,
-          'lynk-tag--removable': this.removable
+          'tag--pill': this.pill,
+          'tag--pulse': this.pulse,
+          'tag--badge': this.badge,
+          'tag--removable': this.removable
         })}
       >
-        <slot part="content" class="lynk-tag__content"></slot>
+        <slot part="content" class="tag__content"></slot>
 
         ${this.removable
           ? html`
@@ -80,7 +88,7 @@ export default class LynkTag extends LynkElement {
                 name="x"
                 library="system"
                 label=${this.localize.term('remove')}
-                class="lynk-tag__remove"
+                class="tag__remove"
                 @click=${this.handleRemoveClick}
               ></lynk-icon-button>
             `
