@@ -102,8 +102,7 @@ export default css`
     .lynk-switch__thumb {
     background-color: var(--lynk-color-neutral-0);
     border-color: var(--lynk-color-primary-600);
-    outline: var(--lynk-focus-ring);
-    outline-offset: var(--lynk-focus-ring-offset);
+    box-shadow: 0 0 0 var(--lynk-focus-ring-width) var(--lynk-input-focus-ring-color);
   }
 
   /* Checked  */
@@ -143,8 +142,7 @@ export default css`
     .lynk-switch__thumb {
     background-color: var(--lynk-color-neutral-0);
     border-color: var(--lynk-color-primary-600);
-    outline: var(--lynk-focus-ring);
-    outline-offset: var(--lynk-focus-ring-offset);
+    box-shadow: 0 0 0 var(--lynk-focus-ring-width) var(--lynk-input-focus-ring-color);
   }
 
   /* Success + Checked */
