@@ -73,6 +73,7 @@ export { default as LynkOption } from './components/option/option';
 export { default as LynkTruncate } from './components/truncate/truncate';
 
 export { default as LynkFormField } from './components/form-field/form-field';
+export { default as LynkDotLoader } from './components/dot-loader/dot-loader';
 /* plop:component */
 
 // Utilities
