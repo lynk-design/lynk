@@ -49,7 +49,7 @@ export default css`
   }
 
   .lynk-button--disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
   }
 
@@ -208,26 +208,27 @@ export default css`
 
   /* Default */
   .lynk-button--outline.lynk-button--default {
-    border-color: var(--lynk-color-neutral-800);
+    border-color: var(--lynk-color-neutral-300);
     color: var(--lynk-color-neutral-800);
   }
 
   .lynk-button--outline.lynk-button--default:hover:not(.lynk-button--disabled),
   .lynk-button--outline.lynk-button--default.lynk-button--checked:not(.lynk-button--disabled) {
-    border-color: var(--lynk-color-neutral-800);
-    background-color: var(--lynk-color-neutral-800);
-    color: var(--lynk-color-neutral-0);
+    background-color: var(--lynk-color-primary-50);
+    border-color: var(--lynk-color-primary-300);
+    color: var(--lynk-color-primary-700);
   }
 
   .lynk-button--outline.lynk-button--default:active:not(.lynk-button--disabled) {
-    border-color: var(--lynk-color-primary-700);
-    background-color: var(--lynk-color-primary-700);
-    color: var(--lynk-color-neutral-0);
+    background-color: var(--lynk-color-primary-100);
+    border-color: var(--lynk-color-primary-400);
+    color: var(--lynk-color-primary-700);
   }
 
   /* Primary */
   .lynk-button--outline.lynk-button--primary {
     border-color: var(--lynk-color-primary-600);
+    background-color: var(--lynk-color-primary-a10);
     color: var(--lynk-color-primary-600);
   }
 
@@ -246,6 +247,7 @@ export default css`
   /* Success */
   .lynk-button--outline.lynk-button--success {
     border-color: var(--lynk-color-success-600);
+    background-color: var(--lynk-color-success-a10);
     color: var(--lynk-color-success-600);
   }
 
@@ -264,6 +266,7 @@ export default css`
   /* Neutral */
   .lynk-button--outline.lynk-button--neutral {
     border-color: var(--lynk-color-neutral-600);
+    background-color: var(--lynk-color-gray-a10);
     color: var(--lynk-color-neutral-600);
   }
 
@@ -282,6 +285,7 @@ export default css`
   /* Warning */
   .lynk-button--outline.lynk-button--warning {
     border-color: var(--lynk-color-warning-600);
+    background-color: var(--lynk-color-warning-a10);
     color: var(--lynk-color-warning-600);
   }
 
@@ -300,6 +304,7 @@ export default css`
   /* Danger */
   .lynk-button--outline.lynk-button--danger {
     border-color: var(--lynk-color-danger-600);
+    background-color: var(--lynk-color-danger-a10);
     color: var(--lynk-color-danger-600);
   }
 
@@ -313,6 +318,10 @@ export default css`
     border-color: var(--lynk-color-danger-500);
     background-color: var(--lynk-color-danger-500);
     color: var(--lynk-color-neutral-0);
+  }
+
+  .lynk-button--outline.lynk-button--disabled {
+    opacity: 0.4;
   }
 
   /*

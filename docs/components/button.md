@@ -21,6 +21,13 @@ Use the `color` attribute to set the button's color.
 <lynk-button color="neutral">Neutral</lynk-button>
 <lynk-button color="warning">Warning</lynk-button>
 <lynk-button color="danger">Danger</lynk-button>
+<br />
+<lynk-button disabled color="default">Default</lynk-button>
+<lynk-button disabled color="primary">Primary</lynk-button>
+<lynk-button disabled color="success">Success</lynk-button>
+<lynk-button disabled color="neutral">Neutral</lynk-button>
+<lynk-button disabled color="warning">Warning</lynk-button>
+<lynk-button disabled color="danger">Danger</lynk-button>
 ```
 
 ### Sizes
@@ -45,6 +52,13 @@ Use the `outline` attribute to draw outlined buttons with transparent background
 <lynk-button color="neutral" outline>Neutral</lynk-button>
 <lynk-button color="warning" outline>Warning</lynk-button>
 <lynk-button color="danger" outline>Danger</lynk-button>
+<br />
+<lynk-button disabled color="default" outline>Default</lynk-button>
+<lynk-button disabled color="primary" outline>Primary</lynk-button>
+<lynk-button disabled color="success" outline>Success</lynk-button>
+<lynk-button disabled color="neutral" outline>Neutral</lynk-button>
+<lynk-button disabled color="warning" outline>Warning</lynk-button>
+<lynk-button disabled color="danger" outline>Danger</lynk-button>
 ```
 
 ### Stealth Buttons
@@ -57,6 +71,12 @@ Use the `stealth` attribute to create text buttons that share the same size and 
 <lynk-button color="neutral" stealth>Neutral</lynk-button>
 <lynk-button color="warning" stealth>Warning</lynk-button>
 <lynk-button color="danger" stealth>Danger</lynk-button>
+<br />
+<lynk-button disabled color="primary" stealth>Primary</lynk-button>
+<lynk-button disabled color="success" stealth>Success</lynk-button>
+<lynk-button disabled color="neutral" stealth>Neutral</lynk-button>
+<lynk-button disabled color="warning" stealth>Warning</lynk-button>
+<lynk-button disabled color="danger" stealth>Danger</lynk-button>
 ```
 
 ### Pill Buttons

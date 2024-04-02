@@ -72,6 +72,7 @@
 
   - [Alert](/components/alert)
   - [Badge](/components/badge)
+  - [Dot Loader](/components/dot-loader)
   - [Spinner](/components/spinner)
   - [Progress Bar](/components/progress-bar)
     <!-- - [Progress Ring](/components/progress-ring) -->
@@ -113,5 +114,6 @@
   - [Responsive Media](/utilities/responsive-media)
   - [Truncate](/utilities/truncate)
   - [Visually Hidden](/utilities/visually-hidden)
+
 
   <!--plop:component-->
