@@ -136,7 +136,7 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
     const radios = this.getAllRadios();
     const oldValue = this.value;
 
-    if (target.disabled) {
+    if (!target || target.disabled) {
       return;
     }
 
