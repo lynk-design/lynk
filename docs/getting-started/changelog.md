@@ -6,6 +6,10 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.13
+- Fixed a bug in `<lynk-radio-group>` where clicking outside of a label would throw an "cannot find disabled of null" error.
+- Experimenting with waiting for updateComplete before setting the validity of an `<lynk-input>` that has been disabled
+
 ## 0.9.12
 - Adjusting styles of `<lynk-button>` outline styles and making disabled slightly more obvious.
 - 🎉 NEW: Added a `<lynk-dot-loader>` component for another loader style.

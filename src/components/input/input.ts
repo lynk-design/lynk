@@ -103,7 +103,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   /** Gets or sets the default value used to reset this element. The initial value corresponds to the one originally specified in the HTML that created this element. */
   @defaultValue() defaultValue = '';
 
-  /** The input's validity state when using manual validation or set automatically to `error` or `success` when field uses Contraint Validation */
+  /** The input's validity state when using manual validation or set automatically to `error` or `success` when field uses Constraint Validation */
   @property({ reflect: true }) state: 'error' | 'warning' | 'success' | 'default' = 'default';
 
   /** The input's size. */
@@ -265,13 +265,16 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   }
 
   private handleClearClick(event: MouseEvent) {
-    this.value = '';
-    this.emit('on:clear');
-    this.emit('on:input');
-    this.emit('on:change');
-    this.input.focus();
+    event.preventDefault();
 
-    event.stopPropagation();
+    if (this.value !== '') {
+      this.value = '';
+      this.emit('on:clear');
+      this.emit('on:input');
+      this.emit('on:change');
+    }
+
+    this.input.focus();
   }
 
   private handleFocus() {
@@ -316,8 +319,9 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
-  handleDisabledChange() {
+  async handleDisabledChange() {
     // Disabled form controls are always valid
+    await this.updateComplete;
     this.formControlController.setValidity(this.disabled);
   }
 
