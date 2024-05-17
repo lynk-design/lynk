@@ -105,11 +105,15 @@ The `type` attribute controls the type of input the browser renders.
 ```html preview
 <lynk-input type="email" placeholder="Email"></lynk-input>
 <br />
-<lynk-input type="number" placeholder="Number" readonly></lynk-input>
+<lynk-input type="number" placeholder="Number"></lynk-input>
 <br />
-<lynk-input type="date" placeholder="Date"></lynk-input>
+<lynk-input type="password" placeholder="Password" clearable value="test"></lynk-input>
 <br />
-<lynk-input type="datetime-local" placeholder="Date"></lynk-input>
+<lynk-input type="date" placeholder="Date" clearable></lynk-input>
+<br />
+<lynk-input type="time" placeholder="Time" clearable></lynk-input>
+<br />
+<lynk-input type="datetime-local" placeholder="Date-Time" clearable></lynk-input>
 ```
 
 ### Disabled

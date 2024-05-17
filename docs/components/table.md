@@ -93,7 +93,7 @@ A typical example of how a table is used within Uplynk
 <lynk-table>
   <lynk-colgroup>
     <lynk-col style="width: 48px;"></lynk-col>
-    <lynk-col></lynk-col>
+    <lynk-col style="width: 128px;"></lynk-col>
     <lynk-col></lynk-col>
   </lynk-colgroup>
   <lynk-thead>

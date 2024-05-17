@@ -10,7 +10,7 @@ export default css`
     --state-color-b: transparent;
     background: transparent;
     vertical-align: middle;
-    padding: var(--lynk-spacing-small) var(--lynk-spacing-base);
+    padding: var(--lynk-spacing-x-small) var(--lynk-spacing-base);
   }
 
   :host([state='danger']) {
@@ -56,6 +56,11 @@ export default css`
       var(--state-color);
     background-size: 40px 40px;
     animation: barberpole 1.5s linear infinite;
+  }
+
+  ::slotted(lynk-checkbox) {
+    top: -1px;
+    position: relative;
   }
 
   @keyframes barberpole {

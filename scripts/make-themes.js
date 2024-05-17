@@ -27,7 +27,7 @@ try {
   });
 
   // Loop through each theme file, copying the .css and generating a .js version for Lit users
-  files.forEach(file => {
+  files.forEach(async file => {
     let source = fs.readFileSync(file, 'utf8');
 
     // If the source has "/* _filename.css */" in it, replace it with the embedded styles
@@ -35,11 +35,11 @@ try {
       source = source.replace(`/* ${key} */`, embeds[key]);
     });
 
-    const css = prettier.format(stripComments(source), {
+    const css = await prettier.format(stripComments(source), {
       parser: 'css'
     });
 
-    let js = prettier.format(
+    let js = await prettier.format(
       `
       import { css } from 'lit';
 
@@ -50,11 +50,21 @@ try {
       { parser: 'babel-ts' }
     );
 
+    let dTs = await prettier.format(
+      `
+      declare const _default: import("lit").CSSResult;
+      export default _default;
+    `,
+      { parser: 'babel-ts' }
+    );
+
     const cssFile = path.join(themesDir, path.basename(file));
     const jsFile = path.join(themesDir, path.basename(file).replace('.css', '.styles.js'));
+    const dTsFile = path.join(themesDir, path.basename(file).replace('.css', '.styles.d.ts'));
 
     fs.writeFileSync(cssFile, css, 'utf8');
     fs.writeFileSync(jsFile, js, 'utf8');
+    fs.writeFileSync(dTsFile, dTs, 'utf8');
   });
 } catch (err) {
   console.error(chalk.red('Error generating stylesheets!'));

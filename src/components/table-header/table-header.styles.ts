@@ -11,7 +11,7 @@ export default css`
     border: 1px solid transparent;
     font-weight: var(--lynk-font-weight-bold);
     font-size: var(--lynk-font-size-small);
-    padding: var(--lynk-spacing-small) var(--lynk-spacing-base);
+    padding: var(--lynk-spacing-x-small) var(--lynk-spacing-base);
     user-select: none;
     vertical-align: middle;
     transition: var(--lynk-transition-fast) box-shadow, var(--lynk-transition-fast) color;
