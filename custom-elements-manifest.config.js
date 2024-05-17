@@ -58,6 +58,9 @@ export default {
               });
             });
 
+            // This is what allows us to map JSDOC comments to ReactWrappers.
+            classDoc['jsDoc'] = node.jsDoc?.map(jsDoc => jsDoc.getFullText()).join('\n');
+
             const parsed = parse(`${customComments}\n */`);
             parsed[0].tags?.forEach(t => {
               switch (t.tag) {
@@ -105,6 +108,7 @@ export default {
         }
       }
     },
+
     {
       name: 'lynk-react-event-names',
       analyzePhase({ ts, node, moduleDoc }) {
@@ -116,6 +120,7 @@ export default {
             if (classDoc?.events) {
               classDoc.events.forEach(event => {
                 event.reactName = `on${pascalCase(event.name)}`;
+                event.eventName = `${pascalCase(event.name)}Event`;
               });
             }
           }

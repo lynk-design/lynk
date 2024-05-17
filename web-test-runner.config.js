@@ -6,13 +6,12 @@ export default {
   rootDir: '.',
   files: 'src/**/*.test.ts', // "default" group
   concurrentBrowsers: 3,
-  nodeResolve: {
-    exportConditions: ['production', 'default']
-  },
+  nodeResolve: true,
+  testsFinishTimeout: 20000,
   testFramework: {
     config: {
       timeout: 3000,
-      retries: 1
+      retries: 2
     }
   },
   plugins: [
@@ -22,27 +21,17 @@ export default {
     })
   ],
   browsers: [
-    playwrightLauncher({
-      product: 'chromium'
-    }),
+    playwrightLauncher({ product: 'chromium' }),
     // Firefox started failing randomly so we're temporarily disabling it here. This could be a rogue test, not really
     // sure what's happening.
     // playwrightLauncher({ product: 'firefox' }),
-    // playwrightLauncher({
-    //   product: 'webkit',
-    //   launchOptions: {
-    //     args: ['--headed'],
-    //   }
-    // })
+    playwrightLauncher({ product: 'webkit' })
   ],
   testRunnerHtml: testFramework => `
     <html lang="en-US">
       <head></head>
       <body>
         <link rel="stylesheet" href="dist/themes/light.css">
-        <script>
-          window.process = {env: { NODE_ENV: "production" }}
-        </script>
         <script type="module" src="dist/lynk.js"></script>
         <script type="module" src="${testFramework}"></script>
       </body>

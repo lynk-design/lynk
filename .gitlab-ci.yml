@@ -10,7 +10,7 @@ stages:
   - publish
 
 default:
-  image: node:20.9
+  image: node:14.18
 
 build-package:
   stage: build
@@ -29,11 +29,11 @@ build-package:
 
 run-tests:
   stage: test
-  image: mcr.microsoft.com/playwright:v1.28.1-jammy
+  image: mcr.microsoft.com/playwright:v1.28.0-focal
   before_script:
     - yarn
     - npm install -D @playwright/test
-    - npx playwright install --with-deps
+    - npx playwright install
   script:
     - yarn test
 
@@ -82,6 +82,7 @@ publish-release:
 
 publish-docs:
   stage: publish
+  image: node:20.9
   needs:
     - job: build-package
       artifacts: true
