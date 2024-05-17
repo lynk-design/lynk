@@ -20,8 +20,11 @@ export default css`
     line-height: var(--lynk-line-height-normal);
     letter-spacing: var(--lynk-input-letter-spacing);
     vertical-align: middle;
-    transition: var(--lynk-transition-fast) color, var(--lynk-transition-fast) border,
-      var(--lynk-transition-fast) box-shadow, var(--lynk-transition-fast) background-color;
+    transition:
+      var(--lynk-transition-fast) color,
+      var(--lynk-transition-fast) border,
+      var(--lynk-transition-fast) box-shadow,
+      var(--lynk-transition-fast) background-color;
     cursor: text;
   }
 
@@ -176,7 +179,6 @@ export default css`
     height: auto;
     resize: none;
   }
-
 
   /*
    * Error & Warning States

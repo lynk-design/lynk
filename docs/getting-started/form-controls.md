@@ -84,7 +84,7 @@ To restrict a value to a specific [pattern](https://developer.mozilla.org/en-US/
   <lynk-input name="letters" required label="Letters" pattern="[A-Za-z]+"></lynk-input>
   <br />
   <lynk-button type="submit" color="primary">Submit</lynk-button>
-  <lynk-button type="reset" >Reset</lynk-button>
+  <lynk-button type="reset">Reset</lynk-button>
 </form>
 
 <script type="module">
@@ -107,7 +107,7 @@ Some input types will automatically trigger constraints, such as `email` and `ur
   <lynk-input type="url" label="URL" placeholder="https://example.com/" required></lynk-input>
   <br />
   <lynk-button type="submit" color="primary">Submit</lynk-button>
-  <lynk-button type="reset" >Reset</lynk-button>
+  <lynk-button type="reset">Reset</lynk-button>
 </form>
 
 <script type="module">
@@ -128,7 +128,7 @@ To create a custom validation error, pass a non-empty string to the `setCustomVa
   <lynk-input label="Type “lynk-design”" required></lynk-input>
   <br />
   <lynk-button type="submit" color="primary">Submit</lynk-button>
-  <lynk-button type="reset" >Reset</lynk-button>
+  <lynk-button type="reset">Reset</lynk-button>
 </form>
 
 <script type="module">
@@ -255,8 +255,10 @@ This example demonstrates custom validation styles using `data-user-invalid` and
   }
 
   .validity-styles lynk-input:focus-within[data-user-valid]::part(base),
-  .validity-styles lynk-select:focus-within[data-user-valid]::part(combobox)
-  .validity-styles lynk-checkbox:focus-within[data-user-valid]::part(control) {
+  .validity-styles
+    lynk-select:focus-within[data-user-valid]::part(combobox)
+    .validity-styles
+    lynk-checkbox:focus-within[data-user-valid]::part(control) {
     border-color: var(--lynk-color-success-600);
     box-shadow: 0 0 0 var(--lynk-focus-ring-width) var(--lynk-color-success-300);
   }
@@ -282,7 +284,7 @@ To disable the browser's error messages, you need to cancel the `on:invalid` eve
   <div id="name-error" aria-live="polite" hidden></div>
 
   <lynk-button type="submit" color="primary">Submit</lynk-button>
-  <lynk-button type="reset" >Reset</lynk-button>
+  <lynk-button type="reset">Reset</lynk-button>
 </form>
 
 <script>

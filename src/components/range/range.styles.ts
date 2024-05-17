@@ -42,9 +42,6 @@ export default css`
     margin: 0;
   }
 
-
-
-
   /* Webkit */
   .range__control::-webkit-slider-runnable-track {
     width: 100%;
@@ -84,12 +81,12 @@ export default css`
     z-index: 2;
     width: var(--thumb-size);
     height: var(--thumb-size);
-    top: calc(var(--thumb-size)/-2 + calc(var(--track-height)/2));
+    top: calc(var(--thumb-size) / -2 + calc(var(--track-height) / 2));
     border-radius: 50%;
     background-color: var(--lynk-color-primary-600);
     border: solid var(--lynk-input-border-width) var(--lynk-color-primary-600);
-    
-/*    margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
+
+    /*    margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
     cursor: pointer;*/
 
     transition: var(--lynk-transition-fast);
@@ -159,11 +156,14 @@ export default css`
     border-radius: 50%;
     position: relative;
     z-index: 2;
-    top: calc(var(--thumb-size)/-2 + calc(var(--track-height)/2));
+    top: calc(var(--thumb-size) / -2 + calc(var(--track-height) / 2));
     background-color: var(--lynk-color-primary-600);
     border-color: var(--lynk-color-primary-600);
-    transition: var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) background-color,
-      var(--lynk-transition-fast) color, var(--lynk-transition-fast) box-shadow;
+    transition:
+      var(--lynk-transition-fast) border-color,
+      var(--lynk-transition-fast) background-color,
+      var(--lynk-transition-fast) color,
+      var(--lynk-transition-fast) box-shadow;
   }
 
   .range__control:enabled::-moz-range-thumb:hover {
@@ -233,7 +233,7 @@ export default css`
 
   /* Tooltip on top */
   .range--tooltip-top .range__tooltip {
-/*    top: calc(-1 * var(--thumb-size) - var(--tooltip-offset));*/
+    /*    top: calc(-1 * var(--thumb-size) - var(--tooltip-offset));*/
     bottom: calc(100% + var(--lynk-tooltip-arrow-size) + var(--tooltip-offset));
   }
 
@@ -267,10 +267,10 @@ export default css`
     left: calc(var(--thumb-size) / 2);
     right: calc(var(--thumb-size) / 2);
     z-index: 1;
-/*    top: calc((var(--thumb-size) / 2 - var(--track-height) / 2));*/
+    /*    top: calc((var(--thumb-size) / 2 - var(--track-height) / 2));*/
     top: calc(50% - (var(--tick-height) / 2));
     pointer-events: none;
-/*    top: calc(var(--thumb-size) * -1);*/
+    /*    top: calc(var(--thumb-size) * -1);*/
   }
 
   .range__tick {
@@ -289,11 +289,11 @@ export default css`
     height: var(--tick-height);
     border-radius: 1px;
     background-color: var(--tick-color);
-    content: "";
+    content: '';
     display: block;
     position: relative;
     left: 50%;
-/*    top: calc((var(--thumb-size) - var(--track-height)) / 2);*/
+    /*    top: calc((var(--thumb-size) - var(--track-height)) / 2);*/
     transform: translateX(-50%);
   }
 

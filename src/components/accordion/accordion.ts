@@ -60,11 +60,11 @@ export default class LynkAccordion extends LynkElement {
       <slot
         part="base"
         class=${classMap({
-          'accordion': true,
+          accordion: true,
           'accordion--square': this.shape === 'square',
           'accordion--flush': this.density === 'flush',
           'accordion--compact': this.density === 'compact',
-          'accordion--comfy': this.density === 'comfy',
+          'accordion--comfy': this.density === 'comfy'
         })}
         @on:expand=${this.handlePanelToggle}
       ></slot>

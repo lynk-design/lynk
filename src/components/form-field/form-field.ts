@@ -78,7 +78,7 @@ export default class LynkFormField extends LynkElement {
   }
 
   firstUpdated() {
-    this.addOpenListeners()
+    this.addOpenListeners();
   }
 
   disconnectedCallback() {
@@ -99,7 +99,6 @@ export default class LynkFormField extends LynkElement {
   private handleFocus() {
     this.hasFocus = true;
     this.emit('on:focus');
-
   }
 
   private handleBlur() {
@@ -108,7 +107,7 @@ export default class LynkFormField extends LynkElement {
   }
 
   private handleLabelClick() {
-    this.focus()
+    this.focus();
   }
 
   private handleDefaultSlotChange() {
@@ -145,7 +144,6 @@ export default class LynkFormField extends LynkElement {
       this.blur();
     }
   }
-
 
   //
   // Slotted elements can be arbitrary content or form elements, but we need to link them to the label with `aria-labelledby`.
@@ -204,15 +202,14 @@ export default class LynkFormField extends LynkElement {
           'form-field--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
           'form-field--has-warning': this.state === 'warning',
           'form-field--has-success': this.state === 'success',
-          'form-field--focused': this.hasFocus,
+          'form-field--focused': this.hasFocus
         })}
       >
-
         <label
           id="label"
           part="label"
           class=${classMap({
-            'form-field__label': true,
+            'form-field__label': true
           })}
           aria-hidden=${hasLabel ? 'false' : 'true'}
           @click=${this.handleLabelClick}
@@ -251,7 +248,6 @@ export default class LynkFormField extends LynkElement {
           id="help-text"
           class="form-field__help-text"
           aria-hidden=${hasHelpText ? 'false' : 'true'}
-
         >
           ${this.helpText}
         </slot>

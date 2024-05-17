@@ -55,8 +55,11 @@ export default css`
     border-radius: 50%;
     background-color: var(--lynk-input-background-color);
     color: transparent;
-    transition: var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) background-color,
-      var(--lynk-transition-fast) color, var(--lynk-transition-fast) box-shadow;
+    transition:
+      var(--lynk-transition-fast) border-color,
+      var(--lynk-transition-fast) background-color,
+      var(--lynk-transition-fast) color,
+      var(--lynk-transition-fast) box-shadow;
   }
 
   .lynk-radio__input {

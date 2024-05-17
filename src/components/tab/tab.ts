@@ -53,11 +53,11 @@ export default class LynkTab extends LynkElement {
   @property() href = '';
 
   /**
-  * When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the
-  * default is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a
-  * specific tab/window, this will prevent that from working correctly. You can remove or change the default value by
-  * setting the attribute to an empty string or a value of your choice, respectively.
-  */
+   * When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the
+   * default is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a
+   * specific tab/window, this will prevent that from working correctly. You can remove or change the default value by
+   * setting the attribute to an empty string or a value of your choice, respectively.
+   */
   @property() rel = 'noreferrer noopener';
 
   connectedCallback() {
@@ -114,20 +114,22 @@ export default class LynkTab extends LynkElement {
         tabindex=${this.disabled ? '-1' : '0'}
       >
         <slot></slot>
-        ${this.closable
-          ? html`
-              <lynk-icon-button
-                part="close-button"
-                exportparts="base:close-button__base"
-                name="x-lg"
-                library="system"
-                label=${this.localize.term('close')}
-                class="lynk-tab__close-button"
-                @click=${this.handleCloseClick}
-                tabindex="-1"
-              ></lynk-icon-button>
-            `
-          : ''}
+        ${
+          this.closable
+            ? html`
+                <lynk-icon-button
+                  part="close-button"
+                  exportparts="base:close-button__base"
+                  name="x-lg"
+                  library="system"
+                  label=${this.localize.term('close')}
+                  class="lynk-tab__close-button"
+                  @click=${this.handleCloseClick}
+                  tabindex="-1"
+                ></lynk-icon-button>
+              `
+            : ''
+        }
       </${tag}>
     `;
   }

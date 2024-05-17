@@ -108,7 +108,6 @@ export default css`
     align-items: center;
   }
 
-
   /* Input Defaults */
   .input__control {
     flex: 1 1 auto;
@@ -354,7 +353,7 @@ export default css`
    * Date, Time, & DateTime-Local custom styling
   */
 
-  .input__control::-webkit-calendar-picker-indicator { 
+  .input__control::-webkit-calendar-picker-indicator {
     cursor: pointer;
     opacity: 0.65;
     transition: var(--lynk-transition-fast) color;

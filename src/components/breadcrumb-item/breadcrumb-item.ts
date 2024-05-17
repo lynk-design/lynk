@@ -21,7 +21,7 @@ import type { CSSResultGroup } from 'lit';
  * you want to change it for all items in the group, set the separator on `<lynk-breadcrumb>` instead.
  *
  * @dependency lynk-truncate
- * 
+ *
  * @csspart base - The component's base wrapper.
  * @csspart label - The breadcrumb item's label.
  * @csspart prefix - The container that wraps the prefix.

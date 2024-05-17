@@ -55,7 +55,9 @@ export default css`
     background-color: var(--lynk-color-neutral-400);
     border: solid var(--lynk-input-border-width) var(--lynk-color-neutral-400);
     border-radius: var(--height);
-    transition: var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) background-color;
+    transition:
+      var(--lynk-transition-fast) border-color,
+      var(--lynk-transition-fast) background-color;
   }
 
   .lynk-switch__control .lynk-switch__thumb {
@@ -65,8 +67,11 @@ export default css`
     border-radius: 50%;
     border: solid var(--lynk-input-border-width) var(--lynk-color-neutral-400);
     translate: calc((var(--width) - var(--height)) / -2);
-    transition: var(--lynk-transition-fast) translate ease, var(--lynk-transition-fast) background-color,
-      var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) box-shadow;
+    transition:
+      var(--lynk-transition-fast) translate ease,
+      var(--lynk-transition-fast) background-color,
+      var(--lynk-transition-fast) border-color,
+      var(--lynk-transition-fast) box-shadow;
   }
 
   .lynk-switch__input {

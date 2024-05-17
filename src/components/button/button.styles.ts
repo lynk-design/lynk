@@ -30,8 +30,11 @@ export default css`
     white-space: nowrap;
     vertical-align: middle;
     padding: 0;
-    transition: var(--lynk-transition-x-fast) background-color, var(--lynk-transition-x-fast) color,
-      var(--lynk-transition-x-fast) border, var(--lynk-transition-x-fast) box-shadow;
+    transition:
+      var(--lynk-transition-x-fast) background-color,
+      var(--lynk-transition-x-fast) color,
+      var(--lynk-transition-x-fast) border,
+      var(--lynk-transition-x-fast) box-shadow;
     cursor: inherit;
   }
 

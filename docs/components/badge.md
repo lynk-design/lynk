@@ -44,7 +44,6 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
   <lynk-badge type="warning" pill pulse>1</lynk-badge>
   <lynk-badge type="danger" pill pulse>1</lynk-badge>
 </lynk-stack>
-
 ```
 
 Customize the pulse speed by defining a custom `--pulse-speed` css variable.
@@ -52,10 +51,9 @@ Customize the pulse speed by defining a custom `--pulse-speed` css variable.
 ```html preview
 <lynk-stack horizontal>
   <lynk-badge type="success" pill pulse style="--pulse-speed: 3s">Slow</lynk-badge>
-  <lynk-badge type="warning" pill pulse >Default</lynk-badge>
+  <lynk-badge type="warning" pill pulse>Default</lynk-badge>
   <lynk-badge type="danger" pill pulse style="--pulse-speed: 750ms">Fast</lynk-badge>
 </lynk-stack>
-
 ```
 
 ### Custom Color Badges
@@ -64,7 +62,6 @@ Use the `--background-color` and `--color` css properties to customize the badge
 
 ```html preview
 <lynk-badge pill pulse style="--background-color: deeppink; --color: white">Deep Pink</lynk-badge>
-
 ```
 
 ### With Buttons

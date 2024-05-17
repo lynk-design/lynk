@@ -115,5 +115,4 @@
   - [Truncate](/utilities/truncate)
   - [Visually Hidden](/utilities/visually-hidden)
 
-
   <!--plop:component-->

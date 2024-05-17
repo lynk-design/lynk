@@ -29,9 +29,9 @@ describe('<lynk-icon-button>', () => {
 
   describe('when icon attributes are present', () => {
     it('renders an lynk-icon from a library', async () => {
-      const el = await fixture<LynkIconButton>(
-        html` <lynk-icon-button library="system" name="check-lg"></lynk-icon-button> `
-      );
+      const el = await fixture<LynkIconButton>(html`
+        <lynk-icon-button library="system" name="check-lg"></lynk-icon-button>
+      `);
       expect(el.shadowRoot?.querySelector('lynk-icon')).to.exist;
     });
 
@@ -67,16 +67,16 @@ describe('<lynk-icon-button>', () => {
     describe('and target is present', () => {
       ['_blank', '_parent', '_self', '_top'].forEach((target: LinkTarget) => {
         it(`the anchor target is the provided target: ${target}`, async () => {
-          const el = await fixture<LynkIconButton>(
-            html` <lynk-icon-button href="some/path" target="${target}"></lynk-icon-button> `
-          );
+          const el = await fixture<LynkIconButton>(html`
+            <lynk-icon-button href="some/path" target="${target}"></lynk-icon-button>
+          `);
           expect(el.shadowRoot?.querySelector(`a[target="${target}"]`)).to.exist;
         });
 
         it(`the anchor rel is set to 'noreferrer noopener'`, async () => {
-          const el = await fixture<LynkIconButton>(
-            html` <lynk-icon-button href="some/path" target="${target}"></lynk-icon-button> `
-          );
+          const el = await fixture<LynkIconButton>(html`
+            <lynk-icon-button href="some/path" target="${target}"></lynk-icon-button>
+          `);
           expect(el.shadowRoot?.querySelector(`a[rel="noreferrer noopener"]`)).to.exist;
         });
       });
@@ -85,9 +85,9 @@ describe('<lynk-icon-button>', () => {
     describe('and download is present', () => {
       it(`the anchor download attribute is the provided download`, async () => {
         const fakeDownload = 'some/path';
-        const el = await fixture<LynkIconButton>(
-          html` <lynk-icon-button href="some/path" download="${fakeDownload}"></lynk-icon-button> `
-        );
+        const el = await fixture<LynkIconButton>(html`
+          <lynk-icon-button href="some/path" download="${fakeDownload}"></lynk-icon-button>
+        `);
 
         expect(el.shadowRoot?.querySelector(`a[download="${fakeDownload}"]`)).to.exist;
       });
@@ -103,9 +103,9 @@ describe('<lynk-icon-button>', () => {
 
     it('the internal aria-label attribute is set to the provided label when rendering an anchor', async () => {
       const fakeLabel = 'some label';
-      const el = await fixture<LynkIconButton>(
-        html` <lynk-icon-button href="some/path" label="${fakeLabel}"></lynk-icon-button> `
-      );
+      const el = await fixture<LynkIconButton>(html`
+        <lynk-icon-button href="some/path" label="${fakeLabel}"></lynk-icon-button>
+      `);
       expect(el.shadowRoot?.querySelector(`a[aria-label="${fakeLabel}"]`)).to.exist;
     });
   });

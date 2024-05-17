@@ -7,6 +7,7 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
 ## 0.9.14
+
 - Fixed a bug in `<lynk-input>` where it would sometimes throw an error on trying to validate a field without a host.validate key.
 - Fixed a bug in `<lynk-input>` to better support native datepicker indicators
 - Adjusted size of `<lynk-table>` cells/rows to be slightly more compact
@@ -18,24 +19,30 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 - Updating nvm and cicd node version
 
 ## 0.9.13
+
 - Fixed a bug in `<lynk-radio-group>` where clicking outside of a label would throw an "cannot find disabled of null" error.
 - Experimenting with waiting for updateComplete before setting the validity of an `<lynk-input>` that has been disabled
 
 ## 0.9.12
+
 - Adjusting styles of `<lynk-button>` outline styles and making disabled slightly more obvious.
 - 🎉 NEW: Added a `<lynk-dot-loader>` component for another loader style.
 
 ## 0.9.11
-- Added some additional style options to  `<lynk-tag>`.
+
+- Added some additional style options to `<lynk-tag>`.
 
 ## 0.9.10
+
 - Fixed a bug in `<lynk-radio-group>` and `<lynk-dialog>` that caused an error due to an undefined tabIndex.
 
 ## 0.9.9
+
 - Fixed a bug in `<lynk-select>` that prevented it from closing when tabbing to another select inside a shadow root
 - Improved styling of `<lynk-form-field>` and `<lynk-radio-group>` to display `<lynk-radio>` or `<lynk-checkbox>` components similarly.
 
 ## 0.9.8
+
 - Fixes documentation for intersection observer utility
 - Fixed `<lynk-dialog>` not accounting for elements with hidden dialog controls like `<video>`
 - Fixed an issue with focus trapping elements like `<lynk-dialog>` when wrapped by other elements not checking the assigned elements of `<slot>`s.
@@ -43,20 +50,25 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 - 🎉 NEW: Added a `<lynk-form-field>` component for wrapping adding labels and help-text to non standard fields.
 
 ## 0.9.7
+
 - Improved `<lynk-card>` with customizable pulse speed and state colors.
 
 ## 0.9.6
+
 - Improved `<lynk-badge>` with customizable pulse speed.
 - Fixed documentation for animation utility.
 - Fixed missing parts in `<lynk-page-layout>`.
 
 ## 0.9.5
+
 - Improved `<lynk-page-sidebar>` with added slot for collapsed nav content.
 
 ## 0.9.4
+
 - Improved the margin handling for `<page-layout>`, `<page-header>`, `<page-content>`, `<page-sidebar>`, and `<page-footer>` components.
 
 ## 0.9.3
+
 - 🎉 NEW: Added experimental `<lynk-copy-button>` component that will copy text values to the clipboard.
 - Improved transitions for `<lynk-dialog>` sizes
 - Improved the behavior of the clear button in `<lynk-input>` to prevent the component’s width from shifting when toggled
@@ -64,26 +76,32 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 - Updated Bootstrap Icons to 1.11.0
 
 ## 0.9.2
+
 - Improved `<lynk-range>` tick styles
 
 ## 0.9.1
+
 - Improved `<lynk-range>` so that the handle and slider has a larger tap area
 - Improved `<lynk-range>` with custom marker/tick support
 
 ## 0.9.0
+
 - 🎉 NEW: Added a `<lynk-auto-grid>` layout component that utilizes the CSS Grid spec for simple grid layouts.
 - 🎉 NEW: Added a `<lynk-card>` layout component for simple card based related content.
 
 ## 0.8.0
+
 - 🎉 NEW: Added a `<lynk-panel>` layout component to replace the functionality of the previous `<lynk-accordion>` component.
 - 🚨 BREAKING: changed `<lynk-accordion>` to function more like a typical accordion that can contain multiple `<lynk-panel>` components
 
 ## 0.7.1
+
 - Improved `<lynk-nav>` so that squished styles are applied by class rather than attribute
 - Improved `<lynk-input>` by turning autocomplete to "off" by default
 - Added `striped` option to `<lynk-tr>`
 
 ## 0.7.0
+
 - 🎉 NEW: Added experimental `<lynk-split-panel>` layout component
 
 ## 0.6.6
@@ -124,7 +142,6 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 - Added `tag__base`, `tag__content`, `tag__remove-button`, `tag__remove-button__base` parts to `<lynk-select>`
 - Fixed a bug in `<lynk-select>` that caused the display label to render incorrectly in Chrome after form validation
 - Fixed a bug in `<lynk-select>` that caused `on:change` and `on:input` to be emitted too early
-
 
 ## 0.6.2
 

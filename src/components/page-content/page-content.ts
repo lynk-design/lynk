@@ -26,14 +26,13 @@ export default class LynkPageContent extends LynkElement {
 
   /** Scrolls the nearest scrollable parent element to the top. */
   scrollToTop() {
+    const parent: HTMLElement | null = this.hasParentLayout()
+      ? (this.parentElement as LynkPageLayout).renderRoot.querySelector('.lynk-page-layout__main')
+      : getScrollParent(this.pageContent);
 
-    const parent: HTMLElement | null = this.hasParentLayout() ? 
-      (this.parentElement as LynkPageLayout).renderRoot.querySelector('.lynk-page-layout__main') :
-      getScrollParent(this.pageContent);
-
-      if (parent) {
-          parent.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+    if (parent) {
+      parent.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   // Checks whether the page content is nested into a lynk-page-layout

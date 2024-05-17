@@ -27,7 +27,7 @@ export default class LynkTruncate extends LynkElement {
   @property() title = ''; // make reactive to pass through
 
   /** Optionally clamp string at specified number of lines. */
-  @property({ type: Number }) clamp?: '2' | '3' | '4' | '5' ;
+  @property({ type: Number }) clamp?: '2' | '3' | '4' | '5';
 
   private handleDefaultSlotChange() {
     const slottedElements = [...this.defaultSlot.assignedNodes({ flatten: true })] as HTMLElement[];
@@ -60,21 +60,14 @@ export default class LynkTruncate extends LynkElement {
         part="base"
         title=${this.title || this.getTextLabel()}
         class=${classMap({
-          'truncate': true,
+          truncate: true,
           'truncate--end': this.hasDefaultSlot && !this.hasEndSlot,
           'truncate--middle': this.hasDefaultSlot && this.hasEndSlot,
           'truncate--start': !this.hasDefaultSlot && this.hasEndSlot
         })}
       >
-        <slot
-          class="truncate__start"
-          @slotchange=${this.handleDefaultSlotChange}
-        ></slot>
-        <slot
-          name="end"
-          class="truncate__end"
-          @slotchange=${this.handleEndSlotChange}
-        ></slot>
+        <slot class="truncate__start" @slotchange=${this.handleDefaultSlotChange}></slot>
+        <slot name="end" class="truncate__end" @slotchange=${this.handleEndSlotChange}></slot>
       </span>
     `;
   }

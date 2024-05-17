@@ -103,11 +103,11 @@ You can add custom marker ticks to the range by passing in a rich array to the `
   const range = document.querySelector('.range-with-ticks');
 
   range.ticks = [
-    {value: 0, label: '0'},
-    {value: 22, label: '22'},
-    {value: 31, label: '31'},
-    {value: 46, label: '46', selected: true},
-    {value: 50, label: '50'}
+    { value: 0, label: '0' },
+    { value: 22, label: '22' },
+    { value: 31, label: '31' },
+    { value: 46, label: '46', selected: true },
+    { value: 50, label: '50' }
   ];
 </script>
 ```

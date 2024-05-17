@@ -305,11 +305,7 @@ export default class LynkNavItem extends LynkElement {
           this.isParent && this.squished
             ? html`
                 <span class="lynk-nav-item__chevron">
-                  <lynk-icon
-                    library="system"
-                    aria-hidden="true"
-                    name='chevron-down'
-                  ></lynk-icon>
+                  <lynk-icon library="system" aria-hidden="true" name="chevron-down"></lynk-icon>
                 </span>
               `
             : ''
@@ -319,11 +315,7 @@ export default class LynkNavItem extends LynkElement {
           this.target === '_blank'
             ? html`
                 <span class="lynk-nav-item__external">
-                  <lynk-icon
-                    library="system"
-                    aria-hidden="true"
-                    name='external'
-                  ></lynk-icon>
+                  <lynk-icon library="system" aria-hidden="true" name="external"></lynk-icon>
                 </span>
               `
             : ''

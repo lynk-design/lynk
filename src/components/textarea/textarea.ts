@@ -402,7 +402,9 @@ export default class LynkTextarea extends LynkElement implements LynkFormControl
                     part="textarea"
                     id="input"
                     class="lynk-textarea__control"
-                    title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
+                    title=${
+                      this.title /* An empty title prevents browser validation tooltips from appearing on hover */
+                    }
                     name=${ifDefined(this.name)}
                     .value=${live(this.value)}
                     ?disabled=${this.disabled}

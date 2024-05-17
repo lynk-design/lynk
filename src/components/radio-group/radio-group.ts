@@ -334,12 +334,11 @@ export default class LynkRadioGroup extends LynkElement implements LynkFormContr
         aria-describedby="help-text"
         aria-errormessage="error-message"
       >
-
         <label
           id="label"
           part="form-control-label"
           class=${classMap({
-            'lynk-form-control__label': true,
+            'lynk-form-control__label': true
           })}
           aria-hidden=${hasLabel ? 'false' : 'true'}
           @click=${this.handleLabelClick}

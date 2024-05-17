@@ -35,24 +35,9 @@ export default class LynkSpinner extends LynkElement {
         viewBox="0 6 24 12"
         aria-valuetext=${this.localize.term('loading')}
       >
-        <circle
-          class="dot-loader__circle"
-          cx="4"
-          cy="12"
-          r="3"
-        />
-        <circle
-          class="dot-loader__circle dot-loader__circle--b"
-          cx="12"
-          cy="12"
-          r="3"
-        />
-        <circle
-          class="dot-loader__circle dot-loader__circle--c"
-          cx="20"
-          cy="12"
-          r="3"
-        />
+        <circle class="dot-loader__circle" cx="4" cy="12" r="3" />
+        <circle class="dot-loader__circle dot-loader__circle--b" cx="12" cy="12" r="3" />
+        <circle class="dot-loader__circle dot-loader__circle--c" cx="20" cy="12" r="3" />
       </svg>
     `;
   }

@@ -16,7 +16,7 @@ export default css`
     gap: var(--spacing);
   }
 
-  .accordion--flush{
+  .accordion--flush {
     gap: 0;
   }
 
@@ -34,7 +34,7 @@ export default css`
   }
 
   .accordion--flush::slotted(lynk-panel) {
-    border-top: var(--divider); 
+    border-top: var(--divider);
   }
   .accordion--flush::slotted(lynk-panel:first-child) {
     border-top: none;

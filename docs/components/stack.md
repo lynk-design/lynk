@@ -137,7 +137,6 @@ Wrap the stack using the `wrap` attribute
 </lynk-stack>
 ```
 
-
 Reverse stack order using `reverse` attribute
 
 ```html preview

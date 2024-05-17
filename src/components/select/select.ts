@@ -179,7 +179,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
   /** The select's feedback status using manual validation. Alternatively, you can use the invalid attribute */
   @property({ reflect: true }) state: 'error' | 'warning' | 'success' | 'default' = 'default';
 
-/**
+  /**
    * A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second
    * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
    * the specified value.
@@ -235,7 +235,6 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
   }
-
 
   private handleFocus() {
     this.hasFocus = true;
@@ -457,7 +456,6 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
       this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
 
       if (this.value !== oldValue) {
-
         // Emit after updating
         this.updateComplete.then(() => {
           this.emit('on:input');
@@ -785,7 +783,7 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
         <div part="form-control-input" class="lynk-form-control-input">
           <lynk-popup
             class=${classMap({
-              'select': true,
+              select: true,
               'select--standard': true,
               'select--filled': this.filled,
               'select--pill': this.pill,
@@ -823,35 +821,34 @@ export default class LynkSelect extends LynkElement implements LynkFormControl {
 
               ${this.restricted
                 ? html`
-                  <div part="display-input" class="select__display-input">
-                    ${this.displayLabel ? this.displayLabel : '-'}
-                  </div>
-                ` : html`
-                  <input
-                    part="display-input"
-                    class="select__display-input"
-                    type="text"
-                    placeholder=${this.placeholder}
-                    .disabled=${this.disabled}
-                    .value=${this.displayLabel}
-                    autocomplete="off"
-                    spellcheck="false"
-                    autocapitalize="off"
-                    readonly
-                    aria-controls="listbox"
-                    aria-expanded=${this.open ? 'true' : 'false'}
-                    aria-haspopup="listbox"
-                    aria-labelledby="label"
-                    aria-disabled=${this.disabled ? 'true' : 'false'}
-                    aria-describedby="help-text"
-                    role="combobox"
-                    tabindex="0"
-                    @focus=${this.handleFocus}
-                    @blur=${this.handleBlur}
-                  />
-                `
-              }
-
+                    <div part="display-input" class="select__display-input">
+                      ${this.displayLabel ? this.displayLabel : '-'}
+                    </div>
+                  `
+                : html`
+                    <input
+                      part="display-input"
+                      class="select__display-input"
+                      type="text"
+                      placeholder=${this.placeholder}
+                      .disabled=${this.disabled}
+                      .value=${this.displayLabel}
+                      autocomplete="off"
+                      spellcheck="false"
+                      autocapitalize="off"
+                      readonly
+                      aria-controls="listbox"
+                      aria-expanded=${this.open ? 'true' : 'false'}
+                      aria-haspopup="listbox"
+                      aria-labelledby="label"
+                      aria-disabled=${this.disabled ? 'true' : 'false'}
+                      aria-describedby="help-text"
+                      role="combobox"
+                      tabindex="0"
+                      @focus=${this.handleFocus}
+                      @blur=${this.handleBlur}
+                    />
+                  `}
               ${this.multiple ? html`<div part="tags" class="select__tags">${this.tags}</div>` : ''}
 
               <input

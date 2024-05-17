@@ -24,4 +24,3 @@ export function* activeElements(activeElement: Element | null = document.activeE
 export function getDeepestActiveElement() {
   return [...activeElements()].pop();
 }
-

@@ -14,9 +14,9 @@ describe('<lynk-drawer>', () => {
   });
 
   it('should not be visible without the open attribute', async () => {
-    const el = await fixture<LynkDrawer>(
-      html` <lynk-drawer>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-drawer> `
-    );
+    const el = await fixture<LynkDrawer>(html`
+      <lynk-drawer>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</lynk-drawer>
+    `);
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part="base"]')!;
 
     expect(base.hidden).to.be.true;

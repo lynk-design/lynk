@@ -30,7 +30,7 @@ import type LynkTooltip from '../tooltip/tooltip';
  * @event after:show - Emitted after the sidebar opens and all animations are complete.
  * @event on:hide - Emitted when the sidebar closes.
  * @event after:hide - Emitted after the sidebar closes and all animations are complete.
- * 
+ *
  * @csspart base - The component's internal wrapper.
  * @csspart panel - The sidebar panel (where the sidebar and its content is rendered).
  * @csspart header - The sidebar header.
@@ -76,7 +76,8 @@ export default class LynkPageSidebar extends LynkElement {
   @property({ reflect: true }) toggle: 'contents' | 'visibility' | 'none' = 'none';
 
   /** Choose placement of toggle button when toggling contents  */
-  @property({ attribute: 'toggle-placement', reflect: true }) togglePlacement: 'top' | 'center' | 'bottom' | 'hidden' = 'top';
+  @property({ attribute: 'toggle-placement', reflect: true }) togglePlacement: 'top' | 'center' | 'bottom' | 'hidden' =
+    'top';
 
   /** Customize toggle contents tooltip text  */
   @property({ attribute: 'toggle-tip-hide-text', reflect: false }) toggleTipHideText: string = 'Hide Sidebar';
@@ -189,10 +190,7 @@ export default class LynkPageSidebar extends LynkElement {
         })}
       >
         <slot name="nav" part="nav" class="lynk-page-sidebar__nav"></slot>
-        <div
-          part="container"
-          class="lynk-page-sidebar__container"
-        >
+        <div part="container" class="lynk-page-sidebar__container">
           <header part="header" class="lynk-page-sidebar__header">
             <slot name="header">
               <h2 part="title" class="lynk-page-sidebar__title" id="title">
@@ -230,32 +228,31 @@ export default class LynkPageSidebar extends LynkElement {
 
         ${this.toggle === 'contents'
           ? html`
-
-            <lynk-tooltip
-              hoist
-              placement="bottom"
-              class="lynk-page-sidebar__trigger-tooltip"
-              content="${this.open ? this.toggleTipHideText : this.toggleTipShowText }"
-            >
-              <lynk-button
-                part="close-button"
-                size="tiny"
-                circle
-                exportparts="base:close-button__base"
-                class=${classMap({
-                  'lynk-page-sidebar__toggle': true,
-                  'lynk-page-sidebar__toggle--center': this.togglePlacement === 'center',
-                  'lynk-page-sidebar__toggle--bottom': this.togglePlacement === 'bottom',
-                  'lynk-page-sidebar__toggle--hidden': this.togglePlacement === 'hidden'
-                })}
-                label=${this.localize.term('close')}
-                @click=${this.handleToggleClick}
+              <lynk-tooltip
+                hoist
+                placement="bottom"
+                class="lynk-page-sidebar__trigger-tooltip"
+                content="${this.open ? this.toggleTipHideText : this.toggleTipShowText}"
               >
-                <lynk-icon library="system" name="${this.open ? 'chevron-left' : 'chevron-right'}"></lynk-icon>
-              </lynk-button>
-            </lynk-tooltip>
-          `
-        : ''}
+                <lynk-button
+                  part="close-button"
+                  size="tiny"
+                  circle
+                  exportparts="base:close-button__base"
+                  class=${classMap({
+                    'lynk-page-sidebar__toggle': true,
+                    'lynk-page-sidebar__toggle--center': this.togglePlacement === 'center',
+                    'lynk-page-sidebar__toggle--bottom': this.togglePlacement === 'bottom',
+                    'lynk-page-sidebar__toggle--hidden': this.togglePlacement === 'hidden'
+                  })}
+                  label=${this.localize.term('close')}
+                  @click=${this.handleToggleClick}
+                >
+                  <lynk-icon library="system" name="${this.open ? 'chevron-left' : 'chevron-right'}"></lynk-icon>
+                </lynk-button>
+              </lynk-tooltip>
+            `
+          : ''}
       </aside>
     `;
   }

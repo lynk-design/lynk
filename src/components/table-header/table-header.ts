@@ -55,8 +55,8 @@ export default class LynkTableHeader extends LynkElement {
             name="${this.sortDirection === LynkTableSortDirection.ASC
               ? 'arrow-up-short'
               : this.sortDirection === LynkTableSortDirection.DESC
-              ? 'arrow-down-short'
-              : 'arrow-up-down-short'}"
+                ? 'arrow-down-short'
+                : 'arrow-up-down-short'}"
           ></lynk-icon>`
         : ``}
     `;

@@ -17,7 +17,6 @@ describe('<lynk-panel>', () => {
     expect(body.hidden).to.be.false;
   });
 
-
   it('should be visible with the expanded and accordion attribute', async () => {
     const el = await fixture<LynkPanel>(html`
       <lynk-panel accordion expanded>

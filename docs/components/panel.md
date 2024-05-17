@@ -77,12 +77,7 @@ Use the `disabled` and `accordion` attributes in combination to prevent the Pane
 Use the `toggle-trigger` property to determine which header elements will trigger the expand/collapse of the content. In this example, setting `toggle-trigger="icon"` will toggle the panel contents only for clicks on the expand/collapse icon.
 
 ```html preview
-<lynk-panel
-  accordion
-  heading="Heading Trigger"
-  toggle-trigger="icon" 
-  toggle-icon-placement="start"
->
+<lynk-panel accordion heading="Heading Trigger" toggle-trigger="icon" toggle-icon-placement="start">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
   aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 </lynk-panel>
@@ -93,12 +88,7 @@ Use the `toggle-trigger` property to determine which header elements will trigge
 Add the `toggle-suffix` attribute to also hide the contents of the suffix slot when the panel is collapsed.
 
 ```html preview
-<lynk-panel
-  accordion
-  heading="Toggle Suffix"
-  toggle-icon-placement="start"
-  toggle-suffix
->
+<lynk-panel accordion heading="Toggle Suffix" toggle-icon-placement="start" toggle-suffix>
   <lynk-button slot="suffix" square size="small"><lynk-icon name="three-dots-vertical"></lynk-icon></lynk-button>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
   aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

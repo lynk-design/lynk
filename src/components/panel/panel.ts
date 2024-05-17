@@ -47,7 +47,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --spacing - The amount of padding to use for the header, body, and footer.
  * @cssproperty --border-color - Apply a panel border of your choosing.
  * @cssproperty --border-radius - The panels border radius.
- * 
+ *
  * @animation panel.expand - The animation to use when expanding the panel. You can use `height: auto` with this animation.
  * @animation panel.collapse - The animation to use when collapsing the panel. You can use `height: auto` with this animation.
  */
@@ -76,15 +76,17 @@ export default class LynkPanel extends LynkElement {
   @property() heading: string;
 
   /** The trigger that will expand/collapse an accordion panel. */
-  @property({ attribute: 'toggle-trigger', reflect: true }) toggleTrigger: 'header' | 'heading' | 'icon' | 'none' = 'header';
+  @property({ attribute: 'toggle-trigger', reflect: true }) toggleTrigger: 'header' | 'heading' | 'icon' | 'none' =
+    'header';
 
   /** Hide suffix when accordion is collapsed. */
   @property({ attribute: 'toggle-suffix', type: Boolean, reflect: true }) toggleSuffix = false;
 
-/** The placement of the toggle icon in the header. */
-  @property({ attribute: 'toggle-icon-placement', reflect: true }) toggleIconPlacement: 'start' | 'end' | 'hidden' = 'end';
+  /** The placement of the toggle icon in the header. */
+  @property({ attribute: 'toggle-icon-placement', reflect: true }) toggleIconPlacement: 'start' | 'end' | 'hidden' =
+    'end';
 
-/**
+  /**
    * Disables the header. This will also remove the default toggle-icon, so please ensure you provide an easy,
    * accessible way for users to toggle the panel if using as part of an accordion.
    */
@@ -219,7 +221,7 @@ export default class LynkPanel extends LynkElement {
       <div
         part="base"
         class=${classMap({
-          'panel': true,
+          panel: true,
           'panel--disabled': this.disabled,
           'panel--expanded': this.expanded,
           'panel--accordion': this.accordion,
@@ -231,79 +233,80 @@ export default class LynkPanel extends LynkElement {
           'panel--has-footer': this.hasSlotController.test('footer')
         })}
       >
-        ${!this.noHeader ? html`
-          <header
-            part="header"
-            id="header"
-            class=${classMap({
-              'panel__header': true,
-              'panel__header--trigger': this.toggleTrigger === 'header'
-            })}
-            role="button"
-            aria-expanded=${this.expanded ? 'true' : 'false'}
-            aria-controls="content"
-            aria-disabled=${this.disabled ? 'true' : 'false'}
-            tabindex=${this.disabled ? '-1' : '0'}
-            @click=${this.toggleTrigger === 'header' ? this.handleToggleTriggerClick : null}
-            @keydown=${this.handleHeaderKeyDown}
-          >
-            <slot
-              name="prefix"
-              part="prefix"
-              class="panel__prefix"
-              @click=${this.handlePrefixSuffixClick}
-              @keydown=${this.handlePrefixSuffixKeyDown}
-            ></slot>
-            <slot
-              name="heading"
-              part="heading"
-              class=${classMap({
-                'panel__heading': true,
-                'panel__heading--trigger': this.toggleTrigger === 'heading'
-              })}
-              @click=${this.toggleTrigger === 'heading' ? this.handleToggleTriggerClick : null}
-            >
-              ${this.heading}
-            </slot>
-            <slot
-              name="suffix"
-              part="suffix"
-              class="panel__suffix"
-              @click=${this.handlePrefixSuffixClick}
-              @keydown=${this.handlePrefixSuffixKeyDown}
-            ></slot>
+        ${!this.noHeader
+          ? html`
+              <header
+                part="header"
+                id="header"
+                class=${classMap({
+                  panel__header: true,
+                  'panel__header--trigger': this.toggleTrigger === 'header'
+                })}
+                role="button"
+                aria-expanded=${this.expanded ? 'true' : 'false'}
+                aria-controls="content"
+                aria-disabled=${this.disabled ? 'true' : 'false'}
+                tabindex=${this.disabled ? '-1' : '0'}
+                @click=${this.toggleTrigger === 'header' ? this.handleToggleTriggerClick : null}
+                @keydown=${this.handleHeaderKeyDown}
+              >
+                <slot
+                  name="prefix"
+                  part="prefix"
+                  class="panel__prefix"
+                  @click=${this.handlePrefixSuffixClick}
+                  @keydown=${this.handlePrefixSuffixKeyDown}
+                ></slot>
+                <slot
+                  name="heading"
+                  part="heading"
+                  class=${classMap({
+                    panel__heading: true,
+                    'panel__heading--trigger': this.toggleTrigger === 'heading'
+                  })}
+                  @click=${this.toggleTrigger === 'heading' ? this.handleToggleTriggerClick : null}
+                >
+                  ${this.heading}
+                </slot>
+                <slot
+                  name="suffix"
+                  part="suffix"
+                  class="panel__suffix"
+                  @click=${this.handlePrefixSuffixClick}
+                  @keydown=${this.handlePrefixSuffixKeyDown}
+                ></slot>
 
-          ${this.accordion ? html`
-            <span
-              part="toggle-icon"
-              class=${classMap({
-                'panel__toggle-icon': true,
-                'panel__toggle-icon--start': this.toggleIconPlacement === 'start',
-                'panel__toggle-icon--end': this.toggleIconPlacement === 'end',
-                'panel__toggle-icon--hidden': this.toggleIconPlacement === 'hidden',
-                'panel__toggle-icon--trigger': this.toggleTrigger === 'heading' || this.toggleTrigger === 'icon',
-              })}
-              @click=${this.toggleTrigger === 'heading' || this.toggleTrigger === 'icon' ? this.handleToggleTriggerClick : null}
-            >
-              <slot name="expand-icon">
-                <lynk-icon library="system" name=${isRtl ? 'chevron-left' : 'chevron-right'}></lynk-icon>
-              </slot>
-              <slot name="collapse-icon">
-                <lynk-icon library="system" name=${isRtl ? 'chevron-left' : 'chevron-right'}></lynk-icon>
-              </slot>
-            </span>
-          ` : ''}
-          </header>
-        ` : ''}
+                ${this.accordion
+                  ? html`
+                      <span
+                        part="toggle-icon"
+                        class=${classMap({
+                          'panel__toggle-icon': true,
+                          'panel__toggle-icon--start': this.toggleIconPlacement === 'start',
+                          'panel__toggle-icon--end': this.toggleIconPlacement === 'end',
+                          'panel__toggle-icon--hidden': this.toggleIconPlacement === 'hidden',
+                          'panel__toggle-icon--trigger':
+                            this.toggleTrigger === 'heading' || this.toggleTrigger === 'icon'
+                        })}
+                        @click=${this.toggleTrigger === 'heading' || this.toggleTrigger === 'icon'
+                          ? this.handleToggleTriggerClick
+                          : null}
+                      >
+                        <slot name="expand-icon">
+                          <lynk-icon library="system" name=${isRtl ? 'chevron-left' : 'chevron-right'}></lynk-icon>
+                        </slot>
+                        <slot name="collapse-icon">
+                          <lynk-icon library="system" name=${isRtl ? 'chevron-left' : 'chevron-right'}></lynk-icon>
+                        </slot>
+                      </span>
+                    `
+                  : ''}
+              </header>
+            `
+          : ''}
 
         <div class="panel__body">
-          <slot
-            part="content"
-            id="content"
-            class="panel__content"
-            role="region"
-            aria-labelledby="header"
-          ></slot>
+          <slot part="content" id="content" class="panel__content" role="region" aria-labelledby="header"></slot>
           <slot name="footer" part="footer" class="panel__footer"></slot>
         </div>
       </div>

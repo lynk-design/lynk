@@ -99,7 +99,7 @@ The table below shows how the Page Conent component's `max-width` changes across
 
 ### Layout Margins
 
-By default, the margins of the content will automatically increase at specific breakpoints to increase the breathing room of content as screen size increases. 
+By default, the margins of the content will automatically increase at specific breakpoints to increase the breathing room of content as screen size increases.
 
 If you are using the the page layout and related components within a container where margins or padding are already handled, you can reset the layout margins by redefining the `--lynk-page-layout-margin` css variable locally.
 

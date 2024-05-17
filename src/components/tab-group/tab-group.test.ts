@@ -188,8 +188,10 @@ describe('<lynk-tab-group>', () => {
     const generateTabs = (n: number): HTMLTemplateResult[] => {
       const result: HTMLTemplateResult[] = [];
       for (let i = 0; i < n; i++) {
-        result.push(html`<lynk-tab slot="nav" panel="tab-${i}">Tab ${i}</lynk-tab>
-          <lynk-tab-panel name="tab-${i}">Content of tab ${i}0</lynk-tab-panel> `);
+        result.push(
+          html`<lynk-tab slot="nav" panel="tab-${i}">Tab ${i}</lynk-tab>
+            <lynk-tab-panel name="tab-${i}">Content of tab ${i}0</lynk-tab-panel> `
+        );
       }
       return result;
     };

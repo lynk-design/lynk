@@ -62,6 +62,7 @@ To set the initial position in pixels instead of a percentage, use the `position
   </div>
 </lynk-split-panel>
 ```
+
 ### Vertical
 
 Add the `vertical` attribute to render the split panel in a vertical orientation where the start and end panels are stacked. You also need to set a height when using the vertical orientation.

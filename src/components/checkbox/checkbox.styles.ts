@@ -46,8 +46,11 @@ export default css`
     border-radius: 2px;
     background-color: var(--lynk-input-background-color);
     color: var(--lynk-color-neutral-0);
-    transition: var(--lynk-transition-fast) border-color, var(--lynk-transition-fast) background-color,
-      var(--lynk-transition-fast) color, var(--lynk-transition-fast) box-shadow;
+    transition:
+      var(--lynk-transition-fast) border-color,
+      var(--lynk-transition-fast) background-color,
+      var(--lynk-transition-fast) color,
+      var(--lynk-transition-fast) box-shadow;
   }
 
   .lynk-checkbox__input {
@@ -127,7 +130,7 @@ export default css`
     margin-inline-start: var(--lynk-input-required-content-offset);
   }
 
-    /*
+  /*
    * Error & Warning States
    */
 

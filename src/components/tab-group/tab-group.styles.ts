@@ -24,7 +24,9 @@ export default css`
 
   .lynk-tab-group__indicator {
     position: absolute;
-    transition: var(--lynk-transition-fast) translate ease, var(--lynk-transition-fast) width ease;
+    transition:
+      var(--lynk-transition-fast) translate ease,
+      var(--lynk-transition-fast) width ease;
   }
 
   .lynk-tab-group--has-scroll-controls .lynk-tab-group__nav-container {

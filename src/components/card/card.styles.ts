@@ -25,7 +25,8 @@ export default css`
     border: solid var(--border-width) var(--border-color);
     border-radius: var(--border-radius);
     line-height: var(--lynk-line-height-dense);
-    transition: var(--lynk-transition-fast) border,
+    transition:
+      var(--lynk-transition-fast) border,
       var(--lynk-transition-fast) box-shadow,
       var(--lynk-transition-fast) transform;
   }
@@ -40,14 +41,12 @@ export default css`
   .card--danger {
     --state-color: var(--lynk-color-danger);
     border: solid var(--border-width) var(--state-color);
-
   }
 
   /* Warning State */
   .card--warning {
     --state-color: var(--lynk-color-warning);
     border: solid var(--border-width) var(--state-color);
-
   }
 
   /* Success State */

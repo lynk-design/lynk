@@ -14,7 +14,9 @@ export default css`
     padding: var(--lynk-spacing-x-small) var(--lynk-spacing-base);
     user-select: none;
     vertical-align: middle;
-    transition: var(--lynk-transition-fast) box-shadow, var(--lynk-transition-fast) color;
+    transition:
+      var(--lynk-transition-fast) box-shadow,
+      var(--lynk-transition-fast) color;
   }
 
   :host([sortable]) {
