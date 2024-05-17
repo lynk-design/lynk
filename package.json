@@ -70,7 +70,7 @@
     "@web/test-runner-commands": "^0.9.0",
     "@web/test-runner-playwright": "^0.11.0",
     "bootstrap-icons": "^1.11.0",
-    "browser-sync": "^2.29.31",
+    "browser-sync": "^2.29.3",
     "cem-plugin-vs-code-custom-data-generator": "^1.4.1",
     "chalk": "^5.3.0",
     "command-line-args": "^5.2.1",
