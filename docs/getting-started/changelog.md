@@ -15,6 +15,7 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 - Updating Typescript
 - Updating Plop & Sinon
 - Updating deps (all but majors)
+- Updating nvm and cicd node version
 
 ## 0.9.13
 - Fixed a bug in `<lynk-radio-group>` where clicking outside of a label would throw an "cannot find disabled of null" error.

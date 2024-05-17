@@ -10,7 +10,7 @@ stages:
   - publish
 
 default:
-  image: node:14.18
+  image: node:20.9
 
 build-package:
   stage: build
