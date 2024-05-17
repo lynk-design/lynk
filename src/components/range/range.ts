@@ -142,7 +142,6 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
       this.syncRange();
       this.resizeObserver.observe(this.input);
     });
-
   }
 
   disconnectedCallback() {
@@ -258,7 +257,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
     }
   }
 
-  @watch('ticks', {waitUntilFirstUpdate: true})
+  @watch('ticks', { waitUntilFirstUpdate: true })
   handleMarkersChange() {
     // do something later
   }
@@ -340,7 +339,7 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
           <div
             part="base"
             class=${classMap({
-              'range': true,
+              range: true,
               'range--disabled': this.disabled,
               'range--focused': this.hasFocus,
               'range--has-ticks': this.ticks.length,
@@ -384,36 +383,30 @@ export default class LynkRange extends LynkElement implements LynkFormControl {
               : ''}
 
             <slot name="ticks" class="range__ticks">
-              ${this.ticks.length ? html`
-                  ${this.ticks
-                    .filter((tick) => tick.value >= this.min && tick.value <= this.max)
-                    .map((tick) => {
-                      const percent = this.valueToPercent(tick.value, this.min, this.max);
-                      const isSelected = (tick.selected && typeof tick.selected === 'boolean') ? tick.selected : false;
+              ${this.ticks.length
+                ? html`
+                    ${this.ticks
+                      .filter(tick => tick.value >= this.min && tick.value <= this.max)
+                      .map(tick => {
+                        const percent = this.valueToPercent(tick.value, this.min, this.max);
+                        const isSelected = tick.selected && typeof tick.selected === 'boolean' ? tick.selected : false;
 
-                      return html`
-                        <div
-                          class=${classMap({
-                            'range__tick': true,
-                            'range__tick--selected': isSelected
-                          })}
-                          style="--offset: ${percent}%"
-                          @click=${(event: MouseEvent) => this.handleMarkClick(event, tick)}
-                        >
-                          ${tick.label ? html`
-                            <span
-                              class="range__tick-label"
-                            >
-                              ${tick.label}
-                            </span>
-                          ` : ''}
-                        </div>
-                      `
-                    })
-                  }
-                ` : ''}
+                        return html`
+                          <div
+                            class=${classMap({
+                              range__tick: true,
+                              'range__tick--selected': isSelected
+                            })}
+                            style="--offset: ${percent}%"
+                            @click=${(event: MouseEvent) => this.handleMarkClick(event, tick)}
+                          >
+                            ${tick.label ? html` <span class="range__tick-label"> ${tick.label} </span> ` : ''}
+                          </div>
+                        `;
+                      })}
+                  `
+                : ''}
             </slot>
-
           </div>
         </div>
 

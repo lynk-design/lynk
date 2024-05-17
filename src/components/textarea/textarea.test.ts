@@ -178,7 +178,9 @@ describe('<lynk-textarea>', () => {
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
-      const el = await fixture<HTMLFormElement>(html` <form novalidate><lynk-textarea required></lynk-textarea></form> `);
+      const el = await fixture<HTMLFormElement>(html`
+        <form novalidate><lynk-textarea required></lynk-textarea></form>
+      `);
       const textarea = el.querySelector<LynkTextarea>('lynk-textarea')!;
 
       expect(textarea.hasAttribute('data-required')).to.be.true;
@@ -192,17 +194,17 @@ describe('<lynk-textarea>', () => {
 
   describe('when submitting a form', () => {
     it('should serialize its name and value with FormData', async () => {
-      const form = await fixture<HTMLFormElement>(
-        html` <form><lynk-textarea name="a" value="1"></lynk-textarea></form> `
-      );
+      const form = await fixture<HTMLFormElement>(html`
+        <form><lynk-textarea name="a" value="1"></lynk-textarea></form>
+      `);
       const formData = new FormData(form);
       expect(formData.get('a')).to.equal('1');
     });
 
     it('should serialize its name and value with JSON', async () => {
-      const form = await fixture<HTMLFormElement>(
-        html` <form><lynk-textarea name="a" value="1"></lynk-textarea></form> `
-      );
+      const form = await fixture<HTMLFormElement>(html`
+        <form><lynk-textarea name="a" value="1"></lynk-textarea></form>
+      `);
       const json = serialize(form);
       expect(json.a).to.equal('1');
     });

@@ -347,7 +347,7 @@ export class FormControlController implements ReactiveController {
   updateValidity() {
     const host = this.host;
 
-    if(host && host.validity) {
+    if (host && host.validity) {
       this.setValidity(host.validity.valid);
     }
   }

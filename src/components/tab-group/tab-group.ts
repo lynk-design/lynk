@@ -109,7 +109,7 @@ export default class LynkTabGroup extends LynkElement {
   disconnectedCallback() {
     this.mutationObserver.disconnect();
 
-    if(this.nav) {
+    if (this.nav) {
       this.resizeObserver.unobserve(this.nav);
     }
   }

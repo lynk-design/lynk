@@ -211,7 +211,6 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
   </lynk-menu>
 </lynk-dropdown>
 
-
 <script>
   const dropdown = document.querySelector('.dropdown-selection-search');
   const search = dropdown.querySelector('lynk-input');

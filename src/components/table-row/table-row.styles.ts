@@ -11,8 +11,11 @@ export default css`
     border-radius: 5px;
     background: var(--lynk-table-cell-background-color);
     --color: transparent;
-    transition: var(--lynk-transition-fast) background-color, var(--lynk-transition-fast) color,
-      var(--lynk-transition-fast) border, var(--lynk-transition-fast) box-shadow;
+    transition:
+      var(--lynk-transition-fast) background-color,
+      var(--lynk-transition-fast) color,
+      var(--lynk-transition-fast) border,
+      var(--lynk-transition-fast) box-shadow;
   }
 
   :host([striped]:nth-of-type(odd)) {

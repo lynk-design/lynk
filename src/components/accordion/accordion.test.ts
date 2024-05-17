@@ -6,7 +6,7 @@ import type LynkPanel from './panel';
 
 describe('<lynk-accordion>', () => {
   let accordion: LynkAccordion;
-  let panel: LynkPanel
+  let panel: LynkPanel;
 
   beforeEach(async () => {
     accordion = await fixture(html`

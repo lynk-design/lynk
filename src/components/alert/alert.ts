@@ -215,14 +215,14 @@ export default class LynkAlert extends LynkElement {
                   name="${this.type === 'info'
                     ? 'info-circle'
                     : this.type === 'neutral'
-                    ? 'question-square'
-                    : this.type === 'success'
-                    ? 'check-circle'
-                    : this.type === 'warning'
-                    ? 'exclamation-triangle'
-                    : this.type === 'danger'
-                    ? 'exclamation-octagon'
-                    : ''}"
+                      ? 'question-square'
+                      : this.type === 'success'
+                        ? 'check-circle'
+                        : this.type === 'warning'
+                          ? 'exclamation-triangle'
+                          : this.type === 'danger'
+                            ? 'exclamation-octagon'
+                            : ''}"
                 ></lynk-icon>
               `
             : ''}

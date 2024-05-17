@@ -130,7 +130,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   /** Disables the input. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
-    /** Placeholder text to show as a hint when the input is empty. */
+  /** Placeholder text to show as a hint when the input is empty. */
   @property() placeholder = '';
 
   /** Makes the input readonly. */
@@ -493,7 +493,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
           <div
             part="base"
             class=${classMap({
-              'input': true,
+              input: true,
 
               // Sizes
               'input--small': this.size === 'small',
@@ -518,49 +518,47 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
 
             ${this.restricted
               ? html`
-                  <div
-                    part="input"
-                    aria-describedby="help-text"
-                    class="input__control input__control--restricted"
-                  >
+                  <div part="input" aria-describedby="help-text" class="input__control input__control--restricted">
                     ${this.value || 'None'}
                   </div>
-              ` : html`
-                <input
-                  part="input"
-                  id="input"
-                  class="input__control"
-                  type=${this.type === 'password' && this.passwordVisible ? 'text' : this.type}
-                  title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
-                  name=${ifDefined(this.name)}
-                  ?disabled=${this.disabled}
-                  ?readonly=${this.readonly}
-                  ?required=${this.required}
-                  placeholder=${ifDefined(this.placeholder)}
-                  minlength=${ifDefined(this.minlength)}
-                  maxlength=${ifDefined(this.maxlength)}
-                  min=${ifDefined(this.min)}
-                  max=${ifDefined(this.max)}
-                  step=${ifDefined(this.step as number)}
-                  .value=${live(this.value)}
-                  autocapitalize=${ifDefined(this.autocapitalize)}
-                  autocomplete=${ifDefined(this.autocomplete) || "off"}
-                  autocorrect=${ifDefined(this.autocorrect)}
-                  ?autofocus=${this.autofocus}
-                  spellcheck=${this.spellcheck}
-                  pattern=${ifDefined(this.pattern)}
-                  enterkeyhint=${ifDefined(this.enterkeyhint)}
-                  inputmode=${ifDefined(this.inputmode)}
-                  aria-describedby="help-text"
-                  @change=${this.handleChange}
-                  @input=${this.handleInput}
-                  @invalid=${this.handleInvalid}
-                  @keydown=${this.handleKeyDown}
-                  @focus=${this.handleFocus}
-                  @blur=${this.handleBlur}
-                />
-              `
-            }
+                `
+              : html`
+                  <input
+                    part="input"
+                    id="input"
+                    class="input__control"
+                    type=${this.type === 'password' && this.passwordVisible ? 'text' : this.type}
+                    title=${
+                      this.title /* An empty title prevents browser validation tooltips from appearing on hover */
+                    }
+                    name=${ifDefined(this.name)}
+                    ?disabled=${this.disabled}
+                    ?readonly=${this.readonly}
+                    ?required=${this.required}
+                    placeholder=${ifDefined(this.placeholder)}
+                    minlength=${ifDefined(this.minlength)}
+                    maxlength=${ifDefined(this.maxlength)}
+                    min=${ifDefined(this.min)}
+                    max=${ifDefined(this.max)}
+                    step=${ifDefined(this.step as number)}
+                    .value=${live(this.value)}
+                    autocapitalize=${ifDefined(this.autocapitalize)}
+                    autocomplete=${ifDefined(this.autocomplete) || 'off'}
+                    autocorrect=${ifDefined(this.autocorrect)}
+                    ?autofocus=${this.autofocus}
+                    spellcheck=${this.spellcheck}
+                    pattern=${ifDefined(this.pattern)}
+                    enterkeyhint=${ifDefined(this.enterkeyhint)}
+                    inputmode=${ifDefined(this.inputmode)}
+                    aria-describedby="help-text"
+                    @change=${this.handleChange}
+                    @input=${this.handleInput}
+                    @invalid=${this.handleInvalid}
+                    @keydown=${this.handleKeyDown}
+                    @focus=${this.handleFocus}
+                    @blur=${this.handleBlur}
+                  />
+                `}
             ${isClearIconVisible
               ? html`
                   <button

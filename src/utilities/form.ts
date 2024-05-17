@@ -43,4 +43,3 @@ export function getFormControls(form: HTMLFormElement) {
     return 0;
   });
 }
-

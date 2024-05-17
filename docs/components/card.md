@@ -172,54 +172,34 @@ Cards can be styled with status colors using the `state` property. Accepted valu
 
 ```html preview
 <lynk-stack horizontal>
-  <lynk-card state="primary" active>
-    This is a primary state card.
-  </lynk-card>
+  <lynk-card state="primary" active> This is a primary state card. </lynk-card>
 
-  <lynk-card state="danger" active>
-    This is a danger state card.
-  </lynk-card>
+  <lynk-card state="danger" active> This is a danger state card. </lynk-card>
 
-  <lynk-card state="warning" active>
-    This is a warning state card.
-  </lynk-card>
+  <lynk-card state="warning" active> This is a warning state card. </lynk-card>
 
-  <lynk-card state="success" active>
-    This is a success state card.
-  </lynk-card>
+  <lynk-card state="success" active> This is a success state card. </lynk-card>
 
-  <lynk-card state="neutral" active>
-    This is a neutral state card.
-  </lynk-card>
+  <lynk-card state="neutral" active> This is a neutral state card. </lynk-card>
 
-  <lynk-card style="--state-color: fuchsia;" active>
-    This is a custom state card.
-  </lynk-card>
+  <lynk-card style="--state-color: fuchsia;" active> This is a custom state card. </lynk-card>
 </lynk-stack>
-
 ```
-
 
 ## Card Pulse State
 
 Draw extra visual attention to an active card by adding the `pulse` attribute.
 
 ```html preview
-
-<lynk-card state="danger" interactive pulse>
-  This is a pulsing danger state card.
-</lynk-card>
-
+<lynk-card state="danger" interactive pulse> This is a pulsing danger state card. </lynk-card>
 ```
 
 You can change the speed of the pulse by passing in a custom value to the `--pulse-speed` variable. Note that when using a custom `--state-color` you also need to set the `active` property to apply the state color to the border as well.
 
 ```html preview
-
 <lynk-card interactive active pulse style="--state-color: fuchsia; --pulse-speed: 0.5s;">
   This is a custom pulsing card.
 </lynk-card>
-
 ```
 
 [component-metadata:lynk-card]

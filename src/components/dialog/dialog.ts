@@ -60,7 +60,7 @@ import type { CSSResultGroup } from 'lit';
  * @animation dialog.denyClose - The animation to use when a request to close the dialog is denied.
  * @animation dialog.overlay.show - The animation to use when showing the dialog's overlay.
  * @animation dialog.overlay.hide - The animation to use when hiding the dialog's overlay.
- * 
+ *
  * @property modal - Exposes the internal modal utility that controls focus trapping. To temporarily disable focus
  *   trapping and allow third-party modals spawned from an active Lynk modal, call `modal.activateExternal()` when
  *   the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Lynk's focus trapping.
@@ -241,7 +241,6 @@ export default class LynkDialog extends LynkElement {
     }
   }
 
-
   /** Shows the dialog. */
   async show() {
     if (this.open) {
@@ -267,19 +266,14 @@ export default class LynkDialog extends LynkElement {
       <div
         part="base"
         class=${classMap({
-          'dialog': true,
+          dialog: true,
           'dialog--open': this.open,
           'dialog--fitted': this.size === 'fitted',
           'dialog--full': this.size === 'full',
           'dialog--has-footer': this.hasSlotController.test('footer')
         })}
       >
-        <div
-          part="overlay"
-          class="dialog__overlay"
-          @click=${() => this.requestClose('overlay')}
-          tabindex="-1"
-        ></div>
+        <div part="overlay" class="dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
 
         <div
           part="panel"
@@ -295,7 +289,9 @@ export default class LynkDialog extends LynkElement {
             ? html`
                 <header part="header" class="dialog__header">
                   <h2 part="title" class="dialog__title" id="title">
-                    <slot name="label"> ${(this.label && this.label.length > 0) ? this.label : String.fromCharCode(65279)} </slot>
+                    <slot name="label">
+                      ${this.label && this.label.length > 0 ? this.label : String.fromCharCode(65279)}
+                    </slot>
                   </h2>
                   <div part="header-actions" class="dialog__header-actions">
                     <slot name="header-actions"></slot>
@@ -312,7 +308,6 @@ export default class LynkDialog extends LynkElement {
                 </header>
               `
             : ''}
-
           ${
             '' /* The tabindex="-1" is here because the body is technically scrollable if overflowing. However, if there's no focusable elements inside, you won't actually be able to scroll it via keyboard. Previously this was just a <slot>, but tabindex="-1" on the slot causes children to not be focusable. https://github.com/shoelace-style/shoelace/issues/1753#issuecomment-1836803277 */
           }

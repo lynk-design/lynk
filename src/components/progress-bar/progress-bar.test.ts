@@ -72,12 +72,10 @@ describe('<lynk-progress-bar>', () => {
 
   describe('when provided a ariaLabelledBy, and value parameter', () => {
     before(async () => {
-      el = await fixture<LynkProgressBar>(
-        html`
-          <label id="labelledby">Progress Ring Label</label>
-          <lynk-progress-bar ariaLabelledBy="labelledby" value="25"></lynk-progress-bar>
-        `
-      );
+      el = await fixture<LynkProgressBar>(html`
+        <label id="labelledby">Progress Ring Label</label>
+        <lynk-progress-bar ariaLabelledBy="labelledby" value="25"></lynk-progress-bar>
+      `);
     });
 
     it('should pass accessibility tests', async () => {

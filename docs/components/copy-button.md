@@ -46,14 +46,14 @@ To copy data from an attribute, use `from="id[attr]"` where `id` is the id of th
 <span id="my-phone">+1 (123) 456-7890</span>
 <lynk-copy-button from="my-phone"></lynk-copy-button>
 
-<br><br>
+<br /><br />
 
 <!-- Copies the input's "value" property -->
 <lynk-input id="my-input" type="text" value="User input" style="display: inline-block; max-width: 300px;">
   <lynk-copy-button slot="action" from="my-input.value"></lynk-copy-button>
 </lynk-input>
 
-<br><br>
+<br /><br />
 
 <!-- Copies the link's "href" attribute -->
 <a id="my-link" href="https://lynk.design/">Lynk Website</a>
@@ -110,7 +110,9 @@ You can customize the button to your liking with CSS.
     border-right-color: #ad005c;
     border-bottom-color: #ad005c;
     border-radius: 0;
-    transition: 100ms scale ease-in-out, 100ms translate ease-in-out;
+    transition:
+      100ms scale ease-in-out,
+      100ms translate ease-in-out;
   }
 
   .custom-styles::part(button):hover {

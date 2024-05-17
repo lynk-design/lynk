@@ -22,7 +22,9 @@ export default css`
     white-space: nowrap;
     user-select: none;
     cursor: pointer;
-    transition: var(--transition-speed) box-shadow, var(--transition-speed) color;
+    transition:
+      var(--transition-speed) box-shadow,
+      var(--transition-speed) color;
   }
 
   .lynk-tab:hover:not(.lynk-tab--disabled) {

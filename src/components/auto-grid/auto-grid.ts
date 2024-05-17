@@ -38,10 +38,11 @@ export default class LynkAutoGrid extends LynkElement {
         class=${classMap({
           'auto-grid': true,
           'auto-grid--fit': this.autoSize === 'fit',
-          'auto-grid--fill': this.autoSize === 'fill',
+          'auto-grid--fill': this.autoSize === 'fill'
         })}
         style="--gap: ${this.gap}; --min-size: ${this.minSize};"
-      ></slot> `;
+      ></slot>
+    `;
   }
 }
 

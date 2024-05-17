@@ -199,7 +199,9 @@ describe('<lynk-checkbox>', () => {
     });
 
     it('should receive validation attributes ("states") even when novalidate is used on the parent form', async () => {
-      const el = await fixture<HTMLFormElement>(html` <form novalidate><lynk-checkbox required></lynk-checkbox></form> `);
+      const el = await fixture<HTMLFormElement>(html`
+        <form novalidate><lynk-checkbox required></lynk-checkbox></form>
+      `);
       const checkbox = el.querySelector<SlCheckbox>('lynk-checkbox')!;
 
       expect(checkbox.hasAttribute('data-required')).to.be.true;

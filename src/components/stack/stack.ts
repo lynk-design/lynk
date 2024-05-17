@@ -47,7 +47,7 @@ export default class LynkStack extends LynkElement {
       <slot
         part="base"
         class=${classMap({
-          'stack': true,
+          stack: true,
           'stack--horizontal': this.horizontal,
           'stack--reverse': this.reverse,
           'stack--align-start': this.align === 'start',
@@ -61,10 +61,11 @@ export default class LynkStack extends LynkElement {
           'stack--justify-between': this.justify === 'between',
           'stack--justify-around': this.justify === 'around',
           'stack--justify-evenly': this.justify === 'evenly',
-          'stack--wrap': this.wrap,
+          'stack--wrap': this.wrap
         })}
         style="--gap: ${this.gap};"
-      ></slot> `;
+      ></slot>
+    `;
   }
 }
 

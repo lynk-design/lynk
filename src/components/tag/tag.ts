@@ -56,7 +56,7 @@ export default class LynkTag extends LynkElement {
       <span
         part="base"
         class=${classMap({
-          'tag': true,
+          tag: true,
 
           // Types
           'tag--primary': this.type === 'primary',

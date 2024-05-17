@@ -6,9 +6,9 @@ describe('<lynk-card>', () => {
 
   describe('when provided no parameters', () => {
     before(async () => {
-      el = await fixture<LynkCard>(
-        html` <lynk-card>This is just a basic card. No image, no header, and no footer. Just your content.</lynk-card> `
-      );
+      el = await fixture<LynkCard>(html`
+        <lynk-card>This is just a basic card. No image, no header, and no footer. Just your content.</lynk-card>
+      `);
     });
 
     it('should pass accessibility tests', async () => {

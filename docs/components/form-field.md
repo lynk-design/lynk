@@ -4,7 +4,7 @@
 
 ```html preview
 <lynk-form-field label="Upload Cat Pictures" help-text="Accepted formats are .tiff and .meow" help-tip="Lolz cats.">
-  <input type="file" accept="image/tiff,.meow"/>
+  <input type="file" accept="image/tiff,.meow" />
 </lynk-form-field>
 ```
 
@@ -51,7 +51,7 @@ Use the `required` attribute to visually indicate a required field.
 
 ```html preview
 <lynk-form-field label="Name" required>
-  <input required/>
+  <input required />
 </lynk-form-field>
 ```
 
@@ -61,13 +61,13 @@ Use the `state` attribute to manually add an error, warning, or success state.
 
 ```html preview
 <lynk-form-field label="State" state="error" help-text="That dog aint gonna hunt!">
-  <input value="Error"/>
+  <input value="Error" />
 </lynk-form-field>
 <lynk-form-field label="State" state="warning" help-text="Proceed with caution...">
-  <input value="Warning"/>
+  <input value="Warning" />
 </lynk-form-field>
 <lynk-form-field label="State" state="success" help-text="Noice!">
-  <input value="Success"/>
+  <input value="Success" />
 </lynk-form-field>
 ```
 

@@ -42,19 +42,23 @@ describe('<lynk-split-panel>', () => {
   });
 
   it('should be accessible', async () => {
-    const splitPanel = await fixture(html`<lynk-split-panel>
-      <div slot="start">Start</div>
-      <div slot="end">End</div>
-    </lynk-split-panel>`);
+    const splitPanel = await fixture(
+      html`<lynk-split-panel>
+        <div slot="start">Start</div>
+        <div slot="end">End</div>
+      </lynk-split-panel>`
+    );
 
     await expect(splitPanel).to.be.accessible();
   });
 
   it('should show both panels', async () => {
-    const splitPanel = await fixture(html`<lynk-split-panel>
-      <div slot="start">Start</div>
-      <div slot="end">End</div>
-    </lynk-split-panel>`);
+    const splitPanel = await fixture(
+      html`<lynk-split-panel>
+        <div slot="start">Start</div>
+        <div slot="end">End</div>
+      </lynk-split-panel>`
+    );
 
     expect(splitPanel).to.contain.text('Start');
     expect(splitPanel).to.contain.text('End');
@@ -62,10 +66,12 @@ describe('<lynk-split-panel>', () => {
 
   describe('panel sizing horizontal', () => {
     it('has two evenly sized panels by default', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel>
-        <div slot="start" data-testid="start-panel">Start</div>
-        <div slot="end" data-testid="end-panel">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel>
+          <div slot="start" data-testid="start-panel">Start</div>
+          <div slot="end" data-testid="end-panel">End</div>
+        </lynk-split-panel>`
+      );
 
       const startPanelWidth = getPanelWidth(splitPanel, 'start-panel');
       const endPanelWidth = getPanelWidth(splitPanel, 'end-panel');
@@ -74,10 +80,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('changes the sizing of the panels based on the position attribute', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel position="25">
-        <div slot="start" data-testid="start-panel">Start</div>
-        <div slot="end" data-testid="end-panel">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel position="25">
+          <div slot="start" data-testid="start-panel">Start</div>
+          <div slot="end" data-testid="end-panel">End</div>
+        </lynk-split-panel>`
+      );
 
       const startPanelWidth = getPanelWidth(splitPanel, 'start-panel');
       const endPanelWidth = getPanelWidth(splitPanel, 'end-panel');
@@ -86,10 +94,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('updates the position in pixels to the correct result', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel position="25">
-        <div slot="start" data-testid="start-panel">Start</div>
-        <div slot="end" data-testid="end-panel">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel position="25">
+          <div slot="start" data-testid="start-panel">Start</div>
+          <div slot="end" data-testid="end-panel">End</div>
+        </lynk-split-panel>`
+      );
 
       splitPanel.position = 10;
 
@@ -99,10 +109,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('emits the on:reposition	event on position change', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel>
-        <div slot="start">Start</div>
-        <div slot="end">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel>
+          <div slot="start">Start</div>
+          <div slot="end">End</div>
+        </lynk-split-panel>`
+      );
 
       const repositionPromise = oneEvent(splitPanel, 'on:reposition');
       splitPanel.position = 10;
@@ -110,10 +122,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('can be resized using the mouse', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel>
-        <div slot="start">Start</div>
-        <div slot="end">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel>
+          <div slot="start">Start</div>
+          <div slot="end">End</div>
+        </lynk-split-panel>`
+      );
 
       const positionInPixels = splitPanel.positionInPixels;
 
@@ -126,10 +140,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('cannot be resized if disabled', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel disabled>
-        <div slot="start">Start</div>
-        <div slot="end">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel disabled>
+          <div slot="start">Start</div>
+          <div slot="end">End</div>
+        </lynk-split-panel>`
+      );
 
       const positionInPixels = splitPanel.positionInPixels;
 
@@ -142,10 +158,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('snaps to predefined positions', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel>
-        <div slot="start">Start</div>
-        <div slot="end">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel>
+          <div slot="start">Start</div>
+          <div slot="end">End</div>
+        </lynk-split-panel>`
+      );
 
       const positionInPixels = splitPanel.positionInPixels;
       splitPanel.snap = `${positionInPixels - 40}px`;
@@ -161,10 +179,12 @@ describe('<lynk-split-panel>', () => {
 
   describe('panel sizing vertical', () => {
     it('has two evenly sized panels by default', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel vertical style="height: 400px;">
-        <div slot="start" data-testid="start-panel">Start</div>
-        <div slot="end" data-testid="end-panel">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel vertical style="height: 400px;">
+          <div slot="start" data-testid="start-panel">Start</div>
+          <div slot="end" data-testid="end-panel">End</div>
+        </lynk-split-panel>`
+      );
 
       const startPanelHeight = getPanelHeight(splitPanel, 'start-panel');
       const endPanelHeight = getPanelHeight(splitPanel, 'end-panel');
@@ -173,10 +193,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('changes the sizing of the panels based on the position attribute', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel position="25" vertical style="height: 400px;">
-        <div slot="start" data-testid="start-panel">Start</div>
-        <div slot="end" data-testid="end-panel">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel position="25" vertical style="height: 400px;">
+          <div slot="start" data-testid="start-panel">Start</div>
+          <div slot="end" data-testid="end-panel">End</div>
+        </lynk-split-panel>`
+      );
 
       const startPanelHeight = getPanelHeight(splitPanel, 'start-panel');
       const endPanelHeight = getPanelHeight(splitPanel, 'end-panel');
@@ -185,10 +207,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('updates the position in pixels to the correct result', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel position="25" vertical style="height: 400px;">
-        <div slot="start" data-testid="start-panel">Start</div>
-        <div slot="end" data-testid="end-panel">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel position="25" vertical style="height: 400px;">
+          <div slot="start" data-testid="start-panel">Start</div>
+          <div slot="end" data-testid="end-panel">End</div>
+        </lynk-split-panel>`
+      );
 
       splitPanel.position = 10;
 
@@ -198,10 +222,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('emits the on:reposition	event on position change ', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel vertical style="height: 400px;">
-        <div slot="start">Start</div>
-        <div slot="end">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel vertical style="height: 400px;">
+          <div slot="start">Start</div>
+          <div slot="end">End</div>
+        </lynk-split-panel>`
+      );
 
       const repositionPromise = oneEvent(splitPanel, 'on:reposition');
       splitPanel.position = 10;
@@ -209,10 +235,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('can be resized using the mouse ', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel vertical style="height: 400px;">
-        <div slot="start">Start</div>
-        <div slot="end">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel vertical style="height: 400px;">
+          <div slot="start">Start</div>
+          <div slot="end">End</div>
+        </lynk-split-panel>`
+      );
 
       const positionInPixels = splitPanel.positionInPixels;
 
@@ -225,10 +253,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('cannot be resized if disabled', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel disabled vertical style="height: 400px;">
-        <div slot="start">Start</div>
-        <div slot="end">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel disabled vertical style="height: 400px;">
+          <div slot="start">Start</div>
+          <div slot="end">End</div>
+        </lynk-split-panel>`
+      );
 
       const positionInPixels = splitPanel.positionInPixels;
 
@@ -241,10 +271,12 @@ describe('<lynk-split-panel>', () => {
     });
 
     it('snaps to predefined positions', async () => {
-      const splitPanel = await fixture<LynkSplitPanel>(html`<lynk-split-panel vertical style="height: 400px;">
-        <div slot="start">Start</div>
-        <div slot="end">End</div>
-      </lynk-split-panel>`);
+      const splitPanel = await fixture<LynkSplitPanel>(
+        html`<lynk-split-panel vertical style="height: 400px;">
+          <div slot="start">Start</div>
+          <div slot="end">End</div>
+        </lynk-split-panel>`
+      );
 
       const positionInPixels = splitPanel.positionInPixels;
       splitPanel.snap = `${positionInPixels - 40}px`;

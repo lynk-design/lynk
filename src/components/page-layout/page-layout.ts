@@ -42,7 +42,11 @@ export default class LynkPageLayout extends LynkElement {
           <slot></slot>
         </div>
         <slot name="right-sidebar" part="right-sidebar" class="lynk-page-layout__right-sidebar"></slot>
-        <slot name="right-inset-sidebar" part="right-inset-sidebar" class="lynk-page-layout__right-inset-sidebar"></slot>
+        <slot
+          name="right-inset-sidebar"
+          part="right-inset-sidebar"
+          class="lynk-page-layout__right-inset-sidebar"
+        ></slot>
         <slot name="footer" part="footer" class="lynk-page-layout__footer"></slot>
       </div>
     `;

@@ -35,7 +35,9 @@ export default css`
     background-color: var(--lynk-panel-background-color);
     border-radius: var(--lynk-border-radius-medium);
     box-shadow: var(--lynk-shadow-x-large);
-    transition: var(--lynk-transition-fast) width, var(--lynk-transition-fast) height;
+    transition:
+      var(--lynk-transition-fast) width,
+      var(--lynk-transition-fast) height;
   }
 
   .dialog__panel:focus {

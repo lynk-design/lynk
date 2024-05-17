@@ -11,8 +11,8 @@ export default css`
   }
 
   .auto-grid {
-      display: grid;
-      grid-gap: var(--gap);
+    display: grid;
+    grid-gap: var(--gap);
   }
 
   .auto-grid--fit {
