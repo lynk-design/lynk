@@ -5,12 +5,13 @@ import { playwrightLauncher } from '@web/test-runner-playwright';
 export default {
   rootDir: '.',
   files: 'src/**/*.test.ts', // "default" group
-  concurrentBrowsers: 3,
+  concurrency: 1,
+  concurrentBrowsers: 1,
   nodeResolve: true,
   testsFinishTimeout: 20000,
   testFramework: {
     config: {
-      timeout: 3000,
+      timeout: 5000,
       retries: 2
     }
   },
