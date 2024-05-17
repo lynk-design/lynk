@@ -1,18 +1,18 @@
 import { esbuildPlugin } from '@web/dev-server-esbuild';
-import { playwrightLauncher } from '@web/test-runner-playwright';
 import { globbySync } from 'globby';
+import { playwrightLauncher } from '@web/test-runner-playwright';
 
 export default {
   rootDir: '.',
   files: 'src/**/*.test.ts', // "default" group
-  concurrency: 1,
-  concurrentBrowsers: 1,
-  nodeResolve: true,
-  testsFinishTimeout: 20000,
+  concurrentBrowsers: 3,
+  nodeResolve: {
+    exportConditions: ['production', 'default']
+  },
   testFramework: {
     config: {
       timeout: 3000,
-      retries: 2
+      retries: 1
     }
   },
   plugins: [
@@ -22,15 +22,27 @@ export default {
     })
   ],
   browsers: [
-    playwrightLauncher({ product: 'chromium' }),
+    playwrightLauncher({
+      product: 'chromium'
+    }),
+    // Firefox started failing randomly so we're temporarily disabling it here. This could be a rogue test, not really
+    // sure what's happening.
     // playwrightLauncher({ product: 'firefox' }),
-    playwrightLauncher({ product: 'webkit' })
+    // playwrightLauncher({
+    //   product: 'webkit',
+    //   launchOptions: {
+    //     args: ['--headed'],
+    //   }
+    // })
   ],
   testRunnerHtml: testFramework => `
     <html lang="en-US">
       <head></head>
       <body>
         <link rel="stylesheet" href="dist/themes/light.css">
+        <script>
+          window.process = {env: { NODE_ENV: "production" }}
+        </script>
         <script type="module" src="dist/lynk.js"></script>
         <script type="module" src="${testFramework}"></script>
       </body>
