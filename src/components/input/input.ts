@@ -21,8 +21,8 @@ import type { LynkFormControl } from '../../internal/lynk-element';
 // check to apply a clip-path to hide it. I know, I know...user agent sniffing is nasty but, if it fails, we only see a
 // redundant clear icon so nothing important is breaking. The benefits outweigh the costs for this one.
 //
-const isChromium = navigator.userAgentData?.brands.some(b => b.brand.includes('Chromium'));
-const isFirefox = isChromium ? false : navigator.userAgent.includes('Firefox');
+// const isChromium = navigator.userAgentData?.brands.some(b => b.brand.includes('Chromium'));
+// const isFirefox = isChromium ? false : navigator.userAgent.includes('Firefox');
 
 /**
  * @summary Inputs collect data from the user.
@@ -73,7 +73,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
   private readonly hasSlotController = new HasSlotController(this, 'action', 'help-text', 'help-tip', 'label');
   private readonly localize = new LocalizeController(this);
 
-  @query('.lynk-input__control') input: HTMLInputElement;
+  @query('.input__control') input: HTMLInputElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
@@ -147,6 +147,9 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
 
   /** Hides the browser's built-in increment/decrement spin buttons for number inputs. */
   @property({ attribute: 'no-spin-buttons', type: Boolean }) noSpinButtons = false;
+
+  /** Will automatically display a picker if available when input receives focus */
+  @property({ attribute: 'auto-picker', type: Boolean }) autoPicker = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -277,9 +280,13 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     this.input.focus();
   }
 
-  private handleFocus() {
+  private async handleFocus() {
     this.hasFocus = true;
     this.emit('on:focus');
+
+    if (this.autoPicker) {
+      this.showPicker();
+    }
   }
 
   private handleInput() {
@@ -429,10 +436,8 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     const hasHelpTip = this.helpTip ? true : !!hasHelpTipSlot;
-    const hasClearIcon =
-      this.clearable && !this.disabled && !this.readonly;
-    const hasClearIconVisible =
-      hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
+    const hasClearIcon = this.clearable && !this.disabled && !this.readonly;
+    const isClearIconVisible = hasClearIcon && (typeof this.value === 'number' || this.value.length > 0);
 
     return html`
       <div
@@ -488,36 +493,35 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
           <div
             part="base"
             class=${classMap({
-              'lynk-input': true,
+              'input': true,
 
               // Sizes
-              'lynk-input--small': this.size === 'small',
-              'lynk-input--medium': this.size === 'medium',
-              'lynk-input--large': this.size === 'large',
+              'input--small': this.size === 'small',
+              'input--medium': this.size === 'medium',
+              'input--large': this.size === 'large',
 
               // States
-              'lynk-input--pill': this.pill,
-              'lynk-input--standard': !this.filled,
-              'lynk-input--filled': this.filled,
-              'lynk-input--disabled': this.disabled,
-              'lynk-input--restricted': this.restricted,
-              'lynk-input--focused': this.hasFocus,
-              'lynk-input--empty': !this.value,
-              'lynk-input--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
-              'lynk-input--has-warning': this.state === 'warning',
-              'lynk-input--has-success': this.state === 'success',
-              'lynk-input--no-spin-buttons': this.noSpinButtons,
-              'lynk-input--is-firefox': isFirefox
+              'input--pill': this.pill,
+              'input--standard': !this.filled,
+              'input--filled': this.filled,
+              'input--disabled': this.disabled,
+              'input--restricted': this.restricted,
+              'input--focused': this.hasFocus,
+              'input--empty': !this.value,
+              'input--has-error': this.state === 'error' || this.hasAttribute('data-user-invalid'),
+              'input--has-warning': this.state === 'warning',
+              'input--has-success': this.state === 'success',
+              'input--no-spin-buttons': this.noSpinButtons
             })}
           >
-            <slot name="prefix" part="prefix" class="lynk-input__prefix"></slot>
+            <slot name="prefix" part="prefix" class="input__prefix"></slot>
 
             ${this.restricted
               ? html`
                   <div
                     part="input"
                     aria-describedby="help-text"
-                    class="lynk-input__control lynk-input__control--restricted"
+                    class="input__control input__control--restricted"
                   >
                     ${this.value || 'None'}
                   </div>
@@ -525,7 +529,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                 <input
                   part="input"
                   id="input"
-                  class="lynk-input__control"
+                  class="input__control"
                   type=${this.type === 'password' && this.passwordVisible ? 'text' : this.type}
                   title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}
                   name=${ifDefined(this.name)}
@@ -557,15 +561,14 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                 />
               `
             }
-            ${hasClearIcon
+            ${isClearIconVisible
               ? html`
                   <button
                     part="clear-button"
-                    class="lynk-input__clear"
+                    class="input__clear"
                     type="button"
                     aria-label=${this.localize.term('clearEntry')}
                     @click=${this.handleClearClick}
-                    style="visibility: ${hasClearIconVisible?'visible':'hidden'}"
                     tabindex="-1"
                   >
                     <slot name="clear-icon">
@@ -573,13 +576,12 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                     </slot>
                   </button>
                 `
-              : ''
-            }
+              : ''}
             ${this.passwordToggle && !this.disabled
               ? html`
                   <button
                     part="password-toggle-button"
-                    class="lynk-input__password-toggle"
+                    class="input__password-toggle"
                     type="button"
                     aria-label=${this.localize.term(this.passwordVisible ? 'hidePassword' : 'showPassword')}
                     @click=${this.handlePasswordToggle}
@@ -598,10 +600,9 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
                         `}
                   </button>
                 `
-              : ''
-            }
+              : ''}
 
-            <slot name="suffix" part="suffix" class="lynk-input__suffix"></slot>
+            <slot name="suffix" part="suffix" class="input__suffix"></slot>
           </div>
           <slot name="action"></slot>
         </lynk-stack>

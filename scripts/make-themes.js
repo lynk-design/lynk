@@ -27,7 +27,7 @@ try {
   });
 
   // Loop through each theme file, copying the .css and generating a .js version for Lit users
-  files.forEach(file => {
+  files.forEach(async file => {
     let source = fs.readFileSync(file, 'utf8');
 
     // If the source has "/* _filename.css */" in it, replace it with the embedded styles
@@ -35,11 +35,11 @@ try {
       source = source.replace(`/* ${key} */`, embeds[key]);
     });
 
-    const css = prettier.format(stripComments(source), {
+    const css = await prettier.format(stripComments(source), {
       parser: 'css'
     });
 
-    let js = prettier.format(
+    let js = await prettier.format(
       `
       import { css } from 'lit';
 

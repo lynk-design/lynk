@@ -6,6 +6,16 @@ Components with the <lynk-badge type="warning" pill>Experimental</lynk-badge> ba
 
 <lynk-alert type="info" open>During the beta period, these restrictions may be relaxed in the event of a mission-critical bug. 🐛</lynk-alert>
 
+## 0.9.14
+- Fixed a bug in `<lynk-input>` where it would sometimes throw an error on trying to validate a field without a host.validate key.
+- Fixed a bug in `<lynk-input>` to better support native datepicker indicators
+- Adjusted size of `<lynk-table>` cells/rows to be slightly more compact
+- Updated Lit to 3.0.0
+- Updated Prettier to 3.0.3
+- Updating Typescript
+- Updating Plop & Sinon
+- Updating deps (all but majors)
+
 ## 0.9.13
 - Fixed a bug in `<lynk-radio-group>` where clicking outside of a label would throw an "cannot find disabled of null" error.
 - Experimenting with waiting for updateComplete before setting the validity of an `<lynk-input>` that has been disabled
