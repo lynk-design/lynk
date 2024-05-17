@@ -29,7 +29,7 @@ build-package:
 
 run-tests:
   stage: test
-  image: mcr.microsoft.com/playwright:v1.28.0-focal
+  image: mcr.microsoft.com/playwright:v1.28.1-jammy
   before_script:
     - yarn
     - npm install -D @playwright/test

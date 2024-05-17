@@ -99,7 +99,7 @@
     "open": "^8.4.2",
     "pascal-case": "^3.1.2",
     "plop": "^3.1.2",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.3",
     "react": "^18.2.0",
     "recursive-copy": "^2.0.14",
     "sinon": "^15.0.1",
