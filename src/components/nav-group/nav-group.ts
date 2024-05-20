@@ -34,7 +34,7 @@ export default class LynkNavGroup extends LynkElement {
   @property({ reflect: true })
   public heading = '';
 
-  async connectedCallback() {
+  connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'group');
   }

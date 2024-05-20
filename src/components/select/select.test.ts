@@ -117,7 +117,7 @@ describe('<lynk-select>', () => {
           <lynk-option value="option-3">Option 3</lynk-option>
         </lynk-select>
       `);
-      const secondOption = el.querySelectorAll<SlOption>('lynk-option')[1];
+      const secondOption = el.querySelectorAll<LynkOption>('lynk-option')[1];
       const changeHandler = sinon.spy();
       const inputHandler = sinon.spy();
 
@@ -181,7 +181,7 @@ describe('<lynk-select>', () => {
     });
 
     it('should emit om:change and om:input with the correct validation message when the value changes', async () => {
-      const el = await fixture<SlSelect>(html`
+      const el = await fixture<LynkSelect>(html`
         <lynk-select required>
           <lynk-option value="option-1">Option 1</lynk-option>
           <lynk-option value="option-2">Option 2</lynk-option>
@@ -294,7 +294,7 @@ describe('<lynk-select>', () => {
           <lynk-option value="option-3">Option 3</lynk-option>
         </lynk-select>
       `);
-      const secondOption = el.querySelectorAll('lynk-option')[1]!;
+      const secondOption = el.querySelectorAll('lynk-option')[1];
 
       expect(el.checkValidity()).to.be.true;
       expect(el.hasAttribute('data-required')).to.be.true;
@@ -323,7 +323,7 @@ describe('<lynk-select>', () => {
           <lynk-option value="option-3">Option 3</lynk-option>
         </lynk-select>
       `);
-      const secondOption = el.querySelectorAll('lynk-option')[1]!;
+      const secondOption = el.querySelectorAll('lynk-option')[1];
 
       expect(el.hasAttribute('data-required')).to.be.true;
       expect(el.hasAttribute('data-optional')).to.be.false;

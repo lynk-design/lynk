@@ -278,7 +278,7 @@ describe('<lynk-nav>', () => {
     describe('when the nav is about to receive the focus', () => {
       it('should set the focus to the last focused item', async () => {
         // Arrange
-        const nav = el.children[1] as LynkTreeItem;
+        const nav = el.children[1] as LynkNavItem;
         nav.focus();
         await el.updateComplete;
 

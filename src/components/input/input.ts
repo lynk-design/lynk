@@ -1,7 +1,7 @@
+import '../../components/form-field/form-field';
 import '../../components/icon/icon';
 import '../../components/stack/stack';
 import '../../components/tooltip/tooltip';
-import '../../components/form-field/form-field';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { defaultValue } from '../../internal/default-value';
@@ -280,7 +280,7 @@ export default class LynkInput extends LynkElement implements LynkFormControl {
     this.input.focus();
   }
 
-  private async handleFocus() {
+  private handleFocus() {
     this.hasFocus = true;
     this.emit('on:focus');
 

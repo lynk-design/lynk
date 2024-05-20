@@ -100,6 +100,8 @@ export default class LynkTab extends LynkElement {
     // If the user didn't provide an ID, we'll set one so we can link tabs and tab panels with aria labels
     this.id = this.id.length > 0 ? this.id : this.componentId;
 
+    /* eslint-disable lit/no-invalid-html */
+    /* eslint-disable lit/binding-positions */
     return html`
       <${tag}
         part="base"
@@ -132,6 +134,8 @@ export default class LynkTab extends LynkElement {
         }
       </${tag}>
     `;
+    /* eslint-enable lit/no-invalid-html */
+    /* eslint-enable lit/binding-positions */
   }
 }
 

@@ -256,6 +256,8 @@ export default class LynkNavItem extends LynkElement {
     const tag = isLink ? literal`a` : literal`button`;
     const isRtl = this.localize.dir() === 'rtl';
 
+    /* eslint-disable lit/no-invalid-html */
+    /* eslint-disable lit/binding-positions */
     return html`
       <${tag}
         class=${classMap({
@@ -329,8 +331,9 @@ export default class LynkNavItem extends LynkElement {
         part="children"
         role="group"
       ></slot>
-
     `;
+    /* eslint-enable lit/no-invalid-html */
+    /* eslint-enable lit/binding-positions */
   }
 }
 

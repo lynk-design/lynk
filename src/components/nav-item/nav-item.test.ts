@@ -26,7 +26,7 @@ describe('<lynk-nav-item>', () => {
     expect(navItem).to.have.attribute('aria-disabled', 'false');
   });
 
-  it('default values are set correctly', async () => {
+  it('default values are set correctly', () => {
     expect(navItem.value).to.equal('');
     expect(navItem.href).to.equal('');
     expect(navItem.depth).to.equal(0);
@@ -39,7 +39,7 @@ describe('<lynk-nav-item>', () => {
 
   describe('when href is present', () => {
     it('should render as an <a>', async () => {
-      const el = await fixture<LynkNavItemn>(html` <lynk-nav-item href="some/path" disabled>Label</lynk-nav-item> `);
+      const el = await fixture<HTMLFormElement>(html` <lynk-nav-item href="some/path" disabled>Label</lynk-nav-item> `);
       expect(el.shadowRoot!.querySelector('a')).to.exist;
       expect(el.shadowRoot!.querySelector('button')).not.to.exist;
     });
