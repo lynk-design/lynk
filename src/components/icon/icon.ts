@@ -101,7 +101,6 @@ export default class LynkIcon extends LynkElement {
         const file = await requestIcon(url);
         if (url !== this.getUrl()) {
           // If the url has changed while fetching the icon, ignore this request
-          
         } else if (file.ok) {
           const doc = parser.parseFromString(file.svg, 'text/html');
           const svgEl = doc.body.querySelector('svg');
