@@ -1,8 +1,8 @@
 import { classMap } from 'lit/directives/class-map.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize';
-import { customElement, property, query, state } from 'lit/decorators.js';
 import LynkElement from '../../internal/lynk-element';
 import LynkIcon from '../icon/icon';
 import LynkTooltip from '../tooltip/tooltip';

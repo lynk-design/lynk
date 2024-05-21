@@ -236,7 +236,7 @@ describe('<lynk-range>', () => {
       const el = await fixture<LynkRange>(html`
         <lynk-range ticks='[{"value": -1},{"value": 0},{"value": 100},{"value": 120}]'></lynk-range>
       `);
-      const ticks = el.shadowRoot!.querySelectorAll('.range__tick')!;
+      const ticks = el.shadowRoot!.querySelectorAll('.range__tick');
 
       expect(ticks.length).to.equal(2);
     });

@@ -92,8 +92,15 @@ module.exports = {
         '@typescript-eslint/member-delimiter-style': 'warn',
         '@typescript-eslint/method-signature-style': 'warn',
         '@typescript-eslint/no-extraneous-class': 'error',
-        '@typescript-eslint/no-parameter-properties': 'error',
+        '@typescript-eslint/no-redundant-type-constituents': 'off',
+        '@typescript-eslint/parameter-properties': 'error',
         '@typescript-eslint/strict-boolean-expressions': 'off'
+      }
+    },
+    {
+      files: ['**/*.cjs'],
+      env: {
+        node: true
       }
     },
     {
@@ -114,6 +121,8 @@ module.exports = {
     'default-param-last': 'error',
     eqeqeq: 'error',
     'lit-a11y/click-events-have-key-events': 'off',
+    'lit-a11y/no-aria-slot': 'off',
+    'lit-a11y/accessible-name': 'off',
     'no-constructor-return': 'error',
     'no-empty-function': 'warn',
     'no-eval': 'error',

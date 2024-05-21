@@ -121,7 +121,7 @@ export default class LynkTooltip extends LynkElement {
     });
   }
 
-  async firstUpdated() {
+  firstUpdated() {
     this.body.hidden = !this.open;
 
     // If the tooltip is visible on init, update its position

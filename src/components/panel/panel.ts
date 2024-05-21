@@ -8,8 +8,8 @@ import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize';
 import { waitForEvent } from '../../internal/event';
 import { watch } from '../../internal/watch';
-import LynkElement from '../../internal/lynk-element';
 import LynkAccordion from '../../components/accordion/accordion';
+import LynkElement from '../../internal/lynk-element';
 import styles from './panel.styles';
 import type { CSSResultGroup } from 'lit';
 

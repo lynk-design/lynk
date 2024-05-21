@@ -147,7 +147,7 @@ export default class LynkPageSidebar extends LynkElement {
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
-  async handleOpenChange() {
+  handleOpenChange() {
     if (this.open) {
       // Show
       this.emit('on:show');

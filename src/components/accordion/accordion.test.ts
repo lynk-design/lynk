@@ -1,12 +1,9 @@
 // cspell:dictionaries lorem-ipsum
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
-import sinon from 'sinon';
+import { expect, fixture, html } from '@open-wc/testing';
 import type LynkAccordion from './accordion';
-import type LynkPanel from './panel';
 
 describe('<lynk-accordion>', () => {
   let accordion: LynkAccordion;
-  let panel: LynkPanel;
 
   beforeEach(async () => {
     accordion = await fixture(html`

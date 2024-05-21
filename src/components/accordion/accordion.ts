@@ -3,8 +3,8 @@ import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import styles from './accordion.styles';
-import LynkPanel from '../panel/panel';
 import type { CSSResultGroup } from 'lit';
+import type LynkPanel from '../panel/panel';
 
 /**
  * @summary A vertically stacked set of interactive [Panels](/components/panel) that can expand to reveal an associated section of content.
@@ -44,13 +44,13 @@ export default class LynkAccordion extends LynkElement {
   }
 
   /** Expands all panels. */
-  async expandAll() {
+  public expandAll() {
     const panels = this.getAllPanels();
     panels.forEach(panel => (panel.expanded = true));
   }
 
   /** Collapses all panels */
-  async collapseAll() {
+  public collapseAll() {
     const panels = this.getAllPanels();
     panels.forEach(panel => (panel.expanded = false));
   }

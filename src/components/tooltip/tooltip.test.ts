@@ -154,7 +154,7 @@ describe('<lynk-tooltip>', () => {
         <lynk-button>Hover Me</lynk-button>
       </lynk-tooltip>
     `);
-    const popup = el.shadowRoot!.querySelector<SlPopup>('lynk-popup')!;
+    const popup = el.shadowRoot!.querySelector<LynkPopup>('lynk-popup')!;
 
     expect(getComputedStyle(popup.popup).pointerEvents).to.equal('none');
   });

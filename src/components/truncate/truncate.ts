@@ -1,6 +1,6 @@
-import { html } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import { html } from 'lit';
 import LynkElement from '../../internal/lynk-element';
 import styles from './truncate.styles';
 import type { CSSResultGroup } from 'lit';

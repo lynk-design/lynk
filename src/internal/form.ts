@@ -1,5 +1,5 @@
-import type { ReactiveController, ReactiveControllerHost } from 'lit';
 import type { LynkFormControl } from '../internal/lynk-element';
+import type { ReactiveController, ReactiveControllerHost } from 'lit';
 import type LynkButton from '../components/button/button';
 
 //

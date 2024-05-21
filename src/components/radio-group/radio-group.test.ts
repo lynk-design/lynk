@@ -215,7 +215,7 @@ describe('when submitting a form', () => {
       </form>
     `);
     const button = form.querySelector('lynk-button')!;
-    const radio = form.querySelectorAll('lynk-radio')[1]!;
+    const radio = form.querySelectorAll('lynk-radio')[1];
     const submitHandler = sinon.spy((event: SubmitEvent) => {
       formData = new FormData(form);
 

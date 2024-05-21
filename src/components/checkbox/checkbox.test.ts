@@ -202,7 +202,7 @@ describe('<lynk-checkbox>', () => {
       const el = await fixture<HTMLFormElement>(html`
         <form novalidate><lynk-checkbox required></lynk-checkbox></form>
       `);
-      const checkbox = el.querySelector<SlCheckbox>('lynk-checkbox')!;
+      const checkbox = el.querySelector<LynkCheckbox>('lynk-checkbox')!;
 
       expect(checkbox.hasAttribute('data-required')).to.be.true;
       expect(checkbox.hasAttribute('data-optional')).to.be.false;

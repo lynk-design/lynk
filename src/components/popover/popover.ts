@@ -399,7 +399,6 @@ export default class LynkPopover extends LynkElement {
           part="panel"
           class="lynk-popover__panel"
           role="popover"
-          aria-popover="true"
           aria-hidden=${this.open ? 'false' : 'true'}
           aria-label=${ifDefined(this.noHeader ? this.label : undefined)}
           aria-labelledby=${ifDefined(!this.noHeader ? 'title' : undefined)}
