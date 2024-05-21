@@ -1,7 +1,7 @@
 {
   "name": "@uplynk/lynk-design",
   "description": "A library of web components and styles for building web applications with the Edgio Streaming design language.",
-  "version": "0.9.17",
+  "version": "0.9.18",
   "homepage": "https://lynk.design/",
   "author": "Harley Jessop",
   "license": "MIT",
@@ -48,7 +48,7 @@
     "update-dependencies": "npm-check-updates --peer -u && yarn install"
   },
   "engines": {
-    "node": ">=18.18.2"
+    "node": ">=14.17.0"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.5.3",
